@@ -13,7 +13,8 @@
   <!-- Other module inherits                                      -->
 
   <!-- Specify the app entry point class.                         -->
-  <entry-point class='fspotcloud.client.FSpotCloud'/>
+  <!-- <entry-point class='fspotcloud.client.FSpotCloud'/> -->
+  <entry-point class='fspotcloud.client.TreeExample'/>
 
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>
