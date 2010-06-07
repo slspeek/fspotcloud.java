@@ -33,6 +33,14 @@ public class Client {
 		Object[] params = new Object[] { new Integer(2), new Integer(3) };
 		Integer result = (Integer) client.execute("Calculator.add", params);
 		System.out.println("2 + 3 = " + result);
+		
+		params = new Object[] { new Integer(2), new Integer(3) };
+		result = (Integer) client.execute("TagReciever.add", params);
+		System.out.println("MetaReciever 2 - 3 = " + result);
+		
+		params = new Object[] { new Integer(2), new Integer(3) };
+		result = (Integer) client.execute("Meta.subtract", params);
+		System.out.println("MetaReciever 2 - 3 = " + result);
 
 		params = new Object[] {};
 		Object[] list = (Object[])client.execute("Calculator.list", params);

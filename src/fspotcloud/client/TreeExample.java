@@ -23,6 +23,6 @@ public class TreeExample implements EntryPoint {
 	    t.addItem(root);
 
 	    // Add it to the root panel.
-	    RootPanel.get().add(t);
+	    RootPanel.get("treeContainer").add(t);
 	  }
 	}

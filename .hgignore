@@ -1,0 +1,7 @@
+syntax: glob
+*.class
+.settings/*
+war/fspotcloud/*
+.classpath
+.project
+war/WEB-INF/classes/fspotcloud/FSpotCloud.gwt.xml
