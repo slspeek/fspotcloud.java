@@ -33,7 +33,6 @@ public class Tag {
 	@Persistent
 	private int count;
 
-	
 	/**
 	 * @param name
 	 *            the name to set
@@ -79,7 +78,7 @@ public class Tag {
 		return parent;
 	}
 
-		/**
+	/**
 	 * @param count
 	 *            the count to set
 	 */
@@ -95,7 +94,8 @@ public class Tag {
 	}
 
 	/**
-	 * @param tagName the tagName to set
+	 * @param tagName
+	 *            the tagName to set
 	 */
 	public void setTagName(String tagName) {
 		this.tagName = tagName;
@@ -109,7 +109,8 @@ public class Tag {
 	}
 
 	/**
-	 * @param parentId the parentId to set
+	 * @param parentId
+	 *            the parentId to set
 	 */
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
