@@ -1,4 +1,5 @@
 syntax: glob
+war/WEB-INF/appengine-generated/*
 *.class
 .settings/*
 war/fspotcloud/*
