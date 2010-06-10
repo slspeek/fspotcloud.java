@@ -1,12 +1,21 @@
 package fspotcloud.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 
 public class TreeExample implements EntryPoint {
+	
+	/**
+	 * Create a remote service proxy to talk to the server-side Tag
+	 * service.
+	 */
+	private final TagServiceAsync tagService = GWT
+			.create(TagService.class);
+
 
 	public void onModuleLoad() {
 		// Create a tree with a few items in it.

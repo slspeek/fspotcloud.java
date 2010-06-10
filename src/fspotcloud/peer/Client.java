@@ -31,14 +31,8 @@ public class Client {
 		client.setConfig(config);
 
 		// make the a regular call
-		Object[] params = new Object[] { new Integer(2), new Integer(3) };
-		Integer result = (Integer) client.execute("Calculator.add", params);
-		System.out.println("2 + 3 = " + result);
-
-		String[] a = new String[] { "aap", "noot", "Mies" };
-		String[] b = new String[] { "Teun", "schaap", "weiden" };
-		params = new Object[] { a, b };
-		result = (Integer) client.execute("Calculator.recieve", params);
+		Object[] params;
+		Integer result;
 
 		Object[] tag1 = new Object[] { "1", "Poezen", "Fotos van poezen", "0",
 				100 };
