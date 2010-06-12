@@ -1,6 +1,7 @@
 syntax: glob
 war/WEB-INF/appengine-generated/*
 *.class
+*.orig
 .settings/*
 war/fspotcloud/*
 .classpath
