@@ -7,13 +7,13 @@
   
   <!-- Servlets -->
   <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>fspotcloud.server.GreetingServiceImpl</servlet-class>
+    <servlet-name>tagServlet</servlet-name>
+    <servlet-class>fspotcloud.server.TagServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/fspotcloud/greet</url-pattern>
+    <servlet-name>tagServlet</servlet-name>
+    <url-pattern>/fspotcloud/tag</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->

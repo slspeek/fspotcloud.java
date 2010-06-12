@@ -127,4 +127,8 @@ public class TagNode {
 	public void addChild(TagNode child) {
 		getChildren().add(child);
 	}
+	
+	public String toString() {
+		return String.valueOf(tagName) + ": " + String.valueOf(name);
+	}
 }
