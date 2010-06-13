@@ -1,4 +1,5 @@
 package fspotcloud.client;
+
 import java.util.List;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -39,7 +40,7 @@ public class TreeExample implements EntryPoint {
 
 		final Tree t = new Tree();
 		VerticalPanel panel = new VerticalPanel();
-		
+
 		t.addItem(root);
 
 		panel.add(t);
@@ -55,7 +56,6 @@ public class TreeExample implements EntryPoint {
 				requestTagTreeFromServer();
 			}
 
-		
 			/**
 			 * Send the name from the nameField to the server and wait for a
 			 * response.
@@ -63,32 +63,43 @@ public class TreeExample implements EntryPoint {
 			private void requestTagTreeFromServer() {
 				loadButton.setEnabled(false);
 				t.clear();
-				tagService.loadTagTree(
-							new AsyncCallback<List<TagNode>>() {
+				tagService.loadTagTree(new AsyncCallback<List<TagNode>>() {
 
-								
-								public void onFailure(Throwable caught) {
-									// TODO Auto-generated method stub
-									
-								}
+					public void onFailure(Throwable caught) {
+						// TODO Auto-generated method stub
+						loadButton.setText("Error occurred" + caught);
 
-								
-								public void onSuccess(List<TagNode> result) {
-									for (TagNode root: result) {
-										
-									}
-									// TODO Auto-generated method stub
-									
-								}
-								
-													});
+					}
+
+					public void onSuccess(List<TagNode> result) {
+						for (TagNode root : result) {
+							addSubTree(root, t);
+						}
+						loadButton.setEnabled(true);
+						
+					}
+
+				});
 			}
 		}
 
 		// Add a handler to send the name to the server
 		MyHandler handler = new MyHandler();
 		loadButton.addClickHandler(handler);
-		
+
 	}
 
+	private void addSubTree(TagNode node, TreeItem target) {
+		TreeItem newItem = target.addItem(node.getTagName());
+		for (TagNode child : node.getChildren()) {
+			addSubTree(child, newItem);
+		}
+	}
+
+	private void addSubTree(TagNode node, Tree tree) {
+		TreeItem newItem = tree.addItem(node.getTagName());
+		for (TagNode child : node.getChildren()) {
+			addSubTree(child, newItem);
+		}
+	}
 }

@@ -36,10 +36,12 @@ public class Client {
 
 		Object[] tag1 = new Object[] { "1", "Poezen", "Fotos van poezen", "0",
 				100 };
+		Object[] tag3 = new Object[] { "3", "Wandelingen", "", "0",
+				3 };
 		Object[] tag2 = new Object[] { "2", "Fietsten",
 				"Fietsen enzo voort enzo", "1", 100 };
 
-		Object[] tags = new Object[] { tag1, tag2 };
+		Object[] tags = new Object[] { tag1, tag2, tag3 };
 		params = new Object[] { tags };
 		result = (Integer) client.execute("TagReciever.recieveTags", params);
 

@@ -1,9 +1,11 @@
 package fspotcloud.shared.tag;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
-public class TagNode {
+public class TagNode implements Serializable {
 
 	
 	private int count;
@@ -18,7 +20,7 @@ public class TagNode {
 	
 	private String tagName;
 	
-	private List<TagNode> children;
+	private List<TagNode> children = new ArrayList<TagNode>();
 
 	/**
 	 * @return the count
