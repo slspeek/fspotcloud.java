@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-import fspotcloud.client.TagService;
+import fspotcloud.client.tree.TagService;
 import fspotcloud.server.tag.TagReader;
 import fspotcloud.server.tag.TreeBuilder;
 import fspotcloud.shared.tag.TagNode;
