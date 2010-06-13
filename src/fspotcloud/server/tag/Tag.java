@@ -10,7 +10,7 @@ import javax.jdo.annotations.PrimaryKey;
 import com.google.appengine.api.datastore.Key;
 
 /**
- * @author slspeek@gmail.com
+ * Represents a Label in F-Spot
  * 
  */
 @PersistenceCapable
@@ -20,9 +20,6 @@ public class Tag {
 
 	@Persistent
 	private String tagName;
-
-	@Persistent
-	private String description;
 
 	@Persistent
 	private String parentId;
@@ -46,21 +43,6 @@ public class Tag {
 	 */
 	public String getName() {
 		return name;
-	}
-
-	/**
-	 * @param description
-	 *            the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
 	}
 
 	/**

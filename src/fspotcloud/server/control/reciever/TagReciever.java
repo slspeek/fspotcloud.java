@@ -17,14 +17,12 @@ public class TagReciever {
 	private int recieveTag(Object[] tag_data) {
 		String keyName = (String) tag_data[0];
 		String tagName = (String) tag_data[1];
-		String desc = (String) tag_data[2];
-		String parentId = (String) tag_data[3];
-		int count = (Integer) tag_data[4];
+		String parentId = (String) tag_data[2];
+		int count = (Integer) tag_data[3];
 
 		Tag tag = new Tag();
 		tag.setName(keyName);
 		tag.setTagName(tagName);
-		tag.setDescription(desc);
 		tag.setParentId(parentId);
 		tag.setCount(count);
 
