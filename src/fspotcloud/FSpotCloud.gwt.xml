@@ -14,7 +14,7 @@
 
   <!-- Specify the app entry point class.                         -->
   <!-- <entry-point class='fspotcloud.client.FSpotCloud'/> -->
-  <entry-point class='fspotcloud.client.TreeExample'/>
+  <entry-point class='fspotcloud.client.tree.TreeExample'/>
 
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>

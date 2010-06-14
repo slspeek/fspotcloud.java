@@ -17,11 +17,12 @@ public class BotWorker {
 		this.data = new Data();
 	}
 
-	public int sendTagData(int offset, int count) {
+	public int sendTagData() {
 		int result = 0;
 		try {
 			Object[] tags = data.getTagList();
-			controller.execute("TagReciever.receiveTags", tags);
+			Object[] args = new Object[] { tags }; 
+			controller.execute("TagReciever.recieveTagData", args);
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();

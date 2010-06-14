@@ -60,23 +60,25 @@ public class Bot {
 			} catch (Exception e) {
 				System.out
 						.println("Not able to get new command, sleeping for 5s ");
-				e.printStackTrace();
-				try {
-					Thread.sleep(5000);
-				} catch (InterruptedException e1) {
-				}
+				//e.printStackTrace();
+				pause(5000);
 				continue;
 			}
 			if (commandReturn.length > 0) {
 				cmd = (String) commandReturn[0];
 				args = (Object[]) commandReturn[1];
-				dispatch(cmd, args);
+				try {
+					dispatch(cmd, args);
+				} catch (Exception e) {
+					System.out
+							.println("Exception during execution, sleeping for 2s");
+					e.printStackTrace();
+					pause(2000);
+					}
+
 			} else {
 				System.out.println("No action at this time, sleeping for 10s");
-				try {
-					Thread.sleep(10000);
-				} catch (InterruptedException e1) {
-				}
+				pause(10000);
 			}
 
 		}
@@ -88,21 +90,18 @@ public class Bot {
 		try {
 			method.invoke(botWorker, args);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	private Method findMethod(String name, Class c) {
 		Method[] all = c.getDeclaredMethods();
 		for (Method m : all) {
+			System.out.println(m.getName());
 			if (m.getName().equals(name)) {
 				return m;
 			}
@@ -110,4 +109,10 @@ public class Bot {
 		return null;
 	}
 
+	private void pause(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+		}
+	}
 }

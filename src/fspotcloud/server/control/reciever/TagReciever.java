@@ -6,7 +6,7 @@ import fspotcloud.server.tag.Tag;
 import fspotcloud.server.util.PMF;
 
 public class TagReciever {
-	public int recieveTags(Object[] list) {
+	public int recieveTagData(Object[] list) {
 		for (Object tag : list) {
 			Object[] tag_as_array = (Object[]) tag;
 			recieveTag(tag_as_array);
@@ -18,7 +18,7 @@ public class TagReciever {
 		String keyName = (String) tag_data[0];
 		String tagName = (String) tag_data[1];
 		String parentId = (String) tag_data[2];
-		int count = (Integer) tag_data[3];
+		int count = Integer.valueOf((String)tag_data[3]);
 
 		Tag tag = new Tag();
 		tag.setName(keyName);

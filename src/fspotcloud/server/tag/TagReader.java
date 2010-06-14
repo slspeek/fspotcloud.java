@@ -18,7 +18,6 @@ public class TagReader {
 		for (Tag tag : extent) {
 			TagNode node = new TagNode();
 			node.setName(tag.getName());
-			node.setDescription(tag.getDescription());
 			node.setParentId(tag.getParentId());
 			node.setTagName(tag.getTagName());
 			result.add(node);

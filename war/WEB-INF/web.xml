@@ -16,6 +16,18 @@
     <url-pattern>/fspotcloud/tag</url-pattern>
   </servlet-mapping>
   
+  
+  <servlet>
+    <servlet-name>tagImportServlet</servlet-name>
+    <servlet-class>fspotcloud.server.cron.TagImportServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>tagImportServlet</servlet-name>
+    <url-pattern>/fspotcloud/cron/import_tags</url-pattern>
+  </servlet-mapping>
+  
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>FSpotCloud.html</welcome-file>
