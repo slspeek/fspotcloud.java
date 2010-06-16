@@ -11,7 +11,7 @@ import fspotcloud.server.util.PMF;
 public class Scheduler {
 
 	public static boolean schedule(String cmd, List<String> args) {
-		if ( !hasDuplicates(cmd,args)) {
+		if (!hasDuplicates(cmd, args)) {
 			Command c = new Command();
 			c.setCmd(cmd);
 			c.setArgs(args);

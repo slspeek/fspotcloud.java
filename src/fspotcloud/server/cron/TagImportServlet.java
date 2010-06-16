@@ -20,8 +20,8 @@ public class TagImportServlet extends GenericServlet {
 		Scheduler.schedule("sendTagData", Collections.EMPTY_LIST);
 		PrintWriter out = response.getWriter();
 
-	    out.println("Import Tags was scheduled.");
-	    out.close();
+		out.println("Import Tags was scheduled.");
+		out.close();
 	}
 
 }

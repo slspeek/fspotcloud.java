@@ -18,7 +18,7 @@ public class TagReciever {
 		String keyName = (String) tag_data[0];
 		String tagName = (String) tag_data[1];
 		String parentId = (String) tag_data[2];
-		int count = Integer.valueOf((String)tag_data[3]);
+		int count = Integer.valueOf((String) tag_data[3]);
 
 		Tag tag = new Tag();
 		tag.setName(keyName);

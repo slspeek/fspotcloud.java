@@ -9,7 +9,7 @@ import fspotcloud.server.command.Command;
 import fspotcloud.server.util.PMF;
 
 public class Controller {
-	
+
 	@SuppressWarnings("unchecked")
 	public Object[] getCommand() {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -25,7 +25,7 @@ public class Controller {
 			pm.deletePersistent(oldest);
 			return result;
 		}
-		return new Object[]{};
+		return new Object[] {};
 	}
 
 }

@@ -4,22 +4,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TagNode implements Serializable {
 
-	
 	private int count;
-	
+
 	private String description;
-	
+
 	private String name;
-	
+
 	private TagNode parent;
-	
+
 	private String parentId;
-	
+
 	private String tagName;
-	
+
 	private List<TagNode> children = new ArrayList<TagNode>();
 
 	/**
@@ -113,7 +111,8 @@ public class TagNode implements Serializable {
 	}
 
 	/**
-	 * @param children the children to set
+	 * @param children
+	 *            the children to set
 	 */
 	public void setChildren(List<TagNode> children) {
 		this.children = children;
@@ -125,11 +124,11 @@ public class TagNode implements Serializable {
 	public List<TagNode> getChildren() {
 		return children;
 	}
-	
+
 	public void addChild(TagNode child) {
 		getChildren().add(child);
 	}
-	
+
 	public String toString() {
 		return String.valueOf(tagName) + ": " + String.valueOf(name);
 	}

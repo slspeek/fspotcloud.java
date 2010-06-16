@@ -60,7 +60,7 @@ public class Bot {
 			} catch (Exception e) {
 				System.out
 						.println("Not able to get new command, sleeping for 5s ");
-				//e.printStackTrace();
+				// e.printStackTrace();
 				pause(5000);
 				continue;
 			}
@@ -74,7 +74,7 @@ public class Bot {
 							.println("Exception during execution, sleeping for 2s");
 					e.printStackTrace();
 					pause(2000);
-					}
+				}
 
 			} else {
 				System.out.println("No action at this time, sleeping for 10s");

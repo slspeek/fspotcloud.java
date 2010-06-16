@@ -13,13 +13,11 @@ import fspotcloud.shared.tag.TagNode;
  * The server side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
-public class TagServiceImpl extends RemoteServiceServlet implements
-		TagService {
-
+public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 
 	public List<TagNode> loadTagTree() {
-		List<TagNode>tags = TagReader.getTags();
-		TreeBuilder builder = new TreeBuilder(tags); 
+		List<TagNode> tags = TagReader.getTags();
+		TreeBuilder builder = new TreeBuilder(tags);
 		return builder.getRoots();
 	}
 }

@@ -76,7 +76,7 @@ public class TreeExample implements EntryPoint {
 							addSubTree(root, t);
 						}
 						loadButton.setEnabled(true);
-						
+
 					}
 
 				});

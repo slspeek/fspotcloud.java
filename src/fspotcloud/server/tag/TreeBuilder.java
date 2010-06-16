@@ -8,18 +8,18 @@ import java.util.Map;
 import fspotcloud.shared.tag.TagNode;
 
 public class TreeBuilder {
-	
+
 	private List<TagNode> flatNodes;
 	private Map<String, TagNode> index;
-	
+
 	public TreeBuilder(List<TagNode> flatNodes) {
 		this.flatNodes = flatNodes;
 	}
-	
+
 	public List<TagNode> getRoots() {
 		buildMap();
 		List<TagNode> roots = new ArrayList<TagNode>();
-		for (TagNode node: flatNodes) {
+		for (TagNode node : flatNodes) {
 			if ("0".equals(node.getParentId())) {
 				roots.add(node);
 			} else {
@@ -29,10 +29,10 @@ public class TreeBuilder {
 		}
 		return roots;
 	}
-	
+
 	private void buildMap() {
 		index = new HashMap<String, TagNode>();
-		for (TagNode node: flatNodes) {
+		for (TagNode node : flatNodes) {
 			String name = node.getName();
 			index.put(name, node);
 		}

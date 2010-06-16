@@ -35,12 +35,11 @@ public class PhotoReciever {
 		Photo photo = new Photo();
 		photo.setName(keyName);
 		photo.setDescription(desc);
-		for(Object tag: tags) {
+		for (Object tag : tags) {
 			tagList.add(String.valueOf(tag));
 		}
 		photo.setTagList(tagList);
 		return photo;
 	}
 
-	
 }

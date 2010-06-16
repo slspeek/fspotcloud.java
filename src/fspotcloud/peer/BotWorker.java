@@ -35,7 +35,7 @@ public class BotWorker {
 		return result;
 	}
 
-	public int sendPhotoData(int offset, int limit) {
+	public int sendPhotoData(String offset, String limit) {
 		int result = 0;
 		try {
 			Object[] photos = data.getPhotoList(offset, limit);

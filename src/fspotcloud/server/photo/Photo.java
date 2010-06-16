@@ -20,7 +20,7 @@ public class Photo {
 
 	@Persistent
 	private String description;
-	
+
 	@Persistent
 	private List<String> tagList;
 
@@ -55,7 +55,8 @@ public class Photo {
 	}
 
 	/**
-	 * @param tagList the tagList to set
+	 * @param tagList
+	 *            the tagList to set
 	 */
 	public void setTagList(List<String> tagList) {
 		this.tagList = tagList;
