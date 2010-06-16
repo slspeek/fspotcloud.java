@@ -1,4 +1,4 @@
-package fspotcloud.server.cron;
+package fspotcloud.server.control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-import fspotcloud.server.control.Scheduler;
 
 public class TagImportServlet extends GenericServlet {
 

@@ -19,12 +19,12 @@
   
   <servlet>
     <servlet-name>tagImportServlet</servlet-name>
-    <servlet-class>fspotcloud.server.cron.TagImportServlet</servlet-class>
+    <servlet-class>fspotcloud.server.control.TagImportServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
     <servlet-name>tagImportServlet</servlet-name>
-    <url-pattern>/fspotcloud/cron/import_tags</url-pattern>
+    <url-pattern>/cron/import_tags</url-pattern>
   </servlet-mapping>
   
   
