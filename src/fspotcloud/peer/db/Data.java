@@ -46,6 +46,45 @@ public class Data {
 		return tagList.toArray();
 	}
 
+	public Object[] getPhotoList(int offset, int limit) throws SQLException {
+		Connection conn = getConnection();
+		Statement stmt = conn.createStatement();
+		List<Object[]> photoList = new ArrayList<Object[]>();
+		ResultSet rs = stmt
+				.executeQuery("SELECT id, name, category_id "
+						+ "FROM tags ORDER BY id LIMIT "+ String.valueOf(limit)
+						+ " OFFSET " + String.valueOf(offset));
+		while (rs.next()) {
+			String id = rs.getString(1);
+			String desc = rs.getString(2);
+			Object[] tagList = getTagsForPhoto(Integer.valueOf(id));
+			
+			
+			photoList.add(new Object[] { id, desc, tagList });
+		}
+		rs.close();
+		conn.close();
+
+		return photoList.toArray();
+	}
+	
+	private Object[] getTagsForPhoto(int id) throws SQLException {
+		Connection conn = getConnection();
+		Statement stmt = conn.createStatement();
+		List<String> tagList = new ArrayList<String>();
+		ResultSet rs = stmt
+		.executeQuery("SELECT tag_id, photo_id " + 
+				"FROM photo_tags WHERE photo_id=" + String.valueOf(id));
+		while (rs.next()) {
+			String tagId = rs.getString(1);
+			tagList.add(tagId);
+		}
+		rs.close();
+		conn.close();
+		
+		return tagList.toArray();
+	}
+
 	private int getPhotoCountForTag(int tagId) throws SQLException {
 		Connection conn = getConnection();
 		PreparedStatement prep = conn
@@ -70,6 +109,17 @@ public class Data {
 			Object[] itemArray = (Object[]) item;
 			System.out.println(itemArray[1]);
 		}
+		list = d.getPhotoList(10,10);
+		for (Object item: list) {
+			Object[] itemArray = (Object[]) item;
+			Object[] tagArray = (Object[]) itemArray[2];
+			for (Object id: tagArray) {
+				System.out.print(id + " ");
+			}
+			System.out.println(" id: " + itemArray[0]);
+			
+		}
+		
 	}
 
 }

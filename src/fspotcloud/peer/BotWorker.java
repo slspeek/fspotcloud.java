@@ -21,7 +21,7 @@ public class BotWorker {
 		int result = 0;
 		try {
 			Object[] tags = data.getTagList();
-			Object[] args = new Object[] { tags }; 
+			Object[] args = new Object[] { tags };
 			controller.execute("TagReciever.recieveTagData", args);
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -35,4 +35,21 @@ public class BotWorker {
 		return result;
 	}
 
+	public int sendPhotoData(int offset, int limit) {
+		int result = 0;
+		try {
+			Object[] photos = data.getPhotoList(offset, limit);
+			Object[] args = new Object[] { photos };
+			controller.execute("PhotoReciever.recievePhotoData", args);
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			result = 1;
+		} catch (XmlRpcException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			result = 2;
+		}
+		return result;
+	}
 }

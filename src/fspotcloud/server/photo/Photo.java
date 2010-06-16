@@ -3,6 +3,8 @@
  */
 package fspotcloud.server.photo;
 
+import java.util.List;
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -18,6 +20,9 @@ public class Photo {
 
 	@Persistent
 	private String description;
+	
+	@Persistent
+	private List<String> tagList;
 
 	/**
 	 * @param name
@@ -47,5 +52,19 @@ public class Photo {
 	 */
 	public String getDescription() {
 		return description;
+	}
+
+	/**
+	 * @param tagList the tagList to set
+	 */
+	public void setTagList(List<String> tagList) {
+		this.tagList = tagList;
+	}
+
+	/**
+	 * @return the tagList
+	 */
+	public List<String> getTagList() {
+		return tagList;
 	}
 }

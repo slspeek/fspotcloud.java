@@ -9,7 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-import fspotcloud.server.command.Scheduler;
+import fspotcloud.server.control.Scheduler;
 
 public class TagImportServlet extends GenericServlet {
 
