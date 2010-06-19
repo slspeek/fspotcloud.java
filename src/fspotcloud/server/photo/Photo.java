@@ -3,6 +3,7 @@
  */
 package fspotcloud.server.photo;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.jdo.annotations.PersistenceCapable;
@@ -20,6 +21,9 @@ public class Photo {
 
 	@Persistent
 	private String description;
+
+	@Persistent
+	private Date date;
 
 	@Persistent
 	private List<String> tagList;
@@ -67,5 +71,19 @@ public class Photo {
 	 */
 	public List<String> getTagList() {
 		return tagList;
+	}
+
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	/**
+	 * @return the date
+	 */
+	public Date getDate() {
+		return date;
 	}
 }

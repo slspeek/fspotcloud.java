@@ -24,17 +24,31 @@ public class BotWorker {
 			Object[] args = new Object[] { tags };
 			controller.execute("TagReciever.recieveTagData", args);
 		} catch (SQLException e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			result = 1;
 		} catch (XmlRpcException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			result = 2;
 		}
 		return result;
 	}
 
+	public int sendPhotoCount() {
+		int result = 0;
+		try {
+			int count = data.getPhotoCount();
+			Object[] args = new Object[] { count };
+			controller.execute("TagReciever.recieveMetaData", args);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			result = 1;
+		} catch (XmlRpcException e) {
+			e.printStackTrace();
+			result = 2;
+		}
+		return result;
+	}
+	
 	public int sendPhotoData(String offset, String limit) {
 		int result = 0;
 		try {
@@ -42,11 +56,9 @@ public class BotWorker {
 			Object[] args = new Object[] { photos };
 			controller.execute("PhotoReciever.recievePhotoData", args);
 		} catch (SQLException e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			result = 1;
 		} catch (XmlRpcException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			result = 2;
 		}

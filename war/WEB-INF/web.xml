@@ -15,7 +15,17 @@
     <servlet-name>tagServlet</servlet-name>
     <url-pattern>/fspotcloud/tag</url-pattern>
   </servlet-mapping>
+
+<servlet>
+    <servlet-name>photoDataTaskServlet</servlet-name>
+    <servlet-class>fspotcloud.server.control.task.PhotoDataTaskServlet</servlet-class>
+  </servlet>
   
+  <servlet-mapping>
+    <servlet-name>photoDataTaskServlet</servlet-name>
+    <url-pattern>/control/task/photo_data</url-pattern>
+  </servlet-mapping>
+    
   
   <servlet>
     <servlet-name>tagImportServlet</servlet-name>

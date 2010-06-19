@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Data {
@@ -26,6 +27,18 @@ public class Data {
 		return conn;
 	}
 
+	public int getPhotoCount() throws SQLException {
+		Connection conn = getConnection();
+		Statement stmt = conn.createStatement();
+		int result;
+		ResultSet rs = stmt.executeQuery("SELECT count(id) FROM photos");
+		if (rs.next()) {
+			result = rs.getInt(1);
+		} else {
+			throw new SQLException("Result for count query was empty");
+		}
+		return result;
+	}
 	public Object[] getTagList() throws SQLException {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
@@ -51,17 +64,17 @@ public class Data {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
 		List<Object[]> photoList = new ArrayList<Object[]>();
-		ResultSet rs = stmt.executeQuery("SELECT id, name, category_id "
-				+ "FROM tags ORDER BY id LIMIT " + limit + " OFFSET " + offset);
+		ResultSet rs = stmt.executeQuery("SELECT id, description, time "
+				+ "FROM photos ORDER BY id LIMIT " + limit + " OFFSET " + offset);
 		while (rs.next()) {
 			String id = rs.getString(1);
 			String desc = rs.getString(2);
+			Date time = rs.getDate(3);
 			Object[] tagList = getTagsForPhoto(Integer.valueOf(id));
-			photoList.add(new Object[] { id, desc, tagList });
+			photoList.add(new Object[] { id, desc, time, tagList });
 		}
 		rs.close();
 		conn.close();
-
 		return photoList.toArray();
 	}
 
@@ -108,7 +121,7 @@ public class Data {
 		list = d.getPhotoList("10", "10");
 		for (Object item : list) {
 			Object[] itemArray = (Object[]) item;
-			Object[] tagArray = (Object[]) itemArray[2];
+			Object[] tagArray = (Object[]) itemArray[3];
 			for (Object id : tagArray) {
 				System.out.print(id + " ");
 			}
