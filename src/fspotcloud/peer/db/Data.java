@@ -69,9 +69,12 @@ public class Data {
 		while (rs.next()) {
 			String id = rs.getString(1);
 			String desc = rs.getString(2);
-			Date time = rs.getDate(3);
+			long time = rs.getLong(3);
+			Date date = new Date();
+			date.setTime(time * 1000);
+			System.out.println(time + " " + date);
 			Object[] tagList = getTagsForPhoto(Integer.valueOf(id));
-			photoList.add(new Object[] { id, desc, time, tagList });
+			photoList.add(new Object[] { id, desc, date, tagList });
 		}
 		rs.close();
 		conn.close();
