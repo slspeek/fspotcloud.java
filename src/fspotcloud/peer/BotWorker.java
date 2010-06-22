@@ -64,4 +64,9 @@ public class BotWorker {
 		}
 		return result;
 	}
+	
+	public int sendImage(String photo_id, String width, String height) {
+		
+		return 0;
+	}
 }

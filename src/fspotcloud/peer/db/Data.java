@@ -1,5 +1,7 @@
 package fspotcloud.peer.db;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -39,6 +41,7 @@ public class Data {
 		}
 		return result;
 	}
+
 	public Object[] getTagList() throws SQLException {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
@@ -65,7 +68,8 @@ public class Data {
 		Statement stmt = conn.createStatement();
 		List<Object[]> photoList = new ArrayList<Object[]>();
 		ResultSet rs = stmt.executeQuery("SELECT id, description, time "
-				+ "FROM photos ORDER BY id LIMIT " + limit + " OFFSET " + offset);
+				+ "FROM photos ORDER BY id LIMIT " + limit + " OFFSET "
+				+ offset);
 		while (rs.next()) {
 			String id = rs.getString(1);
 			String desc = rs.getString(2);
@@ -79,6 +83,33 @@ public class Data {
 		rs.close();
 		conn.close();
 		return photoList.toArray();
+	}
+
+	public URL getImageURL(String photoId) throws SQLException,
+			MalformedURLException {
+		String url = null;
+		Connection conn = getConnection();
+		Statement stmt = conn.createStatement();
+		String query = "SELECT default_version_id, uri "
+				+ "FROM photos WHERE id = " + photoId;
+		ResultSet rs = stmt.executeQuery(query);
+		if (rs.next()) {
+			int version = rs.getInt(1);
+			if (version == 1) {
+				url = rs.getString(2);
+			} else {
+				stmt = conn.createStatement();
+				query = "SELECT uri " + "FROM photo_versions WHERE photo_id ="
+						+ photoId + " AND version_id=" + version;
+				rs = stmt.executeQuery(query);
+				if (rs.next()) {
+					url = rs.getString(1);
+				}
+			}
+		}
+		rs.close();
+		conn.close();
+		return new URL(url);
 	}
 
 	private Object[] getTagsForPhoto(int id) throws SQLException {

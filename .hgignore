@@ -5,6 +5,6 @@ war/WEB-INF/appengine-generated/*
 *.orig
 .settings/*
 war/fspotcloud/*
+war/WEB-INF/classes/*
 .classpath
 .project
-war/WEB-INF/classes/fspotcloud/FSpotCloud.gwt.xml
