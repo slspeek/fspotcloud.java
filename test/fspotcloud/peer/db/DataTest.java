@@ -3,6 +3,7 @@
  */
 package fspotcloud.peer.db;
 
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 
 import junit.framework.TestCase;
@@ -66,9 +67,12 @@ public class DataTest extends TestCase {
 	/**
 	 * Test method for
 	 * {@link fspotcloud.peer.db.Data#getImageURL(java.lang.String)}.
+	 * @throws SQLException 
+	 * @throws MalformedURLException 
 	 */
-	public final void testGetImageURL() {
-		fail("Not yet implemented"); // TODO
+	public final void testGetImageURL() throws MalformedURLException, SQLException {
+		data.getImageURL("7000");
+		
 	}
 
 }
