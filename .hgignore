@@ -4,7 +4,9 @@ war/WEB-INF/appengine-generated/*
 *.class
 *.orig
 .settings/*
+test-classes/*
 war/fspotcloud/*
+war/fspotcloud.admin/*
 war/WEB-INF/classes/*
 .classpath
 .project

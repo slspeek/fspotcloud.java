@@ -6,10 +6,26 @@ import java.util.List;
 
 import javax.jdo.PersistenceManager;
 
+import com.google.appengine.api.datastore.Blob;
+
 import fspotcloud.server.photo.Photo;
 import fspotcloud.server.util.PMF;
 
 public class PhotoReciever {
+	
+	public int recieveImageData(String id, byte[] data) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Photo photo = pm.getObjectById(Photo.class, id);
+		Blob blob = new Blob(data);
+		photo.setImage(blob);
+		try {
+			pm.makePersistent(photo);
+		} finally {
+			pm.close();
+		}
+		return 0;
+	}
+	
 	public int recievePhotoData(Object[] list) {
 		List<Photo> photoList = new ArrayList<Photo>();
 		for (Object photo : list) {

@@ -10,6 +10,8 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Blob;
+
 /**
  * @author slspeek@gmail.com
  * 
@@ -28,6 +30,12 @@ public class Photo {
 	@Persistent
 	private List<String> tagList;
 
+	@Persistent
+	private Blob image;
+	
+	@Persistent
+	private Blob thumb;
+	
 	/**
 	 * @param name
 	 *            the name to set
@@ -86,4 +94,33 @@ public class Photo {
 	public Date getDate() {
 		return date;
 	}
+
+	/**
+	 * @param thumb the thumb to set
+	 */
+	public void setThumb(Blob thumb) {
+		this.thumb = thumb;
+	}
+
+	/**
+	 * @return the thumb
+	 */
+	public Blob getThumb() {
+		return thumb;
+	}
+
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(Blob image) {
+		this.image = image;
+	}
+
+	/**
+	 * @return the image
+	 */
+	public Blob getImage() {
+		return image;
+	}
+
 }

@@ -1,5 +1,9 @@
 package fspotcloud.peer;
 
+import java.awt.Dimension;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
 
 import org.apache.xmlrpc.XmlRpcException;
@@ -11,10 +15,12 @@ public class BotWorker {
 
 	private XmlRpcClient controller;
 	private Data data;
+	private ImageData imageData;
 
 	public BotWorker(XmlRpcClient controller) {
 		this.controller = controller;
 		this.data = new Data();
+		this.imageData = new ImageData();
 	}
 
 	public int sendTagData() {
@@ -65,7 +71,27 @@ public class BotWorker {
 		return result;
 	}
 	
-	public int sendImage(String photo_id, String width, String height) {
+	public int sendImageData(String photoId, String width, String height) {
+		try {
+			URL url = data.getImageURL(photoId);
+			Dimension size = new Dimension(Integer.valueOf(width),
+					Integer.valueOf(height));
+			byte[] data = imageData.getScaledImageData(url, size);
+			Object[] params = new Object[] { photoId, data };
+			controller.execute("PhotoReciever.recieveImageData", params);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XmlRpcException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return 0;
 	}
