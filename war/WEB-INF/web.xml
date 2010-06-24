@@ -15,6 +15,16 @@
     <servlet-name>tagServlet</servlet-name>
     <url-pattern>/fspotcloud/tag</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>adminServlet</servlet-name>
+    <servlet-class>fspotcloud.server.admin.AdminServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>adminServlet</servlet-name>
+    <url-pattern>/fspotcloud.admin/admin</url-pattern>
+  </servlet-mapping>
 
 <servlet>
     <servlet-name>photoDataTaskServlet</servlet-name>
