@@ -7,6 +7,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DecoratorPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -14,6 +15,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class Admin implements EntryPoint {
 
+		private DecoratorPanel layout = new DecoratorPanel(); 
 	  private VerticalPanel mainPanel = new VerticalPanel();
 	  private HorizontalPanel titlePanel = new HorizontalPanel();
 	  private HorizontalPanel actionPanel = new HorizontalPanel();
@@ -25,8 +27,11 @@ public class Admin implements EntryPoint {
 	public void onModuleLoad() {
 		titlePanel.add(titleLabel);
 		titleLabel.addStyleDependentName("title");
-		mainPanel.add(titlePanel);
+		DecoratorPanel titleDecPanel = new DecoratorPanel();
+		titleDecPanel.setWidget(titlePanel);
+		mainPanel.add(titleDecPanel);
 		mainPanel.add(actionPanel);
+		layout.setWidget(mainPanel);
 		photoCountLabel.setWidth("10cm");
 		actionPanel.add(photoCountLabel);
 		actionPanel.add(photoCountButton);
@@ -52,7 +57,7 @@ public class Admin implements EntryPoint {
 				});
 			}
 		});
-		 RootPanel.get().add(mainPanel);
+		 RootPanel.get().add(layout);
 
 		
 	}
