@@ -41,7 +41,7 @@ public class TreeExample implements EntryPoint {
 		final Tree t = new Tree();
 		final ScrollPanel treeScroller = new ScrollPanel(t);
 		
-		LayoutPanel container = new LayoutPanel();
+		
 		DockLayoutPanel panel = new DockLayoutPanel(Unit.PX);
 		panel.addNorth(new Label("F-Spot Cloud Java Edition"), 80);
 		SplitLayoutPanel splitPanel = new SplitLayoutPanel();
@@ -50,8 +50,12 @@ public class TreeExample implements EntryPoint {
 		
 		//panel.addSouth(loadButton, 140);
 		DecoratorPanel decPanel = new DecoratorPanel();
-		decPanel.add(mainImage);
-		splitPanel.add(decPanel);
+		LayoutPanel container = new LayoutPanel();
+		container.add(mainImage);
+		container.setWidgetLeftRight(mainImage, 2, Unit.EM, 2, Unit.EM);     // Center panel
+		container.setWidgetTopBottom(mainImage, 2, Unit.EM, 2, Unit.EM);
+		//decPanel.add(container);
+		splitPanel.add(container);
 		panel.add(splitPanel);
 		// Add it to the root panel.
 		RootLayoutPanel.get().add(panel);
