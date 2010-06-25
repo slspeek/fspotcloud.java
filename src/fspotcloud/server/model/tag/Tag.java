@@ -3,6 +3,8 @@
  */
 package fspotcloud.server.model.tag;
 
+import java.util.List;
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -30,6 +32,11 @@ public class Tag {
 	@Persistent
 	private int count;
 
+	@Persistent
+	private boolean importIssued = false;
+	
+	@Persistent
+	private List<String> cachedPhotoList;
 	/**
 	 * @param name
 	 *            the name to set
@@ -103,5 +110,33 @@ public class Tag {
 	 */
 	public String getParentId() {
 		return parentId;
+	}
+
+	/**
+	 * @param cachedPhotoList the cachedPhotoList to set
+	 */
+	public void setCachedPhotoList(List<String> cachedPhotoList) {
+		this.cachedPhotoList = cachedPhotoList;
+	}
+
+	/**
+	 * @return the cachedPhotoList
+	 */
+	public List<String> getCachedPhotoList() {
+		return cachedPhotoList;
+	}
+
+	/**
+	 * @param importIssued the importIssued to set
+	 */
+	public void setImportIssued(boolean importIssued) {
+		this.importIssued = importIssued;
+	}
+
+	/**
+	 * @return the importIssued
+	 */
+	public boolean isImportIssued() {
+		return importIssued;
 	}
 }

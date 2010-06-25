@@ -4,11 +4,20 @@ import java.util.List;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DecoratorPanel;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -21,46 +30,47 @@ public class TreeExample implements EntryPoint {
 	 * Create a remote service proxy to talk to the server-side Tag service.
 	 */
 	private final TagServiceAsync tagService = GWT.create(TagService.class);
+	
+	private final Image mainImage = new Image(
+			"http://lh5.ggpht.com/_I6XE5OTEwr4/SWpTcwEnMbI/AAAAAAAADic/bgdh_8p2maU/s800/img_6083.jpg");
 
 	public void onModuleLoad() {
 		final Button loadButton = new Button("Load the tree");
 		// Create a tree with a few items in it.
-		TreeItem root = new TreeItem("Steven's fotos");
-		TreeItem bas = new TreeItem("Bas");
-		root.addItem(bas);
-		root.addItem("Zelfportretten");
-		root.addItem("Hortus");
-		bas.addItem("Bas en Claire");
-		bas.addItem("Speeltuin");
-		bas.addItem("Bakkum");
-
-		// Add a CheckBox to the tree
-		TreeItem item = new TreeItem("Evenementen");
-		root.addItem(item);
-
+		
 		final Tree t = new Tree();
-		VerticalPanel panel = new VerticalPanel();
-
-		t.addItem(root);
-
-		panel.add(t);
-		panel.add(loadButton);
+		final ScrollPanel treeScroller = new ScrollPanel(t);
+		
+		LayoutPanel container = new LayoutPanel();
+		DockLayoutPanel panel = new DockLayoutPanel(Unit.PX);
+		panel.addNorth(new Label("F-Spot Cloud Java Edition"), 80);
+		SplitLayoutPanel splitPanel = new SplitLayoutPanel();
+		
+		splitPanel.addWest(treeScroller, 200);
+		
+		//panel.addSouth(loadButton, 140);
+		DecoratorPanel decPanel = new DecoratorPanel();
+		decPanel.add(mainImage);
+		splitPanel.add(decPanel);
+		panel.add(splitPanel);
 		// Add it to the root panel.
-		RootPanel.get("treeContainer").add(panel);
+		RootLayoutPanel.get().add(panel);
+		
 		// Create a handler for the sendButton and nameField
 		class MyHandler implements ClickHandler {
 			/**
 			 * Fired when the user clicks on the sendButton.
-			 */
+			 */boolean treeIsVisible = true;
 			public void onClick(ClickEvent event) {
 				requestTagTreeFromServer();
+				
 			}
 
 			/**
 			 * Send the name from the nameField to the server and wait for a
 			 * response.
 			 */
-			private void requestTagTreeFromServer() {
+			public void requestTagTreeFromServer() {
 				loadButton.setEnabled(false);
 				t.clear();
 				tagService.loadTagTree(new AsyncCallback<List<TagNode>>() {
@@ -86,7 +96,7 @@ public class TreeExample implements EntryPoint {
 		// Add a handler to send the name to the server
 		MyHandler handler = new MyHandler();
 		loadButton.addClickHandler(handler);
-
+		handler.requestTagTreeFromServer();
 	}
 
 	private void addSubTree(TagNode node, TreeItem target) {
