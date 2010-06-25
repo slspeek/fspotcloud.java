@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fspotcloud.server.tag;
+package fspotcloud.server.model.tag;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import fspotcloud.server.command.Command;
+import fspotcloud.server.model.command.Command;
 import fspotcloud.server.util.PMF;
 
 public class Scheduler {

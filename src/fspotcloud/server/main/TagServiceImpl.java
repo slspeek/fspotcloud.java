@@ -1,4 +1,4 @@
-package fspotcloud.server;
+package fspotcloud.server.main;
 
 import java.util.List;
 
@@ -7,10 +7,10 @@ import javax.jdo.PersistenceManager;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import fspotcloud.client.tree.TagService;
-import fspotcloud.server.peerdatabase.DefaultPeer;
-import fspotcloud.server.peerdatabase.PeerDatabase;
-import fspotcloud.server.tag.TagReader;
-import fspotcloud.server.tag.TreeBuilder;
+import fspotcloud.server.model.peerdatabase.DefaultPeer;
+import fspotcloud.server.model.peerdatabase.PeerDatabase;
+import fspotcloud.server.model.tag.TagReader;
+import fspotcloud.server.model.tag.TreeBuilder;
 import fspotcloud.server.util.PMF;
 import fspotcloud.shared.tag.TagNode;
 

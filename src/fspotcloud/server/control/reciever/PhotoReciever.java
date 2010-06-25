@@ -8,7 +8,7 @@ import javax.jdo.PersistenceManager;
 
 import com.google.appengine.api.datastore.Blob;
 
-import fspotcloud.server.photo.Photo;
+import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.util.PMF;
 
 public class PhotoReciever {

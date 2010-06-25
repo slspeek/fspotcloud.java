@@ -13,7 +13,7 @@ import javax.servlet.ServletResponse;
 
 import com.google.appengine.api.datastore.Blob;
 
-import fspotcloud.server.photo.Photo;
+import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.util.PMF;
 
 @SuppressWarnings("serial")

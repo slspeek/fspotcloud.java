@@ -8,7 +8,7 @@
   <!-- Servlets -->
   <servlet>
     <servlet-name>tagServlet</servlet-name>
-    <servlet-class>fspotcloud.server.TagServiceImpl</servlet-class>
+    <servlet-class>fspotcloud.server.main.TagServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>

@@ -1,4 +1,4 @@
-package fspotcloud.server.peerdatabase;
+package fspotcloud.server.model.peerdatabase;
 
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;

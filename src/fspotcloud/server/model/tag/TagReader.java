@@ -1,4 +1,4 @@
-package fspotcloud.server.tag;
+package fspotcloud.server.model.tag;
 
 import java.util.ArrayList;
 import java.util.List;

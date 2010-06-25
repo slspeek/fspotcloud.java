@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fspotcloud.server.photo;
+package fspotcloud.server.model.photo;
 
 import java.util.Date;
 import java.util.List;

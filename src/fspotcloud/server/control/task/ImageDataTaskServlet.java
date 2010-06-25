@@ -18,7 +18,7 @@ import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
 
 import fspotcloud.server.control.Scheduler;
-import fspotcloud.server.photo.Photo;
+import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.util.PMF;
 
 @SuppressWarnings("serial")

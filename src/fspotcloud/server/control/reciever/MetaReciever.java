@@ -2,8 +2,8 @@ package fspotcloud.server.control.reciever;
 
 import javax.jdo.PersistenceManager;
 
-import fspotcloud.server.peerdatabase.DefaultPeer;
-import fspotcloud.server.peerdatabase.PeerDatabase;
+import fspotcloud.server.model.peerdatabase.DefaultPeer;
+import fspotcloud.server.model.peerdatabase.PeerDatabase;
 import fspotcloud.server.util.PMF;
 
 public class MetaReciever {

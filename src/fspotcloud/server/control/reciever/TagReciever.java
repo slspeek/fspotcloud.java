@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.jdo.PersistenceManager;
 
-import fspotcloud.server.tag.Tag;
+import fspotcloud.server.model.tag.Tag;
 import fspotcloud.server.util.PMF;
 
 public class TagReciever {

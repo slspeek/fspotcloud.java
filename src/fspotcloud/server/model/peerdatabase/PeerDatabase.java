@@ -1,4 +1,4 @@
-package fspotcloud.server.peerdatabase;
+package fspotcloud.server.model.peerdatabase;
 
 import java.util.List;
 
