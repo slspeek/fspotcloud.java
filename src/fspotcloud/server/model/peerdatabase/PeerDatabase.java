@@ -21,6 +21,9 @@ public class PeerDatabase {
 	@Persistent
 	private int count;
 	
+	@Persistent
+	private int tagCount;
+	
 	@Persistent(serialized = "true")
 	private  List<TagNode> cachedTagTree;
 	
@@ -70,6 +73,20 @@ public class PeerDatabase {
 	 */
 	public List<TagNode> getCachedTagTree() {
 		return cachedTagTree;
+	}
+
+	/**
+	 * @param tagCount the tagCount to set
+	 */
+	public void setTagCount(int tagCount) {
+		this.tagCount = tagCount;
+	}
+
+	/**
+	 * @return the tagCount
+	 */
+	public int getTagCount() {
+		return tagCount;
 	}
 
 }

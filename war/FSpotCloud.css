@@ -15,17 +15,21 @@ body
   margin: 0px 0px 0px 0px;
 }
 
+.horizontal {
+	float: left;
+}
 
 .gwt-Label-title {
-	font-size: 15mm;
+	font-size: 10mm;
 	font-weight: bold;
 	border: 10px;
-	
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
 	display: block;
 	padding: 10px;
+	border: medium;
+	border-color: black;
 }
 
 .gwt-Image {
@@ -41,24 +45,14 @@ body
 
 .gwt-DockLayoutPanel {
 	background-color: #324A76;
-  font-family: arial;
-  color: #EEEEFC;
+    font-family: arial;
+    color: #EEEEFC;
 }
 
 .gwt-SplitLayoutPanel {
 	background-color: #324A76;
-  font-family: arial;
-  color: #EEEEFC;
-}
-
-.gwt-VerticalPanel, .gwt-HorizontalPanel {
-	border: 10px;
-}
-
-.gwt-DecoratorPanel {
-	width: 100%;
-	
-	
+    font-family: arial;
+    color: #EEEEFC;
 }
 
 .gwt-Button {
@@ -71,15 +65,4 @@ body
 	width: 400px;
 }
 
-.dialogVPanel {
-	margin: 5px;
-}
 
-.serverResponseLabelError {
-	color: red;
-}
-
-/** Set ids using widget.getElement().setId("idOfElement") */
-#closeButton {
-	margin: 15px 6px 6px;
-}

@@ -16,6 +16,7 @@ public class DefaultPeer {
 			peerDatabase = new PeerDatabase();
 			peerDatabase.setName("1");
 			peerDatabase.setCount(0);
+			peerDatabase.setTagCount(0);
 			peerDatabase.setPeerName("No given name");
 			pm.makePersistent(peerDatabase);
 		} finally {
