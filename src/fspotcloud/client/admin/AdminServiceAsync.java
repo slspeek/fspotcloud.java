@@ -14,4 +14,6 @@ public interface AdminServiceAsync {
 
 	void importTags(AsyncCallback<Void> callback);
 
+	void getServerPhotoCount(AsyncCallback<Long> callback);
+
 }

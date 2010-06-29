@@ -1,5 +1,7 @@
 package fspotcloud.server.admin;
 
+import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,10 +10,13 @@ import java.util.logging.Logger;
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
 
+import com.google.appengine.api.labs.taskqueue.Queue;
+import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import fspotcloud.client.admin.AdminService;
 import fspotcloud.server.control.Scheduler;
+import fspotcloud.server.model.batch.Batch;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
 import fspotcloud.server.model.photo.Photo;
@@ -54,7 +59,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		Extent<Tag> extent = pm.getExtent(Tag.class);
 		List<Tag> allTags = new ArrayList<Tag>();
 		for (Tag tag : extent) {
-			log.info(tag.toString());
+			// log.info(tag.toString());
 			allTags.add(tag);
 		}
 		extent.closeAll();
@@ -85,4 +90,19 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		Scheduler.schedule("sendTagData", Collections.EMPTY_LIST);
 	}
 
+	@Override
+	public long getServerPhotoCount() {
+		Batch batch = new Batch("getServerPhotoCount");
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		try {
+			pm.makePersistent(batch);
+		} finally {
+			pm.close();
+		}
+		long batchId = batch.getKey();
+		Queue queue = QueueFactory.getDefaultQueue();
+		queue.add(url("/admin/task/photoCount").param("minDate", "0").param(
+				"count", "0").param("batchId", String.valueOf(batchId)));
+		return batchId;
+	}
 }

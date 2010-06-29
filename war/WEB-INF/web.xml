@@ -26,6 +26,15 @@
     <url-pattern>/fspotcloud.admin/admin</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>photoCountTaskServlet</servlet-name>
+    <servlet-class>fspotcloud.server.admin.task.PhotoCountTaskServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>photoCountTaskServlet</servlet-name>
+    <url-pattern>/admin/task/photoCount</url-pattern>
+  </servlet-mapping>
 <servlet>
     <servlet-name>photoDataTaskServlet</servlet-name>
     <servlet-class>fspotcloud.server.control.task.PhotoDataTaskServlet</servlet-class>

@@ -71,6 +71,7 @@ public class Admin implements EntryPoint {
 		RootLayoutPanel.get().add(dockLayout);
 		addClickHandlers();
 		getPhotoCount();
+		getServerPhotoCount();
 
 	}
 
@@ -103,6 +104,22 @@ public class Admin implements EntryPoint {
 			@Override
 			public void onFailure(Throwable caught) {
 				statusLabel.setText("Not able to get photo count "
+						+ caught.getLocalizedMessage());
+			}
+		});
+	}
+	
+	private void getServerPhotoCount() {
+		adminService.getServerPhotoCount(new AsyncCallback<Long>() {
+			@Override
+			public void onSuccess(Long result) {
+				photoCountLabel.setTitle("Succes");
+				photoCountLabel.setText("Server Batch on the peer: " + result);
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				statusLabel.setText("Not able to get server photo count going"
 						+ caught.getLocalizedMessage());
 			}
 		});
