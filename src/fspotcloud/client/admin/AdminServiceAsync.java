@@ -2,6 +2,8 @@ package fspotcloud.client.admin;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import fspotcloud.shared.admin.BatchInfo;
+
 public interface AdminServiceAsync {
 
 	void deleteAllPhotos(AsyncCallback<Void> callback);
@@ -15,5 +17,7 @@ public interface AdminServiceAsync {
 	void importTags(AsyncCallback<Void> callback);
 
 	void getServerPhotoCount(AsyncCallback<Long> callback);
+
+	void getBatchInfo(long batchId, AsyncCallback<BatchInfo> callback);
 
 }

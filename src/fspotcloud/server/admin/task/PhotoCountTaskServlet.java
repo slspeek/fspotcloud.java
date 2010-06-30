@@ -42,41 +42,44 @@ public class PhotoCountTaskServlet extends GenericServlet {
 
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Batch batch = null;
-		try {
-			batch = pm.getObjectById(Batch.class, batchId);
-			batch.incrementInterationCount();
 
-			Query query = pm.newQuery(Photo.class);
-			query.setFilter(" date > dateParam");
-			query.declareImports("import java.util.Date");
-			query.declareParameters("Date dateParam");
-			query.setOrdering("date");
-			query.setRange(0, STEP);
-			List<Photo> result = (List<Photo>) query.execute(minDate);
-			int resultCount = result.size();
-			boolean needToSchedule = !(resultCount < STEP);
-			if (needToSchedule) {
-				Photo last = result.get(resultCount - 1);
-				Date newMinDate = last.getDate();
-				long newMinDateLong = newMinDate.getTime();
-				int newCount = count + resultCount;
-				batch.setResult(newCount);
-				batch.setState(new Object[] { newCount });
-				Queue queue = QueueFactory.getDefaultQueue();
-				queue.add(url("/admin/task/photoCount").param("minDate",
-						String.valueOf(newMinDateLong)).param("count",
-						String.valueOf(newCount)).param("batchId",
-						String.valueOf(batchId)));
+		batch = pm.getObjectById(Batch.class, batchId);
+		batch.incrementInterationCount();
+		pm.close();
+		
+		pm = PMF.get().getPersistenceManager();
+		Query query = pm.newQuery(Photo.class);
+		query.setFilter(" date > dateParam");
+		query.declareImports("import java.util.Date");
+		query.declareParameters("Date dateParam");
+		query.setOrdering("date");
+		query.setRange(0, STEP);
+		List<Photo> result = (List<Photo>) query.execute(minDate);
+		int resultCount = result.size();
+		pm.close();
+		int newCount = count + resultCount;
+		batch.setResult(String.valueOf(newCount));
 
-			} else {
-				// We stop
-				batch.stop();
-			}
+		boolean needToSchedule = !(resultCount < STEP);
+		if (needToSchedule) {
+			Photo last = result.get(resultCount - 1);
+			Date newMinDate = last.getDate();
+			long newMinDateLong = newMinDate.getTime();
+			batch.setState(String.valueOf(newCount));
+			pm = PMF.get().getPersistenceManager();
 			pm.makePersistent(batch);
-		} catch (Exception e) {
-			log.warning(e.getLocalizedMessage());
+			pm.close();
+			Queue queue = QueueFactory.getDefaultQueue();
+			queue.add(url("/admin/task/photoCount").param("minDate",
+					String.valueOf(newMinDateLong)).param("count",
+					String.valueOf(newCount)).param("batchId",
+					String.valueOf(batchId)));
 
-		} finally {
+		} else {
+			// We stop
+			pm = PMF.get().getPersistenceManager();
+			batch.stop();
+			pm.makePersistent(batch);
 			pm.close();
 		}
 		PrintWriter out = response.getWriter();

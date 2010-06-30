@@ -6,7 +6,6 @@ import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
-import com.google.appengine.api.datastore.Key;
 @PersistenceCapable
 public class Batch {
 	@PrimaryKey
@@ -25,14 +24,14 @@ public class Batch {
 	@Persistent
 	private Date ftime;
 
-	@Persistent(serialized = "true")
-	private Object result;
-
-	@Persistent(serialized = "true")
-	private Object[] state;
+	@Persistent
+	private String result;
 
 	@Persistent
-	private int interationCount = 1;
+	private String state;
+
+	@Persistent
+	private int interationCount = 0;
 
 	public Batch(String jobName) {
 		setJobName(jobName);
@@ -47,8 +46,8 @@ public class Batch {
 		this.ctime = ctime;
 	}
 
-	/**
-	 * @return the ctime
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.BatchReadOnly#getCtime()
 	 */
 	public Date getCtime() {
 		return ctime;
@@ -84,36 +83,7 @@ public class Batch {
 		return ftime;
 	}
 
-	/**
-	 * @param state
-	 *            the state to set
-	 */
-	public void setState(Object[] state) {
-		this.state = state;
-	}
-
-	/**
-	 * @return the state
-	 */
-	public Object[] getState() {
-		return state;
-	}
-
-	/**
-	 * @param result
-	 *            the result to set
-	 */
-	public void setResult(Object result) {
-		this.result = result;
-	}
-
-	/**
-	 * @return the result
-	 */
-	public Object getResult() {
-		return result;
-	}
-
+	
 	/**
 	 * @param running
 	 *            the running to set
@@ -123,8 +93,8 @@ public class Batch {
 		setFtime(new Date());
 	}
 
-	/**
-	 * @return the running
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.BatchReadOnly#isRunning()
 	 */
 	public boolean isRunning() {
 		return running;
@@ -137,8 +107,8 @@ public class Batch {
 		this.interationCount++;
 	}
 
-	/**
-	 * @return the interationCount
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.BatchReadOnly#getInterationCount()
 	 */
 	public int getInterationCount() {
 		return interationCount;
@@ -151,11 +121,27 @@ public class Batch {
 		this.key = key;
 	}
 
-	/**
-	 * @return the key
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.BatchReadOnly#getKey()
 	 */
 	public Long getKey() {
 		return key;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	

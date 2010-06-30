@@ -6,6 +6,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.layout.client.Layout;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
@@ -16,6 +17,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 
+import fspotcloud.shared.admin.BatchInfo;
+
 public class Admin implements EntryPoint {
 
 	private DockLayoutPanel dockLayout = new DockLayoutPanel(Unit.PX);
@@ -23,8 +26,7 @@ public class Admin implements EntryPoint {
 
 	private Grid mainGrid = new Grid(3, 1);
 
-	private Label photoCountLabel = new Label("Photo count on the peer: ");
-	private FlowPanel infoPanel = new FlowPanel();
+	private FlexTable infoTable = new FlexTable();
 
 	private Label deleteAllTagsLabel = new Label(
 			"Clears all tags imported from the peer.");
@@ -40,6 +42,12 @@ public class Admin implements EntryPoint {
 	private FlowPanel cachePanel = new FlowPanel();
 	private FlowPanel statusPanel = new FlowPanel();
 	private Label statusLabel = new Label("Status bar. Ready.");
+	private long serverPhotoCountBatchId = 0;
+	private Timer serverPhotoCountTimer = new Timer() {
+		public void run() {
+			getBatchInfoForPhotoCount(serverPhotoCountBatchId);
+		}
+	};
 
 	private final AdminServiceAsync adminService = GWT
 			.create(AdminService.class);
@@ -49,7 +57,8 @@ public class Admin implements EntryPoint {
 		dockLayout.addNorth(titleLabel, 80);
 		titleLabel.addStyleDependentName("title");
 
-		infoPanel.add(photoCountLabel);
+		infoTable.setText(0, 0, "Photo count on the peer");
+		infoTable.setText(1, 0, "Photo count on the server");
 
 		actionTable.setWidget(0, 0, deleteAllTagsLabel);
 		actionTable.setWidget(0, 1, deleteAllTagsButton);
@@ -60,7 +69,7 @@ public class Admin implements EntryPoint {
 		actionTable.setWidget(2, 0, importTagsLabel);
 		actionTable.setWidget(2, 1, importTagsButton);
 
-		mainGrid.setWidget(0, 0, infoPanel);
+		mainGrid.setWidget(0, 0, infoTable);
 		mainGrid.setWidget(1, 0, actionTable);
 		mainGrid.setWidget(2, 0, cachePanel);
 
@@ -72,6 +81,7 @@ public class Admin implements EntryPoint {
 		addClickHandlers();
 		getPhotoCount();
 		getServerPhotoCount();
+		serverPhotoCountTimer.scheduleRepeating(1000);
 
 	}
 
@@ -97,8 +107,9 @@ public class Admin implements EntryPoint {
 		adminService.getPhotoCount(new AsyncCallback<Integer>() {
 			@Override
 			public void onSuccess(Integer result) {
-				photoCountLabel.setTitle("Succes");
-				photoCountLabel.setText("Photo count on the peer: " + result);
+
+				infoTable.setText(0, 0, "Photo count on the peer: ");
+				infoTable.setText(0, 1, result.toString());
 			}
 
 			@Override
@@ -108,18 +119,46 @@ public class Admin implements EntryPoint {
 			}
 		});
 	}
-	
+
 	private void getServerPhotoCount() {
 		adminService.getServerPhotoCount(new AsyncCallback<Long>() {
 			@Override
 			public void onSuccess(Long result) {
-				photoCountLabel.setTitle("Succes");
-				photoCountLabel.setText("Server Batch on the peer: " + result);
+
+				infoTable.setText(1, 0, "Server BatchID : ");
+				infoTable.setText(1, 1, result.toString());
+				serverPhotoCountBatchId = result;
 			}
 
 			@Override
 			public void onFailure(Throwable caught) {
 				statusLabel.setText("Not able to get server photo count going"
+						+ caught.getLocalizedMessage());
+			}
+		});
+	}
+
+	private void getBatchInfoForPhotoCount(long batchId) {
+		adminService.getBatchInfo(batchId, new AsyncCallback<BatchInfo>() {
+			@Override
+			public void onSuccess(BatchInfo info) {
+				infoTable.setText(2, 0,
+						"Server Batch on the peer intermediate result: ");
+				infoTable.setText(2, 1, info.getResult());
+				infoTable.setText(2, 2, String.valueOf(info
+						.getInterationCount()));
+
+				if (!info.isRunning()) {
+					infoTable.setText(2, 0, "Server Photo count ");
+					infoTable.setText(2, 1, info.getResult());
+					infoTable.setText(2, 2, String.valueOf(info.getInterationCount()));
+					serverPhotoCountTimer.cancel();
+				}
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				statusLabel.setText("Not able to get batch info"
 						+ caught.getLocalizedMessage());
 			}
 		});
