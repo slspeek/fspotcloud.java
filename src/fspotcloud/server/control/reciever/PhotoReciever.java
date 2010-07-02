@@ -25,6 +25,7 @@ public class PhotoReciever {
 		Blob thumb = new Blob(makeThumb(data));
 		photo.setThumb(thumb);
 		photo.setImage(blob);
+		photo.setImageLoaded(true);
 		try {
 			pm.makePersistent(photo);
 		} finally {
@@ -35,12 +36,9 @@ public class PhotoReciever {
 	
 	private byte[] makeThumb(byte[] imageData) {
 		ImagesService imagesService = ImagesServiceFactory.getImagesService();
-
         Image oldImage = ImagesServiceFactory.makeImage(imageData);
         Transform resize = ImagesServiceFactory.makeResize(300, 200);
-
         Image newImage = imagesService.applyTransform(resize, oldImage);
-
         byte[] thumbData = newImage.getImageData();
         return thumbData;
 	}

@@ -31,6 +31,9 @@ public class Photo {
 	private List<String> tagList;
 
 	@Persistent
+	private Boolean imageLoaded;
+	
+	@Persistent
 	private Blob image;
 	
 	@Persistent
@@ -121,6 +124,20 @@ public class Photo {
 	 */
 	public Blob getImage() {
 		return image;
+	}
+
+	/**
+	 * @param imageLoaded the imageLoaded to set
+	 */
+	public void setImageLoaded(Boolean imageLoaded) {
+		this.imageLoaded = imageLoaded;
+	}
+
+	/**
+	 * @return the imageLoaded
+	 */
+	public Boolean getImageLoaded() {
+		return imageLoaded;
 	}
 
 }

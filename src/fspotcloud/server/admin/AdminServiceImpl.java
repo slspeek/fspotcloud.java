@@ -101,4 +101,9 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		BatchInfo info = batchManager.getBatchInfo(batchId);
 		return info;
 	}
+
+	@Override
+	public void update() {
+		Scheduler.schedule("sendMetaData", Collections.EMPTY_LIST);
+	}
 }

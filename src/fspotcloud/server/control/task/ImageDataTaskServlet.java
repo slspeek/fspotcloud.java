@@ -30,7 +30,7 @@ public class ImageDataTaskServlet extends GenericServlet {
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
 		String minDateParam = request.getParameter("minDate");
-		Date minDate = new Date(Integer.valueOf(minDateParam));
+		Date minDate = new Date(Long.valueOf(minDateParam));
 		String countParam = request.getParameter("maxCount");
 		int count = Integer.valueOf(countParam);
 		String tagId = request.getParameter("tagId");

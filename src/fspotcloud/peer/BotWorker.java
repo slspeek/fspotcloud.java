@@ -39,12 +39,12 @@ public class BotWorker {
 		return result;
 	}
 
-	public int sendPhotoCount() {
+	public int sendMetaData() {
 		int result = 0;
 		try {
 			int count = data.getPhotoCount();
 			Object[] args = new Object[] { count };
-			controller.execute("TagReciever.recieveMetaData", args);
+			controller.execute("MetaReciever.recieveMetaData", args);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			result = 1;

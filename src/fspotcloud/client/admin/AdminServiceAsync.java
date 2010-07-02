@@ -20,4 +20,6 @@ public interface AdminServiceAsync {
 
 	void getBatchInfo(long batchId, AsyncCallback<BatchInfo> callback);
 
+	void update(AsyncCallback<Void> callback);
+
 }

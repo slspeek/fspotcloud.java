@@ -19,6 +19,7 @@ import fspotcloud.shared.admin.BatchInfo;
 
 public class Admin implements EntryPoint {
 
+	private static final String SCHEDULE_UPDATE_WITH_THE_PEER = "Schedule update with the peer";
 	private static final String CLEARS_ALL_PHOTOS_IMPORTED_FROM_THE_PEER = "Clears all photos imported from the peer.";
 	private DockLayoutPanel dockLayout = new DockLayoutPanel(Unit.PX);
 	private Label titleLabel = new Label("F-Spot Cloud Admin");
@@ -36,6 +37,14 @@ public class Admin implements EntryPoint {
 	private Label importTagsLabel = new Label(
 			"Schedule an import of the tags from the peer");
 	private Button importTagsButton = new Button("Import tags");
+	
+	private Label startUpdateWithPeerLabel = new Label(
+	SCHEDULE_UPDATE_WITH_THE_PEER);
+	private Button startUpdateWithPeerButton = new Button("Update");
+
+	//private Label importImagesForTagLabel = new Label("Schedule an import of the tags from the peer");
+    
+    
 	private FlexTable actionTable = new FlexTable();
 
 	private FlowPanel cachePanel = new FlowPanel();
@@ -74,6 +83,9 @@ public class Admin implements EntryPoint {
 
 		actionTable.setWidget(2, 0, importTagsLabel);
 		actionTable.setWidget(2, 1, importTagsButton);
+		
+		actionTable.setWidget(3, 0, startUpdateWithPeerLabel);
+		actionTable.setWidget(3, 1, startUpdateWithPeerButton);
 
 		mainGrid.setWidget(0, 0, infoTable);
 		mainGrid.setWidget(1, 0, actionTable);
@@ -106,6 +118,31 @@ public class Admin implements EntryPoint {
 				deleteAllPhotos();
 			}
 		});
+		startUpdateWithPeerButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				startUpdate();
+			}
+		});
+	}
+
+	protected void startUpdate() {
+		startUpdateWithPeerButton.setEnabled(false);
+		statusLabel.setText("Waiting on remote to schedule update");
+		adminService.update(new AsyncCallback<Void>() {
+
+			public void onFailure(Throwable caught) {
+				statusLabel.setText(caught.getLocalizedMessage());
+				startUpdateWithPeerButton.setEnabled(true);
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				statusLabel.setText("Import tags was scheduled for the peer");
+				startUpdateWithPeerButton.setEnabled(true);
+				
+			}
+		});
+		
 	}
 
 	private void getPhotoCount() {
