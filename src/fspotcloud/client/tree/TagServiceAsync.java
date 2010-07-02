@@ -10,4 +10,6 @@ public interface TagServiceAsync {
 
 	void loadTagTree(AsyncCallback<List<TagNode>> callback);
 
+	void keysForTag(String tagId, AsyncCallback<List<String>> callback);
+
 }

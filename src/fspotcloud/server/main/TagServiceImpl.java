@@ -9,6 +9,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import fspotcloud.client.tree.TagService;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
+import fspotcloud.server.model.photo.PhotoManager;
 import fspotcloud.server.model.tag.TagReader;
 import fspotcloud.server.model.tag.TreeBuilder;
 import fspotcloud.server.util.PMF;
@@ -20,6 +21,8 @@ import fspotcloud.shared.tag.TagNode;
 @SuppressWarnings("serial")
 public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 
+	private PhotoManager photoManager = new PhotoManager();
+	
 	public List<TagNode> loadTagTree() {
 		PeerDatabase p = DefaultPeer.get();
 		if (p.getCachedTagTree() != null) {
@@ -37,5 +40,10 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 			}
 			return tree;
 		}
+	}
+
+	@Override
+	public List<String> keysForTag(String tagId) {
+		return photoManager.getPhotoKeysForTag(tagId);
 	}
 }

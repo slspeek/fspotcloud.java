@@ -16,9 +16,12 @@ public class PhotoManager {
 		List<String> keys = new ArrayList<String>();
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query query = pm.newQuery(Photo.class);
-		query.setFilter("tagList=" + tagId);
+		query.setFilter("tagList==" + tagId + " && imageLoaded==true");
 		query.setOrdering("date");
 		List<Photo> result = (List<Photo>) query.execute();
+		for(Photo photo: result) {
+			keys.add(photo.getName());
+		}
 		return keys;
 	}
 	

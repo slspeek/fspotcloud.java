@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Image;
@@ -25,11 +26,25 @@ public class TreeExample implements EntryPoint {
 	 */
 	private final TagServiceAsync tagService = GWT.create(TagService.class);
 
-	private final Image mainImage = new Image(
+	private List<String> speeltuinKeys = null;
+	
+	private Image mainImage = new Image(
 			"http://lh5.ggpht.com/_I6XE5OTEwr4/SWpTcwEnMbI/AAAAAAAADic/bgdh_8p2maU/s800/img_6083.jpg");
 
 	private final Tree t = new Tree();
 	private final ScrollPanel treeScroller = new ScrollPanel(t);
+	
+	private final Timer slideShowTimer = new Timer() {
+		int index = 0;
+		@Override
+		public void run() {
+			if (index < speeltuinKeys.size()) {
+				mainImage.setUrl("/image?id=" + speeltuinKeys.get(index++));
+			} else {
+				cancel();
+			}
+		}
+	};
 
 	public void onModuleLoad() {
 		
@@ -51,6 +66,7 @@ public class TreeExample implements EntryPoint {
 		// Add it to the root panel.
 		RootLayoutPanel.get().add(panel);
 		requestTagTreeFromServer();
+		requestKeysForTag("46");
 	}
 
 	private void requestTagTreeFromServer() {
@@ -67,6 +83,20 @@ public class TreeExample implements EntryPoint {
 			}
 		});
 	}
+	
+	private void requestKeysForTag(String tagId) {
+		tagService.keysForTag(tagId, new AsyncCallback<List<String>>() {
+			public void onFailure(Throwable caught) {
+
+			}
+
+			public void onSuccess(List<String> result) {
+				speeltuinKeys = result;
+				slideShowTimer.scheduleRepeating(2500);
+			}
+		});
+	}
+
 
 	private void addSubTree(TagNode node, TreeItem target) {
 		TreeItem newItem = target.addItem(node.getTagName());
