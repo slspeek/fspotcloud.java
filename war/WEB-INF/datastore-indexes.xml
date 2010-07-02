@@ -6,4 +6,8 @@
         <property name="tagList" direction="asc"/>
         <property name="date" direction="asc"/>
     </datastore-index>
+     <datastore-index kind="Photo" ancestor="false" source="manual">
+        <property name="tagList" direction="asc"/>
+        <property name="date" direction="asc"/>
+    </datastore-index>
 </datastore-indexes>

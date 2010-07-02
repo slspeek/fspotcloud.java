@@ -1,13 +1,16 @@
 package fspotcloud.client.tree;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
@@ -28,11 +31,11 @@ public class TreeExample implements EntryPoint {
 
 	private List<String> speeltuinKeys = null;
 	
-	private Image mainImage = new Image(
-			"http://lh5.ggpht.com/_I6XE5OTEwr4/SWpTcwEnMbI/AAAAAAAADic/bgdh_8p2maU/s800/img_6083.jpg");
-
+	private Image mainImage = new Image();
 	private final Tree t = new Tree();
 	private final ScrollPanel treeScroller = new ScrollPanel(t);
+	private final Label statusLabel = new Label();
+	private final FlowPanel statusPanel = new FlowPanel(); 
 	
 	private final Timer slideShowTimer = new Timer() {
 		int index = 0;
@@ -40,6 +43,7 @@ public class TreeExample implements EntryPoint {
 		public void run() {
 			if (index < speeltuinKeys.size()) {
 				mainImage.setUrl("/image?id=" + speeltuinKeys.get(index++));
+				//Window.alert("Set image");
 			} else {
 				cancel();
 			}
@@ -52,17 +56,21 @@ public class TreeExample implements EntryPoint {
 		Label titleLabel = new Label("F-Spot Cloud Java Edition");
 		titleLabel.addStyleDependentName("title");
 		panel.addNorth(titleLabel, 80);
+
+		statusPanel.add(statusLabel);
+		panel.addSouth(statusPanel, 40);
 		SplitLayoutPanel splitPanel = new SplitLayoutPanel();
-
 		splitPanel.addWest(treeScroller, 200);
-
 		LayoutPanel container = new LayoutPanel();
 		container.add(mainImage);
-		container.setWidgetLeftRight(mainImage, 2, Unit.EM, 2, Unit.EM); // Center
+		int inset = 4;
+		container.setWidgetLeftRight(mainImage, inset, Unit.EM, inset, Unit.EM); // Center
 																			// panel
-		container.setWidgetTopBottom(mainImage, 2, Unit.EM, 2, Unit.EM);
+		container.setWidgetTopBottom(mainImage, inset, Unit.EM, inset, Unit.EM);
 		splitPanel.add(container);
+		
 		panel.add(splitPanel);
+		
 		// Add it to the root panel.
 		RootLayoutPanel.get().add(panel);
 		requestTagTreeFromServer();
@@ -87,12 +95,35 @@ public class TreeExample implements EntryPoint {
 	private void requestKeysForTag(String tagId) {
 		tagService.keysForTag(tagId, new AsyncCallback<List<String>>() {
 			public void onFailure(Throwable caught) {
-
+				//Window.alert(caught.getLocalizedMessage());
+				fillSpeeltuin();
+				slideShowTimer.scheduleRepeating(5000);
 			}
-
+			
+			void fillSpeeltuin() {
+				speeltuinKeys = new ArrayList<String>();
+				speeltuinKeys.add("10000");
+				speeltuinKeys.add("10001");
+				speeltuinKeys.add("10002");
+				speeltuinKeys.add("10003");
+				speeltuinKeys.add("10004");
+				speeltuinKeys.add("10005");
+				speeltuinKeys.add("10006");
+				speeltuinKeys.add("10007");
+				speeltuinKeys.add("10052");
+				speeltuinKeys.add("10053");
+				speeltuinKeys.add("10054");
+				speeltuinKeys.add("10055");
+				speeltuinKeys.add("10056");
+			}
 			public void onSuccess(List<String> result) {
-				speeltuinKeys = result;
-				slideShowTimer.scheduleRepeating(2500);
+				statusLabel.setText(String.valueOf(result));
+				if (result.isEmpty()) {
+					fillSpeeltuin();
+				} else {
+					speeltuinKeys = result;
+				}
+				slideShowTimer.scheduleRepeating(5000);
 			}
 		});
 	}
