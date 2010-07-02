@@ -18,7 +18,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import fspotcloud.client.admin.AdminService;
 import fspotcloud.server.control.Scheduler;
 import fspotcloud.server.model.batch.Batch;
-import fspotcloud.server.model.batch.BatchReader;
+import fspotcloud.server.model.batch.BatchManager;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
 import fspotcloud.server.model.photo.Photo;
@@ -35,25 +35,18 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	private static final Logger log = Logger.getLogger(AdminServiceImpl.class
 			.getName());
-	private BatchReader batchReader = new BatchReader();
+	private BatchManager batchManager = new BatchManager();
 	private static final long STEP = 450;
 
 	@Override
-	public void deleteAllPhotos() {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query query = pm.newQuery(Photo.class);
-		query.setOrdering("date");
-		query.setRange(0, STEP);
+	public long deleteAllPhotos() {
+		Batch batch = new Batch("deleteAllPhotos");
+		long batchId = batchManager.save(batch);
 
-		List<Photo> allPhotos = (List<Photo>) query.execute();
-		try {
-			pm.deletePersistentAll(allPhotos);
-			log.info(STEP + "  Photos deleted.");
-		} catch (Exception e) {
-			log.warning("Exception during delete all Photos: " + e);
-		} finally {
-			pm.close();
-		}
+		Queue queue = QueueFactory.getDefaultQueue();
+		queue.add(url("/admin/task/photoDelete").param("deleteCount", "0")
+				.param("batchId", String.valueOf(batchId)));
+		return batchId;
 	}
 
 	@Override
@@ -96,13 +89,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public long getServerPhotoCount() {
 		Batch batch = new Batch("getServerPhotoCount");
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		try {
-			pm.makePersistent(batch);
-		} finally {
-			pm.close();
-		}
-		long batchId = batch.getKey();
+		long batchId = batchManager.save(batch);
 		Queue queue = QueueFactory.getDefaultQueue();
 		queue.add(url("/admin/task/photoCount").param("minDate", "0").param(
 				"count", "0").param("batchId", String.valueOf(batchId)));
@@ -111,8 +98,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public BatchInfo getBatchInfo(long batchId) {
-		BatchInfo info = batchReader.getBatchInfo(batchId);
-		// TODO Auto-generated method stub
+		BatchInfo info = batchManager.getBatchInfo(batchId);
 		return info;
 	}
 }

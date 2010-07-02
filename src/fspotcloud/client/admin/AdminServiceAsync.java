@@ -6,7 +6,7 @@ import fspotcloud.shared.admin.BatchInfo;
 
 public interface AdminServiceAsync {
 
-	void deleteAllPhotos(AsyncCallback<Void> callback);
+	void deleteAllPhotos(AsyncCallback<Long> callback);
 
 	void deleteAllTags(AsyncCallback<Void> callback);
 

@@ -17,6 +17,7 @@ public class PhotoReciever {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Photo photo = pm.getObjectById(Photo.class, id);
 		Blob blob = new Blob(data);
+		//make thumb
 		photo.setImage(blob);
 		try {
 			pm.makePersistent(photo);

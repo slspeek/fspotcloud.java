@@ -10,7 +10,7 @@ import fspotcloud.shared.admin.BatchInfo;
  */
 @RemoteServiceRelativePath("admin")
 public interface AdminService extends RemoteService {
-	void deleteAllPhotos();
+	long deleteAllPhotos();
 	void deleteAllTags();
 	int getPhotoCount();
 	long getServerPhotoCount();

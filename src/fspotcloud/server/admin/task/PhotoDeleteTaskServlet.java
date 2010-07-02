@@ -21,54 +21,47 @@ import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import fspotcloud.server.model.batch.Batch;
 import fspotcloud.server.model.batch.BatchManager;
 import fspotcloud.server.model.photo.Photo;
+import fspotcloud.server.model.photo.PhotoManager;
 import fspotcloud.server.util.PMF;
 
 @SuppressWarnings("serial")
-public class PhotoCountTaskServlet extends GenericServlet {
+public class PhotoDeleteTaskServlet extends GenericServlet {
 
 	private static final Logger log = Logger
-			.getLogger(PhotoCountTaskServlet.class.getName());
+			.getLogger(PhotoDeleteTaskServlet.class.getName());
 	private static final long STEP = 450;
 	private BatchManager batchManager = new BatchManager();
-
+	private PhotoManager photoManager = new PhotoManager();
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
 		String batchIdParam = request.getParameter("batchId");
 		long batchId = Long.valueOf(batchIdParam);
-		String minDateParam = request.getParameter("minDate");
-		Date minDate = new Date(Long.valueOf(minDateParam));
-		String countParam = request.getParameter("count");
-		int count = Integer.valueOf(countParam);
-
+		String deleteCountParam = request.getParameter("deleteCount");
+		int deleteCount = Integer.valueOf(deleteCountParam);
+		
 		Batch batch = batchManager.getById(batchId);
 		batch.incrementInterationCount();
 		
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query query = pm.newQuery(Photo.class);
-		query.setFilter(" date > dateParam");
-		query.declareImports("import java.util.Date");
-		query.declareParameters("Date dateParam");
-		query.setOrdering("date");
-		query.setRange(0, STEP);
-		List<Photo> result = (List<Photo>) query.execute(minDate);
+		List<Photo> result = photoManager.getOldestPhotosChunk(pm);
 		int resultCount = result.size();
+		pm.deletePersistentAll(result);
 		pm.close();
-		int newCount = count + resultCount;
-		batch.setResult(String.valueOf(newCount));
+		
+		int newDeleteCount = deleteCount + resultCount;
+		batch.setResult(String.valueOf(newDeleteCount));
+		batchManager.save(batch);
 
-		boolean needToSchedule = !(resultCount < STEP);
-		if (needToSchedule) {
-			Photo last = result.get(resultCount - 1);
-			Date newMinDate = last.getDate();
-			long newMinDateLong = newMinDate.getTime();
-			batch.setState(String.valueOf(newCount));
-			batchManager.save(batch);
+		pm = PMF.get().getPersistenceManager();
+		result = photoManager.getOldestPhotosChunk(pm);
+		if (!result.isEmpty()) {
+			//hasPhotos left
 			Queue queue = QueueFactory.getDefaultQueue();
-			queue.add(url("/admin/task/photoCount").param("minDate",
-					String.valueOf(newMinDateLong)).param("count",
-					String.valueOf(newCount)).param("batchId",
+			queue.add(url("/admin/task/photoDelete").param("deleteCount",
+					String.valueOf(newDeleteCount)).param("batchId",
 					String.valueOf(batchId)));
 
 		} else {
@@ -77,7 +70,7 @@ public class PhotoCountTaskServlet extends GenericServlet {
 			batchManager.save(batch);
 		}
 		PrintWriter out = response.getWriter();
-		out.println("PhotoCount task ran.");
+		out.println("PhotoDelete task ran.");
 		out.close();
 	}
 

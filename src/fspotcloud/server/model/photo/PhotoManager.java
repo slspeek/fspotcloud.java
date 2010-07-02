@@ -8,7 +8,9 @@ import javax.jdo.Query;
 
 import fspotcloud.server.util.PMF;
 
-public class PhotoReader {
+public class PhotoManager {
+	private static final long STEP = 450;
+
 	@SuppressWarnings("unchecked")
 	public List<String> getPhotoKeysForTag(String tagId) {
 		List<String> keys = new ArrayList<String>();
@@ -18,5 +20,13 @@ public class PhotoReader {
 		query.setOrdering("date");
 		List<Photo> result = (List<Photo>) query.execute();
 		return keys;
+	}
+	
+	public List<Photo> getOldestPhotosChunk(PersistenceManager pm) {
+		Query query = pm.newQuery(Photo.class);
+		query.setOrdering("date");
+		query.setRange(0, STEP);
+		List<Photo> result = (List<Photo>) query.execute();
+		return result;
 	}
 }

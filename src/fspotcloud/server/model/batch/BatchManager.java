@@ -5,7 +5,7 @@ import javax.jdo.PersistenceManager;
 import fspotcloud.server.util.PMF;
 import fspotcloud.shared.admin.BatchInfo;
 
-public class BatchReader {
+public class BatchManager {
 
 	public BatchInfo getBatchInfo(long batchId) {
 		Batch batch = getById(batchId);
@@ -31,5 +31,14 @@ public class BatchReader {
 		}
 		return batch;
 	}
-
+	
+	public long save(Batch batch) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		try {
+			pm.makePersistent(batch);
+		} finally {
+			pm.close();
+		}
+		return batch.getKey();
+	}
 }

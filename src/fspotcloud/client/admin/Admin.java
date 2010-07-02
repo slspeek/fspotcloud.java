@@ -5,7 +5,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.layout.client.Layout;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -14,13 +13,13 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 
 import fspotcloud.shared.admin.BatchInfo;
 
 public class Admin implements EntryPoint {
 
+	private static final String CLEARS_ALL_PHOTOS_IMPORTED_FROM_THE_PEER = "Clears all photos imported from the peer.";
 	private DockLayoutPanel dockLayout = new DockLayoutPanel(Unit.PX);
 	private Label titleLabel = new Label("F-Spot Cloud Admin");
 
@@ -32,7 +31,7 @@ public class Admin implements EntryPoint {
 			"Clears all tags imported from the peer.");
 	private Button deleteAllTagsButton = new Button("Clear tags");
 	private Label deleteAllPhotosLabel = new Label(
-			"Clears all photos imported from the peer.");
+			CLEARS_ALL_PHOTOS_IMPORTED_FROM_THE_PEER);
 	private Button deleteAllPhotosButton = new Button("Clear photos");
 	private Label importTagsLabel = new Label(
 			"Schedule an import of the tags from the peer");
@@ -46,6 +45,13 @@ public class Admin implements EntryPoint {
 	private Timer serverPhotoCountTimer = new Timer() {
 		public void run() {
 			getBatchInfoForPhotoCount(serverPhotoCountBatchId);
+		}
+	};
+
+	private long deleteAllPhotosBatchId = 0;
+	private Timer deleteAllPhotosTimer = new Timer() {
+		public void run() {
+			getBatchInfoForDeleteAllPhotos(deleteAllPhotosBatchId);
 		}
 	};
 
@@ -81,7 +87,6 @@ public class Admin implements EntryPoint {
 		addClickHandlers();
 		getPhotoCount();
 		getServerPhotoCount();
-		serverPhotoCountTimer.scheduleRepeating(1000);
 
 	}
 
@@ -107,7 +112,6 @@ public class Admin implements EntryPoint {
 		adminService.getPhotoCount(new AsyncCallback<Integer>() {
 			@Override
 			public void onSuccess(Integer result) {
-
 				infoTable.setText(0, 0, "Photo count on the peer: ");
 				infoTable.setText(0, 1, result.toString());
 			}
@@ -124,10 +128,9 @@ public class Admin implements EntryPoint {
 		adminService.getServerPhotoCount(new AsyncCallback<Long>() {
 			@Override
 			public void onSuccess(Long result) {
-
 				infoTable.setText(1, 0, "Server BatchID : ");
-				infoTable.setText(1, 1, result.toString());
 				serverPhotoCountBatchId = result;
+				serverPhotoCountTimer.scheduleRepeating(1000);
 			}
 
 			@Override
@@ -142,23 +145,50 @@ public class Admin implements EntryPoint {
 		adminService.getBatchInfo(batchId, new AsyncCallback<BatchInfo>() {
 			@Override
 			public void onSuccess(BatchInfo info) {
-				infoTable.setText(2, 0,
-						"Server Batch on the peer intermediate result: ");
-				infoTable.setText(2, 1, info.getResult());
-				infoTable.setText(2, 2, String.valueOf(info
-						.getInterationCount()));
+				infoTable.setText(1, 0,
+						"Server Batch photoCount on server intermediate result: " +
+				info.getResult() + "(" + info.getInterationCount() +")" );
 
 				if (!info.isRunning()) {
-					infoTable.setText(2, 0, "Server Photo count ");
-					infoTable.setText(2, 1, info.getResult());
-					infoTable.setText(2, 2, String.valueOf(info.getInterationCount()));
+					infoTable.setText(1, 0, "Server Photo count ");
+					infoTable.setText(1, 1, info.getResult());
+					infoTable.setText(1, 2, "(" + info.getInterationCount() +")");
 					serverPhotoCountTimer.cancel();
+					statusLabel.setText("ServerPhotoCount batch finished.");
 				}
 			}
 
 			@Override
 			public void onFailure(Throwable caught) {
-				statusLabel.setText("Not able to get batch info"
+				statusLabel.setText("Not able to get batch info: "
+						+ caught.getLocalizedMessage());
+			}
+		});
+	}
+
+	private void getBatchInfoForDeleteAllPhotos(long batchId) {
+		adminService.getBatchInfo(batchId, new AsyncCallback<BatchInfo>() {
+			@Override
+			public void onSuccess(BatchInfo info) {
+				String msg = "Delete all photos intermediate result: "
+						+ info.getResult() + "("
+						+ String.valueOf(info.getInterationCount()) + ")";
+				deleteAllPhotosLabel.setText(msg);
+				if (!info.isRunning()) {
+					deleteAllPhotosTimer.cancel();
+					deleteAllPhotosButton.setEnabled(true);
+					deleteAllPhotosLabel
+							.setText(CLEARS_ALL_PHOTOS_IMPORTED_FROM_THE_PEER);
+					statusLabel.setText("deleteAllPhotos batch "
+							+ deleteAllPhotosBatchId
+							+ " finished on the server. " + info.getResult()
+							+ " photos were deleted.");
+				}
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				statusLabel.setText("Not able to get batch info: "
 						+ caught.getLocalizedMessage());
 			}
 		});
@@ -183,17 +213,18 @@ public class Admin implements EntryPoint {
 
 	private void deleteAllPhotos() {
 		deleteAllPhotosButton.setEnabled(false);
-		statusLabel.setText("Waiting on remote to delete all Photos");
-		adminService.deleteAllPhotos(new AsyncCallback<Void>() {
+		statusLabel.setText("Waiting on remote to start deleteAllPhotos task");
+		adminService.deleteAllPhotos(new AsyncCallback<Long>() {
 
 			public void onFailure(Throwable caught) {
 				deleteAllPhotosButton.setEnabled(true);
 				statusLabel.setText(caught.getLocalizedMessage());
 			}
 
-			public void onSuccess(Void result) {
-				deleteAllPhotosButton.setEnabled(true);
-				statusLabel.setText("All Photos were deleted");
+			public void onSuccess(Long result) {
+				statusLabel.setText("deleteAllPhotos task started");
+				deleteAllPhotosBatchId = result;
+				deleteAllPhotosTimer.scheduleRepeating(1000);
 			}
 		});
 	}
