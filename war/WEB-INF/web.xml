@@ -52,7 +52,7 @@
   
   <servlet-mapping>
     <servlet-name>photoDataTaskServlet</servlet-name>
-    <url-pattern>/control/task/photo_data</url-pattern>
+    <url-pattern>/control/task/photoData</url-pattern>
   </servlet-mapping>
     
   <servlet>
@@ -62,7 +62,7 @@
   
   <servlet-mapping>
     <servlet-name>imageDataTaskServlet</servlet-name>
-    <url-pattern>/control/task/image_data</url-pattern>
+    <url-pattern>/control/task/imageData</url-pattern>
   </servlet-mapping>
     
    <servlet>

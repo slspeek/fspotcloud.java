@@ -65,7 +65,7 @@ public class ImageDataTaskServlet extends GenericServlet {
 				// Schedule the next task
 				int nextCount = count - maxTicks;
 				Queue queue = QueueFactory.getDefaultQueue();
-				queue.add(url("/control/task/image_data").param("minDate",
+				queue.add(url("/control/task/imageData").param("minDate",
 						String.valueOf(newMinDateLong)).param("maxCount",
 						String.valueOf(nextCount)).param("tagId", tagId));
 

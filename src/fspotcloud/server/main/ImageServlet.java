@@ -23,9 +23,10 @@ public class ImageServlet extends GenericServlet {
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
+		boolean thumb = (request.getParameter("thumb") != null);
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Photo photo = (Photo) pm.getObjectById(Photo.class, id);
-		Blob imageData = photo.getImage();
+		Blob imageData = thumb ? photo.getThumb(): photo.getImage();
 		response.setContentType("image/jpeg");
 		OutputStream out =response.getOutputStream(); 
 		out.write(imageData.getBytes());

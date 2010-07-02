@@ -3,6 +3,10 @@ package fspotcloud.server.control.reciever;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import com.google.appengine.api.images.Image;
+import com.google.appengine.api.images.ImagesService;
+import com.google.appengine.api.images.ImagesServiceFactory;
+import com.google.appengine.api.images.Transform;
 
 import javax.jdo.PersistenceManager;
 
@@ -18,6 +22,8 @@ public class PhotoReciever {
 		Photo photo = pm.getObjectById(Photo.class, id);
 		Blob blob = new Blob(data);
 		//make thumb
+		Blob thumb = new Blob(makeThumb(data));
+		photo.setThumb(thumb);
 		photo.setImage(blob);
 		try {
 			pm.makePersistent(photo);
@@ -25,6 +31,18 @@ public class PhotoReciever {
 			pm.close();
 		}
 		return 0;
+	}
+	
+	private byte[] makeThumb(byte[] imageData) {
+		ImagesService imagesService = ImagesServiceFactory.getImagesService();
+
+        Image oldImage = ImagesServiceFactory.makeImage(imageData);
+        Transform resize = ImagesServiceFactory.makeResize(300, 200);
+
+        Image newImage = imagesService.applyTransform(resize, oldImage);
+
+        byte[] thumbData = newImage.getImageData();
+        return thumbData;
 	}
 	
 	public int recievePhotoData(Object[] list) {

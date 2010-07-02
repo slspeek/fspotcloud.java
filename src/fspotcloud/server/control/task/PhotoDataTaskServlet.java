@@ -36,7 +36,7 @@ public class PhotoDataTaskServlet extends GenericServlet {
 			int nextStart = start + maxTicksSquare;
 			int nextCount = count - maxTicksSquare;
 			Queue queue = QueueFactory.getDefaultQueue();
-			queue.add(url("/control/task/photo_data").param("offset",
+			queue.add(url("/control/task/photoData").param("offset",
 					String.valueOf(nextStart)).param("limit",
 					String.valueOf(nextCount)));
 			countWeWillDo = maxTicks;
