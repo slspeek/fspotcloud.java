@@ -17,6 +17,7 @@ public interface AdminService extends RemoteService {
 	int getTagCount();
 	void importTags();
 	void update();
+	long tagViewablePhotos(String tagId);
 	BatchInfo getBatchInfo(long batchId); 
 	
 }

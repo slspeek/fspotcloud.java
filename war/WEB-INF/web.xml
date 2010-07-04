@@ -64,6 +64,16 @@
     <servlet-name>imageDataTaskServlet</servlet-name>
     <url-pattern>/control/task/imageData</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>tagViewTaskServlet</servlet-name>
+    <servlet-class>fspotcloud.server.main.task.TagViewTaskServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>tagViewTaskServlet</servlet-name>
+    <url-pattern>/main/task/tagView</url-pattern>
+  </servlet-mapping>
     
    <servlet>
     <servlet-name>imageServlet</servlet-name>

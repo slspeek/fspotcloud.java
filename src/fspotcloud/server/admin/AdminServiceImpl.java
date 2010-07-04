@@ -106,4 +106,15 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	public void update() {
 		Scheduler.schedule("sendMetaData", Collections.EMPTY_LIST);
 	}
+
+	@Override
+	public long tagViewablePhotos(String tagId) {
+		Batch batch = new Batch("tagViewablePhotos");
+		long batchId = batchManager.save(batch);
+
+		Queue queue = QueueFactory.getDefaultQueue();
+		queue.add(url("/main/task/tagView").param("minDate", "0").param(
+				"batchId", String.valueOf(batchId)));
+		return batchId;
+	}
 }

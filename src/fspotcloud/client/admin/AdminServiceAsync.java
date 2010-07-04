@@ -22,4 +22,6 @@ public interface AdminServiceAsync {
 
 	void update(AsyncCallback<Void> callback);
 
+	void tagViewablePhotos(String tagId, AsyncCallback<Long> callback);
+
 }
