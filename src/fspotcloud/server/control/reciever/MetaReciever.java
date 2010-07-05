@@ -13,18 +13,14 @@ import fspotcloud.server.util.PMF;
 
 public class MetaReciever {
 	public int recieveMetaData(int count) {
-		PeerDatabase p = DefaultPeer.get();
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		PeerDatabase p = DefaultPeer.get(pm);
 		int previousCount = p.getCount();
 		Queue queue = QueueFactory.getDefaultQueue();
 		queue.add(url("/control/task/photoData").param("offset", String.valueOf(previousCount))
 				.param("limit", String.valueOf(count - previousCount)));
 		p.setCount(count);
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		try {
-			pm.makePersistent(p);
-		} finally {
-			pm.close();
-		}
+		DefaultPeer.save(p, pm);
 		return 0;
 	}
 

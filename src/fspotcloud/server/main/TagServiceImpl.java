@@ -1,5 +1,6 @@
 package fspotcloud.server.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -10,6 +11,7 @@ import fspotcloud.client.tree.TagService;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
 import fspotcloud.server.model.photo.PhotoManager;
+import fspotcloud.server.model.tag.Tag;
 import fspotcloud.server.model.tag.TagReader;
 import fspotcloud.server.model.tag.TreeBuilder;
 import fspotcloud.server.util.PMF;
@@ -21,7 +23,7 @@ import fspotcloud.shared.tag.TagNode;
 @SuppressWarnings("serial")
 public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 
-	private PhotoManager photoManager = new PhotoManager();
+	private final TagReader tagManager = new TagReader();
 	
 	public List<TagNode> loadTagTree() {
 		PeerDatabase p = DefaultPeer.get();
@@ -44,6 +46,9 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 
 	@Override
 	public List<String> keysForTag(String tagId) {
-		return photoManager.getPhotoKeysForTag(tagId);
+		Tag tag = tagManager.getById(tagId);
+		List<String> result = new ArrayList<String>();
+		result.addAll(tag.getCachedPhotoList());
+		return result;
 	}
 }

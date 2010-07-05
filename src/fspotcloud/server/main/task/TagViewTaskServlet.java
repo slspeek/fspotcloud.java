@@ -52,6 +52,7 @@ public class TagViewTaskServlet extends GenericServlet {
 		String maxTicksProp = System.getProperty("fspotcloud.max.data.ticks");
 		int maxTicks = Integer.valueOf(maxTicksProp);
 
+		log.info("TagId: now :: " + tagId);
 		Tag tag = tagManager.getById(tagId);
 
 		// Do our part of the job, scheduling the oldest images
@@ -65,19 +66,22 @@ public class TagViewTaskServlet extends GenericServlet {
 		query.setRange(0, maxTicks);
 		List<Photo> photos = (List<Photo>) query.execute(minDate);
 
-		for (Photo photo : photos) {
-			tag.getCachedPhotoList().add(photo.getName());
-		}
+		log.info("Interation: " + batch.getInterationCount() + " MinDate: " + minDate);
 		if (!photos.isEmpty()) {
 			Photo last = photos.get(photos.size() - 1);
 			Date newMinDate = last.getDate();
+			log.info("Lats Photo id: " + last.getName() + " NewMinDate: " + newMinDate);
 			long newMinDateLong = newMinDate.getTime();
 			for (Photo photo : photos) {
-				tag.getCachedPhotoList().add(photo.getName());
+				if (!tag.getCachedPhotoList().contains(photo.getName())) {
+					tag.getCachedPhotoList().add(photo.getName());
+				} else {
+					log.warning(photo.getName() + "was allready added?!");
+				}
 			}
 			tagManager.save(tag);
 			Queue queue = QueueFactory.getDefaultQueue();
-			queue.add(url("/main/task/tagView").param("BatchId", batchIdParam)
+			queue.add(url("/main/task/tagView").param("batchId", batchIdParam)
 					.param("minDate", String.valueOf(newMinDateLong)).param(
 							"tagId", tagId));
 		} else {

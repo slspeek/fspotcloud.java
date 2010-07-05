@@ -101,7 +101,7 @@ public class Bot {
 	private Method findMethod(String name, Class c) {
 		Method[] all = c.getDeclaredMethods();
 		for (Method m : all) {
-			System.out.println(m.getName());
+			//System.out.println(m.getName());
 			if (m.getName().equals(name)) {
 				return m;
 			}

@@ -36,6 +36,7 @@ public class TreeExample implements EntryPoint {
 	private final ScrollPanel treeScroller = new ScrollPanel(t);
 	private final Label statusLabel = new Label();
 	private final FlowPanel statusPanel = new FlowPanel(); 
+	private final FlowPanel imagePanel = new FlowPanel();
 	
 	private final Timer slideShowTimer = new Timer() {
 		int index = 0;
@@ -61,13 +62,8 @@ public class TreeExample implements EntryPoint {
 		panel.addSouth(statusPanel, 40);
 		SplitLayoutPanel splitPanel = new SplitLayoutPanel();
 		splitPanel.addWest(treeScroller, 200);
-		LayoutPanel container = new LayoutPanel();
-		container.add(mainImage);
-		int inset = 4;
-		container.setWidgetLeftRight(mainImage, inset, Unit.EM, inset, Unit.EM); // Center
-																			// panel
-		container.setWidgetTopBottom(mainImage, inset, Unit.EM, inset, Unit.EM);
-		splitPanel.add(container);
+		imagePanel.add(mainImage);
+		splitPanel.add(imagePanel);
 		
 		panel.add(splitPanel);
 		
@@ -97,7 +93,7 @@ public class TreeExample implements EntryPoint {
 			public void onFailure(Throwable caught) {
 				//Window.alert(caught.getLocalizedMessage());
 				fillSpeeltuin();
-				slideShowTimer.scheduleRepeating(5000);
+				slideShowTimer.scheduleRepeating(250);
 			}
 			
 			void fillSpeeltuin() {
@@ -123,7 +119,7 @@ public class TreeExample implements EntryPoint {
 				} else {
 					speeltuinKeys = result;
 				}
-				slideShowTimer.scheduleRepeating(5000);
+				slideShowTimer.scheduleRepeating(1250);
 			}
 		});
 	}

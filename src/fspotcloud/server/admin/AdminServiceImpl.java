@@ -23,6 +23,7 @@ import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
 import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.model.tag.Tag;
+import fspotcloud.server.model.tag.TagReader;
 import fspotcloud.server.util.PMF;
 import fspotcloud.shared.admin.BatchInfo;
 
@@ -36,6 +37,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	private static final Logger log = Logger.getLogger(AdminServiceImpl.class
 			.getName());
 	private BatchManager batchManager = new BatchManager();
+	private final TagReader tagManager = new TagReader();
 	private static final long STEP = 450;
 
 	@Override
@@ -111,10 +113,12 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	public long tagViewablePhotos(String tagId) {
 		Batch batch = new Batch("tagViewablePhotos");
 		long batchId = batchManager.save(batch);
-
+		// clear the cached photo names
+		Tag tag = tagManager.getById(tagId);
+		tag.setCachedPhotoList(new ArrayList<String>());
 		Queue queue = QueueFactory.getDefaultQueue();
-		queue.add(url("/main/task/tagView").param("minDate", "0").param(
-				"batchId", String.valueOf(batchId)));
+		queue.add(url("/main/task/tagView").param("tagId", tagId).param(
+				"minDate", "0").param("batchId", String.valueOf(batchId)));
 		return batchId;
 	}
 }

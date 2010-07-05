@@ -20,6 +20,8 @@ import com.google.appengine.api.labs.taskqueue.QueueFactory;
 
 import fspotcloud.server.model.batch.Batch;
 import fspotcloud.server.model.batch.BatchManager;
+import fspotcloud.server.model.peerdatabase.DefaultPeer;
+import fspotcloud.server.model.peerdatabase.PeerDatabase;
 import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.model.photo.PhotoManager;
 import fspotcloud.server.util.PMF;
@@ -59,6 +61,7 @@ public class PhotoDeleteTaskServlet extends GenericServlet {
 		result = photoManager.getOldestPhotosChunk(pm);
 		if (!result.isEmpty()) {
 			//hasPhotos left
+			log.info("We reschedule a task " + batch.getKey());
 			Queue queue = QueueFactory.getDefaultQueue();
 			queue.add(url("/admin/task/photoDelete").param("deleteCount",
 					String.valueOf(newDeleteCount)).param("batchId",
@@ -66,6 +69,11 @@ public class PhotoDeleteTaskServlet extends GenericServlet {
 
 		} else {
 			// We stop
+			log.info("We stop" + batch.getKey());
+			pm = PMF.get().getPersistenceManager();
+			PeerDatabase pd = DefaultPeer.get(pm);
+			pd.setCount(0);
+			DefaultPeer.save(pd, pm);
 			batch.stop();
 			batchManager.save(batch);
 		}

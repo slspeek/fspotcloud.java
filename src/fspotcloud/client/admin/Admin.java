@@ -37,14 +37,18 @@ public class Admin implements EntryPoint {
 	private Label importTagsLabel = new Label(
 			"Schedule an import of the tags from the peer");
 	private Button importTagsButton = new Button("Import tags");
-	
+
 	private Label startUpdateWithPeerLabel = new Label(
-	SCHEDULE_UPDATE_WITH_THE_PEER);
+			SCHEDULE_UPDATE_WITH_THE_PEER);
 	private Button startUpdateWithPeerButton = new Button("Update");
 
-	//private Label importImagesForTagLabel = new Label("Schedule an import of the tags from the peer");
-    
-    
+	private Label calculateTagViewLabel = new Label(
+			"Calculate the viewable photos for a tag");
+	private Button calculateTagViewButton = new Button("Calculate");
+
+	// private Label importImagesForTagLabel = new
+	// Label("Schedule an import of the tags from the peer");
+
 	private FlexTable actionTable = new FlexTable();
 
 	private FlowPanel cachePanel = new FlowPanel();
@@ -61,6 +65,13 @@ public class Admin implements EntryPoint {
 	private Timer deleteAllPhotosTimer = new Timer() {
 		public void run() {
 			getBatchInfoForDeleteAllPhotos(deleteAllPhotosBatchId);
+		}
+	};
+
+	private long calculateTagViewablePhotosBatchId = 0;
+	private Timer calculateTagViewablePhotosTimer = new Timer() {
+		public void run() {
+			getBatchInfoForTagView(calculateTagViewablePhotosBatchId);
 		}
 	};
 
@@ -83,9 +94,12 @@ public class Admin implements EntryPoint {
 
 		actionTable.setWidget(2, 0, importTagsLabel);
 		actionTable.setWidget(2, 1, importTagsButton);
-		
+
 		actionTable.setWidget(3, 0, startUpdateWithPeerLabel);
 		actionTable.setWidget(3, 1, startUpdateWithPeerButton);
+		
+		actionTable.setWidget(4, 0, calculateTagViewLabel);
+		actionTable.setWidget(4, 1, calculateTagViewButton);
 
 		mainGrid.setWidget(0, 0, infoTable);
 		mainGrid.setWidget(1, 0, actionTable);
@@ -123,6 +137,11 @@ public class Admin implements EntryPoint {
 				startUpdate();
 			}
 		});
+		calculateTagViewButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				calculateTagViewablePhotos("46");
+			}
+		});
 	}
 
 	protected void startUpdate() {
@@ -139,10 +158,48 @@ public class Admin implements EntryPoint {
 			public void onSuccess(Void result) {
 				statusLabel.setText("Import tags was scheduled for the peer");
 				startUpdateWithPeerButton.setEnabled(true);
-				
+
 			}
 		});
-		
+
+	}
+
+	
+	private void calculateTagViewablePhotos(final String tagId) {
+		calculateTagViewButton.setEnabled(false);
+		adminService.tagViewablePhotos(tagId, new AsyncCallback<Long>() {
+			@Override
+			public void onSuccess(Long result) {
+				statusLabel.setText("Started calculating the photos for tag: " + tagId);
+				calculateTagViewablePhotosBatchId = result;
+				calculateTagViewablePhotosTimer.scheduleRepeating(1000);
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				statusLabel.setText("Not able to start calculating the photos for tag: " + tagId +
+					" "	+ caught.getLocalizedMessage());
+			}
+		});
+	}
+
+	private void getBatchInfoForTagView(long batchId) {
+		adminService.getBatchInfo(batchId, new AsyncCallback<BatchInfo>() {
+			@Override
+			public void onSuccess(BatchInfo info) {
+				String text = "Running tag calculation (" + info.getInterationCount() + ")";
+				calculateTagViewLabel.setText(text);
+				if (!info.isRunning()) {
+					calculateTagViewButton.setEnabled(true);
+				}
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				statusLabel.setText("Not able to get batch info: "
+						+ caught.getLocalizedMessage());
+			}
+		});
 	}
 
 	private void getPhotoCount() {
@@ -183,13 +240,15 @@ public class Admin implements EntryPoint {
 			@Override
 			public void onSuccess(BatchInfo info) {
 				infoTable.setText(1, 0,
-						"Server Batch photoCount on server intermediate result: " +
-				info.getResult() + "(" + info.getInterationCount() +")" );
+						"Server Batch photoCount on server intermediate result: "
+								+ info.getResult() + "("
+								+ info.getInterationCount() + ")");
 
 				if (!info.isRunning()) {
 					infoTable.setText(1, 0, "Server Photo count ");
 					infoTable.setText(1, 1, info.getResult());
-					infoTable.setText(1, 2, "(" + info.getInterationCount() +")");
+					infoTable.setText(1, 2, "(" + info.getInterationCount()
+							+ ")");
 					serverPhotoCountTimer.cancel();
 					statusLabel.setText("ServerPhotoCount batch finished.");
 				}

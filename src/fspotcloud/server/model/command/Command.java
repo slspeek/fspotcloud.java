@@ -28,6 +28,9 @@ public class Command {
 	@Persistent
 	private Date ctime;
 
+	public Command() {
+		setCtime(new Date());
+	}
 	/**
 	 * @param key
 	 *            the key to set
