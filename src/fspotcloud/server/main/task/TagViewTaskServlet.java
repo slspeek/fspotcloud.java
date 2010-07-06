@@ -46,6 +46,7 @@ public class TagViewTaskServlet extends GenericServlet {
 		long batchId = Long.valueOf(batchIdParam);
 		Batch batch = batchManager.getById(batchId);
 		batch.incrementInterationCount();
+		batchManager.save(batch);
 		String minDateParam = request.getParameter("minDate");
 		Date minDate = new Date(Long.valueOf(minDateParam));
 		String tagId = request.getParameter("tagId");

@@ -191,6 +191,7 @@ public class Admin implements EntryPoint {
 				calculateTagViewLabel.setText(text);
 				if (!info.isRunning()) {
 					calculateTagViewButton.setEnabled(true);
+					calculateTagViewablePhotosTimer.cancel();
 				}
 			}
 

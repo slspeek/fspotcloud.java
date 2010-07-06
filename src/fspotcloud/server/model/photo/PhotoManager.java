@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
@@ -29,6 +30,17 @@ public class PhotoManager {
 		}
 		pm.close();
 		return keys;
+	}
+	
+	public Photo getOrNew(String id, PersistenceManager pm) {
+		Photo photo = null;
+		try {
+			photo = pm.getObjectById(Photo.class, id);
+		} catch (JDOObjectNotFoundException notExistedYet) {
+			photo = new Photo();
+			photo.setName(id);
+		}
+		return photo;
 	}
 	
 	public List<Photo> getOldestPhotosChunk(PersistenceManager pm) {
