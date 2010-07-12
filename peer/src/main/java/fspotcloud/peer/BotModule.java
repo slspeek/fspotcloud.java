@@ -33,14 +33,16 @@ public class BotModule extends AbstractModule {
 	    bind(CommandFetcher.class).to(CommandFetcherImpl.class);
 	    bind(String.class).annotatedWith(Names.named("JDBC URL"))
         .toInstance("jdbc:sqlite:/home/steven/.gnome2/f-spot/photos.db"); 
+	    bind(String.class).annotatedWith(Names.named("endpoint"))
+        .toInstance("http://jfspotcloud.appspot.com/xmlrpc"); 
 	    
 	  }
 
 	@Provides
-	XmlRpcClient provideXmlRpcClient(@Named("endpoint") URL endpoint){
+	XmlRpcClient provideXmlRpcClient(@Named("endpoint") String endpoint) throws Exception{
 		// create configuration
 		XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-		config.setServerURL(endpoint);
+		config.setServerURL(new URL(endpoint));
 		config.setEnabledForExtensions(true);
 		config.setConnectionTimeout(60 * 1000);
 		config.setReplyTimeout(60 * 1000);
