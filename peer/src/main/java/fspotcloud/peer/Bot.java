@@ -2,18 +2,16 @@ package fspotcloud.peer;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.URL;
 
-import org.apache.xmlrpc.client.XmlRpcClient;
-import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
-import org.apache.xmlrpc.client.XmlRpcCommonsTransportFactory;
+import com.google.inject.Inject;
 
 public class Bot {
 
 	private BotWorker botWorker;
 	private Pauser pauser;
 	private CommandFetcher fetcher;
-
+	
+	@Inject
 	private Bot(BotWorker botWorker, CommandFetcher fetcher, Pauser pauser) {
 		this.botWorker = botWorker;
 		this.pauser = pauser;
