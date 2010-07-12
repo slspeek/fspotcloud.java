@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import junit.framework.TestCase;
 
 /**
- * @author rocco
+ * 
  * 
  */
 public class DataTest extends TestCase {

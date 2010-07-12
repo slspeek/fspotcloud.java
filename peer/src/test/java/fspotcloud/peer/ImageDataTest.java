@@ -26,7 +26,7 @@ public class ImageDataTest extends TestCase {
 	}
 
 	public final void testGetScaledImageData() throws IOException {
-		URL url = ClassLoader.getSystemResource("resources/images/img_0659.jpg");
+		URL url = ClassLoader.getSystemResource("images/img_0659.jpg");
 		Dimension size = new Dimension(200, 100);
 		byte[] data = target.getScaledImageData(url, size);
 		InputStream dataStream = new ByteArrayInputStream(data);
