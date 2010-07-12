@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import org.apache.xmlrpc.XmlRpcException;
 import org.apache.xmlrpc.client.XmlRpcClient;
 
+import com.google.inject.Inject;
+
 import fspotcloud.peer.db.Data;
 
 public class BotWorker {
@@ -17,10 +19,11 @@ public class BotWorker {
 	private Data data;
 	private ImageData imageData;
 
-	public BotWorker(XmlRpcClient controller) {
+	@Inject
+	public BotWorker(XmlRpcClient controller, Data data, ImageData imageData) {
 		this.controller = controller;
-		this.data = new Data();
-		this.imageData = new ImageData();
+		this.data = data;
+		this.imageData = imageData;
 	}
 
 	public int sendTagData() {
@@ -54,7 +57,7 @@ public class BotWorker {
 		}
 		return result;
 	}
-	
+
 	public int sendPhotoData(String offset, String limit) {
 		int result = 0;
 		try {
@@ -70,12 +73,12 @@ public class BotWorker {
 		}
 		return result;
 	}
-	
+
 	public int sendImageData(String photoId, String width, String height) {
 		try {
 			URL url = data.getImageURL(photoId);
-			Dimension size = new Dimension(Integer.valueOf(width),
-					Integer.valueOf(height));
+			Dimension size = new Dimension(Integer.valueOf(width), Integer
+					.valueOf(height));
 			byte[] data = imageData.getScaledImageData(url, size);
 			Object[] params = new Object[] { photoId, data };
 			controller.execute("PhotoReciever.recieveImageData", params);
@@ -92,7 +95,7 @@ public class BotWorker {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return 0;
 	}
 }

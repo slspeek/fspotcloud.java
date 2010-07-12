@@ -10,58 +10,28 @@ import org.apache.xmlrpc.client.XmlRpcCommonsTransportFactory;
 
 public class Bot {
 
-	private URL controllerURL;
-	private XmlRpcClient controller;
 	private BotWorker botWorker;
+	private Pauser pauser;
+	private CommandFetcher fetcher;
 
-	public static Bot getInstance() throws Exception {
-		String url = System.getProperty("fspotcloud.controller.url");
-		URL controllerURL = new URL(url);
-		return new Bot(controllerURL);
+	private Bot(BotWorker botWorker, CommandFetcher fetcher, Pauser pauser) {
+		this.botWorker = botWorker;
+		this.pauser = pauser;
+		this.fetcher = fetcher;
 	}
 
-	private Bot(URL controllerURL) {
-		this.controllerURL = controllerURL;
-		initController();
-		this.botWorker = new BotWorker(this.controller);
-	}
-
-	/**
-	 * Initializes the connection to the server where the commands are fetched
-	 */
-	private void initController() {
-		// create configuration
-		XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-		config.setServerURL(controllerURL);
-		config.setEnabledForExtensions(true);
-		config.setConnectionTimeout(60 * 1000);
-		config.setReplyTimeout(60 * 1000);
-		controller = new XmlRpcClient();
-		// use Commons HttpClient as transport
-		controller.setTransportFactory(new XmlRpcCommonsTransportFactory(
-				controller));
-		// set configuration
-		controller.setConfig(config);
-	}
-
-	public static void main(String[] args) throws Exception {
-		Bot bot = Bot.getInstance();
-		bot.serveForever();
-	}
-
-	private void serveForever() {
+	public void serveForever() {
 		Object[] commandReturn;
 		Object[] args;
 		String cmd;
 		while (true) {
 			try {
-				commandReturn = (Object[]) controller.execute(
-						"Controller.getCommand", new Object[] {});
+				commandReturn = fetcher.getCommand();
 			} catch (Exception e) {
 				System.out
 						.println("Not able to get new command, sleeping for 5s ");
 				// e.printStackTrace();
-				pause(5000);
+				pauser.pause(5000);
 				continue;
 			}
 			if (commandReturn.length > 0) {
@@ -73,12 +43,12 @@ public class Bot {
 					System.out
 							.println("Exception during execution, sleeping for 2s");
 					e.printStackTrace();
-					pause(2000);
+					pauser.pause(2000);
 				}
 
 			} else {
 				System.out.println("No action at this time, sleeping for 10s");
-				pause(10000);
+				pauser.pause(10000);
 			}
 
 		}
@@ -101,7 +71,7 @@ public class Bot {
 	private Method findMethod(String name, Class c) {
 		Method[] all = c.getDeclaredMethods();
 		for (Method m : all) {
-			//System.out.println(m.getName());
+			// System.out.println(m.getName());
 			if (m.getName().equals(name)) {
 				return m;
 			}
@@ -109,10 +79,4 @@ public class Bot {
 		return null;
 	}
 
-	private void pause(long millis) {
-		try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-		}
-	}
 }
