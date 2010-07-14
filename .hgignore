@@ -1,14 +1,6 @@
 syntax: glob
 peer/target/*
-server/war/WEB-INF/classes/org/apache/xmlrpc/webserver/XmlRpcServlet.properties
-server/war/WEB-INF/appengine-generated/*
-*.class
+server/target/*
 *.orig
 *~
-.settings/*
-test-classes/*
-server/war/fspotcloud/*
-server/war/fspotcloud.admin/*
-server/war/WEB-INF/classes/*
 .classpath
-.project

@@ -223,6 +223,11 @@
                 </dependencies>
             </plugin>
 
+	    <plugin>
+   		<groupId>org.jwallez.plugin</groupId>
+		<artifactId>maven-google-plugin</artifactId>
+		<version>0.1-SNAPSHOT</version>
+	    </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -458,15 +463,18 @@
 
     <pluginRepositories>
         <pluginRepository>
+          <id>maven-google-plugin-repository</id>
+          <name>Maven-Google-Plugin's Maven 2 Repository</name>
+          <url>http://maven-google-plugin.googlecode.com/svn/maven2</url>
+        </pluginRepository>
+        <pluginRepository>
             <id>DataNucleus_2</id>
             <url>http://www.datanucleus.org/downloads/maven2/</url>
         </pluginRepository>
         <pluginRepository>
             <id>maven-gae-plugin-repo</id>
             <name>maven-gae-plugin repository</name>
-            <url>
-                http://maven-gae-plugin.googlecode.com/svn/repository
-            </url>
+            <url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
         </pluginRepository>
     </pluginRepositories>
 </project>
