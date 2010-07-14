@@ -2,5 +2,6 @@ syntax: glob
 peer/target/*
 server/target/*
 *.orig
+.settings/*
 *~
 .classpath
