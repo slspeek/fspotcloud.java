@@ -25,8 +25,11 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 
 	private final TagReader tagManager = new TagReader();
 	
+	
 	public List<TagNode> loadTagTree() {
-		PeerDatabase p = DefaultPeer.get();
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		
+		PeerDatabase p = DefaultPeer.get(pm);
 		if (p.getCachedTagTree() != null) {
 			return p.getCachedTagTree();
 		} else {
@@ -34,12 +37,7 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 			TreeBuilder builder = new TreeBuilder(tags);
 			List<TagNode> tree = builder.getRoots();
 			p.setCachedTagTree(tree);
-			PersistenceManager pm = PMF.get().getPersistenceManager();
-			try {
-				pm.makePersistent(p);
-			} finally {
-				pm.close();
-			}
+			DefaultPeer.save(p, pm);
 			return tree;
 		}
 	}

@@ -170,6 +170,10 @@
         </dependency>
     </dependencies>
 
+    <url>code.google.com/p/fspotcloud</url>
+    <scm>
+    	<url>scm:hg:https://java.fspotcloud.googlecode.com/hg/</url>
+    </scm>
     <build>
         <plugins>
             <!--
