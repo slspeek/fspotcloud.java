@@ -10,6 +10,7 @@ import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServlet;
 
 import com.google.appengine.api.datastore.Blob;
 
@@ -17,7 +18,7 @@ import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.util.PMF;
 
 @SuppressWarnings("serial")
-public class ImageServlet extends GenericServlet {
+public class ImageServlet extends HttpServlet {
 
 	@Override
 	public void service(ServletRequest request, ServletResponse response)

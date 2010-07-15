@@ -8,9 +8,12 @@ import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServlet;
 
+import com.google.inject.Singleton;
 
-public class TagImportServlet extends GenericServlet {
+@Singleton
+public class TagImportServlet extends HttpServlet {
 
 	@Override
 	public void service(ServletRequest request, ServletResponse response)

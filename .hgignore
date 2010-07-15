@@ -1,7 +1,10 @@
 syntax: glob
+server/src/main/webapp/META-INF/MANIFEST.MF
 peer/target/*
 server/target/*
 *.orig
 .settings/*
+server/.externalToolBuilders/*
+server/.settings/*
 *~
 .classpath
