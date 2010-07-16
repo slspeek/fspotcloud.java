@@ -1,30 +1,25 @@
 package fspotcloud.server.control;
 
-import java.util.List;
-
-import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
+import com.google.inject.Inject;
 
 import fspotcloud.server.model.command.Command;
-import fspotcloud.server.util.PMF;
+import fspotcloud.server.model.command.CommandDAO;
 
 public class Controller {
 
+	
+	private CommandDAO commandDAO;
+	
+	@Inject public Controller(CommandDAO commandDAO) {
+		this.commandDAO = commandDAO;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public Object[] getCommand() {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query query = pm.newQuery(Command.class);
-		query.setOrdering("ctime");
-		query.setRange(0, 1);
-		List<Command> cmdList = (List<Command>) query.execute();
-		if (cmdList.size() > 0) {
-			Command oldest = cmdList.get(0);
-			Object[] result = new Object[2];
-			result[0] = oldest.getCmd();
-			result[1] = oldest.getArgs().toArray();
-			pm.deletePersistent(oldest);
-			return result;
-		}
+		Command oldest = commandDAO.popOldestCommand();
+		Object[] result = new Object[2];
+		result[0] = oldest.getCmd();
+		result[1] = oldest.getArgs().toArray();
 		return new Object[] {};
 	}
 

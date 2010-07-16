@@ -6,15 +6,22 @@ import java.util.List;
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
 
-import fspotcloud.server.model.batch.Batch;
-import fspotcloud.server.util.PMF;
+import com.google.inject.Inject;
+
 import fspotcloud.shared.tag.TagNode;
 
 public class TagReader {
 
-	public static List<TagNode> getTags() {
+	
+	private final PersistenceManager pm;
+	
+	@Inject
+	public TagReader(PersistenceManager pm) {
+		this.pm =pm;
+	}
+	
+	public  List<TagNode> getTags() {
 		List<TagNode> result = new ArrayList<TagNode>();
-		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Extent<Tag> extent = pm.getExtent(Tag.class, false);
 		for (Tag tag : extent) {
 			TagNode node = new TagNode();
@@ -28,23 +35,13 @@ public class TagReader {
 	}
 	
 	public Tag getById(String tagId) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Tag tag = null;
-		try {
-			tag = pm.getObjectById(Tag.class, tagId);
-		} finally {
-			pm.close();
-		}
+		tag = pm.getObjectById(Tag.class, tagId);
 		return tag;
 	}
 
 	public String save(Tag tag) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		try {
-			pm.makePersistent(tag);
-		} finally {
-			pm.close();
-		}
+		pm.makePersistent(tag);
 		return tag.getName();
 	}
 

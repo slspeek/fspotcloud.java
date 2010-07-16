@@ -5,18 +5,25 @@ import java.util.logging.Logger;
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 
-import fspotcloud.server.admin.task.PhotoDeleteTaskServlet;
-import fspotcloud.server.util.PMF;
+import com.google.inject.Inject;
 
 public class DefaultPeer {
 	private static final Logger log = Logger
 	.getLogger(DefaultPeer.class.getName());
+
+	private final PersistenceManager pm;
 	
-	public static PeerDatabase get(PersistenceManager pm) {
+	@Inject
+	public DefaultPeer(PersistenceManager pm) {
+		this.pm = pm;
+	}
+	
+	public PeerDatabase get() {
 		PeerDatabase peerDatabase;
 		try {
 			peerDatabase = pm.getObjectById(PeerDatabase.class, "1");
 		} catch(JDOObjectNotFoundException firstTime) {
+			log.info("Default peer not found, creating one.");
 			peerDatabase = new PeerDatabase();
 			peerDatabase.setName("1");
 			peerDatabase.setCount(0);
@@ -27,14 +34,8 @@ public class DefaultPeer {
 		return peerDatabase;
 	}
 	
-	public static PeerDatabase get() {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		return get(pm);
-	}
-
-	public static void save(PeerDatabase pd, PersistenceManager pm) {
+	public void save(PeerDatabase pd) {
 		log.info("Saving default peer with count: " + pd.getCount());
 		pm.makePersistent(pd);
-		pm.close();
 	}
 }

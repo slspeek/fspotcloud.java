@@ -7,7 +7,8 @@ import com.google.inject.servlet.GuiceServletContextListener;
 public class GuiceServletConfig extends GuiceServletContextListener {
 	@Override
 	protected Injector getInjector() {
-		Injector i = Guice.createInjector(new FSpotCloudServletModule());
+		Injector i = Guice.createInjector(new FSpotCloudServletModule(),
+				new FSpotCloudModule());
 		return i;
 	}
 }

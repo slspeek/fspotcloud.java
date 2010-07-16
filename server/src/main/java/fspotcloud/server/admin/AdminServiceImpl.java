@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
 
 import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.inject.Inject;
 
 import fspotcloud.client.admin.AdminService;
 import fspotcloud.server.control.Scheduler;
@@ -21,10 +21,8 @@ import fspotcloud.server.model.batch.Batch;
 import fspotcloud.server.model.batch.BatchManager;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
-import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.model.tag.Tag;
 import fspotcloud.server.model.tag.TagReader;
-import fspotcloud.server.util.PMF;
 import fspotcloud.shared.admin.BatchInfo;
 
 /**
@@ -36,9 +34,18 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	private static final Logger log = Logger.getLogger(AdminServiceImpl.class
 			.getName());
-	private BatchManager batchManager = new BatchManager();
-	private final TagReader tagManager = new TagReader();
-	private static final long STEP = 450;
+
+	@Inject 
+	private PersistenceManager pm;
+	@Inject
+	private BatchManager batchManager;
+	@Inject
+	private TagReader tagManager;
+	@Inject
+	private DefaultPeer defaultPeer;
+	
+	@Inject
+	private Scheduler scheduler;
 
 	@Override
 	public long deleteAllPhotos() {
@@ -53,7 +60,6 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public void deleteAllTags() {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Extent<Tag> extent = pm.getExtent(Tag.class);
 		List<Tag> allTags = new ArrayList<Tag>();
 		for (Tag tag : extent) {
@@ -66,26 +72,24 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 			log.info("All tags deleted.");
 		} catch (Exception e) {
 			log.warning("Exception during delete all tags: " + e);
-		} finally {
-			pm.close();
 		}
 	}
 
 	@Override
 	public int getPhotoCount() {
-		PeerDatabase pd = DefaultPeer.get();
+		PeerDatabase pd = defaultPeer.get();
 		return pd.getCount();
 	}
 
 	@Override
 	public int getTagCount() {
-		PeerDatabase pd = DefaultPeer.get();
+		PeerDatabase pd = defaultPeer.get();
 		return pd.getTagCount();
 	}
 
 	@Override
 	public void importTags() {
-		Scheduler.schedule("sendTagData", Collections.EMPTY_LIST);
+		scheduler.schedule("sendTagData", Collections.EMPTY_LIST);
 	}
 
 	@Override
@@ -106,7 +110,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public void update() {
-		Scheduler.schedule("sendMetaData", Collections.EMPTY_LIST);
+		scheduler.schedule("sendMetaData", Collections.EMPTY_LIST);
 	}
 
 	@Override

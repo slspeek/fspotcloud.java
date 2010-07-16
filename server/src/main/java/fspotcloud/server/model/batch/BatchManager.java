@@ -2,10 +2,18 @@ package fspotcloud.server.model.batch;
 
 import javax.jdo.PersistenceManager;
 
-import fspotcloud.server.util.PMF;
+import com.google.inject.Inject;
+
 import fspotcloud.shared.admin.BatchInfo;
 
 public class BatchManager {
+	
+	private final PersistenceManager pm;
+	
+	@Inject
+	public BatchManager(PersistenceManager pm) {
+		this.pm =pm;
+	}
 
 	public BatchInfo getBatchInfo(long batchId) {
 		Batch batch = getById(batchId);
@@ -22,23 +30,13 @@ public class BatchManager {
 	}
 
 	public Batch getById(long batchId) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Batch batch = null;
-		try {
-			batch = pm.getObjectById(Batch.class, batchId);
-		} finally {
-			pm.close();
-		}
+		batch = pm.getObjectById(Batch.class, batchId);
 		return batch;
 	}
 	
 	public long save(Batch batch) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		try {
-			pm.makePersistent(batch);
-		} finally {
-			pm.close();
-		}
+		pm.makePersistent(batch);
 		return batch.getKey();
 	}
 }

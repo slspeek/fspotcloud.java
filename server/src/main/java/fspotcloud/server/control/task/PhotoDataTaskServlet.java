@@ -11,6 +11,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
+import com.google.inject.Inject;
+
 import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.*;
 
 import fspotcloud.server.control.Scheduler;
@@ -18,6 +20,8 @@ import fspotcloud.server.control.Scheduler;
 @SuppressWarnings("serial")
 public class PhotoDataTaskServlet extends GenericServlet {
 
+	@Inject private Scheduler scheduler;
+	
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
@@ -50,7 +54,7 @@ public class PhotoDataTaskServlet extends GenericServlet {
 			List<String> args = new ArrayList<String>();
 			args.add(String.valueOf(beginning));
 			args.add(maxTicksProp);
-			Scheduler.schedule("sendPhotoData", args);
+			scheduler.schedule("sendPhotoData", args);
 		}
 
 		PrintWriter out = response.getWriter();

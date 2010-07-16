@@ -2,25 +2,26 @@ package fspotcloud.server.control;
 
 import java.util.List;
 
-import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
+import com.google.inject.Inject;
 
 import fspotcloud.server.model.command.Command;
-import fspotcloud.server.util.PMF;
+import fspotcloud.server.model.command.CommandDAO;
 
 public class Scheduler {
+	
+	private CommandDAO commandDAO;
 
-	public static boolean schedule(String cmd, List<String> args) {
+	@Inject
+	public Scheduler(CommandDAO commandDAO) {
+		this.commandDAO = commandDAO;
+	}
+
+	public boolean schedule(String cmd, List<String> args) {
 		if (!hasDuplicates(cmd, args)) {
 			Command c = new Command();
 			c.setCmd(cmd);
 			c.setArgs(args);
-			PersistenceManager pm = PMF.get().getPersistenceManager();
-			try {
-				pm.makePersistent(c);
-			} finally {
-				pm.close();
-			}
+			commandDAO.save(c);
 			return true;
 		} else {
 			return false;
@@ -28,15 +29,8 @@ public class Scheduler {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static boolean hasDuplicates(String cmd, List<String> args) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query query = pm.newQuery(Command.class);
-		query.setFilter("cmd == cmdParam");
-		query.setFilter("argsString == argsStringParam");
-		query.declareParameters("String cmdParam, String argsStringParam");
-		List<Command> rs = (List<Command>) query.execute(cmd, String
-				.valueOf(args));
-		return rs.size() > 0;
+	private boolean hasDuplicates(String cmd, List<String> args) {
+		return commandDAO.allReadyExists(cmd, args);
 	}
 
 }

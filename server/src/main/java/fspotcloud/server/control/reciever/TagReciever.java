@@ -5,23 +5,26 @@ import java.util.List;
 
 import javax.jdo.PersistenceManager;
 
+import com.google.inject.Inject;
+
 import fspotcloud.server.model.tag.Tag;
-import fspotcloud.server.util.PMF;
 
 public class TagReciever {
+	
+	private PersistenceManager pm;
+
+	@Inject
+	public TagReciever(PersistenceManager pm) {
+		this.pm = pm;
+	}
+	
 	public int recieveTagData(Object[] list) {
 		List<Tag> tagList = new ArrayList<Tag>();
 		for (Object tag : list) {
 			Object[] tag_as_array = (Object[]) tag;
 			tagList.add(recieveTag(tag_as_array));
 		}
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		try {
-			pm.makePersistentAll(tagList);
-		} finally {
-			pm.close();
-		}
-		
+		pm.makePersistentAll(tagList);
 		return 0;
 	}
 

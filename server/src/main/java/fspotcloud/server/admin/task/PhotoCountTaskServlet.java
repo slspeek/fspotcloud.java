@@ -8,28 +8,33 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
-import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServlet;
 
 import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import fspotcloud.server.model.batch.Batch;
 import fspotcloud.server.model.batch.BatchManager;
 import fspotcloud.server.model.photo.Photo;
-import fspotcloud.server.util.PMF;
+import fspotcloud.server.model.photo.PhotoManager;
 
 @SuppressWarnings("serial")
-public class PhotoCountTaskServlet extends GenericServlet {
+public class PhotoCountTaskServlet extends HttpServlet {
 
 	private static final Logger log = Logger
 			.getLogger(PhotoCountTaskServlet.class.getName());
-	private static final long STEP = 450;
-	private BatchManager batchManager = new BatchManager();
+	
+	@Inject @Named("maxCount")
+	private int STEP; 
+	@Inject
+	private BatchManager batchManager;
+	@Inject
+	private PhotoManager photoManager;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -45,16 +50,8 @@ public class PhotoCountTaskServlet extends GenericServlet {
 		Batch batch = batchManager.getById(batchId);
 		batch.incrementInterationCount();
 		
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query query = pm.newQuery(Photo.class);
-		query.setFilter(" date > dateParam");
-		query.declareImports("import java.util.Date");
-		query.declareParameters("Date dateParam");
-		query.setOrdering("date");
-		query.setRange(0, STEP);
-		List<Photo> result = (List<Photo>) query.execute(minDate);
+		List<Photo> result = photoManager.getPhotosStartingAtDate(minDate, STEP);
 		int resultCount = result.size();
-		pm.close();
 		int newCount = count + resultCount;
 		batch.setResult(String.valueOf(newCount));
 

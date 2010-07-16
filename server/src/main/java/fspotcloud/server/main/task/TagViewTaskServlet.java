@@ -4,38 +4,40 @@ import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
-import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServlet;
 
 import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
+import com.google.inject.Inject;
 
-import fspotcloud.server.admin.AdminServiceImpl;
-import fspotcloud.server.control.Scheduler;
 import fspotcloud.server.model.batch.Batch;
 import fspotcloud.server.model.batch.BatchManager;
 import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.model.tag.Tag;
 import fspotcloud.server.model.tag.TagReader;
-import fspotcloud.server.util.PMF;
 
 @SuppressWarnings("serial")
-public class TagViewTaskServlet extends GenericServlet {
+public class TagViewTaskServlet extends HttpServlet {
 
 	private static final Logger log = Logger.getLogger(TagViewTaskServlet.class
 			.getName());
 
-	private final TagReader tagManager = new TagReader();
-	private BatchManager batchManager = new BatchManager();
+	@Inject
+	private TagReader tagManager; 
+
+	@Inject 
+	private BatchManager batchManager;
+	
+	@Inject PersistenceManager pm;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -57,7 +59,6 @@ public class TagViewTaskServlet extends GenericServlet {
 		Tag tag = tagManager.getById(tagId);
 
 		// Do our part of the job, scheduling the oldest images
-		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query query = pm.newQuery(Photo.class);
 		query.setFilter("imageLoaded == True && tagList == '" + tagId
 				+ "' && date > dateParam");

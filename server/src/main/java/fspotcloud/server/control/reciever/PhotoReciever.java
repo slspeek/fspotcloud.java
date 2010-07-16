@@ -3,37 +3,35 @@ package fspotcloud.server.control.reciever;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.jdo.PersistenceManager;
+
+import com.google.appengine.api.datastore.Blob;
 import com.google.appengine.api.images.Image;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.Transform;
 
-import javax.jdo.PersistenceManager;
-
-import com.google.appengine.api.datastore.Blob;
-
 import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.model.photo.PhotoManager;
-import fspotcloud.server.util.PMF;
 
 public class PhotoReciever {
 	
-	private final PhotoManager photoManager = new PhotoManager();
+	private final PhotoManager photoManager;
+	
+	public PhotoReciever(PhotoManager photoManager) {
+		this.photoManager = photoManager;
+	}
 	
 	public int recieveImageData(String id, byte[] data) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Photo photo = pm.getObjectById(Photo.class, id);
+		Photo photo = photoManager.getOrNew(id);
 		Blob blob = new Blob(data);
 		//make thumb
 		Blob thumb = new Blob(makeThumb(data));
 		photo.setThumb(thumb);
 		photo.setImage(blob);
 		photo.setImageLoaded(true);
-		try {
-			pm.makePersistent(photo);
-		} finally {
-			pm.close();
-		}
+		photoManager.save(photo);
 		return 0;
 	}
 	
@@ -47,30 +45,23 @@ public class PhotoReciever {
 	}
 	
 	public int recievePhotoData(Object[] list) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
 		List<Photo> photoList = new ArrayList<Photo>();
 		for (Object photo : list) {
 			Object[] photo_as_array = (Object[]) photo;
-			Photo p = recievePhoto(photo_as_array, pm);
+			Photo p = recievePhoto(photo_as_array);
 			photoList.add(p);
 		}
-		
-		try {
-			pm.makePersistentAll(photoList);
-		} finally {
-			pm.close();
-		}
+		photoManager.saveAll(photoList);
 		return 0;
 	}
 
-	private Photo recievePhoto(Object[] photo_data, PersistenceManager pm) {
+	private Photo recievePhoto(Object[] photo_data) {
 		String keyName = (String) photo_data[0];
 		String desc = (String) photo_data[1];
 		Date date = (Date) photo_data[2];
 		Object[] tags = (Object[]) photo_data[3];
-
-		Photo photo = photoManager.getOrNew(keyName, pm);
 		
+		Photo photo = photoManager.getOrNew(keyName);
 		photo.setDescription(desc);
 		photo.setDate(date);
 		List<String> tagList = new ArrayList<String>();

@@ -10,20 +10,24 @@ import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
-import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServlet;
 
 import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
+import com.google.inject.Inject;
 
 import fspotcloud.server.control.Scheduler;
 import fspotcloud.server.model.photo.Photo;
-import fspotcloud.server.util.PMF;
 
 @SuppressWarnings("serial")
-public class ImageDataTaskServlet extends GenericServlet {
+public class ImageDataTaskServlet extends HttpServlet {
+
+	
+	@Inject private Scheduler scheduler;
+	@Inject PersistenceManager pm;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -39,7 +43,7 @@ public class ImageDataTaskServlet extends GenericServlet {
 
 	
 		// Do our part of the job, scheduling the oldest images
-		PersistenceManager pm = PMF.get().getPersistenceManager();
+		
 		Query query = pm.newQuery(Photo.class);
 		query.setFilter("image == null && tagList == '" + tagId
 				+ "' && date > dateParam");
@@ -54,7 +58,7 @@ public class ImageDataTaskServlet extends GenericServlet {
 			args.add(photo.getName());
 			args.add("640");
 			args.add("480");
-			Scheduler.schedule("sendImageData", args);
+			scheduler.schedule("sendImageData", args);
 		}
 		if (!result.isEmpty()) {
 			Photo last = result.get(result.size() - 1);
