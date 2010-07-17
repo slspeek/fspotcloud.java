@@ -28,7 +28,7 @@ public class Bot {
 			} catch (Exception e) {
 				System.out
 						.println("Not able to get new command, sleeping for 5s ");
-				// e.printStackTrace();
+				e.printStackTrace();
 				pauser.pause(5000);
 				continue;
 			}
@@ -39,7 +39,7 @@ public class Bot {
 					dispatch(cmd, args);
 				} catch (Exception e) {
 					System.out
-							.println("Exception during execution, sleeping for 2s");
+							.println("Exception during execution of " + cmd + ", sleeping for 2s");
 					e.printStackTrace();
 					pauser.pause(2000);
 				}
@@ -54,6 +54,7 @@ public class Bot {
 	}
 
 	private void dispatch(String cmd, Object[] args) {
+		System.out.println("Running " + cmd + "()");
 		Method method = findMethod(cmd, BotWorker.class);
 		try {
 			method.invoke(botWorker, args);

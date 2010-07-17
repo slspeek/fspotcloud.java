@@ -7,14 +7,16 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServlet;
 
 import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import com.google.inject.name.Named;
 
 import fspotcloud.server.model.batch.Batch;
 import fspotcloud.server.model.batch.BatchManager;
@@ -24,11 +26,12 @@ import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.model.photo.PhotoManager;
 
 @SuppressWarnings("serial")
-public class PhotoDeleteTaskServlet extends GenericServlet {
+@Singleton
+public class PhotoDeleteTaskServlet extends HttpServlet {
 
 	private static final Logger log = Logger
 			.getLogger(PhotoDeleteTaskServlet.class.getName());
-	private static final long STEP = 450;
+	
 	@Inject
 	private BatchManager batchManager;
 	@Inject

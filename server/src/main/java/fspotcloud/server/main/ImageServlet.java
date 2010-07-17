@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServlet;
 
 import com.google.appengine.api.datastore.Blob;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 import fspotcloud.server.model.photo.Photo;
 
 @SuppressWarnings("serial")
+@Singleton
 public class ImageServlet extends HttpServlet {
 
 	@Inject 

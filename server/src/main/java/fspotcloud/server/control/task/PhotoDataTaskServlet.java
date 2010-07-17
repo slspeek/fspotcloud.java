@@ -1,24 +1,27 @@
 package fspotcloud.server.control.task;
 
+import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServlet;
+
 import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.inject.Inject;
-
-import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.*;
+import com.google.inject.Singleton;
 
 import fspotcloud.server.control.Scheduler;
 
 @SuppressWarnings("serial")
-public class PhotoDataTaskServlet extends GenericServlet {
+@Singleton
+public class PhotoDataTaskServlet extends HttpServlet {
 
 	@Inject private Scheduler scheduler;
 	

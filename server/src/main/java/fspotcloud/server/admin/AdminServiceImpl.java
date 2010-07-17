@@ -14,6 +14,7 @@ import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 import fspotcloud.client.admin.AdminService;
 import fspotcloud.server.control.Scheduler;
@@ -29,6 +30,7 @@ import fspotcloud.shared.admin.BatchInfo;
  * The server side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
+@Singleton
 public class AdminServiceImpl extends RemoteServiceServlet implements
 		AdminService {
 

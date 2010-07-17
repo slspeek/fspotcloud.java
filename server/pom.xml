@@ -353,7 +353,7 @@
 					<execution>
 						<phase>compile</phase>
 						<goals>
-							<goal>compile</goal>
+				<!--			<goal>compile</goal> -->
 						</goals>
 					</execution>
 				</executions>
@@ -474,7 +474,7 @@
 	</profiles>
 
 	<repositories>
-		<!-- We go to mvnsearch.org after latest GAE SDK artifacts -->
+		<!-- We go to mvnsearch.org after latest GAE SDK artifacts 
 		<repository>
 			<id>mvnsearch.org</id>
 			<name>MVN Search</name>
@@ -489,7 +489,7 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</repository>
+		</repository>-->
 		<repository>
 			<id>DataNucleus_Repos2</id>
 			<name>DataNucleus Repository</name>

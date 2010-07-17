@@ -7,20 +7,24 @@ import fspotcloud.server.model.command.CommandDAO;
 
 public class Controller {
 
-	
 	private CommandDAO commandDAO;
-	
-	@Inject public Controller(CommandDAO commandDAO) {
+
+	@Inject
+	public Controller(CommandDAO commandDAO) {
 		this.commandDAO = commandDAO;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Object[] getCommand() {
 		Command oldest = commandDAO.popOldestCommand();
-		Object[] result = new Object[2];
-		result[0] = oldest.getCmd();
-		result[1] = oldest.getArgs().toArray();
-		return new Object[] {};
+		if (oldest != null) {
+			Object[] result = new Object[2];
+			result[0] = oldest.getCmd();
+			result[1] = oldest.getArgs().toArray();
+			return result;
+		} else {
+			return new Object[] {};
+		}
 	}
 
 }

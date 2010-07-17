@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
 import fspotcloud.server.model.batch.Batch;
@@ -24,6 +25,7 @@ import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.model.photo.PhotoManager;
 
 @SuppressWarnings("serial")
+@Singleton
 public class PhotoCountTaskServlet extends HttpServlet {
 
 	private static final Logger log = Logger

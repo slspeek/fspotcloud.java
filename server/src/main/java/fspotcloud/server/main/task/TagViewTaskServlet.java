@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 import fspotcloud.server.model.batch.Batch;
 import fspotcloud.server.model.batch.BatchManager;
@@ -26,6 +27,7 @@ import fspotcloud.server.model.tag.Tag;
 import fspotcloud.server.model.tag.TagReader;
 
 @SuppressWarnings("serial")
+@Singleton
 public class TagViewTaskServlet extends HttpServlet {
 
 	private static final Logger log = Logger.getLogger(TagViewTaskServlet.class

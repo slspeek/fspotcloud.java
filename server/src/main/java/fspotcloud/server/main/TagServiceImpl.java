@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 import fspotcloud.client.tree.TagService;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
@@ -18,6 +19,7 @@ import fspotcloud.shared.tag.TagNode;
  * The server side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
+@Singleton
 public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 
 	@Inject
