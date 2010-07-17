@@ -16,15 +16,7 @@ public class Controller {
 
 	@SuppressWarnings("unchecked")
 	public Object[] getCommand() {
-		Command oldest = commandDAO.popOldestCommand();
-		if (oldest != null) {
-			Object[] result = new Object[2];
-			result[0] = oldest.getCmd();
-			result[1] = oldest.getArgs().toArray();
-			return result;
-		} else {
-			return new Object[] {};
-		}
+		return commandDAO.popOldestCommand();
 	}
 
 }
