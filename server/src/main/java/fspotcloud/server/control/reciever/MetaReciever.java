@@ -12,7 +12,7 @@ import fspotcloud.server.model.peerdatabase.PeerDatabase;
 public class MetaReciever {
 	
 	 
-	private DefaultPeer defaultPeer;
+	private final DefaultPeer defaultPeer;
 	
 	@Inject
 	public MetaReciever(DefaultPeer defaultPeer) {

@@ -11,6 +11,7 @@ import com.google.appengine.api.images.Image;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.Transform;
+import com.google.inject.Inject;
 
 import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.model.photo.PhotoManager;
@@ -19,6 +20,7 @@ public class PhotoReciever {
 	
 	private final PhotoManager photoManager;
 	
+	@Inject
 	public PhotoReciever(PhotoManager photoManager) {
 		this.photoManager = photoManager;
 	}
