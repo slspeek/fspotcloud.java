@@ -16,6 +16,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 
 import fspotcloud.shared.admin.BatchInfo;
+import fspotcloud.rpc.AdminService;
+import fspotcloud.rpc.AdminServiceAsync;
 
 public class Admin implements EntryPoint {
 

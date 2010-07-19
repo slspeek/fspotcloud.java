@@ -1,4 +1,4 @@
-package fspotcloud.client.admin;
+package fspotcloud.rpc;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 

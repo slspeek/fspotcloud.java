@@ -25,6 +25,8 @@ import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 
 import fspotcloud.shared.tag.TagNode;
+import fspotcloud.rpc.TagService;
+import fspotcloud.rpc.TagServiceAsync;
 
 public class TreeExample implements EntryPoint {
 

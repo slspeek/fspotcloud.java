@@ -17,7 +17,8 @@ import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.Tree;
 
-import fspotcloud.client.tree.TagServiceAsync;
+import fspotcloud.rpc.TagServiceAsync;
+import fspotcloud.rpc.AdminServiceAsync;
 
 public class TagPanel extends DockLayoutPanel {
 	

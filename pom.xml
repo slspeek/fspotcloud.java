@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fspotcloud</groupId>
+	<artifactId>fspotcloud</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>fspotcloud</name>
+ <url>code.google.com/p/fspotcloud</url>
+   <scm>
+       <url>scm:hg:https://java.fspotcloud.googlecode.com/hg/</url>
+   </scm>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>gwt-maven-plugins</id>
+			<url>
+				http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/
+			</url>
+		</pluginRepository>
+	</pluginRepositories>
+	
+	<repositories>		
+		<repository>
+			<id>gwt-maven</id>
+			<url>
+				http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/
+			</url>
+		</repository>		
+	</repositories>
+
+    <properties>
+       <gwtVersion>2.0.4</gwtVersion>
+    </properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>fspotcloud</groupId>
+				<artifactId>
+					server
+				</artifactId>
+				<version>${project.version}</version>
+			</dependency>			
+			<dependency>
+				<groupId>fspotcloud</groupId>
+				<artifactId>
+					rpc
+				</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fspotcloud</groupId>
+				<artifactId>
+					client
+				</artifactId>
+				<version>${project.version}</version>
+			</dependency>			
+			<dependency>
+				<groupId>fspotcloud</groupId>
+				<artifactId>
+					peer
+				</artifactId>
+				<version>${project.version}</version>
+			</dependency>			
+		</dependencies>
+	</dependencyManagement>
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<modules>
+		<module>rpc</module>
+		<module>server</module>
+		<module>client</module>
+		<module>peer</module>
+	</modules>	
+</project>

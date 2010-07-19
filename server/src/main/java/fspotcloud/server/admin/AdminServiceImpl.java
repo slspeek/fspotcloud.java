@@ -16,7 +16,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import fspotcloud.client.admin.AdminService;
+import fspotcloud.rpc.AdminService;
 import fspotcloud.server.control.Scheduler;
 import fspotcloud.server.model.batch.Batch;
 import fspotcloud.server.model.batch.BatchManager;

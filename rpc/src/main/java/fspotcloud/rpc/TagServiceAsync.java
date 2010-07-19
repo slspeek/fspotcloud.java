@@ -1,4 +1,4 @@
-package fspotcloud.client.tree;
+package fspotcloud.rpc;
 
 import java.util.List;
 
