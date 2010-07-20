@@ -19,6 +19,11 @@
 				http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/
 			</url>
 		</pluginRepository>
+		<pluginRepository>
+    <id>Google Web Toolkit on Google project hosting</id>
+<url> http://google-web-toolkit.googlecode.com/svn/2.1.0.M1/gwt/maven/</url>
+		</pluginRepository>
+
 	</pluginRepositories>
 	
 	<repositories>		

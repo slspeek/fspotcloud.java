@@ -4,12 +4,13 @@
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name='com.google.gwt.user.theme.standard.Standard'/>
    <inherits name='fspotcloud.server.ApplicationServices' />
+   <inherits name='fspotcloud.rpc' />
   <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
    <entry-point class='fspotcloud.client.admin.Admin'/>
 
   <!-- Specify the paths for translatable code                    -->
-    <source path='shared'/>
+<!--    <source path='shared'/>
 	<source path="client/admin"/>
-	<source path="client/"/>
+	<source path="client/"/> -->
 </module>
