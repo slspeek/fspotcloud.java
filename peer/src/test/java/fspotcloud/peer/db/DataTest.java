@@ -39,14 +39,14 @@ public class DataTest extends TestCase {
 	/**
 	 * Test method for {@link fspotcloud.peer.db.Data#getPhotoCount()}.
 	 */
-	public final void testGetPhotoCount() {
+/*	public final void testGetPhotoCount() {
 		try {
 			int count = data.getPhotoCount();
 			assertTrue(count > 100);
 		} catch (SQLException e) {
 			fail(e.getMessage());
 		}
-	}
+	}*/
 
 	/**
 	 * Test method for {@link fspotcloud.peer.db.Data#getTagList()}.
@@ -70,9 +70,9 @@ public class DataTest extends TestCase {
 	 * @throws SQLException 
 	 * @throws MalformedURLException 
 	 */
-	public final void testGetImageURL() throws MalformedURLException, SQLException {
+/*	public final void testGetImageURL() throws MalformedURLException, SQLException {
 		data.getImageURL("7000");
 		
-	}
+	}*/
 
 }
