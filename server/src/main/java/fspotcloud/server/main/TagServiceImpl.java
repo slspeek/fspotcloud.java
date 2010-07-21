@@ -2,6 +2,7 @@ package fspotcloud.server.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
@@ -21,7 +22,9 @@ import fspotcloud.shared.tag.TagNode;
 @SuppressWarnings("serial")
 @Singleton
 public class TagServiceImpl extends RemoteServiceServlet implements TagService {
-
+	private static final Logger log = Logger.getLogger(TagServiceImpl.class
+			.getName());
+	
 	@Inject
 	private TagReader tagManager;
 	@Inject
@@ -31,12 +34,15 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 	public List<TagNode> loadTagTree() {
 		PeerDatabase p = defaultPeer.get();
 		if (p.getCachedTagTree() != null) {
+			log.info("Got the tree from cache HIT");
 			return p.getCachedTagTree();
 		} else {
+			log.info("Missed the cache; building");
 			List<TagNode> tags = tagManager.getTags();
 			TreeBuilder builder = new TreeBuilder(tags);
 			List<TagNode> tree = builder.getRoots();
 			p.setCachedTagTree(tree);
+			log.info("Builded, about to save");
 			defaultPeer.save(p);
 			return tree;
 		}

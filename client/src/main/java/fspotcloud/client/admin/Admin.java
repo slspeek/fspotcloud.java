@@ -158,7 +158,7 @@ public class Admin implements EntryPoint {
 
 			@Override
 			public void onSuccess(Void result) {
-				statusLabel.setText("Import tags was scheduled for the peer");
+				statusLabel.setText("Update photo metadata was scheduled for the peer");
 				startUpdateWithPeerButton.setEnabled(true);
 
 			}

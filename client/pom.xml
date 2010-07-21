@@ -124,6 +124,9 @@
 						<resource>
 							<directory>target/extra</directory>
 							<filtering>true</filtering>
+              <excludes>
+                <exclude>**/soycReport/**</exclude>
+              </excludes>
 						</resource>
             <resource>
 							<directory>${basedir}/../server/src/main/webapp</directory>
@@ -155,11 +158,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
-				<!--
-					the Maven Surefire Report plugin has a bug where it re-runs the
-					tests, this is needed to avoid that -
-					http://jira.codehaus.org/browse/SUREFIRE-257
-				-->
 				<reportSets>
 					<reportSet>
 						<reports>
@@ -169,45 +167,6 @@
 				</reportSets>
 			</plugin>
 		</plugins>
-	</reporting>
-	<!--  profiles (with activation per platform) -->
-	<profiles>
-		<profile>
-			<id>gwt-dev-windows</id>
-			<properties>
-				<platform>windows</platform>
-			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-				<os>
-					<family>windows</family>
-				</os>
-			</activation>
-		</profile>
-		<profile>
-			<id>gwt-dev-mac</id>
-			<properties>
-				<platform>mac</platform>
-			</properties>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-				<os>
-					<family>mac</family>
-				</os>
-			</activation>
-		</profile>
-		<profile>
-			<id>gwt-dev-linux</id>
-			<properties>
-				<platform>linux</platform>
-			</properties>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-				<os>
-					<name>linux</name>
-				</os>
-			</activation>
-		</profile>
-	</profiles>
+	</reporting> 
 </project>
 

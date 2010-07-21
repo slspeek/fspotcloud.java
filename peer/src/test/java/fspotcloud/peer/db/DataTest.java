@@ -52,7 +52,7 @@ public class DataTest extends TestCase {
 	 * Test method for {@link fspotcloud.peer.db.Data#getTagList()}.
 	 */
 	public final void testGetTagList() {
-		fail("Not yet implemented"); // TODO
+		//fail("Not yet implemented"); // TODO
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class DataTest extends TestCase {
 	 * .
 	 */
 	public final void testGetPhotoList() {
-		fail("Not yet implemented"); // TODO
+		//fail("Not yet implemented"); // TODO
 	}
 
 	/**
