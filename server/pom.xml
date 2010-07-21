@@ -159,12 +159,6 @@
 		-->
 		<dependency>
 			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-api-labs</artifactId>
-			<version>${gae.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-stubs</artifactId>
 			<version>${gae.version}</version>
 			<scope>test</scope>
@@ -258,11 +252,6 @@
 				</dependencies>
 			</plugin>
 
-			<plugin>
-				<groupId>org.jwallez.plugin</groupId>
-				<artifactId>maven-google-plugin</artifactId>
-				<version>0.1-SNAPSHOT</version>
-			</plugin>
 
 			<!--
 				The actual maven-gae-plugin. Type "mvn gae:run" to run project, "mvn

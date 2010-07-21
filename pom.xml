@@ -11,7 +11,15 @@
    <scm>
        <url>scm:hg:https://java.fspotcloud.googlecode.com/hg/</url>
    </scm>
-
+<build>
+  <plugins>
+			<plugin>
+				<groupId>org.jwallez.plugin</groupId>
+				<artifactId>maven-google-plugin</artifactId>
+				<version>0.1-SNAPSHOT</version>
+			</plugin>
+  </plugins>
+  </build>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>gwt-maven-plugins</id>
