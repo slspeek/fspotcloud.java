@@ -7,7 +7,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>client</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>client</name>
 
 	<dependencies>
@@ -43,18 +43,6 @@
 
 	<build>
 		<plugins>
-			<!--
-				<plugin> <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId> <executions>
-				<execution> <id>unpack</id> <phase>compile</phase> <goals>
-				<goal>unpack</goal> </goals> <configuration> <artifactItems>
-				<artifactItem> <groupId>fspotcloud</groupId>
-				<artifactId>rpc</artifactId> <version>${project.version}</version>
-				<type>jar</type> <overWrite>true</overWrite>
-				<outputDirectory>${basedir}/src/main/java</outputDirectory>
-				</artifactItem> </artifactItems> </configuration> </execution>
-				</executions> </plugin>
-			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -134,14 +122,14 @@
 				<configuration>
 					<webResources>
 						<resource>
-							<directory>src/main/webapp</directory>
+							<directory>target/extra</directory>
 							<filtering>true</filtering>
-							<includes>
-								<include>**/appengine-web.xml</include>
-							</includes>
 						</resource>
+            <resource>
+							<directory>${basedir}/../server/src/main/webapp</directory>
+            </resource>
 					</webResources>
-					<!--     <webXml>target/web.xml</webXml> -->
+					<webXml>${basedir}/../server/src/main/webapp/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
 
