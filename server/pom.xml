@@ -387,11 +387,6 @@
 
 	<pluginRepositories>
 		<pluginRepository>
-			<id>maven-google-plugin-repository</id>
-			<name>Maven-Google-Plugin's Maven 2 Repository</name>
-			<url>http://maven-google-plugin.googlecode.com/svn/maven2</url>
-		</pluginRepository>
-		<pluginRepository>
 			<id>DataNucleus_2</id>
 			<url>http://www.datanucleus.org/downloads/maven2/</url>
 		</pluginRepository>

@@ -22,6 +22,11 @@
   </build>
 	<pluginRepositories>
 		<pluginRepository>
+			<id>maven-google-plugin-repository</id>
+			<name>Maven-Google-Plugin's Maven 2 Repository</name>
+			<url>http://maven-google-plugin.googlecode.com/svn/maven2</url>
+		</pluginRepository>
+		<pluginRepository>
 			<id>gwt-maven-plugins</id>
 			<url>
 				http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/
