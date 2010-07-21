@@ -394,22 +394,6 @@
 			<name>guice maven</name>
 			<url>http://guice-maven.googlecode.com/svn/trunk</url>
 		</repository>
-		<!-- We go to mvnsearch.org after latest GAE SDK artifacts -->
-		<repository>
-			<id>mvnsearch.org</id>
-			<name>MVN Search</name>
-			<url>
-	            http://www.mvnsearch.org/maven2
-	        </url>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>never</updatePolicy>
-				<checksumPolicy>warn</checksumPolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
 	</repositories>
 
 	<pluginRepositories>
