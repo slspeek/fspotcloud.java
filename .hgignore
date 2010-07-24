@@ -7,4 +7,3 @@ server/target/*
 server/.externalToolBuilders/*
 server/.settings/*
 *~
-.classpath
