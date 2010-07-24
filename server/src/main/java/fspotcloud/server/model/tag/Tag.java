@@ -15,7 +15,7 @@ import com.google.appengine.api.datastore.Key;
  * Represents a Label in F-Spot
  * 
  */
-@PersistenceCapable
+@PersistenceCapable(detachable="true")
 public class Tag {
 	@PrimaryKey
 	private String name;

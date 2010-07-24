@@ -3,6 +3,7 @@ package fspotcloud.server.control.reciever;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 
@@ -17,6 +18,8 @@ import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.model.photo.PhotoManager;
 
 public class PhotoReciever {
+	private static final Logger log = Logger.getLogger(PhotoReciever.class
+			.getName());
 	
 	private final PhotoManager photoManager;
 	
@@ -26,6 +29,7 @@ public class PhotoReciever {
 	}
 	
 	public int recieveImageData(String id, byte[] data) {
+		log.info("Recieved imagedata for : " + id);
 		Photo photo = photoManager.getOrNew(id);
 		Blob blob = new Blob(data);
 		//make thumb

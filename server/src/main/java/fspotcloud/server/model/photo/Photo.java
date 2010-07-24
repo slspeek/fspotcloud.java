@@ -16,7 +16,7 @@ import com.google.appengine.api.datastore.Blob;
  * @author slspeek@gmail.com
  * 
  */
-@PersistenceCapable
+@PersistenceCapable(detachable="true")
 public class Photo {
 	@PrimaryKey
 	private String name;

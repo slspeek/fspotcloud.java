@@ -1,28 +1,38 @@
 package fspotcloud.server.model.peerdatabase;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 
 import com.google.inject.Inject;
+import com.google.inject.Provider;
+
+import fspotcloud.shared.tag.TagNode;
 
 public class DefaultPeer {
-	private static final Logger log = Logger
-	.getLogger(DefaultPeer.class.getName());
+	private static final Logger log = Logger.getLogger(DefaultPeer.class
+			.getName());
 
-	private final PersistenceManager pm;
-	
+	private final Provider<PersistenceManager> pmProvider;
+
 	@Inject
-	public DefaultPeer(PersistenceManager pm) {
-		this.pm = pm;
+	public DefaultPeer(Provider<PersistenceManager> pmProvider) {
+		this.pmProvider = pmProvider;
 	}
-	
+
 	public PeerDatabase get() {
-		PeerDatabase peerDatabase;
+		PersistenceManager pm = pmProvider.get();
+		PeerDatabase attachedPeerDatabase, peerDatabase;
 		try {
-			peerDatabase = pm.getObjectById(PeerDatabase.class, "1");
-		} catch(JDOObjectNotFoundException firstTime) {
+			attachedPeerDatabase = pm.getObjectById(PeerDatabase.class, "1");
+			peerDatabase = pm.detachCopy(attachedPeerDatabase);
+			peerDatabase.setCachedTagTree(new ArrayList<TagNode>(attachedPeerDatabase
+					.getCachedTagTree()));
+
+		} catch (JDOObjectNotFoundException firstTime) {
 			log.info("Default peer not found, creating one.");
 			peerDatabase = new PeerDatabase();
 			peerDatabase.setName("1");
@@ -30,12 +40,31 @@ public class DefaultPeer {
 			peerDatabase.setTagCount(0);
 			peerDatabase.setPeerName("No given name");
 			pm.makePersistent(peerDatabase);
+
+		} finally {
+			pm.close();
 		}
 		return peerDatabase;
 	}
-	
+
+	public List<TagNode> getCachedTagTree() {
+		PersistenceManager pm = pmProvider.get();
+		PeerDatabase peerDatabase;
+		try {
+			peerDatabase = pm.getObjectById(PeerDatabase.class, "1");
+			return peerDatabase.getCachedTagTree();
+		} finally {
+			pm.close();
+		}
+	}
+
 	public void save(PeerDatabase pd) {
-		log.info("Saving default peer with count: " + pd.getCount());
-		pm.makePersistent(pd);
+		PersistenceManager pm = pmProvider.get();
+		try {
+			log.info("Saving default peer with count: " + pd.getCount());
+			pm.makePersistent(pd);
+		} finally {
+			pm.close();
+		}
 	}
 }

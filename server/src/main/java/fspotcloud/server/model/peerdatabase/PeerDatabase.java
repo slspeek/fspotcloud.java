@@ -13,7 +13,7 @@ import fspotcloud.shared.tag.TagNode;
  * and stores application state
  * 
  */
-@PersistenceCapable
+@PersistenceCapable(detachable="true")
 public class PeerDatabase {
 	@PrimaryKey
 	private String name;

@@ -14,11 +14,11 @@ import fspotcloud.shared.admin.BatchInfo;
 
 public class BatchManager implements Batches {
 
-	private final Provider<PersistenceManager> pmProviver;
+	private final Provider<PersistenceManager> pmProvider;
 
 	@Inject
 	public BatchManager(Provider<PersistenceManager> pmProviver) {
-		this.pmProviver = pmProviver;
+		this.pmProvider = pmProviver;
 	}
 
 	public BatchInfo getBatchInfo(long batchId) {
@@ -37,7 +37,7 @@ public class BatchManager implements Batches {
 
 	public Batch getById(long batchId) {
 		Batch batch = null;
-		PersistenceManager pm = pmProviver.get();
+		PersistenceManager pm = pmProvider.get();
 		try {
 			batch = pm.getObjectById(Batch.class, batchId);
 			batch = pm.detachCopy(batch);
@@ -48,7 +48,7 @@ public class BatchManager implements Batches {
 	}
 
 	public long save(Batch batch) {
-		PersistenceManager pm = pmProviver.get();
+		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.makePersistent(batch);
 		} finally {
@@ -59,7 +59,7 @@ public class BatchManager implements Batches {
 
 	public void delete(Batch batch) {
 		long id = batch.getKey();
-		PersistenceManager pm = pmProviver.get();
+		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.deletePersistent(pm.getObjectById(Batch.class, id));
 		} finally {
@@ -68,7 +68,7 @@ public class BatchManager implements Batches {
 	}
 
 	public List<Batch> getAll() {
-		PersistenceManager pm = pmProviver.get();
+		PersistenceManager pm = pmProvider.get();
 		try {
 			List<Batch> batches = new ArrayList<Batch>();
 			Extent<Batch> extent = pm.getExtent(Batch.class, false);

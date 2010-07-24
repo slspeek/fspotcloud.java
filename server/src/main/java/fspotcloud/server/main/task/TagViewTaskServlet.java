@@ -60,9 +60,8 @@ public class TagViewTaskServlet extends HttpServlet {
 		log.info("TagId: now :: " + tagId);
 		Tag tag = tagManager.getById(tagId);
 
-		// Do our part of the job, scheduling the oldest images
 		Query query = pm.newQuery(Photo.class);
-		query.setFilter("imageLoaded == True && tagList == '" + tagId
+		query.setFilter("imageLoaded == true && tagList == '" + tagId
 				+ "' && date > dateParam");
 		query.declareImports("import java.util.Date");
 		query.declareParameters("Date dateParam");
@@ -70,7 +69,7 @@ public class TagViewTaskServlet extends HttpServlet {
 		query.setRange(0, maxTicks);
 		List<Photo> photos = (List<Photo>) query.execute(minDate);
 
-		log.info("Interation: " + batch.getInterationCount() + " MinDate: " + minDate);
+		log.info("Iteration: " + batch.getInterationCount() + " MinDate: " + minDate);
 		if (!photos.isEmpty()) {
 			Photo last = photos.get(photos.size() - 1);
 			Date newMinDate = last.getDate();

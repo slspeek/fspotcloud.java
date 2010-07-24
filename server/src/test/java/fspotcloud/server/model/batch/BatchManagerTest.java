@@ -3,28 +3,22 @@
  */
 package fspotcloud.server.model.batch;
 
+import java.util.List;
+
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 
 import junit.framework.TestCase;
-import java.util.List;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Query;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.google.inject.Provider;
 
 import fspotcloud.server.model.PersistenceManagerProvider;
-import fspotcloud.server.model.batch.Batch;
-import fspotcloud.server.model.batch.Batches;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
 /**
  * @author fspotcloud
