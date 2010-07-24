@@ -39,9 +39,9 @@ public class Batch implements Serializable{
 		setCtime(new Date());
 	}
 	
-	/*public Batch() {
+	public Batch() {
 		setCtime(new Date());
-	}*/
+	}
 
 	/**
 	 * @param ctime
