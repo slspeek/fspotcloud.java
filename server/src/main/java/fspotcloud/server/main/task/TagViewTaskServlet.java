@@ -21,7 +21,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import fspotcloud.server.model.batch.Batch;
-import fspotcloud.server.model.batch.BatchManager;
+import fspotcloud.server.model.batch.Batches;
 import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.model.tag.Tag;
 import fspotcloud.server.model.tag.TagReader;
@@ -37,7 +37,7 @@ public class TagViewTaskServlet extends HttpServlet {
 	private TagReader tagManager; 
 
 	@Inject 
-	private BatchManager batchManager;
+	private Batches batchManager;
 	
 	@Inject PersistenceManager pm;
 

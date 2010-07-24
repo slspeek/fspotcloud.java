@@ -11,17 +11,19 @@ import fspotcloud.server.control.GuiceRequestProcessorFactoryFactory;
 import fspotcloud.server.control.reciever.MetaReciever;
 import fspotcloud.server.control.reciever.PhotoReciever;
 import fspotcloud.server.control.reciever.TagReciever;
+import fspotcloud.server.model.PersistenceManagerProvider;
+import fspotcloud.server.model.batch.BatchManager;
+import fspotcloud.server.model.batch.Batches;
 import fspotcloud.server.model.command.CommandDAO;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.photo.PhotoManager;
 import fspotcloud.server.model.tag.TagReader;
-import fspotcloud.server.util.PersistenceManagerProvider;
 
 public class FSpotCloudModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-
+		bind(Batches.class).to(BatchManager.class).in(Singleton.class);
 		bind(DefaultPeer.class).in(Singleton.class);
 		bind(PersistenceManager.class).toProvider(
 				PersistenceManagerProvider.class);

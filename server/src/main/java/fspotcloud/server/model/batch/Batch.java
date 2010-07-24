@@ -1,13 +1,14 @@
 package fspotcloud.server.model.batch;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
-@PersistenceCapable
-public class Batch {
+@PersistenceCapable(detachable="true")
+public class Batch implements Serializable{
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long key;
@@ -37,6 +38,10 @@ public class Batch {
 		setJobName(jobName);
 		setCtime(new Date());
 	}
+	
+	/*public Batch() {
+		setCtime(new Date());
+	}*/
 
 	/**
 	 * @param ctime

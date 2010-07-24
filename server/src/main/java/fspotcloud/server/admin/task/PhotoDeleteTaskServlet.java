@@ -16,10 +16,9 @@ import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.google.inject.name.Named;
 
 import fspotcloud.server.model.batch.Batch;
-import fspotcloud.server.model.batch.BatchManager;
+import fspotcloud.server.model.batch.Batches;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
 import fspotcloud.server.model.photo.Photo;
@@ -33,7 +32,7 @@ public class PhotoDeleteTaskServlet extends HttpServlet {
 			.getLogger(PhotoDeleteTaskServlet.class.getName());
 	
 	@Inject
-	private BatchManager batchManager;
+	private Batches batchManager;
 	@Inject
 	private PhotoManager photoManager;
 	@Inject

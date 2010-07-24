@@ -20,7 +20,7 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
 import fspotcloud.server.model.batch.Batch;
-import fspotcloud.server.model.batch.BatchManager;
+import fspotcloud.server.model.batch.Batches;
 import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.model.photo.PhotoManager;
 
@@ -34,7 +34,7 @@ public class PhotoCountTaskServlet extends HttpServlet {
 	@Inject @Named("maxCount")
 	private int STEP; 
 	@Inject
-	private BatchManager batchManager;
+	private Batches batchManager;
 	@Inject
 	private PhotoManager photoManager;
 

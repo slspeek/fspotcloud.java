@@ -19,7 +19,7 @@ import com.google.inject.Singleton;
 import fspotcloud.rpc.AdminService;
 import fspotcloud.server.control.Scheduler;
 import fspotcloud.server.model.batch.Batch;
-import fspotcloud.server.model.batch.BatchManager;
+import fspotcloud.server.model.batch.Batches;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
 import fspotcloud.server.model.tag.Tag;
@@ -40,7 +40,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	@Inject 
 	private PersistenceManager pm;
 	@Inject
-	private BatchManager batchManager;
+	private Batches batchManager;
 	@Inject
 	private TagReader tagManager;
 	@Inject
