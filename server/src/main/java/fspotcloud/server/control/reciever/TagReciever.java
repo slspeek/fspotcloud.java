@@ -3,28 +3,27 @@ package fspotcloud.server.control.reciever;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jdo.PersistenceManager;
-
 import com.google.inject.Inject;
 
 import fspotcloud.server.model.tag.Tag;
+import fspotcloud.server.model.tag.TagManager;
 
 public class TagReciever {
-	
-	private PersistenceManager pm;
+
+	private TagManager tagManager;
 
 	@Inject
-	public TagReciever(PersistenceManager pm) {
-		this.pm = pm;
+	public TagReciever(TagManager tagManager) {
+		this.tagManager = tagManager;
 	}
-	
+
 	public int recieveTagData(Object[] list) {
 		List<Tag> tagList = new ArrayList<Tag>();
 		for (Object tag : list) {
 			Object[] tag_as_array = (Object[]) tag;
 			tagList.add(recieveTag(tag_as_array));
 		}
-		pm.makePersistentAll(tagList);
+		tagManager.saveAll(tagList);
 		return 0;
 	}
 
@@ -34,8 +33,7 @@ public class TagReciever {
 		String parentId = (String) tag_data[2];
 		int count = Integer.valueOf((String) tag_data[3]);
 
-		Tag tag = new Tag();
-		tag.setName(keyName);
+		Tag tag = tagManager.getOrNew(keyName);
 		tag.setTagName(tagName);
 		tag.setParentId(parentId);
 		tag.setCount(count);

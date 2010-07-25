@@ -69,6 +69,24 @@ public class PhotoManager {
 			pm.close();
 		}
 	}
+	
+	public List<Photo> getEmptyPhotosForTagAfter(String tagId, Date after, int limit) {
+		PersistenceManager pm = pmProvider.get();
+		try {
+			Query query = pm.newQuery(Photo.class);
+			query.setFilter("image == null && tagList == '" + tagId
+					+ "' && date > dateParam");
+			query.declareImports("import java.util.Date");
+			query.declareParameters("Date dateParam");
+			query.setOrdering("date");
+			query.setRange(0, limit);
+			List<Photo> photos = (List<Photo>) query.execute(after);
+			photos = (List<Photo>) pm.detachCopyAll(photos);
+			return photos;
+		} finally {
+			pm.close();
+		}
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Photo> getPhotosStartingAtDate(Date minDate, int limit) {
@@ -86,7 +104,6 @@ public class PhotoManager {
 		} finally {
 			pm.close();
 		}
-
 	}
 
 	public Photo getOrNew(String id) {
@@ -113,7 +130,6 @@ public class PhotoManager {
 		} finally {
 			pm.close();
 		}
-
 	}
 
 	public void delete(Photo p) {
@@ -123,7 +139,6 @@ public class PhotoManager {
 		} finally {
 			pm.close();
 		}
-
 	}
 
 	public void deleteAll(Collection<Photo> photos) {
@@ -133,7 +148,6 @@ public class PhotoManager {
 		} finally {
 			pm.close();
 		}
-
 	}
 
 	public void save(Photo photo) {

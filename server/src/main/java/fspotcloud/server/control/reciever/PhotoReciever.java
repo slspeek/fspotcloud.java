@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.jdo.PersistenceManager;
-
 import com.google.appengine.api.datastore.Blob;
 import com.google.appengine.api.images.Image;
 import com.google.appengine.api.images.ImagesService;

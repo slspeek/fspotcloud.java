@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.jdo.Extent;
+import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
+import fspotcloud.server.model.photo.Photo;
 import fspotcloud.shared.tag.TagNode;
 
 public class TagManager {
@@ -42,6 +44,16 @@ public class TagManager {
 		}
 	}
 
+	public Tag getOrNew(String id) {
+		Tag tag = null;
+		try {
+			tag = getById(id);
+		} catch (JDOObjectNotFoundException notExistedYet) {
+			tag = new Tag();
+			tag.setName(id);
+		}
+		return tag;
+	}
 	public Tag getById(String tagId) {
 		PersistenceManager pm = pmProvider.get();
 		Tag tag = null;
@@ -77,6 +89,15 @@ public class TagManager {
 			pm.deletePersistentAll(allTags);
 			log.info("All tags deleted.");
 			return true;
+		} finally {
+			pm.close();
+		}
+	}
+
+	public void saveAll(List<Tag> tagList) {
+		PersistenceManager pm = pmProvider.get();
+		try {
+			pm.makePersistentAll(tagList);
 		} finally {
 			pm.close();
 		}

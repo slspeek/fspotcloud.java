@@ -4,11 +4,7 @@ import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.logging.Logger;
-
-import javax.jdo.Extent;
-import javax.jdo.PersistenceManager;
 
 import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;

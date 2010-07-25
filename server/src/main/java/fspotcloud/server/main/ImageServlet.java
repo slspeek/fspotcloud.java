@@ -3,7 +3,6 @@ package fspotcloud.server.main;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import javax.jdo.PersistenceManager;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
