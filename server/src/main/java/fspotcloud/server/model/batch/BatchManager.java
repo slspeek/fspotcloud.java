@@ -22,7 +22,7 @@ public class BatchManager implements Batches {
 	}
 
 	public BatchInfo getBatchInfo(long batchId) {
-		BatchDO batch = getById(batchId);
+		Batch batch = getById(batchId);
 		BatchInfo batchInfo = new BatchInfo();
 		batchInfo.setKey(batch.getKey());
 		batchInfo.setJobName(batch.getJobName());
@@ -57,7 +57,7 @@ public class BatchManager implements Batches {
 		return batch.getKey();
 	}
 
-	public void delete(BatchDO batch) {
+	public void delete(Batch batch) {
 		long id = batch.getKey();
 		PersistenceManager pm = pmProvider.get();
 		try {

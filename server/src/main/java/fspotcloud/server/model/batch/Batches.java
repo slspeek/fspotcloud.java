@@ -12,7 +12,7 @@ public interface Batches {
 
 	public abstract long save(BatchDO batch);
 	
-	public abstract void delete(BatchDO batch);
+	public abstract void delete(Batch batch);
 	
 	public abstract List<BatchDO> getAll();
 

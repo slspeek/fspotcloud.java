@@ -53,7 +53,7 @@ public class BatchManagerTest extends TestCase {
 
 		List<BatchDO> all = batchManager.getAll();
 		assertEquals(1, all.size());
-		BatchDO retrieved = all.get(0);
+		Batch retrieved = all.get(0);
 		assertEquals("test job", retrieved.getJobName());
 
 	}
@@ -88,7 +88,7 @@ public class BatchManagerTest extends TestCase {
 	@Test
 	public void testThrowsObjectNotFound() {
 		try {
-			BatchDO retrieved = batchManager.getById(10);
+			Batch retrieved = batchManager.getById(10);
 			fail();
 		} catch(JDOObjectNotFoundException yes) {
 			

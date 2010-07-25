@@ -8,7 +8,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 @PersistenceCapable(detachable="true")
-public class BatchDO implements Serializable{
+public class BatchDO implements Serializable, Batch{
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long key;
@@ -54,44 +54,44 @@ public class BatchDO implements Serializable{
 	/* (non-Javadoc)
 	 * @see fspotcloud.server.model.batch.BatchReadOnly#getCtime()
 	 */
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#getCtime()
+	 */
 	public Date getCtime() {
 		return ctime;
 	}
 
-	/**
-	 * @param jobName
-	 *            the jobName to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#setJobName(java.lang.String)
 	 */
 	public void setJobName(String jobName) {
 		this.jobName = jobName;
 	}
 
-	/**
-	 * @return the jobName
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#getJobName()
 	 */
 	public String getJobName() {
 		return jobName;
 	}
 
-	/**
-	 * @param ftime
-	 *            the ftime to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#setFtime(java.util.Date)
 	 */
 	public void setFtime(Date ftime) {
 		this.ftime = ftime;
 	}
 
-	/**
-	 * @return the ftime
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#getFtime()
 	 */
 	public Date getFtime() {
 		return ftime;
 	}
 
 	
-	/**
-	 * @param running
-	 *            the running to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#stop()
 	 */
 	public void stop() {
 		this.running = false;
@@ -101,12 +101,15 @@ public class BatchDO implements Serializable{
 	/* (non-Javadoc)
 	 * @see fspotcloud.server.model.batch.BatchReadOnly#isRunning()
 	 */
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#isRunning()
+	 */
 	public boolean isRunning() {
 		return running;
 	}
 
-	/**
-	 * increment the iteration count
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#incrementInterationCount()
 	 */
 	public void incrementInterationCount() {
 		this.interationCount++;
@@ -114,6 +117,9 @@ public class BatchDO implements Serializable{
 
 	/* (non-Javadoc)
 	 * @see fspotcloud.server.model.batch.BatchReadOnly#getInterationCount()
+	 */
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#getInterationCount()
 	 */
 	public int getInterationCount() {
 		return interationCount;
@@ -129,22 +135,37 @@ public class BatchDO implements Serializable{
 	/* (non-Javadoc)
 	 * @see fspotcloud.server.model.batch.BatchReadOnly#getKey()
 	 */
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#getKey()
+	 */
 	public Long getKey() {
 		return key;
 	}
 
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#getResult()
+	 */
 	public String getResult() {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#setResult(java.lang.String)
+	 */
 	public void setResult(String result) {
 		this.result = result;
 	}
 
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#getState()
+	 */
 	public String getState() {
 		return state;
 	}
 
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.batch.Batch#setState(java.lang.String)
+	 */
 	public void setState(String state) {
 		this.state = state;
 	}
