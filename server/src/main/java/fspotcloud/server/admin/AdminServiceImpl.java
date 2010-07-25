@@ -14,6 +14,7 @@ import com.google.inject.Singleton;
 
 import fspotcloud.rpc.AdminService;
 import fspotcloud.server.control.Scheduler;
+import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
 import fspotcloud.server.model.batch.BatchDO;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
@@ -45,7 +46,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public long deleteAllPhotos() {
-		BatchDO batch = new BatchDO("deleteAllPhotos");
+		Batch batch = batchManager.create("deleteAllPhotos");
 		long batchId = batchManager.save(batch);
 
 		Queue queue = QueueFactory.getDefaultQueue();
@@ -78,7 +79,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public long getServerPhotoCount() {
-		BatchDO batch = new BatchDO("getServerPhotoCount");
+		Batch batch = batchManager.create("getServerPhotoCount");
 		long batchId = batchManager.save(batch);
 		Queue queue = QueueFactory.getDefaultQueue();
 		queue.add(url("/admin/task/photoCount").param("minDate", "0").param(
@@ -99,7 +100,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public long tagViewablePhotos(String tagId) {
-		BatchDO batch = new BatchDO("tagViewablePhotos");
+		Batch batch = batchManager.create("tagViewablePhotos");
 		long batchId = batchManager.save(batch);
 		// clear the cached photo names
 		Tag tag = tagManager.getById(tagId);

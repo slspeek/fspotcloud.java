@@ -85,4 +85,10 @@ public class BatchManager implements Batches {
 		}
 
 	}
+
+	@Override
+	public Batch create(String jobName) {
+		Batch batch = new BatchDO(jobName);
+		return batch;
+	}
 }

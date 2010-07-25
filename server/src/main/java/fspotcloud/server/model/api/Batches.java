@@ -9,6 +9,8 @@ public interface Batches {
 	public abstract BatchInfo getBatchInfo(long batchId);
 
 	public abstract Batch getById(long batchId);
+	
+	public abstract Batch create(String jobName);
 
 	public abstract long save(Batch batch);
 	
