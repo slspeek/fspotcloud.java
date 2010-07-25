@@ -17,6 +17,7 @@ import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.inject.name.Named;
 
 import fspotcloud.server.control.Scheduler;
 import fspotcloud.server.model.photo.Photo;
@@ -28,7 +29,7 @@ public class ImageDataTaskServlet extends HttpServlet {
 
 	@Inject
 	private Scheduler scheduler;
-	@Inject
+	@Inject @Named("maxTicks")
 	private Integer maxTicks;
 	@Inject
 	private PhotoManager photoManager;
