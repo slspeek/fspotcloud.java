@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -19,10 +18,12 @@ import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.inject.name.Named;
 
 import fspotcloud.server.model.batch.Batch;
 import fspotcloud.server.model.batch.Batches;
 import fspotcloud.server.model.photo.Photo;
+import fspotcloud.server.model.photo.PhotoManager;
 import fspotcloud.server.model.tag.Tag;
 import fspotcloud.server.model.tag.TagManager;
 
@@ -34,12 +35,17 @@ public class TagViewTaskServlet extends HttpServlet {
 			.getName());
 
 	@Inject
-	private TagManager tagManager; 
+	private TagManager tagManager;
 
-	@Inject 
+	@Inject
 	private Batches batchManager;
-	
-	@Inject PersistenceManager pm;
+
+	@Inject
+	private PhotoManager photoManager;
+
+	@Inject
+	@Named("maxTicks")
+	private Integer maxTicks;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -54,26 +60,20 @@ public class TagViewTaskServlet extends HttpServlet {
 		String minDateParam = request.getParameter("minDate");
 		Date minDate = new Date(Long.valueOf(minDateParam));
 		String tagId = request.getParameter("tagId");
-		String maxTicksProp = System.getProperty("fspotcloud.max.data.ticks");
-		int maxTicks = Integer.valueOf(maxTicksProp);
 
 		log.info("TagId: now :: " + tagId);
 		Tag tag = tagManager.getById(tagId);
 
-		Query query = pm.newQuery(Photo.class);
-		query.setFilter("imageLoaded == true && tagList == '" + tagId
-				+ "' && date > dateParam");
-		query.declareImports("import java.util.Date");
-		query.declareParameters("Date dateParam");
-		query.setOrdering("date");
-		query.setRange(0, maxTicks);
-		List<Photo> photos = (List<Photo>) query.execute(minDate);
+		List<Photo> photos = photoManager.getPhotosForTagAfter(tagId, minDate,
+				maxTicks);
 
-		log.info("Iteration: " + batch.getInterationCount() + " MinDate: " + minDate);
+		log.info("Iteration: " + batch.getInterationCount() + " MinDate: "
+				+ minDate);
 		if (!photos.isEmpty()) {
 			Photo last = photos.get(photos.size() - 1);
 			Date newMinDate = last.getDate();
-			log.info("Lats Photo id: " + last.getName() + " NewMinDate: " + newMinDate);
+			log.info("Last seen Photo id: " + last.getName() + " NewMinDate: "
+					+ newMinDate);
 			long newMinDateLong = newMinDate.getTime();
 			for (Photo photo : photos) {
 				if (!tag.getCachedPhotoList().contains(photo.getName())) {
@@ -91,7 +91,6 @@ public class TagViewTaskServlet extends HttpServlet {
 			batch.stop();
 			batchManager.save(batch);
 		}
-		
 
 		PrintWriter out = response.getWriter();
 		out.println("TagViewTask ran.");

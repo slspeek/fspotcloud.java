@@ -32,6 +32,8 @@ public class FSpotCloudModule extends AbstractModule {
 		bind(TagManager.class).in(Singleton.class);
 		bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(
 				new Integer(100));
+		bind(Integer.class).annotatedWith(Names.named("maxTicks")).toInstance(
+				new Integer(100));
 		bind(Integer.class).annotatedWith(Names.named("maxCount")).toInstance(
 				new Integer(333));
 		/* For XmlRpc server */

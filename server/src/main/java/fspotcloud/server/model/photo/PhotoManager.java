@@ -16,7 +16,7 @@ import com.google.inject.name.Named;
 
 public class PhotoManager {
 
-	private final int MAX_DELETE;
+	private final int maxDelete;
 
 	private static final Logger log = Logger.getLogger(PhotoManager.class
 			.getName());
@@ -27,7 +27,7 @@ public class PhotoManager {
 	public PhotoManager(Provider<PersistenceManager> pmProvider,
 			@Named("maxDelete") int maxDelete) {
 		this.pmProvider = pmProvider;
-		this.MAX_DELETE = maxDelete;
+		this.maxDelete = maxDelete;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -37,9 +37,9 @@ public class PhotoManager {
 			log.warning("TagId: " + tagId);
 			List<String> keys = new ArrayList<String>();
 			Query query = pm.newQuery(Photo.class);
-			query.setFilter("tagList == paramTag");
-			query.declareParameters("String paramTag");// +
-			// " && imageLoaded==True");
+			query.setFilter("tagList == paramTag "+
+					 " && imageLoaded == true");
+			query.declareParameters("String paramTag"); 
 			query.setOrdering("date");
 			query.setRange(0, 30);
 			List<Photo> result = (List<Photo>) query.execute(tagId);
@@ -50,7 +50,24 @@ public class PhotoManager {
 		} finally {
 			pm.close();
 		}
-
+	}
+	
+	public List<Photo> getPhotosForTagAfter(String tagId, Date after, int limit) {
+		PersistenceManager pm = pmProvider.get();
+		try {
+			Query query = pm.newQuery(Photo.class);
+			query.setFilter("imageLoaded == true && tagList == '" + tagId
+					+ "' && date > dateParam");
+			query.declareImports("import java.util.Date");
+			query.declareParameters("Date dateParam");
+			query.setOrdering("date");
+			query.setRange(0, limit);
+			List<Photo> photos = (List<Photo>) query.execute(after);
+			photos = (List<Photo>) pm.detachCopyAll(photos);
+			return photos;
+		} finally {
+			pm.close();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -89,8 +106,9 @@ public class PhotoManager {
 		try {
 			Query query = pm.newQuery(Photo.class);
 			query.setOrdering("date");
-			query.setRange(0, MAX_DELETE);
+			query.setRange(0, maxDelete);
 			List<Photo> result = (List<Photo>) query.execute();
+			result = (List<Photo>) pm.detachCopyAll(result);
 			return result;
 		} finally {
 			pm.close();
@@ -125,7 +143,6 @@ public class PhotoManager {
 		} finally {
 			pm.close();
 		}
-
 	}
 
 	public void saveAll(List<Photo> photoList) {
@@ -135,7 +152,6 @@ public class PhotoManager {
 		} finally {
 			pm.close();
 		}
-
 	}
 
 	public Photo getById(String id) {
@@ -143,11 +159,11 @@ public class PhotoManager {
 		Photo photo = null;
 		try {
 			photo = pm.getObjectById(Photo.class, id);
+			photo = pm.detachCopy(photo);
 		} finally {
 			pm.close();
 		}
 		return photo;
-
 	}
 
 }
