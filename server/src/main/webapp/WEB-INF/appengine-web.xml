@@ -16,9 +16,6 @@
 
    <system-properties>
     <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
-    <property name="fspotcloud.thumb.size" value="294x270" />
-    <property name="fspotcloud.large.size" value="1200x1000" />
-    <property name="fspotcloud.max.data.ticks" value="30" />
-  </system-properties>
+   </system-properties>
 
 </appengine-web-app>
