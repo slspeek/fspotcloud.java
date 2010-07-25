@@ -5,10 +5,12 @@
 	<artifactId>fspotcloud</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>fspotcloud</name>
-	<url>code.google.com/p/fspotcloud</url>
+	<name>F-Spot Cloud Java Edition</name>
+	<description>Makes synchronizing your photos web the web easier.</description>
+	<url>http://code.google.com/p/fspotcloud</url>
 	<scm>
-		<url>scm:hg:https://java.fspotcloud.googlecode.com/hg/</url>
+		<connection>scm:hg:https://java.fspotcloud.googlecode.com/hg/</connection>
+		<url>http://code.google.com/p/fspotcloud/source/list?repo=java</url>
 	</scm>
 	<build>
 		<plugins>
@@ -17,8 +19,38 @@
 				<artifactId>maven-google-plugin</artifactId>
 				<version>0.1-SNAPSHOT</version>
 			</plugin>
+
+
+			<plugin>
+				<groupId>com.atlassian.maven.plugins</groupId>
+				<artifactId>maven-clover2-plugin</artifactId>
+				<configuration>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>instrument</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
+	<developers>
+		<developer>
+			<id>slspeek</id>
+			<name>Steven L. Speek</name>
+			<email>slspeek@gmail.com</email>
+			<roles>
+				<role>Project Manager</role>
+				<role>Architect</role>
+				<role>Programmer</role>
+				<role>Tester</role>
+			</roles>
+			<organization>Dreamsoft</organization>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>maven-google-plugin-repository</id>
@@ -55,6 +87,14 @@
 				<configuration>
 					<aggregate>true</aggregate>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.atlassian.maven.plugins</groupId>
+				<artifactId>maven-clover2-plugin</artifactId>
+				<configuration>
+					<jdk>1.6</jdk>
+				</configuration>
+
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

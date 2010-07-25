@@ -2,6 +2,7 @@ package fspotcloud.server.model.tag;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
@@ -11,12 +12,14 @@ import com.google.inject.Provider;
 
 import fspotcloud.shared.tag.TagNode;
 
-public class TagReader {
+public class TagManager {
+	
+	private static final Logger log = Logger.getLogger(TagManager.class.getName());
 
 	private final Provider<PersistenceManager> pmProvider;
 
 	@Inject
-	public TagReader(Provider<PersistenceManager> pmProvider) {
+	public TagManager(Provider<PersistenceManager> pmProvider) {
 		this.pmProvider = pmProvider;
 	}
 
@@ -59,6 +62,24 @@ public class TagReader {
 			pm.close();
 		}
 		return tag.getName();
+	}
+	
+	public boolean deleteAll() {
+		PersistenceManager pm = pmProvider.get();
+		Extent<Tag> extent = pm.getExtent(Tag.class);
+		List<Tag> allTags = new ArrayList<Tag>();
+		for (Tag tag : extent) {
+			// log.info(tag.toString());
+			allTags.add(tag);
+		}
+		extent.closeAll();
+		try {
+			pm.deletePersistentAll(allTags);
+			log.info("All tags deleted.");
+			return true;
+		} finally {
+			pm.close();
+		}
 	}
 
 }

@@ -24,7 +24,7 @@ import fspotcloud.server.model.batch.Batch;
 import fspotcloud.server.model.batch.Batches;
 import fspotcloud.server.model.photo.Photo;
 import fspotcloud.server.model.tag.Tag;
-import fspotcloud.server.model.tag.TagReader;
+import fspotcloud.server.model.tag.TagManager;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -34,7 +34,7 @@ public class TagViewTaskServlet extends HttpServlet {
 			.getName());
 
 	@Inject
-	private TagReader tagManager; 
+	private TagManager tagManager; 
 
 	@Inject 
 	private Batches batchManager;

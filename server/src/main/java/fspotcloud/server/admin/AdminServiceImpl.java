@@ -23,7 +23,7 @@ import fspotcloud.server.model.batch.Batches;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
 import fspotcloud.server.model.tag.Tag;
-import fspotcloud.server.model.tag.TagReader;
+import fspotcloud.server.model.tag.TagManager;
 import fspotcloud.shared.admin.BatchInfo;
 
 /**
@@ -37,12 +37,10 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	private static final Logger log = Logger.getLogger(AdminServiceImpl.class
 			.getName());
 
-	@Inject 
-	private PersistenceManager pm;
 	@Inject
 	private Batches batchManager;
 	@Inject
-	private TagReader tagManager;
+	private TagManager tagManager;
 	@Inject
 	private DefaultPeer defaultPeer;
 	
@@ -62,19 +60,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public void deleteAllTags() {
-		Extent<Tag> extent = pm.getExtent(Tag.class);
-		List<Tag> allTags = new ArrayList<Tag>();
-		for (Tag tag : extent) {
-			// log.info(tag.toString());
-			allTags.add(tag);
-		}
-		extent.closeAll();
-		try {
-			pm.deletePersistentAll(allTags);
-			log.info("All tags deleted.");
-		} catch (Exception e) {
-			log.warning("Exception during delete all tags: " + e);
-		}
+		tagManager.deleteAll();
 	}
 
 	@Override

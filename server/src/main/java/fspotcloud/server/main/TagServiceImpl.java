@@ -12,7 +12,7 @@ import fspotcloud.rpc.TagService;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
 import fspotcloud.server.model.tag.Tag;
-import fspotcloud.server.model.tag.TagReader;
+import fspotcloud.server.model.tag.TagManager;
 import fspotcloud.server.model.tag.TreeBuilder;
 import fspotcloud.shared.tag.TagNode;
 
@@ -26,7 +26,7 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 			.getName());
 	
 	@Inject
-	private TagReader tagManager;
+	private TagManager tagManager;
 	@Inject
 	private DefaultPeer defaultPeer;
 	
