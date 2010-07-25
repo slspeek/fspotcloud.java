@@ -2,8 +2,8 @@ package fspotcloud.server.control;
 
 import com.google.inject.Inject;
 
+import fspotcloud.server.model.api.Commands;
 import fspotcloud.server.model.command.CommandDO;
-import fspotcloud.server.model.command.Commands;
 
 public class Controller {
 

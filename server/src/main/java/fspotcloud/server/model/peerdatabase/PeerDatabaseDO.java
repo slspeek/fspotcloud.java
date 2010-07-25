@@ -6,6 +6,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.shared.tag.TagNode;
 
 /**
@@ -14,7 +15,7 @@ import fspotcloud.shared.tag.TagNode;
  * 
  */
 @PersistenceCapable(detachable="true")
-public class PeerDatabaseDO {
+public class PeerDatabaseDO implements PeerDatabase {
 	@PrimaryKey
 	private String name;
 	
@@ -30,60 +31,72 @@ public class PeerDatabaseDO {
 	@Persistent
 	private String peerName;
 
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.peerdatabase.PeerDatabase#getName()
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.peerdatabase.PeerDatabase#setName(java.lang.String)
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.peerdatabase.PeerDatabase#getCount()
+	 */
 	public int getCount() {
 		return count;
 	}
 
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.peerdatabase.PeerDatabase#setCount(int)
+	 */
 	public void setCount(int count) {
 		this.count = count;
 	}
 
 
-	/**
-	 * @param peerName the peerName to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.peerdatabase.PeerDatabase#setPeerName(java.lang.String)
 	 */
 	public void setPeerName(String peerName) {
 		this.peerName = peerName;
 	}
 
-	/**
-	 * @return the peerName
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.peerdatabase.PeerDatabase#getPeerName()
 	 */
 	public String getPeerName() {
 		return peerName;
 	}
 
-	/**
-	 * @param cachedTagTree the cachedTagTree to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.peerdatabase.PeerDatabase#setCachedTagTree(java.util.List)
 	 */
 	public void setCachedTagTree(List<TagNode> cachedTagTree) {
 		this.cachedTagTree = cachedTagTree;
 	}
 
-	/**
-	 * @return the cachedTagTree
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.peerdatabase.PeerDatabase#getCachedTagTree()
 	 */
 	public List<TagNode> getCachedTagTree() {
 		return cachedTagTree;
 	}
 
-	/**
-	 * @param tagCount the tagCount to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.peerdatabase.PeerDatabase#setTagCount(int)
 	 */
 	public void setTagCount(int tagCount) {
 		this.tagCount = tagCount;
 	}
 
-	/**
-	 * @return the tagCount
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.peerdatabase.PeerDatabase#getTagCount()
 	 */
 	public int getTagCount() {
 		return tagCount;

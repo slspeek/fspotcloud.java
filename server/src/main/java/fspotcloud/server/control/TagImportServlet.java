@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServlet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import fspotcloud.server.model.peerdatabase.PeerDatabaseManager;
+import fspotcloud.server.model.api.PeerDatabases;
 
 @Singleton
 public class TagImportServlet extends HttpServlet {
 
-	@Inject private PeerDatabaseManager defaultPeer;
+	@Inject private PeerDatabases defaultPeer;
 	@Inject private Scheduler scheduler;
 	
 	@Override

@@ -23,8 +23,8 @@ import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
-import fspotcloud.server.model.tag.TagDO;
-import fspotcloud.server.model.tag.TagManager;
+import fspotcloud.server.model.api.Tag;
+import fspotcloud.server.model.api.Tags;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -34,7 +34,7 @@ public class TagViewTaskServlet extends HttpServlet {
 			.getName());
 
 	@Inject
-	private TagManager tagManager;
+	private Tags tagManager;
 
 	@Inject
 	private Batches batchManager;
@@ -61,7 +61,7 @@ public class TagViewTaskServlet extends HttpServlet {
 		String tagId = request.getParameter("tagId");
 
 		log.info("TagId: now :: " + tagId);
-		TagDO tag = tagManager.getById(tagId);
+		Tag tag = tagManager.getById(tagId);
 
 		List<Photo> photos = photoManager.getPhotosForTagAfter(tagId, minDate,
 				maxTicks);

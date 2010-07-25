@@ -19,10 +19,10 @@ import com.google.inject.Singleton;
 
 import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
+import fspotcloud.server.model.api.PeerDatabase;
+import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
-import fspotcloud.server.model.peerdatabase.PeerDatabaseManager;
-import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -36,7 +36,7 @@ public class PhotoDeleteTaskServlet extends HttpServlet {
 	@Inject
 	private Photos photoManager;
 	@Inject
-	private PeerDatabaseManager defaultPeer;
+	private PeerDatabases defaultPeer;
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -72,7 +72,7 @@ public class PhotoDeleteTaskServlet extends HttpServlet {
 		} else {
 			// We stop
 			log.info("We stop" + batch.getKey());
-			PeerDatabaseDO pd = defaultPeer.get();
+			PeerDatabase pd = defaultPeer.get();
 			pd.setCount(0);
 			defaultPeer.save(pd);
 			batch.stop();

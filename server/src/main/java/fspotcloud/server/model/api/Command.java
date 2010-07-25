@@ -1,4 +1,4 @@
-package fspotcloud.server.model.command;
+package fspotcloud.server.model.api;
 
 import java.util.Date;
 import java.util.List;

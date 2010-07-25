@@ -8,24 +8,24 @@ import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.inject.Inject;
 
-import fspotcloud.server.model.peerdatabase.PeerDatabaseManager;
-import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
+import fspotcloud.server.model.api.PeerDatabase;
+import fspotcloud.server.model.api.PeerDatabases;
 
 public class MetaReciever {
 	
 	private static final Logger log = Logger.getLogger(MetaReciever.class
 			.getName());
 	 
-	private final PeerDatabaseManager defaultPeer;
+	private final PeerDatabases defaultPeer;
 	
 	@Inject
-	public MetaReciever(PeerDatabaseManager defaultPeer) {
+	public MetaReciever(PeerDatabases defaultPeer) {
 		this.defaultPeer = defaultPeer;
 	}
 	
 	public int recieveMetaData(int count) {
 		log.info("Recieved count " + count);
-		PeerDatabaseDO p = defaultPeer.get();
+		PeerDatabase p = defaultPeer.get();
 		int previousCount = p.getCount();
 		Queue queue = QueueFactory.getDefaultQueue();
 		queue.add(url("/control/task/photoData").param("offset", String.valueOf(previousCount))

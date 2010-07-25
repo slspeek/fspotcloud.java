@@ -10,9 +10,11 @@ import javax.jdo.PersistenceManager;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
+import fspotcloud.server.model.api.PeerDatabase;
+import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.shared.tag.TagNode;
 
-public class PeerDatabaseManager {
+public class PeerDatabaseManager implements PeerDatabases {
 	private static final Logger log = Logger.getLogger(PeerDatabaseManager.class
 			.getName());
 
@@ -23,7 +25,10 @@ public class PeerDatabaseManager {
 		this.pmProvider = pmProvider;
 	}
 
-	public PeerDatabaseDO get() {
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.peerdatabase.PeerDatabases#get()
+	 */
+	public PeerDatabase get() {
 		PersistenceManager pm = pmProvider.get();
 		PeerDatabaseDO attachedPeerDatabase, peerDatabase;
 		try {
@@ -47,18 +52,10 @@ public class PeerDatabaseManager {
 		return peerDatabase;
 	}
 
-	public List<TagNode> getCachedTagTree() {
-		PersistenceManager pm = pmProvider.get();
-		PeerDatabaseDO peerDatabase;
-		try {
-			peerDatabase = pm.getObjectById(PeerDatabaseDO.class, "1");
-			return peerDatabase.getCachedTagTree();
-		} finally {
-			pm.close();
-		}
-	}
-
-	public void save(PeerDatabaseDO pd) {
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.peerdatabase.PeerDatabases#save(fspotcloud.server.model.peerdatabase.PeerDatabase)
+	 */
+	public void save(PeerDatabase pd) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			log.info("Saving default peer with count: " + pd.getCount());

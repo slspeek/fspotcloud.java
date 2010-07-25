@@ -9,6 +9,9 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
 
+import fspotcloud.server.model.api.Command;
+import fspotcloud.server.model.api.Commands;
+
 public class CommandManager implements Commands {
 
 	private final Provider<PersistenceManager> pmProvider;

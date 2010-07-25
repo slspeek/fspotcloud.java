@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.google.inject.Inject;
 
-import fspotcloud.server.model.command.Command;
-import fspotcloud.server.model.command.Commands;
+import fspotcloud.server.model.api.Command;
+import fspotcloud.server.model.api.Commands;
 
 public class Scheduler {
 	

@@ -11,6 +11,8 @@ import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
 
+import fspotcloud.server.model.api.Tag;
+
 /**
  * Represents a Label in F-Spot
  * 
