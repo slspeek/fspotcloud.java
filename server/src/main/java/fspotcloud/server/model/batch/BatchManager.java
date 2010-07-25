@@ -22,7 +22,7 @@ public class BatchManager implements Batches {
 	}
 
 	public BatchInfo getBatchInfo(long batchId) {
-		Batch batch = getById(batchId);
+		BatchDO batch = getById(batchId);
 		BatchInfo batchInfo = new BatchInfo();
 		batchInfo.setKey(batch.getKey());
 		batchInfo.setJobName(batch.getJobName());
@@ -35,11 +35,11 @@ public class BatchManager implements Batches {
 		return batchInfo;
 	}
 
-	public Batch getById(long batchId) {
-		Batch batch = null;
+	public BatchDO getById(long batchId) {
+		BatchDO batch = null;
 		PersistenceManager pm = pmProvider.get();
 		try {
-			batch = pm.getObjectById(Batch.class, batchId);
+			batch = pm.getObjectById(BatchDO.class, batchId);
 			batch = pm.detachCopy(batch);
 		} finally {
 			pm.close();
@@ -47,7 +47,7 @@ public class BatchManager implements Batches {
 		return batch;
 	}
 
-	public long save(Batch batch) {
+	public long save(BatchDO batch) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.makePersistent(batch);
@@ -57,22 +57,22 @@ public class BatchManager implements Batches {
 		return batch.getKey();
 	}
 
-	public void delete(Batch batch) {
+	public void delete(BatchDO batch) {
 		long id = batch.getKey();
 		PersistenceManager pm = pmProvider.get();
 		try {
-			pm.deletePersistent(pm.getObjectById(Batch.class, id));
+			pm.deletePersistent(pm.getObjectById(BatchDO.class, id));
 		} finally {
 			pm.close();
 		}
 	}
 
-	public List<Batch> getAll() {
+	public List<BatchDO> getAll() {
 		PersistenceManager pm = pmProvider.get();
 		try {
-			List<Batch> batches = new ArrayList<Batch>();
-			Extent<Batch> extent = pm.getExtent(Batch.class, false);
-			for (Batch batch : extent) {
+			List<BatchDO> batches = new ArrayList<BatchDO>();
+			Extent<BatchDO> extent = pm.getExtent(BatchDO.class, false);
+			for (BatchDO batch : extent) {
 				batches.add(batch);
 			}
 			extent.closeAll();

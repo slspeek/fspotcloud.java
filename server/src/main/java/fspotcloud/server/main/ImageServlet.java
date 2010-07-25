@@ -12,7 +12,7 @@ import com.google.appengine.api.datastore.Blob;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import fspotcloud.server.model.photo.Photo;
+import fspotcloud.server.model.photo.PhotoDO;
 import fspotcloud.server.model.photo.PhotoManager;
 
 @SuppressWarnings("serial")
@@ -27,7 +27,7 @@ public class ImageServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
 		boolean thumb = (request.getParameter("thumb") != null);
-		Photo photo = photoManager.getById(id);
+		PhotoDO photo = photoManager.getById(id);
 		Blob imageData = thumb ? photo.getThumb(): photo.getImage();
 		response.setContentType("image/jpeg");
 		OutputStream out =response.getOutputStream(); 

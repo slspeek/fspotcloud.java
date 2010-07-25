@@ -52,13 +52,13 @@ public class PhotoManagerTest extends TestCase {
 	
 	@Test
 	public void testGetPhotosStartingAtDate() {
-		Photo before = new Photo();
+		PhotoDO before = new PhotoDO();
 		before.setDate(getDate(2006, 0, 0));
 	}
 
 	@Test
 	public void testGetOrNew() {
-		Photo photo = photoManager.getOrNew("1");
+		PhotoDO photo = photoManager.getOrNew("1");
 		try {
 			photoManager.getById("1");
 			fail();
@@ -69,29 +69,29 @@ public class PhotoManagerTest extends TestCase {
 	}
 	
 	public void testFilteringOnBoolean() {
-		Photo photo = photoManager.getOrNew("1");
+		PhotoDO photo = photoManager.getOrNew("1");
 		photo.setImageLoaded(true);
 		photoManager.save(photo);
 		
 		PersistenceManager pm = pmProviver.get();
-		Query query = pm.newQuery(Photo.class);
+		Query query = pm.newQuery(PhotoDO.class);
 		query.setFilter("imageLoaded == true");
-		List<Photo> photos = (List<Photo>) query.execute();
+		List<PhotoDO> photos = (List<PhotoDO>) query.execute();
 		assertEquals(1, photos.size());
 		
 		//see that there are no photos with image loaded is false
 		pm = pmProviver.get();
-		query = pm.newQuery(Photo.class);
+		query = pm.newQuery(PhotoDO.class);
 		query.setFilter("imageLoaded == false");
-		photos = (List<Photo>) query.execute();
+		photos = (List<PhotoDO>) query.execute();
 		assertEquals(0, photos.size());
 		
 		
 	}
 	
 	public void testCreateLoadModify() {
-		Photo photo, retrieved;
-		photo = new Photo();
+		PhotoDO photo, retrieved;
+		photo = new PhotoDO();
 		photo.setName("1");
 		photoManager.save(photo);
 		retrieved = photoManager.getOrNew("1");
@@ -107,7 +107,7 @@ public class PhotoManagerTest extends TestCase {
 
 	@Test
 	public void testDelete() {
-		Photo photo = photoManager.getOrNew("1");
+		PhotoDO photo = photoManager.getOrNew("1");
 		
 		
 	}
@@ -118,11 +118,11 @@ public class PhotoManagerTest extends TestCase {
 
 	@Test
 	public void testSave() {
-		Photo photo = new Photo();
+		PhotoDO photo = new PhotoDO();
 		photo.setName("1");
 		photo.setDescription("Nice");
 		photoManager.save(photo);
-		Photo retrieved = photoManager.getOrNew("1");
+		PhotoDO retrieved = photoManager.getOrNew("1");
 		assertEquals("Nice", retrieved.getDescription());
 	}
 

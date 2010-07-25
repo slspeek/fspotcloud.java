@@ -12,7 +12,7 @@ import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.Transform;
 import com.google.inject.Inject;
 
-import fspotcloud.server.model.photo.Photo;
+import fspotcloud.server.model.photo.PhotoDO;
 import fspotcloud.server.model.photo.PhotoManager;
 
 public class PhotoReciever {
@@ -28,7 +28,7 @@ public class PhotoReciever {
 	
 	public int recieveImageData(String id, byte[] data) {
 		log.info("Recieved imagedata for : " + id);
-		Photo photo = photoManager.getOrNew(id);
+		PhotoDO photo = photoManager.getOrNew(id);
 		Blob blob = new Blob(data);
 		//make thumb
 		Blob thumb = new Blob(makeThumb(data));
@@ -49,23 +49,23 @@ public class PhotoReciever {
 	}
 	
 	public int recievePhotoData(Object[] list) {
-		List<Photo> photoList = new ArrayList<Photo>();
+		List<PhotoDO> photoList = new ArrayList<PhotoDO>();
 		for (Object photo : list) {
 			Object[] photo_as_array = (Object[]) photo;
-			Photo p = recievePhoto(photo_as_array);
+			PhotoDO p = recievePhoto(photo_as_array);
 			photoList.add(p);
 		}
 		photoManager.saveAll(photoList);
 		return 0;
 	}
 
-	private Photo recievePhoto(Object[] photo_data) {
+	private PhotoDO recievePhoto(Object[] photo_data) {
 		String keyName = (String) photo_data[0];
 		String desc = (String) photo_data[1];
 		Date date = (Date) photo_data[2];
 		Object[] tags = (Object[]) photo_data[3];
 		
-		Photo photo = photoManager.getOrNew(keyName);
+		PhotoDO photo = photoManager.getOrNew(keyName);
 		photo.setDescription(desc);
 		photo.setDate(date);
 		List<String> tagList = new ArrayList<String>();

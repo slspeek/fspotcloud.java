@@ -8,7 +8,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 @PersistenceCapable(detachable="true")
-public class Batch implements Serializable{
+public class BatchDO implements Serializable{
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long key;
@@ -34,12 +34,12 @@ public class Batch implements Serializable{
 	@Persistent
 	private int interationCount = 0;
 
-	public Batch(String jobName) {
+	public BatchDO(String jobName) {
 		setJobName(jobName);
 		setCtime(new Date());
 	}
 	
-	public Batch() {
+	public BatchDO() {
 		setCtime(new Date());
 	}
 

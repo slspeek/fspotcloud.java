@@ -17,11 +17,11 @@ import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import fspotcloud.server.model.batch.Batch;
+import fspotcloud.server.model.batch.BatchDO;
 import fspotcloud.server.model.batch.Batches;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
-import fspotcloud.server.model.photo.Photo;
+import fspotcloud.server.model.photo.PhotoDO;
 import fspotcloud.server.model.photo.PhotoManager;
 
 @SuppressWarnings("serial")
@@ -47,10 +47,10 @@ public class PhotoDeleteTaskServlet extends HttpServlet {
 		String deleteCountParam = request.getParameter("deleteCount");
 		int deleteCount = Integer.valueOf(deleteCountParam);
 		
-		Batch batch = batchManager.getById(batchId);
+		BatchDO batch = batchManager.getById(batchId);
 		batch.incrementInterationCount();
 		
-		List<Photo> result = photoManager.getOldestPhotosChunk();
+		List<PhotoDO> result = photoManager.getOldestPhotosChunk();
 		int resultCount = result.size();
 		photoManager.deleteAll(result);
 		

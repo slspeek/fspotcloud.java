@@ -45,26 +45,26 @@ public class BatchManagerTest extends TestCase {
 	}
 
 	private void doTest() {
-		Batch batch = new Batch();
+		BatchDO batch = new BatchDO();
 		batch.setJobName("test job");
 
 		long l = batchManager.save(batch);
 		long k = batchManager.save(batch);
 
-		List<Batch> all = batchManager.getAll();
+		List<BatchDO> all = batchManager.getAll();
 		assertEquals(1, all.size());
-		Batch retrieved = all.get(0);
+		BatchDO retrieved = all.get(0);
 		assertEquals("test job", retrieved.getJobName());
 
 	}
 
 	@Test
 	public void testDelete() {
-		Batch batch = new Batch();
+		BatchDO batch = new BatchDO();
 		batch.setJobName("deletable job");
 		long l = batchManager.save(batch);
 
-		List<Batch> all = batchManager.getAll();
+		List<BatchDO> all = batchManager.getAll();
 		assertEquals(1, all.size());
 		batchManager.delete(batch);
 		all = batchManager.getAll();
@@ -73,10 +73,10 @@ public class BatchManagerTest extends TestCase {
 
 	@Test
 	public void testCreateLoadModifySave() {
-		Batch batch = new Batch();
+		BatchDO batch = new BatchDO();
 		long l = batchManager.save(batch);
 
-		Batch retrieved = batchManager.getById(l);
+		BatchDO retrieved = batchManager.getById(l);
 		retrieved.setResult("PI");
 		long k = batchManager.save(retrieved);
 		assertEquals(l, k);
@@ -88,7 +88,7 @@ public class BatchManagerTest extends TestCase {
 	@Test
 	public void testThrowsObjectNotFound() {
 		try {
-			Batch retrieved = batchManager.getById(10);
+			BatchDO retrieved = batchManager.getById(10);
 			fail();
 		} catch(JDOObjectNotFoundException yes) {
 			

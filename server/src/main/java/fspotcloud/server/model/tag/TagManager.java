@@ -11,7 +11,7 @@ import javax.jdo.PersistenceManager;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
-import fspotcloud.server.model.photo.Photo;
+import fspotcloud.server.model.photo.PhotoDO;
 import fspotcloud.shared.tag.TagNode;
 
 public class TagManager {

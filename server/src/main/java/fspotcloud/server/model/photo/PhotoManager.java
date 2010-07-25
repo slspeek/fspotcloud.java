@@ -36,14 +36,14 @@ public class PhotoManager {
 		try {
 			log.warning("TagId: " + tagId);
 			List<String> keys = new ArrayList<String>();
-			Query query = pm.newQuery(Photo.class);
+			Query query = pm.newQuery(PhotoDO.class);
 			query.setFilter("tagList == paramTag "+
 					 " && imageLoaded == true");
 			query.declareParameters("String paramTag"); 
 			query.setOrdering("date");
 			query.setRange(0, 30);
-			List<Photo> result = (List<Photo>) query.execute(tagId);
-			for (Photo photo : result) {
+			List<PhotoDO> result = (List<PhotoDO>) query.execute(tagId);
+			for (PhotoDO photo : result) {
 				keys.add(photo.getName());
 			}
 			return keys;
@@ -52,36 +52,36 @@ public class PhotoManager {
 		}
 	}
 	
-	public List<Photo> getPhotosForTagAfter(String tagId, Date after, int limit) {
+	public List<PhotoDO> getPhotosForTagAfter(String tagId, Date after, int limit) {
 		PersistenceManager pm = pmProvider.get();
 		try {
-			Query query = pm.newQuery(Photo.class);
+			Query query = pm.newQuery(PhotoDO.class);
 			query.setFilter("imageLoaded == true && tagList == '" + tagId
 					+ "' && date > dateParam");
 			query.declareImports("import java.util.Date");
 			query.declareParameters("Date dateParam");
 			query.setOrdering("date");
 			query.setRange(0, limit);
-			List<Photo> photos = (List<Photo>) query.execute(after);
-			photos = (List<Photo>) pm.detachCopyAll(photos);
+			List<PhotoDO> photos = (List<PhotoDO>) query.execute(after);
+			photos = (List<PhotoDO>) pm.detachCopyAll(photos);
 			return photos;
 		} finally {
 			pm.close();
 		}
 	}
 	
-	public List<Photo> getEmptyPhotosForTagAfter(String tagId, Date after, int limit) {
+	public List<PhotoDO> getEmptyPhotosForTagAfter(String tagId, Date after, int limit) {
 		PersistenceManager pm = pmProvider.get();
 		try {
-			Query query = pm.newQuery(Photo.class);
+			Query query = pm.newQuery(PhotoDO.class);
 			query.setFilter("image == null && tagList == '" + tagId
 					+ "' && date > dateParam");
 			query.declareImports("import java.util.Date");
 			query.declareParameters("Date dateParam");
 			query.setOrdering("date");
 			query.setRange(0, limit);
-			List<Photo> photos = (List<Photo>) query.execute(after);
-			photos = (List<Photo>) pm.detachCopyAll(photos);
+			List<PhotoDO> photos = (List<PhotoDO>) query.execute(after);
+			photos = (List<PhotoDO>) pm.detachCopyAll(photos);
 			return photos;
 		} finally {
 			pm.close();
@@ -89,50 +89,50 @@ public class PhotoManager {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Photo> getPhotosStartingAtDate(Date minDate, int limit) {
+	public List<PhotoDO> getPhotosStartingAtDate(Date minDate, int limit) {
 		PersistenceManager pm = pmProvider.get();
 		try {
-			Query query = pm.newQuery(Photo.class);
+			Query query = pm.newQuery(PhotoDO.class);
 			query.setFilter(" date > dateParam");
 			query.declareImports("import java.util.Date");
 			query.declareParameters("Date dateParam");
 			query.setOrdering("date");
 			query.setRange(0, limit);
-			List<Photo> result = (List<Photo>) query.execute(minDate);
+			List<PhotoDO> result = (List<PhotoDO>) query.execute(minDate);
 			
-			return (List<Photo>) pm.detachCopyAll(result);
+			return (List<PhotoDO>) pm.detachCopyAll(result);
 		} finally {
 			pm.close();
 		}
 	}
 
-	public Photo getOrNew(String id) {
-		Photo photo = null;
+	public PhotoDO getOrNew(String id) {
+		PhotoDO photo = null;
 		try {
 			photo = getById(id);
 		} catch (JDOObjectNotFoundException notExistedYet) {
-			photo = new Photo();
+			photo = new PhotoDO();
 			photo.setName(id);
 		}
 		return photo;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Photo> getOldestPhotosChunk() {
+	public List<PhotoDO> getOldestPhotosChunk() {
 		PersistenceManager pm = pmProvider.get();
 		try {
-			Query query = pm.newQuery(Photo.class);
+			Query query = pm.newQuery(PhotoDO.class);
 			query.setOrdering("date");
 			query.setRange(0, maxDelete);
-			List<Photo> result = (List<Photo>) query.execute();
-			result = (List<Photo>) pm.detachCopyAll(result);
+			List<PhotoDO> result = (List<PhotoDO>) query.execute();
+			result = (List<PhotoDO>) pm.detachCopyAll(result);
 			return result;
 		} finally {
 			pm.close();
 		}
 	}
 
-	public void delete(Photo p) {
+	public void delete(PhotoDO p) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.deletePersistent(p);
@@ -141,7 +141,7 @@ public class PhotoManager {
 		}
 	}
 
-	public void deleteAll(Collection<Photo> photos) {
+	public void deleteAll(Collection<PhotoDO> photos) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.deletePersistentAll(photos);
@@ -150,7 +150,7 @@ public class PhotoManager {
 		}
 	}
 
-	public void save(Photo photo) {
+	public void save(PhotoDO photo) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.makePersistent(photo);
@@ -159,7 +159,7 @@ public class PhotoManager {
 		}
 	}
 
-	public void saveAll(List<Photo> photoList) {
+	public void saveAll(List<PhotoDO> photoList) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.makePersistentAll(photoList);
@@ -168,11 +168,11 @@ public class PhotoManager {
 		}
 	}
 
-	public Photo getById(String id) {
+	public PhotoDO getById(String id) {
 		PersistenceManager pm = pmProvider.get();
-		Photo photo = null;
+		PhotoDO photo = null;
 		try {
-			photo = pm.getObjectById(Photo.class, id);
+			photo = pm.getObjectById(PhotoDO.class, id);
 			photo = pm.detachCopy(photo);
 		} finally {
 			pm.close();
