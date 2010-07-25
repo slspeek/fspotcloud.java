@@ -9,8 +9,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import fspotcloud.rpc.TagService;
-import fspotcloud.server.model.peerdatabase.DefaultPeer;
-import fspotcloud.server.model.peerdatabase.PeerDatabase;
+import fspotcloud.server.model.peerdatabase.PeerDatabaseManager;
+import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
 import fspotcloud.server.model.tag.Tag;
 import fspotcloud.server.model.tag.TagManager;
 import fspotcloud.server.model.tag.TreeBuilder;
@@ -28,11 +28,11 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 	@Inject
 	private TagManager tagManager;
 	@Inject
-	private DefaultPeer defaultPeer;
+	private PeerDatabaseManager defaultPeer;
 	
 	
 	public List<TagNode> loadTagTree() {
-		PeerDatabase p = defaultPeer.get();
+		PeerDatabaseDO p = defaultPeer.get();
 		if (p.getCachedTagTree() != null) {
 			log.info("Got the tree from cache HIT");
 			return p.getCachedTagTree();

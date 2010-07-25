@@ -19,10 +19,10 @@ import com.google.inject.Singleton;
 
 import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
-import fspotcloud.server.model.peerdatabase.DefaultPeer;
-import fspotcloud.server.model.peerdatabase.PeerDatabase;
-import fspotcloud.server.model.photo.PhotoDO;
-import fspotcloud.server.model.photo.PhotoManager;
+import fspotcloud.server.model.api.Photo;
+import fspotcloud.server.model.api.Photos;
+import fspotcloud.server.model.peerdatabase.PeerDatabaseManager;
+import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -34,9 +34,9 @@ public class PhotoDeleteTaskServlet extends HttpServlet {
 	@Inject
 	private Batches batchManager;
 	@Inject
-	private PhotoManager photoManager;
+	private Photos photoManager;
 	@Inject
-	private DefaultPeer defaultPeer;
+	private PeerDatabaseManager defaultPeer;
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -50,7 +50,7 @@ public class PhotoDeleteTaskServlet extends HttpServlet {
 		Batch batch = batchManager.getById(batchId);
 		batch.incrementInterationCount();
 		
-		List<PhotoDO> result = photoManager.getOldestPhotosChunk();
+		List<Photo> result = photoManager.getOldestPhotosChunk();
 		int resultCount = result.size();
 		photoManager.deleteAll(result);
 		
@@ -72,7 +72,7 @@ public class PhotoDeleteTaskServlet extends HttpServlet {
 		} else {
 			// We stop
 			log.info("We stop" + batch.getKey());
-			PeerDatabase pd = defaultPeer.get();
+			PeerDatabaseDO pd = defaultPeer.get();
 			pd.setCount(0);
 			defaultPeer.save(pd);
 			batch.stop();

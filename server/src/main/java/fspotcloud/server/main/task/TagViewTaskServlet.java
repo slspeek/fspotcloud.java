@@ -21,9 +21,9 @@ import com.google.inject.name.Named;
 
 import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
-import fspotcloud.server.model.photo.PhotoDO;
-import fspotcloud.server.model.photo.PhotoManager;
-import fspotcloud.server.model.tag.Tag;
+import fspotcloud.server.model.api.Photo;
+import fspotcloud.server.model.api.Photos;
+import fspotcloud.server.model.tag.TagDO;
 import fspotcloud.server.model.tag.TagManager;
 
 @SuppressWarnings("serial")
@@ -40,7 +40,7 @@ public class TagViewTaskServlet extends HttpServlet {
 	private Batches batchManager;
 
 	@Inject
-	private PhotoManager photoManager;
+	private Photos photoManager;
 
 	@Inject
 	@Named("maxTicks")
@@ -61,20 +61,20 @@ public class TagViewTaskServlet extends HttpServlet {
 		String tagId = request.getParameter("tagId");
 
 		log.info("TagId: now :: " + tagId);
-		Tag tag = tagManager.getById(tagId);
+		TagDO tag = tagManager.getById(tagId);
 
-		List<PhotoDO> photos = photoManager.getPhotosForTagAfter(tagId, minDate,
+		List<Photo> photos = photoManager.getPhotosForTagAfter(tagId, minDate,
 				maxTicks);
 
 		log.info("Iteration: " + batch.getInterationCount() + " MinDate: "
 				+ minDate);
 		if (!photos.isEmpty()) {
-			PhotoDO last = photos.get(photos.size() - 1);
+			Photo last = photos.get(photos.size() - 1);
 			Date newMinDate = last.getDate();
 			log.info("Last seen Photo id: " + last.getName() + " NewMinDate: "
 					+ newMinDate);
 			long newMinDateLong = newMinDate.getTime();
-			for (PhotoDO photo : photos) {
+			for (Photo photo : photos) {
 				if (!tag.getCachedPhotoList().contains(photo.getName())) {
 					tag.getCachedPhotoList().add(photo.getName());
 				} else {

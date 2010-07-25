@@ -5,23 +5,23 @@ import java.util.List;
 import com.google.inject.Inject;
 
 import fspotcloud.server.model.command.Command;
-import fspotcloud.server.model.command.CommandDAO;
+import fspotcloud.server.model.command.Commands;
 
 public class Scheduler {
 	
-	private CommandDAO commandDAO;
+	private Commands commandManager;
 
 	@Inject
-	public Scheduler(CommandDAO commandDAO) {
-		this.commandDAO = commandDAO;
+	public Scheduler(Commands commandManager) {
+		this.commandManager = commandManager;
 	}
 
 	public boolean schedule(String cmd, List<String> args) {
 		if (!hasDuplicates(cmd, args)) {
-			Command c = new Command();
+			Command c = commandManager.create();
 			c.setCmd(cmd);
 			c.setArgs(args);
-			commandDAO.save(c);
+			commandManager.save(c);
 			return true;
 		} else {
 			return false;
@@ -30,7 +30,7 @@ public class Scheduler {
 
 	@SuppressWarnings("unchecked")
 	private boolean hasDuplicates(String cmd, List<String> args) {
-		return commandDAO.allReadyExists(cmd, args);
+		return commandManager.allReadyExists(cmd, args);
 	}
 
 }

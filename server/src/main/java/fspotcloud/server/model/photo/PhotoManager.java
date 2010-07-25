@@ -14,7 +14,10 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
 
-public class PhotoManager {
+import fspotcloud.server.model.api.Photo;
+import fspotcloud.server.model.api.Photos;
+
+public class PhotoManager implements Photos {
 
 	private final int maxDelete;
 
@@ -30,6 +33,9 @@ public class PhotoManager {
 		this.maxDelete = maxDelete;
 	}
 
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photos#getPhotoKeysForTag(java.lang.String)
+	 */
 	@SuppressWarnings("unchecked")
 	public List<String> getPhotoKeysForTag(String tagId) {
 		PersistenceManager pm = pmProvider.get();
@@ -37,13 +43,12 @@ public class PhotoManager {
 			log.warning("TagId: " + tagId);
 			List<String> keys = new ArrayList<String>();
 			Query query = pm.newQuery(PhotoDO.class);
-			query.setFilter("tagList == paramTag "+
-					 " && imageLoaded == true");
-			query.declareParameters("String paramTag"); 
+			query.setFilter("tagList == paramTag " + " && imageLoaded == true");
+			query.declareParameters("String paramTag");
 			query.setOrdering("date");
 			query.setRange(0, 30);
 			List<PhotoDO> result = (List<PhotoDO>) query.execute(tagId);
-			for (PhotoDO photo : result) {
+			for (Photo photo : result) {
 				keys.add(photo.getName());
 			}
 			return keys;
@@ -51,8 +56,11 @@ public class PhotoManager {
 			pm.close();
 		}
 	}
-	
-	public List<PhotoDO> getPhotosForTagAfter(String tagId, Date after, int limit) {
+
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photos#getPhotosForTagAfter(java.lang.String, java.util.Date, int)
+	 */
+	public List<Photo> getPhotosForTagAfter(String tagId, Date after, int limit) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			Query query = pm.newQuery(PhotoDO.class);
@@ -64,17 +72,22 @@ public class PhotoManager {
 			query.setRange(0, limit);
 			List<PhotoDO> photos = (List<PhotoDO>) query.execute(after);
 			photos = (List<PhotoDO>) pm.detachCopyAll(photos);
-			return photos;
+			List<Photo> result = new ArrayList<Photo>(photos);
+			return result;
 		} finally {
 			pm.close();
 		}
 	}
-	
-	public List<PhotoDO> getEmptyPhotosForTagAfter(String tagId, Date after, int limit) {
+
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photos#getEmptyPhotosForTagAfter(java.lang.String, java.util.Date, int)
+	 */
+	public List<Photo> getEmptyPhotosForTagAfter(String tagId, Date after,
+			int limit) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			Query query = pm.newQuery(PhotoDO.class);
-			query.setFilter("image == null && tagList == '" + tagId
+			query.setFilter("imageLoaded == null && tagList == '" + tagId
 					+ "' && date > dateParam");
 			query.declareImports("import java.util.Date");
 			query.declareParameters("Date dateParam");
@@ -82,14 +95,19 @@ public class PhotoManager {
 			query.setRange(0, limit);
 			List<PhotoDO> photos = (List<PhotoDO>) query.execute(after);
 			photos = (List<PhotoDO>) pm.detachCopyAll(photos);
-			return photos;
+			List<Photo> result = new ArrayList<Photo>(photos);
+			return result;
+
 		} finally {
 			pm.close();
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photos#getPhotosStartingAtDate(java.util.Date, int)
+	 */
 	@SuppressWarnings("unchecked")
-	public List<PhotoDO> getPhotosStartingAtDate(Date minDate, int limit) {
+	public List<Photo> getPhotosStartingAtDate(Date minDate, int limit) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			Query query = pm.newQuery(PhotoDO.class);
@@ -98,41 +116,53 @@ public class PhotoManager {
 			query.declareParameters("Date dateParam");
 			query.setOrdering("date");
 			query.setRange(0, limit);
-			List<PhotoDO> result = (List<PhotoDO>) query.execute(minDate);
-			
-			return (List<PhotoDO>) pm.detachCopyAll(result);
-		} finally {
-			pm.close();
-		}
-	}
-
-	public PhotoDO getOrNew(String id) {
-		PhotoDO photo = null;
-		try {
-			photo = getById(id);
-		} catch (JDOObjectNotFoundException notExistedYet) {
-			photo = new PhotoDO();
-			photo.setName(id);
-		}
-		return photo;
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<PhotoDO> getOldestPhotosChunk() {
-		PersistenceManager pm = pmProvider.get();
-		try {
-			Query query = pm.newQuery(PhotoDO.class);
-			query.setOrdering("date");
-			query.setRange(0, maxDelete);
-			List<PhotoDO> result = (List<PhotoDO>) query.execute();
-			result = (List<PhotoDO>) pm.detachCopyAll(result);
+			List<PhotoDO> photos = (List<PhotoDO>) query.execute(minDate);
+			photos = (List<PhotoDO>) pm.detachCopyAll(photos);
+			List<Photo> result = new ArrayList<Photo>(photos);
 			return result;
 		} finally {
 			pm.close();
 		}
 	}
 
-	public void delete(PhotoDO p) {
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photos#getOrNew(java.lang.String)
+	 */
+	public Photo getOrNew(String id) {
+		Photo photo = null;
+		try {
+			photo = getById(id);
+		} catch (JDOObjectNotFoundException notExistedYet) {
+			photo = new PhotoDO();
+			photo.setName(id);
+			photo.setImageLoaded(false);
+		}
+		return photo;
+	}
+
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photos#getOldestPhotosChunk()
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Photo> getOldestPhotosChunk() {
+		PersistenceManager pm = pmProvider.get();
+		try {
+			Query query = pm.newQuery(PhotoDO.class);
+			query.setOrdering("date");
+			query.setRange(0, maxDelete);
+			List<PhotoDO> photos = (List<PhotoDO>) query.execute();
+			photos = (List<PhotoDO>) pm.detachCopyAll(photos);
+			List<Photo> result = new ArrayList<Photo>(photos);
+			return result;
+		} finally {
+			pm.close();
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photos#delete(fspotcloud.server.model.photo.Photo)
+	 */
+	public void delete(Photo p) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.deletePersistent(p);
@@ -141,7 +171,10 @@ public class PhotoManager {
 		}
 	}
 
-	public void deleteAll(Collection<PhotoDO> photos) {
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photos#deleteAll(java.util.Collection)
+	 */
+	public void deleteAll(Collection<Photo> photos) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.deletePersistentAll(photos);
@@ -150,7 +183,10 @@ public class PhotoManager {
 		}
 	}
 
-	public void save(PhotoDO photo) {
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photos#save(fspotcloud.server.model.photo.Photo)
+	 */
+	public void save(Photo photo) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.makePersistent(photo);
@@ -159,7 +195,10 @@ public class PhotoManager {
 		}
 	}
 
-	public void saveAll(List<PhotoDO> photoList) {
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photos#saveAll(java.util.List)
+	 */
+	public void saveAll(List<Photo> photoList) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.makePersistentAll(photoList);
@@ -168,9 +207,12 @@ public class PhotoManager {
 		}
 	}
 
-	public PhotoDO getById(String id) {
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photos#getById(java.lang.String)
+	 */
+	public Photo getById(String id) {
 		PersistenceManager pm = pmProvider.get();
-		PhotoDO photo = null;
+		Photo photo = null;
 		try {
 			photo = pm.getObjectById(PhotoDO.class, id);
 			photo = pm.detachCopy(photo);

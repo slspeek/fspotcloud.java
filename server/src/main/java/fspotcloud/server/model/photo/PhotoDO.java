@@ -12,12 +12,14 @@ import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Blob;
 
+import fspotcloud.server.model.api.Photo;
+
 /**
  * @author slspeek@gmail.com
  * 
  */
 @PersistenceCapable(detachable="true")
-public class PhotoDO {
+public class PhotoDO implements Photo {
 	@PrimaryKey
 	private String name;
 
@@ -39,102 +41,99 @@ public class PhotoDO {
 	@Persistent
 	private Blob thumb;
 	
-	/**
-	 * @param name
-	 *            the name to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#setName(java.lang.String)
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return the name
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#getName()
 	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param description
-	 *            the description to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#setDescription(java.lang.String)
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	/**
-	 * @return the description
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#getDescription()
 	 */
 	public String getDescription() {
 		return description;
 	}
 
-	/**
-	 * @param tagList
-	 *            the tagList to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#setTagList(java.util.List)
 	 */
 	public void setTagList(List<String> tagList) {
 		this.tagList = tagList;
 	}
 
-	/**
-	 * @return the tagList
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#getTagList()
 	 */
 	public List<String> getTagList() {
 		return tagList;
 	}
 
-	/**
-	 * @param date the date to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#setDate(java.util.Date)
 	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	/**
-	 * @return the date
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#getDate()
 	 */
 	public Date getDate() {
 		return date;
 	}
 
-	/**
-	 * @param thumb the thumb to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#setThumb(com.google.appengine.api.datastore.Blob)
 	 */
 	public void setThumb(Blob thumb) {
 		this.thumb = thumb;
 	}
 
-	/**
-	 * @return the thumb
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#getThumb()
 	 */
 	public Blob getThumb() {
 		return thumb;
 	}
 
-	/**
-	 * @param image the image to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#setImage(com.google.appengine.api.datastore.Blob)
 	 */
 	public void setImage(Blob image) {
 		this.image = image;
 	}
 
-	/**
-	 * @return the image
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#getImage()
 	 */
 	public Blob getImage() {
 		return image;
 	}
 
-	/**
-	 * @param imageLoaded the imageLoaded to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#setImageLoaded(java.lang.Boolean)
 	 */
 	public void setImageLoaded(Boolean imageLoaded) {
 		this.imageLoaded = imageLoaded;
 	}
 
-	/**
-	 * @return the imageLoaded
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.photo.Photo#getImageLoaded()
 	 */
 	public Boolean getImageLoaded() {
 		return imageLoaded;

@@ -14,7 +14,7 @@ import fspotcloud.shared.tag.TagNode;
  * 
  */
 @PersistenceCapable(detachable="true")
-public class PeerDatabase {
+public class PeerDatabaseDO {
 	@PrimaryKey
 	private String name;
 	

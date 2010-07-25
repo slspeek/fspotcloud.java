@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.google.inject.Inject;
 
-import fspotcloud.server.model.tag.Tag;
+import fspotcloud.server.model.tag.TagDO;
 import fspotcloud.server.model.tag.TagManager;
 
 public class TagReciever {
@@ -18,7 +18,7 @@ public class TagReciever {
 	}
 
 	public int recieveTagData(Object[] list) {
-		List<Tag> tagList = new ArrayList<Tag>();
+		List<TagDO> tagList = new ArrayList<TagDO>();
 		for (Object tag : list) {
 			Object[] tag_as_array = (Object[]) tag;
 			tagList.add(recieveTag(tag_as_array));
@@ -27,13 +27,13 @@ public class TagReciever {
 		return 0;
 	}
 
-	private Tag recieveTag(Object[] tag_data) {
+	private TagDO recieveTag(Object[] tag_data) {
 		String keyName = (String) tag_data[0];
 		String tagName = (String) tag_data[1];
 		String parentId = (String) tag_data[2];
 		int count = Integer.valueOf((String) tag_data[3]);
 
-		Tag tag = tagManager.getOrNew(keyName);
+		TagDO tag = tagManager.getOrNew(keyName);
 		tag.setTagName(tagName);
 		tag.setParentId(parentId);
 		tag.setCount(count);

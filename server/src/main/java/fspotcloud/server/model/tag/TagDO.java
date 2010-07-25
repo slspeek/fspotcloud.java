@@ -16,7 +16,7 @@ import com.google.appengine.api.datastore.Key;
  * 
  */
 @PersistenceCapable(detachable="true")
-public class Tag {
+public class TagDO implements Tag {
 	@PrimaryKey
 	private String name;
 
@@ -37,104 +37,99 @@ public class Tag {
 	
 	@Persistent
 	private List<String> cachedPhotoList;
-	/**
-	 * @param name
-	 *            the name to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#setName(java.lang.String)
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return the name
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#getName()
 	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param parent
-	 *            the parent to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#setParent(com.google.appengine.api.datastore.Key)
 	 */
 	public void setParent(Key parent) {
 		this.parent = parent;
 	}
 
-	/**
-	 * @return the parent
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#getParent()
 	 */
 	public Key getParent() {
 		return parent;
 	}
 
-	/**
-	 * @param count
-	 *            the count to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#setCount(int)
 	 */
 	public void setCount(int count) {
 		this.count = count;
 	}
 
-	/**
-	 * @return the count
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#getCount()
 	 */
 	public int getCount() {
 		return count;
 	}
 
-	/**
-	 * @param tagName
-	 *            the tagName to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#setTagName(java.lang.String)
 	 */
 	public void setTagName(String tagName) {
 		this.tagName = tagName;
 	}
 
-	/**
-	 * @return the tagName
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#getTagName()
 	 */
 	public String getTagName() {
 		return tagName;
 	}
 
-	/**
-	 * @param parentId
-	 *            the parentId to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#setParentId(java.lang.String)
 	 */
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
 	}
 
-	/**
-	 * @return the parentId
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#getParentId()
 	 */
 	public String getParentId() {
 		return parentId;
 	}
 
-	/**
-	 * @param cachedPhotoList the cachedPhotoList to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#setCachedPhotoList(java.util.List)
 	 */
 	public void setCachedPhotoList(List<String> cachedPhotoList) {
 		this.cachedPhotoList = cachedPhotoList;
 	}
 
-	/**
-	 * @return the cachedPhotoList
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#getCachedPhotoList()
 	 */
 	public List<String> getCachedPhotoList() {
 		return cachedPhotoList;
 	}
 
-	/**
-	 * @param importIssued the importIssued to set
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#setImportIssued(boolean)
 	 */
 	public void setImportIssued(boolean importIssued) {
 		this.importIssued = importIssued;
 	}
 
-	/**
-	 * @return the importIssued
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.model.tag.Tag#isImportIssued()
 	 */
 	public boolean isImportIssued() {
 		return importIssued;

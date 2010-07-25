@@ -29,7 +29,7 @@ public class TagManager {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			List<TagNode> result = new ArrayList<TagNode>();
-			Extent<Tag> extent = pm.getExtent(Tag.class, false);
+			Extent<TagDO> extent = pm.getExtent(TagDO.class, false);
 			for (Tag tag : extent) {
 				TagNode node = new TagNode();
 				node.setName(tag.getName());
@@ -44,21 +44,21 @@ public class TagManager {
 		}
 	}
 
-	public Tag getOrNew(String id) {
-		Tag tag = null;
+	public TagDO getOrNew(String id) {
+		TagDO tag = null;
 		try {
 			tag = getById(id);
 		} catch (JDOObjectNotFoundException notExistedYet) {
-			tag = new Tag();
+			tag = new TagDO();
 			tag.setName(id);
 		}
 		return tag;
 	}
-	public Tag getById(String tagId) {
+	public TagDO getById(String tagId) {
 		PersistenceManager pm = pmProvider.get();
-		Tag tag = null;
+		TagDO tag = null;
 		try {
-			tag = pm.getObjectById(Tag.class, tagId);
+			tag = pm.getObjectById(TagDO.class, tagId);
 			tag = pm.detachCopy(tag);
 		} finally {
 			pm.close();
@@ -66,7 +66,7 @@ public class TagManager {
 		return tag;
 	}
 
-	public String save(Tag tag) {
+	public String save(TagDO tag) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.makePersistent(tag);
@@ -78,9 +78,9 @@ public class TagManager {
 	
 	public boolean deleteAll() {
 		PersistenceManager pm = pmProvider.get();
-		Extent<Tag> extent = pm.getExtent(Tag.class);
-		List<Tag> allTags = new ArrayList<Tag>();
-		for (Tag tag : extent) {
+		Extent<TagDO> extent = pm.getExtent(TagDO.class);
+		List<TagDO> allTags = new ArrayList<TagDO>();
+		for (TagDO tag : extent) {
 			// log.info(tag.toString());
 			allTags.add(tag);
 		}
@@ -94,7 +94,7 @@ public class TagManager {
 		}
 	}
 
-	public void saveAll(List<Tag> tagList) {
+	public void saveAll(List<TagDO> tagList) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.makePersistentAll(tagList);

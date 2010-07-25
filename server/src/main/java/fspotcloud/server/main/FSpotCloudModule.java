@@ -13,9 +13,10 @@ import fspotcloud.server.control.reciever.PhotoReciever;
 import fspotcloud.server.control.reciever.TagReciever;
 import fspotcloud.server.model.PersistenceManagerProvider;
 import fspotcloud.server.model.api.Batches;
+import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.batch.BatchManager;
-import fspotcloud.server.model.command.CommandDAO;
-import fspotcloud.server.model.peerdatabase.DefaultPeer;
+import fspotcloud.server.model.command.CommandManager;
+import fspotcloud.server.model.peerdatabase.PeerDatabaseManager;
 import fspotcloud.server.model.photo.PhotoManager;
 import fspotcloud.server.model.tag.TagManager;
 
@@ -24,10 +25,11 @@ public class FSpotCloudModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bind(Batches.class).to(BatchManager.class).in(Singleton.class);
-		bind(DefaultPeer.class).in(Singleton.class);
+		bind(Photos.class).to(PhotoManager.class).in(Singleton.class);
+		bind(PeerDatabaseManager.class).in(Singleton.class);
 		bind(PersistenceManager.class).toProvider(
 				PersistenceManagerProvider.class);
-		bind(CommandDAO.class).in(Singleton.class);
+		bind(CommandManager.class).in(Singleton.class);
 		bind(PhotoManager.class).in(Singleton.class);
 		bind(TagManager.class).in(Singleton.class);
 		bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(

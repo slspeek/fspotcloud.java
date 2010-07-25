@@ -17,8 +17,8 @@ import fspotcloud.server.control.Scheduler;
 import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
 import fspotcloud.server.model.batch.BatchDO;
-import fspotcloud.server.model.peerdatabase.DefaultPeer;
-import fspotcloud.server.model.peerdatabase.PeerDatabase;
+import fspotcloud.server.model.peerdatabase.PeerDatabaseManager;
+import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
 import fspotcloud.server.model.tag.Tag;
 import fspotcloud.server.model.tag.TagManager;
 import fspotcloud.shared.admin.BatchInfo;
@@ -39,7 +39,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	@Inject
 	private TagManager tagManager;
 	@Inject
-	private DefaultPeer defaultPeer;
+	private PeerDatabaseManager defaultPeer;
 	
 	@Inject
 	private Scheduler scheduler;
@@ -62,13 +62,13 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public int getPhotoCount() {
-		PeerDatabase pd = defaultPeer.get();
+		PeerDatabaseDO pd = defaultPeer.get();
 		return pd.getCount();
 	}
 
 	@Override
 	public int getTagCount() {
-		PeerDatabase pd = defaultPeer.get();
+		PeerDatabaseDO pd = defaultPeer.get();
 		return pd.getTagCount();
 	}
 

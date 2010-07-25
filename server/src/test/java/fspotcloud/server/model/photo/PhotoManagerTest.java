@@ -19,14 +19,16 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.google.inject.Provider;
 
 import fspotcloud.server.model.PersistenceManagerProvider;
-import fspotcloud.server.model.tag.Tag;
+import fspotcloud.server.model.api.Photo;
+import fspotcloud.server.model.api.Photos;
+import fspotcloud.server.model.tag.TagDO;
 
 public class PhotoManagerTest extends TestCase {
 
 	private final LocalServiceTestHelper helper = new LocalServiceTestHelper(
 			new LocalDatastoreServiceTestConfig());
 
-	private PhotoManager photoManager;
+	private Photos photoManager;
 
 	private Provider<PersistenceManager> pmProviver = new PersistenceManagerProvider();
 
@@ -52,13 +54,13 @@ public class PhotoManagerTest extends TestCase {
 	
 	@Test
 	public void testGetPhotosStartingAtDate() {
-		PhotoDO before = new PhotoDO();
+		Photo before = new PhotoDO();
 		before.setDate(getDate(2006, 0, 0));
 	}
 
 	@Test
 	public void testGetOrNew() {
-		PhotoDO photo = photoManager.getOrNew("1");
+		Photo photo = photoManager.getOrNew("1");
 		try {
 			photoManager.getById("1");
 			fail();
@@ -69,7 +71,7 @@ public class PhotoManagerTest extends TestCase {
 	}
 	
 	public void testFilteringOnBoolean() {
-		PhotoDO photo = photoManager.getOrNew("1");
+		Photo photo = photoManager.getOrNew("1");
 		photo.setImageLoaded(true);
 		photoManager.save(photo);
 		
@@ -90,7 +92,7 @@ public class PhotoManagerTest extends TestCase {
 	}
 	
 	public void testCreateLoadModify() {
-		PhotoDO photo, retrieved;
+		Photo photo, retrieved;
 		photo = new PhotoDO();
 		photo.setName("1");
 		photoManager.save(photo);
@@ -107,7 +109,7 @@ public class PhotoManagerTest extends TestCase {
 
 	@Test
 	public void testDelete() {
-		PhotoDO photo = photoManager.getOrNew("1");
+		Photo photo = photoManager.getOrNew("1");
 		
 		
 	}
@@ -122,7 +124,7 @@ public class PhotoManagerTest extends TestCase {
 		photo.setName("1");
 		photo.setDescription("Nice");
 		photoManager.save(photo);
-		PhotoDO retrieved = photoManager.getOrNew("1");
+		Photo retrieved = photoManager.getOrNew("1");
 		assertEquals("Nice", retrieved.getDescription());
 	}
 

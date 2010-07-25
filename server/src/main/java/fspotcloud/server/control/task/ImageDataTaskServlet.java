@@ -20,8 +20,9 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
 import fspotcloud.server.control.Scheduler;
+import fspotcloud.server.model.api.Photo;
+import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.photo.PhotoDO;
-import fspotcloud.server.model.photo.PhotoManager;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -32,7 +33,7 @@ public class ImageDataTaskServlet extends HttpServlet {
 	@Inject @Named("maxTicks")
 	private Integer maxTicks;
 	@Inject
-	private PhotoManager photoManager;
+	private Photos photoManager;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -45,10 +46,10 @@ public class ImageDataTaskServlet extends HttpServlet {
 		String tagId = request.getParameter("tagId");
 
 		// Do our part of the job, scheduling the oldest images
-		List<PhotoDO> result = photoManager.getEmptyPhotosForTagAfter(tagId,
+		List<Photo> result = photoManager.getEmptyPhotosForTagAfter(tagId,
 				minDate, maxTicks);
 
-		for (PhotoDO photo : result) {
+		for (Photo photo : result) {
 			List<String> args = new ArrayList<String>();
 			args.add(photo.getName());
 			args.add("800");
@@ -56,7 +57,7 @@ public class ImageDataTaskServlet extends HttpServlet {
 			scheduler.schedule("sendImageData", args);
 		}
 		if (!result.isEmpty()) {
-			PhotoDO last = result.get(result.size() - 1);
+			Photo last = result.get(result.size() - 1);
 			Date newMinDate = last.getDate();
 			long newMinDateLong = newMinDate.getTime();
 			boolean needToSchedule = count > maxTicks;

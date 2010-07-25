@@ -12,29 +12,29 @@ import com.google.inject.Provider;
 
 import fspotcloud.shared.tag.TagNode;
 
-public class DefaultPeer {
-	private static final Logger log = Logger.getLogger(DefaultPeer.class
+public class PeerDatabaseManager {
+	private static final Logger log = Logger.getLogger(PeerDatabaseManager.class
 			.getName());
 
 	private final Provider<PersistenceManager> pmProvider;
 
 	@Inject
-	public DefaultPeer(Provider<PersistenceManager> pmProvider) {
+	public PeerDatabaseManager(Provider<PersistenceManager> pmProvider) {
 		this.pmProvider = pmProvider;
 	}
 
-	public PeerDatabase get() {
+	public PeerDatabaseDO get() {
 		PersistenceManager pm = pmProvider.get();
-		PeerDatabase attachedPeerDatabase, peerDatabase;
+		PeerDatabaseDO attachedPeerDatabase, peerDatabase;
 		try {
-			attachedPeerDatabase = pm.getObjectById(PeerDatabase.class, "1");
+			attachedPeerDatabase = pm.getObjectById(PeerDatabaseDO.class, "1");
 			peerDatabase = pm.detachCopy(attachedPeerDatabase);
 			peerDatabase.setCachedTagTree(new ArrayList<TagNode>(attachedPeerDatabase
 					.getCachedTagTree()));
 
 		} catch (JDOObjectNotFoundException firstTime) {
 			log.info("Default peer not found, creating one.");
-			peerDatabase = new PeerDatabase();
+			peerDatabase = new PeerDatabaseDO();
 			peerDatabase.setName("1");
 			peerDatabase.setCount(0);
 			peerDatabase.setTagCount(0);
@@ -49,16 +49,16 @@ public class DefaultPeer {
 
 	public List<TagNode> getCachedTagTree() {
 		PersistenceManager pm = pmProvider.get();
-		PeerDatabase peerDatabase;
+		PeerDatabaseDO peerDatabase;
 		try {
-			peerDatabase = pm.getObjectById(PeerDatabase.class, "1");
+			peerDatabase = pm.getObjectById(PeerDatabaseDO.class, "1");
 			return peerDatabase.getCachedTagTree();
 		} finally {
 			pm.close();
 		}
 	}
 
-	public void save(PeerDatabase pd) {
+	public void save(PeerDatabaseDO pd) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			log.info("Saving default peer with count: " + pd.getCount());
