@@ -14,8 +14,8 @@ import com.google.inject.Singleton;
 
 import fspotcloud.rpc.AdminService;
 import fspotcloud.server.control.Scheduler;
+import fspotcloud.server.model.api.Batches;
 import fspotcloud.server.model.batch.BatchDO;
-import fspotcloud.server.model.batch.Batches;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
 import fspotcloud.server.model.tag.Tag;

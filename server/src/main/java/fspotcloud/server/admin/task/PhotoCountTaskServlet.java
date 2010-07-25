@@ -19,8 +19,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
-import fspotcloud.server.model.batch.BatchDO;
-import fspotcloud.server.model.batch.Batches;
+import fspotcloud.server.model.api.Batch;
+import fspotcloud.server.model.api.Batches;
 import fspotcloud.server.model.photo.PhotoDO;
 import fspotcloud.server.model.photo.PhotoManager;
 
@@ -49,7 +49,7 @@ public class PhotoCountTaskServlet extends HttpServlet {
 		String countParam = request.getParameter("count");
 		int count = Integer.valueOf(countParam);
 
-		BatchDO batch = batchManager.getById(batchId);
+		Batch batch = batchManager.getById(batchId);
 		batch.incrementInterationCount();
 		
 		List<PhotoDO> result = photoManager.getPhotosStartingAtDate(minDate, STEP);

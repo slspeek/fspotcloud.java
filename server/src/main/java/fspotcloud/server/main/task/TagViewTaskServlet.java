@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.jdo.Query;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -20,8 +19,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
-import fspotcloud.server.model.batch.BatchDO;
-import fspotcloud.server.model.batch.Batches;
+import fspotcloud.server.model.api.Batch;
+import fspotcloud.server.model.api.Batches;
 import fspotcloud.server.model.photo.PhotoDO;
 import fspotcloud.server.model.photo.PhotoManager;
 import fspotcloud.server.model.tag.Tag;
@@ -54,7 +53,7 @@ public class TagViewTaskServlet extends HttpServlet {
 
 		String batchIdParam = request.getParameter("batchId");
 		long batchId = Long.valueOf(batchIdParam);
-		BatchDO batch = batchManager.getById(batchId);
+		Batch batch = batchManager.getById(batchId);
 		batch.incrementInterationCount();
 		batchManager.save(batch);
 		String minDateParam = request.getParameter("minDate");

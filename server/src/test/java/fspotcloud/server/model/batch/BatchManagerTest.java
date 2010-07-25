@@ -19,6 +19,8 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.google.inject.Provider;
 
 import fspotcloud.server.model.PersistenceManagerProvider;
+import fspotcloud.server.model.api.Batch;
+import fspotcloud.server.model.api.Batches;
 
 /**
  * @author fspotcloud
@@ -51,7 +53,7 @@ public class BatchManagerTest extends TestCase {
 		long l = batchManager.save(batch);
 		long k = batchManager.save(batch);
 
-		List<BatchDO> all = batchManager.getAll();
+		List<Batch> all = batchManager.getAll();
 		assertEquals(1, all.size());
 		Batch retrieved = all.get(0);
 		assertEquals("test job", retrieved.getJobName());
@@ -60,11 +62,11 @@ public class BatchManagerTest extends TestCase {
 
 	@Test
 	public void testDelete() {
-		BatchDO batch = new BatchDO();
+		Batch batch = new BatchDO();
 		batch.setJobName("deletable job");
 		long l = batchManager.save(batch);
 
-		List<BatchDO> all = batchManager.getAll();
+		List<Batch> all = batchManager.getAll();
 		assertEquals(1, all.size());
 		batchManager.delete(batch);
 		all = batchManager.getAll();
@@ -73,16 +75,15 @@ public class BatchManagerTest extends TestCase {
 
 	@Test
 	public void testCreateLoadModifySave() {
-		BatchDO batch = new BatchDO();
+		Batch batch = new BatchDO();
 		long l = batchManager.save(batch);
 
-		BatchDO retrieved = batchManager.getById(l);
+		Batch retrieved = batchManager.getById(l);
 		retrieved.setResult("PI");
 		long k = batchManager.save(retrieved);
 		assertEquals(l, k);
 		retrieved = batchManager.getById(l);
 		assertEquals("PI", retrieved.getResult());
-
 	}
 
 	@Test

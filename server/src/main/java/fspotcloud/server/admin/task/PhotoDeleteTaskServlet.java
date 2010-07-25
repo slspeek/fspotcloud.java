@@ -17,8 +17,8 @@ import com.google.appengine.api.labs.taskqueue.QueueFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import fspotcloud.server.model.batch.BatchDO;
-import fspotcloud.server.model.batch.Batches;
+import fspotcloud.server.model.api.Batch;
+import fspotcloud.server.model.api.Batches;
 import fspotcloud.server.model.peerdatabase.DefaultPeer;
 import fspotcloud.server.model.peerdatabase.PeerDatabase;
 import fspotcloud.server.model.photo.PhotoDO;
@@ -47,7 +47,7 @@ public class PhotoDeleteTaskServlet extends HttpServlet {
 		String deleteCountParam = request.getParameter("deleteCount");
 		int deleteCount = Integer.valueOf(deleteCountParam);
 		
-		BatchDO batch = batchManager.getById(batchId);
+		Batch batch = batchManager.getById(batchId);
 		batch.incrementInterationCount();
 		
 		List<PhotoDO> result = photoManager.getOldestPhotosChunk();

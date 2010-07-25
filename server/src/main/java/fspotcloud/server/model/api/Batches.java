@@ -1,4 +1,4 @@
-package fspotcloud.server.model.batch;
+package fspotcloud.server.model.api;
 
 import java.util.List;
 
@@ -8,12 +8,12 @@ public interface Batches {
 
 	public abstract BatchInfo getBatchInfo(long batchId);
 
-	public abstract BatchDO getById(long batchId);
+	public abstract Batch getById(long batchId);
 
-	public abstract long save(BatchDO batch);
+	public abstract long save(Batch batch);
 	
 	public abstract void delete(Batch batch);
 	
-	public abstract List<BatchDO> getAll();
+	public abstract List<Batch> getAll();
 
 }

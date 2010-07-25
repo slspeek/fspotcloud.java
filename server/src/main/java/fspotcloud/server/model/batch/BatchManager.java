@@ -10,6 +10,8 @@ import javax.jdo.PersistenceManager;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
+import fspotcloud.server.model.api.Batch;
+import fspotcloud.server.model.api.Batches;
 import fspotcloud.shared.admin.BatchInfo;
 
 public class BatchManager implements Batches {
@@ -35,7 +37,7 @@ public class BatchManager implements Batches {
 		return batchInfo;
 	}
 
-	public BatchDO getById(long batchId) {
+	public Batch getById(long batchId) {
 		BatchDO batch = null;
 		PersistenceManager pm = pmProvider.get();
 		try {
@@ -47,7 +49,7 @@ public class BatchManager implements Batches {
 		return batch;
 	}
 
-	public long save(BatchDO batch) {
+	public long save(Batch batch) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			pm.makePersistent(batch);
@@ -67,10 +69,10 @@ public class BatchManager implements Batches {
 		}
 	}
 
-	public List<BatchDO> getAll() {
+	public List<Batch> getAll() {
 		PersistenceManager pm = pmProvider.get();
 		try {
-			List<BatchDO> batches = new ArrayList<BatchDO>();
+			List<Batch> batches = new ArrayList<Batch>();
 			Extent<BatchDO> extent = pm.getExtent(BatchDO.class, false);
 			for (BatchDO batch : extent) {
 				batches.add(batch);
