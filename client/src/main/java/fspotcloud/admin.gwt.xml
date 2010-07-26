@@ -3,7 +3,6 @@
 <module>
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name='com.google.gwt.user.theme.standard.Standard'/>
-   <inherits name='fspotcloud.server.ApplicationServices' />
    <inherits name='fspotcloud.rpc' />
   <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->

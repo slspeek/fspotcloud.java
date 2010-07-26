@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>fspotcloud</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>war</artifactId>
+	<packaging>war</packaging>
+	<name>The packaging of the server code and the GWT-client code</name>
+  <description>The totality of the web application</description>
+	<dependencies>
+		<dependency>
+			<groupId>fspotcloud</groupId>
+			<artifactId>rpc</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>fspotcloud</groupId>
+			<artifactId>server</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>fspotcloud</groupId>
+			<artifactId>client</artifactId>
+			<version>${project.version}</version>
+      <type>jar</type>
+		</dependency>
+
+		<!-- Jars for GIN -->
+		<dependency>
+			<groupId>com.googlecode.gwt.inject</groupId>
+			<artifactId>gin</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!-- Jars for Guice -->
+		<dependency>
+			<groupId>com.google.code.guice</groupId>
+			<artifactId>guice</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.guice</groupId>
+			<artifactId>guice-servlet</artifactId>
+			<version>2.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock</artifactId>
+			<version>2.5.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--
+			jars from GAE's "lib/user" must be added as compile-time
+			dependencies, as described here in "Copying JARs" section:
+			http://code.google.com/appengine/docs/java/tools/ant.html
+		-->
+		<dependency>
+			<groupId>javax.jdo</groupId>
+			<artifactId>jdo2-api</artifactId>
+			<version>2.3-eb</version>
+			<exclusions>
+				<!--
+					exclude the legacy javax.transaction:transaction-api and replace it
+					with javax.transaction:jta (it appears to be the same thing)
+				-->
+				<exclusion>
+					<groupId>javax.transaction</groupId>
+					<artifactId>transaction-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.appengine.orm</groupId>
+			<artifactId>datanucleus-appengine</artifactId>
+			<version>1.0.4.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.datanucleus</groupId>
+			<artifactId>datanucleus-core</artifactId>
+			<version>1.1.5</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.transaction</groupId>
+					<artifactId>transaction-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>datanucleus-jpa</artifactId>
+			<version>1.1.5</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>geronimo-jpa_3.0_spec</artifactId>
+			<version>1.1.1</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-1.0-sdk</artifactId>
+			<version>${gae.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-labs</artifactId>
+			<version>${gae.version}</version>
+		</dependency>
+
+		<!-- 
+          GWT dependencies
+        -->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+		</dependency>
+		<!--
+			J2EE Servlet API. We need it to compile IndexServlet class. You can
+			probably remove it, if you don't explicitly use Servlets
+		-->
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-servlet_2.5_spec</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Test scope -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.5</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--
+			GAE libraries for local testing as described here:
+			http://code.google.com/appengine/docs/java/howto/unittesting.html
+		-->
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-stubs</artifactId>
+			<version>${gae.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-local-runtime</artifactId>
+			<version>${gae.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-testing</artifactId>
+			<version>${gae.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+			<version>1.0</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<!-- Jars for XMLRPC-server -->
+		<dependency>
+			<groupId>org.apache.xmlrpc</groupId>
+			<artifactId>xmlrpc-server</artifactId>
+			<version>3.1.3</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlrpc</groupId>
+			<artifactId>xmlrpc-common</artifactId>
+			<version>3.1.3</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		
+		<plugins>
+	<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack</id>
+            <phase>compile</phase> <!-- strange hack, to have it done early -->
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+            <artifactItems>
+            <artifactItem>
+              <groupId>fspotcloud</groupId>
+              <artifactId>client</artifactId>
+              <version>${version}</version>
+              <type>war</type>
+              <overWrite>true</overWrite>
+            </artifactItem>
+          </artifactItems>  <!-- configure the plugin here -->
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+			<!--
+				The actual maven-gae-plugin. Type "mvn gae:run" to run project, "mvn
+				gae:deploy" to upload to GAE.
+			-->
+			<plugin>
+				<groupId>net.kindleit</groupId>
+				<artifactId>maven-gae-plugin</artifactId>
+				<version>0.6.0</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1-alpha-2</version>
+				<configuration>
+				<webResources>
+			            <resource>
+					<directory>${basedir}/target/dependency/</directory>
+			            </resource>
+				</webResources>
+				</configuration>
+			</plugin>
+			<!--
+				Upload application to the appspot automatically, during
+				release:perform
+			-->
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<goals>gae:deploy</goals>
+				</configuration>
+			</plugin>
+      </plugins>
+	</build>
+
+	<properties>
+		<downloadSources>true</downloadSources>
+		<gae.version>1.3.5</gae.version>
+		<gwt.version>2.0.4</gwt.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>DataNucleus_Repos2</id>
+			<name>DataNucleus Repository</name>
+			<url>http://www.datanucleus.org/downloads/maven2</url>
+		</repository>
+		<repository>
+			<id>maven-gae-plugin-repo</id>
+			<name>maven-gae-plugin repository</name>
+			<url>
+                http://maven-gae-plugin.googlecode.com/svn/repository
+            </url>
+		</repository>
+		<repository>
+			<id>guice-maven</id>
+			<name>guice maven</name>
+			<url>http://guice-maven.googlecode.com/svn/trunk</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>DataNucleus_2</id>
+			<url>http://www.datanucleus.org/downloads/maven2/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>maven-gae-plugin-repo</id>
+			<name>maven-gae-plugin repository</name>
+			<url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
+		</pluginRepository>
+	</pluginRepositories>
+</project>
+
