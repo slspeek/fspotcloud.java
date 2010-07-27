@@ -10,9 +10,6 @@ import javax.jdo.Query;
 
 import junit.framework.TestCase;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
@@ -32,13 +29,11 @@ public class PhotoManagerTest extends TestCase {
 
 	private Provider<PersistenceManager> pmProviver = new PersistenceManagerProvider();
 
-	@Before
 	public void setUp() {
 		helper.setUp();
 		photoManager = new PhotoManager(pmProviver, 100);
 	}
 
-	@After
 	public void tearDown() {
 		helper.tearDown();
 	}
@@ -52,13 +47,11 @@ public class PhotoManagerTest extends TestCase {
 		return cal.getTime();
 	}
 	
-	@Test
 	public void testGetPhotosStartingAtDate() {
 		Photo before = new PhotoDO();
 		before.setDate(getDate(2006, 0, 0));
 	}
 
-	@Test
 	public void testGetOrNew() {
 		Photo photo = photoManager.getOrNew("1");
 		try {
@@ -87,8 +80,6 @@ public class PhotoManagerTest extends TestCase {
 		query.setFilter("imageLoaded == false");
 		photos = (List<PhotoDO>) query.execute();
 		assertEquals(0, photos.size());
-		
-		
 	}
 	
 	public void testCreateLoadModify() {
@@ -103,22 +94,16 @@ public class PhotoManagerTest extends TestCase {
 		assertEquals("Nice", retrieved.getDescription());
 	}
 
-	@Test
 	public void testGetOldestPhotosChunk() {
 	}
 
-	@Test
 	public void testDelete() {
 		Photo photo = photoManager.getOrNew("1");
-		
-		
 	}
 
-	@Test
 	public void testDeleteAll() {
 	}
 
-	@Test
 	public void testSave() {
 		PhotoDO photo = new PhotoDO();
 		photo.setName("1");
@@ -128,7 +113,6 @@ public class PhotoManagerTest extends TestCase {
 		assertEquals("Nice", retrieved.getDescription());
 	}
 
-	@Test
 	public void testSaveAll() {
 	}
 

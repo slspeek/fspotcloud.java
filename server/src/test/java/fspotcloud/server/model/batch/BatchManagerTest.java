@@ -10,10 +10,6 @@ import javax.jdo.PersistenceManager;
 
 import junit.framework.TestCase;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.google.inject.Provider;
@@ -35,13 +31,13 @@ public class BatchManagerTest extends TestCase {
 
 	private Provider<PersistenceManager> pmProviver = new PersistenceManagerProvider();
 
-	@Before
+	
 	public void setUp() {
 		helper.setUp();
 		batchManager = new BatchManager(pmProviver);
 	}
 
-	@After
+	
 	public void tearDown() {
 		helper.tearDown();
 	}
@@ -60,7 +56,7 @@ public class BatchManagerTest extends TestCase {
 
 	}
 
-	@Test
+	
 	public void testDelete() {
 		Batch batch = new BatchDO();
 		batch.setJobName("deletable job");
@@ -73,7 +69,7 @@ public class BatchManagerTest extends TestCase {
 		assertEquals(0, all.size());
 	}
 
-	@Test
+
 	public void testCreateLoadModifySave() {
 		Batch batch = new BatchDO();
 		long l = batchManager.save(batch);
@@ -86,7 +82,7 @@ public class BatchManagerTest extends TestCase {
 		assertEquals("PI", retrieved.getResult());
 	}
 
-	@Test
+
 	public void testThrowsObjectNotFound() {
 		try {
 			Batch retrieved = batchManager.getById(10);
@@ -94,17 +90,15 @@ public class BatchManagerTest extends TestCase {
 		} catch(JDOObjectNotFoundException yes) {
 			
 		}
-		
-
 	}
 
 	
-	@Test
+
 	public void testInsert1() {
 		doTest();
 	}
 
-	@Test
+
 	public void testInsert2() {
 		doTest();
 	}

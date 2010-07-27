@@ -28,6 +28,19 @@
       <type>jar</type>
 		</dependency>
 
+		<dependency>
+			<groupId>com.google.appengine.testing</groupId>
+			<artifactId>cloudcover-ui</artifactId>
+			<version>1.0.1.final</version>
+			<type>zip</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.appengine.testing</groupId>
+			<artifactId>cloudcover</artifactId>
+			<version>1.0.1.final</version>
+		</dependency>
+
 		<!-- Jars for GIN -->
 		<dependency>
 			<groupId>com.googlecode.gwt.inject</groupId>
@@ -149,12 +162,10 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Test scope -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.5</version>
-			<scope>test</scope>
+			<version>3.8.1</version>
 		</dependency>
 
 		<!--

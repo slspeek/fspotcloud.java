@@ -17,6 +17,12 @@
 			<artifactId>rpc</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.google.appengine.testing</groupId>
+			<artifactId>cloudcover</artifactId>
+			<version>1.0.1.final</version>
+		</dependency>
 
 		<!-- Jars for GIN -->
 		<dependency>
@@ -149,7 +155,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.5</version>
+			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
 
