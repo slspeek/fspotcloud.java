@@ -269,6 +269,7 @@
 					<directory>${basedir}/target/dependency/</directory>
 			            </resource>
 				</webResources>
+        <webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
 			<!--

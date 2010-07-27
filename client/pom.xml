@@ -9,13 +9,12 @@
 	<artifactId>client</artifactId>
 	<packaging>jar</packaging>
 	<name>GWT User interface and client logic</name>
-  <description>The general user interface and the admin console interface.</description>
+	<description>The general user interface and the admin console
+		interface.</description>
 	<dependencies>
 		<dependency>
 			<groupId>fspotcloud</groupId>
-			<artifactId>
-				rpc
-            </artifactId>
+			<artifactId>rpc</artifactId>
 		</dependency>
 		<!--  GWT deps -->
 		<dependency>
@@ -34,17 +33,18 @@
 
 	<build>
 		<plugins>
- <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.3.1</version>
-        <configuration>
-	<classesDirectory>${project.build.directory}/extra</classesDirectory>
-        <excludes>
-          <exclude>*/soycReport/**</exclude>
-        </excludes>
-        </configuration>
-      </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<classesDirectory>${project.build.directory}/extra
+					</classesDirectory>
+					<excludes>
+						<exclude>*/soycReport/**</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

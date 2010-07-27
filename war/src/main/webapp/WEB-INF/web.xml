@@ -17,6 +17,32 @@
 		<listener-class>fspotcloud.server.main.GuiceServletConfig</listener-class>
 	</listener>
 	<!-- Servlets -->
+	<servlet>
+        <servlet-name>
+            com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
+        </servlet-name>
+        <servlet-class>
+            com.google.appengine.testing.cloudcover.server.CloudCoverServiceImpl
+        </servlet-class>
+        <init-param>
+            <param-name>cloudcover.config.class</param-name>
+            <param-value>fspotcloud.server.model.TestRunnerConfig</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>
+            com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
+        </servlet-name>
+        <url-pattern>/com.google.appengine.testing.cloudcover.CloudCover/cloudcover</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>
+            com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
+        </servlet-name>
+        <url-pattern>/cloudcover/queueAction/*</url-pattern>
+    </servlet-mapping>
 	<!-- Default page to serve -->
 	<welcome-file-list>
 		<welcome-file>FSpotCloud.html</welcome-file>
