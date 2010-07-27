@@ -23,6 +23,12 @@
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud</groupId>
+			<artifactId>server</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+		</dependency>
+		<dependency>
+			<groupId>fspotcloud</groupId>
 			<artifactId>client</artifactId>
 			<version>${project.version}</version>
       <type>jar</type>
@@ -269,7 +275,7 @@
 					<directory>${basedir}/target/dependency/</directory>
 			            </resource>
 				</webResources>
-        <webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
+				<webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
 			<!--

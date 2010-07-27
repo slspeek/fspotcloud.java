@@ -8,12 +8,15 @@ import java.util.List;
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 
-import junit.framework.TestCase;
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
 
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.google.inject.Provider;
 
+import fspotcloud.server.model.DatastoreTest;
 import fspotcloud.server.model.PersistenceManagerProvider;
 import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
@@ -23,39 +26,21 @@ import fspotcloud.server.model.api.Batches;
  * 
  */
 
-public class BatchManagerTest extends TestCase {
-	private final LocalServiceTestHelper helper = new LocalServiceTestHelper(
-			new LocalDatastoreServiceTestConfig());
-
-	private Batches batchManager;
-
-	private Provider<PersistenceManager> pmProviver = new PersistenceManagerProvider();
+public class BatchManagerTest extends DatastoreTest {
+	
+	Provider<PersistenceManager> pmProvider = new PersistenceManagerProvider();
+	
+	public static TestSuite suite(){
+		return new TestSuite(BatchManagerTest.class);
+	}
+	
+	Batches batchManager;
 
 	
-	public void setUp() {
-		helper.setUp();
-		batchManager = new BatchManager(pmProviver);
+	public void setUp() throws Exception{
+		super.setUp();
+		batchManager = new BatchManager(pmProvider);
 	}
-
-	
-	public void tearDown() {
-		helper.tearDown();
-	}
-
-	private void doTest() {
-		BatchDO batch = new BatchDO();
-		batch.setJobName("test job");
-
-		long l = batchManager.save(batch);
-		long k = batchManager.save(batch);
-
-		List<Batch> all = batchManager.getAll();
-		assertEquals(1, all.size());
-		Batch retrieved = all.get(0);
-		assertEquals("test job", retrieved.getJobName());
-
-	}
-
 	
 	public void testDelete() {
 		Batch batch = new BatchDO();
@@ -95,11 +80,19 @@ public class BatchManagerTest extends TestCase {
 	
 
 	public void testInsert1() {
-		doTest();
-	}
+		//doTest();
+		BatchDO batch = new BatchDO();
+		batch.setJobName("test job");
 
+		long l = batchManager.save(batch);
+//		long k = batchManager.save(batch);
 
-	public void testInsert2() {
-		doTest();
+		List<Batch> all = batchManager.getAll();
+	//	assertEquals(2, all.size());
+		Batch retrieved = all.get(0);
+		assertEquals("test job", retrieved.getJobName());
+
 	}
+	
+
 }

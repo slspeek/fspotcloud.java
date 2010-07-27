@@ -26,7 +26,7 @@
         </servlet-class>
         <init-param>
             <param-name>cloudcover.config.class</param-name>
-            <param-value>fspotcloud.server.model.TestRunnerConfig</param-value>
+            <param-value>fspotcloud.server.model.MyTestRunnerConfig</param-value>
         </init-param>
     </servlet>
 

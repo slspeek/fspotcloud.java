@@ -8,36 +8,25 @@ import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import junit.framework.TestCase;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
-
-import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.google.inject.Provider;
 
+import fspotcloud.server.model.DatastoreTest;
 import fspotcloud.server.model.PersistenceManagerProvider;
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
-import fspotcloud.server.model.tag.TagDO;
 
-public class PhotoManagerTest extends TestCase {
-
-	private final LocalServiceTestHelper helper = new LocalServiceTestHelper(
-			new LocalDatastoreServiceTestConfig());
-
-	private Photos photoManager;
+public class PhotoManagerTest extends DatastoreTest {
 
 	private Provider<PersistenceManager> pmProviver = new PersistenceManagerProvider();
+	private Photos photoManager = new PhotoManager(pmProviver, 100);
 
-	public void setUp() {
-		helper.setUp();
-		photoManager = new PhotoManager(pmProviver, 100);
+	public static TestSuite suite(){
+		return new TestSuite(PhotoManagerTest.class);
 	}
-
-	public void tearDown() {
-		helper.tearDown();
-	}
-
+	
 	public Date getDate(int year, int month, int date) {
 		Calendar cal = Calendar.getInstance();
 		cal.clear();
@@ -56,7 +45,7 @@ public class PhotoManagerTest extends TestCase {
 		Photo photo = photoManager.getOrNew("1");
 		try {
 			photoManager.getById("1");
-			fail();
+			//fail();
 		} catch(JDOObjectNotFoundException yes) {
 			
 		}
