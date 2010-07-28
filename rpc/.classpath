@@ -1,8 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-  <classpathentry kind="src" path="src/main/java"/>
-  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
-  <classpathentry kind="output" path="target/classes"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-servlet/2.0.4/gwt-servlet-2.0.4.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-user/2.0.4/gwt-user-2.0.4.jar"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
+	<classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-servlet/2.0.4/gwt-servlet-2.0.4.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-user/2.0.4/gwt-user-2.0.4.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
