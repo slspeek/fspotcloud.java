@@ -1,0 +1,9 @@
+syntax: glob
+target/*
+*/target/*
+*/bin/*
+*.orig
+.settings/*
+server/.externalToolBuilders/*
+server/.settings/*
+*~
