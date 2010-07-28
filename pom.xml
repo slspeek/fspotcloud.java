@@ -155,6 +155,8 @@
 	</dependencyManagement>
 	<modules>
 		<module>rpc</module>
+		<module>model-api</module>
+		<module>model</module>
 		<module>server</module>
 		<module>client</module>
 		<module>peer</module>

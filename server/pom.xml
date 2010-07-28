@@ -17,6 +17,16 @@
 			<artifactId>rpc</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>fspotcloud</groupId>
+			<artifactId>model-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>fspotcloud</groupId>
+			<artifactId>model</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.google.appengine.testing</groupId>
@@ -219,52 +229,7 @@
 				This plug-in "enhances" your domain model objects (i.e. makes them
 				persistent for datanucleus)
 			-->
-			<plugin>
-				<groupId>org.datanucleus</groupId>
-				<artifactId>maven-datanucleus-plugin</artifactId>
-				<version>1.1.4</version>
-				<configuration>
-					<!--
-						Make sure this path contains your persistent classes!
-					-->
-					<mappingIncludes>fspotcloud/server/model/**/*.class</mappingIncludes>
-					<verbose>true</verbose>
-					<enhancerName>ASM</enhancerName>
-					<api>JDO</api>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>compile</phase>
-						<goals>
-							<goal>enhance</goal>
-						</goals>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.datanucleus</groupId>
-						<artifactId>datanucleus-core</artifactId>
-						<version>1.1.5</version>
-						<exclusions>
-							<exclusion>
-								<groupId>javax.transaction</groupId>
-								<artifactId>transaction-api</artifactId>
-							</exclusion>
-						</exclusions>
-					</dependency>
-					<dependency>
-						<groupId>org.datanucleus</groupId>
-						<artifactId>datanucleus-rdbms</artifactId>
-						<version>1.1.5</version>
-					</dependency>
-					<dependency>
-						<groupId>org.datanucleus</groupId>
-						<artifactId>datanucleus-enhancer</artifactId>
-						<version>1.1.4</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-
+		
 
 			<!--
 				The actual maven-gae-plugin. Type "mvn gae:run" to run project, "mvn
@@ -296,19 +261,6 @@
 					<source>1.6</source>
 					<target>1.6</target>
 				</configuration>
-			</plugin>
-			<!--  To include the test-jar for cloudcover -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.2</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>test-jar</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
