@@ -38,11 +38,15 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.3.1</version>
 				<configuration>
-					<classesDirectory>${project.build.directory}/extra
+					<classesDirectory>${project.build.directory}/${pom.artifactId}-${version}
 					</classesDirectory>
-					<excludes>
+					<!-- <excludes>
 						<exclude>*/soycReport/**</exclude>
-					</excludes>
+					</excludes> -->
+<!--          <includes>
+            <include>*/*.js</include>
+            <include>*/*.html</include>
+          </includes> -->
 				</configuration>
 			</plugin>
 			<plugin>
@@ -81,7 +85,7 @@
 					</server>
 
 					<runTarget>/FSpotCloud.html</runTarget>
-					<style>DETAILED</style>
+					<style>OBFUSCATED</style>
 					<!--					<webXml>war/WEB-INF/web.xml</webXml> -->
 					<!--
 						this parameter is VERY important with automatic mode - has to

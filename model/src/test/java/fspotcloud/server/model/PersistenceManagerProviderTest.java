@@ -2,10 +2,17 @@ package fspotcloud.server.model;
 
 import javax.jdo.PersistenceManager;
 
+import fspotcloud.server.model.batch.BatchManagerTest;
+
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 public class PersistenceManagerProviderTest extends TestCase {
 
+	public static TestSuite suite(){
+		return new TestSuite(PersistenceManagerProviderTest.class);
+	}
+	
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
