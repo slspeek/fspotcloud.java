@@ -240,7 +240,6 @@
 									<groupId>fspotcloud</groupId>
 									<artifactId>client</artifactId>
 									<version>${version}</version>
-									<type>war</type>
 									<overWrite>true</overWrite>
 								</artifactItem>
 								<artifactItem>
