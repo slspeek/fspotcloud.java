@@ -1,4 +1,4 @@
-package fspotcloud.server.model;
+package fspotcloud.server.test;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,31 +8,32 @@ import com.google.appengine.testing.cloudcover.harness.junit3.JUnit3Config;
 import com.google.appengine.testing.cloudcover.harness.junit3.JUnit3TestRun;
 import com.google.appengine.testing.cloudcover.spi.TestRun;
 
+import fspotcloud.server.control.ControllerTest;
+import fspotcloud.server.model.PersistenceManagerProviderTest;
 import fspotcloud.server.model.batch.BatchManagerTest;
 import fspotcloud.server.model.photo.PhotoManagerTest;
+import fspotcloud.server.util.TaskOptionsTest;
+import fspotcloud.server.util.TaskSchedulerTest;
 
 public class MyTestRunnerConfig extends JUnit3Config {
 
 	private enum Suite {
 
-		SUITE1("Suite1") {
+		SUITE1("Model") {
 			@Override
 			public TestSuite getTestSuite() {
 				suite.addTestSuite(PhotoManagerTest.class);
-				return suite;
-			}
-		},
-		SUITE2("Suite2") {
-			@Override
-			public TestSuite getTestSuite() {
 				suite.addTestSuite(BatchManagerTest.class);
+				suite.addTestSuite(PersistenceManagerProviderTest.class);
 				return suite;
 			}
 		},
-		SUITE3("Suite3") {
+		SUITE2("Server") {
 			@Override
 			public TestSuite getTestSuite() {
-				suite.addTestSuite(PersistenceManagerProviderTest.class);
+				suite.addTestSuite(ControllerTest.class);
+				suite.addTestSuite(TaskSchedulerTest.class);
+				suite.addTestSuite(TaskOptionsTest.class);
 				return suite;
 			}
 		};

@@ -15,12 +15,6 @@ public class GuiceRequestProcessorFactoryFactory implements
 	private static final Logger log = Logger.getLogger(GuiceRequestProcessorFactoryFactory.class
 			.getName());
 	
-//	private MetaReciever metaReciever;
-//	@Inject
-//	private TagReciever tagReciever;
-//	@Inject
-//	private PhotoReciever photoReciever;
-	
 	@Inject
 	private Injector injector;
 	@Inject
@@ -36,10 +30,8 @@ public class GuiceRequestProcessorFactoryFactory implements
 			@Override
 			public Object getRequestProcessor(XmlRpcRequest pRequest)
 					throws XmlRpcException {
-				// TODO Auto-generated method stub
 				log.info("Called for " + pClass.getName());
 				return injector.getInstance(pClass);
-				//return controller;
 			}
 		};
 	}
