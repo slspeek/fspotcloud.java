@@ -20,6 +20,13 @@
 			<groupId>fspotcloud</groupId>
 			<artifactId>server</artifactId>
 			<version>${project.version}</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>fspotcloud</groupId>
+			<artifactId>server</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud</groupId>
@@ -70,7 +77,6 @@
 			<groupId>org.jmock</groupId>
 			<artifactId>jmock</artifactId>
 			<version>2.5.1</version>
-			<scope>test</scope>
 		</dependency>
 
 		<!--
