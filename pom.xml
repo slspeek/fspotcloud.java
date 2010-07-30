@@ -62,6 +62,12 @@
 				http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/
 			</url>
 		</repository>
+		<repository>
+			<id>fspotcloud-maven</id>
+			<url>
+        http://maven.fspotcloud.googlecode.com/hg/repo
+			</url>
+		</repository>
 	</repositories>
 	<reporting>
 		<plugins>
