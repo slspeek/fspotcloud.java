@@ -25,6 +25,13 @@ public class MyTestRunnerConfig extends JUnit3Config {
 		SUITE2("Suite2") {
 			@Override
 			public TestSuite getTestSuite() {
+				suite.addTestSuite(BatchManagerTest.class);
+				return suite;
+			}
+		},
+		SUITE3("Suite3") {
+			@Override
+			public TestSuite getTestSuite() {
 				suite.addTestSuite(PersistenceManagerProviderTest.class);
 				return suite;
 			}
