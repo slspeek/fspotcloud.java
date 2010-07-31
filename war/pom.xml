@@ -40,6 +40,16 @@
 			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
+		<!--
+			AppEngine Completion Service
+			http://code.google.com/p/appenginecompletionservice/
+		-->
+		<dependency>
+			<groupId>aecs</groupId>
+			<artifactId>aecs</artifactId>
+			<version>1.0</version>
+			<type>jar</type>
+		</dependency>
 
 		<dependency>
 			<groupId>com.google.appengine.testing</groupId>
@@ -202,7 +212,7 @@
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-testing</artifactId>
 			<version>${gae.version}</version>
-		
+
 		</dependency>
 		<dependency>
 			<groupId>aopalliance</groupId>
