@@ -6,6 +6,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 
+import fspotcloud.server.admin.task.FooTask;
 import fspotcloud.server.control.Controller;
 import fspotcloud.server.control.GuiceRequestProcessorFactoryFactory;
 import fspotcloud.server.control.reciever.MetaReciever;
@@ -27,6 +28,7 @@ public class FSpotCloudModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
+		bind(FooTask.class);
 		bind(Batches.class).to(BatchManager.class).in(Singleton.class);
 		bind(Photos.class).to(PhotoManager.class).in(Singleton.class);
 		bind(PeerDatabases.class).to(PeerDatabaseManager.class).in(Singleton.class);

@@ -33,7 +33,17 @@
 			<version>${project.version}</version>
 			<type>test-jar</type>
 		</dependency>
-
+		<!--
+			AppEngine Completion Service
+			http://code.google.com/p/appenginecompletionservice/
+		-->
+		<dependency>
+			<groupId>aecs</groupId>
+			<artifactId>aecs</artifactId>
+			<version>1.0</version>
+			<type>jar</type>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.google.appengine.testing</groupId>
 			<artifactId>cloudcover</artifactId>
@@ -235,7 +245,7 @@
 				This plug-in "enhances" your domain model objects (i.e. makes them
 				persistent for datanucleus)
 			-->
-		
+
 
 			<!--
 				The actual maven-gae-plugin. Type "mvn gae:run" to run project, "mvn
