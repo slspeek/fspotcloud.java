@@ -22,6 +22,7 @@ public class FSpotCloudServletModule extends ServletModule {
 		serve("/control/task/photoData").with(PhotoDataTaskServlet.class);
 		serve("/main/task/tagView").with(TagViewTaskServlet.class);
 		serve("/fspotcloud/tag").with(TagServiceImpl.class);
+		serve("/fspotcloud.admin/tag").with(TagServiceImpl.class);
 		serve("/admin/task/photoCount").with(PhotoCountTaskServlet.class);
 		serve("/admin/task/photoDelete").with(PhotoDeleteTaskServlet.class);
 		serve("/control/task/imageData").with(ImageDataTaskServlet.class);

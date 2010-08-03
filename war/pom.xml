@@ -21,6 +21,12 @@
 			<artifactId>server</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.appengine</groupId>
+					<artifactId>appengine-local-runtime</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud</groupId>
@@ -161,17 +167,6 @@
 		</dependency>
 
 		<!-- Extra for cloudcover -->
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-api-stubs</artifactId>
-			<version>${gae.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-local-runtime</artifactId>
-			<version>${gae.version}</version>
-		</dependency>
 
 		<!-- 
           GWT dependencies

@@ -5,6 +5,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -14,10 +16,14 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
+import com.google.gwt.user.client.ui.TreeItem;
 
-import fspotcloud.shared.admin.BatchInfo;
+import fspotcloud.client.tree.TreePanel;
 import fspotcloud.rpc.AdminService;
 import fspotcloud.rpc.AdminServiceAsync;
+import fspotcloud.rpc.TagService;
+import fspotcloud.rpc.TagServiceAsync;
+import fspotcloud.shared.admin.BatchInfo;
 
 public class Admin implements EntryPoint {
 
@@ -26,7 +32,7 @@ public class Admin implements EntryPoint {
 	private DockLayoutPanel dockLayout = new DockLayoutPanel(Unit.PX);
 	private Label titleLabel = new Label("F-Spot Cloud Admin");
 
-	private Grid mainGrid = new Grid(3, 1);
+	private Grid mainGrid = new Grid(4, 1);
 
 	private FlexTable infoTable = new FlexTable();
 
@@ -79,7 +85,19 @@ public class Admin implements EntryPoint {
 
 	private final AdminServiceAsync adminService = GWT
 			.create(AdminService.class);
+	
+	private final TagServiceAsync tagService = GWT
+	.create(TagService.class);
 
+	private final SelectionHandler<TreeItem> treeHandler = new SelectionHandler<TreeItem>() {
+
+		@Override
+		public void onSelection(SelectionEvent<TreeItem> event) {
+			TreeItem item = event.getSelectedItem();
+			String tagId = (String) item.getUserObject();
+			statusLabel.setText("Tag " + tagId + " selected.");
+		}
+	};
 	@Override
 	public void onModuleLoad() {
 		dockLayout.addNorth(titleLabel, 80);
@@ -106,6 +124,11 @@ public class Admin implements EntryPoint {
 		mainGrid.setWidget(0, 0, infoTable);
 		mainGrid.setWidget(1, 0, actionTable);
 		mainGrid.setWidget(2, 0, cachePanel);
+		
+		
+		TreePanel treePanel = new TreePanel(tagService, treeHandler, statusLabel);
+		TagPanel tagPanel = new TagPanel(tagService, adminService, treePanel);
+		mainGrid.setWidget(3, 0, tagPanel);
 
 		statusPanel.add(statusLabel);
 		dockLayout.addSouth(statusPanel, 100);
