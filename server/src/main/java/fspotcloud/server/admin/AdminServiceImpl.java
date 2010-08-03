@@ -80,12 +80,9 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public void importTags() {
-		//scheduler.schedule("sendTagData", Collections.EMPTY_LIST);
+		scheduler.schedule("sendTagData", Collections.EMPTY_LIST);
 		AppEngineCompletionService<Integer> aecs = new AppEngineCompletionService<Integer>();
 		aecs.submit(fooTask);
-//		try {
-//			aecs.poll(1, TimeUnit.MILLISECONDS);
-//		} catch (InterruptedException e) {}
 	}
 
 	@Override
