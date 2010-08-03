@@ -18,10 +18,6 @@
 	</listener>
 	<!-- Servlets -->
 	<servlet>
-		<servlet-name>AECSServlet</servlet-name>
-		<servlet-class>aecs.servlet.AECSServlet</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>
 			com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
         </servlet-name>
@@ -46,10 +42,6 @@
 			com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
         </servlet-name>
 		<url-pattern>/cloudcover/queueAction/*</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>AECSServlet</servlet-name>
-		<url-pattern>/_aecs/*</url-pattern>
 	</servlet-mapping>
 	<!-- Default page to serve -->
 	<welcome-file-list>
