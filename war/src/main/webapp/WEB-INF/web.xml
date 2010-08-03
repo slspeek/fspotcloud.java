@@ -18,51 +18,59 @@
 	</listener>
 	<!-- Servlets -->
 	<servlet>
-        <servlet-name>
-            com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
+		<servlet-name>AECSServlet</servlet-name>
+		<servlet-class>aecs.servlet.AECSServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>
+			com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
         </servlet-name>
-        <servlet-class>
-            com.google.appengine.testing.cloudcover.server.CloudCoverServiceImpl
+		<servlet-class>
+			com.google.appengine.testing.cloudcover.server.CloudCoverServiceImpl
         </servlet-class>
-        <init-param>
-            <param-name>cloudcover.config.class</param-name>
-            <param-value>fspotcloud.server.test.MyTestRunnerConfig</param-value>
-        </init-param>
-    </servlet>
+		<init-param>
+			<param-name>cloudcover.config.class</param-name>
+			<param-value>fspotcloud.server.test.MyTestRunnerConfig</param-value>
+		</init-param>
+	</servlet>
 
-    <servlet-mapping>
-        <servlet-name>
-            com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
+	<servlet-mapping>
+		<servlet-name>
+			com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
         </servlet-name>
-        <url-pattern>/com.google.appengine.testing.cloudcover.CloudCover/cloudcover</url-pattern>
-    </servlet-mapping>
+		<url-pattern>/com.google.appengine.testing.cloudcover.CloudCover/cloudcover</url-pattern>
+	</servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>
-            com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
+	<servlet-mapping>
+		<servlet-name>
+			com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
         </servlet-name>
-        <url-pattern>/cloudcover/queueAction/*</url-pattern>
-    </servlet-mapping>
+		<url-pattern>/cloudcover/queueAction/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AECSServlet</servlet-name>
+		<url-pattern>/_aecs/*</url-pattern>
+	</servlet-mapping>
 	<!-- Default page to serve -->
 	<welcome-file-list>
 		<welcome-file>FSpotCloud.html</welcome-file>
 	</welcome-file-list>
- 	<security-constraint>
-        <web-resource-collection>
-            <url-pattern>/Admin.html</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>admin</role-name>
-        </auth-constraint>
-    </security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<url-pattern>/Admin.html</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
 
-    <security-constraint>
-        <web-resource-collection>
-            <url-pattern>/fspotcloud.admin/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>admin</role-name>
-        </auth-constraint>
-    </security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<url-pattern>/fspotcloud.admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
 
 </web-app>
