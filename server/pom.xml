@@ -33,6 +33,44 @@
 			<version>${project.version}</version>
 			<type>test-jar</type>
 		</dependency>
+		<!--   MapReduce  and 4 of its dependencies -->
+		<dependency>
+		<groupId>com.google.appengine.tools.mapreduce</groupId>
+		<artifactId>appengine-mapper</artifactId>
+		<version>r91</version>
+		</dependency>
+		<dependency>
+		<groupId>com.google.appengine.tools.mapreduce</groupId>
+		<artifactId>charts4j</artifactId>
+		<version>1.2</version>
+		</dependency>
+		<dependency>
+		<groupId>com.google.appengine.tools.mapreduce</groupId>
+		<artifactId>json</artifactId>
+		<version>UNKNOWN</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-core</artifactId>
+			<version>0.20.2</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>r05</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		
 		<!--
 			AppEngine Completion Service
 			http://code.google.com/p/appenginecompletionservice/
@@ -68,13 +106,7 @@
 			<artifactId>guice-servlet</artifactId>
 			<version>2.0</version>
 		</dependency>
-		<dependency>
-			<groupId>com.jteigen.scalatest</groupId>
-			<artifactId>junit4runner</artifactId>
-			<version>1.0</version>
-			<scope>test</scope>
-		</dependency>
-
+	
 		<dependency>
 			<groupId>org.jmock</groupId>
 			<artifactId>jmock</artifactId>
@@ -230,6 +262,7 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		
 	</dependencies>
 	<build>
 		<resources>
