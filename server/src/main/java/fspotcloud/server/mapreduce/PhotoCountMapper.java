@@ -62,7 +62,8 @@ public class PhotoCountMapper extends AppEngineMapper<Key, Entity, NullWritable,
     context.getCounter("Photos", "Total").increment(1);
     if (value.hasProperty("imageLoaded")) {
       // These counts are aggregated and can be seen on the status page.
-      if (value.getProperty("imageLoaded").equals(true)) {
+      Boolean loaded = (Boolean) value.getProperty("imageLoaded"); 
+      if (loaded != null && loaded == true ) {
         context.getCounter("Photo", "Images").increment(1);
       } 
     }
