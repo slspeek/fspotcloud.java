@@ -2,7 +2,7 @@
   <configuration name="Photo Counter Mapper">
     <property>
       <name>mapreduce.map.class</name>
-      <value>fspotcloud.server.mapreduce.PhotoCounterMapper</value>
+      <value>fspotcloud.server.mapreduce.PhotoCountMapper</value>
     </property>
     <property>
       <name>mapreduce.inputformat.class</name>
