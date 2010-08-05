@@ -18,8 +18,13 @@
 	</listener>
 	<!-- Servlets -->
 	<servlet>
+		<servlet-name>mapreduce</servlet-name>
+		<servlet-class>com.google.appengine.tools.mapreduce.MapReduceServlet</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>
-			com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
+			com.google.appengine.testing.cloudcover.CloudCover
+			CloudCoverService
         </servlet-name>
 		<servlet-class>
 			com.google.appengine.testing.cloudcover.server.CloudCoverServiceImpl
@@ -31,15 +36,21 @@
 	</servlet>
 
 	<servlet-mapping>
+		<servlet-name>mapreduce</servlet-name>
+		<url-pattern>/mapreduce/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>
-			com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
+			com.google.appengine.testing.cloudcover.CloudCover
+			CloudCoverService
         </servlet-name>
 		<url-pattern>/com.google.appengine.testing.cloudcover.CloudCover/cloudcover</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>
-			com.google.appengine.testing.cloudcover.CloudCover CloudCoverService
+			com.google.appengine.testing.cloudcover.CloudCover
+			CloudCoverService
         </servlet-name>
 		<url-pattern>/cloudcover/queueAction/*</url-pattern>
 	</servlet-mapping>
