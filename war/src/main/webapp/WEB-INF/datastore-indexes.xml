@@ -10,4 +10,7 @@
         <property name="tagList" direction="asc"/>
         <property name="date" direction="asc"/>
     </datastore-index>
+     <datastore-index kind="PhotoDO" ancestor="false" source="manual">
+        <property name="__key__" direction="desc"/>
+    </datastore-index>
 </datastore-indexes>
