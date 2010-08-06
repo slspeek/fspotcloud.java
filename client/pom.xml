@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>fspotcloud</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>client</artifactId>
+	<packaging>jar</packaging>
+	<name>GWT User interface and client logic</name>
+	<description>The general user interface and the admin console
+		interface.</description>
+	<dependencies>
+		<dependency>
+			<groupId>fspotcloud</groupId>
+			<artifactId>rpc</artifactId>
+		</dependency>
+		<!--  GWT deps -->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<classesDirectory>${project.build.directory}/${pom.artifactId}-${version}
+					</classesDirectory>
+					<!-- <excludes>
+						<exclude>*/soycReport/**</exclude>
+					</excludes> -->
+<!--          <includes>
+            <include>*/*.js</include>
+            <include>*/*.html</include>
+          </includes> -->
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<!-- All the fantastical settings that GWT needs -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>1.3.1.google</version>
+				<configuration>
+					<compileSourcesArtifacts>
+						<compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact>
+					</compileSourcesArtifacts>
+					<logLevel>INFO</logLevel>
+					<!-- match -Dgae.port -->
+					<port>${gae.port}</port>
+					<!-- This must point to your GWT modules! -->
+					<compileTargets>
+						<value>fspotcloud.FSpotCloud</value>
+						<value>fspotcloud.admin</value>
+					</compileTargets>
+					<extraJvmArgs>-Xmx512m</extraJvmArgs>
+					<!--
+						TODO This should help running GAE stuff in hosted mode (when
+						gwt-maven-plugin-1.2 is released, see
+						http://jira.codehaus.org/browse/MGWT-112)
+					-->
+					<server>com.google.appengine.tools.development.gwt.AppEngineLauncher
+					</server>
+
+					<runTarget>/FSpotCloud.html</runTarget>
+					<style>OBFUSCATED</style>
+					<!--					<webXml>war/WEB-INF/web.xml</webXml> -->
+					<!--
+						this parameter is VERY important with automatic mode - has to
+						match the version in your declared deps
+					-->
+					<gwtVersion>${gwt.version}</gwtVersion>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+

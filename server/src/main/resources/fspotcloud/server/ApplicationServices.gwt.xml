@@ -1,0 +1,9 @@
+<module>
+
+	<inherits name='com.google.gwt.user.User' />
+
+	<!-- Service Servlet Mapping -->
+	<servlet path='/fspotcloud/tag' class='fspotcloud.server.main.TagServiceImpl' />
+	<servlet path='/fspotcloud.admin/admin' class='fspotcloud.server.admin.AdminServiceImpl' />
+
+</module>
