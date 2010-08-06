@@ -423,6 +423,12 @@
 			<name>guice maven</name>
 			<url>http://guice-maven.googlecode.com/svn/trunk</url>
 		</repository>
+<repository>
+			<id>fspotcloud-maven</id>
+			<url>
+        http://maven.fspotcloud.googlecode.com/hg/repo
+			</url>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
