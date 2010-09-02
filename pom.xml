@@ -52,31 +52,12 @@
 			<id>Google Web Toolkit on Google project hosting</id>
 			<url> http://google-web-toolkit.googlecode.com/svn/2.1.0.M1/gwt/maven/</url>
 		</pluginRepository>
-
 	</pluginRepositories>
-
-	<repositories>
-		<repository>
-			<id>gwt-maven</id>
-			<url>
-				http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/
-			</url>
-		</repository>
-		<repository>
-			<id>fspotcloud-maven</id>
-			<url>
-        http://maven.fspotcloud.googlecode.com/hg/repo
-			</url>
-		</repository>
-	</repositories>
 	<reporting>
 		<plugins>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>
-					maven-project-info-reports-plugin
-				</artifactId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<reportSets>
 					<reportSet>
 						<reports>
@@ -126,42 +107,53 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	<properties>
-		<gwtVersion>2.0.4</gwtVersion>
-	</properties>
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>fspotcloud</groupId>
-				<artifactId>
-					server
-				</artifactId>
+				<artifactId>server</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>fspotcloud</groupId>
-				<artifactId>
-					rpc
-				</artifactId>
+				<artifactId>rpc</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>fspotcloud</groupId>
-				<artifactId>
-					client
-				</artifactId>
+				<artifactId>client</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>fspotcloud</groupId>
-				<artifactId>
-					peer
-				</artifactId>
+				<artifactId>peer</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fspotcloud</groupId>
+				<artifactId>model-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fspotcloud</groupId>
+				<artifactId>model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fspotcloud</groupId>
+				<artifactId>war</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fspotcloud</groupId>
+				<artifactId>deps</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<properties>
+		<gwtVersion>2.0.4</gwtVersion>
+	</properties>
 	<modules>
 		<module>rpc</module>
 		<module>model-api</module>
@@ -170,5 +162,6 @@
 		<module>client</module>
 		<module>peer</module>
 		<module>war</module>
+		<module>deps</module>
 	</modules>
 </project>
