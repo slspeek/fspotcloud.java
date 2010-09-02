@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>deps</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>guice-deps</artifactId>
+	<groupId>fspotcloud.deps</groupId>
+	<packaging>pom</packaging>
+	<name>Dependencies for Guice</name>
+	<dependencies>
+		<dependency>
+			<groupId>com.google.code.guice</groupId>
+			<artifactId>guice</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.guice</groupId>
+			<artifactId>guice-servlet</artifactId>
+			<version>2.0</version>
+		</dependency>
+	</dependencies>
+</project>
+
