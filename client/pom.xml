@@ -16,21 +16,13 @@
 			<groupId>fspotcloud</groupId>
 			<artifactId>rpc</artifactId>
 		</dependency>
-		<!--  GWT deps -->
 		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-servlet</artifactId>
-			<version>${gwtVersion}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-user</artifactId>
-			<version>${gwtVersion}</version>
-			<scope>provided</scope>
+			<groupId>fspotcloud.deps</groupId>
+			<artifactId>gwt-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -40,13 +32,6 @@
 				<configuration>
 					<classesDirectory>${project.build.directory}/${pom.artifactId}-${version}
 					</classesDirectory>
-					<!-- <excludes>
-						<exclude>*/soycReport/**</exclude>
-					</excludes> -->
-<!--          <includes>
-            <include>*/*.js</include>
-            <include>*/*.html</include>
-          </includes> -->
 				</configuration>
 			</plugin>
 			<plugin>
@@ -104,6 +89,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
 
