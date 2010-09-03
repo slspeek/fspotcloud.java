@@ -6,7 +6,7 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>fspotcloud.deps</groupId>
+	<groupId>${parent.groupId}.deps</groupId>
 	<artifactId>xmlrpc-server-deps</artifactId>
 	<packaging>pom</packaging>
 	<name>Dependencies for XMLRPC server</name>
