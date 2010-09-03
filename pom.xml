@@ -12,15 +12,6 @@
 		<connection>scm:hg:https://java.fspotcloud.googlecode.com/hg/</connection>
 		<url>http://code.google.com/p/fspotcloud/source/list?repo=java</url>
 	</scm>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.jwallez.plugin</groupId>
-				<artifactId>maven-google-plugin</artifactId>
-				<version>0.1-SNAPSHOT</version>
-			</plugin>
-		</plugins>
-	</build>
 	<developers>
 		<developer>
 			<id>slspeek</id>
@@ -36,6 +27,41 @@
 			<timezone>+1</timezone>
 		</developer>
 	</developers>
+	<modules>
+		<module>rpc</module>
+		<module>model-api</module>
+		<module>model</module>
+		<module>server</module>
+		<module>client</module>
+		<module>peer</module>
+		<module>war</module>
+		<module>deps</module>
+	</modules>
+	<build>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.jwallez.plugin</groupId>
+					<artifactId>maven-google-plugin</artifactId>
+					<version>0.1-SNAPSHOT</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<properties>
+		<gwtVersion>2.0.4</gwtVersion>
+		<gae.version>1.3.5</gae.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>maven-google-plugin-repository</id>
@@ -151,17 +177,4 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	<properties>
-		<gwtVersion>2.0.4</gwtVersion>
-	</properties>
-	<modules>
-		<module>rpc</module>
-		<module>model-api</module>
-		<module>model</module>
-		<module>server</module>
-		<module>client</module>
-		<module>peer</module>
-		<module>war</module>
-		<module>deps</module>
-	</modules>
 </project>
