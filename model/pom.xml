@@ -10,15 +10,7 @@
 	<artifactId>model</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
 	<name>Model AppEngine Implementation</name>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<gae.version>1.3.5</gae.version>
-		<gwt.version>2.0.4</gwt.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>fspotcloud</groupId>
@@ -31,140 +23,30 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.google.appengine.testing</groupId>
-			<artifactId>cloudcover</artifactId>
-			<version>1.0.1.final</version>
-		</dependency>
-
-		<!-- Jars for GIN -->
-		<dependency>
-			<groupId>com.googlecode.gwt.inject</groupId>
-			<artifactId>gin</artifactId>
-			<version>1.0</version>
-		</dependency>
-
-		<!-- Jars for Guice -->
-		<dependency>
-			<groupId>com.google.code.guice</groupId>
-			<artifactId>guice</artifactId>
-			<version>2.0</version>
+			<groupId>fspotcloud.deps</groupId>
+			<artifactId>appengine-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
 		<dependency>
-			<groupId>com.google.code.guice</groupId>
-			<artifactId>guice-servlet</artifactId>
-			<version>2.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jmock</groupId>
-			<artifactId>jmock</artifactId>
-			<version>2.5.1</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!--
-			jars from GAE's "lib/user" must be added as compile-time
-			dependencies, as described here in "Copying JARs" section:
-			http://code.google.com/appengine/docs/java/tools/ant.html
-		-->
-		<dependency>
-			<groupId>javax.jdo</groupId>
-			<artifactId>jdo2-api</artifactId>
-			<version>2.3-eb</version>
-			<exclusions>
-				<!--
-					exclude the legacy javax.transaction:transaction-api and replace it
-					with javax.transaction:jta (it appears to be the same thing)
-				-->
-				<exclusion>
-					<groupId>javax.transaction</groupId>
-					<artifactId>transaction-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.transaction</groupId>
-			<artifactId>jta</artifactId>
-			<version>1.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine.orm</groupId>
-			<artifactId>datanucleus-appengine</artifactId>
-			<version>1.0.4.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.datanucleus</groupId>
-			<artifactId>datanucleus-core</artifactId>
-			<version>1.1.5</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.transaction</groupId>
-					<artifactId>transaction-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>datanucleus-jpa</artifactId>
-			<version>1.1.5</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>geronimo-jpa_3.0_spec</artifactId>
-			<version>1.1.1</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-api-1.0-sdk</artifactId>
-			<version>${gae.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-api-labs</artifactId>
-			<version>${gae.version}</version>
-		</dependency>
-
-		<!-- 
-          GWT dependencies
-        -->
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-servlet</artifactId>
-			<version>${gwt.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-user</artifactId>
-			<version>${gwt.version}</version>
-		</dependency>
-		<!--
-			J2EE Servlet API. We need it to compile IndexServlet class. You can
-			probably remove it, if you don't explicitly use Servlets
-		-->
-		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-servlet_2.5_spec</artifactId>
-			<version>1.2</version>
-			<scope>provided</scope>
+			<groupId>fspotcloud.deps</groupId>
+			<artifactId>guice-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
 
 		<!-- Test scope -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+			<groupId>fspotcloud.deps</groupId>
+			<artifactId>cloudcover-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
 
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
 		<!--
 			GAE libraries for local testing as described here:
 			http://code.google.com/appengine/docs/java/howto/unittesting.html
@@ -175,7 +57,6 @@
 			<version>${gae.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-local-runtime</artifactId>
@@ -188,29 +69,6 @@
 			<version>${gae.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>aopalliance</groupId>
-			<artifactId>aopalliance</artifactId>
-			<version>1.0</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<!-- Jars for XMLRPC-server -->
-		<dependency>
-			<groupId>org.apache.xmlrpc</groupId>
-			<artifactId>xmlrpc-server</artifactId>
-			<version>3.1.3</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.xmlrpc</groupId>
-			<artifactId>xmlrpc-common</artifactId>
-			<version>3.1.3</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-
 	</dependencies>
 	<build>
 		<plugins>
@@ -220,11 +78,23 @@
 				<version>1.1</version>
 				<executions>
 					<execution>
-						<id>clear</id>
+						<id>pre-test</id>
 						<phase>process-test-resources</phase>
 						<configuration>
 							<tasks>
-								<delete dir="${basedir}/WEB-INF"	includeemptydirs="true" />
+								<delete dir="${basedir}/WEB-INF" includeemptydirs="true" />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>clear</id>
+						<phase>clean</phase>
+						<configuration>
+							<tasks>
+								<delete dir="${basedir}/WEB-INF" includeemptydirs="true" />
 							</tasks>
 						</configuration>
 						<goals>
@@ -232,15 +102,6 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.1</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.datanucleus</groupId>
@@ -308,7 +169,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
 </project>

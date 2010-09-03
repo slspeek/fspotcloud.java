@@ -10,5 +10,12 @@
 	<artifactId>cloudcover-deps</artifactId>
 	<packaging>pom</packaging>
 	<name>Dependencies for Cloudcover</name>
+	<dependencies>
+		<dependency>
+			<groupId>com.google.appengine.testing</groupId>
+			<artifactId>cloudcover</artifactId>
+			<version>1.0.1.final</version>
+		</dependency>
+	</dependencies>
 </project>
 
