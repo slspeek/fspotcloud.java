@@ -175,6 +175,12 @@
 				<artifactId>deps</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>fspotcloud.deps</groupId>
+				<artifactId>gwt-deps</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 </project>
