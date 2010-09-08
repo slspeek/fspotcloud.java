@@ -5,87 +5,50 @@
 
 	<groupId>fspotcloud</groupId>
 	<artifactId>server</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>0.39</version>
 
 	<name>F-SpotCloud Server Component</name>
 	<description>The controller and data reading</description>
-	<!--<packaging>war</packaging> -->
-
 	<dependencies>
 		<dependency>
-			<groupId>fspotcloud</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>rpc</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>fspotcloud</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>model-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>fspotcloud</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>model</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>fspotcloud</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>model</artifactId>
 			<version>${project.version}</version>
 			<type>test-jar</type>
 		</dependency>
-		<!--   MapReduce  and 4 of its dependencies -->
 		<dependency>
-		<groupId>com.google.appengine.tools.mapreduce</groupId>
-		<artifactId>appengine-mapper</artifactId>
-		<version>r91</version>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>mapreduce-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
 		<dependency>
-		<groupId>com.google.appengine.tools.mapreduce</groupId>
-		<artifactId>charts4j</artifactId>
-		<version>1.2</version>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>aecs-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
+
 		<dependency>
-		<groupId>com.google.appengine.tools.mapreduce</groupId>
-		<artifactId>json</artifactId>
-		<version>UNKNOWN</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.appengine.tools.mapreduce</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.appengine.tools.mapreduce</groupId>
-			<artifactId>hadoop-core</artifactId>
-			<version>0.20.2</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>r05</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		
-		<!--
-			AppEngine Completion Service
-			http://code.google.com/p/appenginecompletionservice/
-		-->
-		<dependency>
-			<groupId>aecs</groupId>
-			<artifactId>aecs</artifactId>
-			<version>1.0</version>
-			<type>jar</type>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.google.appengine.testing</groupId>
-			<artifactId>cloudcover</artifactId>
-			<version>1.0.1.final</version>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>cloudcover-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
 
 		<!-- Jars for GIN -->
@@ -106,7 +69,7 @@
 			<artifactId>guice-servlet</artifactId>
 			<version>2.0</version>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>org.jmock</groupId>
 			<artifactId>jmock</artifactId>
@@ -262,7 +225,7 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		
+
 	</dependencies>
 	<build>
 		<resources>
@@ -423,7 +386,7 @@
 			<name>guice maven</name>
 			<url>http://guice-maven.googlecode.com/svn/trunk</url>
 		</repository>
-<repository>
+		<repository>
 			<id>fspotcloud-maven</id>
 			<url>
         http://maven.fspotcloud.googlecode.com/hg/repo
