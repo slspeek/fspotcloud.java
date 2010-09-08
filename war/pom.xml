@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>1.0-SNAPSHOT</version>
+		<version>0.39</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>war</artifactId>
@@ -12,12 +12,12 @@
 	<description>The totality of the web application</description>
 	<dependencies>
 		<dependency>
-			<groupId>fspotcloud</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>rpc</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>fspotcloud</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>server</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
@@ -29,32 +29,34 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>fspotcloud</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>server</artifactId>
 			<version>${project.version}</version>
 			<type>test-jar</type>
 		</dependency>
 		<dependency>
-			<groupId>fspotcloud</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>model</artifactId>
 			<version>${project.version}</version>
 			<type>test-jar</type>
 		</dependency>
 		<dependency>
-			<groupId>fspotcloud</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>client</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
-		<!--
-			AppEngine Completion Service
-			http://code.google.com/p/appenginecompletionservice/
-		-->
 		<dependency>
-			<groupId>aecs</groupId>
-			<artifactId>aecs</artifactId>
-			<version>1.0</version>
-			<type>jar</type>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>aecs-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>cloudcover-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
 
 		<dependency>
@@ -64,12 +66,7 @@
 			<type>zip</type>
 		</dependency>
 
-		<dependency>
-			<groupId>com.google.appengine.testing</groupId>
-			<artifactId>cloudcover</artifactId>
-			<version>1.0.1.final</version>
-		</dependency>
-
+		
 		<!-- Jars for GIN -->
 		<dependency>
 			<groupId>com.googlecode.gwt.inject</groupId>

@@ -2,7 +2,13 @@
   <name>war</name>
   <comment>The totality of the web application. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects>
+    <project>aecs-deps</project>
+    <project>appengine-deps</project>
     <project>client</project>
+    <project>cloudcover-deps</project>
+    <project>guice-deps</project>
+    <project>gwt-deps</project>
+    <project>mapreduce-deps</project>
     <project>model</project>
     <project>model-api</project>
     <project>rpc</project>

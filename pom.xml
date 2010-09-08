@@ -4,7 +4,7 @@
 	<groupId>fspotcloud</groupId>
 	<artifactId>fspotcloud</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>0.39</version>
 	<name>F-Spot Cloud Java Edition</name>
 	<description>Makes synchronizing your photos web the web easier.</description>
 	<url>http://code.google.com/p/fspotcloud</url>
