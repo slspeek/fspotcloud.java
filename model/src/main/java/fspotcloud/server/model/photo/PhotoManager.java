@@ -87,15 +87,17 @@ public class PhotoManager implements Photos {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			Query query = pm.newQuery(PhotoDO.class);
-			query.setFilter("imageLoaded == null && tagList == '" + tagId
+			query.setFilter("imageLoaded == False && tagList == '" + tagId
 					+ "' && date > dateParam");
 			query.declareImports("import java.util.Date");
 			query.declareParameters("Date dateParam");
 			query.setOrdering("date");
 			query.setRange(0, limit);
+			log.info("Querying:: after: " + after + " tagId: " + tagId);
 			List<PhotoDO> photos = (List<PhotoDO>) query.execute(after);
 			photos = (List<PhotoDO>) pm.detachCopyAll(photos);
 			List<Photo> result = new ArrayList<Photo>(photos);
+			log.info("Empty photo-list: " + result);
 			return result;
 
 		} finally {
