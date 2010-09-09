@@ -1,6 +1,7 @@
 package fspotcloud.server.control;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.google.inject.Inject;
 
@@ -9,6 +10,9 @@ import fspotcloud.server.model.api.Commands;
 
 public class Scheduler {
 	
+	private static final Logger log = Logger.getLogger(Scheduler.class
+			.getName());
+
 	private Commands commandManager;
 
 	@Inject
@@ -22,8 +26,10 @@ public class Scheduler {
 			c.setCmd(cmd);
 			c.setArgs(args);
 			commandManager.save(c);
+			log.info("Scheduled " + cmd + args + ".");
 			return true;
 		} else {
+			log.info(cmd + args + " was already scheduled.");
 			return false;
 		}
 	}
