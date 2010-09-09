@@ -2,7 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
+    <parent>
+    	<artifactId>fspotcloud</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.39</version>
+    </parent>
 	<groupId>fspotcloud</groupId>
 	<artifactId>server</artifactId>
 	<version>0.39</version>
@@ -57,19 +61,12 @@
 			<artifactId>gin</artifactId>
 			<version>1.0</version>
 		</dependency>
-
-		<!-- Jars for Guice -->
 		<dependency>
-			<groupId>com.google.code.guice</groupId>
-			<artifactId>guice</artifactId>
-			<version>2.0</version>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>guice-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
-		<dependency>
-			<groupId>com.google.code.guice</groupId>
-			<artifactId>guice-servlet</artifactId>
-			<version>2.0</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.jmock</groupId>
 			<artifactId>jmock</artifactId>
@@ -77,101 +74,24 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--
-			jars from GAE's "lib/user" must be added as compile-time
-			dependencies, as described here in "Copying JARs" section:
-			http://code.google.com/appengine/docs/java/tools/ant.html
-		-->
 		<dependency>
-			<groupId>javax.jdo</groupId>
-			<artifactId>jdo2-api</artifactId>
-			<version>2.3-eb</version>
-			<exclusions>
-				<!--
-					exclude the legacy javax.transaction:transaction-api and replace it
-					with javax.transaction:jta (it appears to be the same thing)
-				-->
-				<exclusion>
-					<groupId>javax.transaction</groupId>
-					<artifactId>transaction-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.transaction</groupId>
-			<artifactId>jta</artifactId>
-			<version>1.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine.orm</groupId>
-			<artifactId>datanucleus-appengine</artifactId>
-			<version>1.0.4.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.datanucleus</groupId>
-			<artifactId>datanucleus-core</artifactId>
-			<version>1.1.5</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.transaction</groupId>
-					<artifactId>transaction-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>datanucleus-jpa</artifactId>
-			<version>1.1.5</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>geronimo-jpa_3.0_spec</artifactId>
-			<version>1.1.1</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-api-1.0-sdk</artifactId>
-			<version>${gae.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-api-labs</artifactId>
-			<version>${gae.version}</version>
-		</dependency>
-
-		<!-- 
-          GWT dependencies
-        -->
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-servlet</artifactId>
-			<version>${gwt.version}</version>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>appengine-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
 		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-user</artifactId>
-			<version>${gwt.version}</version>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>gwt-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
-		<!--
-			J2EE Servlet API. We need it to compile IndexServlet class. You can
-			probably remove it, if you don't explicitly use Servlets
-		-->
 		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-servlet_2.5_spec</artifactId>
-			<version>1.2</version>
-			<scope>provided</scope>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>servlet-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
-
 		<!-- Test scope -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -210,22 +130,12 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		<!-- Jars for XMLRPC-server -->
 		<dependency>
-			<groupId>org.apache.xmlrpc</groupId>
-			<artifactId>xmlrpc-server</artifactId>
-			<version>3.1.3</version>
-			<type>jar</type>
-			<scope>compile</scope>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>xmlrpc-server-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.xmlrpc</groupId>
-			<artifactId>xmlrpc-common</artifactId>
-			<version>3.1.3</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-
 	</dependencies>
 	<build>
 		<resources>
@@ -263,17 +173,6 @@
 					<goals>gae:deploy</goals>
 				</configuration>
 			</plugin>
-
-			<!-- Java compiler version -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.0</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
 			<!--  To include the test-jar for cloudcover -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -289,7 +188,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
 	<!-- Specify hard-coded project properties here -->
 	<properties>
 		<!--
@@ -297,32 +195,19 @@
 			sources
 		-->
 		<downloadSources>true</downloadSources>
-
-		<!--
-			Specify AppEngine version for your project. It should match SDK
-			version pointed to by ${gae.home} property (Typically, one used by
-			your Eclipse plug-in)
-		-->
-		<gae.version>1.3.5</gae.version>
-		<gwt.version>2.0.4</gwt.version>
-
 		<!--
 			Upload to http://0.latest.<applicationName>.appspot.com by default
 		-->
 		<gae.application.version>5</gae.application.version>
-
 		<!-- port defaults to 8080 -->
 		<gae.port>8080</gae.port>
-
 		<!--
 			Produce detailed JS during GWT compilation for development
 			environment
 		-->
 		<gwt.style>DETAILED</gwt.style>
 	</properties>
-
 	<profiles>
-
 		<!--
 			We can configure our integration server to activate this profile and
 			perform gae:deploy, thus uploading latest snapshot to the
@@ -332,12 +217,10 @@
 			<id>integration-build</id>
 			<properties>
 				<gae.application.version>1</gae.application.version>
-
 				<!-- Produce pretty JS during GWT compilation for test environment -->
 				<gwt.style>PRETTY</gwt.style>
 			</properties>
 		</profile>
-
 		<!--
 			This profile will activate automatically during release and upload
 			application to the http://2.latest.<applicationName>.appspot.com (We
@@ -352,13 +235,11 @@
 					<value>true</value>
 				</property>
 			</activation>
-
 			<properties>
 				<!--
 					During release, set application version in appengine-web.xml to 2
 				-->
 				<gae.application.version>2</gae.application.version>
-
 				<!--
 					Produce compressed JS during GWT compilation for production
 					environment
@@ -367,7 +248,6 @@
 			</properties>
 		</profile>
 	</profiles>
-
 	<repositories>
 		<repository>
 			<id>DataNucleus_Repos2</id>
@@ -393,7 +273,6 @@
 			</url>
 		</repository>
 	</repositories>
-
 	<pluginRepositories>
 		<pluginRepository>
 			<id>DataNucleus_2</id>
