@@ -100,10 +100,6 @@
 			<name>DataNucleus Repository</name>
 			<url>http://www.datanucleus.org/downloads/maven2</url>
 		</repository>
-		<repository>
-			<id>fspotcloud-maven</id>
-			<url>http://maven.fspotcloud.googlecode.com/hg/repo</url>
-		</repository>
 	</repositories>
 </project>
 
