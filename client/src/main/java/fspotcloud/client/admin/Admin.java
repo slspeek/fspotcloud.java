@@ -128,12 +128,13 @@ public class Admin implements EntryPoint {
 		
 		TreePanel treePanel = new TreePanel(tagService, treeHandler, statusLabel);
 		TagPanel tagPanel = new TagPanel(tagService, adminService, treePanel);
-		mainGrid.setWidget(3, 0, tagPanel);
-
+		//mainGrid.setWidget(3, 0, tagPanel);
+		mainGrid.setText(3, 0, "Test");
 		statusPanel.add(statusLabel);
+		dockLayout.addWest(tagPanel, 500);
 		dockLayout.addSouth(statusPanel, 100);
 		dockLayout.add(mainGrid);
-
+		
 		RootLayoutPanel.get().add(dockLayout);
 		addClickHandlers();
 		getPhotoCount();

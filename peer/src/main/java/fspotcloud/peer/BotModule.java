@@ -34,7 +34,7 @@ public class BotModule extends AbstractModule {
 	    bind(String.class).annotatedWith(Names.named("JDBC URL"))
         .toInstance("jdbc:sqlite:/home/steven/.gnome2/f-spot/photos.db"); 
 	    bind(String.class).annotatedWith(Names.named("endpoint"))
-        .toInstance("http://jfspotcloud.appspot.com/xmlrpc"); 
+        .toInstance("http://" + System.getProperty("endpoint") + "/xmlrpc"); 
 	    //.toInstance("http://localhost:8080/xmlrpc");
 	    
 	  }
