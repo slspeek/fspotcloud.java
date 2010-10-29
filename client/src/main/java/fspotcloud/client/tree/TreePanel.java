@@ -27,10 +27,14 @@ public class TreePanel extends ScrollPanel {
 		this.statusLabel = statusLabel;
 		buildUI();
 	}
+	
+	public TreePanel() {
+		buildUI();
+	}
 
 	public void buildUI() {
 		this.add(tagTree);
-		requestTagTreeFromServer();
+		//requestTagTreeFromServer();
 		tagTree.addSelectionHandler(handler);
 	}
 
