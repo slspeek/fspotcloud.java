@@ -18,9 +18,9 @@ public class BatchInfo implements IsSerializable {
 	private Date ftime;
 
 	private String result;
-	
+
 	private String[] state;
-	
+
 	private int interationCount;
 
 	public long getKey() {
@@ -63,7 +63,6 @@ public class BatchInfo implements IsSerializable {
 		this.ftime = ftime;
 	}
 
-
 	public int getInterationCount() {
 		return interationCount;
 	}
@@ -87,6 +86,5 @@ public class BatchInfo implements IsSerializable {
 	public void setState(String[] state) {
 		this.state = state;
 	}
-	
 
 }
