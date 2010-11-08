@@ -18,7 +18,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.TreeItem;
 
-import fspotcloud.client.tree.TreePanel;
+import fspotcloud.client.main.ui.TreePanel;
 import fspotcloud.rpc.AdminService;
 import fspotcloud.rpc.AdminServiceAsync;
 import fspotcloud.rpc.TagService;

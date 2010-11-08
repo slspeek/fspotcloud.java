@@ -3,7 +3,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.FlexTable;
 
-import fspotcloud.client.tree.TreePanel;
+import fspotcloud.client.main.ui.TreePanel;
 import fspotcloud.rpc.AdminServiceAsync;
 import fspotcloud.rpc.TagServiceAsync;
 
