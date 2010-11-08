@@ -1,7 +1,6 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:my="urn:import:fspotcloud.client.main.ui" >
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:my="urn:import:fspotcloud.client.main.ui">
 	<ui:style>
 		.important {
 			font-weight: bold;
@@ -21,11 +20,13 @@
 			<g:center>
 				<g:SplitLayoutPanel>
 					<g:west size="200">
-					<my:TreePanel></my:TreePanel>
+						<g:Tree ui:field="tagTree"></g:Tree>
 					</g:west>
+					<g:center>
+						<g:Image ui:field="mainImage"></g:Image>
+					</g:center>
 				</g:SplitLayoutPanel>
 			</g:center>
 		</g:DockLayoutPanel>
 	</g:HTMLPanel>
-
 </ui:UiBinder> 

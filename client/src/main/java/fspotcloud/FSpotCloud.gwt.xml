@@ -11,15 +11,21 @@
 	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
 	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
 
+
 	<!-- Other module inherits                                      -->
+	<inherits name="com.google.gwt.activity.Activity" />
+	<inherits name="com.google.gwt.place.Place" />
 
 	<!-- Specify the app entry point class.                         -->
-	<entry-point class="fspotcloud.client.tree.TagEntryPoint"></entry-point>
+	<entry-point class="fspotcloud.client.main.TagEntryPoint"></entry-point>
 
-	<!-- Specify the paths for translatable code                    
-		<source path='client'/>
-		<source path='shared'/>
-		<source path='rpc'/> -->
+	<replace-with class="fspotcloud.client.main.ClientFactoryImpl">
+		<when-type-is class="fspotcloud.client.main.ClientFactory" />
+	</replace-with>
+	<!--
+		Specify the paths for translatable code <source path='client'/>
+		<source path='shared'/> <source path='rpc'/>
+	-->
 
-	
+
 </module>
