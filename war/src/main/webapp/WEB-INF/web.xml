@@ -60,6 +60,7 @@
 	</welcome-file-list>
 	<security-constraint>
 		<web-resource-collection>
+			<web-resource-name>Administration Panel</web-resource-name>
 			<url-pattern>/Admin.html</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
@@ -69,15 +70,17 @@
 
 	<security-constraint>
 		<web-resource-collection>
+			<web-resource-name>Administration Panel</web-resource-name>
 			<url-pattern>/fspotcloud.admin/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>admin</role-name>
 		</auth-constraint>
 	</security-constraint>
-	
+
 	<security-constraint>
 		<web-resource-collection>
+			<web-resource-name>Map Reduce Console</web-resource-name>
 			<url-pattern>/mapreduce/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>

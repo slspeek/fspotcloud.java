@@ -1,7 +1,9 @@
-package fspotcloud.client.tree;
+package fspotcloud.client.main;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
+
+import fspotcloud.client.main.ui.TagView;
 
 public class TagEntryPoint implements EntryPoint {
 

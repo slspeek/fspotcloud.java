@@ -1,4 +1,4 @@
-package fspotcloud.client.tree;
+package fspotcloud.client.main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,7 @@ import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 
 import fspotcloud.shared.tag.TagNode;
+import fspotcloud.client.main.ui.TreePanel;
 import fspotcloud.rpc.TagService;
 import fspotcloud.rpc.TagServiceAsync;
 

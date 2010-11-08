@@ -1,4 +1,4 @@
-package fspotcloud.client.tree;
+package fspotcloud.client.main.ui;
 
 import java.util.List;
 
