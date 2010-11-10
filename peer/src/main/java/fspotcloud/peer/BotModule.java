@@ -32,7 +32,7 @@ public class BotModule extends AbstractModule {
 	    bind(Pauser.class).to(PauserImpl.class);
 	    bind(CommandFetcher.class).to(CommandFetcherImpl.class);
 	    bind(String.class).annotatedWith(Names.named("JDBC URL"))
-        .toInstance("jdbc:sqlite:/home/steven/.gnome2/f-spot/photos.db"); 
+        .toInstance("jdbc:sqlite:/home/fspotcloud/workspace/fspotcloud/peer/src/test/resources/home/fspotcloud/.gnome2/f-spot/photos.db"); 
 	    bind(String.class).annotatedWith(Names.named("endpoint"))
         .toInstance("http://" + System.getProperty("endpoint") + "/xmlrpc"); 
 	    //.toInstance("http://localhost:8080/xmlrpc");

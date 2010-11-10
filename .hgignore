@@ -7,3 +7,4 @@ target/*
 server/.externalToolBuilders/*
 server/.settings/*
 *~
+*/appengine-generated/*

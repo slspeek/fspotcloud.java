@@ -165,7 +165,15 @@ public class Admin implements EntryPoint {
 		});
 		calculateTagViewButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				calculateTagViewablePhotos("46");
+				calculateTagViewablePhotos("1");
+				calculateTagViewablePhotos("2");
+				calculateTagViewablePhotos("3");
+				calculateTagViewablePhotos("4");
+				calculateTagViewablePhotos("5");
+				calculateTagViewablePhotos("6");
+				calculateTagViewablePhotos("7");
+				calculateTagViewablePhotos("8");
+				
 			}
 		});
 	}

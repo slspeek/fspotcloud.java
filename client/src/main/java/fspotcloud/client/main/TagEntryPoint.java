@@ -1,5 +1,7 @@
 package fspotcloud.client.main;
 
+import java.util.logging.Logger;
+
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;
@@ -12,11 +14,14 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 
 public class TagEntryPoint implements EntryPoint {
-	private Place defaultPlace = new TagPlace("46");
+	private Place defaultPlace = new TagPlace("1");
+	//private SimpleLayoutPanel appWidget = new SimpleLayoutPanel();
 	private SimplePanel appWidget = new SimplePanel();
 
+	private static final Logger log = Logger.getLogger(TagEntryPoint.class.getName());
 	@Override
 	public void onModuleLoad() {
+		log.info("Hello logging");
 		ClientFactory clientFactory = GWT.create(ClientFactory.class);
 		EventBus eventBus = clientFactory.getEventBus();
 		PlaceController placeController = clientFactory.getPlaceController();

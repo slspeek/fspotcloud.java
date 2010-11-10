@@ -15,8 +15,8 @@ import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.shared.tag.TagNode;
 
 public class PeerDatabaseManager implements PeerDatabases {
-	private static final Logger log = Logger.getLogger(PeerDatabaseManager.class
-			.getName());
+	private static final Logger log = Logger
+			.getLogger(PeerDatabaseManager.class.getName());
 
 	private final Provider<PersistenceManager> pmProvider;
 
@@ -25,7 +25,9 @@ public class PeerDatabaseManager implements PeerDatabases {
 		this.pmProvider = pmProvider;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fspotcloud.server.model.peerdatabase.PeerDatabases#get()
 	 */
 	public PeerDatabase get() {
@@ -34,8 +36,10 @@ public class PeerDatabaseManager implements PeerDatabases {
 		try {
 			attachedPeerDatabase = pm.getObjectById(PeerDatabaseDO.class, "1");
 			peerDatabase = pm.detachCopy(attachedPeerDatabase);
-			peerDatabase.setCachedTagTree(new ArrayList<TagNode>(attachedPeerDatabase
-					.getCachedTagTree()));
+			if (attachedPeerDatabase.getCachedTagTree() != null) {
+				peerDatabase.setCachedTagTree(new ArrayList<TagNode>(
+						attachedPeerDatabase.getCachedTagTree()));
+			}
 
 		} catch (JDOObjectNotFoundException firstTime) {
 			log.info("Default peer not found, creating one.");
@@ -52,8 +56,12 @@ public class PeerDatabaseManager implements PeerDatabases {
 		return peerDatabase;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.peerdatabase.PeerDatabases#save(fspotcloud.server.model.peerdatabase.PeerDatabase)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fspotcloud.server.model.peerdatabase.PeerDatabases#save(fspotcloud.server
+	 * .model.peerdatabase.PeerDatabase)
 	 */
 	public void save(PeerDatabase pd) {
 		PersistenceManager pm = pmProvider.get();
