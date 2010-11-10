@@ -3,18 +3,16 @@ package fspotcloud.client.main.ui;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
-import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.Widget;
 
 import fspotcloud.client.main.TagView;
-import fspotcloud.shared.tag.TagNode;
 
-public class TagViewImpl extends Composite implements TagView {
+public class TagViewImpl extends ResizeComposite implements TagView {
 
 	private static TagViewImplUiBinder uiBinder = GWT.create(TagViewImplUiBinder.class);
 
@@ -23,10 +21,7 @@ public class TagViewImpl extends Composite implements TagView {
 
 	private TagView.TagPresenter presenter; 
 	@UiField
-	DockLayoutPanel mainPanel;
-	
-	@UiField
-	FlowPanel statusPanel;
+	HTMLPanel mainPanel;
 	
 	@UiField
 	Tree tagTree;
@@ -67,4 +62,5 @@ public class TagViewImpl extends Composite implements TagView {
 	public void setStatusText(String text) {
 		statusLabel.setText(text);
 	}
+	
 }

@@ -9,6 +9,7 @@ public class TagPlace extends Place {
 	private String photoId;
 
 	public TagPlace(String tagId, String photoId) {
+		this.tagId = tagId;
 		this.photoId = photoId;
 	}
 
@@ -39,7 +40,7 @@ public class TagPlace extends Place {
 		@Override
 		public String getToken(TagPlace place) {
 			if (place.getPhotoId() == null) {
-				return place.getTagId();
+				return null;
 			} else {
 				return place.getTagId() + ":" + place.getPhotoId();
 			}

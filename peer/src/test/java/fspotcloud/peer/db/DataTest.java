@@ -23,7 +23,7 @@ public class DataTest extends TestCase {
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-		data = new Data();
+		data = new Data("jdbc:sqlite:/home/fspotcloud/workbench/fspotcloud/peer/src/test/resource");
 	}
 
 	/*

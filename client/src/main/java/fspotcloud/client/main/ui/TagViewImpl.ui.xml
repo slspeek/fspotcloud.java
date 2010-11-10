@@ -6,27 +6,16 @@
 			font-weight: bold;
 		}
 	</ui:style>
-	<g:HTMLPanel>
-		<g:DockLayoutPanel unit="PX" ui:field="mainPanel">
-			<g:north size="80">
-				<g:Label ui:field="titleLabel" text="FSpotCloud Java Edition">
-				</g:Label>
-			</g:north>
-			<g:south size="40">
-				<g:FlowPanel ui:field="statusPanel">
-					<g:Label ui:field="statusLabel"></g:Label>
-				</g:FlowPanel>
-			</g:south>
-			<g:center>
-				<g:SplitLayoutPanel>
-					<g:west size="200">
-						<g:Tree ui:field="tagTree"></g:Tree>
-					</g:west>
-					<g:center>
-						<g:Image ui:field="mainImage"></g:Image>
-					</g:center>
-				</g:SplitLayoutPanel>
-			</g:center>
-		</g:DockLayoutPanel>
+	<g:HTMLPanel ui:field="mainPanel">
+		<g:Label ui:field="titleLabel" text="FSpotCloud Java Edition">
+		</g:Label>
+		<g:HorizontalSplitPanel>
+			<g:Tree ui:field="tagTree"></g:Tree>
+			<g:Image ui:field="mainImage"
+				url="http://fspotcloud.appspot.com/image/10471/1"></g:Image>
+		</g:HorizontalSplitPanel>
+		<g:FlowPanel ui:field="statusPanel">
+			<g:Label ui:field="statusLabel" text="Ready"></g:Label>
+		</g:FlowPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

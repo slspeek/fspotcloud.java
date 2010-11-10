@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
+
 public class Data {
 
 	static {
@@ -23,9 +26,16 @@ public class Data {
 		}
 	}
 
+	private final String jdbcURL;
+	
+	@Inject
+	public Data(@Named("JDBC URL") String jdbcURL) {
+		this.jdbcURL = jdbcURL;
+	}
+
 	private Connection getConnection() throws SQLException {
 		Connection conn = DriverManager
-				.getConnection("jdbc:sqlite:/home/steven/.gnome2/f-spot/photos.db");
+				.getConnection(jdbcURL);
 		return conn;
 	}
 
@@ -143,26 +153,6 @@ public class Data {
 		rs.close();
 		conn.close();
 		throw new IllegalStateException();
-	}
-
-	public static void main(String[] args) throws Exception {
-		Data d = new Data();
-		Object[] list = d.getTagList();
-		for (Object item : list) {
-			Object[] itemArray = (Object[]) item;
-			System.out.println(itemArray[1]);
-		}
-		list = d.getPhotoList("10", "10");
-		for (Object item : list) {
-			Object[] itemArray = (Object[]) item;
-			Object[] tagArray = (Object[]) itemArray[3];
-			for (Object id : tagArray) {
-				System.out.print(id + " ");
-			}
-			System.out.println(" id: " + itemArray[0]);
-
-		}
-
 	}
 
 }

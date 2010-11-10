@@ -2,14 +2,19 @@
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.0.3//EN" "http://google-web-toolkit.googlecode.com/svn/tags/2.0.3/distro-source/core/src/gwt-module.dtd">
 <module>
 	<inherits name="com.google.gwt.user.User" />
-	<inherits name='com.google.gwt.user.theme.standard.Standard'/>
-   <inherits name='fspotcloud.rpc' />
-  <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
-  <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
-   <entry-point class='fspotcloud.client.admin.Admin'/>
+	<inherits name='com.google.gwt.user.theme.standard.Standard' />
+	<inherits name='fspotcloud.rpc' />
+	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+	<!-- Other module inherits                                      -->
+	<inherits name="com.google.gwt.activity.Activity" />
+	<inherits name="com.google.gwt.place.Place" />
+	<entry-point class='fspotcloud.client.admin.Admin' />
 
-  <!-- Specify the paths for translatable code                    -->
-<!--    <source path='shared'/>
-	<source path="client/admin"/>
-	<source path="client/"/> -->
+	<!-- Specify the paths for translatable code                    -->
+	<!--
+		<source path='shared'/> <source path="client/admin"/> <source
+		path="client/"/>
+	-->
 </module>
+
