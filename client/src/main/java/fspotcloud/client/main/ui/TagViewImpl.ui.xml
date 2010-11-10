@@ -9,7 +9,7 @@
 	<g:HTMLPanel ui:field="mainPanel">
 		<g:Label ui:field="titleLabel" text="FSpotCloud Java Edition">
 		</g:Label>
-		<g:HorizontalSplitPanel height="700">
+		<g:HorizontalSplitPanel height="700px">
 			<g:Tree ui:field="tagTree"></g:Tree>
 			<g:Image ui:field="mainImage"
 				url="http://fspotcloud.appspot.com/image/10471/1"></g:Image>
