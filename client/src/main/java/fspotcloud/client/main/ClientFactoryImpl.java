@@ -15,6 +15,7 @@ public class ClientFactoryImpl implements ClientFactory {
 			eventBus);
 	private final TagView tagView = new TagViewImpl();
 	private final TagServiceAsync tagService = GWT.create(TagService.class);
+	private final DataManager dataManager = new DataManager(tagService);
 
 	@Override
 	public EventBus getEventBus() {
@@ -35,4 +36,10 @@ public class ClientFactoryImpl implements ClientFactory {
 	public TagServiceAsync getTagService() {
 		return tagService;
 	}
+
+	@Override
+	public DataManager getDataManager() {
+		return dataManager;
+	}
+	
 }

@@ -15,14 +15,26 @@ public class ImageData {
 	public byte[] getScaledImageData(URL url, Dimension size)
 			throws IOException {
 		BufferedImage img = null;
-		int width = size.width;
-		int height = size.height;
+		double width = size.width;
+		double height = size.height;
 		img = ImageIO.read(url);
-		BufferedImage scaledImg = new BufferedImage(width, height,
+		
+		double scaleFactor = 1.0; 
+		double srcWidth = (double) img.getWidth();
+		double srcHeight = (double) img.getHeight();
+		double targetAspectRatio = (double) width / (double) height;
+		double sourceAspectRatio = srcWidth / srcHeight;
+		if (targetAspectRatio < sourceAspectRatio) {
+			scaleFactor = (double) width/ srcWidth;
+		} else {
+			scaleFactor = (double) height / srcHeight;
+		}
+		int targetWidth = (int) (scaleFactor * srcWidth);
+		int targetHeight = (int) (scaleFactor * srcHeight);
+		BufferedImage scaledImg = new BufferedImage(targetWidth, targetHeight,
 				BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = scaledImg.createGraphics();
-		AffineTransform at = AffineTransform.getScaleInstance((double) width
-				/ img.getWidth(), (double) height / img.getHeight());
+		AffineTransform at = AffineTransform.getScaleInstance(scaleFactor, scaleFactor);
 		g.drawRenderedImage(img, at);
 		ByteArrayOutputStream bas = new ByteArrayOutputStream();
 		ImageIO.write(scaledImg, "jpg", bas);

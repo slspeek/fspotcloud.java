@@ -173,6 +173,7 @@ public class Admin implements EntryPoint {
 				calculateTagViewablePhotos("6");
 				calculateTagViewablePhotos("7");
 				calculateTagViewablePhotos("8");
+				calculateTagViewablePhotos("9");
 				
 			}
 		});

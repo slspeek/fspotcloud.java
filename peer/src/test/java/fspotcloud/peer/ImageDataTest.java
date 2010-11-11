@@ -33,8 +33,20 @@ public class ImageDataTest extends TestCase {
 		BufferedImage img = ImageIO.read(dataStream);
 		int w = img.getWidth();
 		int h = img.getHeight();
-		assertEquals(size.width, w);
-		assertEquals(size.height, h);
+		assertEquals(133, w);
+		assertEquals(100, h);
+	}
+
+	public final void testGetScaledImageDataPortrait() throws IOException {
+		URL url = ClassLoader.getSystemResource("home/fspotcloud/Photos/2010/06/04/Mac-classic.jpg");
+		Dimension size = new Dimension(200, 100);
+		byte[] data = target.getScaledImageData(url, size);
+		InputStream dataStream = new ByteArrayInputStream(data);
+		BufferedImage img = ImageIO.read(dataStream);
+		int w = img.getWidth();
+		int h = img.getHeight();
+		assertEquals(75, w);
+		assertEquals(100, h);
 	}
 
 }
