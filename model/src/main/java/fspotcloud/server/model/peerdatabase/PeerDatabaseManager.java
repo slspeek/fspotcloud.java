@@ -39,6 +39,8 @@ public class PeerDatabaseManager implements PeerDatabases {
 			if (attachedPeerDatabase.getCachedTagTree() != null) {
 				peerDatabase.setCachedTagTree(new ArrayList<TagNode>(
 						attachedPeerDatabase.getCachedTagTree()));
+			} else {
+				peerDatabase.setCachedTagTree(null);
 			}
 
 		} catch (JDOObjectNotFoundException firstTime) {

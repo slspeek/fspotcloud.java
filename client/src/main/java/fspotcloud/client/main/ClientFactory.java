@@ -12,5 +12,7 @@ public interface ClientFactory {
 	
 	TagView getTagView();
 	
+	DataManager getDataManager();
+	
 	TagServiceAsync getTagService();
 }

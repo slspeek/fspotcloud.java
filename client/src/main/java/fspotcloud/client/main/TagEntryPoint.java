@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 
 public class TagEntryPoint implements EntryPoint {
-	private Place defaultPlace = new TagPlace("1");
+	private TagPlace defaultPlace = new TagPlace("1");
 	//private SimpleLayoutPanel appWidget = new SimpleLayoutPanel();
 	private SimplePanel appWidget = new SimplePanel();
 
@@ -25,6 +25,12 @@ public class TagEntryPoint implements EntryPoint {
 		ClientFactory clientFactory = GWT.create(ClientFactory.class);
 		EventBus eventBus = clientFactory.getEventBus();
 		PlaceController placeController = clientFactory.getPlaceController();
+		
+		TagActivity tagActivity = new TagActivity(defaultPlace, clientFactory);
+		TagView tagView = clientFactory.getTagView();
+		tagView.setPresenter(tagActivity);
+		tagActivity.reloadTree();
+		
 
 		ActivityMapper activityMapper = new AppActivityMapper(clientFactory);
 		ActivityManager activityManager = new ActivityManager(activityMapper,

@@ -9,10 +9,21 @@
 	<g:HTMLPanel ui:field="mainPanel">
 		<g:Label ui:field="titleLabel" text="FSpotCloud Java Edition">
 		</g:Label>
-		<g:HorizontalSplitPanel height="700px">
-			<g:Tree ui:field="tagTree"></g:Tree>
-			<g:Image ui:field="mainImage"
-				url="http://fspotcloud.appspot.com/image/10471/1"></g:Image>
+		<g:HorizontalSplitPanel height="700px" splitPosition="30%">
+			<g:VerticalPanel>
+				<g:Tree ui:field="tagTree"></g:Tree>
+				<g:PushButton ui:field="loadTreeButton" text="Reload"></g:PushButton>
+			</g:VerticalPanel>
+			<g:VerticalPanel>
+				<g:Image ui:field="mainImage"
+					url="http://fspotcloud.appspot.com/image/10471/1"></g:Image>
+				<g:HorizontalPanel>
+					<g:PushButton ui:field="firstButton" text="First"></g:PushButton>
+					<g:PushButton ui:field="prevButton" text="Previous"></g:PushButton>
+					<g:PushButton ui:field="nextButton" text="Next"></g:PushButton>
+					<g:PushButton ui:field="lastButton" text="Last"></g:PushButton>
+				</g:HorizontalPanel>
+			</g:VerticalPanel>
 		</g:HorizontalSplitPanel>
 		<g:FlowPanel ui:field="statusPanel">
 			<g:Label ui:field="statusLabel" text="Ready"></g:Label>
