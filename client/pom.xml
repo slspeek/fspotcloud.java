@@ -47,7 +47,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>1.3.1.google</version>
+				<version>1.3.2.google</version>
 				<configuration>
 					<compileSourcesArtifacts>
 						<compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact>
@@ -61,21 +61,8 @@
 						<value>fspotcloud.admin</value>
 					</compileTargets>
 					<extraJvmArgs>-Xmx512m</extraJvmArgs>
-					<!--
-						TODO This should help running GAE stuff in hosted mode (when
-						gwt-maven-plugin-1.2 is released, see
-						http://jira.codehaus.org/browse/MGWT-112)
-					-->
-					<server>com.google.appengine.tools.development.gwt.AppEngineLauncher
-					</server>
-
 					<runTarget>/FSpotCloud.html</runTarget>
-					<style>OBFUSCATED</style>
-					<!--					<webXml>war/WEB-INF/web.xml</webXml> -->
-					<!--
-						this parameter is VERY important with automatic mode - has to
-						match the version in your declared deps
-					-->
+					<style>PRETTY</style>
 					<gwtVersion>${gwt.version}</gwtVersion>
 				</configuration>
 				<executions>
