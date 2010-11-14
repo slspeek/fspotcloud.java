@@ -59,6 +59,7 @@
 					<compileTargets>
 						<value>fspotcloud.FSpotCloud</value>
 						<value>fspotcloud.admin</value>
+						<value>fspotcloud.celltree</value>
 					</compileTargets>
 					<extraJvmArgs>-Xmx512m</extraJvmArgs>
 					<runTarget>/FSpotCloud.html</runTarget>

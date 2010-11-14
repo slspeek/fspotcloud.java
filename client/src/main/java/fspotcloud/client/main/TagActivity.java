@@ -9,6 +9,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.TreeItem;
+import com.google.gwt.view.client.SingleSelectionModel;
 
 import fspotcloud.shared.tag.TagNode;
 
@@ -21,6 +22,7 @@ public class TagActivity extends AbstractActivity implements
 	EventBus eventBus;
 	ClientFactory clientFactory;
 	TagView tagView;
+	
 
 	public TagActivity(TagPlace place, ClientFactory clientFactory) {
 		tagId = place.getTagId();

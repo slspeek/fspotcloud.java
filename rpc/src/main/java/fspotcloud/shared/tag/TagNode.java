@@ -128,6 +128,16 @@ public class TagNode implements Serializable {
 	public void addChild(TagNode child) {
 		getChildren().add(child);
 	}
+	
+	public boolean equals(Object other) {
+		if ( !(other instanceof TagNode) || other == null) return false;
+		TagNode node = (TagNode) other;
+		return node.getName().endsWith(getName());
+	}
+	
+	public int hashCode() {
+		return getName().hashCode();
+	}
 
 	public String toString() {
 		return String.valueOf(tagName) + ": " + String.valueOf(name);
