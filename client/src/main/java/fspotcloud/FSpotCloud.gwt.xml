@@ -29,5 +29,5 @@
 		<source path='shared'/> <source path='rpc'/>
 	-->
 	<set-property name="user.agent" value="gecko1_8" />
-	<set-property name="gwt.logging.PopupLogHandler" value="DISABLED"/>
+	<set-property name="gwt.logging.popupHandler" value="DISABLED"/> 
 </module>

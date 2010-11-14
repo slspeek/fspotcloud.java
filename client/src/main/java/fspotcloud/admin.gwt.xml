@@ -7,6 +7,7 @@
 	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
 	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
 	<!-- Other module inherits                                      -->
+	<inherits name="com.google.gwt.logging.Logging" />
 	<inherits name="com.google.gwt.activity.Activity" />
 	<inherits name="com.google.gwt.place.Place" />
 	<entry-point class='fspotcloud.client.admin.Admin' />
@@ -17,5 +18,6 @@
 		path="client/"/>
 	-->
 	<set-property name="user.agent" value="gecko1_8" />
+	<set-property name="gwt.logging.popupHandler" value="DISABLED"/>
 </module>
 
