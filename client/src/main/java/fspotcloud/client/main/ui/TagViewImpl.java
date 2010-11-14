@@ -14,8 +14,11 @@ import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.SingleSelectionModel;
+import com.google.gwt.view.client.TreeViewModel;
 
 import fspotcloud.client.main.TagView;
+import fspotcloud.shared.tag.TagNode;
 
 public class TagViewImpl extends ResizeComposite implements TagView {
 
@@ -53,10 +56,16 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	PushButton lastButton;
 	
 	TreeItem treeModel;
+	
+	TreeViewModel treeViewModel;
+	
+	SingleSelectionModel<TreeItem> treeSelectionModel;
 
 	public TagViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		tagTree.addItem("Loading, please wait.");
+		this.treeSelectionModel = new SingleSelectionModel<TreeItem>();
+		//treeSelectionModel.addSelectionChangeHandler(arg0))
 	}
 
 
