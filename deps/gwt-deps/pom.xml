@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>fspotcloud</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.39</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>gwt-deps</artifactId>
+	<groupId>${parent.groupId}.deps</groupId>
+	<packaging>pom</packaging>
+	<name>Dependencies for Google Web Toolkit</name>
+	<dependencies>
+			<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwtVersion}</version>
+		</dependency>
+	</dependencies>
+</project>
+
