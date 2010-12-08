@@ -4,10 +4,7 @@ import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
-
-import aecs.AppEngineCompletionService;
 
 import com.google.appengine.api.labs.taskqueue.Queue;
 import com.google.appengine.api.labs.taskqueue.QueueFactory;
@@ -16,7 +13,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import fspotcloud.rpc.AdminService;
-import fspotcloud.server.admin.task.FooTask;
 import fspotcloud.server.control.Scheduler;
 import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
@@ -37,9 +33,6 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	private static final Logger log = Logger.getLogger(AdminServiceImpl.class
 			.getName());
 
-	@Inject 
-	private FooTask fooTask;
-	
 	@Inject
 	private Batches batchManager;
 	@Inject
@@ -81,8 +74,6 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public void importTags() {
 		scheduler.schedule("sendTagData", Collections.EMPTY_LIST);
-		AppEngineCompletionService<Integer> aecs = new AppEngineCompletionService<Integer>();
-		aecs.submit(fooTask);
 	}
 
 	@Override

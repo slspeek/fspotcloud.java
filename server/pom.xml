@@ -43,13 +43,6 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}.deps</groupId>
-			<artifactId>aecs-deps</artifactId>
-			<version>${project.version}</version>
-			<type>pom</type>
-		</dependency>
-
-		<dependency>
-			<groupId>${project.groupId}.deps</groupId>
 			<artifactId>cloudcover-deps</artifactId>
 			<version>${project.version}</version>
 			<type>pom</type>
