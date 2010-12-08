@@ -2,6 +2,7 @@ package fspotcloud.client.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.logical.shared.SelectionEvent;
@@ -9,12 +10,12 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.TreeItem;
-import com.google.gwt.view.client.SingleSelectionModel;
 
 import fspotcloud.shared.tag.TagNode;
 
 public class TagActivity extends AbstractActivity implements
 		TagView.TagPresenter {
+	private static final Logger log = Logger.getLogger(TagActivity.class.getName());
 	EventBus eventBus;
 	ClientFactory clientFactory;
 	TagView tagView;
@@ -24,20 +25,25 @@ public class TagActivity extends AbstractActivity implements
 		this.clientFactory = clientFactory;
 		this.tagView = clientFactory.getTagView();
 		this.tagId = place.getTagId();
+		log.info("Created for tagId: " + tagId);
 	}
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
+		log.info("Start started for tagId: " + tagId );
 		this.eventBus = eventBus;
 		tagView.setPresenter(this);
 		TagNode tag = getTagNode();
 		if (tag != null) {
 			List<String> imageURIS = makeImageURIS(tag.getCachedPhotoList());
+			log.info("bEFORE");
 			tagView.setImageList(imageURIS);
 		}
+		log.info("bEFORE setWidhet");
 		containerWidget.setWidget(tagView);
-		TreeItem item = findTagId(tagId);
-		item.setSelected(true);
+		log.info("After setWidhet");
+		//TreeItem item = findTagId(tagId);
+		//item.setSelected(true);
 	}
 
 	private TagNode getTagNode() {
