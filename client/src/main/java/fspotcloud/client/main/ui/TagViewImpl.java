@@ -1,6 +1,8 @@
 package fspotcloud.client.main.ui;
 
+
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.google.gwt.cell.client.ImageCell;
 import com.google.gwt.core.client.GWT;
@@ -10,9 +12,9 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.user.cellview.client.HasKeyboardPagingPolicy.KeyboardPagingPolicy;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -25,7 +27,8 @@ import com.google.gwt.view.client.TreeViewModel;
 import fspotcloud.client.main.TagView;
 
 public class TagViewImpl extends ResizeComposite implements TagView {
-
+	private static final Logger log = Logger.getLogger(TagViewImpl.class.getName());
+	
 	private static TagViewImplUiBinder uiBinder = GWT
 			.create(TagViewImplUiBinder.class);
 
@@ -53,6 +56,7 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	TreeViewModel treeViewModel;
 
 	SingleSelectionModel<TreeItem> treeSelectionModel;
+	
 
 	public TagViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -109,6 +113,12 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 		CellList<String> cellList = new CellList<String>(new ImageCell());
 		cellList.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
 		cellList.setRowData(0, imageList);
-		imageListPanel.setWidget(cellList);
+		cellList.setRowCount(imageList.size());
+		Widget old = imageListPanel.getWidget();
+		log.info("old widget: " + old);
+		if (old != null) {
+			imageListPanel.remove(old);
+		}
+		imageListPanel.setWidget((IsWidget)cellList);
 	}
 }
