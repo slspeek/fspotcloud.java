@@ -23,27 +23,6 @@ public class DataManager {
 		this.tagService = tagService;
 	}
 
-	public void getPhotoListForTag(final String tagId,
-			final AsyncCallback<List<String>> callback) {
-		if (photoListMap.keySet().contains(tagId)) {
-			callback.onSuccess(photoListMap.get(tagId));
-		} else {
-			tagService.keysForTag(tagId, new AsyncCallback<List<String>>() {
-				@Override
-				public void onFailure(Throwable caught) {
-					log.warning(caught.getLocalizedMessage());
-					callback.onFailure(caught);
-				}
-
-				@Override
-				public void onSuccess(List<String> result) {
-					photoListMap.put(tagId, result);
-					callback.onSuccess(photoListMap.get(tagId));
-				}
-			});
-		}
-	}
-
 	public void getTagTree(
 			final AsyncCallback<List<TagNode>> callback) {
 		if (tagTreeData != null) {

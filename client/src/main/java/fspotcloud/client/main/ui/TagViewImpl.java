@@ -1,16 +1,21 @@
 package fspotcloud.client.main.ui;
 
+import java.util.List;
+
+import com.google.gwt.cell.client.ImageCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.cellview.client.CellList;
+import com.google.gwt.user.cellview.client.HasKeyboardPagingPolicy.KeyboardPagingPolicy;
+import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.ResizeComposite;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.Widget;
@@ -18,74 +23,48 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
 
 import fspotcloud.client.main.TagView;
-import fspotcloud.shared.tag.TagNode;
 
 public class TagViewImpl extends ResizeComposite implements TagView {
 
-	private static TagViewImplUiBinder uiBinder = GWT.create(TagViewImplUiBinder.class);
+	private static TagViewImplUiBinder uiBinder = GWT
+			.create(TagViewImplUiBinder.class);
 
 	interface TagViewImplUiBinder extends UiBinder<Widget, TagViewImpl> {
 	}
 
-	private TagView.TagPresenter presenter; 
+	private TagView.TagPresenter presenter;
 	@UiField
 	HTMLPanel mainPanel;
-	
+
 	@UiField
 	Tree tagTree;
 	
 	@UiField
-	Image mainImage;
-	
-	@UiField
-	Label titleLabel;
-	
-	@UiField
-	Label statusLabel;
-	
-	@UiField
-	PushButton firstButton;
+	SimplePanel imageListPanel;
 
 	@UiField
-	PushButton prevButton;
-	
+	Label titleLabel;
+
 	@UiField
-	PushButton nextButton;
-	
-	@UiField
-	PushButton lastButton;
-	
+	Label statusLabel;
+
 	TreeItem treeModel;
-	
+
 	TreeViewModel treeViewModel;
-	
+
 	SingleSelectionModel<TreeItem> treeSelectionModel;
 
 	public TagViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		tagTree.addItem("Loading, please wait.");
 		this.treeSelectionModel = new SingleSelectionModel<TreeItem>();
-		//treeSelectionModel.addSelectionChangeHandler(arg0))
+		
 	}
-
 
 	@Override
 	public void setPresenter(TagPresenter presenter) {
 		this.presenter = presenter;
 	}
-
-
-	@Override
-	public void setMainImageUrl(String url) {
-		mainImage.setUrl(url); 
-	}
-
-
-	@Override
-	public void setTagId(String tagId) {
-		
-		}
-
 
 	@Override
 	public void setStatusText(String text) {
@@ -104,44 +83,32 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 			child.setState(true);
 		}
 	}
-	
-	@UiHandler("firstButton")
-	public void onFirstButtonClicked(ClickEvent event) {
-		presenter.goFirst();
-	}
-	
-	@UiHandler("nextButton")
-	public void onNextButtonClicked(ClickEvent event) {
-		presenter.goForward();
-	}
-	@UiHandler("prevButton")
-	public void onPreviousButtonClicked(ClickEvent event) {
-		presenter.goBackward();
-	}
-	@UiHandler("lastButton")
-	public void onLastButtonClicked(ClickEvent event) {
-		presenter.goLast();
-	}
-	
+
 	@UiHandler("loadTreeButton")
 	public void onLoadTreeButtonClicked(ClickEvent event) {
 		presenter.reloadTree();
 	}
-	
+
 	@UiHandler("tagTree")
 	public void onTreeSelectionEvent(SelectionEvent<TreeItem> event) {
 		presenter.treeSelectionChanged(event);
 	}
-
 
 	@Override
 	public TreeItem getTreeModel() {
 		return treeModel;
 	}
 
-
 	@Override
 	public void setSelectedItem(TreeItem item) {
-		
+
+	}
+
+	@Override
+	public void setImageList(List<String> imageList) {
+		CellList<String> cellList = new CellList<String>(new ImageCell());
+		cellList.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
+		cellList.setRowData(0, imageList);
+		imageListPanel.setWidget(cellList);
 	}
 }
