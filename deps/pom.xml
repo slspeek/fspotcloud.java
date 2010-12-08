@@ -15,7 +15,6 @@
 		<org.apache.xmlrpc.version>3.1.3</org.apache.xmlrpc.version>
 	</properties>
 	<modules>
-		<module>aecs-deps</module>
 		<module>appengine-deps</module>
 		<module>cloudcover-deps</module>
 		<module>mapreduce-deps</module>
