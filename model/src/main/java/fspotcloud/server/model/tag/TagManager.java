@@ -17,7 +17,6 @@ import fspotcloud.server.model.photo.PhotoDO;
 import fspotcloud.shared.tag.TagNode;
 
 public class TagManager implements Tags {
-	
 	private static final Logger log = Logger.getLogger(TagManager.class.getName());
 
 	private final Provider<PersistenceManager> pmProvider;
@@ -27,9 +26,6 @@ public class TagManager implements Tags {
 		this.pmProvider = pmProvider;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.tag.Tags#getTags()
-	 */
 	public List<TagNode> getTags() {
 		PersistenceManager pm = pmProvider.get();
 		try {
@@ -37,9 +33,10 @@ public class TagManager implements Tags {
 			Extent<TagDO> extent = pm.getExtent(TagDO.class, false);
 			for (Tag tag : extent) {
 				TagNode node = new TagNode();
-				node.setName(tag.getName());
+				node.setId(tag.getId());
 				node.setParentId(tag.getParentId());
 				node.setTagName(tag.getTagName());
+				node.setCachedPhotoList(new ArrayList<String>(tag.getCachedPhotoList()));
 				result.add(node);
 			}
 			extent.closeAll();
@@ -49,22 +46,17 @@ public class TagManager implements Tags {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.tag.Tags#getOrNew(java.lang.String)
-	 */
 	public Tag getOrNew(String id) {
 		Tag tag = null;
 		try {
 			tag = getById(id);
 		} catch (JDOObjectNotFoundException notExistedYet) {
 			tag = new TagDO();
-			tag.setName(id);
+			tag.setId(id);
 		}
 		return tag;
 	}
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.tag.Tags#getById(java.lang.String)
-	 */
+
 	public Tag getById(String tagId) {
 		PersistenceManager pm = pmProvider.get();
 		Tag tag = null;
@@ -77,9 +69,6 @@ public class TagManager implements Tags {
 		return tag;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.tag.Tags#save(fspotcloud.server.model.tag.Tag)
-	 */
 	public String save(Tag tag) {
 		PersistenceManager pm = pmProvider.get();
 		try {
@@ -87,12 +76,9 @@ public class TagManager implements Tags {
 		} finally {
 			pm.close();
 		}
-		return tag.getName();
+		return tag.getId();
 	}
 	
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.tag.Tags#deleteAll()
-	 */
 	public boolean deleteAll() {
 		PersistenceManager pm = pmProvider.get();
 		Extent<TagDO> extent = pm.getExtent(TagDO.class);
@@ -111,9 +97,6 @@ public class TagManager implements Tags {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.tag.Tags#saveAll(java.util.List)
-	 */
 	public void saveAll(List<Tag> tagList) {
 		PersistenceManager pm = pmProvider.get();
 		try {

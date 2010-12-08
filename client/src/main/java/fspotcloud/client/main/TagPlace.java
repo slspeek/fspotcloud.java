@@ -13,10 +13,6 @@ public class TagPlace extends Place {
 		this.photoId = photoId;
 	}
 
-	public TagPlace(String tagId) {
-		this(tagId, null);
-	}
-
 	public String getTagId() {
 		return tagId;
 	}
@@ -26,25 +22,15 @@ public class TagPlace extends Place {
 	}
 
 	public static class Tokenizer implements PlaceTokenizer<TagPlace> {
-
 		@Override
 		public TagPlace getPlace(String token) {
 			String[] tokens = token.split(":");
-			if (tokens == null) {
-				return new TagPlace(token);
-			} else {
-				return new TagPlace(tokens[0], tokens[1]);
-			}
+			return new TagPlace(tokens[0], tokens[1]);
 		}
 
 		@Override
 		public String getToken(TagPlace place) {
-			if (place.getPhotoId() == null) {
-				return null;
-			} else {
-				return place.getTagId() + ":" + place.getPhotoId();
-			}
+			return place.getTagId() + ":" + place.getPhotoId();
 		}
-
 	}
 }

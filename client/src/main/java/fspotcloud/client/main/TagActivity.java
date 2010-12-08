@@ -160,8 +160,9 @@ public class TagActivity extends AbstractActivity implements
 		TreeItem selectedItem = event.getSelectedItem();
 		if (selectedItem != null) {
 			TagNode selectedTag = (TagNode) selectedItem.getUserObject();
-			String tagId = selectedTag.getName();
-			TagPlace newPlace = new TagPlace(tagId);
+			String tagId = selectedTag.getId();
+			String firstPhotoId = selectedTag.getCachedPhotoList().get(0);
+			TagPlace newPlace = new TagPlace(tagId, firstPhotoId);
 			clientFactory.getPlaceController().goTo(newPlace);
 		}
 	}
@@ -181,7 +182,7 @@ public class TagActivity extends AbstractActivity implements
 		for(int index = 0; index < root.getChildCount(); index++) {
 			TreeItem item = root.getChild(index);
 			TagNode tagNode = (TagNode) item.getUserObject();
-			if (tagId.equals(tagNode.getName())) {
+			if (tagId.equals(tagNode.getId())) {
 				return item;
 			} else {
 				return findTagIdUnder(tagId, item);
