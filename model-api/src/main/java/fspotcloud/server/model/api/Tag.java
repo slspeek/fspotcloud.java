@@ -8,14 +8,14 @@ public interface Tag {
 
 	/**
 	 * @param name
-	 *            the name to set
+	 *            the id to set
 	 */
-	public abstract void setName(String name);
+	public abstract void setId(String id);
 
 	/**
-	 * @return the name
+	 * @return the id
 	 */
-	public abstract String getName();
+	public abstract String getId();
 
 	/**
 	 * @param parent

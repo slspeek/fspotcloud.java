@@ -56,7 +56,7 @@ public class TreePanel extends ScrollPanel {
 
 	private void addSubTree(TagNode node, TreeItem target) {
 		TreeItem newItem = target.addItem(node.getTagName());
-		newItem.setUserObject(node.getName());
+		newItem.setUserObject(node.getId());
 		for (TagNode child : node.getChildren()) {
 			addSubTree(child, newItem);
 		}
@@ -64,7 +64,7 @@ public class TreePanel extends ScrollPanel {
 
 	private void addSubTree(TagNode node, Tree tree) {
 		TreeItem newItem = tree.addItem(node.getTagName());
-		newItem.setUserObject(node.getName());
+		newItem.setUserObject(node.getId());
 		for (TagNode child : node.getChildren()) {
 			addSubTree(child, newItem);
 		}

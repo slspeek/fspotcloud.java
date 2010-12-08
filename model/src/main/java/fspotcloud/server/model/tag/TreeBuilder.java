@@ -33,7 +33,7 @@ public class TreeBuilder {
 	private void buildMap() {
 		index = new HashMap<String, TagNode>();
 		for (TagNode node : flatNodes) {
-			String name = node.getName();
+			String name = node.getId();
 			index.put(name, node);
 		}
 	}

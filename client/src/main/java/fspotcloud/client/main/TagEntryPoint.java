@@ -14,8 +14,7 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 
 public class TagEntryPoint implements EntryPoint {
-	private TagPlace defaultPlace = new TagPlace("1");
-	//private SimpleLayoutPanel appWidget = new SimpleLayoutPanel();
+	private TagPlace defaultPlace = new TagPlace("1", "1");
 	private SimplePanel appWidget = new SimplePanel();
 
 	private static final Logger log = Logger.getLogger(TagEntryPoint.class.getName());
