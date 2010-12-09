@@ -33,7 +33,7 @@ public class TagActivity extends AbstractActivity implements
 		log.info("Start started for tagId: " + tagId );
 		this.eventBus = eventBus;
 		tagView.setPresenter(this);
-		TagNode tag = getTagNode();
+		TagNode tag = clientFactory.getDataManager().getTagNode(tagId);
 		if (tag != null) {
 			List<String> imageURIS = makeImageURIS(tag.getCachedPhotoList());
 			log.info("bEFORE");
@@ -41,17 +41,7 @@ public class TagActivity extends AbstractActivity implements
 		}
 		log.info("bEFORE setWidhet");
 		containerWidget.setWidget(tagView);
-		log.info("After setWidhet");
-		//TreeItem item = findTagId(tagId);
-		//item.setSelected(true);
-	}
-
-	private TagNode getTagNode() {
-		TreeItem model = tagView.getTreeModel();
-		if (model != null) {
-			return findTagNode(tagId);
-		}
-		return null;
+		log.info("After setWidGet, END OF START	");
 	}
 
 	private List<String> makeImageURIS(List<String> ids) {
@@ -108,27 +98,4 @@ public class TagActivity extends AbstractActivity implements
 		requestTagTreeData();
 	}
 
-	private TagNode findTagNode(String tagId) {
-		TreeItem tagItem = findTagId(tagId);
-		return (TagNode) tagItem.getUserObject();
-	}
-
-	private TreeItem findTagId(String tagId) {
-		TreeItem root = tagView.getTreeModel();
-		TreeItem itemToBeSelected = findTagIdUnder(tagId, root);
-		return itemToBeSelected;
-	}
-
-	private TreeItem findTagIdUnder(String tagId, TreeItem root) {
-		for (int index = 0; index < root.getChildCount(); index++) {
-			TreeItem item = root.getChild(index);
-			TagNode tagNode = (TagNode) item.getUserObject();
-			if (tagId.equals(tagNode.getId())) {
-				return item;
-			} else {
-				return findTagIdUnder(tagId, item);
-			}
-		}
-		return null;
-	}
 }
