@@ -30,7 +30,7 @@ public class TagActivity extends AbstractActivity implements
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		log.info("Start started for tagId: " + tagId );
+		log.info("S!tart started for tagId: " + tagId );
 		this.eventBus = eventBus;
 		tagView.setPresenter(this);
 		TagNode tag = clientFactory.getDataManager().getTagNode(tagId);
