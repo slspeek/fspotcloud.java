@@ -12,6 +12,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellList;
+import com.google.gwt.user.cellview.client.SimplePager;
+import com.google.gwt.user.cellview.client.HasKeyboardPagingPolicy.KeyboardPagingPolicy;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -20,6 +22,7 @@ import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
@@ -110,15 +113,23 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 
 	@Override
 	public void setImageList(List<String> imageList) {
+		SimplePager simplePager = new SimplePager();
 		CellList<String> cellList = new CellList<String>(new ImageCell());
-		cellList.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
+		
+		//simplePager.setDisplay(cellList);
+		//simplePager.setRangeLimited(true);
+		//simplePager.setPageSize(1);
+		
+		
+		//cellList.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
+		cellList.setKeyboardPagingPolicy(KeyboardPagingPolicy.CHANGE_PAGE);
 		cellList.setRowData(0, imageList);
 		cellList.setRowCount(imageList.size());
-		Widget old = imageListPanel.getWidget();
-		log.info("old widget: " + old);
-		if (old != null) {
-			imageListPanel.remove(old);
-		}
-		imageListPanel.setWidget((IsWidget)cellList);
+		cellList.setHeight("600px");
+		//cellList.setPageSize(1);
+		VerticalPanel vPanel = new VerticalPanel();
+	    vPanel.add(cellList);
+	    //vPanel.add(simplePager);
+		imageListPanel.setWidget((IsWidget)vPanel);
 	}
 }
