@@ -13,4 +13,6 @@ import fspotcloud.shared.tag.TagNode;
 @RemoteServiceRelativePath("tag")
 public interface TagService extends RemoteService {
 	List<TagNode> loadTagTree();
+
+	List<String> keysForTag(String tagId);
 }
