@@ -9,6 +9,8 @@ public class TagPlace extends Place {
 	private String photoId;
 
 	public TagPlace(String tagId, String photoId) {
+		if (tagId == null)
+			throw new NullPointerException("Invalid TagPlace");
 		this.tagId = tagId;
 		this.photoId = photoId;
 	}
@@ -31,6 +33,25 @@ public class TagPlace extends Place {
 		@Override
 		public String getToken(TagPlace place) {
 			return place.getTagId() + ":" + place.getPhotoId();
+		}
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof TagPlace))
+			return false;
+		TagPlace other = (TagPlace) obj;
+		return getTagId() != null && getTagId().equals(other.getTagId())
+				&& getPhotoId() != null
+				&& getPhotoId().equals(other.getPhotoId());
+	}
+
+	@Override
+	public int hashCode() {
+		if (getTagId() != null) {
+			return getTagId().hashCode();
+		} else {
+			return 0;
 		}
 	}
 }

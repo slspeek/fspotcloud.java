@@ -1,5 +1,7 @@
 package fspotcloud.client.main.ui;
 
+import java.util.logging.Logger;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.SelectionEvent;
@@ -18,15 +20,17 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
 
 import fspotcloud.client.main.TagView;
-import fspotcloud.shared.tag.TagNode;
 
 public class TagViewImpl extends ResizeComposite implements TagView {
 
+	private static final Logger log = Logger.getLogger(TagViewImpl.class
+			.getName());
 	private static TagViewImplUiBinder uiBinder = GWT.create(TagViewImplUiBinder.class);
 
 	interface TagViewImplUiBinder extends UiBinder<Widget, TagViewImpl> {
 	}
 
+	
 	private TagView.TagPresenter presenter; 
 	@UiField
 	HTMLPanel mainPanel;
@@ -116,6 +120,7 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	}
 	@UiHandler("prevButton")
 	public void onPreviousButtonClicked(ClickEvent event) {
+		log.info("Prev button pressed");
 		presenter.goBackward();
 	}
 	@UiHandler("lastButton")

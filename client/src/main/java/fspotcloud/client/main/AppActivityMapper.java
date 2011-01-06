@@ -6,16 +6,20 @@ import com.google.gwt.place.shared.Place;
 
 public class AppActivityMapper  implements ActivityMapper {
 	private ClientFactory clientFactory;
+	private TagActivity tagActivity;
 
 	public AppActivityMapper(ClientFactory clientFactory) {
 		super();
 		this.clientFactory = clientFactory;
+		this.tagActivity = new TagActivity(clientFactory);
+		tagActivity.reloadTree();
 	}
 
 	@Override
 	public Activity getActivity(Place place) {
 		if (place instanceof TagPlace) {
-			return new TagActivity((TagPlace) place, clientFactory);
+			tagActivity.setPlace((TagPlace)place);
+			return tagActivity;
 		}
 		return null;
 	}
