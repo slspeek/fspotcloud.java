@@ -47,4 +47,12 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 			return tree;
 		}
 	}
+
+	@Override
+	public List<String> keysForTag(String tagId) {
+		Tag tag = tagManager.getById(tagId);
+		List<String> result = new ArrayList<String>();
+		result.addAll(tag.getCachedPhotoList());
+		return result;
+	}
 }
