@@ -15,7 +15,14 @@
 				<g:PushButton ui:field="loadTreeButton" text="Reload"></g:PushButton>
 			</g:VerticalPanel>
 			<g:VerticalPanel>
-				<g:SimplePanel ui:field="imageListPanel"></g:SimplePanel>
+				<g:Image ui:field="mainImage"
+					url="http://fspotcloud.appspot.com/image/10471/1"></g:Image>
+				<g:HorizontalPanel>
+					<g:PushButton ui:field="firstButton" text="First"></g:PushButton>
+					<g:PushButton ui:field="prevButton" text="Previous"></g:PushButton>
+					<g:PushButton ui:field="nextButton" text="Next"></g:PushButton>
+					<g:PushButton ui:field="lastButton" text="Last"></g:PushButton>
+				</g:HorizontalPanel>
 			</g:VerticalPanel>
 		</g:HorizontalSplitPanel>
 		<g:FlowPanel ui:field="statusPanel">
