@@ -7,7 +7,6 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
@@ -17,19 +16,16 @@ public class TagEntryPoint implements EntryPoint {
 	private TagPlace defaultPlace = new TagPlace("1", "1");
 	private SimplePanel appWidget = new SimplePanel();
 
-	private static final Logger log = Logger.getLogger(TagEntryPoint.class.getName());
+	private static final Logger log = Logger.getLogger(TagEntryPoint.class
+			.getName());
+
 	@Override
 	public void onModuleLoad() {
 		log.info("Hello logging");
 		ClientFactory clientFactory = GWT.create(ClientFactory.class);
+
 		EventBus eventBus = clientFactory.getEventBus();
 		PlaceController placeController = clientFactory.getPlaceController();
-		
-		TagActivity tagActivity = new TagActivity(defaultPlace, clientFactory);
-		TagView tagView = clientFactory.getTagView();
-		tagView.setPresenter(tagActivity);
-		tagActivity.reloadTree();
-		
 
 		ActivityMapper activityMapper = new AppActivityMapper(clientFactory);
 		ActivityManager activityManager = new ActivityManager(activityMapper,
