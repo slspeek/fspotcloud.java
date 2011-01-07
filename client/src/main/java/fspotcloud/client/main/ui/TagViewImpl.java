@@ -17,7 +17,6 @@ import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SingleSelectionModel;
-import com.google.gwt.view.client.TreeViewModel;
 
 import fspotcloud.client.main.TagView;
 
@@ -34,7 +33,6 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	
 	@UiField
 	HTMLPanel mainPanel;
-	
 	@UiField
 	Tree tagTree;
 	@UiField
@@ -43,7 +41,6 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	Label titleLabel;
 	@UiField
 	Label statusLabel;
-
 	@UiField
 	PushButton firstButton;
 	@UiField
@@ -56,7 +53,6 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	PushButton lastButton;
 	
 	TreeItem treeModel;
-	TreeViewModel treeViewModel;
 	SingleSelectionModel<TreeItem> treeSelectionModel;
 
 	public TagViewImpl() {
@@ -118,16 +114,10 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 		presenter.goLast();
 	}
 	
-	@UiHandler("loadTreeButton")
-	public void onLoadTreeButtonClicked(ClickEvent event) {
-		presenter.reloadTree();
-	}
-	
 	@UiHandler("tagTree")
 	public void onTreeSelectionEvent(SelectionEvent<TreeItem> event) {
 		presenter.treeSelectionChanged(event);
 	}
-
 
 	@Override
 	public TreeItem getTreeModel() {
