@@ -1,6 +1,7 @@
 package fspotcloud.client.main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -18,7 +19,7 @@ public class TagActivity extends AbstractActivity implements
 	String tagId;
 	String photoId;
 	Integer offset = null;
-	List<String> photoList = new ArrayList<String>();
+	List<String> photoList = null;
 	final ClientFactory clientFactory;
 	final DataManager dataManager;
 	final TagView tagView;
@@ -33,31 +34,37 @@ public class TagActivity extends AbstractActivity implements
 
 	public void setPlace(TagPlace place) {
 		log.info("Set place: tag: " + place.getTagId());
-		photoList = new ArrayList<String>();
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
 		TagNode node = dataManager.getTagNode(tagId);
 		if (node != null) {
 			photoList = node.getCachedPhotoList();
+		} else {
+			photoList = Collections.emptyList();
+			log.warning("No information found for tagId: " + tagId);
 		}
 		log.info("Further in setPlace: " + photoList + " node: " + node);
 		int where = photoList.indexOf(photoId);
 		if (where == -1) {
-			offset =  0;
 			if (!photoList.isEmpty()) {
 				photoId = photoList.get(0);
+				offset = 0;
+			} else {
+				offset = -1;
 			}
 		} else {
 			offset = where;
 		}
 		if (photoId != null) {
 			tagView.setMainImageUrl("/image?id=" + photoId);
+		} else {
+			log.warning("No photoId defined for tagId:  " + tagId);
 		}
 	}
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		log.info("Start: photoId: " + photoId);
+		log.info("Start for tagId: " + tagId + "photoId: " + photoId);
 		tagView.setPresenter(this);
 		tagView.setTagId(tagId);
 		containerWidget.setWidget(tagView);
@@ -65,53 +72,48 @@ public class TagActivity extends AbstractActivity implements
 
 	@Override
 	public boolean canGoBackward() {
-		if (offset != null) {
-			return offset > 0;
-		} else {
-			return false;
-		}
+		return offset > 0;
 	}
 
 	@Override
 	public boolean canGoForward() {
-		if (offset != null) {
-			return offset >= 0 && offset < photoList.size() - 1;
-		} else {
-			return false;
-		}
+		return offset >= 0 && offset < photoList.size() - 1;
+	}
+
+	private void goToPhoto(String photoId) {
+		clientFactory.getPlaceController().goTo(new TagPlace(tagId, photoId));
 	}
 
 	@Override
 	public void goBackward() {
 		log.info("GoBackward list: " + photoList + " offset now : " + offset);
 		if (!photoList.isEmpty() && canGoBackward()) {
-
-			clientFactory.getPlaceController().goTo(
-					new TagPlace(tagId, photoList.get(offset - 1)));
+			String photoId = photoList.get(offset - 1);
+			goToPhoto(photoId);
 		}
 	}
 
 	@Override
 	public void goFirst() {
 		if (!photoList.isEmpty()) {
-			clientFactory.getPlaceController().goTo(
-					new TagPlace(tagId, photoList.get(0)));
+			String photoId = photoList.get(0);
+			goToPhoto(photoId);
 		}
 	}
 
 	@Override
 	public void goForward() {
 		if (!photoList.isEmpty() && canGoForward()) {
-			clientFactory.getPlaceController().goTo(
-					new TagPlace(tagId, photoList.get(offset + 1)));
+			String photoId = photoList.get(offset + 1);
+			goToPhoto(photoId);
 		}
 	}
 
 	@Override
 	public void goLast() {
 		if (!photoList.isEmpty()) {
-			clientFactory.getPlaceController().goTo(
-					new TagPlace(tagId, photoList.get(photoList.size() - 1)));
+			String photoId = photoList.get(photoList.size() - 1);
+			goToPhoto(photoId);
 		}
 	}
 
@@ -161,5 +163,11 @@ public class TagActivity extends AbstractActivity implements
 	public void reloadTree() {
 		requestTagTreeData();
 	}
-	
+
+	@Override
+	public void toggleSlideshow() {
+		log.info("TO DO implement toggleSS");
+		tagView.setSlideshowButtonCaption("Buzzy");
+	}
+
 }

@@ -15,6 +15,7 @@ public interface TagView extends IsWidget {
 		public void goBackward();
 		public boolean canGoForward();
 		public boolean canGoBackward();
+		public void toggleSlideshow();
 		public void treeSelectionChanged(SelectionEvent<TreeItem> event);
 		public void reloadTree();
 	}
@@ -26,6 +27,8 @@ public interface TagView extends IsWidget {
 	public void setStatusText(String string);
 	
 	public void setTreeModel(TreeItem root);
+	
+	public void setSlideshowButtonCaption(String caption);
 	
 	public TreeItem getTreeModel();
 

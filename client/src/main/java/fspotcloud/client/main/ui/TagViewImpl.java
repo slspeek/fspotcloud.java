@@ -30,8 +30,8 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	interface TagViewImplUiBinder extends UiBinder<Widget, TagViewImpl> {
 	}
 
+	private TagView.TagPresenter presenter;
 	
-	private TagView.TagPresenter presenter; 
 	@UiField
 	HTMLPanel mainPanel;
 	
@@ -52,6 +52,9 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 
 	@UiField
 	PushButton prevButton;
+	
+	@UiField
+	PushButton startButton;
 	
 	@UiField
 	PushButton nextButton;
@@ -148,5 +151,11 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	@Override
 	public void setSelectedItem(TreeItem item) {
 		
+	}
+
+
+	@Override
+	public void setSlideshowButtonCaption(String caption) {
+		startButton.setText(caption);
 	}
 }
