@@ -37,35 +37,26 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	
 	@UiField
 	Tree tagTree;
-	
 	@UiField
 	Image mainImage;
-	
 	@UiField
 	Label titleLabel;
-	
 	@UiField
 	Label statusLabel;
-	
-	@UiField
-	PushButton firstButton;
 
 	@UiField
+	PushButton firstButton;
+	@UiField
 	PushButton prevButton;
-	
 	@UiField
 	PushButton startButton;
-	
 	@UiField
 	PushButton nextButton;
-	
 	@UiField
 	PushButton lastButton;
 	
 	TreeItem treeModel;
-	
 	TreeViewModel treeViewModel;
-	
 	SingleSelectionModel<TreeItem> treeSelectionModel;
 
 	public TagViewImpl() {
@@ -75,24 +66,15 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 		//treeSelectionModel.addSelectionChangeHandler(arg0))
 	}
 
-
 	@Override
 	public void setPresenter(TagPresenter presenter) {
 		this.presenter = presenter;
 	}
 
-
 	@Override
 	public void setMainImageUrl(String url) {
 		mainImage.setUrl(url); 
 	}
-
-
-	@Override
-	public void setTagId(String tagId) {
-		
-		}
-
 
 	@Override
 	public void setStatusText(String text) {
@@ -115,6 +97,11 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	@UiHandler("firstButton")
 	public void onFirstButtonClicked(ClickEvent event) {
 		presenter.goFirst();
+	}
+	
+	@UiHandler("startButton")
+	public void onStartButtonClicked(ClickEvent event) {
+		presenter.toggleSlideshow();
 	}
 	
 	@UiHandler("nextButton")
@@ -147,15 +134,14 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 		return treeModel;
 	}
 
-
 	@Override
 	public void setSelectedItem(TreeItem item) {
 		
 	}
 
-
 	@Override
 	public void setSlideshowButtonCaption(String caption) {
 		startButton.setText(caption);
+		startButton.setTitle(caption);
 	}
 }
