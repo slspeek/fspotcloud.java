@@ -157,11 +157,15 @@ public class TagActivity extends AbstractActivity implements
 	public void treeSelectionChanged(SelectionEvent<TreeItem> event) {
 		TreeItem selectedItem = event.getSelectedItem();
 		if (selectedItem != null) {
-			TagNode selectedTag = (TagNode) selectedItem.getUserObject();
-			String tagId = selectedTag.getId();
-			String firstPhotoId = selectedTag.getCachedPhotoList().get(0);
-			TagPlace newPlace = new TagPlace(tagId, firstPhotoId);
-			clientFactory.getPlaceController().goTo(newPlace);
+			if (selectedItem.getParentItem() != null) {
+				TagNode selectedTag = (TagNode) selectedItem.getUserObject();
+				if (!selectedTag.getCachedPhotoList().isEmpty()) {
+					String firstPhotoId = selectedTag.getCachedPhotoList().get(0);
+					String tagId = selectedTag.getId();
+					TagPlace newPlace = new TagPlace(tagId, firstPhotoId);
+					clientFactory.getPlaceController().goTo(newPlace);
+				}
+			}
 		}
 	}
 
