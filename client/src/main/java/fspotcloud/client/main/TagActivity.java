@@ -10,6 +10,7 @@ import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.TreeItem;
 
 import fspotcloud.shared.tag.TagNode;
@@ -23,6 +24,13 @@ public class TagActivity extends AbstractActivity implements
 	final ClientFactory clientFactory;
 	final DataManager dataManager;
 	final TagView tagView;
+	private Timer slideshowTimer = new Timer() {
+		public void run() {
+			goForward();
+		}
+	};
+	private boolean slideshowRunning = false;
+	
 	private static final Logger log = Logger.getLogger(TagActivity.class
 			.getName());
 
@@ -33,7 +41,6 @@ public class TagActivity extends AbstractActivity implements
 	}
 
 	public void setPlace(TagPlace place) {
-		log.info("Set place: tag: " + place.getTagId());
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
 		TagNode node = dataManager.getTagNode(tagId);
@@ -43,7 +50,6 @@ public class TagActivity extends AbstractActivity implements
 			photoList = Collections.emptyList();
 			log.warning("No information found for tagId: " + tagId);
 		}
-		log.info("Further in setPlace: " + photoList + " node: " + node);
 		int where = photoList.indexOf(photoId);
 		if (where == -1) {
 			if (!photoList.isEmpty()) {
@@ -66,7 +72,6 @@ public class TagActivity extends AbstractActivity implements
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		log.info("Start for tagId: " + tagId + "photoId: " + photoId);
 		tagView.setPresenter(this);
-		tagView.setTagId(tagId);
 		containerWidget.setWidget(tagView);
 	}
 
@@ -167,7 +172,15 @@ public class TagActivity extends AbstractActivity implements
 	@Override
 	public void toggleSlideshow() {
 		log.info("TO DO implement toggleSS");
-		tagView.setSlideshowButtonCaption("Buzzy");
+		if (slideshowRunning) {
+			tagView.setSlideshowButtonCaption("Start");
+			tagView.setStatusText("Slideshow stopt.");
+			slideshowTimer.cancel();
+		} else {
+			tagView.setSlideshowButtonCaption("Stop");
+			slideshowTimer.scheduleRepeating(3000);
+			tagView.setStatusText("Slideshow running.");
+		}
+		slideshowRunning = !slideshowRunning;
 	}
-
 }

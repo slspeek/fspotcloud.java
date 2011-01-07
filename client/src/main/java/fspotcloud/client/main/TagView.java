@@ -20,8 +20,6 @@ public interface TagView extends IsWidget {
 		public void reloadTree();
 	}
 
-	public void setTagId(String tagId);
-
 	void setMainImageUrl(String url);
 
 	public void setStatusText(String string);
