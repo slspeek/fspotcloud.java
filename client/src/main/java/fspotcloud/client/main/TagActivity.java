@@ -17,6 +17,9 @@ import fspotcloud.shared.tag.TagNode;
 
 public class TagActivity extends AbstractActivity implements
 		TagView.TagPresenter {
+	private static final Logger log = Logger.getLogger(TagActivity.class
+			.getName());
+
 	String tagId;
 	String photoId;
 	Integer offset = null;
@@ -24,15 +27,14 @@ public class TagActivity extends AbstractActivity implements
 	final ClientFactory clientFactory;
 	final DataManager dataManager;
 	final TagView tagView;
+
+	private boolean slideshowRunning = false;
 	private Timer slideshowTimer = new Timer() {
 		public void run() {
+			log.info("Slideshow timer about to call goForward");
 			goForward();
 		}
 	};
-	private boolean slideshowRunning = false;
-	
-	private static final Logger log = Logger.getLogger(TagActivity.class
-			.getName());
 
 	public TagActivity(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
@@ -91,7 +93,6 @@ public class TagActivity extends AbstractActivity implements
 
 	@Override
 	public void goBackward() {
-		log.info("GoBackward list: " + photoList + " offset now : " + offset);
 		if (!photoList.isEmpty() && canGoBackward()) {
 			String photoId = photoList.get(offset - 1);
 			goToPhoto(photoId);
@@ -171,7 +172,6 @@ public class TagActivity extends AbstractActivity implements
 
 	@Override
 	public void toggleSlideshow() {
-		log.info("TO DO implement toggleSS");
 		if (slideshowRunning) {
 			tagView.setSlideshowButtonCaption("Start");
 			tagView.setStatusText("Slideshow stopt.");
@@ -179,7 +179,7 @@ public class TagActivity extends AbstractActivity implements
 		} else {
 			tagView.setSlideshowButtonCaption("Stop");
 			slideshowTimer.scheduleRepeating(3000);
-			tagView.setStatusText("Slideshow running.");
+			tagView.setStatusText("Slideshow started.");
 		}
 		slideshowRunning = !slideshowRunning;
 	}

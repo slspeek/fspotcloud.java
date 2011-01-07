@@ -12,7 +12,6 @@
 		<g:HorizontalSplitPanel height="700px" splitPosition="30%">
 			<g:VerticalPanel>
 				<g:Tree ui:field="tagTree"></g:Tree>
-				<g:PushButton ui:field="loadTreeButton" text="Reload"></g:PushButton>
 			</g:VerticalPanel>
 			<g:VerticalPanel>
 				<g:Image ui:field="mainImage"></g:Image>
