@@ -1,6 +1,5 @@
 package fspotcloud.client.main;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
@@ -8,10 +7,12 @@ import java.util.logging.Logger;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.TreeItem;
+import com.google.inject.Inject;
 
 import fspotcloud.shared.tag.TagNode;
 
@@ -20,13 +21,14 @@ public class TagActivity extends AbstractActivity implements
 	private static final Logger log = Logger.getLogger(TagActivity.class
 			.getName());
 
+	final DataManager dataManager;
+	final TagView tagView;
+	final private PlaceController placeController;
+
 	String tagId;
 	String photoId;
 	Integer offset = null;
 	List<String> photoList = null;
-	final ClientFactory clientFactory;
-	final DataManager dataManager;
-	final TagView tagView;
 
 	private boolean slideshowRunning = false;
 	private Timer slideshowTimer = new Timer() {
@@ -36,10 +38,12 @@ public class TagActivity extends AbstractActivity implements
 		}
 	};
 
-	public TagActivity(ClientFactory clientFactory) {
-		this.clientFactory = clientFactory;
-		this.tagView = clientFactory.getTagView();
-		this.dataManager = clientFactory.getDataManager();
+	@Inject
+	public TagActivity(TagView tagView, DataManager dataManager,
+			PlaceController placeController) {
+		this.tagView = tagView;
+		this.dataManager = dataManager;
+		this.placeController = placeController;
 	}
 
 	public void setPlace(TagPlace place) {
@@ -87,8 +91,12 @@ public class TagActivity extends AbstractActivity implements
 		return offset >= 0 && offset < photoList.size() - 1;
 	}
 
+	private void goToPhoto(String otherTagId, String photoId) {
+		placeController.goTo(new TagPlace(otherTagId, photoId));
+	}
+
 	private void goToPhoto(String photoId) {
-		clientFactory.getPlaceController().goTo(new TagPlace(tagId, photoId));
+		goToPhoto(tagId, photoId);
 	}
 
 	@Override
@@ -124,19 +132,18 @@ public class TagActivity extends AbstractActivity implements
 	}
 
 	private void requestTagTreeData() {
-		clientFactory.getDataManager().getTagTree(
-				new AsyncCallback<List<TagNode>>() {
-					@Override
-					public void onFailure(Throwable caught) {
+		dataManager.getTagTree(new AsyncCallback<List<TagNode>>() {
+			@Override
+			public void onFailure(Throwable caught) {
 
-					}
+			}
 
-					@Override
-					public void onSuccess(List<TagNode> result) {
-						TreeItem treeModel = build(result);
-						clientFactory.getTagView().setTreeModel(treeModel);
-					}
-				});
+			@Override
+			public void onSuccess(List<TagNode> result) {
+				TreeItem treeModel = build(result);
+				tagView.setTreeModel(treeModel);
+			}
+		});
 	}
 
 	private TreeItem build(List<TagNode> tagTrees) {
@@ -160,10 +167,10 @@ public class TagActivity extends AbstractActivity implements
 			if (selectedItem.getParentItem() != null) {
 				TagNode selectedTag = (TagNode) selectedItem.getUserObject();
 				if (!selectedTag.getCachedPhotoList().isEmpty()) {
-					String firstPhotoId = selectedTag.getCachedPhotoList().get(0);
+					String firstPhotoId = selectedTag.getCachedPhotoList().get(
+							0);
 					String tagId = selectedTag.getId();
-					TagPlace newPlace = new TagPlace(tagId, firstPhotoId);
-					clientFactory.getPlaceController().goTo(newPlace);
+					goToPhoto(tagId, firstPhotoId);
 				}
 			}
 		}
