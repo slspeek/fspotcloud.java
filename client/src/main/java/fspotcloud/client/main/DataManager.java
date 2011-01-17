@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.inject.Inject;
 
 import fspotcloud.rpc.TagServiceAsync;
 import fspotcloud.shared.tag.TagNode;
@@ -19,6 +20,7 @@ public class DataManager {
 	private static final Logger log = Logger.getLogger(DataManager.class
 			.getName());
 
+	@Inject
 	public DataManager(TagServiceAsync tagService) {
 		this.tagService = tagService;
 	}

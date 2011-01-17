@@ -3,15 +3,16 @@ package fspotcloud.client.main;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
+import com.google.inject.Inject;
 
 public class AppActivityMapper  implements ActivityMapper {
-	private ClientFactory clientFactory;
+	
 	private TagActivity tagActivity;
 
-	public AppActivityMapper(ClientFactory clientFactory) {
+	@Inject
+	public AppActivityMapper(TagActivity tagActivity) {
 		super();
-		this.clientFactory = clientFactory;
-		this.tagActivity = new TagActivity(clientFactory);
+		this.tagActivity = tagActivity;
 		tagActivity.reloadTree();
 	}
 
