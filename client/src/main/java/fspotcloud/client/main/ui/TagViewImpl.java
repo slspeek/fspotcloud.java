@@ -3,20 +3,20 @@ package fspotcloud.client.main.ui;
 import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.ResizeComposite;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SingleSelectionModel;
+import com.google.inject.Inject;
 
 import fspotcloud.client.main.TagView;
 
@@ -36,43 +36,30 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	@UiField
 	Tree tagTree;
 	@UiField
-	Image mainImage;
-	@UiField
 	Label titleLabel;
 	@UiField
 	Label statusLabel;
-	@UiField
-	PushButton firstButton;
-	@UiField
-	PushButton prevButton;
-	@UiField
-	PushButton startButton;
-	@UiField
-	PushButton nextButton;
-	@UiField
-	PushButton lastButton;
 	
+	@UiField 
+	SimplePanel imageViewPanel;
+		
 	TreeItem treeModel;
 	SingleSelectionModel<TreeItem> treeSelectionModel;
 
+	@Inject
 	public TagViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		tagTree.addItem("Loading, please wait.");
 		this.treeSelectionModel = new SingleSelectionModel<TreeItem>();
 		//treeSelectionModel.addSelectionChangeHandler(arg0))
 	}
-
+	
 	@Override
 	public void setPresenter(TagPresenter presenter) {
 		this.presenter = presenter;
 	}
 
-	@Override
-	public void setMainImageUrl(String url) {
-		mainImage.setUrl(url); 
-	}
-
-	@Override
+		@Override
 	public void setStatusText(String text) {
 		statusLabel.setText(text);
 	}
@@ -88,30 +75,6 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 			TreeItem child = root.getChild(i);
 			child.setState(true);
 		}
-	}
-	
-	@UiHandler("firstButton")
-	public void onFirstButtonClicked(ClickEvent event) {
-		presenter.goFirst();
-	}
-	
-	@UiHandler("startButton")
-	public void onStartButtonClicked(ClickEvent event) {
-		presenter.toggleSlideshow();
-	}
-	
-	@UiHandler("nextButton")
-	public void onNextButtonClicked(ClickEvent event) {
-		presenter.goForward();
-	}
-	@UiHandler("prevButton")
-	public void onPreviousButtonClicked(ClickEvent event) {
-		log.info("Prev button pressed");
-		presenter.goBackward();
-	}
-	@UiHandler("lastButton")
-	public void onLastButtonClicked(ClickEvent event) {
-		presenter.goLast();
 	}
 	
 	@UiHandler("tagTree")
@@ -130,8 +93,7 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	}
 
 	@Override
-	public void setSlideshowButtonCaption(String caption) {
-		startButton.setText(caption);
-		startButton.setTitle(caption);
+	public HasOneWidget getImageViewContainer() {
+		return imageViewPanel;
 	}
 }
