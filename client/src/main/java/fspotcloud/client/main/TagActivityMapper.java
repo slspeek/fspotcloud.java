@@ -7,27 +7,24 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 
-public class AppActivityMapper  implements ActivityMapper {
+public class TagActivityMapper  implements ActivityMapper {
 	
-	private TagActivity tagActivity;
 	private ImageActivity imageActivity;
-	private static final Logger log = Logger.getLogger(AppActivityMapper.class
+	private static final Logger log = Logger.getLogger(TagActivityMapper.class
 			.getName());
 
 	@Inject
-	public AppActivityMapper(TagActivity tagActivity, ImageActivity imageActivity) {
+	public TagActivityMapper(ImageActivity imageActivity) {
 		super();
-		this.tagActivity = tagActivity;
 		this.imageActivity = imageActivity;
-		tagActivity.reloadTree();
 	}
 
 	@Override
 	public Activity getActivity(Place place) {
 		if (place instanceof TagPlace) {
-			tagActivity.setPlace((TagPlace)place);
-			return tagActivity;
-		} else if (place instanceof ImagePlace) {
+			place = new ImagePlace(((TagPlace) place).getTagId(), ((TagPlace) place).getPhotoId());
+		}
+		if (place instanceof ImagePlace) {
 			imageActivity.setPlace((ImagePlace)place);
 			return imageActivity;
 		} else {
