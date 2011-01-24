@@ -44,6 +44,8 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 
 	public ImageViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
+		startButton.setAccessKey('s');
+		nextButton.setAccessKey('n');
 	}
 
 	@Override
