@@ -6,6 +6,7 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 public class TagActivityMapper  implements ActivityMapper {
 	
@@ -14,7 +15,7 @@ public class TagActivityMapper  implements ActivityMapper {
 			.getName());
 
 	@Inject
-	public TagActivityMapper(ImageActivity imageActivity) {
+	public TagActivityMapper(EmbeddedImageActivity imageActivity) {
 		super();
 		this.imageActivity = imageActivity;
 	}

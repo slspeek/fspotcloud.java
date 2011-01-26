@@ -20,7 +20,7 @@ public class ImageActivity extends AbstractActivity implements
 			.getName());
 
 	final DataManager dataManager;
-	final private PlaceController placeController;
+	final protected PlaceController placeController;
 	private ImageView imageView;
 
 	String tagId;
@@ -36,6 +36,14 @@ public class ImageActivity extends AbstractActivity implements
 		}
 	};
 
+	@Override
+	public void onStop() {
+		if (slideshowRunning) {
+			slideshowTimer.cancel();
+		}
+		super.onStop();
+	}
+
 	@Inject
 	public ImageActivity(ImageView imageView, DataManager dataManager,
 			PlaceController placeController) {
@@ -45,9 +53,15 @@ public class ImageActivity extends AbstractActivity implements
 	}
 
 	public void setPlace(ImageViewingPlace place) {
+		offset = null;
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
 		log.info("setPlace called for tagId: " + tagId + " photoId: " + photoId);
+		calculateLocation();
+		setImage();
+	}
+
+	public void calculateLocation() {
 		TagNode node = dataManager.getTagNode(tagId);
 		if (node != null) {
 			photoList = node.getCachedPhotoList();
@@ -66,13 +80,15 @@ public class ImageActivity extends AbstractActivity implements
 		} else {
 			offset = where;
 		}
+	}
+	
+	private void setImage() {
 		if (photoId != null) {
 			imageView.setImageUrl("/image?id=" + photoId);
 		} else {
 			log.warning("No photoId defined for tagId:  " + tagId);
 		}
 	}
-
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		log.info("Start image activity for tagId: " + tagId + "photoId: " + photoId);

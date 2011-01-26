@@ -41,7 +41,7 @@ public class GlobalShortcutController {
 			}
 			if (keycode == 'f') {
 				Place place = placeController.getWhere();
-				if (place instanceof TagViewingPlace) {
+				if (place instanceof TagViewingPlace && !(place instanceof ImageViewingPlace)) {
 					TagViewingPlace tagPlace = (TagViewingPlace) place;
 					ImageViewingPlace imagePlace = new ImageViewingPlace(tagPlace.getTagId(),
 							tagPlace.getPhotoId());
