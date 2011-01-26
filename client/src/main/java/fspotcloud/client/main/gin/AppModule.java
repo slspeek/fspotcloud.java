@@ -13,6 +13,7 @@ import fspotcloud.client.main.TagCell;
 import fspotcloud.client.main.ui.ImageViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
 import fspotcloud.client.view.AppActivityMapper;
+import fspotcloud.client.view.EmbeddedImageActivity;
 import fspotcloud.client.view.ImageActivity;
 import fspotcloud.client.view.ImageView;
 import fspotcloud.client.view.TagActivity;
@@ -27,6 +28,7 @@ public class AppModule extends AbstractGinModule {
 		bind(MVPSetup.class).in(Singleton.class);
 		bind(TagActivity.class);
 		bind(ImageActivity.class);
+		bind(EmbeddedImageActivity.class);
 		bind(TagCell.class);
 		bind(TagView.class).to(TagViewImpl.class);
 		bind(ImageViewImpl.class);

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.shared.EventBus;
@@ -76,6 +77,8 @@ public class TagActivity extends AbstractActivity implements
 			public void onSuccess(List<TagNode> result) {
 				TreeItem treeModel = build(result);
 				tagView.setTreeModel(treeModel);
+				ImageActivity current = (ImageActivity) tagActivityMapper.getActivity(placeController.getWhere());
+				current.calculateLocation();
 			}
 		});
 	}

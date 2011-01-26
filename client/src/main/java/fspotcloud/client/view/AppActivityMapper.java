@@ -24,12 +24,12 @@ public class AppActivityMapper  implements ActivityMapper {
 
 	@Override
 	public Activity getActivity(Place place) {
-		if (place instanceof TagViewingPlace) {
-			tagActivity.setPlace((TagViewingPlace)place);
-			return tagActivity;
-		} else if (place instanceof ImageViewingPlace) {
+		if (place instanceof ImageViewingPlace) {
 			imageActivity.setPlace((ImageViewingPlace)place);
 			return imageActivity;
+		} else if (place instanceof TagViewingPlace) {
+			tagActivity.setPlace((TagViewingPlace)place);
+			return tagActivity;
 		} else {
 			log.warning("getActivity will return null for place: " + place);
 			return null;
