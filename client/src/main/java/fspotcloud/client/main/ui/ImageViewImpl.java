@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
 
-import fspotcloud.client.main.ImageView;
+import fspotcloud.client.view.ImageView;
 
 public class ImageViewImpl extends ResizeComposite implements ImageView {
 

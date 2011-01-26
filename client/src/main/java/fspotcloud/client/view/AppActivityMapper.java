@@ -1,4 +1,4 @@
-package fspotcloud.client.main;
+package fspotcloud.client.view;
 
 import java.util.logging.Logger;
 
@@ -24,11 +24,11 @@ public class AppActivityMapper  implements ActivityMapper {
 
 	@Override
 	public Activity getActivity(Place place) {
-		if (place instanceof TagPlace) {
-			tagActivity.setPlace((TagPlace)place);
+		if (place instanceof TagViewingPlace) {
+			tagActivity.setPlace((TagViewingPlace)place);
 			return tagActivity;
-		} else if (place instanceof ImagePlace) {
-			imageActivity.setPlace((ImagePlace)place);
+		} else if (place instanceof ImageViewingPlace) {
+			imageActivity.setPlace((ImageViewingPlace)place);
 			return imageActivity;
 		} else {
 			log.warning("getActivity will return null for place: " + place);

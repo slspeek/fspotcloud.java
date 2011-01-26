@@ -1,16 +1,16 @@
-package fspotcloud.client.main;
+package fspotcloud.client.view;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-public class ImagePlace extends Place {
+public class TagViewingPlace extends Place {
 
 	private String tagId;
 	private String photoId;
 
-	public ImagePlace(String tagId, String photoId) {
+	public TagViewingPlace(String tagId, String photoId) {
 		if (tagId == null)
-			throw new NullPointerException("Invalid ImagePlace");
+			throw new NullPointerException("Invalid TagPlace");
 		this.tagId = tagId;
 		this.photoId = photoId;
 	}
@@ -23,24 +23,24 @@ public class ImagePlace extends Place {
 		return photoId;
 	}
 
-	public static class Tokenizer implements PlaceTokenizer<ImagePlace> {
+	public static class Tokenizer implements PlaceTokenizer<TagViewingPlace> {
 		@Override
-		public ImagePlace getPlace(String token) {
+		public TagViewingPlace getPlace(String token) {
 			String[] tokens = token.split(":");
-			return new ImagePlace(tokens[0], tokens[1]);
+			return new TagViewingPlace(tokens[0], tokens[1]);
 		}
 
 		@Override
-		public String getToken(ImagePlace place) {
+		public String getToken(TagViewingPlace place) {
 			return place.getTagId() + ":" + place.getPhotoId();
 		}
 	}
 
-	@Override
+/*	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof ImagePlace))
+		if (!(obj instanceof TagViewingPlace))
 			return false;
-		ImagePlace other = (ImagePlace) obj;
+		TagViewingPlace other = (TagViewingPlace) obj;
 		return getTagId() != null && getTagId().equals(other.getTagId())
 				&& getPhotoId() != null
 				&& getPhotoId().equals(other.getPhotoId());
@@ -53,5 +53,5 @@ public class ImagePlace extends Place {
 		} else {
 			return 0;
 		}
-	}
+	}*/
 }

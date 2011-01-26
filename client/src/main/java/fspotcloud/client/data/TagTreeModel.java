@@ -1,4 +1,4 @@
-package fspotcloud.client.main;
+package fspotcloud.client.data;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.TreeViewModel;
 
+import fspotcloud.client.main.TagCell;
 import fspotcloud.shared.tag.TagNode;
 
 public class TagTreeModel implements TreeViewModel {

@@ -1,4 +1,4 @@
-package fspotcloud.client.main;
+package fspotcloud.client.view;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.inject.Inject;
 
-import fspotcloud.client.main.ImageView.ImagePresenter;
+import fspotcloud.client.data.DataManager;
 import fspotcloud.shared.tag.TagNode;
 
 public class TagActivity extends AbstractActivity implements
@@ -48,7 +48,7 @@ public class TagActivity extends AbstractActivity implements
 		activityManager.setDisplay(tagView.getImageViewContainer());
 	}
 
-	public void setPlace(TagPlace place) {
+	public void setPlace(TagViewingPlace place) {
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
 	}
@@ -62,7 +62,7 @@ public class TagActivity extends AbstractActivity implements
 	}
 
 	protected void goToPhoto(String otherTagId, String photoId) {
-		placeController.goTo(new TagPlace(otherTagId, photoId));
+		placeController.goTo(new TagViewingPlace(otherTagId, photoId));
 	}
 
 	private void requestTagTreeData() {

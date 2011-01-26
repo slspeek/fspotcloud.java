@@ -18,7 +18,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 
-import fspotcloud.client.main.TagView;
+import fspotcloud.client.view.TagView;
 
 public class TagViewImpl extends ResizeComposite implements TagView {
 

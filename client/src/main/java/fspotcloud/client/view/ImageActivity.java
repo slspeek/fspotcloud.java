@@ -1,4 +1,4 @@
-package fspotcloud.client.main;
+package fspotcloud.client.view;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +11,7 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
+import fspotcloud.client.data.DataManager;
 import fspotcloud.shared.tag.TagNode;
 
 public class ImageActivity extends AbstractActivity implements
@@ -43,7 +44,7 @@ public class ImageActivity extends AbstractActivity implements
 		this.placeController = placeController;
 	}
 
-	public void setPlace(ImagePlace place) {
+	public void setPlace(ImageViewingPlace place) {
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
 		log.info("setPlace called for tagId: " + tagId + " photoId: " + photoId);
@@ -90,7 +91,7 @@ public class ImageActivity extends AbstractActivity implements
 	}
 
 	protected void goToPhoto(String otherTagId, String photoId) {
-		placeController.goTo(new ImagePlace(otherTagId, photoId));
+		placeController.goTo(new ImageViewingPlace(otherTagId, photoId));
 	}
 
 	private void goToPhoto(String photoId) {
