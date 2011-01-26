@@ -6,23 +6,24 @@ import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.inject.Singleton;
 
-import fspotcloud.client.main.AppActivityMapper;
-import fspotcloud.client.main.DataManager;
-import fspotcloud.client.main.ImageActivity;
-import fspotcloud.client.main.ImageView;
+import fspotcloud.client.data.DataManager;
+import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.main.MVPSetup;
-import fspotcloud.client.main.TagActivity;
 import fspotcloud.client.main.TagCell;
-import fspotcloud.client.main.TagView;
 import fspotcloud.client.main.ui.ImageViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
+import fspotcloud.client.view.AppActivityMapper;
+import fspotcloud.client.view.ImageActivity;
+import fspotcloud.client.view.ImageView;
+import fspotcloud.client.view.TagActivity;
+import fspotcloud.client.view.TagView;
 
 public class AppModule extends AbstractGinModule {
 
 	@Override
 	protected void configure() {
 		bind(AppActivityMapper.class).in(Singleton.class);
-		bind(DataManager.class).in(Singleton.class);
+		bind(DataManager.class).to(DataManagerImpl.class).in(Singleton.class);
 		bind(MVPSetup.class).in(Singleton.class);
 		bind(TagActivity.class);
 		bind(ImageActivity.class);

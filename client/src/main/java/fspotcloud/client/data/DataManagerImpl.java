@@ -1,4 +1,4 @@
-package fspotcloud.client.main;
+package fspotcloud.client.data;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,36 +11,24 @@ import com.google.inject.Inject;
 import fspotcloud.rpc.TagServiceAsync;
 import fspotcloud.shared.tag.TagNode;
 
-public class DataManager {
-	final private TagServiceAsync tagService;
-	
-	private List<TagNode> tagTreeData = null;
-	final private Map<String,TagNode> tagNodeIndex = new HashMap<String,TagNode>();
-
-	private static final Logger log = Logger.getLogger(DataManager.class
+public class DataManagerImpl implements DataManager {
+	private static final Logger log = Logger.getLogger(DataManagerImpl.class
 			.getName());
 
+	private final TagServiceAsync tagService;
+	private final IndexingUtil indexingUtil;
+	
+	private List<TagNode> tagTreeData = null;
+	private final Map<String,TagNode> tagNodeIndex = new HashMap<String,TagNode>();
+
 	@Inject
-	public DataManager(TagServiceAsync tagService) {
+	public DataManagerImpl(TagServiceAsync tagService, IndexingUtil indexingUtil) {
 		this.tagService = tagService;
+		this.indexingUtil = indexingUtil;
 	}
 
 	public TagNode getTagNode(String id) {
 		return tagNodeIndex.get(id); 
-	}
-	
-	private void rebuildTagNodeIndex() {
-		tagNodeIndex.clear();
-		for (TagNode root: tagTreeData) {
-			addTagNodeIndex(root);
-		}
-	}
-	
-	private void addTagNodeIndex(TagNode node) {
-		tagNodeIndex.put(node.getId(), node);
-		for (TagNode child: node.getChildren()) {
-			addTagNodeIndex(child);
-		}
 	}
 	
 	public void getTagTree(
@@ -56,7 +44,7 @@ public class DataManager {
 
 				public void onSuccess(List<TagNode> result) {
 					tagTreeData = result;
-					rebuildTagNodeIndex();
+					indexingUtil.rebuildTagNodeIndex(tagNodeIndex, tagTreeData);
 					callback.onSuccess(result);
 				}
 			});

@@ -1,4 +1,4 @@
-package fspotcloud.client.main;
+package fspotcloud.client.view;
 
 import com.google.gwt.user.client.ui.IsWidget;
 

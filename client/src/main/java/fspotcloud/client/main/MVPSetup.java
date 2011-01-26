@@ -12,9 +12,13 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Inject;
 
+import fspotcloud.client.view.AppActivityMapper;
+import fspotcloud.client.view.AppPlaceHistoryMapper;
+import fspotcloud.client.view.TagViewingPlace;
+
 public class MVPSetup {
 
-	final private Place defaultPlace = new TagPlace("1", "5");
+	final private Place defaultPlace = new TagViewingPlace("1", "5");
 	final private SimplePanel appWidget = new SimplePanel();
 	final private EventBus eventBus;
 	final private AppActivityMapper activityMapper;
