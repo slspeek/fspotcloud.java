@@ -11,6 +11,9 @@ import com.google.gwt.user.client.Event.NativePreviewEvent;
 import com.google.gwt.user.client.Event.NativePreviewHandler;
 import com.google.inject.Inject;
 
+import fspotcloud.client.view.ImageViewingPlace;
+import fspotcloud.client.view.TagViewingPlace;
+
 public class GlobalShortcutController {
 
 	private static final Logger log = Logger
@@ -34,18 +37,18 @@ public class GlobalShortcutController {
 			boolean alt = event.getAltKey();
 			boolean meta = event.getMetaKey();
 			if (!event.getType().equalsIgnoreCase("keypress")) {
-				return;
+				//return;
 			}
 			if (keycode == 'f') {
 				Place place = placeController.getWhere();
-				if (place instanceof TagPlace) {
-					TagPlace tagPlace = (TagPlace) place;
-					ImagePlace imagePlace = new ImagePlace(tagPlace.getTagId(),
+				if (place instanceof TagViewingPlace) {
+					TagViewingPlace tagPlace = (TagViewingPlace) place;
+					ImageViewingPlace imagePlace = new ImageViewingPlace(tagPlace.getTagId(),
 							tagPlace.getPhotoId());
 					placeController.goTo(imagePlace);
-				} else if (place instanceof ImagePlace) {
-					ImagePlace imagePlace = (ImagePlace) place;
-					TagPlace tagPlace = new TagPlace(imagePlace.getTagId(), imagePlace.getPhotoId());
+				} else if (place instanceof ImageViewingPlace) {
+					ImageViewingPlace imagePlace = (ImageViewingPlace) place;
+					TagViewingPlace tagPlace = new TagViewingPlace(imagePlace.getTagId(), imagePlace.getPhotoId());
 					placeController.goTo(tagPlace);
 				}
 	
