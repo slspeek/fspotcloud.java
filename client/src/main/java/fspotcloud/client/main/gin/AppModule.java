@@ -9,6 +9,7 @@ import com.google.inject.Singleton;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.main.MVPSetup;
+import fspotcloud.client.main.PlaceSwapper;
 import fspotcloud.client.main.TagCell;
 import fspotcloud.client.main.ui.ImageViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
@@ -29,6 +30,7 @@ public class AppModule extends AbstractGinModule {
 		bind(TagActivity.class);
 		bind(ImageActivity.class);
 		bind(EmbeddedImageActivity.class);
+		bind(PlaceSwapper.class);
 		bind(TagCell.class);
 		bind(TagView.class).to(TagViewImpl.class);
 		bind(ImageViewImpl.class);

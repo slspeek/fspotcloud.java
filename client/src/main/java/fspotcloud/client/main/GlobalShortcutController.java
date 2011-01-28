@@ -20,10 +20,13 @@ public class GlobalShortcutController {
 			.getLogger(GlobalShortcutController.class.getName());
 
 	private final PlaceController placeController;
+	private final PlaceSwapper placeSwapper;
 
 	@Inject
-	public GlobalShortcutController(PlaceController placeController) {
+	public GlobalShortcutController(PlaceController placeController,
+			PlaceSwapper placeSwapper) {
 		this.placeController = placeController;
+		this.placeSwapper = placeSwapper;
 	}
 
 	class Preview implements NativePreviewHandler {
@@ -37,24 +40,15 @@ public class GlobalShortcutController {
 			boolean alt = event.getAltKey();
 			boolean meta = event.getMetaKey();
 			if (!event.getType().equalsIgnoreCase("keypress")) {
-				//return;
+				// return;
 			}
 			if (keycode == 'f') {
 				Place place = placeController.getWhere();
-				if (place instanceof TagViewingPlace && !(place instanceof ImageViewingPlace)) {
-					TagViewingPlace tagPlace = (TagViewingPlace) place;
-					ImageViewingPlace imagePlace = new ImageViewingPlace(tagPlace.getTagId(),
-							tagPlace.getPhotoId());
-					placeController.goTo(imagePlace);
-				} else if (place instanceof ImageViewingPlace) {
-					ImageViewingPlace imagePlace = (ImageViewingPlace) place;
-					TagViewingPlace tagPlace = new TagViewingPlace(imagePlace.getTagId(), imagePlace.getPhotoId());
-					placeController.goTo(tagPlace);
-				}
-	
+				Place target = placeSwapper.swap(place);
+				placeController.goTo(target);
 			}
 			log.info("Preview: " + String.valueOf(keycode));
-			
+
 			// Tell the event handler that this event has been consumed
 			preview.consume();
 		}
