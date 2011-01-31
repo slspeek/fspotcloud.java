@@ -47,26 +47,12 @@
 			<version>${project.version}</version>
 			<type>pom</type>
 		</dependency>
-
-		<!-- Jars for GIN -->
-		<dependency>
-			<groupId>com.googlecode.gwt.inject</groupId>
-			<artifactId>gin</artifactId>
-			<version>1.0</version>
-		</dependency>
 		<dependency>
 			<groupId>${project.groupId}.deps</groupId>
 			<artifactId>guice-deps</artifactId>
 			<version>${project.version}</version>
 			<type>pom</type>
 		</dependency>
-		<dependency>
-			<groupId>org.jmock</groupId>
-			<artifactId>jmock</artifactId>
-			<version>2.5.1</version>
-			<scope>test</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>${project.groupId}.deps</groupId>
 			<artifactId>appengine-deps</artifactId>
@@ -92,7 +78,12 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock</artifactId>
+			<version>2.5.1</version>
+			<scope>test</scope>
+		</dependency>
 		<!--
 			GAE libraries for local testing as described here:
 			http://code.google.com/appengine/docs/java/howto/unittesting.html
