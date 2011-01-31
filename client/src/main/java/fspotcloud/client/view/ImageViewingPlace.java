@@ -20,4 +20,7 @@ public class ImageViewingPlace extends TagViewingPlace {
 			return place.getTagId() + ":" + place.getPhotoId();
 		}
 	}
+
+	
+	
 }

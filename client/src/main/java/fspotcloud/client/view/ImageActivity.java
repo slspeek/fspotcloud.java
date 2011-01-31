@@ -6,8 +6,6 @@ import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.PlaceController;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
@@ -20,26 +18,24 @@ public class ImageActivity extends AbstractActivity implements
 			.getName());
 
 	final DataManager dataManager;
-	final protected PlaceController placeController;
+	final protected PlaceGoTo placeGoTo;
 	private ImageView imageView;
 
 	String tagId;
 	String photoId;
 	Integer offset = null;
-	List<String> photoList = null;
+	List<String> photoList = Collections.emptyList();
 
 	boolean slideshowRunning = false;
 
 	private final SlideshowTimer slideShowTimer;
-	
-	
 
 	@Inject
 	public ImageActivity(ImageView imageView, DataManager dataManager,
-			PlaceController placeController, SlideshowTimer slideShowTimer) {
+			PlaceGoTo placeGoTo, SlideshowTimer slideShowTimer) {
 		this.imageView = imageView;
 		this.dataManager = dataManager;
-		this.placeController = placeController;
+		this.placeGoTo = placeGoTo;
 		this.slideShowTimer = slideShowTimer;
 	}
 
@@ -98,16 +94,16 @@ public class ImageActivity extends AbstractActivity implements
 
 	@Override
 	public boolean canGoBackward() {
-		return offset > 0;
+		return offset != null && offset > 0;
 	}
 
 	@Override
 	public boolean canGoForward() {
-		return offset >= 0 && offset < photoList.size() - 1;
+		return offset != null && offset >= 0 && offset < photoList.size() - 1;
 	}
 
 	protected void goToPhoto(String otherTagId, String photoId) {
-		placeController.goTo(new ImageViewingPlace(otherTagId, photoId));
+		placeGoTo.goTo(new ImageViewingPlace(otherTagId, photoId));
 	}
 
 	private void goToPhoto(String photoId) {

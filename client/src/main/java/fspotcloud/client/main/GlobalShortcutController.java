@@ -45,6 +45,7 @@ public class GlobalShortcutController {
 			if (keycode == 'f') {
 				Place place = placeController.getWhere();
 				Place target = placeSwapper.swap(place);
+				log.info("Going: " + String.valueOf(target));
 				placeController.goTo(target);
 			}
 			log.info("Preview: " + String.valueOf(keycode));
