@@ -17,6 +17,8 @@ import fspotcloud.client.view.AppActivityMapper;
 import fspotcloud.client.view.EmbeddedImageActivity;
 import fspotcloud.client.view.ImageActivity;
 import fspotcloud.client.view.ImageView;
+import fspotcloud.client.view.PlaceGoTo;
+import fspotcloud.client.view.PlaceGoToImpl;
 import fspotcloud.client.view.TagActivity;
 import fspotcloud.client.view.TagView;
 
@@ -35,6 +37,7 @@ public class AppModule extends AbstractGinModule {
 		bind(TagView.class).to(TagViewImpl.class);
 		bind(ImageViewImpl.class);
 		bind(ImageView.class).to(ImageViewImpl.class);
+		bind(PlaceGoTo.class).to(PlaceGoToImpl.class);
 		bind(PlaceController.class).toProvider(PlaceControllerProvider.class);
 		bind(PlaceControllerProvider.class).in(Singleton.class);
 		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);

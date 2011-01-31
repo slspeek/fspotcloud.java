@@ -36,7 +36,7 @@ public class TagViewingPlace extends Place {
 		}
 	}
 
-/*	@Override
+	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof TagViewingPlace))
 			return false;
@@ -53,5 +53,5 @@ public class TagViewingPlace extends Place {
 		} else {
 			return 0;
 		}
-	}*/
+	}
 }
