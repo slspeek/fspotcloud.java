@@ -1,4 +1,4 @@
-package fspotcloud.client.main;
+package fspotcloud.client.main.data;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.data.IndexingUtil;
+import fspotcloud.client.main.TagServiceAsyncTestImpl;
 import fspotcloud.shared.tag.TagNode;
 import junit.framework.TestCase;
 

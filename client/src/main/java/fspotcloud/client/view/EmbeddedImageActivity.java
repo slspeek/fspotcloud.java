@@ -9,8 +9,8 @@ public class EmbeddedImageActivity extends ImageActivity {
 
 	@Inject
 	public EmbeddedImageActivity(ImageView imageView, DataManager dataManager,
-			PlaceController placeController) {
-		super(imageView, dataManager, placeController);
+			PlaceController placeController, SlideshowTimer slideshowTimer) {
+		super(imageView, dataManager, placeController, slideshowTimer);
 	}
 
 	@Override

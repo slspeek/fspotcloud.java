@@ -28,28 +28,27 @@ public class ImageActivity extends AbstractActivity implements
 	Integer offset = null;
 	List<String> photoList = null;
 
-	private boolean slideshowRunning = false;
-	private Timer slideshowTimer = new Timer() {
-		public void run() {
-			log.info("Slideshow timer about to call goForward");
-			goForward();
-		}
-	};
+	boolean slideshowRunning = false;
+
+	private final SlideshowTimer slideShowTimer;
+	
+	
+
+	@Inject
+	public ImageActivity(ImageView imageView, DataManager dataManager,
+			PlaceController placeController, SlideshowTimer slideShowTimer) {
+		this.imageView = imageView;
+		this.dataManager = dataManager;
+		this.placeController = placeController;
+		this.slideShowTimer = slideShowTimer;
+	}
 
 	@Override
 	public void onStop() {
 		if (slideshowRunning) {
-			slideshowTimer.cancel();
+			toggleSlideshow();
 		}
 		super.onStop();
-	}
-
-	@Inject
-	public ImageActivity(ImageView imageView, DataManager dataManager,
-			PlaceController placeController) {
-		this.imageView = imageView;
-		this.dataManager = dataManager;
-		this.placeController = placeController;
 	}
 
 	public void setPlace(ImageViewingPlace place) {
@@ -92,6 +91,7 @@ public class ImageActivity extends AbstractActivity implements
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		log.info("Start image activity for tagId: " + tagId + "photoId: " + photoId);
+		slideShowTimer.setImagePresenter(this);
 		imageView.setPresenter(this);
 		containerWidget.setWidget(imageView);
 	}
@@ -150,10 +150,10 @@ public class ImageActivity extends AbstractActivity implements
 	public void toggleSlideshow() {
 		if (slideshowRunning) {
 			imageView.setSlideshowButtonCaption("Start");
-			slideshowTimer.cancel();
+			slideShowTimer.cancel();
 		} else {
 			imageView.setSlideshowButtonCaption("Stop");
-			slideshowTimer.scheduleRepeating(3000);
+			slideShowTimer.scheduleRepeating(3000);
 		}
 		slideshowRunning = !slideshowRunning;
 	}
