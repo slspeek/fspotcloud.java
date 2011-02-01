@@ -2,10 +2,21 @@ package fspotcloud.client.view;
 
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-public class ImageViewingPlace extends TagViewingPlace {
+public class ImageViewingPlace extends BasePlace {
 
 	public ImageViewingPlace(String tagId, String photoId) {
 		super(tagId, photoId);
+	}
+
+	
+	@Override
+	public boolean equals(Object other) {
+		if (other instanceof ImageViewingPlace) {
+			ImageViewingPlace otherPlace = (ImageViewingPlace) other;
+			return super.equals(otherPlace);
+		} else {
+			return false;
+		}
 	}
 
 	public static class Tokenizer implements PlaceTokenizer<ImageViewingPlace> {
@@ -20,7 +31,4 @@ public class ImageViewingPlace extends TagViewingPlace {
 			return place.getTagId() + ":" + place.getPhotoId();
 		}
 	}
-
-	
-	
 }
