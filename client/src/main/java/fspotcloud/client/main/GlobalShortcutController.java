@@ -40,18 +40,20 @@ public class GlobalShortcutController {
 			boolean alt = event.getAltKey();
 			boolean meta = event.getMetaKey();
 			if (!event.getType().equalsIgnoreCase("keypress")) {
-				// return;
+				return;
 			}
 			if (keycode == 'f') {
 				Place place = placeController.getWhere();
 				Place target = placeSwapper.swap(place);
 				log.info("Going: " + String.valueOf(target));
 				placeController.goTo(target);
+				// Tell the event handler that this event has been consumed
+				preview.consume();
 			}
-			log.info("Preview: " + String.valueOf(keycode));
+			//log.info("Preview: " + String.valueOf(keycode));
 
-			// Tell the event handler that this event has been consumed
-			preview.consume();
+
+			
 		}
 	}
 
