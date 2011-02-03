@@ -24,7 +24,7 @@ public class TagServiceAsyncTestImpl implements TagServiceAsync {
 		return node;
 	}
 	
-	private void initData() {
+	public List<TagNode> initData() {
 		TagNode root1 = createNode("1", "Friends", 10);
 		ImmutableList<String> photoList = ImmutableList.of("1", "2", "3");
 		root1.setCachedPhotoList(photoList);
@@ -46,6 +46,7 @@ public class TagServiceAsyncTestImpl implements TagServiceAsync {
 		root2.addChild(felix);
 		root2.addChild(woefje);
 		tagTreeData = ImmutableList.of(root1, root2, root3);
+		return tagTreeData;
 	}
 	
 	@Override

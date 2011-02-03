@@ -1,27 +1,14 @@
 package fspotcloud.client.view;
 
-import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.google.gwt.user.client.ui.TreeItem;
+import com.google.gwt.view.client.TreeViewModel;
 
 public interface TagView extends IsWidget {
 
-	void setPresenter(TagPresenter presenter);
-
-	public interface TagPresenter {
-		void treeSelectionChanged(SelectionEvent<TreeItem> event);
-
-		void reloadTree();
-	}
-
 	void setStatusText(String string);
 
-	void setTreeModel(TreeItem root);
-
-	TreeItem getTreeModel();
-
-	void setSelectedItem(TreeItem item);
+	void setTreeModel(TreeViewModel model);
 
 	HasOneWidget getImageViewContainer();
 

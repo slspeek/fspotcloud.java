@@ -4,43 +4,47 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
-import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.TreeItem;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SingleSelectionModel;
+import com.google.gwt.view.client.SelectionChangeEvent.Handler;
 import com.google.inject.Inject;
 
 import fspotcloud.client.data.DataManager;
 import fspotcloud.shared.tag.TagNode;
 
-public class TagActivity extends AbstractActivity implements
-		TagView.TagPresenter {
+public class TagActivity extends AbstractActivity implements Handler {
 	private static final Logger log = Logger.getLogger(TagActivity.class
 			.getName());
 
 	final DataManager dataManager;
 	final TagView tagView;
-	final private PlaceController placeController;
+	final private PlaceGoTo placeGoTo;
 	final private TagActivityMapper tagActivityMapper;
 	final private EventBus eventBus;
 
 	String tagId;
 	String photoId;
 
+	private SingleSelectionModel<TagNode> selectionModel;
+
 	@Inject
 	public TagActivity(TagView tagView, DataManager dataManager,
-			PlaceController placeController,
+			PlaceGoTo placeGoTo, SingleSelectionModel<TagNode> selectionModel,
 			TagActivityMapper tagActivityMapper, EventBus eventBus) {
 		this.tagView = tagView;
 		this.dataManager = dataManager;
-		this.placeController = placeController;
+		this.placeGoTo = placeGoTo;
 		this.tagActivityMapper = tagActivityMapper;
 		this.eventBus = eventBus;
+		this.selectionModel = selectionModel;
 		initActivityManager();
+		selectionModel.addSelectionChangeHandler(this);
 	}
 
 	private void initActivityManager() {
@@ -52,18 +56,20 @@ public class TagActivity extends AbstractActivity implements
 	public void setPlace(TagViewingPlace place) {
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
+		TagNode node = new TagNode();
+		node.setId(tagId);
+		selectionModel.setSelected(node, true);
 	}
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		log.info("Start tag activity for tagId: " + tagId + "photoId: "
+		log.info("Start tag activity for tagId: " + tagId + " photoId: "
 				+ photoId);
-		tagView.setPresenter(this);
 		containerWidget.setWidget(tagView);
 	}
 
 	protected void goToPhoto(String otherTagId, String photoId) {
-		placeController.goTo(new TagViewingPlace(otherTagId, photoId));
+		placeGoTo.goTo(new TagViewingPlace(otherTagId, photoId));
 	}
 
 	private void requestTagTreeData() {
@@ -75,46 +81,30 @@ public class TagActivity extends AbstractActivity implements
 
 			@Override
 			public void onSuccess(List<TagNode> result) {
-				TreeItem treeModel = build(result);
+				TagTreeModel treeModel = new TagTreeModel(result,
+						selectionModel);
 				tagView.setTreeModel(treeModel);
-				ImageActivity current = (ImageActivity) tagActivityMapper.getActivity(placeController.getWhere());
-				current.calculateLocation();
 			}
 		});
 	}
 
-	private TreeItem build(List<TagNode> tagTrees) {
-		TreeItem root = new TreeItem("");
-		attach(root, tagTrees);
-		return root;
-	}
-
-	private void attach(TreeItem item, List<TagNode> children) {
-		for (TagNode child : children) {
-			TreeItem newChild = item.addItem(child.getTagName());
-			newChild.setUserObject(child);
-			attach(newChild, child.getChildren());
-		}
-	}
-
-	@Override
 	public void treeSelectionChanged(SelectionEvent<TreeItem> event) {
-		TreeItem selectedItem = event.getSelectedItem();
-		if (selectedItem != null) {
-			if (selectedItem.getParentItem() != null) {
-				TagNode selectedTag = (TagNode) selectedItem.getUserObject();
-				if (!selectedTag.getCachedPhotoList().isEmpty()) {
-					String firstPhotoId = selectedTag.getCachedPhotoList().get(
-							0);
-					String tagId = selectedTag.getId();
-					goToPhoto(tagId, firstPhotoId);
-				}
-			}
-		}
 	}
 
-	@Override
 	public void reloadTree() {
 		requestTagTreeData();
+	}
+
+	@Override
+	public void onSelectionChange(SelectionChangeEvent event) {
+		log.info("OnSelectionChange: " + event);
+		TagNode node = selectionModel.getSelectedObject();
+		if (node != null) {
+			if (!node.getCachedPhotoList().isEmpty()) {
+				String firstPhotoId = node.getCachedPhotoList().get(0);
+				String tagId = node.getId();
+				goToPhoto(tagId, firstPhotoId);
+			}
+		}
 	}
 }
