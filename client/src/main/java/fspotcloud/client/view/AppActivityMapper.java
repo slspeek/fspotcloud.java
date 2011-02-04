@@ -9,30 +9,31 @@ import com.google.inject.Inject;
 
 public class AppActivityMapper  implements ActivityMapper {
 	
-	private TagActivity tagActivity;
-	private ImageActivity imageActivity;
+	private TagView.TagPresenter tagActivity;
+	private ImageView.ImagePresenter imageActivity;
 	private static final Logger log = Logger.getLogger(AppActivityMapper.class
 			.getName());
 
 	@Inject
-	public AppActivityMapper(TagActivity tagActivity, ImageActivity imageActivity) {
+	public AppActivityMapper(TagView.TagPresenter tagActivity,
+			ImageView.ImagePresenter imageActivity) {
 		super();
 		this.tagActivity = tagActivity;
 		this.imageActivity = imageActivity;
-		tagActivity.reloadTree();
 	}
 
 	@Override
 	public Activity getActivity(Place place) {
+		Activity activity = null;
 		if (place instanceof ImageViewingPlace) {
 			imageActivity.setPlace((ImageViewingPlace)place);
-			return imageActivity;
+			activity = imageActivity;
 		} else if (place instanceof TagViewingPlace) {
 			tagActivity.setPlace((TagViewingPlace)place);
-			return tagActivity;
+			activity = tagActivity;
 		} else {
 			log.warning("getActivity will return null for place: " + place);
-			return null;
 		}
+		return activity;
 	}
 }

@@ -31,6 +31,11 @@ public class BasePlace extends Place {
 		}
 	}
 	
+	public String toString() {
+		String result = "Place: tagId: " + tagId + " photoId: " + photoId;
+		return result;
+	}
+	
 	public static boolean equal(Object a, Object b) {
 		if (a == null) {
 			if (b== null) {
