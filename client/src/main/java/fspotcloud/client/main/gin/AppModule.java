@@ -29,13 +29,12 @@ public class AppModule extends AbstractGinModule {
 		bind(AppActivityMapper.class).in(Singleton.class);
 		bind(DataManager.class).to(DataManagerImpl.class).in(Singleton.class);
 		bind(MVPSetup.class).in(Singleton.class);
-		bind(TagActivity.class);
-		bind(ImageActivity.class);
+		bind(TagView.TagPresenter.class).to(TagActivity.class).in(Singleton.class);
+		bind(ImageView.ImagePresenter.class).to(ImageActivity.class).in(Singleton.class);
 		bind(EmbeddedImageActivity.class);
 		bind(PlaceSwapper.class);
 		bind(TagCell.class);
 		bind(TagView.class).to(TagViewImpl.class);
-		bind(ImageViewImpl.class);
 		bind(ImageView.class).to(ImageViewImpl.class);
 		bind(PlaceGoTo.class).to(PlaceGoToImpl.class);
 		bind(PlaceController.class).toProvider(PlaceControllerProvider.class);

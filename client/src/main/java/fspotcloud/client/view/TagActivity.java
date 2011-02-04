@@ -18,7 +18,7 @@ import com.google.inject.Inject;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.shared.tag.TagNode;
 
-public class TagActivity extends AbstractActivity implements Handler {
+public class TagActivity extends AbstractActivity implements Handler, TagView.TagPresenter {
 	private static final Logger log = Logger.getLogger(TagActivity.class
 			.getName());
 
@@ -29,8 +29,7 @@ public class TagActivity extends AbstractActivity implements Handler {
 	final private EventBus eventBus;
 
 	String tagId;
-	String photoId;
-
+	
 	private SingleSelectionModel<TagNode> selectionModel;
 
 	@Inject
@@ -45,6 +44,7 @@ public class TagActivity extends AbstractActivity implements Handler {
 		this.selectionModel = selectionModel;
 		initActivityManager();
 		selectionModel.addSelectionChangeHandler(this);
+		log.info("Created");
 	}
 
 	private void initActivityManager() {
@@ -55,7 +55,6 @@ public class TagActivity extends AbstractActivity implements Handler {
 
 	public void setPlace(TagViewingPlace place) {
 		tagId = place.getTagId();
-		photoId = place.getPhotoId();
 		TagNode node = new TagNode();
 		node.setId(tagId);
 		selectionModel.setSelected(node, true);
@@ -63,8 +62,7 @@ public class TagActivity extends AbstractActivity implements Handler {
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		log.info("Start tag activity for tagId: " + tagId + " photoId: "
-				+ photoId);
+		log.info("Start tag activity for tagId: " + tagId);
 		containerWidget.setWidget(tagView);
 	}
 
@@ -86,9 +84,6 @@ public class TagActivity extends AbstractActivity implements Handler {
 				tagView.setTreeModel(treeModel);
 			}
 		});
-	}
-
-	public void treeSelectionChanged(SelectionEvent<TreeItem> event) {
 	}
 
 	public void reloadTree() {

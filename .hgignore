@@ -9,3 +9,4 @@ server/.settings/*
 *~
 */appengine-generated/*
 */META-INF/MANIFEST.MF
+*/.externalToolBuilders
