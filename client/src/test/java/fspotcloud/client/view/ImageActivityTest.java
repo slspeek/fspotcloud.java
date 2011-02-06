@@ -2,13 +2,12 @@ package fspotcloud.client.view;
 
 import java.util.List;
 
+import junit.framework.TestCase;
+
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
-import junit.framework.TestCase;
-
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Widget;
 
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
@@ -102,11 +101,15 @@ public class ImageActivityTest extends TestCase {
 		context.assertIsSatisfied();
 	}
 
-	public void testGoBackward() {
+	public void testGoBackward() throws Exception {
 		testCanGoBackward("2", "5", "4");
+		testCanGoBackward("1", "2", "1");
+		testCanGoBackward("1", "3", "2");
+		testCanGoBackward("5", "22", "21");
 	}
 	private void testCanGoBackward(final String tagId, final String photoId,
-			final String previousPhotoId) {
+			final String previousPhotoId) throws Exception {
+		setUp();
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		final ImageView imageView = context.mock(ImageView.class);
 		context.checking(new Expectations() {
