@@ -13,47 +13,30 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.view.ImageViewingPlace;
 import fspotcloud.client.view.TagViewingPlace;
+import fspotcloud.client.view.action.ShortCutHandler;
 
 public class GlobalShortcutController {
 
 	private static final Logger log = Logger
 			.getLogger(GlobalShortcutController.class.getName());
 
-	private final PlaceController placeController;
-	private final PlaceSwapper placeSwapper;
+	private final ShortCutHandler handler;
 
 	@Inject
-	public GlobalShortcutController(PlaceController placeController,
-			PlaceSwapper placeSwapper) {
-		this.placeController = placeController;
-		this.placeSwapper = placeSwapper;
+	public GlobalShortcutController(ShortCutHandler handler) {
+		this.handler = handler;
 	}
 
 	class Preview implements NativePreviewHandler {
 		public void onPreviewNativeEvent(NativePreviewEvent preview) {
 			NativeEvent event = preview.getNativeEvent();
-
-			Element elt = event.getEventTarget().cast();
 			int keycode = event.getKeyCode();
-			boolean ctrl = event.getCtrlKey();
-			boolean shift = event.getShiftKey();
-			boolean alt = event.getAltKey();
-			boolean meta = event.getMetaKey();
 			if (!event.getType().equalsIgnoreCase("keypress")) {
 				return;
 			}
-			if (keycode == 'f') {
-				Place place = placeController.getWhere();
-				Place target = placeSwapper.swap(place);
-				log.info("Going: " + String.valueOf(target));
-				placeController.goTo(target);
-				// Tell the event handler that this event has been consumed
+			if (handler.handle(keycode)) {
 				preview.consume();
 			}
-			//log.info("Preview: " + String.valueOf(keycode));
-
-
-			
 		}
 	}
 

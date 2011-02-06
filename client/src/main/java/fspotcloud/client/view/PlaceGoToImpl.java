@@ -6,7 +6,7 @@ import com.google.inject.Inject;
 
 public class PlaceGoToImpl implements PlaceGoTo {
 
-	private final PlaceController placeController;
+	protected final PlaceController placeController;
 	
 	@Inject 
 	public PlaceGoToImpl(PlaceController placeController) {

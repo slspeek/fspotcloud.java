@@ -6,6 +6,7 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 public class AppActivityMapper  implements ActivityMapper {
 	
@@ -16,7 +17,7 @@ public class AppActivityMapper  implements ActivityMapper {
 
 	@Inject
 	public AppActivityMapper(TagView.TagPresenter tagActivity,
-			ImageView.ImagePresenter imageActivity) {
+			@Named("fullscreen") ImageView.ImagePresenter imageActivity) {
 		super();
 		this.tagActivity = tagActivity;
 		this.imageActivity = imageActivity;

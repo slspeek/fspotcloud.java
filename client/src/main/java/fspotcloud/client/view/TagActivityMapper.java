@@ -10,12 +10,12 @@ import com.google.inject.name.Named;
 
 public class TagActivityMapper  implements ActivityMapper {
 	
-	private ImageActivity imageActivity;
+	private ImageView.ImagePresenter imageActivity;
 	private static final Logger log = Logger.getLogger(TagActivityMapper.class
 			.getName());
 
 	@Inject
-	public TagActivityMapper(EmbeddedImageActivity imageActivity) {
+	public TagActivityMapper(@Named("embedded") ImageView.ImagePresenter imageActivity) {
 		super();
 		this.imageActivity = imageActivity;
 	}
