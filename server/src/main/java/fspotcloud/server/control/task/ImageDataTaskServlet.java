@@ -51,7 +51,7 @@ public class ImageDataTaskServlet extends HttpServlet {
 
 		for (Photo photo : result) {
 			List<String> args = new ArrayList<String>();
-			args.add(photo.getName());
+			args.add(photo.getId());
 			args.add("800");
 			args.add("600");
 			scheduler.schedule("sendImageData", args);

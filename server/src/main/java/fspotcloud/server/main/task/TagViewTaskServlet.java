@@ -71,14 +71,14 @@ public class TagViewTaskServlet extends HttpServlet {
 		if (!photos.isEmpty()) {
 			Photo last = photos.get(photos.size() - 1);
 			Date newMinDate = last.getDate();
-			log.info("Last seen Photo id: " + last.getName() + " NewMinDate: "
+			log.info("Last seen Photo id: " + last.getId() + " NewMinDate: "
 					+ newMinDate);
 			long newMinDateLong = newMinDate.getTime();
 			for (Photo photo : photos) {
-				if (!tag.getCachedPhotoList().contains(photo.getName())) {
-					tag.getCachedPhotoList().add(photo.getName());
+				if (!tag.getCachedPhotoList().contains(photo.getId())) {
+					tag.getCachedPhotoList().add(photo.getId());
 				} else {
-					log.warning(photo.getName() + "was allready added?!");
+					log.warning(photo.getId() + "was allready added?!");
 				}
 			}
 			tagManager.save(tag);

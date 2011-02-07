@@ -44,14 +44,14 @@ public class PhotoDO implements Photo {
 	/* (non-Javadoc)
 	 * @see fspotcloud.server.model.photo.Photo#setName(java.lang.String)
 	 */
-	public void setName(String name) {
+	public void setId(String name) {
 		this.name = name;
 	}
 
 	/* (non-Javadoc)
 	 * @see fspotcloud.server.model.photo.Photo#getName()
 	 */
-	public String getName() {
+	public String getId() {
 		return name;
 	}
 

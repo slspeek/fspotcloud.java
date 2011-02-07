@@ -49,7 +49,7 @@ public class PhotoManager implements Photos {
 			query.setRange(0, 30);
 			List<PhotoDO> result = (List<PhotoDO>) query.execute(tagId);
 			for (Photo photo : result) {
-				keys.add(photo.getName());
+				keys.add(photo.getId());
 			}
 			return keys;
 		} finally {
@@ -82,6 +82,7 @@ public class PhotoManager implements Photos {
 	/* (non-Javadoc)
 	 * @see fspotcloud.server.model.photo.Photos#getEmptyPhotosForTagAfter(java.lang.String, java.util.Date, int)
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Photo> getEmptyPhotosForTagAfter(String tagId, Date after,
 			int limit) {
 		PersistenceManager pm = pmProvider.get();
@@ -136,7 +137,7 @@ public class PhotoManager implements Photos {
 			photo = getById(id);
 		} catch (JDOObjectNotFoundException notExistedYet) {
 			photo = new PhotoDO();
-			photo.setName(id);
+			photo.setId(id);
 			photo.setImageLoaded(false);
 		}
 		return photo;
