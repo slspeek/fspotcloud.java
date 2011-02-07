@@ -5,20 +5,20 @@ import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.activity.shared.ActivityManager;
-import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.gwt.view.client.SelectionChangeEvent.Handler;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import fspotcloud.client.data.DataManager;
 import fspotcloud.shared.tag.TagNode;
 
-public class TagActivity extends AbstractActivity implements Handler, TagView.TagPresenter {
+public class TagActivity extends AbstractActivity implements Handler,
+		TagView.TagPresenter {
 	private static final Logger log = Logger.getLogger(TagActivity.class
 			.getName());
 
@@ -27,21 +27,24 @@ public class TagActivity extends AbstractActivity implements Handler, TagView.Ta
 	final private PlaceGoTo placeGoTo;
 	final private TagActivityMapper tagActivityMapper;
 	final private EventBus eventBus;
+	final private ImageView.ImagePresenter embeddedImagePresenter;
 
 	String tagId;
-	
+
 	private SingleSelectionModel<TagNode> selectionModel;
 
 	@Inject
 	public TagActivity(TagView tagView, DataManager dataManager,
 			PlaceGoTo placeGoTo, SingleSelectionModel<TagNode> selectionModel,
-			TagActivityMapper tagActivityMapper, EventBus eventBus) {
+			TagActivityMapper tagActivityMapper, EventBus eventBus,
+			@Named("embedded") ImageView.ImagePresenter embeddedImagePresenter) {
 		this.tagView = tagView;
 		this.dataManager = dataManager;
 		this.placeGoTo = placeGoTo;
 		this.tagActivityMapper = tagActivityMapper;
 		this.eventBus = eventBus;
 		this.selectionModel = selectionModel;
+		this.embeddedImagePresenter = embeddedImagePresenter;
 		initActivityManager();
 		selectionModel.addSelectionChangeHandler(this);
 		log.info("Created");
@@ -51,6 +54,12 @@ public class TagActivity extends AbstractActivity implements Handler, TagView.Ta
 		ActivityManager activityManager = new ActivityManager(
 				tagActivityMapper, eventBus);
 		activityManager.setDisplay(tagView.getImageViewContainer());
+	}
+
+	@Override
+	public void onStop() {
+		embeddedImagePresenter.onStop();
+		super.onStop();
 	}
 
 	public void setPlace(TagViewingPlace place) {
