@@ -30,6 +30,14 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava-gwt</artifactId>
+			<version>r07</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.2</version>
@@ -71,6 +79,8 @@
 				<configuration>
 					<compileSourcesArtifacts>
 						<compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact>
+						<compileSourcesArtifact>com.google.guava:guava</compileSourcesArtifact>
+						<compileSourcesArtifact>com.google.guava:guava-gwt</compileSourcesArtifact>
 					</compileSourcesArtifacts>
 					<logLevel>INFO</logLevel>
 					<!-- match -Dgae.port -->
@@ -79,7 +89,6 @@
 					<compileTargets>
 						<value>fspotcloud.FSpotCloud</value>
 						<value>fspotcloud.admin</value>
-						<value>fspotcloud.celltree</value>
 					</compileTargets>
 					<extraJvmArgs>-Xmx512m</extraJvmArgs>
 					<runTarget>/FSpotCloud.html</runTarget>

@@ -6,6 +6,7 @@ import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
+import com.google.inject.Provider;
 
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
@@ -18,13 +19,13 @@ import fspotcloud.client.view.AppActivityMapper;
 import fspotcloud.client.view.EmbeddedImageActivity;
 import fspotcloud.client.view.ImageActivity;
 import fspotcloud.client.view.ImageView;
+import fspotcloud.client.view.ImageView.ImagePresenter;
 import fspotcloud.client.view.PlaceGoTo;
 import fspotcloud.client.view.PlaceGoToImpl;
 import fspotcloud.client.view.PlaceWhere;
 import fspotcloud.client.view.PlaceWhereImpl;
 import fspotcloud.client.view.TagActivity;
 import fspotcloud.client.view.TagView;
-import fspotcloud.client.view.action.KeyDispatcher;
 import fspotcloud.client.view.action.KeyDispatcherProvider;
 import fspotcloud.client.view.action.ShortCutHandler;
 

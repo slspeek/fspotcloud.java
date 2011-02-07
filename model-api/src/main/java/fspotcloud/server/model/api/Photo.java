@@ -11,12 +11,12 @@ public interface Photo {
 	 * @param name
 	 *            the name to set
 	 */
-	public abstract void setName(String name);
+	public abstract void setId(String name);
 
 	/**
 	 * @return the name
 	 */
-	public abstract String getName();
+	public abstract String getId();
 
 	/**
 	 * @param description

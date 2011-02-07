@@ -74,7 +74,7 @@ public class PhotoManagerTest extends DatastoreTest {
 	public void testCreateLoadModify() {
 		Photo photo, retrieved;
 		photo = new PhotoDO();
-		photo.setName("1");
+		photo.setId("1");
 		photoManager.save(photo);
 		retrieved = photoManager.getOrNew("1");
 		retrieved.setDescription("Nice");
@@ -95,7 +95,7 @@ public class PhotoManagerTest extends DatastoreTest {
 
 	public void testSave() {
 		PhotoDO photo = new PhotoDO();
-		photo.setName("1");
+		photo.setId("1");
 		photo.setDescription("Nice");
 		photoManager.save(photo);
 		Photo retrieved = photoManager.getOrNew("1");
