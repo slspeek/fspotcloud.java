@@ -2,6 +2,7 @@ package fspotcloud.client.view;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -10,6 +11,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
 import fspotcloud.client.data.DataManager;
+import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.tag.TagNode;
 
 public class ImageActivity extends AbstractActivity implements
@@ -17,14 +19,14 @@ public class ImageActivity extends AbstractActivity implements
 	private static final Logger log = Logger.getLogger(ImageActivity.class
 			.getName());
 
-	final DataManager dataManager;
+	final DataManager tagNodeProvider;
 	final protected PlaceGoTo placeGoTo;
 	private ImageView imageView;
 
 	String tagId;
 	String photoId;
 	Integer offset = null;
-	List<String> photoList = Collections.emptyList();
+	List<PhotoInfo> photoList = Collections.emptyList();
 
 	boolean slideshowRunning = false;
 
@@ -34,7 +36,7 @@ public class ImageActivity extends AbstractActivity implements
 	public ImageActivity(ImageView imageView, DataManager dataManager,
 			PlaceGoTo placeGoTo, SlideshowTimer slideShowTimer) {
 		this.imageView = imageView;
-		this.dataManager = dataManager;
+		this.tagNodeProvider = dataManager;
 		this.placeGoTo = placeGoTo;
 		this.slideShowTimer = slideShowTimer;
 	}
@@ -57,7 +59,7 @@ public class ImageActivity extends AbstractActivity implements
 	}
 
 	public void calculateLocation() {
-		TagNode node = dataManager.getTagNode(tagId);
+		TagNode node = tagNodeProvider.getTagNode(tagId);
 		if (node != null) {
 			photoList = node.getCachedPhotoList();
 		} else {
@@ -67,7 +69,7 @@ public class ImageActivity extends AbstractActivity implements
 		int where = photoList.indexOf(photoId);
 		if (where == -1) {
 			if (!photoList.isEmpty()) {
-				photoId = photoList.get(0);
+				photoId = photoList.get(0).getId();
 				offset = 0;
 			} else {
 				offset = -1;
@@ -113,7 +115,7 @@ public class ImageActivity extends AbstractActivity implements
 	@Override
 	public void goBackward() {
 		if (!photoList.isEmpty() && canGoBackward()) {
-			String photoId = photoList.get(offset - 1);
+			String photoId = photoList.get(offset - 1).getId();
 			goToPhoto(photoId);
 		}
 	}
@@ -121,7 +123,7 @@ public class ImageActivity extends AbstractActivity implements
 	@Override
 	public void goFirst() {
 		if (!photoList.isEmpty()) {
-			String photoId = photoList.get(0);
+			String photoId = photoList.get(0).getId();
 			goToPhoto(photoId);
 		}
 	}
@@ -129,7 +131,7 @@ public class ImageActivity extends AbstractActivity implements
 	@Override
 	public void goForward() {
 		if (!photoList.isEmpty() && canGoForward()) {
-			String photoId = photoList.get(offset + 1);
+			String photoId = photoList.get(offset + 1).getId();
 			goToPhoto(photoId);
 		}
 	}
@@ -137,7 +139,7 @@ public class ImageActivity extends AbstractActivity implements
 	@Override
 	public void goLast() {
 		if (!photoList.isEmpty()) {
-			String photoId = photoList.get(photoList.size() - 1);
+			String photoId = photoList.get(photoList.size() - 1).getId();
 			goToPhoto(photoId);
 		}
 	}

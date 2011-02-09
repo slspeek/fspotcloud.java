@@ -1,11 +1,13 @@
 package fspotcloud.client.main;
 
+import java.util.Date;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import fspotcloud.rpc.TagServiceAsync;
+import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.tag.TagNode;
 
 public class TagServiceAsyncTestImpl implements TagServiceAsync {
@@ -26,26 +28,43 @@ public class TagServiceAsyncTestImpl implements TagServiceAsync {
 	
 	public List<TagNode> initData() {
 		TagNode root1 = createNode("1", "Friends", 10);
-		ImmutableList<String> photoList = ImmutableList.of("1", "2", "3");
+		PhotoInfo pi1 = new PhotoInfo("1", "Daniel", new Date());
+		PhotoInfo pi2 = new PhotoInfo("2", "Aute", new Date());
+		PhotoInfo pi3 = new PhotoInfo("3", "Jan", new Date());
+		ImmutableList<PhotoInfo> photoList = ImmutableList.of(pi1, pi2, pi3);
 		root1.setCachedPhotoList(photoList);
-		TagNode root2 = createNode("2", "Cats", 10);
-		photoList = ImmutableList.of("4", "5", "6");
-		root2.setCachedPhotoList(photoList);
+		
+		TagNode cats = createNode("2", "Cats", 10);
+		pi1 = new PhotoInfo("4", "", new Date());
+		pi2 = new PhotoInfo("5", "", new Date());
+		pi3 = new PhotoInfo("6", "", new Date());
+		photoList = ImmutableList.of(pi1, pi2, pi3);
+		cats.setCachedPhotoList(photoList);
 		
 		TagNode root3 = createNode("3", "Languages", 10);
-		photoList = ImmutableList.of("7", "8", "9");
+		pi1 = new PhotoInfo("7", "", new Date());
+		pi2 = new PhotoInfo("8", "", new Date());
+		pi3 = new PhotoInfo("9", "", new Date());
+		photoList = ImmutableList.of(pi1, pi2, pi3);
 		root3.setCachedPhotoList(photoList);
 		
 		TagNode felix = createNode("4", "Felix", 2);
-		photoList = ImmutableList.of("11", "12", "13");
+		pi1 = new PhotoInfo("11", "", new Date());
+		pi2 = new PhotoInfo("12", "", new Date());
+		pi3 = new PhotoInfo("13", "", new Date());
+		photoList = ImmutableList.of(pi1, pi2, pi3);
 		felix.setCachedPhotoList(photoList);	
+		
 		TagNode woefje = createNode("5", "Woefje", 1);
-		photoList = ImmutableList.of("21", "22", "23");
+		pi1 = new PhotoInfo("21", "", new Date());
+		pi2 = new PhotoInfo("22", "", new Date());
+		pi3 = new PhotoInfo("23", "", new Date());
+		photoList = ImmutableList.of(pi1, pi2, pi3);
 		woefje.setCachedPhotoList(photoList);
 		
-		root2.addChild(felix);
-		root2.addChild(woefje);
-		tagTreeData = ImmutableList.of(root1, root2, root3);
+		cats.addChild(felix);
+		cats.addChild(woefje);
+		tagTreeData = ImmutableList.of(root1, cats, root3);
 		return tagTreeData;
 	}
 	

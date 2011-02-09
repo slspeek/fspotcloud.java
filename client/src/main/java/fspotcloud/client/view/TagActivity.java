@@ -105,7 +105,7 @@ public class TagActivity extends AbstractActivity implements Handler,
 		TagNode node = selectionModel.getSelectedObject();
 		if (node != null) {
 			if (!node.getCachedPhotoList().isEmpty()) {
-				String firstPhotoId = node.getCachedPhotoList().get(0);
+				String firstPhotoId = node.getCachedPhotoList().get(0).getId();
 				String tagId = node.getId();
 				goToPhoto(tagId, firstPhotoId);
 			}

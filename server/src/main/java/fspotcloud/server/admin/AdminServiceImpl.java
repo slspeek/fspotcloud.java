@@ -2,8 +2,8 @@ package fspotcloud.server.admin;
 
 import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import com.google.appengine.api.labs.taskqueue.Queue;
@@ -21,7 +21,7 @@ import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.admin.BatchInfo;
-
+import fspotcloud.shared.photo.PhotoInfo;
 /**
  * The server side implementation of the RPC service.
  */
@@ -103,7 +103,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		long batchId = batchManager.save(batch);
 		// clear the cached photo names
 		Tag tag = tagManager.getById(tagId);
-		tag.setCachedPhotoList(new ArrayList<String>());
+		tag.setCachedPhotoList(new TreeSet<PhotoInfo>());
 		Queue queue = QueueFactory.getDefaultQueue();
 		queue.add(url("/main/task/tagView").param("tagId", tagId).param(
 				"minDate", "0").param("batchId", String.valueOf(batchId)));

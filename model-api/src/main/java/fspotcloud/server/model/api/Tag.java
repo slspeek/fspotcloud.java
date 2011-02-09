@@ -1,8 +1,11 @@
 package fspotcloud.server.model.api;
 
 import java.util.List;
+import java.util.SortedSet;
 
 import com.google.appengine.api.datastore.Key;
+
+import fspotcloud.shared.photo.PhotoInfo;
 
 public interface Tag {
 
@@ -64,12 +67,12 @@ public interface Tag {
 	/**
 	 * @param cachedPhotoList the cachedPhotoList to set
 	 */
-	public abstract void setCachedPhotoList(List<String> cachedPhotoList);
+	public abstract void setCachedPhotoList(SortedSet<PhotoInfo> cachedPhotoList);
 
 	/**
 	 * @return the cachedPhotoList
 	 */
-	public abstract List<String> getCachedPhotoList();
+	public abstract SortedSet<PhotoInfo> getCachedPhotoList();
 
 	/**
 	 * @param importIssued the importIssued to set

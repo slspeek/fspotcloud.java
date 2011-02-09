@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import fspotcloud.shared.photo.PhotoInfo;
+
 @SuppressWarnings("serial")
 public class TagNode implements Serializable {
 
@@ -21,7 +23,7 @@ public class TagNode implements Serializable {
 
 	private String tagName;
 	
-	private List<String> cachedPhotoList;
+	private List<PhotoInfo> cachedPhotoList;
 
 	private List<TagNode> children = new ArrayList<TagNode>();
 
@@ -108,11 +110,11 @@ public class TagNode implements Serializable {
 		return String.valueOf(tagName) + ": " + String.valueOf(id);
 	}
 
-	public void setCachedPhotoList(List<String> cachedPhotoList) {
+	public void setCachedPhotoList(List<PhotoInfo> cachedPhotoList) {
 		this.cachedPhotoList = cachedPhotoList;
 	}
 
-	public List<String> getCachedPhotoList() {
+	public List<PhotoInfo> getCachedPhotoList() {
 		return cachedPhotoList;
 	}
 	public void setImportIssued(boolean importIssued) {
