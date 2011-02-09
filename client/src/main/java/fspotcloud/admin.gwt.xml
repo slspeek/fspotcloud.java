@@ -10,6 +10,10 @@
 	<inherits name="com.google.gwt.logging.Logging" />
 	<inherits name="com.google.gwt.activity.Activity" />
 	<inherits name="com.google.gwt.place.Place" />
+	<inherits name="com.google.gwt.inject.Inject"/>
+	<!-- Other module inherits                                      -->
+	<inherits name="com.google.gwt.activity.Activity" />
+	<inherits name='com.google.common.Collect' />
 	<entry-point class='fspotcloud.client.admin.Admin' />
 
 	<!-- Specify the paths for translatable code                    -->

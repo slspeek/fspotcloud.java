@@ -4,6 +4,7 @@
 package fspotcloud.server.model.tag;
 
 import java.util.List;
+import java.util.SortedSet;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -12,6 +13,7 @@ import javax.jdo.annotations.PrimaryKey;
 import com.google.appengine.api.datastore.Key;
 
 import fspotcloud.server.model.api.Tag;
+import fspotcloud.shared.photo.PhotoInfo;
 
 /**
  * Represents a Label in F-Spot
@@ -38,7 +40,7 @@ public class TagDO implements Tag {
 	private boolean importIssued = false;
 	
 	@Persistent
-	private List<String> cachedPhotoList;
+	private SortedSet<PhotoInfo> cachedPhotoList;
 	
 	public void setId(String id) {
 		this.id = id;
@@ -76,11 +78,11 @@ public class TagDO implements Tag {
 		return parentId;
 	}
 
-	public void setCachedPhotoList(List<String> cachedPhotoList) {
+	public void setCachedPhotoList(SortedSet<PhotoInfo> cachedPhotoList) {
 		this.cachedPhotoList = cachedPhotoList;
 	}
 	
-	public List<String> getCachedPhotoList() {
+	public SortedSet<PhotoInfo> getCachedPhotoList() {
 		return cachedPhotoList;
 	}
 

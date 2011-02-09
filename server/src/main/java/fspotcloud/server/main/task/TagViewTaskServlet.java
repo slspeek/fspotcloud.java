@@ -25,6 +25,7 @@ import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
+import fspotcloud.shared.photo.PhotoInfo;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -75,11 +76,10 @@ public class TagViewTaskServlet extends HttpServlet {
 					+ newMinDate);
 			long newMinDateLong = newMinDate.getTime();
 			for (Photo photo : photos) {
-				if (!tag.getCachedPhotoList().contains(photo.getId())) {
-					tag.getCachedPhotoList().add(photo.getId());
-				} else {
-					log.warning(photo.getId() + "was allready added?!");
-				}
+				PhotoInfo pi = new PhotoInfo(photo.getId(), photo
+						.getDescription(), photo.getDate());
+				tag.getCachedPhotoList().add(pi);
+
 			}
 			tagManager.save(tag);
 			Queue queue = QueueFactory.getDefaultQueue();

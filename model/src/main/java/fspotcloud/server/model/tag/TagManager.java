@@ -13,7 +13,7 @@ import com.google.inject.Provider;
 
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.server.model.photo.PhotoDO;
+import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.tag.TagNode;
 
 public class TagManager implements Tags {
@@ -37,7 +37,7 @@ public class TagManager implements Tags {
 				node.setImportIssued(tag.isImportIssued());
 				node.setParentId(tag.getParentId());
 				node.setTagName(tag.getTagName());
-				node.setCachedPhotoList(new ArrayList<String>(tag.getCachedPhotoList()));
+				node.setCachedPhotoList(new ArrayList<PhotoInfo>(tag.getCachedPhotoList()));
 				result.add(node);
 			}
 			extent.closeAll();

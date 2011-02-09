@@ -14,6 +14,7 @@ import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.server.model.tag.TreeBuilder;
+import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.tag.TagNode;
 
 /**
@@ -52,7 +53,9 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 	public List<String> keysForTag(String tagId) {
 		Tag tag = tagManager.getById(tagId);
 		List<String> result = new ArrayList<String>();
-		result.addAll(tag.getCachedPhotoList());
+		for (PhotoInfo photo:tag.getCachedPhotoList()) {
+			result.add(photo.getId());
+		}
 		return result;
 	}
 }

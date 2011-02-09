@@ -25,8 +25,7 @@ public class ImageActivityTest extends TestCase {
 		super.setUp();
 	}
 
-	protected ImageActivity create(PlaceGoTo placeGoTo,
-			ImageView imageView) {
+	protected ImageActivity create(PlaceGoTo placeGoTo, ImageView imageView) {
 		DataManager dataManager = new DataManagerImpl(
 				new TagServiceAsyncTestImpl(), new IndexingUtil());
 		dataManager.getTagTree(new AsyncCallback<List<TagNode>>() {
@@ -66,12 +65,21 @@ public class ImageActivityTest extends TestCase {
 		context.assertIsSatisfied();
 	}
 
-	public void testGoForward() throws Exception {
+	public void testGoForwardFriends() throws Exception {
 		testGoForward("1", "1", "2");
+	}
+
+	public void testGoForwardFriends2() throws Exception {
+
 		testGoForward("1", "2", "3");
-		testGoForward("2", "4", "5");
-		testGoForward("2", "4", "5");
-		testGoForward("5", "21", "22");
+	}
+
+	public void testGoForwardCats() throws Exception {
+		testGoForward("2", "5", "6");
+	}
+
+	public void testGoForwardWoefje() throws Exception {
+		testGoForward("5", "22", "23");
 	}
 
 	private void testGoForward(final String tagId, final String photoId,
@@ -107,6 +115,7 @@ public class ImageActivityTest extends TestCase {
 		testCanGoBackward("1", "3", "2");
 		testCanGoBackward("5", "22", "21");
 	}
+
 	private void testCanGoBackward(final String tagId, final String photoId,
 			final String previousPhotoId) throws Exception {
 		setUp();
@@ -121,7 +130,7 @@ public class ImageActivityTest extends TestCase {
 		ImageViewingPlace middle = new ImageViewingPlace(tagId, photoId);
 		ImageActivity imageActivity = create(goTo, imageView);
 		imageActivity.setPlace(middle);
-		
+
 		context.assertIsSatisfied();
 		context.checking(new Expectations() {
 			{
