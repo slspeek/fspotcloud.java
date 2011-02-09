@@ -106,5 +106,12 @@
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+	<!-- Needed for the GWT specific files for guava in GWT -->
+		<repository>
+			<id>fspotcloud-maven</id>
+			<url>http://maven.fspotcloud.googlecode.com/hg/repo</url>
+		</repository>
+	</repositories>
 </project>
 

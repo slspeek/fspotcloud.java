@@ -23,4 +23,9 @@ public class TagNodeTest extends TestCase {
 		assertEquals(node, other);
 	}
 
+	public void testConstructor() {
+		TagNode t = new TagNode("1", "0");
+		assertEquals("1", t.getId());
+		assertEquals("0", t.getParentId());
+	}
 }

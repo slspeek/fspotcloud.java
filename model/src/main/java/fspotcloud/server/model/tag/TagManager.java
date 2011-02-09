@@ -34,6 +34,7 @@ public class TagManager implements Tags {
 			for (Tag tag : extent) {
 				TagNode node = new TagNode();
 				node.setId(tag.getId());
+				node.setImportIssued(tag.isImportIssued());
 				node.setParentId(tag.getParentId());
 				node.setTagName(tag.getTagName());
 				node.setCachedPhotoList(new ArrayList<String>(tag.getCachedPhotoList()));
