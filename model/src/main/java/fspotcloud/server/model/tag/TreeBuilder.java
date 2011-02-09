@@ -17,17 +17,13 @@ public class TreeBuilder {
 	}
 
 	public List<TagNode> getRoots() {
-		buildMap();
-		List<TagNode> roots = new ArrayList<TagNode>();
-		for (TagNode node : flatNodes) {
-			if ("0".equals(node.getParentId())) {
-				roots.add(node);
-			} else {
-				TagNode parent = index.get(node.getParentId());
-				parent.addChild(node);
+		return getFilteredRoots(new Filter() {
+			@Override
+			public boolean isValid(TagNode node) {
+				return true;
 			}
-		}
-		return roots;
+
+		});
 	}
 
 	private void buildMap() {
@@ -38,4 +34,45 @@ public class TreeBuilder {
 		}
 	}
 
+	public List<TagNode> getPublicRoots() {
+		return getFilteredRoots(new Filter() {
+			@Override
+			public boolean isValid(TagNode node) {
+				return node.isImportIssued();
+			}
+
+		});
+	}
+
+	private List<TagNode> getFilteredRoots(Filter f) {
+		buildMap();
+		List<TagNode> roots = new ArrayList<TagNode>();
+		for (TagNode node : flatNodes) {
+			if (f.isValid(node)) {
+				TagNode parent = getFilteredParent(node, f);
+				if (parent == null) {
+					roots.add(node);
+				} else {
+					parent.addChild(node);
+				}
+			}
+		}
+		return roots;
+	}
+
+	private TagNode getFilteredParent(TagNode node, Filter filter) {
+		if ("0".equals(node.getParentId())) {
+			return null;
+		} else {
+			TagNode parent;
+			while ((parent = index.get(node.getParentId())) != null) {
+				if (filter.isValid(parent)) {
+					return parent;
+				} else {
+					node = parent;
+				}
+			}
+			return null;
+		}
+	}
 }
