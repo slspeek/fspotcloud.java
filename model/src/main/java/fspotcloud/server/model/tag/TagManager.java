@@ -39,9 +39,9 @@ public class TagManager implements Tags {
 				node.setImportIssued(tag.isImportIssued());
 				node.setParentId(tag.getParentId());
 				node.setTagName(tag.getTagName());
-				SortedSet photoList = tag.getCachedPhotoList();
+				SortedSet<PhotoInfo> photoList = tag.getCachedPhotoList();
 				if (photoList != null) {
-					node.setCachedPhotoList(new ArrayList<PhotoInfo>(tag.getCachedPhotoList()));
+					node.setCachedPhotoList(new ArrayList<PhotoInfo>(photoList));
 				} else {
 					log.warning("cached photo set was null");
 					node.setCachedPhotoList(new ArrayList<PhotoInfo>());
@@ -73,7 +73,7 @@ public class TagManager implements Tags {
 			tag = pm.getObjectById(TagDO.class, tagId);
 			SortedSet<PhotoInfo> tagCachedPhotoList = tag.getCachedPhotoList();
 			tag = pm.detachCopy(tag);
-			tag.setCachedPhotoList(new TreeSet(tagCachedPhotoList));
+			tag.setCachedPhotoList(new TreeSet<PhotoInfo>(tagCachedPhotoList));
 		} finally {
 			pm.close();
 		}
