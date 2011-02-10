@@ -107,7 +107,8 @@ public class TagNode implements Serializable {
 	}
 
 	public String toString() {
-		return String.valueOf(tagName) + ": " + String.valueOf(id);
+		return "TagNode(" + String.valueOf(tagName) + ": " + String.valueOf(id) + " " 
+		+ String.valueOf(cachedPhotoList) + ")";
 	}
 
 	public void setCachedPhotoList(List<PhotoInfo> cachedPhotoList) {

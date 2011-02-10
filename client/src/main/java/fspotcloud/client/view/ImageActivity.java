@@ -66,8 +66,9 @@ public class ImageActivity extends AbstractActivity implements
 			photoList = Collections.emptyList();
 			log.warning("No information found for tagId: " + tagId);
 		}
-		int where = photoList.indexOf(photoId);
+		int where = findInList(photoList, photoId);
 		if (where == -1) {
+			log.info("where=-1");
 			if (!photoList.isEmpty()) {
 				photoId = photoList.get(0).getId();
 				offset = 0;
@@ -77,6 +78,22 @@ public class ImageActivity extends AbstractActivity implements
 		} else {
 			offset = where;
 		}
+		//log.info("end of calculateLocation offset: " + offset);
+	}
+	/**
+	 * Needed for GWT
+	 */
+	private int findInList(List<PhotoInfo> list, String id) {
+		int index = -1;
+		ListIterator<PhotoInfo> it = list.listIterator();
+		while (it.hasNext()) {
+			PhotoInfo pi = it.next();
+			if (id.equals(pi.getId())) {
+				index = it.previousIndex();
+				break;
+			} 
+		} 
+		return index;
 	}
 	
 	private void setImage() {
