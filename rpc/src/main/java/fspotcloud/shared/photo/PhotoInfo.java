@@ -7,13 +7,17 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
 
 	private static final long serialVersionUID = -4084831085611916754L;
 
-	final private String id;
-	final private String description;
-	final private Date date;
+	private String id;
+	private String description;
+	private Date date;
 
+	private PhotoInfo() {
+		
+	}
+	
 	public PhotoInfo(String id, String description, Date date) {
-		if (id == null|| date == null) throw new NullPointerException();
-		System.out.println("PhotoInfo constrcu");
+		if (id == null || date == null)
+			throw new NullPointerException();
 		this.id = id;
 		this.description = description;
 		this.date = date;
@@ -49,13 +53,10 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
 	@Override
 	public int compareTo(PhotoInfo o) {
 		Date date = o.getDate();
-		System.out.println(this);
-		System.out.println(date);
 		return this.date.compareTo(date);
 	}
-	
+
 	public String toString() {
-		return "PhotoInfo("+id+", "+date+")";
+		return "PhotoInfo(" + id + ", " + (date)+ ")";
 	}
 }
-

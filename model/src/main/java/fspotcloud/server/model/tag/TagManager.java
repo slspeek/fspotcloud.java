@@ -40,9 +40,10 @@ public class TagManager implements Tags {
 				node.setParentId(tag.getParentId());
 				node.setTagName(tag.getTagName());
 				SortedSet photoList = tag.getCachedPhotoList();
-				if (photoList == null) {
+				if (photoList != null) {
 					node.setCachedPhotoList(new ArrayList<PhotoInfo>(tag.getCachedPhotoList()));
 				} else {
+					log.warning("cached photo set was null");
 					node.setCachedPhotoList(new ArrayList<PhotoInfo>());
 				}
 				result.add(node);

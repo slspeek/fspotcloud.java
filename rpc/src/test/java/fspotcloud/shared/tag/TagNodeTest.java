@@ -1,6 +1,12 @@
 package fspotcloud.shared.tag;
 
+import java.util.Date;
+
 import junit.framework.TestCase;
+
+import com.google.common.collect.ImmutableList;
+
+import fspotcloud.shared.photo.PhotoInfo;
 
 public class TagNodeTest extends TestCase {
 
@@ -11,6 +17,8 @@ public class TagNodeTest extends TestCase {
 		node.setTagName("Friends");
 		node.setDescription("Friends and family");
 		node.setId("1");
+		PhotoInfo man = new PhotoInfo("2", "Human", new Date());
+		node.setCachedPhotoList(ImmutableList.of(man));
 	}
 
 	protected void tearDown() throws Exception {
@@ -27,5 +35,10 @@ public class TagNodeTest extends TestCase {
 		TagNode t = new TagNode("1", "0");
 		assertEquals("1", t.getId());
 		assertEquals("0", t.getParentId());
+	}
+	
+	public void testToString() {
+		String s = node.toString();
+		System.out.println(s);
 	}
 }

@@ -40,7 +40,7 @@ public class TagDO implements Tag {
 	private boolean importIssued = false;
 	
 	@Persistent(serialized = "true")
-	private SortedSet<PhotoInfo> cachedPhotoList;
+	private SortedSet<PhotoInfo> cachedPhotoList = new TreeSet<PhotoInfo>();
 	
 	public void setId(String id) {
 		this.id = id;

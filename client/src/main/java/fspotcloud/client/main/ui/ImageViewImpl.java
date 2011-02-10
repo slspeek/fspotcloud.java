@@ -55,6 +55,7 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 
 	@Override
 	public void setImageUrl(String url) {
+		log.info("setImage: " + url);
 		image.setUrl(url);
 	}
 
