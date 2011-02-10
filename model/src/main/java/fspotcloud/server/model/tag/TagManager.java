@@ -2,6 +2,8 @@ package fspotcloud.server.model.tag;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import javax.jdo.Extent;
@@ -37,7 +39,12 @@ public class TagManager implements Tags {
 				node.setImportIssued(tag.isImportIssued());
 				node.setParentId(tag.getParentId());
 				node.setTagName(tag.getTagName());
-				node.setCachedPhotoList(new ArrayList<PhotoInfo>(tag.getCachedPhotoList()));
+				SortedSet photoList = tag.getCachedPhotoList();
+				if (photoList == null) {
+					node.setCachedPhotoList(new ArrayList<PhotoInfo>(tag.getCachedPhotoList()));
+				} else {
+					node.setCachedPhotoList(new ArrayList<PhotoInfo>());
+				}
 				result.add(node);
 			}
 			extent.closeAll();
@@ -63,7 +70,9 @@ public class TagManager implements Tags {
 		Tag tag = null;
 		try {
 			tag = pm.getObjectById(TagDO.class, tagId);
+			SortedSet<PhotoInfo> tagCachedPhotoList = tag.getCachedPhotoList();
 			tag = pm.detachCopy(tag);
+			tag.setCachedPhotoList(new TreeSet(tagCachedPhotoList));
 		} finally {
 			pm.close();
 		}
