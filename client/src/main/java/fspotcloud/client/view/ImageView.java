@@ -16,7 +16,6 @@ public interface ImageView extends IsWidget {
 		boolean canGoForward();
 		boolean canGoBackward();
 		void toggleSlideshow();
-		void setView(ImageView imageView);
 	}
 
 	void setImageUrl(String url);
