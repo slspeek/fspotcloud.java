@@ -19,41 +19,32 @@ public class ImageActivity extends AbstractActivity implements
 	private static final Logger log = Logger.getLogger(ImageActivity.class
 			.getName());
 
-	final DataManager tagNodeProvider;
+	final private DataManager tagNodeProvider;
+	final private ImageView imageView;
+	final private Slideshow slideShowTimer;
 	final protected PlaceGoTo placeGoTo;
-	private ImageView imageView;
-
+	
 	String tagId;
 	String photoId;
 	Integer offset = null;
 	List<PhotoInfo> photoList = Collections.emptyList();
 
-	boolean slideshowRunning = false;
-
-	private final SlideshowTimer slideShowTimer;
-
 	@Inject
 	public ImageActivity(ImageView imageView, DataManager dataManager,
-			PlaceGoTo placeGoTo, SlideshowTimer slideShowTimer) {
+			PlaceGoTo placeGoTo, Slideshow slideShowTimer) {
 		this.imageView = imageView;
 		this.tagNodeProvider = dataManager;
 		this.placeGoTo = placeGoTo;
 		this.slideShowTimer = slideShowTimer;
 	}
 
-	@Override
-	public void onStop() {
-		if (slideshowRunning) {
-			toggleSlideshow();
-		}
-		super.onStop();
-	}
-
 	public void setPlace(ImageViewingPlace place) {
 		offset = null;
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
-		log.info("setPlace called for tagId: " + tagId + " photoId: " + photoId);
+		log
+				.info("setPlace called for tagId: " + tagId + " photoId: "
+						+ photoId);
 		calculateLocation();
 		setImage();
 	}
@@ -68,18 +59,17 @@ public class ImageActivity extends AbstractActivity implements
 		}
 		int where = findInList(photoList, photoId);
 		if (where == -1) {
-			log.info("where=-1");
 			if (!photoList.isEmpty()) {
-				photoId = photoList.get(0).getId();
-				offset = 0;
+				goFirst();
 			} else {
+				log.info("photo list is empty.");
 				offset = -1;
 			}
 		} else {
 			offset = where;
 		}
-		//log.info("end of calculateLocation offset: " + offset);
 	}
+
 	/**
 	 * Needed for GWT
 	 */
@@ -91,11 +81,11 @@ public class ImageActivity extends AbstractActivity implements
 			if (id.equals(pi.getId())) {
 				index = it.previousIndex();
 				break;
-			} 
-		} 
+			}
+		}
 		return index;
 	}
-	
+
 	private void setImage() {
 		if (photoId != null) {
 			imageView.setImageUrl("/image?id=" + photoId);
@@ -103,12 +93,20 @@ public class ImageActivity extends AbstractActivity implements
 			log.warning("No photoId defined for tagId:  " + tagId);
 		}
 	}
+
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		log.info("Start image activity for tagId: " + tagId + "photoId: " + photoId);
-		slideShowTimer.setImagePresenter(this);
+		log.info("Start image activity for tagId: " + tagId + "photoId: "
+				+ photoId);
 		imageView.setPresenter(this);
+		slideShowTimer.setPresenter(this);
 		containerWidget.setWidget(imageView);
+	}
+
+	@Override
+	public void onStop() {
+		slideShowTimer.stopSlideshow();
+		super.onStop();
 	}
 
 	@Override
@@ -163,18 +161,6 @@ public class ImageActivity extends AbstractActivity implements
 
 	@Override
 	public void toggleSlideshow() {
-		if (slideshowRunning) {
-			imageView.setSlideshowButtonCaption("Start");
-			slideShowTimer.cancel();
-		} else {
-			imageView.setSlideshowButtonCaption("Stop");
-			slideShowTimer.scheduleRepeating(3000);
-		}
-		slideshowRunning = !slideshowRunning;
-	}
-
-	@Override
-	public void setView(ImageView imageView) {
-		this.imageView = imageView;
+		slideShowTimer.toggleSlideshow();		
 	}
 }

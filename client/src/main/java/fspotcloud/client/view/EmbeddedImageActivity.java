@@ -8,7 +8,7 @@ public class EmbeddedImageActivity extends ImageActivity {
 
 	@Inject
 	public EmbeddedImageActivity(ImageView imageView, DataManager dataManager,
-			PlaceGoTo placeGoto, SlideshowTimer slideshowTimer) {
+			PlaceGoTo placeGoto, Slideshow slideshowTimer) {
 		super(imageView, dataManager, placeGoto, slideshowTimer);
 	}
 

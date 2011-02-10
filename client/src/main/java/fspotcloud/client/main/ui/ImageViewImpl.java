@@ -17,8 +17,10 @@ import fspotcloud.client.view.ImageView;
 
 public class ImageViewImpl extends ResizeComposite implements ImageView {
 
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(ImageViewImpl.class
 			.getName());
+	
 	private static ImageViewImplUiBinder uiBinder = GWT
 			.create(ImageViewImplUiBinder.class);
 
@@ -55,7 +57,6 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 
 	@Override
 	public void setImageUrl(String url) {
-		log.info("setImage: " + url);
 		image.setUrl(url);
 	}
 
@@ -76,7 +77,6 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 
 	@UiHandler("prevButton")
 	public void onPreviousButtonClicked(ClickEvent event) {
-		log.info("Prev button pressed");
 		presenter.goBackward();
 	}
 
