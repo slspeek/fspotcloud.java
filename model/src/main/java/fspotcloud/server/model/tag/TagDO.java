@@ -3,8 +3,8 @@
  */
 package fspotcloud.server.model.tag;
 
-import java.util.List;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -39,7 +39,7 @@ public class TagDO implements Tag {
 	@Persistent
 	private boolean importIssued = false;
 	
-	@Persistent
+	@Persistent(serialized = "true")
 	private SortedSet<PhotoInfo> cachedPhotoList;
 	
 	public void setId(String id) {
