@@ -8,8 +8,7 @@ import com.google.gwt.view.client.TreeViewModel;
 public interface TagView extends IsWidget {
 	
 	interface TagPresenter extends Activity {
-		void setPlace(TagViewingPlace place);
-
+		void setPlace(BasePlace place);
 		void reloadTree();
 	}
 

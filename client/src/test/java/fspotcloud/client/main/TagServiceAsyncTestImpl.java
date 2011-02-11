@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSortedSet;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import fspotcloud.rpc.TagServiceAsync;
 import fspotcloud.shared.photo.PhotoInfo;
+import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;
 
 public class TagServiceAsyncTestImpl implements TagServiceAsync {
@@ -31,36 +33,36 @@ public class TagServiceAsyncTestImpl implements TagServiceAsync {
 		PhotoInfo pi1 = new PhotoInfo("1", "Daniel", new Date());
 		PhotoInfo pi2 = new PhotoInfo("2", "Aute", new Date());
 		PhotoInfo pi3 = new PhotoInfo("3", "Jan", new Date());
-		ImmutableList<PhotoInfo> photoList = ImmutableList.of(pi1, pi2, pi3);
-		root1.setCachedPhotoList(photoList);
+		ImmutableSortedSet<PhotoInfo> photoList = ImmutableSortedSet.of(pi1, pi2, pi3);
+		root1.setCachedPhotoList(new PhotoInfoStore(photoList));
 		
 		TagNode cats = createNode("2", "Cats", 10);
 		pi1 = new PhotoInfo("4", "", new Date());
 		pi2 = new PhotoInfo("5", "", new Date());
 		pi3 = new PhotoInfo("6", "", new Date());
-		photoList = ImmutableList.of(pi1, pi2, pi3);
-		cats.setCachedPhotoList(photoList);
+		photoList = ImmutableSortedSet.of(pi1, pi2, pi3);
+		cats.setCachedPhotoList(new PhotoInfoStore(photoList));
 		
 		TagNode root3 = createNode("3", "Languages", 10);
 		pi1 = new PhotoInfo("7", "", new Date());
 		pi2 = new PhotoInfo("8", "", new Date());
 		pi3 = new PhotoInfo("9", "", new Date());
-		photoList = ImmutableList.of(pi1, pi2, pi3);
-		root3.setCachedPhotoList(photoList);
+		photoList = ImmutableSortedSet.of(pi1, pi2, pi3);
+		root3.setCachedPhotoList(new PhotoInfoStore(photoList));
 		
 		TagNode felix = createNode("4", "Felix", 2);
 		pi1 = new PhotoInfo("11", "", new Date());
 		pi2 = new PhotoInfo("12", "", new Date());
 		pi3 = new PhotoInfo("13", "", new Date());
-		photoList = ImmutableList.of(pi1, pi2, pi3);
-		felix.setCachedPhotoList(photoList);	
+		photoList = ImmutableSortedSet.of(pi1, pi2, pi3);
+		felix.setCachedPhotoList(new PhotoInfoStore(photoList));	
 		
 		TagNode woefje = createNode("5", "Woefje", 1);
 		pi1 = new PhotoInfo("21", "", new Date());
 		pi2 = new PhotoInfo("22", "", new Date());
 		pi3 = new PhotoInfo("23", "", new Date());
-		photoList = ImmutableList.of(pi1, pi2, pi3);
-		woefje.setCachedPhotoList(photoList);
+		photoList = ImmutableSortedSet.of(pi1, pi2, pi3);
+		woefje.setCachedPhotoList(new PhotoInfoStore(photoList));
 		
 		cats.addChild(felix);
 		cats.addChild(woefje);

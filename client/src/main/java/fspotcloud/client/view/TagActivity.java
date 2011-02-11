@@ -62,7 +62,7 @@ public class TagActivity extends AbstractActivity implements Handler,
 		super.onStop();
 	}
 
-	public void setPlace(TagViewingPlace place) {
+	public void setPlace(BasePlace place) {
 		tagId = place.getTagId();
 		TagNode node = new TagNode();
 		node.setId(tagId);
@@ -111,4 +111,5 @@ public class TagActivity extends AbstractActivity implements Handler,
 			}
 		}
 	}
+
 }

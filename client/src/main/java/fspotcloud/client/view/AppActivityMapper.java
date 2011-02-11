@@ -8,16 +8,19 @@ import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
+import fspotcloud.client.view.ImageView.ImagePresenter;
+import fspotcloud.client.view.TagView.TagPresenter;
+
 public class AppActivityMapper  implements ActivityMapper {
 	
-	private TagView.TagPresenter tagActivity;
-	private ImageView.ImagePresenter imageActivity;
+	private TagPresenter tagActivity;
+	private ImagePresenter imageActivity;
 	private static final Logger log = Logger.getLogger(AppActivityMapper.class
 			.getName());
 
 	@Inject
-	public AppActivityMapper(TagView.TagPresenter tagActivity,
-			@Named("fullscreen") ImageView.ImagePresenter imageActivity) {
+	public AppActivityMapper(TagPresenter tagActivity,
+			@Named("fullscreen") ImagePresenter imageActivity) {
 		super();
 		this.tagActivity = tagActivity;
 		this.imageActivity = imageActivity;

@@ -59,35 +59,4 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	public void setImageUrl(String url) {
 		image.setUrl(url);
 	}
-
-	@UiHandler("firstButton")
-	public void onFirstButtonClicked(ClickEvent event) {
-		presenter.goFirst();
-	}
-
-	@UiHandler("startButton")
-	public void onStartButtonClicked(ClickEvent event) {
-		presenter.toggleSlideshow();
-	}
-
-	@UiHandler("nextButton")
-	public void onNextButtonClicked(ClickEvent event) {
-		presenter.goForward();
-	}
-
-	@UiHandler("prevButton")
-	public void onPreviousButtonClicked(ClickEvent event) {
-		presenter.goBackward();
-	}
-
-	@UiHandler("lastButton")
-	public void onLastButtonClicked(ClickEvent event) {
-		presenter.goLast();
-	}
-
-	@Override
-	public void setSlideshowButtonCaption(String caption) {
-		startButton.setText(caption);
-		startButton.setTitle(caption);
-	}
 }

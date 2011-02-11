@@ -4,21 +4,24 @@ import java.util.Date;
 
 import junit.framework.TestCase;
 
-import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSortedSet;
 
 import fspotcloud.shared.photo.PhotoInfo;
+import fspotcloud.shared.photo.PhotoInfoStore;
 
 public class TagNodeTest extends TestCase {
 
 	TagNode node;
+	
 	protected void setUp() throws Exception {
 		super.setUp();
 		node = new TagNode();
 		node.setTagName("Friends");
 		node.setDescription("Friends and family");
 		node.setId("1");
-		PhotoInfo man = new PhotoInfo("2", "Human", new Date());
-		node.setCachedPhotoList(ImmutableList.of(man));
+		PhotoInfo man = new PhotoInfo("2", "Human", new Date());;
+		PhotoInfoStore store = new PhotoInfoStore(ImmutableSortedSet.of(man));
+		node.setCachedPhotoList(store);
 	}
 
 	protected void tearDown() throws Exception {

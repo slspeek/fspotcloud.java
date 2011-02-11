@@ -1,25 +1,20 @@
 package fspotcloud.client.view.action;
 
 import com.google.inject.Inject;
-import com.google.inject.Provider;
-import com.google.inject.name.Named;
 
-import fspotcloud.client.main.gin.ImagePresenterProvider;
-import fspotcloud.client.view.AppActivityMapper;
-import fspotcloud.client.view.ImageView;
-import fspotcloud.client.view.PlaceWhere;
+import fspotcloud.client.main.gin.ActivePagerPresenter;
+import fspotcloud.client.view.PagerView.PagerPresenter;
 
 public class BackAction implements GestureAction {
 
-	Provider<ImageView.ImagePresenter> imagePresenterProvider;
+	ActivePagerPresenter provider;
 	@Inject
-	public BackAction(
-			ImagePresenterProvider imagePresenterProvider) {
-		this.imagePresenterProvider = imagePresenterProvider;
+	public BackAction(ActivePagerPresenter provider) {
+		this.provider = provider;
 	}
 	@Override
 	public void perform() {
-		ImageView.ImagePresenter presenter = imagePresenterProvider.get();
+		PagerPresenter presenter = provider.get();
 		if (presenter != null) {
 			presenter.goBackward();
 		}

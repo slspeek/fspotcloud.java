@@ -1,8 +1,5 @@
 package fspotcloud.client.view;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -11,7 +8,8 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
 import fspotcloud.client.data.DataManager;
-import fspotcloud.shared.photo.PhotoInfo;
+import fspotcloud.client.view.PagerView.PagerPresenter;
+import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;
 
 public class ImageActivity extends AbstractActivity implements
@@ -21,69 +19,32 @@ public class ImageActivity extends AbstractActivity implements
 
 	final private DataManager tagNodeProvider;
 	final private ImageView imageView;
-	final private Slideshow slideShowTimer;
-	final protected PlaceGoTo placeGoTo;
-	
+	final private PagerPresenter pager;
+
 	String tagId;
 	String photoId;
-	Integer offset = null;
-	List<PhotoInfo> photoList = Collections.emptyList();
 
 	@Inject
 	public ImageActivity(ImageView imageView, DataManager dataManager,
-			PlaceGoTo placeGoTo, Slideshow slideShowTimer) {
+			PagerPresenter pager) {
 		this.imageView = imageView;
 		this.tagNodeProvider = dataManager;
-		this.placeGoTo = placeGoTo;
-		this.slideShowTimer = slideShowTimer;
+		this.pager = pager;
 	}
 
-	public void setPlace(ImageViewingPlace place) {
-		offset = null;
+	public void setPlace(BasePlace place) {
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
+		TagNode node = tagNodeProvider.getTagNode(tagId);
+		PhotoInfoStore store = node.getCachedPhotoList();
 		log
 				.info("setPlace called for tagId: " + tagId + " photoId: "
 						+ photoId);
-		calculateLocation();
 		setImage();
-	}
-
-	public void calculateLocation() {
-		TagNode node = tagNodeProvider.getTagNode(tagId);
-		if (node != null) {
-			photoList = node.getCachedPhotoList();
-		} else {
-			photoList = Collections.emptyList();
-			log.warning("No information found for tagId: " + tagId);
+		if (!store.isEmpty()) {
+			pager.setData(store);
+			pager.setPlace(place);
 		}
-		int where = findInList(photoList, photoId);
-		if (where == -1) {
-			if (!photoList.isEmpty()) {
-				goFirst();
-			} else {
-				log.info("photo list is empty.");
-				offset = -1;
-			}
-		} else {
-			offset = where;
-		}
-	}
-
-	/**
-	 * Needed for GWT
-	 */
-	private int findInList(List<PhotoInfo> list, String id) {
-		int index = -1;
-		ListIterator<PhotoInfo> it = list.listIterator();
-		while (it.hasNext()) {
-			PhotoInfo pi = it.next();
-			if (id.equals(pi.getId())) {
-				index = it.previousIndex();
-				break;
-			}
-		}
-		return index;
 	}
 
 	private void setImage() {
@@ -99,68 +60,17 @@ public class ImageActivity extends AbstractActivity implements
 		log.info("Start image activity for tagId: " + tagId + "photoId: "
 				+ photoId);
 		imageView.setPresenter(this);
-		slideShowTimer.setPresenter(this);
 		containerWidget.setWidget(imageView);
 	}
 
 	@Override
 	public void onStop() {
-		slideShowTimer.stopSlideshow();
+		pager.stop();
 		super.onStop();
 	}
 
 	@Override
-	public boolean canGoBackward() {
-		return offset != null && offset > 0;
-	}
-
-	@Override
-	public boolean canGoForward() {
-		return offset != null && offset >= 0 && offset < photoList.size() - 1;
-	}
-
-	protected void goToPhoto(String otherTagId, String photoId) {
-		placeGoTo.goTo(new ImageViewingPlace(otherTagId, photoId));
-	}
-
-	private void goToPhoto(String photoId) {
-		goToPhoto(tagId, photoId);
-	}
-
-	@Override
-	public void goBackward() {
-		if (!photoList.isEmpty() && canGoBackward()) {
-			String photoId = photoList.get(offset - 1).getId();
-			goToPhoto(photoId);
-		}
-	}
-
-	@Override
-	public void goFirst() {
-		if (!photoList.isEmpty()) {
-			String photoId = photoList.get(0).getId();
-			goToPhoto(photoId);
-		}
-	}
-
-	@Override
-	public void goForward() {
-		if (!photoList.isEmpty() && canGoForward()) {
-			String photoId = photoList.get(offset + 1).getId();
-			goToPhoto(photoId);
-		}
-	}
-
-	@Override
-	public void goLast() {
-		if (!photoList.isEmpty()) {
-			String photoId = photoList.get(photoList.size() - 1).getId();
-			goToPhoto(photoId);
-		}
-	}
-
-	@Override
-	public void toggleSlideshow() {
-		slideShowTimer.toggleSlideshow();		
+	public PagerPresenter getPager() {
+		return pager;
 	}
 }

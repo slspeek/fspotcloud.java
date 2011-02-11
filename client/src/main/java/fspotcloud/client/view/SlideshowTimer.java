@@ -5,16 +5,16 @@ import java.util.logging.Logger;
 import com.google.gwt.user.client.Timer;
 import com.google.inject.Inject;
 
-import fspotcloud.client.view.ImageView.ImagePresenter;
+import fspotcloud.client.view.PagerView.PagerPresenter;
 
 public class SlideshowTimer extends Timer implements Slideshow {
 
 	private static final Logger log = Logger.getLogger(SlideshowTimer.class
 			.getName());
 	
-	ImagePresenter presenter;
+	PagerPresenter presenter;
 
-	public void setPresenter(ImagePresenter presenter) {
+	public void setPresenter(PagerPresenter presenter) {
 		this.presenter = presenter;
 	}
 
