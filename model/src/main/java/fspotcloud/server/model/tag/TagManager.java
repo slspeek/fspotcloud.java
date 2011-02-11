@@ -16,6 +16,7 @@ import com.google.inject.Provider;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.photo.PhotoInfo;
+import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;
 
 public class TagManager implements Tags {
@@ -41,10 +42,9 @@ public class TagManager implements Tags {
 				node.setTagName(tag.getTagName());
 				SortedSet<PhotoInfo> photoList = tag.getCachedPhotoList();
 				if (photoList != null) {
-					node.setCachedPhotoList(new ArrayList<PhotoInfo>(photoList));
+					node.setCachedPhotoList(new PhotoInfoStore(photoList));
 				} else {
-					log.warning("cached photo set was null");
-					node.setCachedPhotoList(new ArrayList<PhotoInfo>());
+					throw new IllegalStateException("photoList field of Tag should not be null");
 				}
 				result.add(node);
 			}

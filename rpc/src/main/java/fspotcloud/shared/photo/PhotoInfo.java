@@ -11,6 +11,7 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
 	private String description;
 	private Date date;
 
+	@SuppressWarnings("unused")
 	private PhotoInfo() {
 		
 	}

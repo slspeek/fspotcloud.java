@@ -13,11 +13,13 @@ import fspotcloud.client.main.MVPSetup;
 import fspotcloud.client.main.PlaceSwapper;
 import fspotcloud.client.main.TagCell;
 import fspotcloud.client.main.ui.ImageViewImpl;
+import fspotcloud.client.main.ui.PagerViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
 import fspotcloud.client.view.AppActivityMapper;
-import fspotcloud.client.view.EmbeddedImageActivity;
 import fspotcloud.client.view.ImageActivity;
 import fspotcloud.client.view.ImageView;
+import fspotcloud.client.view.PagerActivity;
+import fspotcloud.client.view.PagerView;
 import fspotcloud.client.view.PlaceGoTo;
 import fspotcloud.client.view.PlaceGoToImpl;
 import fspotcloud.client.view.PlaceWhere;
@@ -42,9 +44,8 @@ public class AppModule extends AbstractGinModule {
 				Names.named("fullscreen")).to(ImageActivity.class).in(
 				Singleton.class);
 		bind(ImageView.ImagePresenter.class).annotatedWith(
-				Names.named("embedded")).to(EmbeddedImageActivity.class).in(
+				Names.named("embedded")).to(ImageActivity.class).in(
 				Singleton.class);
-		bind(EmbeddedImageActivity.class);
 		bind(PlaceSwapper.class);
 		bind(TagCell.class);
 		bind(TagView.class).to(TagViewImpl.class);
@@ -57,5 +58,7 @@ public class AppModule extends AbstractGinModule {
 		bind(KeyDispatcherProvider.class).in(Singleton.class);
 		bind(ShortCutHandler.class).toProvider(KeyDispatcherProvider.class);
 		bind(Slideshow.class).to(SlideshowTimer.class);
+		bind(PagerView.class).to(PagerViewImpl.class);
+		bind(PagerView.PagerPresenter.class).to(PagerActivity.class);
 	}
 }
