@@ -32,7 +32,7 @@ public class BasePlace extends Place {
 	}
 	
 	public String toString() {
-		String result = "Place: tagId: " + tagId + " photoId: " + photoId;
+		String result = getClass().getName() + ": tagId: " + tagId + " photoId: " + photoId;
 		return result;
 	}
 	

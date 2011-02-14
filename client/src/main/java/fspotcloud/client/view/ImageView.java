@@ -15,4 +15,6 @@ public interface ImageView extends IsWidget {
 	}
 
 	void setImageUrl(String url);
+
+	PagerPresenter getPagerPresenter();
 }

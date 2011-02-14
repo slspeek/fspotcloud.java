@@ -17,9 +17,9 @@ public class TagEntryPoint implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-		log.info("Hello GIN logging debugging the BIG Bug");
-		MVPSetup setup = injector.getMVPSetup();
+		log.info("Hello GIN logging wiring");
 		try {
+			MVPSetup setup = injector.getMVPSetup();
 			setup.setup();
 		} catch (Throwable e) {
 			log.log(Level.SEVERE, "Uncaught exception", e);

@@ -9,6 +9,8 @@ import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
+import com.google.gwt.user.client.ui.Widget;
+
 import fspotcloud.client.view.PagerView.PagerPresenter;
 import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.photo.PhotoInfoStore;
@@ -30,10 +32,13 @@ public class PagerActivityTest extends TestCase {
 		super.setUp();
 	}
 	
+	private PagerActivity create(PlaceGoTo goTo) {
+		return new PagerActivity(goTo, null);
+	}
 	public void testGoFirst() {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		ImageViewingPlace imageViewingPlace = new ImageViewingPlace("1", "3");
-		PagerView.PagerPresenter pager = new PagerActivity(goTo, null);
+		PagerView.PagerPresenter pager = create(goTo);
 		pager.setData(data);
 		pager.setPlace(imageViewingPlace);
 		context.checking(new Expectations() {
@@ -60,7 +65,7 @@ public class PagerActivityTest extends TestCase {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		ImageViewingPlace imageViewingPlace = new ImageViewingPlace(tagId,
 				photoId);
-		PagerPresenter pager = new PagerActivity(goTo, null);
+		PagerPresenter pager = create(goTo);
 		context.checking(new Expectations() {
 			{
 				oneOf(goTo).goTo(
@@ -81,7 +86,7 @@ public class PagerActivityTest extends TestCase {
 
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		ImageViewingPlace middle = new ImageViewingPlace("testTag", photoId);
-		PagerPresenter pager = new PagerActivity(goTo, null);
+		PagerPresenter pager = create(goTo);
 		pager.setData(data);
 		context.checking(new Expectations() {
 			{

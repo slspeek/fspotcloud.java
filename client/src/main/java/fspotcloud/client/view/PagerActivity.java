@@ -1,5 +1,7 @@
 package fspotcloud.client.view;
 
+import java.util.logging.Logger;
+
 import com.google.inject.Inject;
 
 import fspotcloud.client.view.PagerView.PagerPresenter;
@@ -7,16 +9,23 @@ import fspotcloud.shared.photo.PhotoInfoStore;
 
 public class PagerActivity implements PagerPresenter {
 
-	private PhotoInfoStore store = null;
+	final private static Logger log = Logger.getLogger(PagerActivity.class
+			.getName());
+
+	final private Slideshow slideshow;
 	final protected PlaceGoTo placeGoTo;
+	
+	private PhotoInfoStore store = null;
+	
 	String photoId;
 	String tagId;
 	Integer offset = null;
 	boolean fullscreenTarget = false;
-	private Slideshow slideshow;
 	
 	@Inject
-	public PagerActivity(PlaceGoTo placeGoTo, Slideshow slideshow) {
+	public PagerActivity(PlaceGoTo placeGoTo,
+			Slideshow slideshow) {
+		log.info("Pager activity created : " + this);
 		this.placeGoTo = placeGoTo;
 		this.slideshow = slideshow;
 	}
@@ -24,18 +33,21 @@ public class PagerActivity implements PagerPresenter {
 	@Override
 	public void setData(PhotoInfoStore data) {
 		this.store = data;
+		//log.info("Set store to: " + store);
+
 	}
-	
+
 	@Override
 	public void setPlace(BasePlace place) {
 		if (place instanceof ImageViewingPlace) {
-			fullscreenTarget = true;		
+			fullscreenTarget = true;
 		} else {
 			fullscreenTarget = false;
 		}
 		this.photoId = place.getPhotoId();
 		this.tagId = place.getTagId();
 		calculateLocation();
+		log.info("setPlace" + this + " : " + place );
 	}
 
 	private void calculateLocation() {
@@ -49,9 +61,10 @@ public class PagerActivity implements PagerPresenter {
 		} else {
 			place = new TagViewingPlace(tagId, photoId);
 		}
+		log.info("About to go to: " + this + " : "  + place);
 		placeGoTo.goTo(place);
 	}
-	
+
 	private void goToPhoto(String photoId) {
 		goToPhoto(tagId, photoId);
 	}
