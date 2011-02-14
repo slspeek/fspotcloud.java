@@ -22,11 +22,8 @@ public class TagActivityMapper  implements ActivityMapper {
 
 	@Override
 	public Activity getActivity(Place place) {
-		if (place instanceof TagViewingPlace) {
-			place = new ImageViewingPlace(((TagViewingPlace) place).getTagId(), ((TagViewingPlace) place).getPhotoId());
-		}
-		if (place instanceof ImageViewingPlace) {
-			imageActivity.setPlace((ImageViewingPlace)place);
+		if (place instanceof BasePlace) {
+			imageActivity.setPlace((BasePlace)place);
 			return imageActivity;
 		} else {
 			log.warning("getActivity will return null for place: " + place);
