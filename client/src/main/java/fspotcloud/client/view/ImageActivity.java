@@ -6,6 +6,7 @@ import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.view.PagerView.PagerPresenter;
@@ -25,11 +26,11 @@ public class ImageActivity extends AbstractActivity implements
 	String photoId;
 
 	@Inject
-	public ImageActivity(ImageView imageView, DataManager dataManager,
-			PagerPresenter pager) {
+	public ImageActivity(ImageView imageView, DataManager dataManager) {
+		log.info("ImageActivity created");
 		this.imageView = imageView;
 		this.tagNodeProvider = dataManager;
-		this.pager = pager;
+		this.pager = imageView.getPagerPresenter();
 	}
 
 	public void setPlace(BasePlace place) {

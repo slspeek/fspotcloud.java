@@ -3,17 +3,17 @@ package fspotcloud.client.main.ui;
 import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
 
 import fspotcloud.client.view.ImageView;
+import fspotcloud.client.view.PagerView;
 
 public class ImageViewImpl extends ResizeComposite implements ImageView {
 
@@ -27,29 +27,33 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	interface ImageViewImplUiBinder extends UiBinder<Widget, ImageViewImpl> {
 	}
 
+	@SuppressWarnings("unused")
 	private ImageView.ImagePresenter presenter;
 
 	@UiField
 	HTMLPanel mainPanel;
 	@UiField
 	Image image;
-	@UiField
-	PushButton firstButton;
-	@UiField
-	PushButton prevButton;
-	@UiField
-	PushButton startButton;
-	@UiField
-	PushButton nextButton;
-	@UiField
-	PushButton lastButton;
+	
+	final private PagerView pagerView;
 
-	public ImageViewImpl() {
+	@Inject
+	public ImageViewImpl(PagerView pagerView) {
+		this.pagerView = pagerView;
 		initWidget(uiBinder.createAndBindUi(this));
-		startButton.setAccessKey('s');
-		nextButton.setAccessKey('n');
 	}
-
+	
+	@UiFactory 
+	PagerView getPagerView() {
+		log.info("GetPagetView");
+		return pagerView;
+		 
+	}
+	
+	public PagerView.PagerPresenter getPagerPresenter() {
+		return pagerView.getPagerPresenter();
+	}
+	
 	@Override
 	public void setPresenter(ImagePresenter presenter) {
 		this.presenter = presenter;

@@ -101,7 +101,7 @@ public class TagActivity extends AbstractActivity implements Handler,
 
 	@Override
 	public void onSelectionChange(SelectionChangeEvent event) {
-		log.info("OnSelectionChange: " + event);
+		//log.info("OnSelectionChange: " + event);
 		TagNode node = selectionModel.getSelectedObject();
 		if (node != null) {
 			if (!node.getCachedPhotoList().isEmpty()) {

@@ -1,5 +1,8 @@
 package fspotcloud.client.main.ui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -8,45 +11,48 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
 
 import fspotcloud.client.view.PagerView;
 
 public class PagerViewImpl extends Composite implements PagerView {
-
+	@SuppressWarnings("unused")
+	private static final Logger log = Logger.getLogger(PagerViewImpl.class
+			.getName());
+	
 	private static PagerViewImplUiBinder uiBinder = GWT
 			.create(PagerViewImplUiBinder.class);
 
 	interface PagerViewImplUiBinder extends UiBinder<Widget, PagerViewImpl> {
 	}
 
-	private PagerPresenter presenter;
+	final private PagerPresenter presenter;
 	@UiField
 	PushButton firstButton;
 	@UiField
 	PushButton prevButton;
 	@UiField
-	PushButton startButton;
-	@UiField
 	PushButton nextButton;
 	@UiField
 	PushButton lastButton;
 
-	public PagerViewImpl() {
+	@Inject 
+	public PagerViewImpl(PagerView.PagerPresenter presenter) {
+		this.presenter = presenter;
+		log.info("Constructing PagerView");
 		initWidget(uiBinder.createAndBindUi(this));
-		startButton.setAccessKey('s');
 		nextButton.setAccessKey('n');
 		lastButton.setAccessKey('l');
 		firstButton.setAccessKey('0');
 	}
 
-	@Override
-	public void setPresenter(PagerPresenter presenter) {
-		this.presenter = presenter;
-	}
-	
 	@UiHandler("firstButton")
 	public void onFirstButtonClicked(ClickEvent event) {
-		presenter.goFirst();
+		try {
+			presenter.goFirst();
+		} catch(Exception e) {
+			log.log(Level.SEVERE, "Uncaught exception", e);
+		}
 	}
 
 	@UiHandler("nextButton")
@@ -62,5 +68,10 @@ public class PagerViewImpl extends Composite implements PagerView {
 	@UiHandler("lastButton")
 	public void onLastButtonClicked(ClickEvent event) {
 		presenter.goLast();
+	}
+
+	@Override
+	public PagerPresenter getPagerPresenter() {
+		return presenter;
 	}
 }

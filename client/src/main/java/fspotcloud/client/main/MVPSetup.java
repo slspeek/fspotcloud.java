@@ -1,5 +1,7 @@
 package fspotcloud.client.main;
 
+import java.util.logging.Logger;
+
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
@@ -12,12 +14,13 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.view.AppActivityMapper;
 import fspotcloud.client.view.AppPlaceHistoryMapper;
-import fspotcloud.client.view.TagActivity;
 import fspotcloud.client.view.TagView;
 import fspotcloud.client.view.TagViewingPlace;
 
 public class MVPSetup {
 
+	private static final Logger log = Logger.getLogger(MVPSetup.class
+			.getName());
 	final private Place defaultPlace = new TagViewingPlace("1", "2");
 	final private SimplePanel appWidget = new SimplePanel();
 	final private EventBus eventBus;
@@ -41,6 +44,7 @@ public class MVPSetup {
 	public void setup() {
 		tagActivity.reloadTree();
 		keyboardHandler.setup();
+		
 		ActivityManager activityManager = new ActivityManager(activityMapper,
 				eventBus);
 		activityManager.setDisplay(appWidget);
@@ -53,5 +57,6 @@ public class MVPSetup {
 
 		RootLayoutPanel.get().add(appWidget);
 		historyHandler.handleCurrentHistory();
+		log.info("Setup finished");
 	}
 }

@@ -18,7 +18,7 @@ public interface PagerView extends IsWidget {
 		void stop();
 	}
 
-	void setPresenter(PagerPresenter presenter);
+	PagerPresenter getPagerPresenter();
 	
 	
 }

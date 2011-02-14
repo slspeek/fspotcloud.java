@@ -40,8 +40,7 @@ public class ImageActivityTest extends TestCase {
 			public void onFailure(Throwable caught) {
 			}
 		});
-		ImageActivity imageActivity = new ImageActivity(imageView, dataManager,
-				pager);
+		ImageActivity imageActivity = new ImageActivity(imageView, dataManager);
 		return imageActivity;
 	}
 	
@@ -51,9 +50,10 @@ public class ImageActivityTest extends TestCase {
 		final BasePlace place = new ImageViewingPlace("1", "1");
 		context.checking(new Expectations() {
 			{
+				oneOf(imageView).getPagerPresenter();
 				oneOf(imageView).setImageUrl(with("/image?id=1"));
-				oneOf(pager).setData(with(any(PhotoInfoStore.class)));
-				oneOf(pager).setPlace(place);
+				//oneOf(pager).setData(with(any(PhotoInfoStore.class)));
+				//oneOf(pager).setPlace(place);
 			}
 		});
 		ImageView.ImagePresenter activity = create(imageView, pager);
