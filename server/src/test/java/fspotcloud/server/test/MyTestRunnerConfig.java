@@ -12,7 +12,6 @@ import fspotcloud.server.control.ControllerTest;
 import fspotcloud.server.model.PersistenceManagerProviderTest;
 import fspotcloud.server.model.batch.BatchManagerTest;
 import fspotcloud.server.model.photo.PhotoManagerTest;
-import fspotcloud.server.util.TaskOptionsTest;
 import fspotcloud.server.util.TaskSchedulerTest;
 
 public class MyTestRunnerConfig extends JUnit3Config {
@@ -33,7 +32,6 @@ public class MyTestRunnerConfig extends JUnit3Config {
 			public TestSuite getTestSuite() {
 				suite.addTestSuite(ControllerTest.class);
 				suite.addTestSuite(TaskSchedulerTest.class);
-				suite.addTestSuite(TaskOptionsTest.class);
 				return suite;
 			}
 		};
