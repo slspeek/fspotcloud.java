@@ -1,12 +1,13 @@
 package fspotcloud.client.view;
 
+import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.user.client.ui.IsWidget;
 
 import fspotcloud.shared.photo.PhotoInfoStore;
 
 public interface PagerView extends IsWidget {
 	
-	interface PagerPresenter {
+	interface PagerPresenter extends Activity {
 		void setData(PhotoInfoStore data);
 		void setPlace(BasePlace place);
 		void goLast();
@@ -15,7 +16,6 @@ public interface PagerView extends IsWidget {
 		void goBackward();
 		boolean canGoForward();
 		boolean canGoBackward();
-		void stop();
 	}
 
 	PagerPresenter getPagerPresenter();

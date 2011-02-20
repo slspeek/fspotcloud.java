@@ -4,16 +4,15 @@ import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.ResizeComposite;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.inject.Inject;
 
 import fspotcloud.client.view.ImageView;
-import fspotcloud.client.view.PagerView;
 
 public class ImageViewImpl extends ResizeComposite implements ImageView {
 
@@ -34,26 +33,15 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	HTMLPanel mainPanel;
 	@UiField
 	Image image;
-	
-	final private PagerView pagerView;
+	@UiField
+	SimplePanel pagerViewPanel;
+	@UiField
+	SimplePanel slideshowViewPanel;
 
-	@Inject
-	public ImageViewImpl(PagerView pagerView) {
-		this.pagerView = pagerView;
+	
+	public ImageViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
-	
-	@UiFactory 
-	PagerView getPagerView() {
-		log.info("GetPagetView");
-		return pagerView;
-		 
-	}
-	
-	public PagerView.PagerPresenter getPagerPresenter() {
-		return pagerView.getPagerPresenter();
-	}
-	
 	@Override
 	public void setPresenter(ImagePresenter presenter) {
 		this.presenter = presenter;
@@ -62,5 +50,15 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	@Override
 	public void setImageUrl(String url) {
 		image.setUrl(url);
+	}
+
+	@Override
+	public AcceptsOneWidget getPagerViewContainer() {
+		return pagerViewPanel;
+	}
+	
+	@Override
+	public AcceptsOneWidget getSlideshowViewContainer() {
+		return pagerViewPanel;
 	}
 }

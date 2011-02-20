@@ -7,7 +7,7 @@ import org.jmock.Mockery;
 
 public class AppActivityMapperTest extends TestCase {
 
-	AppActivityMapper mapper;
+	MainWindowActivityMapper mapper;
 	Mockery context = new Mockery();
 
 	protected void setUp() throws Exception {
@@ -27,7 +27,7 @@ public class AppActivityMapperTest extends TestCase {
 				oneOf(activity).setPlace(with(place));
 			}
 		});
-		mapper = new AppActivityMapper(null, activity);
+		mapper = new MainWindowActivityMapper(null, activity);
 		mapper.getActivity(place);
 		context.assertIsSatisfied();
 	}
@@ -40,7 +40,7 @@ public class AppActivityMapperTest extends TestCase {
 				oneOf(activity).setPlace(with(place));
 			}
 		});
-		mapper = new AppActivityMapper(activity, null);
+		mapper = new MainWindowActivityMapper(activity, null);
 		mapper.getActivity(place);
 		context.assertIsSatisfied();
 	}

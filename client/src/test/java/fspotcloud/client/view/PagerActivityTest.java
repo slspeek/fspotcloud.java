@@ -33,7 +33,7 @@ public class PagerActivityTest extends TestCase {
 	}
 	
 	private PagerActivity create(PlaceGoTo goTo) {
-		return new PagerActivity(goTo, null);
+		return new PagerActivity(goTo);
 	}
 	public void testGoFirst() {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);

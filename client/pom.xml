@@ -84,8 +84,6 @@
 				<configuration>
 					<compileSourcesArtifacts>
 						<compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact>
-						<compileSourcesArtifact>com.google.guava:guava</compileSourcesArtifact>
-						<compileSourcesArtifact>com.google.guava:guava-gwt</compileSourcesArtifact>
 					</compileSourcesArtifacts>
 					<logLevel>INFO</logLevel>
 					<!-- match -Dgae.port -->

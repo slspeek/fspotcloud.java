@@ -14,20 +14,23 @@ import fspotcloud.client.main.PlaceSwapper;
 import fspotcloud.client.main.TagCell;
 import fspotcloud.client.main.ui.ImageViewImpl;
 import fspotcloud.client.main.ui.PagerViewImpl;
+import fspotcloud.client.main.ui.SlideshowTimer;
+import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
-import fspotcloud.client.view.AppActivityMapper;
 import fspotcloud.client.view.ImageActivity;
 import fspotcloud.client.view.ImageView;
+import fspotcloud.client.view.MainWindowActivityMapper;
 import fspotcloud.client.view.PagerActivity;
 import fspotcloud.client.view.PagerView;
 import fspotcloud.client.view.PlaceGoTo;
 import fspotcloud.client.view.PlaceGoToImpl;
 import fspotcloud.client.view.PlaceWhere;
 import fspotcloud.client.view.PlaceWhereImpl;
-import fspotcloud.client.view.Slideshow;
-import fspotcloud.client.view.SlideshowTimer;
+import fspotcloud.client.view.SlideShowActivity;
+import fspotcloud.client.view.SlideshowView;
 import fspotcloud.client.view.TagActivity;
 import fspotcloud.client.view.TagView;
+import fspotcloud.client.view.TimerInterface;
 import fspotcloud.client.view.action.KeyDispatcherProvider;
 import fspotcloud.client.view.action.ShortCutHandler;
 
@@ -35,7 +38,7 @@ public class AppModule extends AbstractGinModule {
 
 	@Override
 	protected void configure() {
-		bind(AppActivityMapper.class).in(Singleton.class);
+		bind(MainWindowActivityMapper.class).in(Singleton.class);
 		bind(DataManager.class).to(DataManagerImpl.class).in(Singleton.class);
 		bind(MVPSetup.class).in(Singleton.class);
 		bind(TagView.TagPresenter.class).to(TagActivity.class).in(
@@ -57,8 +60,11 @@ public class AppModule extends AbstractGinModule {
 		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
 		bind(KeyDispatcherProvider.class).in(Singleton.class);
 		bind(ShortCutHandler.class).toProvider(KeyDispatcherProvider.class);
-		bind(Slideshow.class).to(SlideshowTimer.class);
+		bind(SlideshowView.class).to(SlideshowViewImpl.class);
+		bind(SlideshowView.SlideshowPresenter.class)
+				.to(SlideShowActivity.class);
 		bind(PagerView.class).to(PagerViewImpl.class);
 		bind(PagerView.PagerPresenter.class).to(PagerActivity.class);
+		bind(TimerInterface.class).to(SlideshowTimer.class);
 	}
 }
