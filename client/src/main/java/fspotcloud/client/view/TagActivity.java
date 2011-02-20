@@ -25,8 +25,7 @@ public class TagActivity extends AbstractActivity implements Handler,
 	final DataManager dataManager;
 	final TagView tagView;
 	final private PlaceGoTo placeGoTo;
-	final private TagActivityMapper tagActivityMapper;
-	final private EventBus eventBus;
+	final private ImageViewActivityMapper imageActivityMapper;
 	final private ImageView.ImagePresenter embeddedImagePresenter;
 
 	String tagId;
@@ -36,23 +35,21 @@ public class TagActivity extends AbstractActivity implements Handler,
 	@Inject
 	public TagActivity(TagView tagView, DataManager dataManager,
 			PlaceGoTo placeGoTo, SingleSelectionModel<TagNode> selectionModel,
-			TagActivityMapper tagActivityMapper, EventBus eventBus,
+			ImageViewActivityMapper tagActivityMapper,
 			@Named("embedded") ImageView.ImagePresenter embeddedImagePresenter) {
 		this.tagView = tagView;
 		this.dataManager = dataManager;
 		this.placeGoTo = placeGoTo;
-		this.tagActivityMapper = tagActivityMapper;
-		this.eventBus = eventBus;
+		this.imageActivityMapper = tagActivityMapper;
 		this.selectionModel = selectionModel;
 		this.embeddedImagePresenter = embeddedImagePresenter;
-		initActivityManager();
 		selectionModel.addSelectionChangeHandler(this);
-		log.info("Created");
+		log.info("TagActivity Created");
 	}
 
-	private void initActivityManager() {
+	private void initActivityManager(EventBus eventBus) {
 		ActivityManager activityManager = new ActivityManager(
-				tagActivityMapper, eventBus);
+				imageActivityMapper, eventBus);
 		activityManager.setDisplay(tagView.getImageViewContainer());
 	}
 
@@ -72,6 +69,7 @@ public class TagActivity extends AbstractActivity implements Handler,
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		log.info("Start tag activity for tagId: " + tagId);
+		initActivityManager(eventBus);
 		containerWidget.setWidget(tagView);
 	}
 

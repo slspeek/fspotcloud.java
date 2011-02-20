@@ -11,15 +11,15 @@ import com.google.inject.name.Named;
 import fspotcloud.client.view.ImageView.ImagePresenter;
 import fspotcloud.client.view.TagView.TagPresenter;
 
-public class AppActivityMapper  implements ActivityMapper {
+public class MainWindowActivityMapper  implements ActivityMapper {
 	
 	private TagPresenter tagActivity;
 	private ImagePresenter imageActivity;
-	private static final Logger log = Logger.getLogger(AppActivityMapper.class
+	private static final Logger log = Logger.getLogger(MainWindowActivityMapper.class
 			.getName());
 
 	@Inject
-	public AppActivityMapper(TagPresenter tagActivity,
+	public MainWindowActivityMapper(TagPresenter tagActivity,
 			@Named("fullscreen") ImagePresenter imageActivity) {
 		super();
 		this.tagActivity = tagActivity;

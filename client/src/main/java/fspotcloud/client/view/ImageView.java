@@ -1,9 +1,8 @@
 package fspotcloud.client.view;
 
 import com.google.gwt.activity.shared.Activity;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
-
-import fspotcloud.client.view.PagerView.PagerPresenter;
 
 public interface ImageView extends IsWidget {
 
@@ -11,10 +10,11 @@ public interface ImageView extends IsWidget {
 
 	interface ImagePresenter extends Activity {
 		void setPlace(BasePlace place);
-		PagerPresenter getPager();
 	}
 
 	void setImageUrl(String url);
 
-	PagerPresenter getPagerPresenter();
+	AcceptsOneWidget getPagerViewContainer();
+
+	AcceptsOneWidget getSlideshowViewContainer();
 }

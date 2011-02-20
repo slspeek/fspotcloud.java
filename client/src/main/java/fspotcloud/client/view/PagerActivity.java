@@ -2,17 +2,19 @@ package fspotcloud.client.view;
 
 import java.util.logging.Logger;
 
+import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
 import fspotcloud.client.view.PagerView.PagerPresenter;
 import fspotcloud.shared.photo.PhotoInfoStore;
 
-public class PagerActivity implements PagerPresenter {
+public class PagerActivity extends AbstractActivity implements PagerPresenter {
 
 	final private static Logger log = Logger.getLogger(PagerActivity.class
 			.getName());
 
-	final private Slideshow slideshow;
 	final protected PlaceGoTo placeGoTo;
 	
 	private PhotoInfoStore store = null;
@@ -23,18 +25,15 @@ public class PagerActivity implements PagerPresenter {
 	boolean fullscreenTarget = false;
 	
 	@Inject
-	public PagerActivity(PlaceGoTo placeGoTo,
-			Slideshow slideshow) {
+	public PagerActivity(PlaceGoTo placeGoTo) {
 		log.info("Pager activity created : " + this);
 		this.placeGoTo = placeGoTo;
-		this.slideshow = slideshow;
 	}
 
 	@Override
 	public void setData(PhotoInfoStore data) {
 		this.store = data;
 		//log.info("Set store to: " + store);
-
 	}
 
 	@Override
@@ -112,7 +111,8 @@ public class PagerActivity implements PagerPresenter {
 	}
 
 	@Override
-	public void stop() {
-		slideshow.stopSlideshow();
+	public void start(AcceptsOneWidget panel, EventBus eventBus) {
+		// TODO Auto-generated method stub
+		
 	}
 }

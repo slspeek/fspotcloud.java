@@ -8,14 +8,14 @@ import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
-public class TagActivityMapper  implements ActivityMapper {
+public class ImageViewActivityMapper  implements ActivityMapper {
 	
 	private ImageView.ImagePresenter imageActivity;
-	private static final Logger log = Logger.getLogger(TagActivityMapper.class
+	private static final Logger log = Logger.getLogger(ImageViewActivityMapper.class
 			.getName());
 
 	@Inject
-	public TagActivityMapper(@Named("embedded") ImageView.ImagePresenter imageActivity) {
+	public ImageViewActivityMapper(@Named("embedded") ImageView.ImagePresenter imageActivity) {
 		super();
 		this.imageActivity = imageActivity;
 	}

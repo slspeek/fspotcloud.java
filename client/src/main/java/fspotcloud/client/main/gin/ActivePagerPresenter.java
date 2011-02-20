@@ -5,7 +5,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
-import fspotcloud.client.view.AppActivityMapper;
+import fspotcloud.client.view.MainWindowActivityMapper;
 import fspotcloud.client.view.ImageActivity;
 import fspotcloud.client.view.PlaceWhere;
 import fspotcloud.client.view.TagActivity;
@@ -16,16 +16,16 @@ public class ActivePagerPresenter {
 
 	final private PagerPresenter pager;
 	final private PagerPresenter emmbededPager;
-	final private AppActivityMapper mapper;
+	final private MainWindowActivityMapper mapper;
 	final private PlaceWhere where;
 
 	@Inject
 	public ActivePagerPresenter(
 			@Named("fullscreen") ImagePresenter imagePresenter,
 			@Named("embedded") 	ImagePresenter emmbededImagePresenter,
-			AppActivityMapper mapper, PlaceWhere where) {
-		this.pager= imagePresenter.getPager();
-		this.emmbededPager = emmbededImagePresenter.getPager();
+			MainWindowActivityMapper mapper, PlaceWhere where) {
+		this.pager= null;
+		this.emmbededPager = null;
 		this.mapper = mapper;
 		this.where = where;
 	}
