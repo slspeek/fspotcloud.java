@@ -23,21 +23,6 @@
 			<type>pom</type>
 		</dependency>
 		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>r07</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava-gwt</artifactId>
-			<version>r07</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.2</version>
@@ -62,6 +47,26 @@
 					</classesDirectory>
 				</configuration>
 			</plugin>
+			<plugin>
+        <!-- NOTE: We don't need a groupId specification because the group is
+          org.apache.maven.plugins ...which is assumed by default.
+        -->
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>bin</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id><!-- this is used for inheritance merges -->
+            <phase>package</phase><!-- append to the packaging phase. -->
+            <goals>
+              <goal>attached</goal><!-- goals == mojos -->
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

@@ -58,9 +58,10 @@
 		</pluginManagement>
 	</build>
 	<properties>
-		<gwtVersion>2.2</gwtVersion>
+		<guice.version>3.0-rc2</guice.version>
 		<gwt.version>2.1.1</gwt.version>
 		<gae.version>1.4.2</gae.version>
+    <gae.home>${user.home}/appengine-java-sdk-${gae.version}</gae.home>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<pluginRepositories>
