@@ -15,25 +15,26 @@ public class PagerActivity extends AbstractActivity implements PagerPresenter {
 	final private static Logger log = Logger.getLogger(PagerActivity.class
 			.getName());
 
+	final private PagerView pagerView;
 	final protected PlaceGoTo placeGoTo;
-	
+
 	private PhotoInfoStore store = null;
-	
+
 	String photoId;
 	String tagId;
 	Integer offset = null;
 	boolean fullscreenTarget = false;
-	
+
 	@Inject
-	public PagerActivity(PlaceGoTo placeGoTo) {
+	public PagerActivity(PagerView pagerView, PlaceGoTo placeGoTo) {
 		log.info("Pager activity created : " + this);
 		this.placeGoTo = placeGoTo;
+		this.pagerView = pagerView;
 	}
 
 	@Override
 	public void setData(PhotoInfoStore data) {
 		this.store = data;
-		//log.info("Set store to: " + store);
 	}
 
 	@Override
@@ -46,11 +47,13 @@ public class PagerActivity extends AbstractActivity implements PagerPresenter {
 		this.photoId = place.getPhotoId();
 		this.tagId = place.getTagId();
 		calculateLocation();
-		log.info("setPlace" + this + " : " + place );
+		log.info("setPlace" + this + " : " + place);
 	}
 
 	private void calculateLocation() {
-		offset = store.indexOf(photoId);
+		if (store != null) {
+			offset = store.indexOf(photoId);
+		}
 	}
 
 	protected void goToPhoto(String tagId, String photoId) {
@@ -60,7 +63,7 @@ public class PagerActivity extends AbstractActivity implements PagerPresenter {
 		} else {
 			place = new TagViewingPlace(tagId, photoId);
 		}
-		log.info("About to go to: " + this + " : "  + place);
+		log.info("About to go to: " + this + " : " + place);
 		placeGoTo.goTo(place);
 	}
 
@@ -69,50 +72,44 @@ public class PagerActivity extends AbstractActivity implements PagerPresenter {
 	}
 
 	@Override
-	public void goBackward() {
-		if (!store.isEmpty() && canGoBackward()) {
-			String photoId = store.get(offset - 1).getId();
+	public void go(boolean forward) {
+		if (canGo(forward)) {
+			int increment = forward ? 1 : -1;
+			String photoId = store.get(offset + increment).getId();
 			goToPhoto(photoId);
 		}
 	}
 
 	@Override
-	public void goFirst() {
+	public void goEnd(boolean first) {
 		if (!store.isEmpty()) {
-			String photoId = store.get(0).getId();
+			String photoId;
+			if (first) {
+				photoId = store.get(0).getId();
+			} else {
+				photoId = store.last().getId();
+			}
 			goToPhoto(photoId);
 		}
 	}
-
+	
 	@Override
-	public void goForward() {
-		if (!store.isEmpty() && canGoForward()) {
-			String photoId = store.get(offset + 1).getId();
-			goToPhoto(photoId);
+	public boolean canGo(boolean forward) {
+		if (offset != null) {
+			if (forward) {
+				return offset >= 0 && offset < store.lastIndex();
+			} else {
+				return offset > 0; 
+			}
+		} else {
+			return false;
 		}
-	}
-
-	@Override
-	public void goLast() {
-		if (!store.isEmpty()) {
-			String photoId = store.last().getId();
-			goToPhoto(photoId);
-		}
-	}
-
-	@Override
-	public boolean canGoBackward() {
-		return offset != null && offset > 0;
-	}
-
-	@Override
-	public boolean canGoForward() {
-		return offset != null && offset >= 0 && offset < store.lastIndex();
 	}
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		// TODO Auto-generated method stub
-		
+		log.info("Start");
+		pagerView.setPagerPresenter(this);
+		panel.setWidget(pagerView);
 	}
 }

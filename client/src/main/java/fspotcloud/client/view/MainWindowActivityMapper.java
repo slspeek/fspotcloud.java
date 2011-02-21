@@ -26,14 +26,19 @@ public class MainWindowActivityMapper  implements ActivityMapper {
 		this.imageActivity = imageActivity;
 	}
 
+	public void init() {
+		tagActivity.init();
+		imageActivity.init();
+	}
 	@Override
 	public Activity getActivity(Place place) {
 		Activity activity = null;
+		log.info("getActivity : " + place);
 		if (place instanceof ImageViewingPlace) {
-			imageActivity.setPlace((ImageViewingPlace)place);
+			imageActivity.setPlace((BasePlace) place);
 			activity = imageActivity;
 		} else if (place instanceof TagViewingPlace) {
-			tagActivity.setPlace((TagViewingPlace)place);
+			tagActivity.setPlace((BasePlace) place);
 			activity = tagActivity;
 		} else {
 			log.warning("getActivity will return null for place: " + place);

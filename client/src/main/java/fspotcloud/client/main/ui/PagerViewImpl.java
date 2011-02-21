@@ -16,17 +16,16 @@ import com.google.inject.Inject;
 import fspotcloud.client.view.PagerView;
 
 public class PagerViewImpl extends Composite implements PagerView {
-	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(PagerViewImpl.class
 			.getName());
-	
+
 	private static PagerViewImplUiBinder uiBinder = GWT
 			.create(PagerViewImplUiBinder.class);
 
 	interface PagerViewImplUiBinder extends UiBinder<Widget, PagerViewImpl> {
 	}
 
-	final private PagerPresenter presenter;
+	private PagerPresenter presenter;
 	@UiField
 	PushButton firstButton;
 	@UiField
@@ -36,9 +35,8 @@ public class PagerViewImpl extends Composite implements PagerView {
 	@UiField
 	PushButton lastButton;
 
-	@Inject 
-	public PagerViewImpl(PagerView.PagerPresenter presenter) {
-		this.presenter = presenter;
+	@Inject
+	public PagerViewImpl() {
 		log.info("Constructing PagerView");
 		initWidget(uiBinder.createAndBindUi(this));
 		nextButton.setAccessKey('n');
@@ -49,29 +47,29 @@ public class PagerViewImpl extends Composite implements PagerView {
 	@UiHandler("firstButton")
 	public void onFirstButtonClicked(ClickEvent event) {
 		try {
-			presenter.goFirst();
-		} catch(Exception e) {
+			presenter.goEnd(true);
+		} catch (Exception e) {
 			log.log(Level.SEVERE, "Uncaught exception", e);
 		}
 	}
 
 	@UiHandler("nextButton")
 	public void onNextButtonClicked(ClickEvent event) {
-		presenter.goForward();
+		presenter.go(true);
 	}
 
 	@UiHandler("prevButton")
 	public void onPreviousButtonClicked(ClickEvent event) {
-		presenter.goBackward();
+		presenter.go(false);
 	}
 
 	@UiHandler("lastButton")
 	public void onLastButtonClicked(ClickEvent event) {
-		presenter.goLast();
+		presenter.goEnd(false);
 	}
 
 	@Override
-	public PagerPresenter getPagerPresenter() {
-		return presenter;
+	public void setPagerPresenter(PagerPresenter pagerPresenter) {
+		this.presenter = pagerPresenter;
 	}
 }

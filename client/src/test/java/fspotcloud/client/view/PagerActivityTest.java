@@ -33,7 +33,7 @@ public class PagerActivityTest extends TestCase {
 	}
 	
 	private PagerActivity create(PlaceGoTo goTo) {
-		return new PagerActivity(goTo);
+		return new PagerActivity(null, goTo);
 	}
 	public void testGoFirst() {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
@@ -46,7 +46,7 @@ public class PagerActivityTest extends TestCase {
 				oneOf(goTo).goTo(with(new ImageViewingPlace("1", "5")));
 			}
 		});
-		pager.goFirst();
+		pager.goEnd(true);
 		context.assertIsSatisfied();
 	}
 
@@ -75,7 +75,7 @@ public class PagerActivityTest extends TestCase {
 		});
 		pager.setData(data);
 		pager.setPlace(imageViewingPlace);
-		pager.goForward();
+		pager.go(true);
 		context.assertIsSatisfied();
 	}
 
@@ -96,8 +96,8 @@ public class PagerActivityTest extends TestCase {
 		});
 		pager.setPlace(middle);
 		
-		assertEquals(true, pager.canGoBackward());
-		pager.goBackward();
+		assertEquals(true, pager.canGo(false));
+		pager.go(false);
 		context.assertIsSatisfied();
 	}
 

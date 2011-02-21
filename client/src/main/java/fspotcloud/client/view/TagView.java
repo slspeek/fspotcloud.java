@@ -10,6 +10,7 @@ public interface TagView extends IsWidget {
 	interface TagPresenter extends Activity {
 		void setPlace(BasePlace place);
 		void reloadTree();
+		void init();
 	}
 
 	void setStatusText(String string);

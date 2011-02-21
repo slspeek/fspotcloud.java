@@ -12,7 +12,6 @@ import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.gwt.view.client.SelectionChangeEvent.Handler;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 import fspotcloud.client.data.DataManager;
 import fspotcloud.shared.tag.TagNode;
@@ -26,8 +25,8 @@ public class TagActivity extends AbstractActivity implements Handler,
 	final TagView tagView;
 	final private PlaceGoTo placeGoTo;
 	final private ImageViewActivityMapper imageActivityMapper;
-	final private ImageView.ImagePresenter embeddedImagePresenter;
-
+	final private EventBus eventBus;
+	
 	String tagId;
 
 	private SingleSelectionModel<TagNode> selectionModel;
@@ -35,27 +34,30 @@ public class TagActivity extends AbstractActivity implements Handler,
 	@Inject
 	public TagActivity(TagView tagView, DataManager dataManager,
 			PlaceGoTo placeGoTo, SingleSelectionModel<TagNode> selectionModel,
-			ImageViewActivityMapper tagActivityMapper,
-			@Named("embedded") ImageView.ImagePresenter embeddedImagePresenter) {
+			ImageViewActivityMapper imageActivityMapper, EventBus eventBus) {
 		this.tagView = tagView;
+		this.eventBus = eventBus;
 		this.dataManager = dataManager;
 		this.placeGoTo = placeGoTo;
-		this.imageActivityMapper = tagActivityMapper;
+		this.imageActivityMapper = imageActivityMapper;
 		this.selectionModel = selectionModel;
-		this.embeddedImagePresenter = embeddedImagePresenter;
 		selectionModel.addSelectionChangeHandler(this);
 		log.info("TagActivity Created");
 	}
 
-	private void initActivityManager(EventBus eventBus) {
+	private void initActivityManager() {
 		ActivityManager activityManager = new ActivityManager(
 				imageActivityMapper, eventBus);
 		activityManager.setDisplay(tagView.getImageViewContainer());
 	}
+	
+	public void init() {
+		initActivityManager();
+	}
 
 	@Override
 	public void onStop() {
-		embeddedImagePresenter.onStop();
+		// embeddedImagePresenter.onStop();
 		super.onStop();
 	}
 
@@ -69,7 +71,6 @@ public class TagActivity extends AbstractActivity implements Handler,
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		log.info("Start tag activity for tagId: " + tagId);
-		initActivityManager(eventBus);
 		containerWidget.setWidget(tagView);
 	}
 
@@ -99,7 +100,7 @@ public class TagActivity extends AbstractActivity implements Handler,
 
 	@Override
 	public void onSelectionChange(SelectionChangeEvent event) {
-		//log.info("OnSelectionChange: " + event);
+		// log.info("OnSelectionChange: " + event);
 		TagNode node = selectionModel.getSelectedObject();
 		if (node != null) {
 			if (!node.getCachedPhotoList().isEmpty()) {
