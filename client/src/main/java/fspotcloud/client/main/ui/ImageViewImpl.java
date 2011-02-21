@@ -5,8 +5,8 @@ import java.util.logging.Logger;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -16,7 +16,6 @@ import fspotcloud.client.view.ImageView;
 
 public class ImageViewImpl extends ResizeComposite implements ImageView {
 
-	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(ImageViewImpl.class
 			.getName());
 	
@@ -25,9 +24,6 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 
 	interface ImageViewImplUiBinder extends UiBinder<Widget, ImageViewImpl> {
 	}
-
-	@SuppressWarnings("unused")
-	private ImageView.ImagePresenter presenter;
 
 	@UiField
 	HTMLPanel mainPanel;
@@ -41,24 +37,21 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	
 	public ImageViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
+		log.info("juiste created");
 	}
-	@Override
-	public void setPresenter(ImagePresenter presenter) {
-		this.presenter = presenter;
-	}
-
+	
 	@Override
 	public void setImageUrl(String url) {
 		image.setUrl(url);
 	}
 
 	@Override
-	public AcceptsOneWidget getPagerViewContainer() {
+	public HasOneWidget getPagerViewContainer() {
 		return pagerViewPanel;
 	}
 	
 	@Override
-	public AcceptsOneWidget getSlideshowViewContainer() {
-		return pagerViewPanel;
+	public HasOneWidget getSlideshowViewContainer() {
+		return slideshowViewPanel;
 	}
 }

@@ -10,15 +10,12 @@ public interface PagerView extends IsWidget {
 	interface PagerPresenter extends Activity {
 		void setData(PhotoInfoStore data);
 		void setPlace(BasePlace place);
-		void goLast();
-		void goFirst();
-		void goForward();
-		void goBackward();
-		boolean canGoForward();
-		boolean canGoBackward();
+		void goEnd(boolean first);
+		void go(boolean forward);
+		boolean canGo(boolean forward);
 	}
 
-	PagerPresenter getPagerPresenter();
+	void setPagerPresenter(PagerPresenter pagerPresenter);
 	
 	
 }

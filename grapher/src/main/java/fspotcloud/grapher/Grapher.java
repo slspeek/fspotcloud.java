@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.google.gwt.inject.rebind.adapter.GinModuleAdapter;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.grapher.GrapherModule;
@@ -18,8 +19,8 @@ public class Grapher {
 
 	Injector serverInjector = Guice.createInjector(new FSpotCloudModule());
 	Injector peerInjector = Guice.createInjector(new BotModule());
-	//Injector clientInjector = Guice.createInjector(new GinModuleAdapter(
-	//		new FakeForGrapherAppModule()));
+	Injector clientInjector = Guice.createInjector(new GinModuleAdapter(
+			new FakeForGrapherAppModule()));
 
 	private void graph(String filename, Injector demoInjector)
 			throws IOException {
@@ -35,7 +36,7 @@ public class Grapher {
 	}
 
 	public void plot() throws IOException {
-		//graph("client.dot", clientInjector);
+		graph("client.dot", clientInjector);
 		graph("server.dot", serverInjector);
 		graph("peer.dot", peerInjector);
 	}

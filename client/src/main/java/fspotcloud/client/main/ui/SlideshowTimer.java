@@ -12,6 +12,10 @@ public class SlideshowTimer extends Timer implements TimerInterface {
 			.getName());
 
 	private Runnable runnable;
+	
+	public SlideshowTimer() {
+		log.info("Created");
+	}
 
 	public void run() {
 		runnable.run();

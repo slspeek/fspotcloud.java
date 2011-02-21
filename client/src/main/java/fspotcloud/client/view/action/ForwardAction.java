@@ -17,7 +17,7 @@ public class ForwardAction implements GestureAction {
 	public void perform() {
 		PagerPresenter presenter = provider.get();
 		if (presenter != null) {
-			presenter.goForward();
+			presenter.go(true);
 		}
 	}
 

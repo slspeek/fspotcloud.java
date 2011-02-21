@@ -42,6 +42,7 @@ public class MVPSetup {
 	}
 
 	public void setup() {
+		activityMapper.init();
 		tagActivity.reloadTree();
 		keyboardHandler.setup();
 		

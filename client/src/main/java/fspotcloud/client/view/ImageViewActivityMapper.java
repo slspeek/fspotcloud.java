@@ -18,10 +18,12 @@ public class ImageViewActivityMapper  implements ActivityMapper {
 	public ImageViewActivityMapper(@Named("embedded") ImageView.ImagePresenter imageActivity) {
 		super();
 		this.imageActivity = imageActivity;
+		imageActivity.init();
 	}
 
 	@Override
 	public Activity getActivity(Place place) {
+		log.info("getActivity : " + place + "  (" +this +")");
 		if (place instanceof BasePlace) {
 			imageActivity.setPlace((BasePlace)place);
 			return imageActivity;

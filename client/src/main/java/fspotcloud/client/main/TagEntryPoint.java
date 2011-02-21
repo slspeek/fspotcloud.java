@@ -17,7 +17,7 @@ public class TagEntryPoint implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-		log.info("Hello GIN logging wiring");
+		log.info("Earlry eventBus cosciuos ");
 		try {
 			MVPSetup setup = injector.getMVPSetup();
 			setup.setup();

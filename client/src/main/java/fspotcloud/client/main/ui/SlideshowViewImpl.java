@@ -38,6 +38,7 @@ public class SlideshowViewImpl extends Composite implements SlideshowView {
 
 	public SlideshowViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
+		log.info("Created");
 	}
 
 	@UiHandler("slowerButton")

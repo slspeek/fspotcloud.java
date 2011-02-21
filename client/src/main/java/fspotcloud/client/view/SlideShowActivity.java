@@ -1,5 +1,7 @@
 package fspotcloud.client.view;
 
+import java.util.logging.Logger;
+
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -10,6 +12,8 @@ import fspotcloud.client.view.SlideshowView.SlideshowPresenter;
 
 public class SlideShowActivity extends AbstractActivity implements
 		SlideshowPresenter {
+	private static final Logger log = Logger.getLogger(SlideShowActivity.class
+			.getName());
 
 	private PagerPresenter pager;
 	
@@ -22,22 +26,26 @@ public class SlideShowActivity extends AbstractActivity implements
 		this.slideshowView = slideshowView;
 		this.timer = timer;
 		initTimer();
+		log.info("SlideshowActivity Created");
 	}
 	
 	private void initTimer() {
 		timer.setRunnable(new Runnable() {
 			@Override
 			public void run() {
-				pager.goForward();
-	
+				pager.go(true);
 			}
 		});
 	}
 
 	private void reschedule() {
-		slideshowView.setLabelText(String.valueOf(interval));
 		timer.cancel();
 		timer.scheduleRepeating(1000 * interval);
+		redraw();
+	}
+	
+	private void redraw() {
+		slideshowView.setLabelText(String.valueOf(interval) + " second(s). ");
 	}
 	
 	@Override
@@ -68,8 +76,9 @@ public class SlideShowActivity extends AbstractActivity implements
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		// TODO Auto-generated method stub
-
+		slideshowView.setSlideshowPresenter(this);
+		panel.setWidget(slideshowView);
+		redraw();
 	}
 
 	@Override

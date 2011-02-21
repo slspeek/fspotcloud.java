@@ -16,7 +16,7 @@ public class BackAction implements GestureAction {
 	public void perform() {
 		PagerPresenter presenter = provider.get();
 		if (presenter != null) {
-			presenter.goBackward();
+			presenter.go(false);
 		}
 	}
 
