@@ -38,9 +38,9 @@
 		<module>deps</module>
 	</modules>
 	<build>
+    <defaultGoal>install</defaultGoal>
 		<pluginManagement>
 			<plugins>
-
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
@@ -54,13 +54,17 @@
 					<artifactId>maven-google-plugin</artifactId>
 					<version>0.1-SNAPSHOT</version>
 				</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.0-beta-3</version>
-			</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.0-beta-3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
 			</plugins>
-
 		</pluginManagement>
 	</build>
 	<properties>
@@ -86,6 +90,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.3.1</version>
 				<reportSets>
 					<reportSet>
 						<reports>
@@ -100,6 +105,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
+				<version>2.5</version>
 				<configuration>
 					<aggregate>true</aggregate>
 					<targetJdk>1.6</targetJdk>
@@ -112,7 +118,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>2.5</version>
+				<version>2.7.2</version>
 				<configuration>
 					<aggregate>true</aggregate>
 				</configuration>
@@ -120,7 +126,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jxr-plugin</artifactId>
-				<version>2.1</version>
+				<version>2.2</version>
 				<configuration>
 					<aggregate>true</aggregate>
 				</configuration>
@@ -130,25 +136,6 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.7</version>
 				<configuration>
-					<docletArtifact>
-						<groupId>com.google.doclava</groupId>
-						<artifactId>doclava</artifactId>
-						<version>1.0.2</version>
-					</docletArtifact>
-					<doclet>com.google.doclava.Doclava</doclet>
-					<!--
-            | bootclasspath required by Sun's JVM 
-          -->
-					<bootclasspath>${sun.boot.class.path}</bootclasspath>
-					<additionalparam>
-						-quiet
-						-federate JDK http://download.oracle.com/javase/6/docs/api/index.html?
-						-federationxml JDK
-						http://doclava.googlecode.com/svn/static/api/openjdk-6.xml
-						-hdf project.name "${project.name}"
-						-d ${project.build.directory}/apidocs
-           </additionalparam>
-					<useStandardDocletOptions>false</useStandardDocletOptions>
 					<additionalJOption>-J-Xmx1024m</additionalJOption>
 					<aggregate>true</aggregate>
 				</configuration>
@@ -211,4 +198,44 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<profiles>
+		<profile>
+			<id>doclava</id>
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.7</version>
+						<configuration>
+							<docletArtifact>
+								<groupId>com.google.doclava</groupId>
+								<artifactId>doclava</artifactId>
+								<version>1.0.2</version>
+							</docletArtifact>
+							<doclet>com.google.doclava.Doclava</doclet>
+							<!--
+            | bootclasspath required by Sun's JVM 
+          -->
+							<bootclasspath>${sun.boot.class.path}</bootclasspath>
+							<additionalparam>
+								-quiet
+								-federate JDK
+								http://download.oracle.com/javase/6/docs/api/index.html?
+								-federationxml JDK
+								http://doclava.googlecode.com/svn/static/api/openjdk-6.xml
+								-hdf
+								project.name "${project.name}"
+								-d
+								${project.build.directory}/apidocs
+           </additionalparam>
+							<useStandardDocletOptions>false</useStandardDocletOptions>
+							<additionalJOption>-J-Xmx1024m</additionalJOption>
+							<aggregate>true</aggregate>
+						</configuration>
+					</plugin>
+				</plugins>
+			</reporting>
+		</profile>
+	</profiles>
 </project>
