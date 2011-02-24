@@ -37,7 +37,11 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	
 	public ImageViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
-		log.info("juiste created");
+		log.info("With extra styles created");
+		mainPanel.addStyleName("fsc-image-view");
+		image.addStyleName("fsc-image-view-image");
+		pagerViewPanel.addStyleName("fsc-image-view-pager-container");
+		slideshowViewPanel.addStyleName("fsc-image-view-slideshow-container");
 	}
 	
 	@Override
