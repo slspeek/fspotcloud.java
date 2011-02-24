@@ -9,6 +9,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -26,6 +28,9 @@ public class PagerViewImpl extends Composite implements PagerView {
 	}
 
 	private PagerPresenter presenter;
+	
+	@UiField
+	HTMLPanel mainPanel;
 	@UiField
 	PushButton firstButton;
 	@UiField
@@ -39,9 +44,14 @@ public class PagerViewImpl extends Composite implements PagerView {
 	public PagerViewImpl() {
 		log.info("Constructing PagerView");
 		initWidget(uiBinder.createAndBindUi(this));
+		mainPanel.addStyleName("fsc-pager");
 		nextButton.setAccessKey('n');
+		nextButton.addStyleName("fsc-pager-next");
 		lastButton.setAccessKey('l');
+		lastButton.addStyleName("fsc-pager-last");
 		firstButton.setAccessKey('0');
+		firstButton.addStyleName("fsc-pager-first");
+		prevButton.addStyleName("fsc-pager-previous");
 	}
 
 	@UiHandler("firstButton")

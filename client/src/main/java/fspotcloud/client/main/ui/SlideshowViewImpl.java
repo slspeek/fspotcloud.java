@@ -8,6 +8,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.Widget;
@@ -26,6 +27,8 @@ public class SlideshowViewImpl extends Composite implements SlideshowView {
 	}
 
 	@UiField
+	HTMLPanel mainPanel;
+	@UiField
 	PushButton slowerButton;
 	@UiField
 	PushButton startButton;
@@ -39,6 +42,11 @@ public class SlideshowViewImpl extends Composite implements SlideshowView {
 	public SlideshowViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		log.info("Created");
+		mainPanel.addStyleName("fsc-slideshow");
+		slowerButton.addStyleName("fsc-slideshow-increase");
+		startButton.addStyleName("fsc-slideshow-start");
+		stopButton.addStyleName("fsc-slideshow-stop");
+		fasterButton.addStyleName("fsc-slideshow-decrease");
 	}
 
 	@UiHandler("slowerButton")

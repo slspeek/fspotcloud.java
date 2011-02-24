@@ -8,6 +8,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTree;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HasOneWidget;
+import com.google.gwt.user.client.ui.HorizontalSplitPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -29,6 +30,9 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	@UiField
 	HTMLPanel mainPanel;
 	@UiField
+	HorizontalSplitPanel horizontalSplitPanel;
+	
+	@UiField
 	Label titleLabel;
 	@UiField
 	Label statusLabel;
@@ -41,6 +45,12 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	@Inject
 	public TagViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
+		mainPanel.addStyleName("fsc-tag");
+		horizontalSplitPanel.addStyleName("fsc-tag-split-panel");
+		titleLabel.addStyleName("fsc-tag-title-label");
+		statusLabel.addStyleName("fsc-tag-status-label");
+		tagTreeViewPanel.addStyleName("fsc-tag-tree-container");
+		imageViewPanel.addStyleName("fsc-tag-image-view-container");
 	}
 
 	@Override
