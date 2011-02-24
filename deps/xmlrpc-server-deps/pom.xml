@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
 	<parent>
-		<artifactId>fspotcloud</artifactId>
+		<artifactId>deps</artifactId>
 		<groupId>fspotcloud</groupId>
 		<version>0.39</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>${parent.groupId}.deps</groupId>
+	<groupId>fspotcloud.deps</groupId>
 	<artifactId>xmlrpc-server-deps</artifactId>
 	<packaging>pom</packaging>
 	<name>Dependencies for XMLRPC server</name>
