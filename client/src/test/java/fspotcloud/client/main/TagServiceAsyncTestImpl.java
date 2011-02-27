@@ -30,9 +30,9 @@ public class TagServiceAsyncTestImpl implements TagServiceAsync {
 	
 	public List<TagNode> initData() {
 		TagNode root1 = createNode("1", "Friends", 10);
-		PhotoInfo pi1 = new PhotoInfo("1", "Daniel", new Date());
-		PhotoInfo pi2 = new PhotoInfo("2", "Aute", new Date());
-		PhotoInfo pi3 = new PhotoInfo("3", "Jan", new Date());
+		PhotoInfo pi1 = new PhotoInfo("1", "Daniel", new Date(1));
+		PhotoInfo pi2 = new PhotoInfo("2", "Aute", new Date(2));
+		PhotoInfo pi3 = new PhotoInfo("3", "Jan", new Date(3));
 		ImmutableSortedSet<PhotoInfo> photoList = ImmutableSortedSet.of(pi1, pi2, pi3);
 		root1.setCachedPhotoList(new PhotoInfoStore(photoList));
 		
