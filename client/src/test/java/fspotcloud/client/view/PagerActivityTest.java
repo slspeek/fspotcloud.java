@@ -9,8 +9,11 @@ import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.SimpleEventBus;
 
+import fspotcloud.client.main.shared.BackGestureEvent;
+import fspotcloud.client.main.shared.ForwardGestureEvent;
 import fspotcloud.client.view.PagerView.PagerPresenter;
 import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.photo.PhotoInfoStore;
@@ -115,4 +118,47 @@ public class PagerActivityTest extends TestCase {
 		testCanGoBackward("3", "4");
 	}
 
+	public void testAddRemoveEventHandlers() {
+		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
+		PagerActivity pager = new PagerActivity(null, goTo);
+		EventBus eventBus = new SimpleEventBus();
+		pager.addEventHandlers(eventBus);
+		pager.removeEventHandlers();
+	}
+	
+	public void testBackGesture() {
+		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
+		context.checking(new Expectations() {
+			{
+				oneOf(goTo).goTo(
+						with(new ImageViewingPlace("1", "4")));
+			}
+		});
+		PagerActivity pager = new PagerActivity(null, goTo);
+		ImageViewingPlace imageViewingPlace = new ImageViewingPlace("1", "3");
+		pager.setData(data);
+		pager.setPlace(imageViewingPlace);
+		EventBus eventBus = new SimpleEventBus();
+		pager.addEventHandlers(eventBus);
+		eventBus.fireEvent(new BackGestureEvent());
+		context.assertIsSatisfied();
+	}
+	
+	public void testForwardGesture() {
+		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
+		context.checking(new Expectations() {
+			{
+				oneOf(goTo).goTo(
+						with(new ImageViewingPlace("1", "2")));
+			}
+		});
+		ImageViewingPlace imageViewingPlace = new ImageViewingPlace("1", "3");
+		PagerActivity pager = create(goTo);
+		pager.setData(data);
+		pager.setPlace(imageViewingPlace);
+		EventBus eventBus = new SimpleEventBus();
+		pager.addEventHandlers(eventBus);
+		eventBus.fireEvent(new ForwardGestureEvent());
+		context.assertIsSatisfied();
+	}
 }
