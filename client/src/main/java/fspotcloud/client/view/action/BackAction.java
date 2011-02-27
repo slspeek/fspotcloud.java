@@ -1,23 +1,20 @@
 package fspotcloud.client.view.action;
 
+import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
-import fspotcloud.client.main.gin.ActivePagerPresenter;
-import fspotcloud.client.view.PagerView.PagerPresenter;
+import fspotcloud.client.main.shared.BackGestureEvent;
 
 public class BackAction implements GestureAction {
 
-	ActivePagerPresenter provider;
+	final EventBus eventBus;
 	@Inject
-	public BackAction(ActivePagerPresenter provider) {
-		this.provider = provider;
+	public BackAction(EventBus eventBus) {
+		this.eventBus = eventBus;
 	}
 	@Override
 	public void perform() {
-		PagerPresenter presenter = provider.get();
-		if (presenter != null) {
-			presenter.go(false);
-		}
+		eventBus.fireEvent(new BackGestureEvent());
 	}
 
 }

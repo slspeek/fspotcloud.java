@@ -24,22 +24,18 @@ public class PagerActivityMapper implements ActivityMapper {
 			DataManager tagNodeProvider) {
 		this.pagerActivity = pagerActivity;
 		this.tagNodeProvider = tagNodeProvider;
-		log.info("*Created: " + this);
 	}
 
 	@Override
 	public Activity getActivity(Place place) {
-		log.info("*getActivity called " + place + " from :" + this);
 		if (place instanceof BasePlace) {
 			BasePlace basePlace = (BasePlace) place;
-			log.info("Before pagerActivity.setPlace" + this);
-			pagerActivity.setPlace(basePlace);
-			log.info("After pagerActivity.setPlace" + this);
 			String tagId = basePlace.getTagId();
 			TagNode node = tagNodeProvider.getTagNode(tagId);
 			if (node != null) {
 				PhotoInfoStore store = node.getCachedPhotoList();
 				pagerActivity.setData(store);
+				pagerActivity.setPlace(basePlace);
 			}
 		} else {
 			log.warning("getActivity called with non-BasePlace " + place);
