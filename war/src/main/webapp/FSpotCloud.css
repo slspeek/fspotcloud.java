@@ -1,6 +1,4 @@
-/** Add css rules here for your application. */
-	/** Example rules used by the template application (remove for your app) */
-
+/** All css rules defined for FSpotcloud are below. */
 .fsc-tag-title-label {
 	font-size: 17px;
 	border: 10px;
@@ -12,16 +10,84 @@
 	border: medium;
 	border-color: black;
 	background-color: green;
+	text-align: center;
 }
 
-.gwt-Image {
-	padding: 10px;
+.fsc-tag {
+	background-color: lime;
 }
 
-.gwt-Button {
-	display: block;
-	padding: 10px;
+.fsc-tag-split-panel {
+	background-color: olive;
 }
 
+.fsc-tag-tree-container {
+	background-color: fuchsia;
+}
 
+.fsc-tag-image-view-container {
+	background-color: purple;
+}
 
+.fsc-tag-status-label {
+	text-align: center;
+	background-color: aqua;
+}
+
+.fsc-image-view {
+	
+}
+
+.fsc-image-view-image {
+	border: medium;
+}
+
+.fsc-image-view-pager-container {
+	
+}
+
+.fsc-image-view-slideshow-container {
+	
+}
+
+.fsc-pager {
+	padding: 20px;
+}
+
+.fsc-pager-first {
+	
+}
+
+.fsc-pager-previous {
+	
+}
+
+.fsc-pager-next {
+	
+}
+
+.fsc-pager-last {
+	
+}
+
+.fsc-slideshow {
+	
+}
+
+.fsc-slideshow-start {
+	
+}
+
+.fsc-slideshow-descrease {
+	
+}
+
+.fsc-slideshow-increase {
+	
+}
+
+.fsc-slideshow-interval {
+	font-size: 200%;
+	background-color: yellow;
+	color: blue;
+}
