@@ -1,6 +1,7 @@
 package fspotcloud.client.view;
 
 import com.google.gwt.activity.shared.Activity;
+import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.IsWidget;
 
 import fspotcloud.shared.photo.PhotoInfoStore;
@@ -17,5 +18,8 @@ public interface PagerView extends IsWidget {
 
 	void setPagerPresenter(PagerPresenter pagerPresenter);
 	
-	
+	HasEnabled getFirst();
+	HasEnabled getLast();
+	HasEnabled getPrevious();
+	HasEnabled getNext();
 }

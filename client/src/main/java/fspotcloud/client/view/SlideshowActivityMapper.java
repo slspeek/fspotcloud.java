@@ -18,12 +18,11 @@ public class SlideshowActivityMapper implements ActivityMapper {
 	@Inject
 	public SlideshowActivityMapper(SlideshowPresenter activity) {
 		this.activity = activity;
-		log.info("Created " + this);
 	}
 
 	@Override
 	public Activity getActivity(Place place) {
-		log.info("getActivity : " + place + "  (" +this +")");
+		//log.info("getActivity : " + place + "  (" +this +")");
 		return activity;
 	}
 

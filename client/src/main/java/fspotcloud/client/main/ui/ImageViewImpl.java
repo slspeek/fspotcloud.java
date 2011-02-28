@@ -16,6 +16,7 @@ import fspotcloud.client.view.ImageView;
 
 public class ImageViewImpl extends ResizeComposite implements ImageView {
 
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(ImageViewImpl.class
 			.getName());
 	
@@ -37,7 +38,7 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	
 	public ImageViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
-		log.info("With extra styles created");
+		//log.info("Created");
 		mainPanel.addStyleName("fsc-image-view");
 		image.addStyleName("fsc-image-view-image");
 		pagerViewPanel.addStyleName("fsc-image-view-pager-container");

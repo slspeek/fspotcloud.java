@@ -35,7 +35,6 @@ public class PagerActivity extends AbstractActivity implements PagerPresenter,
 
 	@Inject
 	public PagerActivity(PagerView pagerView, PlaceGoTo placeGoTo) {
-		log.info("Pager activity created : " + this);
 		this.placeGoTo = placeGoTo;
 		this.pagerView = pagerView;
 	}
@@ -43,10 +42,13 @@ public class PagerActivity extends AbstractActivity implements PagerPresenter,
 	@Override
 	public void setData(PhotoInfoStore data) {
 		this.store = data;
+		calculateLocation();
 	}
 
 	@Override
 	public void setPlace(BasePlace place) {
+		offset = null;
+		//enableView(false);
 		if (place instanceof ImageViewingPlace) {
 			fullscreenTarget = true;
 		} else {
@@ -54,14 +56,16 @@ public class PagerActivity extends AbstractActivity implements PagerPresenter,
 		}
 		this.photoId = place.getPhotoId();
 		this.tagId = place.getTagId();
-		calculateLocation();
 		log.info("setPlace" + this + " : " + place);
 	}
 
 	private void calculateLocation() {
-		if (store != null) {
-			offset = store.indexOf(photoId);
-		}
+		offset = store.indexOf(photoId);
+		pagerView.getFirst().setEnabled(offset > 0);
+		pagerView.getLast().setEnabled(offset < store.lastIndex());
+		pagerView.getNext().setEnabled(canGo(true));
+		pagerView.getPrevious().setEnabled(canGo(false));
+		log.info("calculateLocation ran");
 	}
 
 	protected void goToPhoto(String tagId, String photoId) {
@@ -116,11 +120,8 @@ public class PagerActivity extends AbstractActivity implements PagerPresenter,
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		log.info("Start");
 		pagerView.setPagerPresenter(this);
-		if (panel != null) {
-			panel.setWidget(pagerView);
-		}
+		panel.setWidget(pagerView);
 		addEventHandlers(eventBus);
 	}
 	
