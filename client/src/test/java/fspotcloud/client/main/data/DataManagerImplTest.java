@@ -1,6 +1,9 @@
 package fspotcloud.client.main.data;
 
 import java.util.List;
+import java.util.logging.Logger;
+
+import junit.framework.TestCase;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -8,16 +11,17 @@ import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.data.IndexingUtil;
 import fspotcloud.client.main.TagServiceAsyncTestImpl;
 import fspotcloud.shared.tag.TagNode;
-import junit.framework.TestCase;
 
 public class DataManagerImplTest extends TestCase {
 
+	private static final Logger log = Logger.getLogger(DataManagerImplTest.class
+			.getName());
 	private DataManagerImpl dataManager;
 
 	public DataManagerImplTest() {
 		dataManager = new DataManagerImpl(
 				new TagServiceAsyncTestImpl(), new IndexingUtil());
-		testNonNull();
+		//testNonNull();
 	}
 	
 	public void testNonNull() {
@@ -36,8 +40,23 @@ public class DataManagerImplTest extends TestCase {
 	 
 	}
 	
+	private TagNode cats;
 	public void testCatsIs2() {
-		TagNode cats = dataManager.getTagNode("2");
+		//final TagNode cats; 
+		dataManager.getTagNode("2", new AsyncCallback<TagNode>() {
+
+			@Override
+			public void onFailure(Throwable arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(TagNode arg0) {
+				cats = arg0;
+				log.info(Thread.currentThread().getName());
+			}
+		});
 		assertEquals("Cats", cats.getTagName());
 	}
 

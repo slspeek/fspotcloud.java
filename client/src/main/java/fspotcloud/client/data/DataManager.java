@@ -8,7 +8,7 @@ import fspotcloud.shared.tag.TagNode;
 
 public interface DataManager {
 
-	TagNode getTagNode(String id);
+	void getTagNode(String id, AsyncCallback<TagNode> callback);
 
 	void getTagTree(final AsyncCallback<List<TagNode>> callback);
 

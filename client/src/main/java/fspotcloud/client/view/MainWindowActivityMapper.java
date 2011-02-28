@@ -33,7 +33,7 @@ public class MainWindowActivityMapper  implements ActivityMapper {
 	@Override
 	public Activity getActivity(Place place) {
 		Activity activity = null;
-		log.info("getActivity : " + place);
+		//log.info("getActivity : " + place);
 		if (place instanceof ImageViewingPlace) {
 			imageActivity.setPlace((BasePlace) place);
 			activity = imageActivity;

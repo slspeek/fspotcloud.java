@@ -9,8 +9,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.HasEnabled;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -30,7 +30,7 @@ public class PagerViewImpl extends Composite implements PagerView {
 	private PagerPresenter presenter;
 	
 	@UiField
-	HTMLPanel mainPanel;
+	HorizontalPanel mainPanel;
 	@UiField
 	PushButton firstButton;
 	@UiField
@@ -42,7 +42,7 @@ public class PagerViewImpl extends Composite implements PagerView {
 
 	@Inject
 	public PagerViewImpl() {
-		log.info("Constructing PagerView");
+		//log.info("Constructing PagerView");
 		initWidget(uiBinder.createAndBindUi(this));
 		mainPanel.addStyleName("fsc-pager");
 		nextButton.setAccessKey('n');
@@ -81,5 +81,25 @@ public class PagerViewImpl extends Composite implements PagerView {
 	@Override
 	public void setPagerPresenter(PagerPresenter pagerPresenter) {
 		this.presenter = pagerPresenter;
+	}
+
+	@Override
+	public HasEnabled getFirst() {
+		return firstButton;
+	}
+
+	@Override
+	public HasEnabled getLast() {
+		return lastButton;
+	}
+
+	@Override
+	public HasEnabled getNext() {
+		return nextButton;
+	}
+
+	@Override
+	public HasEnabled getPrevious() {
+		return prevButton;
 	}
 }

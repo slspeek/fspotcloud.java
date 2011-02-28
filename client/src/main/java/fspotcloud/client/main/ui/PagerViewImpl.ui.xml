@@ -6,10 +6,10 @@
 			font-weight: bold;
 		}
 	</ui:style>
-	<g:HTMLPanel ui:field="mainPanel">
+	<g:HorizontalPanel ui:field="mainPanel">
 		<g:PushButton ui:field="firstButton" text="First"></g:PushButton>
 		<g:PushButton ui:field="prevButton" text="Previous"></g:PushButton>
 		<g:PushButton ui:field="nextButton" text="Next"></g:PushButton>
 		<g:PushButton ui:field="lastButton" text="Last"></g:PushButton>
-	</g:HTMLPanel>
+	</g:HorizontalPanel>
 </ui:UiBinder> 

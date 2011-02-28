@@ -23,7 +23,7 @@ public class ImageViewActivityMapper  implements ActivityMapper {
 
 	@Override
 	public Activity getActivity(Place place) {
-		log.info("getActivity : " + place + "  (" +this +")");
+		//log.info("getActivity : " + place + "  (" +this +")");
 		if (place instanceof BasePlace) {
 			imageActivity.setPlace((BasePlace)place);
 			return imageActivity;

@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
 import fspotcloud.client.data.DataManager;
@@ -29,14 +30,20 @@ public class PagerActivityMapper implements ActivityMapper {
 	@Override
 	public Activity getActivity(Place place) {
 		if (place instanceof BasePlace) {
-			BasePlace basePlace = (BasePlace) place;
+			final BasePlace basePlace = (BasePlace) place;
 			String tagId = basePlace.getTagId();
-			TagNode node = tagNodeProvider.getTagNode(tagId);
-			if (node != null) {
-				PhotoInfoStore store = node.getCachedPhotoList();
-				pagerActivity.setData(store);
-				pagerActivity.setPlace(basePlace);
-			}
+			tagNodeProvider.getTagNode(tagId, new AsyncCallback<TagNode>() {
+				@Override
+				public void onSuccess(TagNode arg0) {
+					PhotoInfoStore store = arg0.getCachedPhotoList();
+					pagerActivity.setPlace(basePlace);
+					pagerActivity.setData(store);
+				}
+				@Override
+				public void onFailure(Throwable arg0) {
+					log.warning(arg0.getLocalizedMessage());
+				}
+			});
 		} else {
 			log.warning("getActivity called with non-BasePlace " + place);
 		}

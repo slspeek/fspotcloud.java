@@ -8,7 +8,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.Widget;
@@ -16,7 +16,6 @@ import com.google.gwt.user.client.ui.Widget;
 import fspotcloud.client.view.SlideshowView;
 
 public class SlideshowViewImpl extends Composite implements SlideshowView {
-	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(SlideshowViewImpl.class
 			.getName());
 	private static SlideshowViewImplUiBinder uiBinder = GWT
@@ -27,7 +26,7 @@ public class SlideshowViewImpl extends Composite implements SlideshowView {
 	}
 
 	@UiField
-	HTMLPanel mainPanel;
+	HorizontalPanel mainPanel;
 	@UiField
 	PushButton slowerButton;
 	@UiField
@@ -41,7 +40,7 @@ public class SlideshowViewImpl extends Composite implements SlideshowView {
 
 	public SlideshowViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
-		log.info("Created");
+		//log.info("Created");
 		mainPanel.addStyleName("fsc-slideshow");
 		slowerButton.addStyleName("fsc-slideshow-increase");
 		startButton.addStyleName("fsc-slideshow-start");
@@ -61,7 +60,6 @@ public class SlideshowViewImpl extends Composite implements SlideshowView {
 
 	@Override
 	public void setSlideshowPresenter(SlideshowPresenter presenter) {
-		// TODO Auto-generated method stub
 
 	}
 
