@@ -11,32 +11,31 @@ import com.google.inject.name.Named;
 import fspotcloud.client.view.ImageView.ImagePresenter;
 import fspotcloud.client.view.TagView.TagPresenter;
 
-public class MainWindowActivityMapper  implements ActivityMapper {
-	
-	private TagPresenter tagActivity;
-	private ImagePresenter imageActivity;
-	private static final Logger log = Logger.getLogger(MainWindowActivityMapper.class
-			.getName());
+public class MainWindowActivityMapper implements ActivityMapper {
+
+	final private TagPresenter tagActivity;
+	final private ImagePresenterFactory imagePresenterFactory;
+	private static final Logger log = Logger
+			.getLogger(MainWindowActivityMapper.class.getName());
 
 	@Inject
 	public MainWindowActivityMapper(TagPresenter tagActivity,
-			@Named("fullscreen") ImagePresenter imageActivity) {
+			ImagePresenterFactory imagePresenterFactory) {
 		super();
 		this.tagActivity = tagActivity;
-		this.imageActivity = imageActivity;
+		this.imagePresenterFactory = imagePresenterFactory;
 	}
 
 	public void init() {
 		tagActivity.init();
-		imageActivity.init();
 	}
+
 	@Override
 	public Activity getActivity(Place place) {
 		Activity activity = null;
-		//log.info("getActivity : " + place);
+		// log.info("getActivity : " + place);
 		if (place instanceof ImageViewingPlace) {
-			imageActivity.setPlace((BasePlace) place);
-			activity = imageActivity;
+			activity = imagePresenterFactory.get((BasePlace) place);
 		} else if (place instanceof TagViewingPlace) {
 			tagActivity.setPlace((BasePlace) place);
 			activity = tagActivity;

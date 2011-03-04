@@ -7,7 +7,6 @@ import com.google.gwt.user.client.ui.IsWidget;
 public interface ImageView extends IsWidget {
 
 	interface ImagePresenter extends Activity {
-		void setPlace(BasePlace place);
 		void init();
 	}
 

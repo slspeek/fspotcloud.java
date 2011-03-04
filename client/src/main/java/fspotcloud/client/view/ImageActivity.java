@@ -17,31 +17,29 @@ public class ImageActivity extends AbstractActivity implements
 	final private ImageView imageView;
 	final private ActivityMapper pagerActivityMapper;
 	final private ActivityMapper slideshowActivityMapper;
-	String tagId;
-	String photoId;
+	final String tagId;
+	final String photoId;
 
 	final private EventBus eventBus;
 
 	@Inject
-	public ImageActivity(ImageView imageView, PagerActivityMapper pagerActivityMapper,
+	public ImageActivity(BasePlace place, ImageView imageView, PagerActivityMapper pagerActivityMapper,
 			SlideshowActivityMapper slideshowActivityMapper, EventBus eventBus) {
 		log.info("ImageActivity created: " + this);
 		this.eventBus = eventBus;
 		this.imageView = imageView;
 		this.pagerActivityMapper = pagerActivityMapper;
-		this.slideshowActivityMapper = slideshowActivityMapper; 
+		this.slideshowActivityMapper = slideshowActivityMapper;
+		tagId = place.getTagId();
+		photoId = place.getPhotoId();
 	}
 
 	public void init() {
 		initActivityManagers(eventBus);
-	}
-	public void setPlace(BasePlace place) {
-		tagId = place.getTagId();
-		photoId = place.getPhotoId();
 		setImage();
 	}
-
-	private void setImage() {
+	
+	public void setImage() {
 		if (photoId != null) {
 			imageView.setImageUrl("/image?id=" + photoId);
 		} else {
@@ -60,7 +58,6 @@ public class ImageActivity extends AbstractActivity implements
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		log.info("Start image activity for tagId: " + tagId + " photoId: "
 				+ photoId + " (" + this+")");
-		//initActivityManagers(eventBus);
 		containerWidget.setWidget(imageView);
 	}
 }
