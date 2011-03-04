@@ -17,8 +17,8 @@ public class ImageActivityTest extends TestCase {
 		super.setUp();
 	}
 
-	protected ImageActivity create(ImageView imageView, PagerPresenter pager) {
-		ImageActivity imageActivity = new ImageActivity(imageView, null, null, null);
+	protected ImageActivity create(BasePlace place, ImageView imageView, PagerPresenter pager) {
+		ImageActivity imageActivity = new ImageActivity(place, imageView, null, null, null);
 		return imageActivity;
 	}
 	
@@ -29,10 +29,11 @@ public class ImageActivityTest extends TestCase {
 		context.checking(new Expectations() {
 			{
 				oneOf(imageView).setImageUrl(with("/image?id=1"));
+				
 			}
 		});
-		ImageView.ImagePresenter activity = create(imageView, pager);
-		activity.setPlace(place);
+		ImageActivity activity = create(place, imageView, pager);
+		activity.setImage();
 		context.assertIsSatisfied();
 	}
 }

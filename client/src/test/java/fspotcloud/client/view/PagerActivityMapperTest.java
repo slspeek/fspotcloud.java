@@ -37,12 +37,8 @@ public class PagerActivityMapperTest extends TestCase {
 		return dm;
 	}
 	
-	private PagerActivity createPagerActivity(PlaceGoTo goTo) {
-		return new PagerActivity(new PagerViewDummy(), goTo);
-	}
-	
 	private PagerActivityMapper create(PlaceGoTo goTo) {
-		return new PagerActivityMapper(createPagerActivity(goTo), createDataManager());
+		return new PagerActivityMapper(new PagerPresenterFactoryTestImpl(goTo), createDataManager());
 	}
 	
 	public void testGetActivity() {

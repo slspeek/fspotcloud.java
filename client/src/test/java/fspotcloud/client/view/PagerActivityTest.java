@@ -35,14 +35,13 @@ public class PagerActivityTest extends TestCase {
 		super.setUp();
 	}
 	
-	private PagerActivity create(PlaceGoTo goTo) {
-		return new PagerActivity(new PagerViewDummy(), goTo);
+	private PagerActivity create(BasePlace place, PlaceGoTo goTo) {
+		return new PagerActivity(place, new PagerViewDummy(), goTo);
 	}
 	public void testGoFirst() {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		ImageViewingPlace imageViewingPlace = new ImageViewingPlace("1", "3");
-		PagerView.PagerPresenter pager = create(goTo);
-		pager.setPlace(imageViewingPlace);
+		PagerView.PagerPresenter pager = create(imageViewingPlace, goTo);
 
 		pager.setData(data);
 		context.checking(new Expectations() {
@@ -69,7 +68,7 @@ public class PagerActivityTest extends TestCase {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		ImageViewingPlace imageViewingPlace = new ImageViewingPlace(tagId,
 				photoId);
-		PagerPresenter pager = create(goTo);
+		PagerPresenter pager = create(imageViewingPlace, goTo);
 		context.checking(new Expectations() {
 			{
 				oneOf(goTo).goTo(
@@ -77,7 +76,6 @@ public class PagerActivityTest extends TestCase {
 
 			}
 		});
-		pager.setPlace(imageViewingPlace);
 		
 		pager.setData(data);
 		pager.go(true);
@@ -91,14 +89,13 @@ public class PagerActivityTest extends TestCase {
 
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		ImageViewingPlace middle = new ImageViewingPlace("testTag", photoId);
-		PagerPresenter pager = create(goTo);
+		PagerPresenter pager = create(middle, goTo);
 		context.checking(new Expectations() {
 			{
 				oneOf(goTo).goTo(
 						with(new ImageViewingPlace("testTag", previousPhotoId)));
 			}
 		});
-		pager.setPlace(middle);
 		
 		pager.setData(data);
 		assertEquals(true, pager.canGo(false));
@@ -122,7 +119,7 @@ public class PagerActivityTest extends TestCase {
 
 	public void testAddRemoveEventHandlers() {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
-		PagerActivity pager = new PagerActivity(null, goTo);
+		PagerActivity pager = new PagerActivity(new ImageViewingPlace("1","1"), null, goTo);
 		EventBus eventBus = new SimpleEventBus();
 		pager.addEventHandlers(eventBus);
 		pager.removeEventHandlers();
@@ -136,10 +133,9 @@ public class PagerActivityTest extends TestCase {
 						with(new ImageViewingPlace("1", "4")));
 			}
 		});
-		PagerActivity pager = create(goTo);
-		ImageViewingPlace imageViewingPlace = new ImageViewingPlace("1", "3");
 		
-		pager.setPlace(imageViewingPlace);
+		ImageViewingPlace imageViewingPlace = new ImageViewingPlace("1", "3");
+		PagerActivity pager = create(imageViewingPlace, goTo);
 		
 		pager.setData(data);
 		EventBus eventBus = new SimpleEventBus();
@@ -157,9 +153,7 @@ public class PagerActivityTest extends TestCase {
 			}
 		});
 		ImageViewingPlace imageViewingPlace = new ImageViewingPlace("1", "3");
-		PagerActivity pager = create(goTo);
-		
-		pager.setPlace(imageViewingPlace);
+		PagerActivity pager = create(imageViewingPlace, goTo);
 		
 		pager.setData(data);
 		EventBus eventBus = new SimpleEventBus();
