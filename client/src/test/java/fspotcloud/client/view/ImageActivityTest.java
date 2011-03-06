@@ -17,8 +17,8 @@ public class ImageActivityTest extends TestCase {
 		super.setUp();
 	}
 
-	protected ImageActivity create(BasePlace place, ImageView imageView, PagerPresenter pager) {
-		ImageActivity imageActivity = new ImageActivity(place, imageView, null, null, null);
+	protected ImageActivity create(BasePlace place, ImageView imageView) {
+		ImageActivity imageActivity = new ImageActivity(place, imageView);
 		return imageActivity;
 	}
 	
@@ -32,7 +32,7 @@ public class ImageActivityTest extends TestCase {
 				
 			}
 		});
-		ImageActivity activity = create(place, imageView, pager);
+		ImageActivity activity = create(place, imageView);
 		activity.setImage();
 		context.assertIsSatisfied();
 	}

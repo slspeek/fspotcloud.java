@@ -17,7 +17,7 @@ public class TagEntryPoint implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-		log.info("ImageActivity via Factory");
+		log.info("views via factories");
 		try {
 			MVPSetup setup = injector.getMVPSetup();
 			setup.setup();

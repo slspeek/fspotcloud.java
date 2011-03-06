@@ -33,6 +33,8 @@ import fspotcloud.client.view.PlaceWhereImpl;
 import fspotcloud.client.view.SlideShowActivity;
 import fspotcloud.client.view.SlideshowView;
 import fspotcloud.client.view.TagActivity;
+import fspotcloud.client.view.TagPresenterFactory;
+import fspotcloud.client.view.TagPresenterFactoryImpl;
 import fspotcloud.client.view.TagView;
 import fspotcloud.client.view.TimerInterface;
 import fspotcloud.client.view.action.KeyDispatcherProvider;
@@ -45,9 +47,7 @@ public class AppModule extends AbstractGinModule {
 		bind(MainWindowActivityMapper.class).in(Singleton.class);
 		bind(DataManager.class).to(DataManagerImpl.class).in(Singleton.class);
 		bind(MVPSetup.class).in(Singleton.class);
-		bind(TagView.TagPresenter.class).to(TagActivity.class).in(
-				Singleton.class);
-			bind(PlaceSwapper.class);
+		bind(PlaceSwapper.class);
 		bind(TagCell.class);
 		bind(TagView.class).to(TagViewImpl.class);
 		bind(ImageView.class).to(ImageViewImpl.class);
@@ -65,5 +65,6 @@ public class AppModule extends AbstractGinModule {
 		bind(TimerInterface.class).to(SlideshowTimer.class);
 		bind(PagerPresenterFactory.class).to(PagerPresenterFactoryImpl.class);
 		bind(ImagePresenterFactory.class).to(ImagePresenterFactoryImpl.class);
+		bind(TagPresenterFactory.class).to(TagPresenterFactoryImpl.class);
 	}
 }

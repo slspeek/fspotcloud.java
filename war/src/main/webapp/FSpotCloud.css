@@ -14,7 +14,7 @@
 }
 
 .fsc-tag {
-	background-color: lime;
+	background-color: gray;
 }
 
 .fsc-tag-split-panel {
@@ -22,11 +22,11 @@
 }
 
 .fsc-tag-tree-container {
-	background-color: fuchsia;
+	background-color: maroon;
 }
 
 .fsc-tag-image-view-container {
-	background-color: purple;
+	background-color: orange;
 }
 
 .fsc-tag-status-label {
@@ -35,6 +35,7 @@
 }
 
 .fsc-image-view {
+	background-color: navy;
 	
 }
 

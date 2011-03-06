@@ -6,16 +6,15 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 import fspotcloud.client.view.ImageView.ImagePresenter;
 
 public class ImageViewActivityMapper  implements ActivityMapper {
-	
-	final private ImagePresenterFactory imagePresenterFactory;
 	private static final Logger log = Logger.getLogger(ImageViewActivityMapper.class
 			.getName());
 
+	final private ImagePresenterFactory imagePresenterFactory;
+	
 	@Inject
 	public ImageViewActivityMapper(ImagePresenterFactory imagePresenterFactory) {
 		this.imagePresenterFactory = imagePresenterFactory;
@@ -23,9 +22,9 @@ public class ImageViewActivityMapper  implements ActivityMapper {
 
 	@Override
 	public Activity getActivity(Place place) {
+		log.info("getActivity for : " + place + "(" + this +")");
 		if (place instanceof BasePlace) {
 			ImagePresenter activity = imagePresenterFactory.get((BasePlace) place);
-			activity.init();
 			return activity;
 		} else {
 			log.warning("getActivity will return null for place: " + place);

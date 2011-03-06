@@ -51,7 +51,7 @@ public class PagerActivity extends AbstractActivity implements PagerPresenter,
 	private void calculateLocation() {
 		offset = store.indexOf(photoId);
 		setViewEnabledStates();
-		log.info("calculateLocation ran");
+		//log.info("calculateLocation ran");
 	}
 
 	private void setViewEnabledStates() {
@@ -64,7 +64,7 @@ public class PagerActivity extends AbstractActivity implements PagerPresenter,
 		pagerView.getNext().setEnabled(next);
 		prev = canGo(false);
 		pagerView.getPrevious().setEnabled(prev);
-		log.info("States: " + first + " " + prev + " " + next + " " + last);
+		log.info("States: " + first + " " + prev + " " + next + " " + last + " (" + this +")");
 	}
 
 	private void setPlace() {
@@ -84,7 +84,7 @@ public class PagerActivity extends AbstractActivity implements PagerPresenter,
 		} else {
 			place = new TagViewingPlace(tagId, photoId);
 		}
-		log.info("About to go to: " + this + " : " + place);
+		//log.info("About to go to: " + this + " : " + place);
 		placeGoTo.goTo(place);
 	}
 
