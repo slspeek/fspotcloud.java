@@ -27,23 +27,19 @@ public class MVPSetup {
 	final private MainWindowActivityMapper activityMapper;
 	final private PlaceController placeController;
 	final private GlobalShortcutController keyboardHandler;
-	final private TagView.TagPresenter tagActivity;
 
 	@Inject
 	public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
 			PlaceController placeController,
-			GlobalShortcutController keyboardHandler,
-			TagView.TagPresenter tagActivity) {
+			GlobalShortcutController keyboardHandler) {
 		this.activityMapper = activityMapper;
 		this.eventBus = eventBus;
 		this.placeController = placeController;
 		this.keyboardHandler = keyboardHandler;
-		this.tagActivity = tagActivity;
 	}
 
 	public void setup() {
 		activityMapper.init();
-		tagActivity.reloadTree();
 		keyboardHandler.setup();
 		
 		ActivityManager activityManager = new ActivityManager(activityMapper,
@@ -57,6 +53,7 @@ public class MVPSetup {
 		historyHandler.register(placeController, eventBus, defaultPlace);
 
 		RootLayoutPanel.get().add(appWidget);
+		log.info("Just before handleCurrentHistory()");
 		historyHandler.handleCurrentHistory();
 		log.info("Setup finished");
 	}

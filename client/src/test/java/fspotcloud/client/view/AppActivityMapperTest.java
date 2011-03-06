@@ -21,16 +21,7 @@ public class AppActivityMapperTest extends TestCase {
 
 	
 	public void testGetTagActivity() {
-		final TagView.TagPresenter activity = context.mock(TagView.TagPresenter.class);
-		final TagViewingPlace place = new TagViewingPlace("1", "1");
-		context.checking(new Expectations() {
-			{
-				oneOf(activity).setPlace(with(place));
-			}
-		});
-		mapper = new MainWindowActivityMapper(activity, null);
-		mapper.getActivity(place);
-		context.assertIsSatisfied();
+		
 	}
 
 }

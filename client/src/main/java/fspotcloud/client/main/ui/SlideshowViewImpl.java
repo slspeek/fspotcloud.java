@@ -38,21 +38,39 @@ public class SlideshowViewImpl extends Composite implements SlideshowView {
 	@UiField
 	PushButton fasterButton;
 
+	SlideshowPresenter presenter;
+	
 	public SlideshowViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
-		//log.info("Created");
 		mainPanel.addStyleName("fsc-slideshow");
 		slowerButton.addStyleName("fsc-slideshow-increase");
 		startButton.addStyleName("fsc-slideshow-start");
 		stopButton.addStyleName("fsc-slideshow-stop");
 		fasterButton.addStyleName("fsc-slideshow-decrease");
+		intervalLabel.addStyleName("fsc-slideshow-interval");
 	}
 
 	@UiHandler("slowerButton")
-	public void onNextButtonClicked(ClickEvent event) {
-		// presenter.slower();
+	public void onSlower(ClickEvent event) {
+		presenter.slower();
 	}
-
+	
+	@UiHandler("fasterButton")
+	public void onFaster(ClickEvent event) {
+		presenter.faster();
+	}
+	
+	@UiHandler("stopButton")
+	public void onStop(ClickEvent event) {
+		presenter.stop();
+	}
+	
+	@UiHandler("startButton")
+	public void onStart(ClickEvent event) {
+		log.info("Slideshow start button");
+		presenter.start();
+	}
+	
 	@Override
 	public void setLabelText(String text) {
 		intervalLabel.setText(text);
@@ -60,7 +78,6 @@ public class SlideshowViewImpl extends Composite implements SlideshowView {
 
 	@Override
 	public void setSlideshowPresenter(SlideshowPresenter presenter) {
-
+		this.presenter = presenter;
 	}
-
 }
