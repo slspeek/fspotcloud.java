@@ -236,6 +236,13 @@
 					</plugin>
 				</plugins>
 			</reporting>
+	<modules>
+		<module>rpc</module>
+		<module>model-api</module>
+		<module>model</module>
+		<module>server</module>
+		<module>peer</module>
+	</modules>
 		</profile>
 	</profiles>
 </project>

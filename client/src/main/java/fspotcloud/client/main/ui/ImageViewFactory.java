@@ -21,11 +21,12 @@ public class ImageViewFactory extends ViewFactory {
 		this.imageView = imageView;
 		this.pagerMapper = pagerMapper;
 		this.slideshowMapper = slideshowMapper;
+		register(pagerMapper, imageView.getPagerViewContainer());
+		register(slideshowMapper, imageView.getSlideshowViewContainer());
 	}
 
 	public ImageView get() {
-		register(pagerMapper, imageView.getPagerViewContainer());
-		register(slideshowMapper, imageView.getSlideshowViewContainer());
+		
 		return imageView;
 	}
 
