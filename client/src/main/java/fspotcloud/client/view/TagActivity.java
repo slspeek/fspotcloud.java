@@ -1,6 +1,9 @@
 package fspotcloud.client.view;
 
 import java.util.List;
+import com.google.gwt.user.cellview.client.TreeNode;
+
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -24,36 +27,49 @@ public class TagActivity extends AbstractActivity implements Handler,
 	final private PlaceGoTo placeGoTo;
 	final private BasePlace place;
 
-	String tagId;
+	final String tagId;
 
 	private SingleSelectionModel<TagNode> selectionModel;
 
-	public TagActivity(
-			BasePlace place,
-			TagView tagView,
-			DataManager dataManager,
-			PlaceGoTo placeGoTo,
+	public TagActivity(BasePlace place, TagView tagView,
+			DataManager dataManager, PlaceGoTo placeGoTo,
 			SingleSelectionModel<TagNode> singleSelectionModel) {
 		this.place = place;
 		this.tagView = tagView;
 		this.dataManager = dataManager;
 		this.placeGoTo = placeGoTo;
+		tagId = place.getTagId();
 		this.selectionModel = singleSelectionModel;
-		singleSelectionModel.addSelectionChangeHandler(this);
-
 		log.info("TagActivity Created");
 	}
 
 	public void init() {
-		setPlace(place);
 		reloadTree();
 	}
 
 	public void setPlace(BasePlace place) {
-		tagId = place.getTagId();
 		TagNode node = new TagNode();
 		node.setId(tagId);
 		selectionModel.setSelected(node, true);
+		TreeNode root = tagView.getRootNode();
+		if (root != null) {
+			openTreeSelectedTreeNode(tagView.getRootNode());
+		} else {
+			log.warning("Root node is null");
+		}
+	}
+
+	private void openTreeSelectedTreeNode(TreeNode node) {
+		try {
+			for (int i = 0; i < node.getChildCount(); i++) {
+				TreeNode child = node.setChildOpen(i, true, false);
+				if (child != null) {
+					openTreeSelectedTreeNode(child);
+				}
+			}
+		} catch (Exception e) {
+			log.log(Level.SEVERE, "openTreeNode", e);
+		}
 	}
 
 	@Override
@@ -75,16 +91,20 @@ public class TagActivity extends AbstractActivity implements Handler,
 
 			@Override
 			public void onSuccess(List<TagNode> result) {
-				TagTreeModel treeModel = new TagTreeModel(result,
-						selectionModel);
-				tagView.setTreeModel(treeModel);
-				setPlace(place);
+				setModel(result);
 			}
 		});
 	}
 
 	public void reloadTree() {
 		requestTagTreeData();
+	}
+
+	private void setModel(List<TagNode> roots) {
+		TagTreeModel treeModel = new TagTreeModel(roots, selectionModel);
+		tagView.setTreeModel(treeModel);
+		setPlace(place);
+		selectionModel.addSelectionChangeHandler(this);
 	}
 
 	@Override

@@ -29,7 +29,6 @@ public class ToggleFullscreenAction implements GestureAction {
 	public void perform() {
 		Place place = where.where();
 		Place target = swapper.swap(place);
-		log.info("Going: " + String.valueOf(target));
 		goTo.goTo(target);
 	}
 }
