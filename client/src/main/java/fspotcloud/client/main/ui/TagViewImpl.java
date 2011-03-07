@@ -1,7 +1,7 @@
 package fspotcloud.client.main.ui;
 
 import java.util.logging.Logger;
-
+import com.google.gwt.user.cellview.client.TreeNode;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -42,6 +42,8 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	@UiField 
 	SimplePanel imageViewPanel;
 	
+	CellTree cellTree;
+	
 	@Inject
 	public TagViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -60,12 +62,22 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 
 	@Override
 	public void setTreeModel(TreeViewModel model) {
-		CellTree cellTree = new CellTree(model, null);
+		cellTree = new CellTree(model, null);
 		tagTreeViewPanel.setWidget(cellTree);
 	}
 	
 	@Override
 	public HasOneWidget getImageViewContainer() {
 		return imageViewPanel;
+	}
+	
+	@Override
+	public TreeNode getRootNode() {
+		if (cellTree != null) {
+			return cellTree.getRootTreeNode();
+		} else {
+			log.warning("cellTree is null");
+			return null;
+		}
 	}
 }

@@ -15,63 +15,80 @@ public class SlideShowActivity extends AbstractActivity implements
 	private static final Logger log = Logger.getLogger(SlideShowActivity.class
 			.getName());
 
-	private PagerPresenter pager;
-	
 	final private SlideshowView slideshowView;
 	final private TimerInterface timer;
 	private int interval = 3;
-	
-	@Inject 
+	private boolean isRunning = false;
+	private PagerPresenter pager;
+
+	@Inject
 	public SlideShowActivity(TimerInterface timer, SlideshowView slideshowView) {
 		this.slideshowView = slideshowView;
 		this.timer = timer;
 		initTimer();
 		log.info("SlideshowActivity Created");
 	}
-	
+
 	private void initTimer() {
 		timer.setRunnable(new Runnable() {
 			@Override
 			public void run() {
-				pager.go(true);
+				if (pager.canGo(true)) {
+					pager.go(true);
+				} else {
+					timer.cancel();
+				}
 			}
 		});
 	}
 
 	private void reschedule() {
-		timer.cancel();
-		timer.scheduleRepeating(1000 * interval);
+		if (isRunning) {
+			timer.cancel();
+			timer.scheduleRepeating(1000 * interval);
+		}
 		redraw();
 	}
-	
+
 	private void redraw() {
-		slideshowView.setLabelText(String.valueOf(interval) + " second(s). ");
+		slideshowView.setLabelText(String.valueOf(interval) + " seconds. ");
 	}
-	
+
 	@Override
 	public void faster() {
-		if (interval < 10) {
-			interval ++;
+		if (interval < 16) {
+			interval++;
 			reschedule();
 		}
 	}
 
 	@Override
+	public void onStop() {
+		stop();
+		super.onStop();
+	}
+
+	@Override
 	public void slower() {
-		if (interval > 1) {
-			interval --;
+		if (interval > 2) {
+			interval--;
 			reschedule();
 		}
 	}
 
 	@Override
 	public void start() {
+		log.info("Starting slide show");
+		isRunning = true;
 		reschedule();
 	}
 
 	@Override
 	public void stop() {
+		log.info("Stopping slideshow");
+		isRunning = false;
 		timer.cancel();
+
 	}
 
 	@Override
@@ -85,5 +102,4 @@ public class SlideShowActivity extends AbstractActivity implements
 	public void setPresenter(PagerPresenter presenter) {
 		this.pager = presenter;
 	}
-
 }
