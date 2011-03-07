@@ -17,10 +17,11 @@ public class TagViewFactory extends ViewFactory {
 		super(eventBus);
 		this.tagView = tagView;
 		this.imageMapper = imageMapper;
+		register(imageMapper, tagView.getImageViewContainer());
 	}
 
 	public TagView get() {
-		register(imageMapper, tagView.getImageViewContainer());
+		
 		return tagView;
 	}
 
