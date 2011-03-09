@@ -1,13 +1,15 @@
 package fspotcloud.client.main.ui;
 
+import com.reveregroup.gwt.imagepreloader.FitImage;
+
 import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HasOneWidget;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -29,7 +31,7 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	@UiField
 	HTMLPanel mainPanel;
 	@UiField
-	Image image;
+	FitImage image;
 	@UiField
 	SimplePanel pagerViewPanel;
 	@UiField
@@ -43,6 +45,9 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 		image.addStyleName("fsc-image-view-image");
 		pagerViewPanel.addStyleName("fsc-image-view-pager-container");
 		slideshowViewPanel.addStyleName("fsc-image-view-slideshow-container");
+		int width = Window.getClientWidth();
+		int height = Window.getClientHeight();
+		image.setMaxSize(width - 300, height - 200);
 	}
 	
 	@Override

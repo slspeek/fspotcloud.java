@@ -38,7 +38,7 @@
 		<module>deps</module>
 	</modules>
 	<build>
-    <defaultGoal>install</defaultGoal>
+		<defaultGoal>install</defaultGoal>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -68,7 +68,7 @@
 		</pluginManagement>
 	</build>
 	<properties>
-		<guice.version>3.0-rc2</guice.version>
+		<guice.version>2.0</guice.version>
 		<gwt.version>2.1.1</gwt.version>
 		<gae.version>1.4.2</gae.version>
 		<gae.home>${user.home}/appengine-java-sdk-${gae.version}</gae.home>
@@ -198,6 +198,8 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<repositories>
+	</repositories>
 	<profiles>
 		<profile>
 			<id>doclava</id>
@@ -236,13 +238,13 @@
 					</plugin>
 				</plugins>
 			</reporting>
-	<modules>
-		<module>rpc</module>
-		<module>model-api</module>
-		<module>model</module>
-		<module>server</module>
-		<module>peer</module>
-	</modules>
+			<modules>
+				<module>rpc</module>
+				<module>model-api</module>
+				<module>model</module>
+				<module>server</module>
+				<module>peer</module>
+			</modules>
 		</profile>
 	</profiles>
 </project>
