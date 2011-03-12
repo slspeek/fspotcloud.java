@@ -1,0 +1,94 @@
+/** All css rules defined for FSpotcloud are below. */
+.fsc-tag-title-label {
+	font-size: 17px;
+	border: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	display: block;
+	padding: 10px;
+	border: medium;
+	border-color: black;
+	background-color: green;
+	text-align: center;
+}
+
+.fsc-tag {
+	background-color: gray;
+}
+
+.fsc-tag-split-panel {
+	background-color: olive;
+}
+
+.fsc-tag-tree-container {
+	background-color: maroon;
+}
+
+.fsc-tag-image-view-container {
+	background-color: orange;
+}
+
+.fsc-tag-status-label {
+	text-align: center;
+	background-color: aqua;
+}
+
+.fsc-image-view {
+	background-color: navy;
+	
+}
+
+.fsc-image-view-image {
+	border: medium;
+}
+
+.fsc-image-view-pager-container {
+	
+}
+
+.fsc-image-view-slideshow-container {
+	
+}
+
+.fsc-pager {
+	padding: 20px;
+}
+
+.fsc-pager-first {
+	
+}
+
+.fsc-pager-previous {
+	
+}
+
+.fsc-pager-next {
+	
+}
+
+.fsc-pager-last {
+	
+}
+
+.fsc-slideshow {
+	
+}
+
+.fsc-slideshow-start {
+	
+}
+
+.fsc-slideshow-descrease {
+	
+}
+
+.fsc-slideshow-increase {
+	
+}
+
+.fsc-slideshow-interval {
+	font-size: 200%;
+	background-color: yellow;
+	color: blue;
+}

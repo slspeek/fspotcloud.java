@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>deps</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.39</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>gwt-deps</artifactId>
+	<groupId>fspotcloud.deps</groupId>
+	<packaging>pom</packaging>
+	<name>Dependencies for Google Web Toolkit</name>
+	<dependencies>
+			<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt.inject</groupId>
+			<artifactId>gin</artifactId>
+			<version>1.0</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.reveregroup.gwt</groupId>
+			<artifactId>gwt-image-loader</artifactId>
+			<version>1.1.4</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+</project>
+

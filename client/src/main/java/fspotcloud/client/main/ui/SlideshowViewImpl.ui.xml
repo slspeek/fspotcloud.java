@@ -1,0 +1,16 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HorizontalPanel ui:field="mainPanel">
+		<g:PushButton ui:field="slowerButton" text="Decrease"></g:PushButton>
+		<g:PushButton ui:field="startButton" text="Start"></g:PushButton>
+		<g:Label ui:field="intervalLabel"></g:Label>
+		<g:PushButton ui:field="stopButton" text="Stop"></g:PushButton>
+		<g:PushButton ui:field="fasterButton" text="Increase"></g:PushButton>
+	</g:HorizontalPanel>
+</ui:UiBinder> 

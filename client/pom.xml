@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>fspotcloud</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.39</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>client</artifactId>
+	<packaging>jar</packaging>
+	<name>GWT User interface and client logic</name>
+	<description>The general user interface and the admin console
+		interface.</description>
+	<dependencies>
+		<dependency>
+			<groupId>fspotcloud</groupId>
+			<artifactId>rpc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>fspotcloud.deps</groupId>
+			<artifactId>gwt-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.2</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock</artifactId>
+			<version>2.5.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<classesDirectory>${project.build.directory}/${pom.artifactId}-${version}
+					</classesDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+        <!-- NOTE: We don't need a groupId specification because the group is
+          org.apache.maven.plugins ...which is assumed by default.
+        -->
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>bin</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id><!-- this is used for inheritance merges -->
+            <phase>package</phase><!-- append to the packaging phase. -->
+            <goals>
+              <goal>attached</goal><!-- goals == mojos -->
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<!-- All the fantastical settings that GWT needs -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>2.1.0-1</version>
+				<configuration>
+					<compileSourcesArtifacts>
+						<compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact>
+					</compileSourcesArtifacts>
+					<logLevel>INFO</logLevel>
+					<!-- match -Dgae.port -->
+					<port>${gae.port}</port>
+					<!-- This must point to your GWT modules! -->
+					<compileTargets>
+						<value>fspotcloud.FSpotCloud</value>
+						<value>fspotcloud.admin</value>
+					</compileTargets>
+					<extraJvmArgs>-Xmx512m</extraJvmArgs>
+					<runTarget>/FSpotCloud.html</runTarget>
+					<style>PRETTY</style>
+					<gwtVersion>${gwt.version}</gwtVersion>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+	<!-- Needed for the GWT specific files for guava in GWT -->
+		<repository>
+			<id>fspotcloud-maven</id>
+			<url>http://maven.fspotcloud.googlecode.com/hg/repo</url>
+		</repository>
+	</repositories>
+</project>
+
