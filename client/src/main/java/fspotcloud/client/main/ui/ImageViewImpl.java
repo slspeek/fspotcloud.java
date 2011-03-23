@@ -42,12 +42,16 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 		initWidget(uiBinder.createAndBindUi(this));
 		//log.info("Created");
 		mainPanel.addStyleName("fsc-image-view");
+		mainPanel.ensureDebugId("fcs");
 		image.addStyleName("fsc-image-view-image");
+		image.ensureDebugId("fcs");
 		pagerViewPanel.addStyleName("fsc-image-view-pager-container");
+		pagerViewPanel.ensureDebugId("fsc");
 		slideshowViewPanel.addStyleName("fsc-image-view-slideshow-container");
+		slideshowViewPanel.ensureDebugId("fsc");
 		int width = Window.getClientWidth();
 		int height = Window.getClientHeight();
-		image.setMaxSize(width - 300, height - 200);
+		image.setMaxSize(width, height);
 	}
 	
 	@Override
