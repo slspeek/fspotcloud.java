@@ -1,16 +1,21 @@
 package fspotcloud.test;
 import junit.framework.TestCase;
 
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class FirstITest extends TestCase {
 	
-	FirefoxDriver driver;
+	ChromeDriver driver;
 	
 	public void setUp() throws Exception {
-		driver = new FirefoxDriver();
+		driver = new ChromeDriver();
+	}
+	@Override
+	protected void tearDown() throws Exception {
+		driver.close();
+		super.tearDown();
 	}
 	public void testFirstI() throws Exception {
-		driver.get("http://jfspotcloud.appspot.com/#TagViewingPlace:3:5");
+		driver.get("http://localhost:8080/");
 	}
 }
