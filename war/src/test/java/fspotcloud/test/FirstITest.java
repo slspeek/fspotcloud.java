@@ -12,7 +12,7 @@ public class FirstITest extends TestCase {
 	}
 	@Override
 	protected void tearDown() throws Exception {
-		driver.close();
+		driver.quit();
 		super.tearDown();
 	}
 	public void testFirstI() throws Exception {

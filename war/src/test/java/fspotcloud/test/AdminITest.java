@@ -17,8 +17,6 @@ public class AdminITest extends TestCase {
 		// Create the Selenium implementation
 		selenium = new WebDriverBackedSelenium(driver, "http://localhost:8080");
 	}
-	
-	
 
 	@Override
 	protected void tearDown() throws Exception {
@@ -26,31 +24,68 @@ public class AdminITest extends TestCase {
 		super.tearDown();
 	}
 
-
-
 	public void testAdminI() throws Exception {
-		selenium.open("http://localhost:8080/Admin.html");
+		selenium.open("http://localhost:8080/");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("isAdmin");
 		selenium.click("action");
 		selenium.waitForPageToLoad("30000");
 	}
-	
+
 	public void testImportTags() throws Exception {
-		selenium.open("http://localhost:8080/Admin.html");
+		selenium.open("/Admin.html");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("isAdmin");
 		selenium.click("action");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("//tr[3]/td[2]/button");
+		selenium.waitForPageToLoad("30000");
+		try {
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		selenium.click("//tr[4]/td[2]/button");
+		selenium.waitForPageToLoad("30000");
+		try {
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}selenium.click("//tr[4]/td[2]/button");
+		selenium.waitForPageToLoad("30000");
 		try {
 			Thread.sleep(15000);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		//selenium.wait(10000);
-		selenium.open("http://localhost:8080/");
+		selenium.open("/TestHelper.html");
 		selenium.waitForPageToLoad("30000");
-		
+		selenium.click("link=Import tag 1");
+		selenium.waitForPageToLoad("30000");
+		selenium.open("/TestHelper.html");
+		selenium.waitForPageToLoad("30000");
+
+		selenium.click("link=Import tag 2");
+		selenium.waitForPageToLoad("30000");
+
+		selenium.open("/TestHelper.html");
+		selenium.waitForPageToLoad("30000");
+
+		selenium.waitForPageToLoad("30000");
+		selenium.click("link=Import tag 3");
+		selenium.open("/TestHelper.html");
+		selenium.waitForPageToLoad("30000");
+		try {
+			Thread.sleep(30000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		selenium.open("/");
+		try {
+			Thread.sleep(30000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		selenium.waitForPageToLoad("30000");
 	}
 }
