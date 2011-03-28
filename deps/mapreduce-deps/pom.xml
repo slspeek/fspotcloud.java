@@ -15,7 +15,7 @@
 		<dependency>
 			<groupId>com.google.appengine.tools.mapreduce</groupId>
 			<artifactId>appengine-mapper</artifactId>
-			<version>r91</version>
+			<version>r141</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.appengine.tools.mapreduce</groupId>
@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>r05</version>
+			<version>r07</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
