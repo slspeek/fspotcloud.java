@@ -169,7 +169,10 @@
 					<webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
-			<!-- Upload application to the appspot automatically, during release:perform -->
+			<!--
+				Upload application to the appspot automatically, during
+				release:perform
+			-->
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
 				<configuration>
@@ -186,8 +189,18 @@
 						<phase>pre-integration-test</phase>
 						<configuration>
 							<target>
-								<property name="runtime_classpath" refid="maven.runtime.classpath" />
+								<property name="runtime_classpath" refid="maven.runtime.classpath" /><!--
 								<exec executable="${basedir}/src/scripts/bash/start_peer.sh"></exec>
+								--><java
+									jar="${basedir}/../peer/target/peer-${project.version}-jar-with-dependencies.jar"
+									fork="yes" spawn="yes">
+									<sysproperty key="db"
+										value="${basedir}/../peer/src/test/resources/photos.db" />
+									<sysproperty key="endpoint" value="localhost:8080" />
+									<sysproperty key="photo.dir.original" value="file:///home/fspotcloud/Photos" />
+									<sysproperty key="photo.dir.override"
+										value="file://${basedir}/../peer/src/test/resources/Photos" />
+								</java>
 							</target>
 						</configuration>
 						<goals>
