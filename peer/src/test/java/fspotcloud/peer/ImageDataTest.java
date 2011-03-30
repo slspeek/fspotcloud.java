@@ -38,7 +38,7 @@ public class ImageDataTest extends TestCase {
 	}
 
 	public final void testGetScaledImageDataPortrait() throws IOException {
-		URL url = ClassLoader.getSystemResource("home/fspotcloud/Photos/2010/06/04/Mac-classic.jpg");
+		URL url = ClassLoader.getSystemResource("Photos/2010/06/04/Mac-classic.jpg");
 		Dimension size = new Dimension(200, 100);
 		byte[] data = target.getScaledImageData(url, size);
 		InputStream dataStream = new ByteArrayInputStream(data);

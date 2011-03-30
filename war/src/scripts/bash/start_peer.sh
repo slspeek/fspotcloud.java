@@ -1,1 +1,1 @@
-java -Dendpoint=localhost:8080 -jar ../peer/target/peer-0.39-jar-with-dependencies.jar &
+java -Dphoto.dir.override=file://$(pwd)/../peer/src/test/resources/Photos -Dphoto.dir.original=file:///home/fspotcloud/Photos -Ddb=$(pwd)/../peer/src/test/resources/photos.db -Dendpoint=localhost:8080 -jar ../peer/target/peer-0.39-jar-with-dependencies.jar &
