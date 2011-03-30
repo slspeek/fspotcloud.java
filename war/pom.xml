@@ -213,7 +213,10 @@
 						<configuration>
 							<target>
 								<property name="runtime_classpath" refid="maven.runtime.classpath" />
-								<exec executable="telnet" args="localhost 4444"></exec>
+								<exec executable="telnet">
+                <arg value="localhost"/>
+                <arg value="4444"/>
+                </exec>
 							</target>
 						</configuration>
 						<goals>
