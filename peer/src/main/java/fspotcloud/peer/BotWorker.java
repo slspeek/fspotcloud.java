@@ -15,9 +15,9 @@ import fspotcloud.peer.db.Data;
 
 public class BotWorker {
 
-	private XmlRpcClient controller;
-	private Data data;
-	private ImageData imageData;
+	final private XmlRpcClient controller;
+	final private Data data;
+	final private ImageData imageData;
 
 	@Inject
 	public BotWorker(XmlRpcClient controller, Data data, ImageData imageData) {

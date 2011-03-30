@@ -16,31 +16,22 @@ import fspotcloud.peer.db.Data;
 public class BotModule extends AbstractModule {
 
 	protected void configure() {
-
-	     /*
-	      * This tells Guice that whenever it sees a dependency on a TransactionLog,
-	      * it should satisfy the dependency using a DatabaseTransactionLog.
-	      */
-	    bind(Bot.class);
-	    bind(Data.class);
-	    bind(BotWorker.class);
-	    bind(ImageData.class);
-	     /*
-	      * Similarly, this binding tells Guice that when CreditCardProcessor is used in
-	      * a dependency, that should be satisfied with a PaypalCreditCardProcessor.
-	      */
-	    bind(Pauser.class).to(PauserImpl.class);
-	    bind(CommandFetcher.class).to(CommandFetcherImpl.class);
-	    bind(String.class).annotatedWith(Names.named("JDBC URL"))
-        .toInstance("jdbc:sqlite:/home/fspotcloud/fspotcloud/peer/src/test/resources/home/fspotcloud/.gnome2/f-spot/photos.db"); 
-	    bind(String.class).annotatedWith(Names.named("endpoint"))
-        .toInstance("http://" + System.getProperty("endpoint") + "/xmlrpc"); 
-	    //.toInstance("http://localhost:8080/xmlrpc");
-	    
-	  }
+		bind(Bot.class);
+		bind(Data.class);
+		bind(BotWorker.class);
+		bind(ImageData.class);
+		bind(Pauser.class).to(PauserImpl.class);
+		bind(CommandFetcher.class).to(CommandFetcherImpl.class);
+		bind(String.class).annotatedWith(Names.named("JDBC URL")).toInstance(
+				"jdbc:sqlite:" + System.getProperty("db"));
+		bind(String.class).annotatedWith(Names.named("endpoint")).toInstance(
+				"http://" + System.getProperty("endpoint") + "/xmlrpc");
+		bind(Integer.class).annotatedWith(Names.named("stop port")).toInstance(new Integer(4444));
+	}
 
 	@Provides
-	XmlRpcClient provideXmlRpcClient(@Named("endpoint") String endpoint) throws Exception{
+	XmlRpcClient provideXmlRpcClient(@Named("endpoint") String endpoint)
+			throws Exception {
 		// create configuration
 		XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
 		config.setServerURL(new URL(endpoint));

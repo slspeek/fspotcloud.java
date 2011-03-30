@@ -25,12 +25,15 @@ public class Data {
 			e.printStackTrace();
 		}
 	}
-
 	private final String jdbcURL;
+	private final String photoDirectoryOverride;
+	private final String photoDirectoryOriginalPath;
 	
 	@Inject
 	public Data(@Named("JDBC URL") String jdbcURL) {
 		this.jdbcURL = jdbcURL;
+		this.photoDirectoryOverride = System.getProperty("photo.dir.override");
+		this.photoDirectoryOriginalPath = System.getProperty("photo.dir.original");
 	}
 
 	private Connection getConnection() throws SQLException {
@@ -119,6 +122,9 @@ public class Data {
 		}
 		rs.close();
 		conn.close();
+		if (photoDirectoryOverride != null) {
+			url = url.replaceFirst(photoDirectoryOriginalPath, photoDirectoryOverride);
+		}
 		return new URL(url);
 	}
 

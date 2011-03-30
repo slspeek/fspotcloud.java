@@ -11,6 +11,8 @@ public class Main {
 	     * Now that we've got the injector, we can build objects.
 	     */
 	    Bot bot = injector.getInstance(Bot.class); 
+	    StopListener stopListener = injector.getInstance(StopListener.class);
+	    stopListener.start();
 		bot.serveForever();
 	}
 }
