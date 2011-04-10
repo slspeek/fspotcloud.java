@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
@@ -47,9 +48,9 @@
 			<type>jar</type>
 		</dependency>
 		<dependency>
-			<groupId>com.google.appengine.testing</groupId>
+			<groupId>com.google.appengine.testing.cloudcover</groupId>
 			<artifactId>cloudcover-ui</artifactId>
-			<version>1.0.1.final</version>
+			<version>1.0.1.final-forGAE1.4.3</version>
 			<type>zip</type>
 		</dependency>
 		<dependency>
@@ -122,13 +123,10 @@
 								<artifactItem>
 									<groupId>fspotcloud</groupId>
 									<artifactId>client</artifactId>
-									<version>${project.version}</version>
-									<type>jar</type>
 								</artifactItem>
 								<artifactItem>
-									<groupId>com.google.appengine.testing</groupId>
+									<groupId>com.google.appengine.testing.cloudcover</groupId>
 									<artifactId>cloudcover-ui</artifactId>
-									<version>1.0.1.final</version>
 									<type>zip</type>
 									<overWrite>true</overWrite>
 								</artifactItem>
@@ -169,10 +167,7 @@
 					<webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
-			<!--
-				Upload application to the appspot automatically, during
-				release:perform
-			-->
+			<!-- Upload application to the appspot automatically, during release:perform -->
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
 				<configuration>
@@ -189,9 +184,9 @@
 						<phase>pre-integration-test</phase>
 						<configuration>
 							<target>
-								<property name="runtime_classpath" refid="maven.runtime.classpath" /><!--
-								<exec executable="${basedir}/src/scripts/bash/start_peer.sh"></exec>
-								--><java
+								<property name="runtime_classpath" refid="maven.runtime.classpath" /><!-- 
+									<exec executable="${basedir}/src/scripts/bash/start_peer.sh"></exec> -->
+								<java
 									jar="${basedir}/../peer/target/peer-${project.version}-jar-with-dependencies.jar"
 									fork="yes" spawn="yes">
 									<sysproperty key="db"
@@ -214,9 +209,9 @@
 							<target>
 								<property name="runtime_classpath" refid="maven.runtime.classpath" />
 								<exec executable="telnet">
-                <arg value="localhost"/>
-                <arg value="4444"/>
-                </exec>
+									<arg value="localhost" />
+									<arg value="4444" />
+								</exec>
 							</target>
 						</configuration>
 						<goals>
