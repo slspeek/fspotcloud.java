@@ -1,6 +1,5 @@
 package fspotcloud.server.model.api;
 
-import java.util.List;
 import java.util.SortedSet;
 
 import com.google.appengine.api.datastore.Key;

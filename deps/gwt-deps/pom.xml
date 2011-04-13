@@ -25,7 +25,7 @@
 		<dependency>
 			<groupId>com.google.gwt.inject</groupId>
 			<artifactId>gin</artifactId>
-			<version>1.0</version>
+			<version>${gin.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
