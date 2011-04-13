@@ -8,23 +8,14 @@ import java.util.List;
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 
-import junit.framework.Test;
 import junit.framework.TestSuite;
 
-
-import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.google.inject.Provider;
 
 import fspotcloud.server.model.DatastoreTest;
 import fspotcloud.server.model.PersistenceManagerProvider;
 import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
-
-/**
- * @author fspotcloud
- * 
- */
 
 public class BatchManagerTest extends DatastoreTest {
 	

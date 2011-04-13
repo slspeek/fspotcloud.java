@@ -24,6 +24,12 @@
 			<type>pom</type>
 		</dependency>
 		<dependency>
+			<groupId>fspotcloud.deps</groupId>
+			<artifactId>guice-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.2</version>
@@ -68,20 +74,11 @@
           </execution>
         </executions>
       </plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.0</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
 			<!-- All the fantastical settings that GWT needs -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>2.1.0-1</version>
+				<version>2.2.0</version>
 				<configuration>
 					<compileSourcesArtifacts>
 						<compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact>
