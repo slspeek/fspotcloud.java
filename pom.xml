@@ -4,7 +4,7 @@
 	<groupId>fspotcloud</groupId>
 	<artifactId>fspotcloud</artifactId>
 	<packaging>pom</packaging>
-	<version>0.39</version>
+	<version>0.40-1.0</version>
 	<name>F-Spot Cloud Java Edition</name>
 	<prerequisites>
 		<maven>3.0.0</maven>
@@ -15,6 +15,13 @@
 		<connection>scm:hg:https://java.fspotcloud.googlecode.com/hg/</connection>
 		<url>http://code.google.com/p/fspotcloud/source/list?repo=java</url>
 	</scm>
+	<licenses>
+  <license>
+    <name>GPL v3.0</name>
+    <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+    <distribution>repo</distribution>
+  </license>
+</licenses>
 	<developers>
 		<developer>
 			<id>slspeek</id>
@@ -89,13 +96,13 @@
 		</extensions>
 	</build>
 	<properties>
+		<cloudcover.version>1.0.1.final-forGAE1.4.3-1</cloudcover.version>
 		<guice.version>3.0</guice.version>
 		<gin.version>1.5.0</gin.version>
 		<gwt.version>2.2.0</gwt.version>
 		<gae.version>1.4.3</gae.version>
 		<org.apache.xmlrpc.version>3.1.3</org.apache.xmlrpc.version>
 		<gae.home>${user.home}/appengine-java-sdk-${gae.version}</gae.home>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<pluginRepositories>
 		<pluginRepository>

@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>deps</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.39</version>
+		<version>0.40-1.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fspotcloud.deps</groupId>
@@ -15,7 +15,7 @@
 		<dependency>
 			<groupId>com.google.appengine.testing.cloudcover</groupId>
 			<artifactId>cloudcover</artifactId>
-			<version>1.0.1.final-forGAE1.4.3</version>
+			<version>${cloudcover.version}</version>
 		</dependency>
 	</dependencies>
 </project>
