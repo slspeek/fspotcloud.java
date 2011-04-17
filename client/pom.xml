@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.39</version>
+		<version>0.40-1.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>client</artifactId>
@@ -66,10 +66,10 @@
         </configuration>
         <executions>
           <execution>
-            <id>make-assembly</id><!-- this is used for inheritance merges -->
-            <phase>package</phase><!-- append to the packaging phase. -->
+            <id>make-assembly</id>
+            <phase>package</phase>
             <goals>
-              <goal>attached</goal><!-- goals == mojos -->
+              <goal>single</goal>
             </goals>
           </execution>
         </executions>
@@ -107,12 +107,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-	<!-- Needed for the GWT specific files for guava in GWT -->
-		<repository>
-			<id>fspotcloud-maven</id>
-			<url>http://maven.fspotcloud.googlecode.com/hg/repo</url>
-		</repository>
-	</repositories>
 </project>
 

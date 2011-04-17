@@ -2,26 +2,41 @@ package fspotcloud.test;
 
 import junit.framework.TestCase;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.thoughtworks.selenium.Selenium;
 
-public class AdminITest extends TestCase {
+public class ImportITest extends TestCase {
 
-	FirefoxDriver driver;
-	Selenium selenium;
+	@SuppressWarnings("unused")
+	final private WebDriver driver;
+	final private Selenium selenium;
+	@SuppressWarnings("unused")
+	final private String baseURL;
 
-	public void setUp() throws Exception {
-		driver = new FirefoxDriver();
-		// Create the Selenium implementation
-		selenium = new WebDriverBackedSelenium(driver, "http://localhost:8080");
+	public ImportITest(WebDriver driver, String baseURL) {
+		this.driver = driver;
+		this.baseURL = baseURL;
+		selenium = new WebDriverBackedSelenium(driver, baseURL);
 	}
 
 	@Override
 	protected void tearDown() throws Exception {
 		selenium.stop();
 		super.tearDown();
+	}
+
+	private void sleep(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (Exception e) {
+		}
+	}
+	
+	@Override
+	protected void runTest() throws Throwable {
+		testImportTags();
 	}
 
 	public void testAdminI() throws Exception {
@@ -40,49 +55,24 @@ public class AdminITest extends TestCase {
 		selenium.waitForPageToLoad("30000");
 		selenium.click("//tr[3]/td[2]/button");
 		selenium.waitForPageToLoad("30000");
-		try {
-			Thread.sleep(2000);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		sleep(2000);
 		selenium.click("//tr[4]/td[2]/button");
 		selenium.waitForPageToLoad("30000");
-		try {
-			Thread.sleep(5000);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		sleep(5000);
 		selenium.open("/Admin.html");
 		selenium.waitForPageToLoad("30000");
-		try {
-			Thread.sleep(3000);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
+		sleep(3000);
 
 		selenium.open("/Admin.html");
 		selenium.waitForPageToLoad("30000");
-		try {
-			Thread.sleep(3000);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		sleep(3000);
 
 		selenium.click("//tr[4]/td[2]/button");
 		selenium.waitForPageToLoad("30000");
-		try {
-			Thread.sleep(15000);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		sleep(15000);
 		selenium.open("/Admin.html");
 		selenium.waitForPageToLoad("30000");
-		try {
-			Thread.sleep(3000);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		sleep(3000);
 		selenium.open("/TestHelper.html");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("link=Import tag 1");
@@ -101,56 +91,25 @@ public class AdminITest extends TestCase {
 		selenium.waitForPageToLoad("30000");
 		selenium.open("/Admin.html");
 		selenium.waitForPageToLoad("30000");
-		try {
-			Thread.sleep(3000);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		try {
-			Thread.sleep(15000);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		sleep(15000);
 		selenium.open("/");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("//td[3]/div");
-		try {
-			Thread.sleep(900);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		sleep(900);
 		selenium.click("//td[3]/div");
-		try {
-			Thread.sleep(900);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		sleep(900);
 		selenium.click("//div[1]/div[2]/div[1]/div/div[2]");
 		selenium.waitForPageToLoad("30000");
 
 		selenium.click("//td[3]/div");
 		selenium.waitForPageToLoad("30000");
-
-		try {
-			Thread.sleep(900);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		sleep(900);
 		selenium.click("//td[5]/div");
-		try {
-			Thread.sleep(100);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		sleep(100);
 		assertTrue(selenium.isTextPresent("4 seconds."));
 		selenium.open("/#ImageViewingPlace:1:27");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("//td[1]/div/table/tbody/tr/td[1]/div");
 		selenium.waitForPageToLoad("30000");
-		try {
-			Thread.sleep(900);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 	}
 }
