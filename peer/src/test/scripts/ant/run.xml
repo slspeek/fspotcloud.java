@@ -11,6 +11,15 @@
 			<sysproperty key="photo.dir.override" value="file://${basedir}/../peer/src/test/resources/Photos" />
 		</java>
 	</target>
+	<target name="run-remote">
+		<java jar="${basedir}/target/peer-${project.version}-jar-with-dependencies.jar" fork="yes" >
+			<sysproperty key="db" value="${basedir}/src/test/resources/photos.db" />
+			<sysproperty key="endpoint" value="jfspotcloud.appspot.com" />
+			<sysproperty key="photo.dir.original" value="file:///home/fspotcloud/Photos" />
+			<sysproperty key="photo.dir.override" value="file://${basedir}/../peer/src/test/resources/Photos" />
+		</java>
+	</target>
+
 
 </project>
 
