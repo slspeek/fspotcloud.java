@@ -13,7 +13,7 @@ public class ControllerTest extends TestCase {
 	public static TestSuite suite() {
 		return new TestSuite(ControllerTest.class);
 	}
-	
+
 	Mockery context = new Mockery();
 
 	public final void testGetCommand() {
@@ -22,7 +22,6 @@ public class ControllerTest extends TestCase {
 		context.checking(new Expectations() {
 			{
 				oneOf(commandsMock).popOldestCommand();
-				// oneOf(queue).add(options);
 			}
 		});
 		Object[] cmd = controller.getCommand();

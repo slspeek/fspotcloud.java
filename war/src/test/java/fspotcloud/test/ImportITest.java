@@ -1,37 +1,16 @@
 package fspotcloud.test;
 
-import junit.framework.TestCase;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverBackedSelenium;
 
-import com.thoughtworks.selenium.Selenium;
+import com.google.inject.Provider;
 
-public class ImportITest extends TestCase {
+public class ImportITest extends SeleniumITest {
 
-	@SuppressWarnings("unused")
-	final private WebDriver driver;
-	final private Selenium selenium;
-	@SuppressWarnings("unused")
-	final private String baseURL;
-
-	public ImportITest(WebDriver driver, String baseURL) {
-		this.driver = driver;
-		this.baseURL = baseURL;
-		selenium = new WebDriverBackedSelenium(driver, baseURL);
+	public ImportITest(Provider<WebDriver> provider, String baseURL) {
+		super(provider, baseURL);
 	}
-
-	@Override
-	protected void tearDown() throws Exception {
-		selenium.stop();
-		super.tearDown();
-	}
-
-	private void sleep(long millis) {
-		try {
-			Thread.sleep(millis);
-		} catch (Exception e) {
-		}
+	
+	public ImportITest() {
 	}
 	
 	@Override
@@ -39,7 +18,7 @@ public class ImportITest extends TestCase {
 		testImportTags();
 	}
 
-	public void testAdminI() throws Exception {
+	public void loginDevAppServer() throws Exception {
 		selenium.open("/Admin.html");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("isAdmin");
@@ -48,31 +27,79 @@ public class ImportITest extends TestCase {
 	}
 
 	public void testImportTags() throws Exception {
-		selenium.open("/Admin.html");
-		selenium.waitForPageToLoad("30000");
-		selenium.click("isAdmin");
-		selenium.click("action");
-		selenium.waitForPageToLoad("30000");
+		loginDevAppServer();
+		for (int second = 0;; second++) {
+			if (second >= 5)
+				fail("timeout");
+			try {
+				if (selenium.isTextPresent("ServerPhotoCount batch finished."))
+					break;
+			} catch (Exception e) {
+			}
+			Thread.sleep(1000);
+		}
 		selenium.click("//tr[3]/td[2]/button");
-		selenium.waitForPageToLoad("30000");
-		sleep(2000);
+		for (int second = 0;; second++) {
+			if (second >= 5)
+				fail("timeout");
+			try {
+				if (selenium.isTextPresent("Import tags was scheduled for the peer"))
+					break;
+			} catch (Exception e) {
+			}
+			Thread.sleep(1000);
+		}
 		selenium.click("//tr[4]/td[2]/button");
-		selenium.waitForPageToLoad("30000");
-		sleep(5000);
-		selenium.open("/Admin.html");
-		selenium.waitForPageToLoad("30000");
-		sleep(3000);
-
-		selenium.open("/Admin.html");
-		selenium.waitForPageToLoad("30000");
-		sleep(3000);
-
+		for (int second = 0;; second++) {
+			if (second >= 5)
+				fail("timeout");
+			try {
+				if (selenium.isTextPresent("Update photo metadata was scheduled for the peer"))
+					break;
+			} catch (Exception e) {
+			}
+			Thread.sleep(1000);
+		}
 		selenium.click("//tr[4]/td[2]/button");
-		selenium.waitForPageToLoad("30000");
-		sleep(15000);
+		for (int second = 0;; second++) {
+			if (second >= 5)
+				fail("timeout");
+			try {
+				if (selenium.isTextPresent("Update photo metadata was scheduled for the peer"))
+					break;
+			} catch (Exception e) {
+			}
+			Thread.sleep(1000);
+		}
 		selenium.open("/Admin.html");
-		selenium.waitForPageToLoad("30000");
-		sleep(3000);
+		for (int second = 0;; second++) {
+			if (second >= 5)
+				fail("timeout");
+			try {
+				if (selenium.isTextPresent("ServerPhotoCount batch finished."))
+					break;
+			} catch (Exception e) {
+			}
+			Thread.sleep(1000);
+		}
+		selenium.click("//tr[4]/td[2]/button");
+		for (int second = 0;; second++) {
+			if (second >= 5)
+				fail("timeout");
+			try {
+				if (selenium.isTextPresent("Update photo metadata was scheduled for the peer"))
+					break;
+			} catch (Exception e) {
+			}
+			Thread.sleep(1000);
+		}
+		Thread.sleep(10000);
+		selenium.open("/Admin.html");
+		for (int second = 0;; second++) {
+			if (second >= 5) fail("timeout");
+			try { if ("33".equals(selenium.getText("//tr[2]/td[2]"))) break; } catch (Exception e) {}
+			Thread.sleep(1000);
+		}
 		selenium.open("/TestHelper.html");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("link=Import tag 1");
@@ -91,25 +118,6 @@ public class ImportITest extends TestCase {
 		selenium.waitForPageToLoad("30000");
 		selenium.open("/Admin.html");
 		selenium.waitForPageToLoad("30000");
-		sleep(15000);
-		selenium.open("/");
-		selenium.waitForPageToLoad("30000");
-		selenium.click("//td[3]/div");
-		sleep(900);
-		selenium.click("//td[3]/div");
-		sleep(900);
-		selenium.click("//div[1]/div[2]/div[1]/div/div[2]");
-		selenium.waitForPageToLoad("30000");
-
-		selenium.click("//td[3]/div");
-		selenium.waitForPageToLoad("30000");
-		sleep(900);
-		selenium.click("//td[5]/div");
-		sleep(100);
-		assertTrue(selenium.isTextPresent("4 seconds."));
-		selenium.open("/#ImageViewingPlace:1:27");
-		selenium.waitForPageToLoad("30000");
-		selenium.click("//td[1]/div/table/tbody/tr/td[1]/div");
-		selenium.waitForPageToLoad("30000");
+		Thread.sleep(15000);
 	}
 }

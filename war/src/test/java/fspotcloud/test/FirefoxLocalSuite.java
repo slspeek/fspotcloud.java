@@ -2,16 +2,21 @@ package fspotcloud.test;
 
 import junit.framework.TestSuite;
 
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebDriver;
 
-public class FirefoxLocalSuite extends TestSuite {
+import com.google.inject.Provider;
+
+public class FirefoxLocalSuite extends WebDriverSuite {
+
 	public static TestSuite suite() {
-		TestSuite suite = new FirefoxLocalSuite();
-		String local =  "http://localhost:8080";
-		//suite.addTest(new SimpleITest(new FirefoxDriver(),local));
-		suite.addTest(new ImportITest(new FirefoxDriver(),local));
-		suite.addTest(new SimpleITest(new FirefoxDriver(),local));
-		suite.addTest(new CloudcoverITest(new FirefoxDriver(), local));
+		WebDriverSuite suite = new FirefoxLocalSuite();
+		String local = WebDriverSuite.local;
+		Provider<WebDriver> provider = WebDriverSuite.factory.firefoxProvider();
+		//suite.addTest(new ImportITest(provider, local));
+		suite.addTest(new ImportITest(provider, local));
+		suite.addTest(new SimpleITest(provider, local));
+		suite.addTest(new CloudcoverITest(provider, local));
+		suite.addTest(new MapperITest(provider, local));
 		return suite;
 	}
 }

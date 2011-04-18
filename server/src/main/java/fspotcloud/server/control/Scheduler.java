@@ -9,7 +9,7 @@ import fspotcloud.server.model.api.Command;
 import fspotcloud.server.model.api.Commands;
 
 public class Scheduler {
-	
+
 	private static final Logger log = Logger.getLogger(Scheduler.class
 			.getName());
 
@@ -34,7 +34,6 @@ public class Scheduler {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private boolean hasDuplicates(String cmd, List<String> args) {
 		return commandManager.allReadyExists(cmd, args);
 	}
