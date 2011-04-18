@@ -1,50 +1,48 @@
 package fspotcloud.test;
 
-import junit.framework.TestCase;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverBackedSelenium;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import com.thoughtworks.selenium.Selenium;
+import com.google.inject.Provider;
 
-public class CloudcoverITest extends TestCase {
+public class CloudcoverITest extends SeleniumITest {
 
-	@SuppressWarnings("unused")
-	final private WebDriver driver;
-	final private Selenium selenium;
-	@SuppressWarnings("unused")
-	final private String baseURL;
-
-	public CloudcoverITest(WebDriver driver, String baseURL) {
-		this.driver = driver;
-		this.baseURL = baseURL;
-		selenium = new WebDriverBackedSelenium(driver, baseURL);
+	
+	public CloudcoverITest(Provider<WebDriver> provider, String baseURL) {
+		super(provider, baseURL);
 	}
-
+	
 	public CloudcoverITest() {
-		this(new FirefoxDriver(), "http://localhost:8080");
 	}
-	
-	@Override
-	protected void tearDown() throws Exception {
-		selenium.stop();
-		super.tearDown();
-	}
-	
+
 	@Override
 	protected void runTest() throws Throwable {
 		testRunModel();
 		testRunServer();
 	}
 
+	public void testRunServer() throws InterruptedException {
+		selenium.open("/cloudcover.html");
+		selenium.waitForPageToLoad("30000");
+		selenium.select("//div[@id='run-status']/div/table[1]/tbody/tr/td/table/tbody/tr/td[2]/select", "label=Model");
+		selenium.click("//button[@type='button']");
+		selenium.waitForPageToLoad("30000");
+		for (int second = 0;; second++) {
+			if (second >= 60) fail("timeout");
+			try { if (selenium.isTextPresent("FINISHED")) break; } catch (Exception e) {}
+			Thread.sleep(1000);
+		}
+	}
+
 	public void testRunModel() throws Exception {
 		selenium.open("/cloudcover.html");
 		selenium.waitForPageToLoad("30000");
-	}
-
-	public void testRunServer() throws Exception {
-		selenium.open("/cloudcover.html");
+		selenium.select("//div[@id='run-status']/div/table[1]/tbody/tr/td/table/tbody/tr/td[2]/select", "label=Server");
+		selenium.click("//button[@type='button']");
 		selenium.waitForPageToLoad("30000");
+		for (int second = 0;; second++) {
+			if (second >= 60) fail("timeout");
+			try { if (selenium.isTextPresent("FINISHED")) break; } catch (Exception e) {}
+			Thread.sleep(1000);
+		}
 	}
 }

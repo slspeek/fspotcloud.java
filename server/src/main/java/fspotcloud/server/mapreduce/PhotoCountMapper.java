@@ -16,15 +16,13 @@
 
 package fspotcloud.server.mapreduce;
 
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.tools.mapreduce.AppEngineMapper;
+import java.util.logging.Logger;
 
 import org.apache.hadoop.io.NullWritable;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.logging.Logger;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.tools.mapreduce.AppEngineMapper;
 
 /**
  * My first mapper: The Photo counter

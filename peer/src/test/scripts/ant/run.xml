@@ -1,0 +1,16 @@
+<project name="Peer Test" default="run-local" basedir="../../../..">
+	<description>
+	Peer test run details encapsulator
+    </description>
+
+	<target name="run-local">
+		<java jar="${basedir}/target/peer-${project.version}-jar-with-dependencies.jar" fork="yes" >
+			<sysproperty key="db" value="${basedir}/src/test/resources/photos.db" />
+			<sysproperty key="endpoint" value="localhost:8080" />
+			<sysproperty key="photo.dir.original" value="file:///home/fspotcloud/Photos" />
+			<sysproperty key="photo.dir.override" value="file://${basedir}/../peer/src/test/resources/Photos" />
+		</java>
+	</target>
+
+</project>
+

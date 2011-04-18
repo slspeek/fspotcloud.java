@@ -4,11 +4,10 @@ import junit.framework.TestSuite;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class ChromeLocalSuite extends TestSuite {
+public class ChromeLocalSuite extends WebDriverSuite {
 	public static TestSuite suite() {
-		TestSuite suite = new ChromeLocalSuite();
-		String local =  "http://localhost:8080";
-		suite.addTest(new SimpleITest(new ChromeDriver(),local));
+		WebDriverSuite suite = new ChromeLocalSuite();
+		suite.addTest(new SimpleITest(suite.factory.chromeProvider(),suite.local));
 		return suite;
 	}
 }

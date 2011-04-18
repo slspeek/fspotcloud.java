@@ -1,37 +1,17 @@
 package fspotcloud.test;
 
-import junit.framework.TestCase;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverBackedSelenium;
 
-import com.thoughtworks.selenium.Selenium;
+import com.google.inject.Provider;
 
-public class NavigationITest extends TestCase {
+public class NavigationITest extends SeleniumITest {
 
-	@SuppressWarnings("unused")
-	final private WebDriver driver;
-	final private Selenium selenium;
-	@SuppressWarnings("unused")
-	final private String baseURL;
-
-	public NavigationITest(WebDriver driver, String baseURL) {
-		this.driver = driver;
-		this.baseURL = baseURL;
-		selenium = new WebDriverBackedSelenium(driver, baseURL);
+	public NavigationITest(Provider<WebDriver> provider, String baseURL) {
+		super(provider, baseURL);
 	}
-
-	@Override
-	protected void tearDown() throws Exception {
-		selenium.stop();
-		super.tearDown();
-	}
-
-	private void sleep(long millis) {
-		try {
-			Thread.sleep(millis);
-		} catch (Exception e) {
-		}
+	
+	public NavigationITest() {
+		super();
 	}
 	
 	@Override
@@ -43,17 +23,17 @@ public class NavigationITest extends TestCase {
 		selenium.open("/");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("//td[3]/div");
-		sleep(900);
+		Thread.sleep(900);
 		selenium.click("//td[3]/div");
-		sleep(900);
+		Thread.sleep(900);
 		selenium.click("//div[1]/div[2]/div[1]/div/div[2]");
 		selenium.waitForPageToLoad("30000");
 
 		selenium.click("//td[3]/div");
 		selenium.waitForPageToLoad("30000");
-		sleep(900);
+		Thread.sleep(900);
 		selenium.click("//td[5]/div");
-		sleep(100);
+		Thread.sleep(100);
 		assertTrue(selenium.isTextPresent("4 seconds."));
 		selenium.open("/#ImageViewingPlace:1:27");
 		selenium.waitForPageToLoad("30000");
