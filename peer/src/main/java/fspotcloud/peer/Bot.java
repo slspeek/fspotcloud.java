@@ -48,7 +48,7 @@ public class Bot {
 				}
 
 			} else {
-				System.out.println("No action at this time, sleeping for 10s");
+				System.out.println("No action at this time, sleeping for " + (pause/1000) + "s");
 				pauser.pause(pause);
 			}
 
