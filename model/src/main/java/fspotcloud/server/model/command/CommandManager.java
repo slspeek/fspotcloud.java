@@ -7,7 +7,6 @@ import javax.jdo.Query;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import com.google.inject.name.Named;
 
 import fspotcloud.server.model.api.Command;
 import fspotcloud.server.model.api.Commands;
@@ -17,19 +16,22 @@ public class CommandManager implements Commands {
 	private final Provider<PersistenceManager> pmProvider;
 
 	@Inject
-	public CommandManager(Provider<PersistenceManager> pmProvider,
-			@Named("maxDelete") int maxDelete) {
+	public CommandManager(Provider<PersistenceManager> pmProvider) {
 		this.pmProvider = pmProvider;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fspotcloud.server.model.command.Commands#create()
 	 */
 	public Command create() {
 		return new CommandDO();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fspotcloud.server.model.command.Commands#popOldestCommand()
 	 */
 	@SuppressWarnings("unchecked")
@@ -55,27 +57,34 @@ public class CommandManager implements Commands {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.command.Commands#allReadyExists(java.lang.String, java.util.List)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fspotcloud.server.model.command.Commands#allReadyExists(java.lang.String,
+	 * java.util.List)
 	 */
 	@SuppressWarnings("unchecked")
 	public boolean allReadyExists(String cmd, List<String> args) {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			Query query = pm.newQuery(CommandDO.class);
-			query.setFilter("cmd == cmdParam");
-			query.setFilter("argsString == argsStringParam");
+			query.setFilter("cmd == cmdParam && argsString == argsStringParam");
 			query.declareParameters("String cmdParam, String argsStringParam");
-			List<CommandDO> rs = (List<CommandDO>) query.execute(cmd, String
-					.valueOf(args));
+			List<CommandDO> rs = (List<CommandDO>) query.execute(cmd,
+					String.valueOf(args));
 			return rs.size() > 0;
 		} finally {
 			pm.close();
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.command.Commands#save(fspotcloud.server.model.command.Command)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fspotcloud.server.model.command.Commands#save(fspotcloud.server.model
+	 * .command.Command)
 	 */
 	public void save(Command c) {
 		PersistenceManager pm = pmProvider.get();

@@ -1,13 +1,13 @@
 package fspotcloud.server.admin;
 
-import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
+import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withUrl;
 
 import java.util.Collections;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 
-import com.google.appengine.api.labs.taskqueue.Queue;
-import com.google.appengine.api.labs.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -49,7 +49,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		long batchId = batchManager.save(batch);
 
 		Queue queue = QueueFactory.getDefaultQueue();
-		queue.add(url("/admin/task/photoDelete").param("deleteCount", "0")
+		queue.add(withUrl("/admin/task/photoDelete").param("deleteCount", "0")
 				.param("batchId", String.valueOf(batchId)));
 		return batchId;
 	}
@@ -81,7 +81,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		Batch batch = batchManager.create("getServerPhotoCount");
 		long batchId = batchManager.save(batch);
 		Queue queue = QueueFactory.getDefaultQueue();
-		queue.add(url("/admin/task/photoCount").param("minDate", "0").param(
+		queue.add(withUrl("/admin/task/photoCount").param("minDate", "0").param(
 				"count", "0").param("batchId", String.valueOf(batchId)));
 		return batchId;
 	}
@@ -105,7 +105,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		Tag tag = tagManager.getById(tagId);
 		tag.setCachedPhotoList(new TreeSet<PhotoInfo>());
 		Queue queue = QueueFactory.getDefaultQueue();
-		queue.add(url("/main/task/tagView").param("tagId", tagId).param(
+		queue.add(withUrl("/main/task/tagView").param("tagId", tagId).param(
 				"minDate", "0").param("batchId", String.valueOf(batchId)));
 		return batchId;
 	}
