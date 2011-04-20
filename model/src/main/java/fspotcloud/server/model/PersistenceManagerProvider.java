@@ -7,16 +7,16 @@ import javax.jdo.PersistenceManagerFactory;
 import com.google.inject.Provider;
 
 public class PersistenceManagerProvider implements Provider<PersistenceManager> {
-	
+
 	private static final PersistenceManagerFactory pmfInstance = JDOHelper
-	.getPersistenceManagerFactory("transactions-optional");
+			.getPersistenceManagerFactory("transactions-optional");
 
 	public PersistenceManagerProvider() {
-	
+
 	}
+
 	@Override
 	public PersistenceManager get() {
-		// TODO Auto-generated method stub
 		return pmfInstance.getPersistenceManager();
 	}
 

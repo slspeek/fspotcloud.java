@@ -60,17 +60,6 @@ public class ImportITest extends SeleniumITest {
 			}
 			Thread.sleep(1000);
 		}
-		selenium.click("//tr[4]/td[2]/button");
-		for (int second = 0;; second++) {
-			if (second >= 5)
-				fail("timeout");
-			try {
-				if (selenium.isTextPresent("Update photo metadata was scheduled for the peer"))
-					break;
-			} catch (Exception e) {
-			}
-			Thread.sleep(1000);
-		}
 		selenium.open("/Admin.html");
 		for (int second = 0;; second++) {
 			if (second >= 5)
@@ -82,18 +71,7 @@ public class ImportITest extends SeleniumITest {
 			}
 			Thread.sleep(1000);
 		}
-		selenium.click("//tr[4]/td[2]/button");
-		for (int second = 0;; second++) {
-			if (second >= 5)
-				fail("timeout");
-			try {
-				if (selenium.isTextPresent("Update photo metadata was scheduled for the peer"))
-					break;
-			} catch (Exception e) {
-			}
-			Thread.sleep(1000);
-		}
-		Thread.sleep(10000);
+		Thread.sleep(3000);
 		selenium.open("/Admin.html");
 		for (int second = 0;; second++) {
 			if (second >= 5) fail("timeout");
@@ -118,6 +96,6 @@ public class ImportITest extends SeleniumITest {
 		selenium.waitForPageToLoad("30000");
 		selenium.open("/Admin.html");
 		selenium.waitForPageToLoad("30000");
-		Thread.sleep(15000);
+		Thread.sleep(10000);
 	}
 }
