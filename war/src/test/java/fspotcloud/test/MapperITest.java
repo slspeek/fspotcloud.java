@@ -23,6 +23,7 @@ public class MapperITest extends SeleniumITest {
 		selenium.click("isAdmin");
 		selenium.click("action");
 		selenium.waitForPageToLoad("30000");
+    Thread.sleep(1000);
 		selenium.click("//input[@value='Run']");
 		for (int second = 0;; second++) {
 			if (second >= 60)
