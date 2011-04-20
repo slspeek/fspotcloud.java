@@ -28,6 +28,8 @@ public class MapperITest extends SeleniumITest {
 			if (second >= 60)
 				fail("timeout");
 			try {
+				selenium.open("/mapreduce/status");
+
 				if (selenium.isTextPresent("Cleanup"))
 					break;
 			} catch (Exception e) {
