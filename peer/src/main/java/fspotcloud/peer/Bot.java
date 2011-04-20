@@ -4,18 +4,21 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 public class Bot {
 
 	private BotWorker botWorker;
 	private Pauser pauser;
 	private CommandFetcher fetcher;
+	private int pause;
 	
 	@Inject
-	private Bot(BotWorker botWorker, CommandFetcher fetcher, Pauser pauser) {
+	private Bot(BotWorker botWorker, CommandFetcher fetcher, Pauser pauser, @Named("pause") int pause) {
 		this.botWorker = botWorker;
 		this.pauser = pauser;
 		this.fetcher = fetcher;
+		this.pause = pause;
 	}
 
 	public void serveForever() {
@@ -46,7 +49,7 @@ public class Bot {
 
 			} else {
 				System.out.println("No action at this time, sleeping for 10s");
-				pauser.pause(10000);
+				pauser.pause(pause);
 			}
 
 		}

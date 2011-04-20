@@ -26,7 +26,10 @@ public class BotModule extends AbstractModule {
 				"jdbc:sqlite:" + System.getProperty("db"));
 		bind(String.class).annotatedWith(Names.named("endpoint")).toInstance(
 				"http://" + System.getProperty("endpoint") + "/xmlrpc");
-		bind(Integer.class).annotatedWith(Names.named("stop port")).toInstance(new Integer(4444));
+		bind(Integer.class).annotatedWith(Names.named("stop port")).toInstance(
+				new Integer(4444));
+		bind(Integer.class).annotatedWith(Names.named("pause")).toInstance(
+				new Integer(System.getProperty("pause", "10000")));
 	}
 
 	@Provides
