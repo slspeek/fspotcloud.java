@@ -5,11 +5,17 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 import fspotcloud.shared.tag.TagNode;
 
 public class TreeBuilderTest extends TestCase {
 
+	public static TestSuite suite() {
+		return new TestSuite(TreeBuilderTest.class);
+	}
+
 	List<TagNode> nodes;
+
 	protected void setUp() throws Exception {
 		TagNode root = new TagNode("1", "0");
 		TagNode level1_a = new TagNode("2", "1");
@@ -25,7 +31,6 @@ public class TreeBuilderTest extends TestCase {
 		super.tearDown();
 	}
 
-	
 	public void testVerySimpleTree() {
 		TreeBuilder builder = new TreeBuilder(nodes);
 		List<TagNode> trees = builder.getRoots();
@@ -34,6 +39,7 @@ public class TreeBuilderTest extends TestCase {
 		List<TagNode> level_1s = root.getChildren();
 		assertEquals(2, level_1s.size());
 	}
+
 	public void testPublicTreeSimpleTree() {
 		TreeBuilder builder = new TreeBuilder(nodes);
 		List<TagNode> trees = builder.getPublicRoots();
@@ -42,5 +48,5 @@ public class TreeBuilderTest extends TestCase {
 		List<TagNode> level_1s = root.getChildren();
 		assertEquals(0, level_1s.size());
 	}
-	
+
 }

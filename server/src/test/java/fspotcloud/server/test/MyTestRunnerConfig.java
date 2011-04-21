@@ -11,7 +11,10 @@ import com.google.appengine.testing.cloudcover.spi.TestRun;
 import fspotcloud.server.control.ControllerTest;
 import fspotcloud.server.model.PersistenceManagerProviderTest;
 import fspotcloud.server.model.batch.BatchManagerTest;
+import fspotcloud.server.model.command.CommandManagerTest;
+import fspotcloud.server.model.peerdatabase.PeerDatabaseManagerTest;
 import fspotcloud.server.model.photo.PhotoManagerTest;
+import fspotcloud.server.model.tag.TreeBuilderTest;
 import fspotcloud.server.util.TaskSchedulerTest;
 
 public class MyTestRunnerConfig extends JUnit3Config {
@@ -24,6 +27,9 @@ public class MyTestRunnerConfig extends JUnit3Config {
 				suite.addTestSuite(PhotoManagerTest.class);
 				suite.addTestSuite(BatchManagerTest.class);
 				suite.addTestSuite(PersistenceManagerProviderTest.class);
+				suite.addTestSuite(CommandManagerTest.class);
+				suite.addTestSuite(PeerDatabaseManagerTest.class);
+				suite.addTestSuite(TreeBuilderTest.class);
 				return suite;
 			}
 		},
