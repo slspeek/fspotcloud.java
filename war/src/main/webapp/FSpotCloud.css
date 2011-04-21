@@ -9,7 +9,8 @@
 	padding: 10px;
 	border: medium;
 	border-color: black;
-	background-color: green;
+	background-color: silver;
+	color: white;
 	text-align: center;
 }
 
@@ -18,11 +19,12 @@
 }
 
 .fsc-tag-split-panel {
-	background-color: olive;
+	background-color: #38ACEC;
 }
 
 .fsc-tag-tree-container {
-	background-color: maroon;
+	color: white;
+	background-color: #38ACEC;
 }
 
 .fsc-tag-image-view-container {
@@ -31,11 +33,12 @@
 
 .fsc-tag-status-label {
 	text-align: center;
+	color: white;
 	background-color: aqua;
 }
 
 .fsc-image-view {
-	background-color: navy;
+	background-color: #357EC7;
 	
 }
 
@@ -44,11 +47,11 @@
 }
 
 .fsc-image-view-pager-container {
-	
+	padding: 20px;
 }
 
 .fsc-image-view-slideshow-container {
-	
+	padding: 20px;
 }
 
 .fsc-pager {
@@ -72,7 +75,7 @@
 }
 
 .fsc-slideshow {
-	
+	padding: 20px;
 }
 
 .fsc-slideshow-start {
