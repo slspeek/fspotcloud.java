@@ -4,7 +4,7 @@
 	<groupId>fspotcloud</groupId>
 	<artifactId>fspotcloud</artifactId>
 	<packaging>pom</packaging>
-	<version>0.40-3.2</version>
+	<version>0.40-3.3</version>
 	<name>F-Spot Cloud Java Edition</name>
 	<prerequisites>
 		<maven>3.0.0</maven>
@@ -16,12 +16,12 @@
 		<url>http://code.google.com/p/fspotcloud/source/list?repo=java</url>
 	</scm>
 	<licenses>
-  <license>
-    <name>GPL v3.0</name>
-    <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
-    <distribution>repo</distribution>
-  </license>
-</licenses>
+		<license>
+			<name>GPL v3.0</name>
+			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 	<developers>
 		<developer>
 			<id>slspeek</id>
@@ -74,6 +74,11 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
 					<version>2.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>findbugs-maven-plugin</artifactId>
+					<version>2.3.2</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -177,6 +182,11 @@
 					<additionalJOption>-J-Xmx1024m</additionalJOption>
 					<aggregate>true</aggregate>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.3.2</version>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
