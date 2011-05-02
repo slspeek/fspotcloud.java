@@ -10,8 +10,7 @@
 	<artifactId>client</artifactId>
 	<packaging>jar</packaging>
 	<name>GWT User interface and client logic</name>
-	<description>The general user interface and the admin console
-		interface.</description>
+	<description>The user interface and the admin console.</description>
 	<dependencies>
 		<dependency>
 			<groupId>fspotcloud</groupId>
