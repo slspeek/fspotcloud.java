@@ -4,16 +4,13 @@
 	<parent>
 		<groupId>fspotcloud</groupId>
 		<artifactId>fspotcloud</artifactId>
-		<version>0.40-3.3</version>
+		<version>0.40-3.5</version>
 	</parent>
 	<groupId>fspotcloud</groupId>
 	<artifactId>peer</artifactId>
+	<name>The Peer Bot</name>
+	<description>The bot that sends the requested photo data to the server.</description>
 	<packaging>jar</packaging>
-	<name>peer</name>
-	<url>http://maven.apache.org</url>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -40,7 +37,7 @@
 		<dependency>
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
-			<version>2.0</version>
+			<version>${guice.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jmock</groupId>
@@ -73,7 +70,7 @@
 				</configuration>
 			</plugin>
 			<plugin>
-					<artifactId>maven-assembly-plugin</artifactId>
+				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>

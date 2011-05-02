@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-3.3</version>
+		<version>0.40-3.5</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>war</artifactId>
@@ -79,6 +79,13 @@
 	</dependencies>
 	<build>
 		<defaultGoal>prepare-package war:exploded</defaultGoal>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+				<targetPath>../${project.build.finalName}</targetPath>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -111,6 +118,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
+
 				<executions>
 					<execution>
 						<id>unpack</id>
@@ -162,7 +170,13 @@
 				<configuration>
 					<webResources>
 						<resource>
-							<directory>${basedir}/target/dependency/</directory>
+							<directory>${project.build.directory}/filtered</directory>
+							<includes></includes>
+						</resource>
+					</webResources>
+					<webResources>
+						<resource>
+							<directory>${project.build.directory}/dependency/</directory>
 						</resource>
 					</webResources>
 					<webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
@@ -193,6 +207,7 @@
 									<sysproperty key="db"
 										value="${basedir}/../peer/src/test/resources/photos.db" />
 									<sysproperty key="endpoint" value="localhost:8080" />
+									<sysproperty key="bot.secret" value="${bot.secret}" />
 									<sysproperty key="pause" value="2000" />
 									<sysproperty key="photo.dir.original" value="file:///home/fspotcloud/Photos" />
 									<sysproperty key="photo.dir.override"

@@ -22,26 +22,11 @@ public class GuiceXmlRpcServlet extends XmlRpcServlet {
 	@Inject
 	private GuiceRequestProcessorFactoryFactory guiceFactoryFactory;
 
-	
-	/* (non-Javadoc)
-	 * @see org.apache.xmlrpc.webserver.XmlRpcServlet#init(javax.servlet.ServletConfig)
-	 */
 	@Override
 	public void init(ServletConfig pConfig) throws ServletException {
 		log.info("Init called");
 		setRequestProcessorFactoryFactory(guiceFactoryFactory);
 		super.init(pConfig);
 	}
-
-
-//	@Override
-//	protected XmlRpcHandlerMapping newXmlRpcHandlerMapping()
-//			throws XmlRpcException {
-//		log.info("Called");
-//		PropertyHandlerMapping phm = new PropertyHandlerMapping();
-//		phm.addHandler("Controller", Controller.class);
-//		phm.setRequestProcessorFactoryFactory(guiceFactoryFactory);
-//		return phm;
-//	}
 
 }
