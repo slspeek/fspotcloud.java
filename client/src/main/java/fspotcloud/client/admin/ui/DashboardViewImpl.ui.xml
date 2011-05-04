@@ -4,6 +4,18 @@
 	<ui:style>
 		
 	</ui:style>
-	<g:HTMLPanel>
-	</g:HTMLPanel>
+	<g:DockLayoutPanel unit='EM'>
+		<g:north size='2'>
+			<g:HTML>Header</g:HTML>
+		</g:north>
+		<g:east size="5">
+		<g:HTML>Tree</g:HTML>
+		</g:east>
+		<g:south size='2'>
+			<g:HTML>Footer</g:HTML>
+		</g:south>
+		<g:center>
+			<g:HTML>Details</g:HTML>
+		</g:center>
+	</g:DockLayoutPanel>
 </ui:UiBinder> 

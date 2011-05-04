@@ -49,8 +49,8 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 		pagerViewPanel.ensureDebugId("fsc");
 		slideshowViewPanel.addStyleName("fsc-image-view-slideshow-container");
 		slideshowViewPanel.ensureDebugId("fsc");
-		int width = Window.getClientWidth();
-		int height = Window.getClientHeight();
+		int width = (int)(Window.getClientWidth() * 0.7);
+		int height = (int)(Window.getClientHeight() * 0.7);
 		image.setMaxSize(width, height);
 	}
 	

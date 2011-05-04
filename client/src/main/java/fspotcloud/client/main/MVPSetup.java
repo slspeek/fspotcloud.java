@@ -39,9 +39,7 @@ public class MVPSetup {
 	}
 
 	public void setup() {
-		activityMapper.init();
 		keyboardHandler.setup();
-		
 		ActivityManager activityManager = new ActivityManager(activityMapper,
 				eventBus);
 		activityManager.setDisplay(appWidget);
