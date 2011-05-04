@@ -1,6 +1,6 @@
 package fspotcloud.server.control.task;
 
-import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
+import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withUrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +12,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 
-import com.google.appengine.api.labs.taskqueue.Queue;
-import com.google.appengine.api.labs.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -23,8 +23,9 @@ import fspotcloud.server.control.Scheduler;
 @Singleton
 public class PhotoDataTaskServlet extends HttpServlet {
 
-	@Inject private Scheduler scheduler;
-	
+	@Inject
+	private Scheduler scheduler;
+
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
@@ -43,7 +44,7 @@ public class PhotoDataTaskServlet extends HttpServlet {
 			int nextStart = start + maxTicksSquare;
 			int nextCount = count - maxTicksSquare;
 			Queue queue = QueueFactory.getDefaultQueue();
-			queue.add(url("/control/task/photoData").param("offset",
+			queue.add(withUrl("/control/task/photoData").param("offset",
 					String.valueOf(nextStart)).param("limit",
 					String.valueOf(nextCount)));
 			countWeWillDo = maxTicks;

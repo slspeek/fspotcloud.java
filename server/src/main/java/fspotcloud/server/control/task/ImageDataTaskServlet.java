@@ -1,6 +1,6 @@
 package fspotcloud.server.control.task;
 
-import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
+import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withUrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,8 +13,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 
-import com.google.appengine.api.labs.taskqueue.Queue;
-import com.google.appengine.api.labs.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
@@ -22,7 +22,6 @@ import com.google.inject.name.Named;
 import fspotcloud.server.control.Scheduler;
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
-import fspotcloud.server.model.photo.PhotoDO;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -30,7 +29,8 @@ public class ImageDataTaskServlet extends HttpServlet {
 
 	@Inject
 	private Scheduler scheduler;
-	@Inject @Named("maxTicks")
+	@Inject
+	@Named("maxTicks")
 	private Integer maxTicks;
 	@Inject
 	private Photos photoManager;
@@ -65,9 +65,10 @@ public class ImageDataTaskServlet extends HttpServlet {
 				// Schedule the next task
 				int nextCount = count - maxTicks;
 				Queue queue = QueueFactory.getDefaultQueue();
-				queue.add(url("/control/task/imageData").param("minDate",
-						String.valueOf(newMinDateLong)).param("maxCount",
-						String.valueOf(nextCount)).param("tagId", tagId));
+				queue.add(withUrl("/control/task/imageData")
+						.param("minDate", String.valueOf(newMinDateLong))
+						.param("maxCount", String.valueOf(nextCount))
+						.param("tagId", tagId));
 			}
 		}
 		PrintWriter out = response.getWriter();

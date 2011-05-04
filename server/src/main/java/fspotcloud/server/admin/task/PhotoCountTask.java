@@ -1,14 +1,9 @@
 package fspotcloud.server.admin.task;
 
-import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
-
-import com.google.appengine.api.labs.taskqueue.Queue;
-import com.google.appengine.api.labs.taskqueue.QueueFactory;
 
 import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Photo;
@@ -16,6 +11,7 @@ import fspotcloud.server.model.api.Photos;
 
 public class PhotoCountTask implements Callable<Integer>, Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private final PhotoCountTaskFactory hactory;
 	private final Photos photoManager;
 	private final Batch batch;
@@ -54,8 +50,6 @@ public class PhotoCountTask implements Callable<Integer>, Serializable {
 			batch.stop();
 			//batchManager.save(batch);
 		}
-		
-		
 		return newCount;
 	}
 

@@ -1,6 +1,6 @@
 package fspotcloud.server.admin.task;
 
-import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
+import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withUrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +12,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 
-import com.google.appengine.api.labs.taskqueue.Queue;
-import com.google.appengine.api.labs.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -30,14 +30,14 @@ public class PhotoDeleteTaskServlet extends HttpServlet {
 
 	private static final Logger log = Logger
 			.getLogger(PhotoDeleteTaskServlet.class.getName());
-	
+
 	@Inject
 	private Batches batchManager;
 	@Inject
 	private Photos photoManager;
 	@Inject
 	private PeerDatabases defaultPeer;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
@@ -46,25 +46,24 @@ public class PhotoDeleteTaskServlet extends HttpServlet {
 		long batchId = Long.valueOf(batchIdParam);
 		String deleteCountParam = request.getParameter("deleteCount");
 		int deleteCount = Integer.valueOf(deleteCountParam);
-		
+
 		Batch batch = batchManager.getById(batchId);
 		batch.incrementInterationCount();
-		
+
 		List<Photo> result = photoManager.getOldestPhotosChunk();
 		int resultCount = result.size();
 		photoManager.deleteAll(result);
-		
-		
+
 		int newDeleteCount = deleteCount + resultCount;
 		batch.setResult(String.valueOf(newDeleteCount));
 		batchManager.save(batch);
 
 		result = photoManager.getOldestPhotosChunk();
 		if (!result.isEmpty()) {
-			//hasPhotos left
+			// hasPhotos left
 			log.info("We reschedule a task " + batch.getKey());
 			Queue queue = QueueFactory.getDefaultQueue();
-			queue.add(url("/admin/task/photoDelete").param("deleteCount",
+			queue.add(withUrl("/admin/task/photoDelete").param("deleteCount",
 					String.valueOf(newDeleteCount)).param("batchId",
 					String.valueOf(batchId)));
 			log.info("We rescheduled");
