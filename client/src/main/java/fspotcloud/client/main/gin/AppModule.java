@@ -4,6 +4,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.inject.Singleton;
 
 import fspotcloud.client.data.DataManager;
@@ -16,6 +17,7 @@ import fspotcloud.client.main.ui.PagerViewImpl;
 import fspotcloud.client.main.ui.SlideshowTimer;
 import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
+import fspotcloud.client.main.ui.TreeViewImpl;
 import fspotcloud.client.view.ImagePresenterFactory;
 import fspotcloud.client.view.ImagePresenterFactoryImpl;
 import fspotcloud.client.view.ImageView;
@@ -33,6 +35,9 @@ import fspotcloud.client.view.TagPresenterFactory;
 import fspotcloud.client.view.TagPresenterFactoryImpl;
 import fspotcloud.client.view.TagView;
 import fspotcloud.client.view.TimerInterface;
+import fspotcloud.client.view.TreePresenterImpl;
+import fspotcloud.client.view.TreeSelectionHandler;
+import fspotcloud.client.view.TreeView;
 import fspotcloud.client.view.action.KeyDispatcherProvider;
 import fspotcloud.client.view.action.ShortCutHandler;
 
@@ -62,5 +67,8 @@ public class AppModule extends AbstractGinModule {
 		bind(PagerPresenterFactory.class).to(PagerPresenterFactoryImpl.class);
 		bind(ImagePresenterFactory.class).to(ImagePresenterFactoryImpl.class);
 		bind(TagPresenterFactory.class).to(TagPresenterFactoryImpl.class);
+		bind(TreeView.TreePresenter.class).to(TreePresenterImpl.class).in(Singleton.class);
+		bind(SelectionChangeEvent.Handler.class).to(TreeSelectionHandler.class).in(Singleton.class);
+		bind(TreeView.class).to(TreeViewImpl.class).in(Singleton.class);
 	}
 }

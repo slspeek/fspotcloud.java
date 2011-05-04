@@ -6,14 +6,10 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
-
-import fspotcloud.client.view.ImageView.ImagePresenter;
-import fspotcloud.client.view.TagView.TagPresenter;
 
 public class MainWindowActivityMapper implements ActivityMapper {
 	private static final Logger log = Logger
-	.getLogger(MainWindowActivityMapper.class.getName());
+			.getLogger(MainWindowActivityMapper.class.getName());
 
 	final private ImagePresenterFactory imagePresenterFactory;
 	final private TagPresenterFactory tagPresenterFactory;
@@ -24,9 +20,6 @@ public class MainWindowActivityMapper implements ActivityMapper {
 		super();
 		this.tagPresenterFactory = tagPresenterFactory;
 		this.imagePresenterFactory = imagePresenterFactory;
-	}
-
-	public void init() {
 	}
 
 	@Override

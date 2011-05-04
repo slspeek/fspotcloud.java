@@ -1,6 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:v="urn:import:com.google.gwt.user.cellview.client" xmlns:my="urn:import:fspotcloud.client.main.ui">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:v="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:my="urn:import:fspotcloud.client.main.ui">
 	<ui:style>
 		.important {
 			font-weight: bold;
@@ -9,12 +10,15 @@
 	<g:HTMLPanel ui:field="mainPanel">
 		<g:Label ui:field="titleLabel" text="FSpotCloud Java Edition">
 		</g:Label>
-		<g:HorizontalSplitPanel height="700px"
-			splitPosition="30%" ui:field="horizontalSplitPanel">
-			<g:SimplePanel ui:field="tagTreeViewPanel" ></g:SimplePanel> 
-			<g:SimplePanel ui:field="imageViewPanel" ></g:SimplePanel> 
-		</g:HorizontalSplitPanel>
-		<g:FlowPanel ui:field="statusPanel" >
+		<g:SplitLayoutPanel height="700px" ui:field="horizontalSplitPanel">
+			<g:west size="500"> 
+				<my:TreeViewImpl ui:field="treeView"></my:TreeViewImpl>
+			</g:west>
+			<g:east size="900">
+				<g:SimplePanel  height="660px" ui:field="imageViewPanel"></g:SimplePanel>
+			</g:east>
+		</g:SplitLayoutPanel>
+		<g:FlowPanel ui:field="statusPanel">
 			<g:Label ui:field="statusLabel" text="Ready for more"></g:Label>
 		</g:FlowPanel>
 	</g:HTMLPanel>

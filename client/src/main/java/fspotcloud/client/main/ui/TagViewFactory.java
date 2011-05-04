@@ -9,19 +9,16 @@ import fspotcloud.client.view.TagView;
 public class TagViewFactory extends ViewFactory {
 
 	final private TagView tagView;
-	private final ImageViewActivityMapper imageMapper;
 
 	@Inject
 	public TagViewFactory(EventBus eventBus, TagView tagView,
 			ImageViewActivityMapper imageMapper) {
 		super(eventBus);
 		this.tagView = tagView;
-		this.imageMapper = imageMapper;
 		register(imageMapper, tagView.getImageViewContainer());
 	}
 
 	public TagView get() {
-		
 		return tagView;
 	}
 

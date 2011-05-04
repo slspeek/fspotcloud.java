@@ -17,9 +17,10 @@ public class TagEntryPoint implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-		log.info("views via factories");
+		log.info("tree view separate component");
 		try {
 			MVPSetup setup = injector.getMVPSetup();
+			log.info("gin fininshed the constuction of the application graph");
 			setup.setup();
 		} catch (Throwable e) {
 			log.log(Level.SEVERE, "Uncaught exception", e);
