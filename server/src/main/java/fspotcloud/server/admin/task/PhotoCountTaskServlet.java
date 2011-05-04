@@ -1,6 +1,6 @@
 package fspotcloud.server.admin.task;
 
-import static com.google.appengine.api.labs.taskqueue.TaskOptions.Builder.url;
+import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withUrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,8 +13,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 
-import com.google.appengine.api.labs.taskqueue.Queue;
-import com.google.appengine.api.labs.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
@@ -23,17 +23,18 @@ import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
-import fspotcloud.server.model.photo.PhotoDO;
 
 @SuppressWarnings("serial")
 @Singleton
 public class PhotoCountTaskServlet extends HttpServlet {
 
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger
 			.getLogger(PhotoCountTaskServlet.class.getName());
-	
-	@Inject @Named("maxCount")
-	private int STEP; 
+
+	@Inject
+	@Named("maxCount")
+	private int STEP;
 	@Inject
 	private Batches batchManager;
 	@Inject
@@ -52,8 +53,9 @@ public class PhotoCountTaskServlet extends HttpServlet {
 
 		Batch batch = batchManager.getById(batchId);
 		batch.incrementInterationCount();
-		
-		List<Photo> result = photoManager.getPhotosStartingAtDate(minDate, STEP);
+
+		List<Photo> result = photoManager
+				.getPhotosStartingAtDate(minDate, STEP);
 		int resultCount = result.size();
 		int newCount = count + resultCount;
 		batch.setResult(String.valueOf(newCount));
@@ -66,10 +68,10 @@ public class PhotoCountTaskServlet extends HttpServlet {
 			batch.setState(String.valueOf(newCount));
 			batchManager.save(batch);
 			Queue queue = QueueFactory.getDefaultQueue();
-			queue.add(url("/admin/task/photoCount").param("minDate",
-					String.valueOf(newMinDateLong)).param("count",
-					String.valueOf(newCount)).param("batchId",
-					String.valueOf(batchId)));
+			queue.add(withUrl("/admin/task/photoCount")
+					.param("minDate", String.valueOf(newMinDateLong))
+					.param("count", String.valueOf(newCount))
+					.param("batchId", String.valueOf(batchId)));
 
 		} else {
 			// We stop

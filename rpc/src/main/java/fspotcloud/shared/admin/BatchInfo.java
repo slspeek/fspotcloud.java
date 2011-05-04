@@ -1,7 +1,6 @@
 package fspotcloud.shared.admin;
 
 import java.util.Date;
-import java.util.List;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
