@@ -21,14 +21,14 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
 	final private TreeView treeView;
 	final private DataManager dataManager;
 	final private SingleSelectionModel<TagNode> selectionModel;
-	final private Handler treeSelectionHandler;
+	final private TreeSelectionHandler  treeSelectionHandler;
 
 	private BasePlace place;
 
 	@Inject
 	public TreePresenterImpl(TreeView treeView, DataManager dataManager,
 			SingleSelectionModel<TagNode> singleSelectionModel,
-			Handler treeSelectionHandler) {
+			TreeSelectionHandler treeSelectionHandler) {
 		this.treeView = treeView;
 		this.dataManager = dataManager;
 		this.selectionModel = singleSelectionModel;
@@ -36,14 +36,14 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
 	}
 
 	public void init() {
-		selectionModel.addSelectionChangeHandler(treeSelectionHandler);
+		treeSelectionHandler.setSelectionModel(selectionModel);
 		reloadTree();
 	}
 
 	private void setModel(List<TagNode> roots) {
 		TagTreeModel treeModel = new TagTreeModel(roots, selectionModel);
 		treeView.setTreeModel(treeModel);
-		// updatePlace();
+		updatePlace();
 	}
 
 	private void requestTagTreeData() {
@@ -80,16 +80,21 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
 
 	public void setPlace(BasePlace place) {
 		this.place = place;
+		updatePlace();
 	}
 
 	private void updatePlace() {
-		TagNode node = new TagNode();
-		String tagId = place.getTagId();
-		node.setId(tagId);
-		selectionModel.setSelected(node, true);
-		TreeNode root = treeView.getRootNode();
-		if (root != null) {
-			openSelectedTreeNode(root);
+		if (place != null) {
+			TagNode node = new TagNode();
+			String tagId = place.getTagId();
+			node.setId(tagId);
+			selectionModel.setSelected(node, true);
+			TreeNode root = treeView.getRootNode();
+			if (root != null) {
+				openSelectedTreeNode(root);
+			} else {
+				log.warning("Root node is null");
+			}
 		} else {
 			log.warning("Root node is null");
 		}
