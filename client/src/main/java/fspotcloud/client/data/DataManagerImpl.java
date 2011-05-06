@@ -81,7 +81,5 @@ public class DataManagerImpl implements DataManager {
 			});
 
 		}
-		//isCalling = false;
 	}
-
 }

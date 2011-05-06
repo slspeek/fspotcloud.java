@@ -37,36 +37,38 @@ public class TagServiceAsyncTestImpl implements TagServiceAsync {
 		root1.setCachedPhotoList(new PhotoInfoStore(photoList));
 		
 		TagNode cats = createNode("2", "Cats", 10);
-		pi1 = new PhotoInfo("4", "", new Date());
-		pi2 = new PhotoInfo("5", "", new Date());
-		pi3 = new PhotoInfo("6", "", new Date());
+		pi1 = new PhotoInfo("4", "", new Date(1));
+		pi2 = new PhotoInfo("5", "", new Date(2));
+		pi3 = new PhotoInfo("6", "", new Date(3));
 		photoList = ImmutableSortedSet.of(pi1, pi2, pi3);
 		cats.setCachedPhotoList(new PhotoInfoStore(photoList));
 		
 		TagNode root3 = createNode("3", "Languages", 10);
-		pi1 = new PhotoInfo("7", "", new Date());
-		pi2 = new PhotoInfo("8", "", new Date());
-		pi3 = new PhotoInfo("9", "", new Date());
-		photoList = ImmutableSortedSet.of(pi1, pi2, pi3);
+		pi1 = new PhotoInfo("7", "Latin", new Date(1));
+		pi2 = new PhotoInfo("8", "Greek", new Date(2));
+		pi3 = new PhotoInfo("9", "Lisp", new Date(3));
+		PhotoInfo pi4 = new PhotoInfo("9", "Python", new Date(4));
+		photoList = ImmutableSortedSet.of(pi1, pi2, pi3, pi4);
 		root3.setCachedPhotoList(new PhotoInfoStore(photoList));
 		
 		TagNode felix = createNode("4", "Felix", 2);
-		pi1 = new PhotoInfo("11", "", new Date());
-		pi2 = new PhotoInfo("12", "", new Date());
-		pi3 = new PhotoInfo("13", "", new Date());
+		pi1 = new PhotoInfo("11", "Snowie", new Date(1));
+		pi2 = new PhotoInfo("12", "Siepie", new Date(2));
+		pi3 = new PhotoInfo("13", "Pluk", new Date(3));
 		photoList = ImmutableSortedSet.of(pi1, pi2, pi3);
 		felix.setCachedPhotoList(new PhotoInfoStore(photoList));	
 		
 		TagNode woefje = createNode("5", "Woefje", 1);
-		pi1 = new PhotoInfo("21", "", new Date());
-		pi2 = new PhotoInfo("22", "", new Date());
-		pi3 = new PhotoInfo("23", "", new Date());
+		pi1 = new PhotoInfo("21", "", new Date(1));
+		pi2 = new PhotoInfo("22", "", new Date(2));
+		pi3 = new PhotoInfo("23", "", new Date(3));
 		photoList = ImmutableSortedSet.of(pi1, pi2, pi3);
 		woefje.setCachedPhotoList(new PhotoInfoStore(photoList));
 		
 		cats.addChild(felix);
 		cats.addChild(woefje);
 		tagTreeData = ImmutableList.of(root1, cats, root3);
+		System.out.println(felix.getCachedPhotoList());
 		return tagTreeData;
 	}
 	
