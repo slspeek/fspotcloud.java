@@ -10,6 +10,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.data.IndexingUtil;
 import fspotcloud.client.main.TagServiceAsyncTestImpl;
+import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;
 
 public class DataManagerImplTest extends TestCase {
@@ -40,9 +41,7 @@ public class DataManagerImplTest extends TestCase {
 	 
 	}
 	
-	private TagNode cats;
 	public void testCatsIs2() {
-		//final TagNode cats; 
 		dataManager.getTagNode("2", new AsyncCallback<TagNode>() {
 
 			@Override
@@ -52,12 +51,54 @@ public class DataManagerImplTest extends TestCase {
 			}
 
 			@Override
-			public void onSuccess(TagNode arg0) {
-				cats = arg0;
-				log.info(Thread.currentThread().getName());
+			public void onSuccess(TagNode cats) {
+				assertEquals("Cats", cats.getTagName());
+				
+				PhotoInfoStore store = cats.getCachedPhotoList();
+				assertEquals(2, store.lastIndex());
+				
 			}
 		});
-		assertEquals("Cats", cats.getTagName());
+		
 	}
+	
+	public void testFriendsIs1() {
+		dataManager.getTagNode("1", new AsyncCallback<TagNode>() {
+
+			@Override
+			public void onFailure(Throwable arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(TagNode friends) {
+				assertEquals("Friends", friends.getTagName());
+				
+				PhotoInfoStore store = friends.getCachedPhotoList();
+				assertEquals(2, store.lastIndex());
+				
+			}
+		});
+		
+	}
+	public void testLangauagesIs3() {
+		dataManager.getTagNode("3", new AsyncCallback<TagNode>() {
+
+			@Override
+			public void onFailure(Throwable arg0) {
+			}
+
+			@Override
+			public void onSuccess(TagNode friends) {
+				assertEquals("Languages", friends.getTagName());
+				PhotoInfoStore store = friends.getCachedPhotoList();
+				assertEquals(3, store.lastIndex());
+				
+			}
+		});
+		
+	}
+	
 
 }
