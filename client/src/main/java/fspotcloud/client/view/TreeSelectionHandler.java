@@ -31,12 +31,12 @@ public class TreeSelectionHandler implements Handler {
 		TagNode node = selectionModel.getSelectedObject();
 		if (node != null) {
 			log.info("Selection event: nodel != null");
-//			if (!node.getCachedPhotoList().isEmpty()) {
-//				log.info("Selection event: not empty");
-//				String firstPhotoId = node.getCachedPhotoList().get(0).getId();
-//				String tagId = node.getId();
-//				goToPhoto(tagId, firstPhotoId);
-//			}
+			if (!node.getCachedPhotoList().isEmpty()) {
+				log.info("Selection event: not empty");
+				String firstPhotoId = node.getCachedPhotoList().get(0).getId();
+				String tagId = node.getId();
+				goToPhoto(tagId, firstPhotoId);
+			}
 		}
 	}
 
