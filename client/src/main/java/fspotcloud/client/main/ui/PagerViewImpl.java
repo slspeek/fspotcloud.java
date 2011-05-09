@@ -79,11 +79,6 @@ public class PagerViewImpl extends Composite implements PagerView {
 	}
 
 	@Override
-	public void setPagerPresenter(PagerPresenter pagerPresenter) {
-		this.presenter = pagerPresenter;
-	}
-
-	@Override
 	public HasEnabled getFirst() {
 		return firstButton;
 	}
@@ -101,5 +96,11 @@ public class PagerViewImpl extends Composite implements PagerView {
 	@Override
 	public HasEnabled getPrevious() {
 		return prevButton;
+	}
+
+	@Override
+	public void setPresenter(PagerPresenter presenter) {
+		this.presenter = presenter;
+		
 	}
 }

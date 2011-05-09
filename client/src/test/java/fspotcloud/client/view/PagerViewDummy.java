@@ -38,7 +38,7 @@ public class PagerViewDummy implements PagerView {
 	}
 
 	@Override
-	public void setPagerPresenter(PagerPresenter pagerPresenter) {
+	public void setPresenter(PagerPresenter pagerPresenter) {
 	}
 
 	@Override

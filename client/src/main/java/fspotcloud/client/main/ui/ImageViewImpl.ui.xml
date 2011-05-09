@@ -6,11 +6,5 @@
 			font-weight: bold;
 		}
 	</ui:style>
-	<g:HTMLPanel ui:field="mainPanel">
-		<fit:FitImage ui:field="image"></fit:FitImage>
-		<g:HorizontalPanel>
-			<g:SimplePanel ui:field="pagerViewPanel"></g:SimplePanel>
-			<g:SimplePanel ui:field="slideshowViewPanel"></g:SimplePanel>
-		</g:HorizontalPanel>
-	</g:HTMLPanel>
+	<fit:FitImage ui:field="image"></fit:FitImage>
 </ui:UiBinder> 
