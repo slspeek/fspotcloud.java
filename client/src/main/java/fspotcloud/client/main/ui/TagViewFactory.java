@@ -3,7 +3,7 @@ package fspotcloud.client.main.ui;
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
-import fspotcloud.client.view.ImageViewActivityMapper;
+import fspotcloud.client.view.ImagePanelViewActivityMapper;
 import fspotcloud.client.view.TagView;
 
 public class TagViewFactory extends ViewFactory {
@@ -12,10 +12,10 @@ public class TagViewFactory extends ViewFactory {
 
 	@Inject
 	public TagViewFactory(EventBus eventBus, TagView tagView,
-			ImageViewActivityMapper imageMapper) {
+			ImagePanelViewActivityMapper imageMapper) {
 		super(eventBus);
 		this.tagView = tagView;
-		register(imageMapper, tagView.getImageViewContainer());
+		register(imageMapper, tagView.getImageViewPanelContainer());
 	}
 
 	public TagView get() {

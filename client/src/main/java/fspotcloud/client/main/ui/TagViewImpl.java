@@ -68,7 +68,7 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	}
 
 	@Override
-	public HasOneWidget getImageViewContainer() {
+	public HasOneWidget getImageViewPanelContainer() {
 		return imageViewPanel;
 	}
 }

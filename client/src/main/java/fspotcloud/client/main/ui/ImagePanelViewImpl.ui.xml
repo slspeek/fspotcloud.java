@@ -1,0 +1,16 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:my="urn:import:fspotcloud.client.main.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel ui:field="mainPanel">
+		<my:ImageViewImpl ></my:ImageViewImpl>
+		<g:HorizontalPanel>
+			<my:PagerViewImpl></my:PagerViewImpl>
+			<my:SlideshowViewImpl></my:SlideshowViewImpl>
+		</g:HorizontalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

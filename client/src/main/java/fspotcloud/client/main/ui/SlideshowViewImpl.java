@@ -77,7 +77,7 @@ public class SlideshowViewImpl extends Composite implements SlideshowView {
 	}
 
 	@Override
-	public void setSlideshowPresenter(SlideshowPresenter presenter) {
+	public void setPresenter(SlideshowPresenter presenter) {
 		this.presenter = presenter;
 	}
 }

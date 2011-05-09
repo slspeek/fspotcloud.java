@@ -11,15 +11,15 @@ public class MainWindowActivityMapper implements ActivityMapper {
 	private static final Logger log = Logger
 			.getLogger(MainWindowActivityMapper.class.getName());
 
-	final private ImagePresenterFactory imagePresenterFactory;
+	final private ImagePanelActivityFactory imagePanelActivityFactory;
 	final private TagPresenterFactory tagPresenterFactory;
 
 	@Inject
 	public MainWindowActivityMapper(TagPresenterFactory tagPresenterFactory,
-			ImagePresenterFactory imagePresenterFactory) {
+			ImagePanelActivityFactory imagePanelPresenterFactory) {
 		super();
 		this.tagPresenterFactory = tagPresenterFactory;
-		this.imagePresenterFactory = imagePresenterFactory;
+		this.imagePanelActivityFactory = imagePanelPresenterFactory;
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class MainWindowActivityMapper implements ActivityMapper {
 		Activity activity = null;
 		log.info("getActivity : " + place);
 		if (place instanceof ImageViewingPlace) {
-			activity = imagePresenterFactory.get((BasePlace) place);
+			activity = imagePanelActivityFactory.get((BasePlace) place);
 		} else if (place instanceof TagViewingPlace) {
 			activity = tagPresenterFactory.get((BasePlace) place);
 		} else {

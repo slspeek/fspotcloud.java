@@ -3,6 +3,7 @@ package fspotcloud.client.main;
 import java.util.logging.Logger;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.inject.Inject;
 
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.view.BasePlace;
@@ -20,6 +21,7 @@ public class NavigatorImpl implements Navigator {
 	final private PlaceGoTo placeGoTo;
 	final private DataManager dataManager;
 
+	@Inject
 	public NavigatorImpl(PlaceGoTo placeGoTo, DataManager dataManager) {
 		this.placeGoTo = placeGoTo;
 		this.dataManager = dataManager;
@@ -27,21 +29,20 @@ public class NavigatorImpl implements Navigator {
 
 	@Override
 	public void goEnd(final boolean first, final BasePlace place) {
-		dataManager.getTagNode(place.getTagId(),
-				new AsyncCallback<TagNode>() {
+		dataManager.getTagNode(place.getTagId(), new AsyncCallback<TagNode>() {
 
-					@Override
-					public void onFailure(Throwable caught) {
-						log.warning("getTagNode failed " + caught);
-					}
+			@Override
+			public void onFailure(Throwable caught) {
+				log.warning("getTagNode failed " + caught);
+			}
 
-					@Override
-					public void onSuccess(TagNode result) {
-						PhotoInfoStore store = result.getCachedPhotoList();
-						goEnd(first, place, store);
-					}
+			@Override
+			public void onSuccess(TagNode result) {
+				PhotoInfoStore store = result.getCachedPhotoList();
+				goEnd(first, place, store);
+			}
 
-				});
+		});
 	}
 
 	private void goEnd(boolean first, BasePlace place, PhotoInfoStore store) {
@@ -123,7 +124,8 @@ public class NavigatorImpl implements Navigator {
 		} else {
 			newPlace = new TagViewingPlace(tagId, photoId);
 		}
-		log.info("About to go to: " + this + " : " + newPlace + " from: " + place);
+		log.info("About to go to: " + this + " : " + newPlace + " from: "
+				+ place);
 		placeGoTo.goTo(newPlace);
 	}
 }
