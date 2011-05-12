@@ -17,7 +17,7 @@ public class TagEntryPoint implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-		log.info("tree view separate component");
+		log.info("New event handling, more keys coming");
 		try {
 			MVPSetup setup = injector.getMVPSetup();
 			log.info("gin fininshed the constuction of the application graph");

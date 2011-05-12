@@ -15,30 +15,40 @@ import com.google.inject.Inject;
 import fspotcloud.client.view.AppPlaceHistoryMapper;
 import fspotcloud.client.view.MainWindowActivityMapper;
 import fspotcloud.client.view.TagViewingPlace;
+import fspotcloud.client.view.action.NavigationEventHandler;
+import fspotcloud.client.view.action.SlideshowEventHandler;
 
 public class MVPSetup {
 
-	private static final Logger log = Logger.getLogger(MVPSetup.class
-			.getName());
+	private static final Logger log = Logger
+			.getLogger(MVPSetup.class.getName());
 	final private Place defaultPlace = new TagViewingPlace("1", "2");
 	final private SimplePanel appWidget = new SimplePanel();
 	final private EventBus eventBus;
 	final private MainWindowActivityMapper activityMapper;
 	final private PlaceController placeController;
 	final private GlobalShortcutController keyboardHandler;
+	final private SlideshowEventHandler slideshowEventHandler;
+	final private NavigationEventHandler navigationEventHandler;
 
 	@Inject
 	public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
 			PlaceController placeController,
-			GlobalShortcutController keyboardHandler) {
+			GlobalShortcutController keyboardHandler,
+			SlideshowEventHandler slideshowEventHandler,
+			NavigationEventHandler navigationEventHandler) {
 		this.activityMapper = activityMapper;
 		this.eventBus = eventBus;
 		this.placeController = placeController;
 		this.keyboardHandler = keyboardHandler;
+		this.slideshowEventHandler = slideshowEventHandler;
+		this.navigationEventHandler = navigationEventHandler;
 	}
 
 	public void setup() {
 		keyboardHandler.setup();
+		slideshowEventHandler.init();
+		navigationEventHandler.init();
 		ActivityManager activityManager = new ActivityManager(activityMapper,
 				eventBus);
 		activityManager.setDisplay(appWidget);
