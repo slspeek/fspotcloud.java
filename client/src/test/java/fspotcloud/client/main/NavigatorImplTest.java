@@ -10,6 +10,7 @@ import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.data.IndexingUtil;
 import fspotcloud.client.view.BasePlace;
 import fspotcloud.client.view.PlaceGoTo;
+import fspotcloud.client.view.PlaceWhere;
 
 public class NavigatorImplTest extends TestCase {
 
@@ -33,6 +34,10 @@ public class NavigatorImplTest extends TestCase {
 		return new NavigatorImpl(null, goTo, dataManager);
 	}
 	
+	public Navigator get(PlaceWhere where, PlaceGoTo goTo) {
+		return new NavigatorImpl(where, goTo, dataManager);
+	}
+	
 	public void testGoLast() {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		context.checking(new Expectations() {
@@ -46,6 +51,20 @@ public class NavigatorImplTest extends TestCase {
 		context.assertIsSatisfied();
 	}
 	
+	public void testGoLastWithoutPlace() {
+		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
+		final PlaceWhere where = context.mock(PlaceWhere.class);
+		context.checking(new Expectations() {
+			{
+				oneOf(where).where(); will(returnValue(daniel));
+				oneOf(goTo).goTo(with(jan));
+			}
+		});
+		navigator = get(where, goTo);
+		//'false' means towards the end
+		navigator.goEnd(false);
+		context.assertIsSatisfied();
+	}
 	public void testGoFirst() {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		context.checking(new Expectations() {

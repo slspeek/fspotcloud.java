@@ -45,13 +45,15 @@ public class PagerViewImpl extends Composite implements PagerView {
 		//log.info("Constructing PagerView");
 		initWidget(uiBinder.createAndBindUi(this));
 		mainPanel.addStyleName("fsc-pager");
-		nextButton.setAccessKey('n');
+		mainPanel.ensureDebugId("pager-main-panel");
 		nextButton.addStyleName("fsc-pager-next");
-		lastButton.setAccessKey('l');
+		nextButton.ensureDebugId("pager-next-button");
 		lastButton.addStyleName("fsc-pager-last");
-		firstButton.setAccessKey('0');
+		lastButton.ensureDebugId("pager-end-button");
 		firstButton.addStyleName("fsc-pager-first");
+		firstButton.ensureDebugId("pager-first-button");
 		prevButton.addStyleName("fsc-pager-previous");
+		prevButton.addStyleName("pager-previous-button");
 	}
 
 	@UiHandler("firstButton")

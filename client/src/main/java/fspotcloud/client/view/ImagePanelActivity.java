@@ -7,32 +7,28 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 import fspotcloud.client.main.Navigator;
+import fspotcloud.client.main.Slideshow;
 import fspotcloud.client.view.ImagePanelView.ImagePanelPresenter;
 import fspotcloud.client.view.ImageView.ImagePresenter;
-import fspotcloud.client.view.PagerView.PagerPresenter;
 
 public class ImagePanelActivity extends AbstractActivity implements
 		ImagePanelPresenter {
 	private static final Logger log = Logger.getLogger(ImagePanelActivity.class
 			.getName());
 	final private ImagePanelView imagePanelView;
-	final private BasePlace place;
-	final private PagerPresenter pagerPresenter;
 	final private ImagePresenter imagePresenter;
-	final private EventBus eventBus;
 	final private SlideShowPresenterImpl slideshowPresenter;
+	final private PagerPresenterImpl pagerPresenter;
 
 	public ImagePanelActivity(BasePlace place, ImagePanelView imagePanelView,
-			EventBus eventBus, Navigator navigator) {
+			Navigator navigator, Slideshow slideshow) {
 		this.imagePanelView = imagePanelView;
-		this.place = place;
-		this.eventBus = eventBus;
 		this.pagerPresenter = new PagerPresenterImpl(place,
 				imagePanelView.getPagerView(), navigator);
 		this.imagePresenter = new ImagePresenterImpl(place,
 				imagePanelView.getImageView());
 		this.slideshowPresenter = new SlideShowPresenterImpl(
-				imagePanelView.getSlideshowView(), eventBus);
+				imagePanelView.getSlideshowView(), slideshow);
 	}
 
 	@Override
@@ -44,7 +40,6 @@ public class ImagePanelActivity extends AbstractActivity implements
 	public void init() {
 		log.info("init");
 		imagePresenter.init();
-
+		slideshowPresenter.init();
 	}
-
 }
