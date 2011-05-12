@@ -103,20 +103,20 @@ public class Data {
 		String url = null;
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
-		String query = "SELECT default_version_id, uri "
+		String query = "SELECT default_version_id, base_uri, filename "
 				+ "FROM photos WHERE id = " + photoId;
 		ResultSet rs = stmt.executeQuery(query);
 		if (rs.next()) {
 			int version = rs.getInt(1);
 			if (version == 1) {
-				url = rs.getString(2);
+				url = rs.getString(2) + rs.getString(3);
 			} else {
 				stmt = conn.createStatement();
-				query = "SELECT uri " + "FROM photo_versions WHERE photo_id ="
+				query = "SELECT base_uri, filename " + "FROM photo_versions WHERE photo_id ="
 						+ photoId + " AND version_id=" + version;
 				rs = stmt.executeQuery(query);
 				if (rs.next()) {
-					url = rs.getString(1);
+					url = rs.getString(1) + rs.getString(2);
 				}
 			}
 		}
