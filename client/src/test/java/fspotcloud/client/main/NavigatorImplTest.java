@@ -30,7 +30,7 @@ public class NavigatorImplTest extends TestCase {
 	}
 
 	public Navigator get(PlaceGoTo goTo) {
-		return new NavigatorImpl(goTo, dataManager);
+		return new NavigatorImpl(null, goTo, dataManager);
 	}
 	
 	public void testGoLast() {

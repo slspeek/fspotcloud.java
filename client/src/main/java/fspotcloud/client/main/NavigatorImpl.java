@@ -9,6 +9,7 @@ import fspotcloud.client.data.DataManager;
 import fspotcloud.client.view.BasePlace;
 import fspotcloud.client.view.ImageViewingPlace;
 import fspotcloud.client.view.PlaceGoTo;
+import fspotcloud.client.view.PlaceWhere;
 import fspotcloud.client.view.TagViewingPlace;
 import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;
@@ -19,12 +20,25 @@ public class NavigatorImpl implements Navigator {
 			.getName());
 
 	final private PlaceGoTo placeGoTo;
+	final private PlaceWhere placeWhere;
 	final private DataManager dataManager;
 
 	@Inject
-	public NavigatorImpl(PlaceGoTo placeGoTo, DataManager dataManager) {
+	public NavigatorImpl(PlaceWhere placeWhere, PlaceGoTo placeGoTo,
+			DataManager dataManager) {
 		this.placeGoTo = placeGoTo;
+		this.placeWhere = placeWhere;
 		this.dataManager = dataManager;
+	}
+
+	@Override
+	public void goEnd(boolean first) {
+		goEnd(first, (BasePlace) placeWhere.where());
+	}
+
+	@Override
+	public void go(boolean forward) {
+		go(forward, (BasePlace) placeWhere.where());
 	}
 
 	@Override
@@ -115,6 +129,11 @@ public class NavigatorImpl implements Navigator {
 			}
 
 		});
+	}
+
+	public void canGo(final boolean forward,
+			final AsyncCallback<Boolean> callback) {
+		canGo(forward, (BasePlace) placeWhere.where(), callback);
 	}
 
 	protected void goToPhoto(BasePlace place, String tagId, String photoId) {
