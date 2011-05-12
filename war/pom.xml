@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-3.7</version>
+		<version>0.40-3.9</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>war</artifactId>
@@ -147,7 +147,6 @@
 			<plugin>
 				<groupId>net.kindleit</groupId>
 				<artifactId>maven-gae-plugin</artifactId>
-				<version>0.8.2</version>
 				<executions>
 					<execution>
 						<id>gae-start</id>
