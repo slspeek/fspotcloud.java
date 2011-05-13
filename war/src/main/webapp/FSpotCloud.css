@@ -9,7 +9,7 @@
 	padding: 10px;
 	border: medium;
 	border-color: black;
-	background-color: silver;
+	background-color: #728FCE;
 	color: white;
 	text-align: center;
 }
@@ -22,13 +22,41 @@
 	background-color: #38ACEC;
 }
 
+.fsc-image-panel-view {
+	padding-top: auto;
+	background-color: #3090C7;
+}
+
+.gwt-Label-title {
+	background-color: #728FCE;
+	text-align: center;
+	font-weight: bold;
+	font-size: 200%;
+}
+
+.gwt-Label {
+	background-color: #728FCE;
+	text-align: center;
+	font-size: 100%;
+}
+
+.gwt-Image {
+	
+}
+	
+.gwt-HtmlPanel {
+	background-color: #3090C7;
+	height: 100%;
+}
+
 .fsc-tag-tree-container {
 	color: white;
-	background-color: #38ACEC;
+	background-color: #3090C7;
+	border: scrollbar;
 }
 
 .fsc-tag-image-view-container {
-	background-color: orange;
+	background-color: ;
 }
 
 .fsc-tag-status-label {
@@ -38,12 +66,14 @@
 }
 
 .fsc-image-view {
+	padding-top: 10px;
 	background-color: #357EC7;
-	
 }
 
 .fsc-image-view-image {
-	border: medium;
+	margin: 10px;
+	padding: 10px;
+	border: solid;
 }
 
 .fsc-image-view-pager-container {
@@ -91,7 +121,8 @@
 }
 
 .fsc-slideshow-interval {
-	font-size: 200%;
-	background-color: yellow;
-	color: blue;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: #5E5A80;
+	color: white;
 }
