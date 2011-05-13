@@ -12,7 +12,6 @@ public class FirefoxLocalSuite extends WebDriverSuite {
 		WebDriverSuite suite = new FirefoxLocalSuite();
 		String localUrl = WebDriverSuite.local;
 		Provider<WebDriver> provider = WebDriverSuite.factory.firefoxProvider();
-		//suite.addTest(new ImportITest(provider, local));
 		suite.addTest(new ImportITest(provider, localUrl));
 		suite.addTest(new SimpleITest(provider, localUrl));
 		suite.addTest(new NavigationITest(provider, localUrl));

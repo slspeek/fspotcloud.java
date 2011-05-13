@@ -20,24 +20,28 @@ public class NavigationITest extends SeleniumITest {
 	}
 
 	public void testSomeNavigation() throws Exception {
-		selenium.open("/");
+		selenium.open("/#TagViewingPlace:10:26");
 		selenium.waitForPageToLoad("30000");
+		sleepShort();
 		selenium.click("//td[3]/div");
-		Thread.sleep(900);
+		sleepShort();
 		selenium.click("//td[3]/div");
-		Thread.sleep(900);
-		selenium.click("//div[1]/div[2]/div[1]/div/div[2]");
+		sleepShort();
+		selenium.click("//div[3]/div[1]/div/div[2]");
 		selenium.waitForPageToLoad("30000");
-
+		sleepShort();
 		selenium.click("//td[3]/div");
 		selenium.waitForPageToLoad("30000");
-		Thread.sleep(900);
+		sleepShort();
 		selenium.click("//td[5]/div");
-		Thread.sleep(100);
-		assertTrue(selenium.isTextPresent("4 seconds."));
-		selenium.open("/#ImageViewingPlace:1:27");
-		selenium.waitForPageToLoad("30000");
-		selenium.click("//td[1]/div/table/tbody/tr/td[1]/div");
-		selenium.waitForPageToLoad("30000");
+		sleepShort();
+		assertTrue(selenium.isTextPresent("5.333 seconds."));
+		selenium.open("/#ImageViewingPlace:12:25");
+		sleepShort();
+		selenium.click("gwt-debug-pager-last-button");
+		sleepShort();
+		selenium.click("gwt-debug-pager-previous-button");
+		sleepShort();
+		selenium.click("gwt-debug-pager-previous-button");
 	}
 }

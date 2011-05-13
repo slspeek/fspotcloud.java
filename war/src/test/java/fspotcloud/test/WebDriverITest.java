@@ -33,4 +33,8 @@ public class WebDriverITest extends TestCase {
 		driver.quit();
 		super.tearDown();
 	}
+	
+	public void sleepShort() throws NumberFormatException, InterruptedException {
+		Thread.sleep(Long.valueOf(System.getProperty("short", "900")));
+	}
 }
