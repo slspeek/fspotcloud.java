@@ -11,12 +11,12 @@
 		<g:Label ui:field="titleLabel" text="FSpotCloud Java Edition">
 		</g:Label>
 		<g:SplitLayoutPanel height="700px" ui:field="horizontalSplitPanel">
-			<g:west size="500"> 
+			<g:west size="380"> 
 				<my:TreeViewImpl ui:field="treeView"></my:TreeViewImpl>
 			</g:west>
-			<g:east size="900">
+			<g:center>
 				<g:SimplePanel  height="660px" ui:field="imageViewPanel"></g:SimplePanel>
-			</g:east>
+			</g:center>
 		</g:SplitLayoutPanel>
 		<g:FlowPanel ui:field="statusPanel">
 			<g:Label ui:field="statusLabel" text="Ready for more"></g:Label>

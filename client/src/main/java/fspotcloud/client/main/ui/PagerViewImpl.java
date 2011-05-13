@@ -1,6 +1,5 @@
 package fspotcloud.client.main.ui;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
@@ -18,6 +17,7 @@ import com.google.inject.Inject;
 import fspotcloud.client.view.PagerView;
 
 public class PagerViewImpl extends Composite implements PagerView {
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(PagerViewImpl.class
 			.getName());
 
@@ -28,7 +28,7 @@ public class PagerViewImpl extends Composite implements PagerView {
 	}
 
 	private PagerPresenter presenter;
-	
+
 	@UiField
 	HorizontalPanel mainPanel;
 	@UiField
@@ -42,27 +42,22 @@ public class PagerViewImpl extends Composite implements PagerView {
 
 	@Inject
 	public PagerViewImpl() {
-		//log.info("Constructing PagerView");
 		initWidget(uiBinder.createAndBindUi(this));
 		mainPanel.addStyleName("fsc-pager");
 		mainPanel.ensureDebugId("pager-main-panel");
 		nextButton.addStyleName("fsc-pager-next");
 		nextButton.ensureDebugId("pager-next-button");
 		lastButton.addStyleName("fsc-pager-last");
-		lastButton.ensureDebugId("pager-end-button");
+		lastButton.ensureDebugId("pager-last-button");
 		firstButton.addStyleName("fsc-pager-first");
 		firstButton.ensureDebugId("pager-first-button");
 		prevButton.addStyleName("fsc-pager-previous");
-		prevButton.addStyleName("pager-previous-button");
+		prevButton.ensureDebugId("pager-previous-button");
 	}
 
 	@UiHandler("firstButton")
 	public void onFirstButtonClicked(ClickEvent event) {
-		try {
-			presenter.goEnd(true);
-		} catch (Exception e) {
-			log.log(Level.SEVERE, "Uncaught exception", e);
-		}
+		presenter.goEnd(true);
 	}
 
 	@UiHandler("nextButton")
@@ -103,6 +98,6 @@ public class PagerViewImpl extends Composite implements PagerView {
 	@Override
 	public void setPresenter(PagerPresenter presenter) {
 		this.presenter = presenter;
-		
+
 	}
 }

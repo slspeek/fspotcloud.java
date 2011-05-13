@@ -22,7 +22,7 @@ public class MVPSetup {
 
 	private static final Logger log = Logger
 			.getLogger(MVPSetup.class.getName());
-	final private Place defaultPlace = new TagViewingPlace("1", "2");
+	final private Place defaultPlace = new TagViewingPlace("1", "4");
 	final private SimplePanel appWidget = new SimplePanel();
 	final private EventBus eventBus;
 	final private MainWindowActivityMapper activityMapper;
