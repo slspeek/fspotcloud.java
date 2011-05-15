@@ -19,7 +19,7 @@
 			</g:center>
 		</g:SplitLayoutPanel>
 		<g:FlowPanel ui:field="statusPanel">
-			<g:Label ui:field="statusLabel" text="Ready for more"></g:Label>
+			<g:Label ui:field="statusLabel" text="Press h for help"></g:Label>
 		</g:FlowPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

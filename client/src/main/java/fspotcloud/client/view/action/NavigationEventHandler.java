@@ -27,10 +27,10 @@ public class NavigationEventHandler implements NavigationEvent.Handler {
 			navigator.go(true);
 			break;
 		case NavigationEvent.BEGIN:
-			navigator.goEnd(false);
+			navigator.goEnd(true);
 			break;
 		case NavigationEvent.END:
-			navigator.goEnd(true);
+			navigator.goEnd(false);
 			break;
 		default:
 			break;

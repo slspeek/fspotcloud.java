@@ -41,9 +41,33 @@
 }
 
 .gwt-Image {
+	padding: 20px;
+}
+
+.fsc-image-panel-spacer-top {
+	height 30px;
+}
+
+.fsc-help-popup {
+	padding: 15px;
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	font-size: 180%;
+}
+
+.fsc-help-description {
 	
 }
-	
+
+.fsc-help-separator {
+	font-weight: bold;
+}
+
+.fsc-help-key {
+	color: yellow;
+	font-weight: bold;
+}
+
 .gwt-HtmlPanel {
 	background-color: #3090C7;
 	height: 100%;

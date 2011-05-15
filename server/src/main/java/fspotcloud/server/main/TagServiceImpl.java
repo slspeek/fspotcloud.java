@@ -41,7 +41,8 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 			log.info("Missed the cache; building");
 			List<TagNode> tags = tagManager.getTags();
 			TreeBuilder builder = new TreeBuilder(tags);
-			List<TagNode> tree = builder.getRoots();
+			//List<TagNode> tree = builder.getRoots();
+			List<TagNode> tree = builder.getPublicRoots();
 			p.setCachedTagTree(tree);
 			log.info("Builded, about to save");
 			defaultPeer.save(p);
