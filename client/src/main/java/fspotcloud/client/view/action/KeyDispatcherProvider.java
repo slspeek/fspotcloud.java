@@ -3,6 +3,7 @@ package fspotcloud.client.view.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -18,53 +19,59 @@ public class KeyDispatcherProvider implements Provider<KeyDispatcher> {
 	@Inject
 	public KeyDispatcherProvider(ToggleFullscreenAction toggleFullscreen,EventBus eventBus) {
 		this.eventBus = eventBus;
-		List<Character> list = new ArrayList<Character>();
-		list.add('f');
-		list.add('1');
-		list.add('`');
+		List<Integer> list = new ArrayList<Integer>();
+		list.add((int)'F');
+		list.add((int)'1');
+		list.add((int)'`');
 		keyDispatcher.register(toggleFullscreen, list);
-		list = new ArrayList<Character>();
-		list.add('n');
-		list.add('.');
+		list = new ArrayList<Integer>();
+		list.add((int)'N');
+		list.add((int)'.');
+		list.add(KeyCodes.KEY_RIGHT);
 		keyDispatcher.register(getNavigationAction(NavigationEvent.FORWARD), list);
-		list = new ArrayList<Character>();
-		list.add('p');
-		list.add(',');
+		list = new ArrayList<Integer>();
+		list.add((int)'P');
+		list.add((int)',');
+		list.add(KeyCodes.KEY_LEFT);
 		keyDispatcher.register(getNavigationAction(NavigationEvent.BACK), list);
-		list = new ArrayList<Character>();
-		list.add('b');
-		list.add('h');
+		list = new ArrayList<Integer>();
+		list.add((int)'B');
+		list.add((int)'0');
+		list.add(KeyCodes.KEY_HOME);
 		keyDispatcher.register(getNavigationAction(NavigationEvent.BEGIN), list);
-		list = new ArrayList<Character>();
-		list.add('e');
-		list.add('z');
-		list.add('9');
+		list = new ArrayList<Integer>();
+		list.add((int)'E');
+		list.add((int)'Z');
+		list.add(KeyCodes.KEY_END);
 		keyDispatcher.register(getNavigationAction(NavigationEvent.END), list);
-		list = new ArrayList<Character>();
-		list.add('s');
-		list.add('g');
-		list.add('0');
-		keyDispatcher.register(getSlideshowActio(SlideshowEvent.ACTION_START), list);
-		list = new ArrayList<Character>();
-		list.add('x');
-		list.add('q');
-		keyDispatcher.register(getSlideshowActio(SlideshowEvent.ACTION_STOP), list);
-		list = new ArrayList<Character>();
-		list.add('d');
-		list.add('-');
-		keyDispatcher.register(getSlideshowActio(SlideshowEvent.ACTION_SLOWER), list);
-		list = new ArrayList<Character>();
-		list.add('i');
-		list.add('=');
-		list.add('+');
-		keyDispatcher.register(getSlideshowActio(SlideshowEvent.ACTION_FASTER), list);
+		list = new ArrayList<Integer>();
+		list.add((int)'S');
+		list.add((int)'G');
+		keyDispatcher.register(getSlideshowAction(SlideshowEvent.ACTION_START), list);
+		list = new ArrayList<Integer>();
+		list.add((int)'X');
+		list.add((int)'Q');
+		keyDispatcher.register(getSlideshowAction(SlideshowEvent.ACTION_STOP), list);
+		list = new ArrayList<Integer>();
+		list.add((int)'D');
+		list.add((int)'-');
+		keyDispatcher.register(getSlideshowAction(SlideshowEvent.ACTION_SLOWER), list);
+		list = new ArrayList<Integer>();
+		list.add((int)'I');
+		list.add((int)'=');
+		list.add((int)'+');
+		keyDispatcher.register(getSlideshowAction(SlideshowEvent.ACTION_FASTER), list);
+		list = new ArrayList<Integer>();
+		list.add((int)'H');
+		list.add(KeyCodes.KEY_ESCAPE);
+		keyDispatcher.register(new HelpAction(), list);
 	}
 	
 	NavigationAction getNavigationAction(int actionType) {
 		return new NavigationAction(actionType, eventBus);
 	}
 	
-	SlideshowAction getSlideshowActio(int actionType) {
+	SlideshowAction getSlideshowAction(int actionType) {
 		return new SlideshowAction(actionType, eventBus);
 	}
 

@@ -22,6 +22,8 @@ import com.google.inject.name.Named;
 import fspotcloud.server.control.Scheduler;
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
+import fspotcloud.server.model.api.Tag;
+import fspotcloud.server.model.api.Tags;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -34,6 +36,8 @@ public class ImageDataTaskServlet extends HttpServlet {
 	private Integer maxTicks;
 	@Inject
 	private Photos photoManager;
+	@Inject
+	private Tags tagManager;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -43,7 +47,11 @@ public class ImageDataTaskServlet extends HttpServlet {
 		Date minDate = new Date(Long.valueOf(minDateParam));
 		String countParam = request.getParameter("maxCount");
 		int count = Integer.valueOf(countParam);
+
 		String tagId = request.getParameter("tagId");
+		Tag tag = tagManager.getById(tagId);
+		tag.setImportIssued(true);
+		tagManager.save(tag);
 
 		// Do our part of the job, scheduling the oldest images
 		List<Photo> result = photoManager.getEmptyPhotosForTagAfter(tagId,

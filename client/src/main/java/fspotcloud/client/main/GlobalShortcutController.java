@@ -27,9 +27,11 @@ public class GlobalShortcutController {
 		public void onPreviewNativeEvent(NativePreviewEvent preview) {
 			NativeEvent event = preview.getNativeEvent();
 			int keycode = event.getKeyCode();
-			if (!event.getType().equalsIgnoreCase("keypress")) {
+
+			if (!event.getType().equalsIgnoreCase("keydown")) {
 				return;
 			}
+			// log.info("Event preview in keypress code: " + keycode);
 			if (handler.handle(keycode)) {
 				preview.consume();
 			}

@@ -23,7 +23,7 @@ public class KeyDispatcherTest extends TestCase {
 	public void testOne() {
 		KeyDispatcher dispatcher = new KeyDispatcher();
 		final GestureAction action = context.mock(GestureAction.class);
-		dispatcher.register(action, ImmutableList.of('a', 'd'));
+		dispatcher.register(action, ImmutableList.of((int)'a', (int)'d'));
 		context.checking(new Expectations() {
 			{
 				exactly(2).of(action).perform();
