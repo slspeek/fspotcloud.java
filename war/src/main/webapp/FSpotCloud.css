@@ -49,23 +49,27 @@
 }
 
 .fsc-help-popup {
-	padding: 15px;
+	padding: 20px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 	background-color: rgba(0, 0, 0, 0.7);
 	color: white;
 	font-size: 180%;
 }
 
 .fsc-help-description {
-	
+	font-size: 130%;
 }
 
 .fsc-help-separator {
 	font-weight: bold;
+	font-size: 130%;
 }
 
 .fsc-help-key {
 	color: yellow;
 	font-weight: bold;
+	font-size: 130%;
 }
 
 .gwt-HtmlPanel {

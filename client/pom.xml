@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-5.0</version>
+		<version>0.40-5.1</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>client</artifactId>
@@ -21,6 +21,12 @@
 			<artifactId>gwt-deps</artifactId>
 			<version>${project.version}</version>
 			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<version>${gwt.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud.deps</groupId>
@@ -109,16 +115,10 @@
 							<goal>compile</goal>
 						</goals>
 					</execution>
-					<execution>
-						<id>test</id>
-						<phase>integration-test</phase>
-						<goals>
-							<goal>test</goal>
-						</goals>
-					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
 </project>
+
 

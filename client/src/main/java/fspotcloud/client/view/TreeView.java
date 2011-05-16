@@ -1,9 +1,10 @@
 package fspotcloud.client.view;
 
 import com.google.gwt.user.cellview.client.TreeNode;
+import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.view.client.TreeViewModel;
 
-public interface TreeView {
+public interface TreeView extends IsWidget {
 
 	interface TreePresenter {
 		void setPlace(BasePlace place);
@@ -13,4 +14,6 @@ public interface TreeView {
 	void setTreeModel(TreeViewModel model);
 	
 	TreeNode getRootNode();
+	
+	void requestFocus();
 }

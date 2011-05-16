@@ -17,7 +17,8 @@ public class HelpPresenter {
 		helptext = "<table>";
 		helptext += generator.getHelpRow("f", "1", null,
 				"Toggle fullscreen (hides/shows the tree view)");
-
+		helptext += generator.getHelpRow("t", "ENTER", null,
+				"Puts keyboard focus on the category tree");
 		helptext += generator.getHelpRow("b", "HOME", null,
 				"Go to the first image of the category");
 		helptext += generator.getHelpRow("e", "z", "END",

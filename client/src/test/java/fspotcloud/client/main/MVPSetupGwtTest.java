@@ -9,11 +9,12 @@ public class MVPSetupGwtTest extends GWTTestCase {
 
 	@Override
 	public String getModuleName() {
-		return "MVPSetupTest";
+		return "fspotcloud.FSpotCloud";
 	}
 	
 	public void testMVPSetup() {
 		AppGinjector injector = GWT.create(AppGinjector.class);
 		MVPSetup setup = injector.getMVPSetup();
+		assertNotNull(setup);
 	}
 }
