@@ -49,4 +49,10 @@ public class TreeViewImpl extends ResizeComposite implements TreeView {
 			return null;
 		}
 	}
+	
+	public void requestFocus() {
+		if (cellTree != null) {
+			cellTree.setFocus(true);
+		}
+	}
 }
