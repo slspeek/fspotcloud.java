@@ -106,6 +106,7 @@
 					<runTarget>/FSpotCloud.html</runTarget>
 					<style>PRETTY</style>
 					<gwtVersion>${gwt.version}</gwtVersion>
+					<skipTests>true</skipTests>
 				</configuration>
 				<executions>
 					<execution>
@@ -113,6 +114,7 @@
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>compile</goal>
+							<goal>test</goal>
 						</goals>
 					</execution>
 				</executions>

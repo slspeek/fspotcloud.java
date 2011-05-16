@@ -5,7 +5,7 @@ import com.google.gwt.junit.client.GWTTestCase;
 
 import fspotcloud.client.main.gin.AppGinjector;
 
-public class MVPSetupGwtTest extends GWTTestCase {
+public class GwtTestMVPSetup extends GWTTestCase {
 
 	@Override
 	public String getModuleName() {
