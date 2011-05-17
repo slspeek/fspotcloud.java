@@ -7,5 +7,5 @@
 			font-weight: bold;
 		}
 	</ui:style>
-	<g:SimplePanel ui:field="tagTreeViewPanel"></g:SimplePanel>
+	<g:ScrollPanel ui:field="tagTreeViewPanel"></g:ScrollPanel>
 </ui:UiBinder> 

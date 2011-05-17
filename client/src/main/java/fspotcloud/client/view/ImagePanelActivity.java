@@ -18,6 +18,7 @@ public class ImagePanelActivity extends AbstractActivity implements
 	final private ImagePanelView imagePanelView;
 	final private ImagePresenter imagePresenter;
 	final private SlideShowPresenterImpl slideshowPresenter;
+	@SuppressWarnings("unused")
 	final private PagerPresenterImpl pagerPresenter;
 
 	public ImagePanelActivity(BasePlace place, ImagePanelView imagePanelView,
