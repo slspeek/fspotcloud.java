@@ -29,6 +29,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>net.customware.gwt.dispatch</groupId>
+			<artifactId>gwt-dispatch</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<dependency>
 			<groupId>fspotcloud.deps</groupId>
 			<artifactId>guice-deps</artifactId>
 			<version>${project.version}</version>
