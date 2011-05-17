@@ -1,6 +1,5 @@
 package fspotcloud.client.main.ui;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;

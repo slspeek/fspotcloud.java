@@ -20,6 +20,7 @@ public class BasePlace extends Place {
 		return photoId;
 	}
 	
+	@Override
 	public boolean equals(Object other) {
 		if (other instanceof BasePlace) {
 			BasePlace basePlace = (BasePlace) other;
@@ -31,6 +32,14 @@ public class BasePlace extends Place {
 		}
 	}
 	
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		if (tagId != null) hash += tagId.hashCode();
+		if (photoId != null)hash += photoId.hashCode();
+		return hash; 
+	}
+
 	public String toString() {
 		String result = getClass().getName() + ": tagId: " + tagId + " photoId: " + photoId;
 		return result;

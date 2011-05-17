@@ -7,45 +7,48 @@
 	width: 100%;
 	display: block;
 	padding: 10px;
-	border: medium;
-	border-color: black;
-	background-color: #728FCE;
-	color: white;
+	background-color: #D2B9D3; /** Thistle */
+	font-size: 200%;
 	text-align: center;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 }
 
 .fsc-tag {
-	background-color: gray;
+	
 }
 
 .fsc-tag-split-panel {
-	background-color: #38ACEC;
+	height: 680px;
 }
 
 .fsc-image-panel-view {
-	padding-top: auto;
-	background-color: #3090C7;
+	height: 100%;
+	background-color: #C8BBBE; /** Lavender Blush3 */
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 }
 
 .gwt-Label-title {
-	background-color: #728FCE;
+	background-color: #C8BBBE; /** Lavender Blush3 */
 	text-align: center;
 	font-weight: bold;
 	font-size: 200%;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 }
 
 .gwt-Label {
-	background-color: #728FCE;
-	text-align: center;
-	font-size: 100%;
+	background-color: #D2B9D3; /** Thistle */
+	color: black;
 }
 
 .gwt-Image {
-	padding: 20px;
+	padding: 5px;
 }
 
 .fsc-image-panel-spacer-top {
-	height 30px;
+	height: 14px;
 }
 
 .fsc-help-popup {
@@ -72,85 +75,61 @@
 	font-size: 130%;
 }
 
-.gwt-HtmlPanel {
-	background-color: #3090C7;
-	height: 100%;
-}
-
 .fsc-tag-tree-container {
-	color: white;
-	background-color: #3090C7;
-	border: scrollbar;
+	color: black;
+	background-color: #C6AEC7; /** Thistle3 */
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
 }
 
 .fsc-tag-image-view-container {
-	background-color: ;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 }
 
 .fsc-tag-status-label {
 	text-align: center;
-	color: white;
-	background-color: aqua;
+	background-color: #D2B9D3; /** Thistle */
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	font-size: 130%;
 }
 
 .fsc-image-view {
 	padding-top: 10px;
-	background-color: #357EC7;
 }
 
 .fsc-image-view-image {
 	margin: 10px;
-	padding: 10px;
+	padding-top: 10px;
 	border: solid;
 }
 
 .fsc-image-view-pager-container {
-	padding: 20px;
+	
 }
 
 .fsc-image-view-slideshow-container {
-	padding: 20px;
+	
 }
 
 .fsc-pager {
-	padding: 20px;
+	padding: 5px;
 }
 
 .fsc-pager-first {
 	
 }
 
-.fsc-pager-previous {
-	
-}
-
-.fsc-pager-next {
-	
-}
-
-.fsc-pager-last {
-	
-}
-
 .fsc-slideshow {
-	padding: 20px;
-}
-
-.fsc-slideshow-start {
-	
-}
-
-.fsc-slideshow-descrease {
-	
-}
-
-.fsc-slideshow-increase {
-	
+	padding: 5px;
 }
 
 .fsc-slideshow-interval {
 	padding-left: 10px;
 	padding-right: 10px;
-	background-color: #5E5A80;
-	color: white;
+	background-color: #D2B9D3; /** Thistle */
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 }

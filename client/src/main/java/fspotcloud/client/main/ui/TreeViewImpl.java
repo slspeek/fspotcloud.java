@@ -8,7 +8,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTree;
 import com.google.gwt.user.cellview.client.TreeNode;
 import com.google.gwt.user.client.ui.ResizeComposite;
-import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.TreeViewModel;
 
@@ -27,7 +27,7 @@ public class TreeViewImpl extends ResizeComposite implements TreeView {
 
 	CellTree cellTree;
 	@UiField
-	SimplePanel tagTreeViewPanel;
+	ScrollPanel tagTreeViewPanel;
 	
 	public TreeViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
