@@ -15,7 +15,7 @@ public class ImagePanelActivity extends AbstractActivity implements
 		ImagePanelPresenter {
 	private static final Logger log = Logger.getLogger(ImagePanelActivity.class
 			.getName());
-	final private ImagePanelView imagePanelView;
+	final protected ImagePanelView imagePanelView;
 	final private ImagePresenter imagePresenter;
 	final private SlideShowPresenterImpl slideshowPresenter;
 	@SuppressWarnings("unused")

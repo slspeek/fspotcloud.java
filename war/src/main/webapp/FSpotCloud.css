@@ -4,11 +4,9 @@
 	border: 10px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 100%;
 	display: block;
 	padding: 10px;
 	background-color: #D2B9D3; /** Thistle */
-	font-size: 200%;
 	text-align: center;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
@@ -19,11 +17,9 @@
 }
 
 .fsc-tag-split-panel {
-	height: 680px;
 }
 
 .fsc-image-panel-view {
-	height: 100%;
 	background-color: #C8BBBE; /** Lavender Blush3 */
 	-moz-border-radius: 15px;
 	border-radius: 15px;
@@ -84,8 +80,6 @@
 }
 
 .fsc-tag-image-view-container {
-	-moz-border-radius: 15px;
-	border-radius: 15px;
 }
 
 .fsc-tag-status-label {
@@ -103,7 +97,6 @@
 .fsc-image-view-image {
 	margin: 10px;
 	padding-top: 10px;
-	border: solid;
 }
 
 .fsc-image-view-pager-container {

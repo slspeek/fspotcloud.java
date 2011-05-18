@@ -14,4 +14,6 @@ public interface TagView extends IsWidget {
 	void setStatusText(String string);
 	
 	HasOneWidget getImageViewPanelContainer();
+	
+	void setSize(int width, int height);
 }

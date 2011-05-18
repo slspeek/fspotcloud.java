@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 import fspotcloud.client.view.TreeView.TreePresenter;
@@ -34,6 +35,14 @@ public class TagActivity extends AbstractActivity implements
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		log.info("Start tag activity for tagId: " + tagId);
+		adjustSize();
 		containerWidget.setWidget(tagView);
+	}
+	
+	private void adjustSize() {
+		int width = Window.getClientWidth();
+		int height = Window.getClientHeight();
+		tagView.setSize(width, height);
+		log.info("set size: " + width + " , " + height);
 	}
 }
