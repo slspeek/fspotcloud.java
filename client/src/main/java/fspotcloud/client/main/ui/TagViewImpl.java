@@ -1,14 +1,12 @@
 package fspotcloud.client.main.ui;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResizeComposite;
@@ -31,7 +29,7 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	}
 
 	@UiField
-	HTMLPanel mainPanel;
+	DockLayoutPanel mainPanel;
 	@UiField
 	SplitLayoutPanel horizontalSplitPanel;
 
@@ -73,17 +71,9 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 		return imageViewPanel;
 	}
 
+	@Override
 	public void setSize(int width, int height) {
-		int heightForOthers = 150;//XXX should be zero
-		try {
-			heightForOthers += titleLabel.getOffsetHeight();
-			log.info("title height: " + titleLabel.getOffsetHeight());
-			heightForOthers += statusLabel.getOffsetHeight();
-			log.info("status height: " + statusLabel.getOffsetHeight());
-		} catch (Exception e) {
-			log.log(Level.WARNING, "setSize", e);
-		}
-		horizontalSplitPanel.getElement().getStyle().setWidth(width, Unit.PX);
-		horizontalSplitPanel.getElement().getStyle().setHeight(height - heightForOthers, Unit.PX);
+		mainPanel.setPixelSize(width, height);
 	}
+	
 }
