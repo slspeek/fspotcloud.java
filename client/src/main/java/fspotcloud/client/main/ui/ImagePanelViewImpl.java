@@ -3,8 +3,11 @@ package fspotcloud.client.main.ui;
 import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.DivElement;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -31,6 +34,9 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	final private ImageView imageView;
 	final private PagerView pagerView;
 	final private SlideshowView slideshowView;
+	
+	@UiField
+	DivElement imagePanelViewDivElement;
 
 	@Inject
 	public ImagePanelViewImpl(ImageView imageView, PagerView pagerView,
@@ -56,4 +62,8 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 		return (SlideshowViewImpl) slideshowView;
 	}
 
+	public void setSize(int width, int height) {
+		imagePanelViewDivElement.getStyle().setWidth(width, Unit.PX);
+		imagePanelViewDivElement.getStyle().setHeight(height, Unit.PX);
+	}
 }
