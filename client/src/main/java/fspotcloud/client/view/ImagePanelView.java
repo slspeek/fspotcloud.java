@@ -14,4 +14,6 @@ public interface ImagePanelView extends IsWidget {
 	PagerView getPagerView();
 
 	SlideshowView getSlideshowView();
+	
+	void setSize(int width, int height);
 }

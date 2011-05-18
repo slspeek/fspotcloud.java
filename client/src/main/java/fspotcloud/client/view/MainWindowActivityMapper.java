@@ -27,7 +27,7 @@ public class MainWindowActivityMapper implements ActivityMapper {
 		Activity activity = null;
 		log.info("getActivity : " + place);
 		if (place instanceof ImageViewingPlace) {
-			activity = imagePanelActivityFactory.get((BasePlace) place);
+			activity = imagePanelActivityFactory.getFullscreen((BasePlace) place);
 		} else if (place instanceof TagViewingPlace) {
 			activity = tagPresenterFactory.get((BasePlace) place);
 		} else {
