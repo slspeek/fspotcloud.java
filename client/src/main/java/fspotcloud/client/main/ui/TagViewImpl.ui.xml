@@ -7,19 +7,23 @@
 			font-weight: bold;
 		}
 	</ui:style>
-	<g:HTMLPanel ui:field="mainPanel">
-		<g:Label ui:field="titleLabel" text="FSpotCloud Java Edition">
-		</g:Label>
-		<g:SplitLayoutPanel ui:field="horizontalSplitPanel">
-			<g:west size="250"> 
-				<my:TreeViewImpl ui:field="treeView"></my:TreeViewImpl>
-			</g:west>
-			<g:center>
-				<g:SimplePanel ui:field="imageViewPanel"></g:SimplePanel>
-			</g:center>
-		</g:SplitLayoutPanel>
-		<g:FlowPanel ui:field="statusPanel">
+	<g:DockLayoutPanel ui:field="mainPanel">
+		<g:north size="100">
+			<g:Label ui:field="titleLabel" text="FSpotCloud Java Edition">
+			</g:Label>
+		</g:north>
+		<g:center>
+			<g:SplitLayoutPanel ui:field="horizontalSplitPanel">
+				<g:west size="250">
+					<my:TreeViewImpl ui:field="treeView"></my:TreeViewImpl>
+				</g:west>
+				<g:center>
+					<g:SimplePanel ui:field="imageViewPanel"></g:SimplePanel>
+				</g:center>
+			</g:SplitLayoutPanel>
+		</g:center>
+		<g:south size="20">
 			<g:Label ui:field="statusLabel" text="Press h for help"></g:Label>
-		</g:FlowPanel>
-	</g:HTMLPanel>
+		</g:south>
+	</g:DockLayoutPanel>
 </ui:UiBinder> 
