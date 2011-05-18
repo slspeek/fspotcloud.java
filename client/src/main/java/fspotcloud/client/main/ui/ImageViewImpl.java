@@ -40,8 +40,8 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	}
 	
 	private void adjustImageSize(){
-		int width = getElement().getClientWidth();
-		int height = getElement().getClientHeight();
-		//image.setMaxSize(width, height);
+		int width = (int) (Window.getClientWidth() *0.9);
+		int height = (int)(Window.getClientHeight() * 0.9);
+		image.setMaxSize(width, height);
 	}
 }

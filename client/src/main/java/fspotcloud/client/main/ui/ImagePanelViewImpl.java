@@ -9,6 +9,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -37,6 +38,8 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	final private SlideshowView slideshowView;
 	@UiField
 	DockLayoutPanel mainPanel;
+	@UiField
+	HorizontalPanel buttonPanel;
 
 	@Inject
 	public ImagePanelViewImpl(ImageView imageView, PagerView pagerView,
@@ -46,6 +49,7 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 		this.slideshowView = slideshowView;
 		initWidget(uiBinder.createAndBindUi(this));
 		mainPanel.setStyleName("fsc-image-panel-view");
+		buttonPanel.setStyleName("fsc-image-button-panel");
 	}
 
 	@UiFactory
