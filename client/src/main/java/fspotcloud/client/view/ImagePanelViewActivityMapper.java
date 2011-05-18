@@ -24,7 +24,7 @@ public class ImagePanelViewActivityMapper  implements ActivityMapper {
 	public Activity getActivity(Place place) {
 		log.info("getActivity for : " + place + "(" + this +")");
 		if (place instanceof BasePlace) {
-			ImagePanelPresenter activity = imagePanelPresenterFactory.get((BasePlace) place);
+			ImagePanelPresenter activity = imagePanelPresenterFactory.getEmbedded((BasePlace) place);
 			return activity;
 		} else {
 			log.warning("getActivity will return null for place: " + place);

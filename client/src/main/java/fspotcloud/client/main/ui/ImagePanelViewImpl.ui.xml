@@ -4,7 +4,7 @@
 	<ui:style>
 	</ui:style>
 	<g:HTMLPanel>
-		<div class="fsc-image-panel-view">
+		<div ui:field="imagePanelViewDivElement" class="fsc-image-panel-view">
 			<div class="fsc-image-panel-spacer-top" ></div>
 			<center>
 				<my:ImageViewImpl></my:ImageViewImpl>
