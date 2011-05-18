@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>server</name>
+	<comment>The controller and data reading. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+	<projects>
+		<project>appengine-deps</project>
+		<project>cloudcover-deps</project>
+		<project>guice-deps</project>
+		<project>gwt-deps</project>
+		<project>mapreduce-deps</project>
+		<project>model</project>
+		<project>model-api</project>
+		<project>rpc</project>
+		<project>servlet-deps</project>
+		<project>xmlrpc-server-deps</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.maven.ide.eclipse.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.maven.ide.eclipse.maven2Nature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+</projectDescription>

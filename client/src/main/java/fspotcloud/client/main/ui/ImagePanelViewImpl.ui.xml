@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:my="urn:import:fspotcloud.client.main.ui">
+	<ui:style>
+	</ui:style>
+	<g:HTMLPanel>
+		<div class="fsc-image-panel-view">
+			<div class="fsc-image-panel-spacer-top" ></div>
+			<center>
+				<my:ImageViewImpl></my:ImageViewImpl>
+			</center>
+			<center>
+				<g:HorizontalPanel>
+					<my:PagerViewImpl></my:PagerViewImpl>
+					<my:SlideshowViewImpl></my:SlideshowViewImpl>
+				</g:HorizontalPanel>
+			</center>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

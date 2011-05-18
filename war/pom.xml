@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>fspotcloud</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.40-5.1</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>war</artifactId>
+	<packaging>war</packaging>
+	<name>The packaging of the server code and the GWT-client code</name>
+	<description>The totality of the web application</description>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>rpc</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>server</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.appengine</groupId>
+					<artifactId>appengine-local-runtime</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>server</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>model</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>client</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine.testing.cloudcover</groupId>
+			<artifactId>cloudcover-ui</artifactId>
+			<version>${cloudcover.version}</version>
+			<classifier>web</classifier>
+			<type>zip</type>
+		</dependency>
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock</artifactId>
+			<version>2.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium</artifactId>
+			<version>2.0b3</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium.client-drivers</groupId>
+			<artifactId>selenium-java-client-driver</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<defaultGoal>prepare-package war:exploded</defaultGoal>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+				<targetPath>../${project.build.finalName}</targetPath>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/*ITest.java
+                  </exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>integration-tests</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+							<excludes>
+								<exclude>none</exclude>
+							</excludes>
+							<includes>
+								<include>**/*LocalSuite.java</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>compile</phase> <!-- strange hack, to have it done earlier in the lifecycle -->
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>fspotcloud</groupId>
+									<artifactId>client</artifactId>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.google.appengine.testing.cloudcover</groupId>
+									<artifactId>cloudcover-ui</artifactId>
+									<classifier>web</classifier>
+									<type>zip</type>
+									<overWrite>true</overWrite>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>net.kindleit</groupId>
+				<artifactId>maven-gae-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>gae-start</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>gae-stop</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<splitJars/>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>${project.build.directory}/filtered</directory>
+							<includes></includes>
+						</resource>
+					</webResources>
+					<webResources>
+						<resource>
+							<directory>${project.build.directory}/dependency/</directory>
+						</resource>
+					</webResources>
+					<webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
+				</configuration>
+			</plugin>
+			<!-- Upload application to the appspot automatically, during release:perform -->
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<goals>gae:deploy</goals>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>run-peer</id>
+						<phase>pre-integration-test</phase>
+						<configuration>
+							<target>
+								<property name="runtime_classpath" refid="maven.runtime.classpath" /><!-- 
+									<exec executable="${basedir}/src/scripts/bash/start_peer.sh"></exec> -->
+								<java
+									jar="${basedir}/../peer/target/peer-${project.version}-jar-with-dependencies.jar"
+									fork="yes" spawn="yes">
+									<sysproperty key="db"
+										value="${basedir}/../peer/src/test/resources/photos.db" />
+									<sysproperty key="endpoint" value="localhost:8080" />
+									<sysproperty key="bot.secret" value="${bot.secret}" />
+									<sysproperty key="pause" value="2000" />
+									<sysproperty key="photo.dir.original" value="file:///home/fspotcloud/Pictures/Foto's" />
+									<sysproperty key="photo.dir.override"
+										value="file://${basedir}/../peer/src/test/resources/Photos" />
+								</java>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop-peer</id>
+						<phase>post-integration-test</phase>
+						<configuration>
+							<target>
+								<property name="runtime_classpath" refid="maven.runtime.classpath" />
+								<exec executable="telnet">
+									<arg value="localhost" />
+									<arg value="4444" />
+								</exec>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<pluginRepositories>
+	</pluginRepositories>
+	<repositories>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>Maven Repository Switchboard</name>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+			<id>fspotcloud-maven</id>
+			<url>http://maven.fspotcloud.googlecode.com/hg/repo</url>
+		</repository>
+	</repositories>
+</project>
+

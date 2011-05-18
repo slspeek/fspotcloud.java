@@ -1,0 +1,12 @@
+syntax: glob
+target/*
+*/target/*
+*/bin/*
+*.orig
+.settings/*
+server/.externalToolBuilders/*
+server/.settings/*
+*~
+*/appengine-generated/*
+*/META-INF/MANIFEST.MF
+*/.externalToolBuilders

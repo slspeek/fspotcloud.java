@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='fspotcloud'>
+	<!-- Inherit the core Web Toolkit stuff. -->
+	<inherits name='com.google.gwt.user.User' />
+
+	<inherits name='fspotcloud.rpc' />
+	<inherits name="com.google.gwt.user.Debug" />
+	<inherits name="com.google.gwt.logging.Logging" />
+	<inherits name='com.google.gwt.user.theme.chrome.Chrome' />
+	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark' /> -->
+
+	<inherits name="com.google.gwt.inject.Inject" />
+	<inherits name="com.google.gwt.junit.JUnit"/>
+	<!-- Other module inherits -->
+	<inherits name="com.google.gwt.activity.Activity" />
+	<inherits name="com.google.gwt.place.Place" />
+	<inherits name="com.reveregroup.gwt.imagepreloader.ImagePreloader" />
+	<!-- Specify the app entry point class. -->
+	<entry-point class="fspotcloud.client.main.TagEntryPoint"></entry-point>
+	
+	<set-property name="gwt.logging.popupHandler" value="DISABLED" />
+</module>

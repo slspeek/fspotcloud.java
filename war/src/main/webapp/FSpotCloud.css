@@ -1,0 +1,135 @@
+/** All css rules defined for FSpotcloud are below. */
+.fsc-tag-title-label {
+	font-size: 17px;
+	border: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	display: block;
+	padding: 10px;
+	background-color: #D2B9D3; /** Thistle */
+	font-size: 200%;
+	text-align: center;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.fsc-tag {
+	
+}
+
+.fsc-tag-split-panel {
+	height: 680px;
+}
+
+.fsc-image-panel-view {
+	height: 100%;
+	background-color: #C8BBBE; /** Lavender Blush3 */
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.gwt-Label-title {
+	background-color: #C8BBBE; /** Lavender Blush3 */
+	text-align: center;
+	font-weight: bold;
+	font-size: 200%;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.gwt-Label {
+	background-color: #D2B9D3; /** Thistle */
+	color: black;
+}
+
+.gwt-Image {
+	padding: 5px;
+}
+
+.fsc-image-panel-spacer-top {
+	height: 14px;
+}
+
+.fsc-help-popup {
+	padding: 20px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	font-size: 180%;
+}
+
+.fsc-help-description {
+	font-size: 130%;
+}
+
+.fsc-help-separator {
+	font-weight: bold;
+	font-size: 130%;
+}
+
+.fsc-help-key {
+	color: yellow;
+	font-weight: bold;
+	font-size: 130%;
+}
+
+.fsc-tag-tree-container {
+	color: black;
+	background-color: #C6AEC7; /** Thistle3 */
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+}
+
+.fsc-tag-image-view-container {
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.fsc-tag-status-label {
+	text-align: center;
+	background-color: #D2B9D3; /** Thistle */
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	font-size: 130%;
+}
+
+.fsc-image-view {
+	padding-top: 10px;
+}
+
+.fsc-image-view-image {
+	margin: 10px;
+	padding-top: 10px;
+	border: solid;
+}
+
+.fsc-image-view-pager-container {
+	
+}
+
+.fsc-image-view-slideshow-container {
+	
+}
+
+.fsc-pager {
+	padding: 5px;
+}
+
+.fsc-pager-first {
+	
+}
+
+.fsc-slideshow {
+	padding: 5px;
+}
+
+.fsc-slideshow-interval {
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: #D2B9D3; /** Thistle */
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}

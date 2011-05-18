@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>fspotcloud</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.40-5.1</version>
+	</parent>
+	<groupId>fspotcloud</groupId>
+	<artifactId>model-api</artifactId>
+	<version>0.40-5.1</version>
+	<packaging>jar</packaging>
+	<name>Model Interface</name>
+	<dependencies>
+		<dependency>
+			<groupId>fspotcloud</groupId>
+			<artifactId>rpc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-1.0-sdk</artifactId>
+			<version>${gae.version}</version>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>deps</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.40-5.1</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fspotcloud.deps</groupId>
+	<artifactId>mapreduce-deps</artifactId>
+	<packaging>pom</packaging>
+	<name>Dependencies for MapReduce</name>
+	<dependencies>
+		<!--   MapReduce  and 4 of its dependencies -->
+		<dependency>
+			<groupId>com.google.appengine.tools.mapreduce</groupId>
+			<artifactId>appengine-mapper</artifactId>
+			<version>r141</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine.tools.mapreduce</groupId>
+			<artifactId>charts4j</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine.tools.mapreduce</groupId>
+			<artifactId>json</artifactId>
+			<version>UNKNOWN</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine.tools.mapreduce</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine.tools.mapreduce</groupId>
+			<artifactId>hadoop-core</artifactId>
+			<version>0.20.2</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>r07</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+	<repositories>
+		<repository>
+			<id>fspotcloud-maven</id>
+			<url>http://maven.fspotcloud.googlecode.com/hg/repo</url>
+		</repository>
+	</repositories>
+</project>
+
