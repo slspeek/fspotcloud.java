@@ -29,14 +29,19 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	public ImageViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		image.ensureDebugId("image-view");
-		int width = (int) (Window.getClientWidth() * 0.7);
-		int height = (int) (Window.getClientHeight() * 0.7);
-		image.setMaxSize(width, height);
+		adjustImageSize();
 	}
 
 	@Override
 	public void setImageUrl(String url) {
 		log.info("About to setImage: " + url);
+		adjustImageSize();
 		image.setUrl(url);
+	}
+	
+	private void adjustImageSize(){
+		int width = getElement().getClientWidth();
+		int height = getElement().getClientHeight();
+		//image.setMaxSize(width, height);
 	}
 }

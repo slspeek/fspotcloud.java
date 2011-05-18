@@ -8,6 +8,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -28,15 +29,14 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 			.create(ImageViewPanelImplUiBinder.class);
 
 	interface ImageViewPanelImplUiBinder extends
-			UiBinder<Widget, ImagePanelViewImpl> {
+			UiBinder<DockLayoutPanel, ImagePanelViewImpl> {
 	}
 
 	final private ImageView imageView;
 	final private PagerView pagerView;
 	final private SlideshowView slideshowView;
-	
 	@UiField
-	DivElement imagePanelViewDivElement;
+	DockLayoutPanel mainPanel;
 
 	@Inject
 	public ImagePanelViewImpl(ImageView imageView, PagerView pagerView,
@@ -45,25 +45,25 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 		this.pagerView = pagerView;
 		this.slideshowView = slideshowView;
 		initWidget(uiBinder.createAndBindUi(this));
+		mainPanel.setStyleName("fsc-image-panel-view");
 	}
-	
+
 	@UiFactory
 	public ImageViewImpl getImageView() {
 		return (ImageViewImpl) imageView;
 	}
-	
+
 	@UiFactory
 	public PagerViewImpl getPagerView() {
 		return (PagerViewImpl) pagerView;
 	}
-	
-	@UiFactory 
-	public SlideshowViewImpl getSlideshowView(){
+
+	@UiFactory
+	public SlideshowViewImpl getSlideshowView() {
 		return (SlideshowViewImpl) slideshowView;
 	}
 
 	public void setSize(int width, int height) {
-		imagePanelViewDivElement.getStyle().setWidth(width, Unit.PX);
-		imagePanelViewDivElement.getStyle().setHeight(height, Unit.PX);
+		//mainPanel.setPixelSize(width, height);
 	}
 }
