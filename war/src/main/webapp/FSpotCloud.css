@@ -23,6 +23,7 @@
 	background-color: #C8BBBE; /** Lavender Blush3 */
 	-moz-border-radius: 15px;
 	border-radius: 15px;
+	height: 100%;
 }
 
 .gwt-Label-title {
