@@ -6,8 +6,8 @@ import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 
 import fspotcloud.client.main.PlaceSwapper;
-import fspotcloud.client.view.PlaceGoTo;
-import fspotcloud.client.view.PlaceWhere;
+import fspotcloud.client.place.PlaceGoTo;
+import fspotcloud.client.place.PlaceWhere;
 
 public class ToggleFullscreenAction implements GestureAction {
 	

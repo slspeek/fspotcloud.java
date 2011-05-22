@@ -33,6 +33,10 @@ public class GlobalActionsViewImpl extends Composite implements
 	@UiField
 	Label peerPhotoCountValueLabel;
 	@UiField
+	Label lastSeenPeerLabel;
+	@UiField
+	Label lastSeenPeerValueLabel;
+	@UiField
 	Label importTagsLabel;
 	@UiField
 	Button importTagButton;
@@ -117,6 +121,16 @@ public class GlobalActionsViewImpl extends Composite implements
 	@Override
 	public HasEnabled getUpdateButton() {
 		return updateButton;
+	}
+
+	@Override
+	public HasText getLastSeenPeer() {
+		return lastSeenPeerLabel;
+	}
+
+	@Override
+	public HasText getLastSeenPeerValue() {
+		return lastSeenPeerValueLabel;
 	}
 
 }

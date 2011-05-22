@@ -12,8 +12,8 @@ import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.TreeViewModel;
 
-import fspotcloud.client.view.CustomCellTree;
-import fspotcloud.client.view.TreeView;
+import fspotcloud.client.main.view.CustomCellTree;
+import fspotcloud.client.main.view.api.TreeView;
 
 public class TreeViewImpl extends ResizeComposite implements TreeView {
 

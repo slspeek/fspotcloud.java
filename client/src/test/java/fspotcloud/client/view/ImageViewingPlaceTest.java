@@ -4,6 +4,9 @@ import junit.framework.TestCase;
 
 import com.google.gwt.place.shared.Place;
 
+import fspotcloud.client.main.view.TagViewingPlace;
+import fspotcloud.client.place.ImageViewingPlace;
+
 public class ImageViewingPlaceTest extends TestCase {
 
 	protected void setUp() throws Exception {

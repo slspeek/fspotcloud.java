@@ -5,7 +5,12 @@ import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
-import fspotcloud.client.view.PagerView.PagerPresenter;
+import fspotcloud.client.main.view.ImagePresenterImpl;
+import fspotcloud.client.main.view.api.ImageView;
+import fspotcloud.client.main.view.api.PagerView;
+import fspotcloud.client.main.view.api.PagerView.PagerPresenter;
+import fspotcloud.client.place.BasePlace;
+import fspotcloud.client.place.ImageViewingPlace;
 
 public class ImageActivityTest extends TestCase {
 

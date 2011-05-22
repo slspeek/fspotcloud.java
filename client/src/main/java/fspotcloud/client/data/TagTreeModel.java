@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.TreeViewModel;
 
-import fspotcloud.client.main.TagCell;
+import fspotcloud.client.main.view.TagCell;
 import fspotcloud.shared.tag.TagNode;
 
 public class TagTreeModel implements TreeViewModel {

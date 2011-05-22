@@ -3,8 +3,8 @@ package fspotcloud.client.main.ui;
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
-import fspotcloud.client.view.ImagePanelViewActivityMapper;
-import fspotcloud.client.view.TagView;
+import fspotcloud.client.main.view.ImagePanelViewActivityMapper;
+import fspotcloud.client.main.view.api.TagView;
 
 public class TagViewFactory extends ViewFactory {
 

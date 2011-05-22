@@ -16,6 +16,10 @@ public interface GlobalActionsView extends IsWidget {
 	HasText getPhotoCountValue();
 	HasText getPhotoCountOnPeer();
 	HasText getPhotoCountOnPeerValue();
+	
+	HasText getLastSeenPeer();
+	HasText getLastSeenPeerValue();
+	
 	HasText getDeleteAllTagsDescription();
 	HasEnabled getDeleteTagsAllButton();
 	HasText getDeleteAllPhotosDescription();

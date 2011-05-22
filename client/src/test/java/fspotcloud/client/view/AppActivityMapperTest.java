@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
+import fspotcloud.client.main.view.MainWindowActivityMapper;
+
 public class AppActivityMapperTest extends TestCase {
 
 	MainWindowActivityMapper mapper;

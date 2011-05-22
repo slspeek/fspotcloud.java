@@ -7,7 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
 import fspotcloud.client.main.shared.SlideshowStatusEvent;
-import fspotcloud.client.view.TimerInterface;
+import fspotcloud.client.main.view.api.TimerInterface;
 
 public class SlideshowImpl implements Slideshow {
 

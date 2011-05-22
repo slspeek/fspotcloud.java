@@ -1,6 +1,6 @@
 package fspotcloud.client.view.action;
 
-import fspotcloud.client.view.HelpPresenter;
+import fspotcloud.client.main.view.HelpPresenter;
 
 public class HelpAction implements GestureAction {
 

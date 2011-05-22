@@ -3,6 +3,8 @@ package fspotcloud.client.view;
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.Widget;
 
+import fspotcloud.client.main.view.api.PagerView;
+
 public class PagerViewDummy implements PagerView {
 
 	final HasEnabled hasEnabled = new HasEnabled() {

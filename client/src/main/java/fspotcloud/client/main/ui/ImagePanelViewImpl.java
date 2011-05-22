@@ -11,10 +11,10 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.inject.Inject;
 
-import fspotcloud.client.view.ImagePanelView;
-import fspotcloud.client.view.ImageView;
-import fspotcloud.client.view.PagerView;
-import fspotcloud.client.view.SlideshowView;
+import fspotcloud.client.main.view.ImagePanelView;
+import fspotcloud.client.main.view.api.ImageView;
+import fspotcloud.client.main.view.api.PagerView;
+import fspotcloud.client.main.view.api.SlideshowView;
 
 public class ImagePanelViewImpl extends ResizeComposite implements
 		ImagePanelView {

@@ -2,8 +2,8 @@ package fspotcloud.client.main;
 
 import com.google.gwt.place.shared.Place;
 
-import fspotcloud.client.view.ImageViewingPlace;
-import fspotcloud.client.view.TagViewingPlace;
+import fspotcloud.client.main.view.TagViewingPlace;
+import fspotcloud.client.place.ImageViewingPlace;
 
 public class PlaceSwapper {
 
