@@ -1,8 +1,7 @@
-package fspotcloud.client.main.view;
+package fspotcloud.client.place;
 
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-import fspotcloud.client.place.BasePlace;
 
 
 public class TagViewingPlace extends BasePlace {

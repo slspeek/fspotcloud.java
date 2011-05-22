@@ -1,0 +1,60 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<g:HTMLPanel>
+		<table>
+			<theader>
+				<tr>
+					<td colspan="all">
+						<g:Label ui:field="headerLabel"></g:Label>
+					</td>
+				</tr>
+			</theader>
+			<tbody>
+				<tr>
+					<td>
+						<g:Label ui:field="tagNameLabel"></g:Label>
+					</td>
+					<td>
+						<g:Label ui:field="tagNameValueLabel"></g:Label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label ui:field="tagDescriptionLabel"></g:Label>
+					</td>
+					<td>
+						<g:Label ui:field="tagDescriptionValueLabel"></g:Label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label ui:field="tagCountLabel"></g:Label>
+					</td>
+					<td>
+						<g:Label ui:field="tagCountValueLabel"></g:Label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label ui:field="tagLoadedCountLabel"></g:Label>
+					</td>
+					<td>
+						<g:Label ui:field="tagLoadedCountValueLabel"></g:Label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label ui:field="importTagsLabel"></g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="importTagButton" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 

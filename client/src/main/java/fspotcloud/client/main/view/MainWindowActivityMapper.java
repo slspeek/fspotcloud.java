@@ -11,6 +11,7 @@ import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
 import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.ImageViewingPlace;
+import fspotcloud.client.place.TagViewingPlace;
 
 public class MainWindowActivityMapper implements ActivityMapper {
 	private static final Logger log = Logger
