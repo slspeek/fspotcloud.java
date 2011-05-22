@@ -1,11 +1,8 @@
-package fspotcloud.client.main.view;
+package fspotcloud.client.main.view.api;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.user.client.ui.IsWidget;
 
-import fspotcloud.client.main.view.api.ImageView;
-import fspotcloud.client.main.view.api.PagerView;
-import fspotcloud.client.main.view.api.SlideshowView;
 
 public interface ImagePanelView extends IsWidget {
 

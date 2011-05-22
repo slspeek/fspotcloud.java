@@ -7,9 +7,9 @@ import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.Slideshow;
 import fspotcloud.client.main.view.FullscreenImagePanelActivity;
 import fspotcloud.client.main.view.ImagePanelActivity;
-import fspotcloud.client.main.view.ImagePanelView;
-import fspotcloud.client.main.view.ImagePanelView.ImagePanelPresenter;
 import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
+import fspotcloud.client.main.view.api.ImagePanelView;
+import fspotcloud.client.main.view.api.ImagePanelView.ImagePanelPresenter;
 import fspotcloud.client.place.BasePlace;
 /**
  * *

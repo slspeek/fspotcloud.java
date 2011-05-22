@@ -10,34 +10,20 @@
 			<g:Label ui:field="titleLabel" text="FSpotCloud Dashboard">
 			</g:Label>
 		</g:north>
-		<g:east size="5">
-			<g:HTML>Tree</g:HTML>
-		</g:east>
 		<g:center>
 			<g:SplitLayoutPanel ui:field="horizontalSplitPanel">
 				<g:west size="250">
 					<main:TreeViewImpl ui:field="treeView"></main:TreeViewImpl>
 				</g:west>
 				<g:center>
-					<g:HTML>
-						<table>
-							<tbody>
-								<tr>
-									<td>
-										<g:SimplePanel ui:field="tagDetailsViewContainer"></g:SimplePanel>
-									</td>
-									<td>
-										<admin:GlobalActionsViewImpl
-											ui:field="globalActionsView"></admin:GlobalActionsViewImpl>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</g:HTML>
+					<g:HorizontalPanel>
+						<g:SimplePanel ui:field="tagDetailsViewContainer"></g:SimplePanel>
+						<admin:GlobalActionsViewImpl ui:field="globalActionsView"></admin:GlobalActionsViewImpl>
+					</g:HorizontalPanel>
 				</g:center>
 			</g:SplitLayoutPanel>
 		</g:center>
-		<g:south size='2'>
+		<g:south size='20'>
 			<g:HTML>Footer</g:HTML>
 		</g:south>
 	</g:DockLayoutPanel>

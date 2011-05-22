@@ -1,8 +1,10 @@
 package fspotcloud.client.admin.ui;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
@@ -13,12 +15,12 @@ import fspotcloud.client.admin.view.api.TagDetailsView;
 
 public class TagDetailsViewImpl extends Composite implements TagDetailsView {
 
-	private static TagDetailsViewImplUiBinder uiBinder = GWT
-			.create(TagDetailsViewImplUiBinder.class);
-
 	interface TagDetailsViewImplUiBinder extends
 			UiBinder<Widget, TagDetailsViewImpl> {
 	}
+
+	private static TagDetailsViewImplUiBinder uiBinder = GWT
+			.create(TagDetailsViewImplUiBinder.class);
 
 	@UiField
 	Label headerLabel;
@@ -27,9 +29,14 @@ public class TagDetailsViewImpl extends Composite implements TagDetailsView {
 	@UiField
 	Label tagNameValueLabel;
 	@UiField
-	Label tagDesciptionLabel;
+	Label tagDescriptionLabel;
 	@UiField
-	Label tagDesciptionValueLabel;
+	Label tagDescriptionValueLabel;
+
+	@UiField
+	Label tagImportIssuedLabel;
+	@UiField
+	Label tagImportIssuedValueLabel;
 
 	@UiField
 	Label tagCountLabel;
@@ -43,23 +50,21 @@ public class TagDetailsViewImpl extends Composite implements TagDetailsView {
 	Label importTagsLabel;
 	@UiField
 	Button importTagButton;
+	
+	private TagDetailsPresenter presenter;
 
 	public TagDetailsViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
-
-	@Override
-	public HasText getTagName() {
-		return tagNameLabel;
-	}
-
+	
 	@Override
 	public HasText getTagDescription() {
-		return tagDesciptionLabel;
+		return tagDescriptionLabel;
 	}
 
-	public HasText getTagLoadedImagesCount() {
-		return tagLoadedCountLabel;
+	@Override
+	public HasText getTagDescriptionValue() {
+		return tagDescriptionValueLabel;
 	}
 
 	public HasText getTagImageCount() {
@@ -67,13 +72,22 @@ public class TagDetailsViewImpl extends Composite implements TagDetailsView {
 	}
 
 	@Override
-	public HasText getTagNameValue() {
-		return tagNameValueLabel;
+	public HasText getTagImageCountValue() {
+		return tagCountValueLabel;
 	}
 
 	@Override
-	public HasText getTagDescriptionValue() {
-		return tagDesciptionValueLabel;
+	public HasText getTagImportIssued() {
+		return tagImportIssuedLabel;
+	}
+
+	@Override
+	public HasText getTagImportIssuedValue() {
+		return tagImportIssuedValueLabel;
+	}
+
+	public HasText getTagLoadedImagesCount() {
+		return tagLoadedCountLabel;
 	}
 
 	@Override
@@ -82,8 +96,24 @@ public class TagDetailsViewImpl extends Composite implements TagDetailsView {
 	}
 
 	@Override
-	public HasText getTagImageCountValue() {
-		return tagCountValueLabel;
+	public HasText getTagName() {
+		return tagNameLabel;
+	}
+
+	@Override
+	public HasText getTagNameValue() {
+		return tagNameValueLabel;
+	}
+
+	@UiHandler("importTagButton")
+	public void onImportClicked(ClickEvent event) {
+		presenter.importTag();
+	}
+
+	@Override
+	public void setPresenter(TagDetailsPresenter presenter) {
+		this.presenter = presenter;
+
 	}
 
 }

@@ -7,6 +7,7 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 
 import fspotcloud.client.admin.gin.AdminGinjector;
+import fspotcloud.client.admin.view.DashboardPresenter;
 
 public class DashboardEntryPoint implements EntryPoint {
 
@@ -19,10 +20,9 @@ public class DashboardEntryPoint implements EntryPoint {
 	public void onModuleLoad() {
 		log.info("New dashboard");
 		try {
-			MVPSetup setup = injector.getMVPSetup();
+			DashboardPresenter dashboard = injector.getDashboardPresenter();
 			log.info("gin fininshed the constuction of the application graph");
-			setup.setup();
-		} catch (Throwable e) {
+			} catch (Throwable e) {
 			log.log(Level.SEVERE, "Uncaught exception", e);
 		}
 	}
