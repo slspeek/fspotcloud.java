@@ -80,7 +80,8 @@
 	-moz-border-radius: 15px;
 }
 
-.fsc-tag-image-view-container {
+.fsc-tag-image-view-container-focused {
+	border: solid;
 }
 
 .fsc-tag-status-label {
@@ -118,7 +119,15 @@
 
 .fsc-slideshow {
 	padding: 5px;
+	
 }
+
+.fsc-slideshow-running {
+	padding: 5px;
+	background: red;
+	
+}
+
 
 .fsc-slideshow-interval {
 	padding-left: 10px;
