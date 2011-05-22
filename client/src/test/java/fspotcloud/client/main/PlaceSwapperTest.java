@@ -1,8 +1,8 @@
 package fspotcloud.client.main;
 
 import junit.framework.TestCase;
-import fspotcloud.client.main.view.TagViewingPlace;
 import fspotcloud.client.place.ImageViewingPlace;
+import fspotcloud.client.place.TagViewingPlace;
 
 import com.google.gwt.place.shared.Place;
 

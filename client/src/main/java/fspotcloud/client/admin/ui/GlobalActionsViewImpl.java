@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
-import fspotcloud.client.admin.view.GlobalActionsView;
+import fspotcloud.client.admin.view.api.GlobalActionsView;
 
 public class GlobalActionsViewImpl extends Composite implements
 		GlobalActionsView {

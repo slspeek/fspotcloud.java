@@ -1,4 +1,4 @@
-package fspotcloud.client.admin.view;
+package fspotcloud.client.admin.view.api;
 
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.IsWidget;

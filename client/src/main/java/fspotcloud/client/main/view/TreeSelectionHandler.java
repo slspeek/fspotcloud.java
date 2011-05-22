@@ -8,6 +8,7 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 
 import fspotcloud.client.place.PlaceGoTo;
+import fspotcloud.client.place.TagViewingPlace;
 import fspotcloud.shared.tag.TagNode;
 
 public class TreeSelectionHandler implements Handler {

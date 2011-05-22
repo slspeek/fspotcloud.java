@@ -4,8 +4,8 @@ import junit.framework.TestCase;
 
 import com.google.gwt.place.shared.Place;
 
-import fspotcloud.client.main.view.TagViewingPlace;
 import fspotcloud.client.place.ImageViewingPlace;
+import fspotcloud.client.place.TagViewingPlace;
 
 public class ImageViewingPlaceTest extends TestCase {
 

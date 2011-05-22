@@ -6,11 +6,11 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
 import fspotcloud.client.data.DataManager;
-import fspotcloud.client.main.view.TagViewingPlace;
 import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.ImageViewingPlace;
 import fspotcloud.client.place.PlaceGoTo;
 import fspotcloud.client.place.PlaceWhere;
+import fspotcloud.client.place.TagViewingPlace;
 import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;
 
