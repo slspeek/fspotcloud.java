@@ -38,20 +38,19 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	@UiField
 	Label statusLabel;
 
-	@UiField
-	TreeViewImpl treeView;
+	TreeView treeView;
 	@UiField
 	SimplePanel imageViewPanel;
 
 	@Inject
 	public TagViewImpl(TreeView treeView) {
-		this.treeView = (TreeViewImpl) treeView;
+		this.treeView =  treeView;
 		initWidget(uiBinder.createAndBindUi(this));
 		mainPanel.addStyleName("fsc-tag");
 		horizontalSplitPanel.addStyleName("fsc-tag-split-panel");
 		titleLabel.addStyleName("fsc-tag-title-label");
 		statusLabel.addStyleName("fsc-tag-status-label");
-		((TreeViewImpl) treeView).addStyleName("fsc-tag-tree-container");
+		treeView.asWidget().addStyleName("fsc-tag-tree-container");
 		imageViewPanel.addStyleName("fsc-tag-image-view-container");
 	}
 

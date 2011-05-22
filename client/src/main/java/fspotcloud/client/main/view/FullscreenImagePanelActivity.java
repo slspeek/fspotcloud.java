@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.Slideshow;
+import fspotcloud.client.main.view.api.ImagePanelView;
 import fspotcloud.client.place.BasePlace;
 
 public class FullscreenImagePanelActivity extends ImagePanelActivity {

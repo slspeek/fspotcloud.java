@@ -11,7 +11,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.inject.Inject;
 
-import fspotcloud.client.main.view.ImagePanelView;
+import fspotcloud.client.main.view.api.ImagePanelView;
 import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.main.view.api.PagerView;
 import fspotcloud.client.main.view.api.SlideshowView;

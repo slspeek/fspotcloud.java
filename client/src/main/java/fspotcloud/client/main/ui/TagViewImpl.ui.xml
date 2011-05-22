@@ -15,7 +15,7 @@
 		<g:center>
 			<g:SplitLayoutPanel ui:field="horizontalSplitPanel">
 				<g:west size="250">
-					<my:TreeViewImpl ui:field="treeView"></my:TreeViewImpl>
+					<my:TreeViewImpl></my:TreeViewImpl>
 				</g:west>
 				<g:center>
 					<g:SimplePanel ui:field="imageViewPanel"></g:SimplePanel>

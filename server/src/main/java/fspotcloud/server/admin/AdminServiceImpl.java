@@ -109,4 +109,12 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 				"minDate", "0").param("batchId", String.valueOf(batchId)));
 		return batchId;
 	}
+
+	@Override
+	public void importTag(String tagId) {
+		Queue queue = QueueFactory.getDefaultQueue();
+		queue.add(withUrl("/control/task/imageData").param("minDate", "0").param(
+				"maxCount", "10000").param("tagId", String.valueOf(tagId)));
+		
+	}
 }

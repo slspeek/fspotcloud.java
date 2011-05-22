@@ -7,8 +7,13 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.inject.Singleton;
 
-import fspotcloud.client.admin.MVPSetup;
-import fspotcloud.client.admin.view.MainWindowActivityMapper;
+import fspotcloud.client.admin.ui.DashboardViewImpl;
+import fspotcloud.client.admin.ui.GlobalActionsViewImpl;
+import fspotcloud.client.admin.ui.TagDetailsViewImpl;
+import fspotcloud.client.admin.view.TagDetailsActivityMapper;
+import fspotcloud.client.admin.view.api.DashboardView;
+import fspotcloud.client.admin.view.api.GlobalActionsView;
+import fspotcloud.client.admin.view.api.TagDetailsView;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.main.gin.PlaceControllerProvider;
@@ -25,9 +30,11 @@ public class AdminModule extends AbstractGinModule {
 
 	@Override
 	protected void configure() {
-		bind(MainWindowActivityMapper.class).in(Singleton.class);
+		bind(TagDetailsActivityMapper.class).in(Singleton.class);
+		bind(TagDetailsView.class).to(TagDetailsViewImpl.class).in(Singleton.class);
+		bind(DashboardView.class).to(DashboardViewImpl.class).in(Singleton.class);
+		bind(GlobalActionsView.class).to(GlobalActionsViewImpl.class).in(Singleton.class);
 		bind(DataManager.class).to(DataManagerImpl.class).in(Singleton.class);
-		bind(MVPSetup.class).in(Singleton.class);
 		bind(TagCell.class);
 		bind(PlaceGoTo.class).to(PlaceGoToImpl.class);
 		bind(PlaceController.class).toProvider(PlaceControllerProvider.class);

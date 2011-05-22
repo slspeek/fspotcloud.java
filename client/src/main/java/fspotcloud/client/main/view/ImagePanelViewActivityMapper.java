@@ -7,8 +7,8 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 
-import fspotcloud.client.main.view.ImagePanelView.ImagePanelPresenter;
 import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
+import fspotcloud.client.main.view.api.ImagePanelView.ImagePanelPresenter;
 import fspotcloud.client.place.BasePlace;
 
 public class ImagePanelViewActivityMapper  implements ActivityMapper {
