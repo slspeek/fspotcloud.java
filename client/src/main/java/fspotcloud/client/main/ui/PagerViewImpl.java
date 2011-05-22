@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
-import fspotcloud.client.view.PagerView;
+import fspotcloud.client.main.view.api.PagerView;
 
 public class PagerViewImpl extends Composite implements PagerView {
 	@SuppressWarnings("unused")

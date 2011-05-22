@@ -8,9 +8,9 @@ import org.jmock.Mockery;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.data.IndexingUtil;
-import fspotcloud.client.view.BasePlace;
-import fspotcloud.client.view.PlaceGoTo;
-import fspotcloud.client.view.PlaceWhere;
+import fspotcloud.client.place.BasePlace;
+import fspotcloud.client.place.PlaceGoTo;
+import fspotcloud.client.place.PlaceWhere;
 
 public class NavigatorImplTest extends TestCase {
 

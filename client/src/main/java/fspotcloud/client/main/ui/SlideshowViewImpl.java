@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.Widget;
 
-import fspotcloud.client.view.SlideshowView;
+import fspotcloud.client.main.view.api.SlideshowView;
 
 public class SlideshowViewImpl extends Composite implements SlideshowView {
 	private static final Logger log = Logger.getLogger(SlideshowViewImpl.class

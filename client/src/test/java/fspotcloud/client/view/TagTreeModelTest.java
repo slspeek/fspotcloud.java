@@ -6,6 +6,7 @@ import com.google.gwt.view.client.TreeViewModel.NodeInfo;
 
 import junit.framework.TestCase;
 import fspotcloud.client.main.TagServiceAsyncTestImpl;
+import fspotcloud.client.main.view.TagTreeModel;
 import fspotcloud.shared.tag.TagNode;
 
 public class TagTreeModelTest extends TestCase {

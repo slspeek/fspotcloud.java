@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
 import com.reveregroup.gwt.imagepreloader.FitImage;
 
-import fspotcloud.client.view.ImageView;
+import fspotcloud.client.main.view.api.ImageView;
 
 public class ImageViewImpl extends ResizeComposite implements ImageView {
 

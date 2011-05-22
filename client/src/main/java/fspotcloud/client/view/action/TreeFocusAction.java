@@ -2,7 +2,7 @@ package fspotcloud.client.view.action;
 
 import com.google.inject.Inject;
 
-import fspotcloud.client.view.TreeView;
+import fspotcloud.client.main.view.api.TreeView;
 
 public class TreeFocusAction implements GestureAction {
 

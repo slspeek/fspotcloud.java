@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 import com.google.gwt.user.client.Timer;
 
-import fspotcloud.client.view.TimerInterface;
+import fspotcloud.client.main.view.api.TimerInterface;
 
 public class SlideshowTimer extends Timer implements TimerInterface {
 

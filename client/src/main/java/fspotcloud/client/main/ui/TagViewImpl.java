@@ -15,8 +15,8 @@ import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
-import fspotcloud.client.view.TagView;
-import fspotcloud.client.view.TreeView;
+import fspotcloud.client.main.view.api.TagView;
+import fspotcloud.client.main.view.api.TreeView;
 
 public class TagViewImpl extends ResizeComposite implements TagView {
 

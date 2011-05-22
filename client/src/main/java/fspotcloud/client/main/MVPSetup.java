@@ -12,9 +12,9 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Inject;
 
-import fspotcloud.client.view.AppPlaceHistoryMapper;
-import fspotcloud.client.view.MainWindowActivityMapper;
-import fspotcloud.client.view.TagViewingPlace;
+import fspotcloud.client.main.view.MainWindowActivityMapper;
+import fspotcloud.client.main.view.TagViewingPlace;
+import fspotcloud.client.place.AppPlaceHistoryMapper;
 import fspotcloud.client.view.action.NavigationEventHandler;
 import fspotcloud.client.view.action.SlideshowEventHandler;
 
