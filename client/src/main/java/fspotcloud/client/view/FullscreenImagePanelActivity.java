@@ -15,8 +15,8 @@ public class FullscreenImagePanelActivity extends ImagePanelActivity {
 
 	public FullscreenImagePanelActivity(BasePlace place,
 			ImagePanelView imagePanelView, Navigator navigator,
-			Slideshow slideshow) {
-		super(place, imagePanelView, navigator, slideshow);
+			Slideshow slideshow, EventBus eventBus) {
+		super(place, imagePanelView, navigator, slideshow, eventBus);
 	}
 
 	@Override

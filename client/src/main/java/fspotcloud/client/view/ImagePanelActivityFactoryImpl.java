@@ -1,5 +1,6 @@
 package fspotcloud.client.view;
 
+import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
 import fspotcloud.client.main.Navigator;
@@ -16,20 +17,22 @@ public class ImagePanelActivityFactoryImpl implements ImagePanelActivityFactory 
 	final private ImagePanelView fullscreenImagePanelView;
 	final private Navigator navigator;
 	final private Slideshow slideshow;
+	final private EventBus eventBus;
 
 	@Inject
 	public ImagePanelActivityFactoryImpl(ImagePanelView embeddedImagePanelView, ImagePanelView fullscreenImagePanelView,
-			Navigator navigator, Slideshow slideshow) {
+			Navigator navigator, Slideshow slideshow, EventBus eventBus) {
 		this.navigator = navigator;
 		this.slideshow = slideshow;
 		this.embeddedImagePanelView = embeddedImagePanelView;
 		this.fullscreenImagePanelView = fullscreenImagePanelView;
+		this.eventBus = eventBus;
 	}
 
 	@Override
 	public ImagePanelPresenter getEmbedded(BasePlace place) {
 		ImagePanelPresenter presenter = new ImagePanelActivity(place,
-				embeddedImagePanelView, navigator, slideshow);
+				embeddedImagePanelView, navigator, slideshow, eventBus);
 		presenter.init();
 		return presenter;
 	}
@@ -37,7 +40,7 @@ public class ImagePanelActivityFactoryImpl implements ImagePanelActivityFactory 
 	@Override
 	public ImagePanelPresenter getFullscreen(BasePlace place) {
 		ImagePanelPresenter presenter = new FullscreenImagePanelActivity(place,
-				fullscreenImagePanelView, navigator, slideshow);
+				fullscreenImagePanelView, navigator, slideshow, eventBus);
 		presenter.init();
 		return presenter;
 	}

@@ -2,9 +2,11 @@ package fspotcloud.client.main;
 
 import java.util.logging.Logger;
 
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
+import fspotcloud.client.main.shared.SlideshowStatusEvent;
 import fspotcloud.client.view.TimerInterface;
 
 public class SlideshowImpl implements Slideshow {
@@ -16,9 +18,11 @@ public class SlideshowImpl implements Slideshow {
 	private boolean isRunning = false;
 	final private float increaseFactor = 4f / 3f;
 	private float delay = 4f;
+	final private EventBus eventBus;
 
 	@Inject
-	public SlideshowImpl(Navigator navigator, TimerInterface timer) {
+	public SlideshowImpl(Navigator navigator, TimerInterface timer, EventBus eventBus) {
+		this.eventBus = eventBus;
 		this.navigator = navigator;
 		this.timer = timer;
 		initTimer();
@@ -49,7 +53,7 @@ public class SlideshowImpl implements Slideshow {
 		if (canGo) {
 			navigator.go(true);
 		} else {
-			timer.cancel();
+			stop();
 			log.info("Timer stopped, because the end was reached.");
 		}
 	}
@@ -66,6 +70,7 @@ public class SlideshowImpl implements Slideshow {
 		log.info("Starting slideshow");
 		isRunning = true;
 		reschedule();
+		fireStatusChanged();
 	}
 
 	@Override
@@ -73,20 +78,26 @@ public class SlideshowImpl implements Slideshow {
 		log.info("Stopping slideshow");
 		isRunning = false;
 		timer.cancel();
+		fireStatusChanged();
 	}
 
 	@Override
 	public float faster() {
 		delay *= increaseFactor;
+		fireStatusChanged();
 		return delay();
 	}
 
 	@Override
 	public float slower() {
 		delay /= increaseFactor;
+		fireStatusChanged();
 		return delay();
 	}
 
+	private void fireStatusChanged() {
+		eventBus.fireEvent(new SlideshowStatusEvent(isRunning, delay()));
+	}
 	@Override
 	public float delay() {
 		return delay;

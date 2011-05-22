@@ -14,6 +14,8 @@ public interface SlideshowView extends IsWidget {
 		void stop();
 
 		void faster();
+		
+		void cleanup();
 	}
 
 	void setLabelText(String text);

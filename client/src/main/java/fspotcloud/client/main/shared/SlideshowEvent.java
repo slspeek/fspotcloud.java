@@ -5,7 +5,7 @@ import com.google.gwt.event.shared.GwtEvent;
 
 public class SlideshowEvent extends GwtEvent<SlideshowEvent.Handler> {
 
-	public static Type<SlideshowEvent.Handler> TYPE = new Type<SlideshowEvent.Handler>();
+	final public static Type<SlideshowEvent.Handler> TYPE = new Type<SlideshowEvent.Handler>();
 
 	final public static int ACTION_START = 0;
 	final public static int ACTION_STOP = 1;
