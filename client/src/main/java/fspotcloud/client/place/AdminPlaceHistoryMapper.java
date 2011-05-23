@@ -5,7 +5,7 @@ import com.google.gwt.place.shared.WithTokenizers;
 
 import fspotcloud.client.place.TagViewingPlace.Tokenizer;
 
-@WithTokenizers({TagViewingPlace.Tokenizer.class, ImageViewingPlace.Tokenizer.class})
-public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
+@WithTokenizers({TagPlace.Tokenizer.class})
+public interface AdminPlaceHistoryMapper extends PlaceHistoryMapper {
 
 }

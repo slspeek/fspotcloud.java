@@ -7,6 +7,7 @@ public interface DashboardView extends IsWidget{
 
 	interface DashboardPresenter {
 		DashboardView getView();
+		void init();
 	}
 	
 	GlobalActionsView getGlobalActionsView();

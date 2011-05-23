@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Inject;
 
 import fspotcloud.client.main.view.MainWindowActivityMapper;
-import fspotcloud.client.place.AppPlaceHistoryMapper;
+import fspotcloud.client.place.MainPlaceHistoryMapper;
 import fspotcloud.client.place.TagViewingPlace;
 import fspotcloud.client.view.action.NavigationEventHandler;
 import fspotcloud.client.view.action.SlideshowEventHandler;
@@ -53,8 +53,8 @@ public class MVPSetup {
 				eventBus);
 		activityManager.setDisplay(appWidget);
 
-		AppPlaceHistoryMapper historyMapper = GWT
-				.create(AppPlaceHistoryMapper.class);
+		MainPlaceHistoryMapper historyMapper = GWT
+				.create(MainPlaceHistoryMapper.class);
 		PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(
 				historyMapper);
 		historyHandler.register(placeController, eventBus, defaultPlace);

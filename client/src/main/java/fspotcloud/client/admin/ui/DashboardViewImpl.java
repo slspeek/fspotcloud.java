@@ -2,6 +2,7 @@ package fspotcloud.client.admin.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasOneWidget;
@@ -11,6 +12,7 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.admin.view.api.DashboardView;
 import fspotcloud.client.admin.view.api.GlobalActionsView;
+import fspotcloud.client.main.ui.TreeViewImpl;
 import fspotcloud.client.main.view.api.TreeView;
 
 public class DashboardViewImpl extends Composite implements DashboardView{
@@ -34,8 +36,8 @@ public class DashboardViewImpl extends Composite implements DashboardView{
 		this.globalActionsView = globalActionsView;
 		initWidget(uiBinder.createAndBindUi(this));
 	}
-
-	@Override
+	
+	@UiFactory
 	public GlobalActionsView getGlobalActionsView() {
 		return globalActionsView;
 	}
@@ -44,7 +46,9 @@ public class DashboardViewImpl extends Composite implements DashboardView{
 	public HasOneWidget getTagDetailsContainer() {
 		return tagDetailsViewContainer;
 	}
-
 	
-	
+	@UiFactory
+	public TreeViewImpl getTreeView() {
+		return (TreeViewImpl) treeView;
+	}
 }

@@ -70,6 +70,16 @@
 
 	<security-constraint>
 		<web-resource-collection>
+			<web-resource-name>Dashboard</web-resource-name>
+			<url-pattern>/Dashboard.html</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
 			<web-resource-name>Administration Panel</web-resource-name>
 			<url-pattern>/fspotcloud.admin/*</url-pattern>
 		</web-resource-collection>
@@ -77,6 +87,17 @@
 			<role-name>admin</role-name>
 		</auth-constraint>
 	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Dashboard</web-resource-name>
+			<url-pattern>/fspotcloud.dashboard/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+
 
 	<security-constraint>
 		<web-resource-collection>

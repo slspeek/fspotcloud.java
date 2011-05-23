@@ -9,14 +9,14 @@
 			<theader>
 				<tr>
 					<td colspan="all">
-						<g:Label ui:field="headerLabel"></g:Label>
+						<g:Label ui:field="headerLabel">Global actions</g:Label>
 					</td>
 				</tr>
 			</theader>
 			<tbody>
 				<tr>
 					<td>
-						<g:Label ui:field="photoCountLabel"></g:Label>
+						<g:Label ui:field="photoCountLabel">Number of photo-metadata object on the server</g:Label>
 					</td>
 					<td>
 						<g:Label ui:field="photoCountValueLabel"></g:Label>
@@ -24,7 +24,7 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="peerPhotoCountLabel"></g:Label>
+						<g:Label ui:field="peerPhotoCountLabel">Number of photos on the peer</g:Label>
 					</td>
 					<td>
 						<g:Label ui:field="peerPhotoCountValueLabel"></g:Label>
@@ -32,7 +32,7 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="lastSeenPeerLabel"></g:Label>
+						<g:Label ui:field="lastSeenPeerLabel">Date we last saw the peer</g:Label>
 					</td>
 					<td>
 						<g:Label ui:field="lastSeenPeerValueLabel"></g:Label>
@@ -40,34 +40,34 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="importTagsLabel"></g:Label>
+						<g:Label ui:field="importTagsLabel">Import/Update tag information from the peer</g:Label>
 					</td>
 					<td>
-						<g:Button ui:field="importTagButton" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<g:Label ui:field="updateLabel"></g:Label>
-					</td>
-					<td>
-						<g:Button ui:field="updateButton" />
+						<g:Button ui:field="importTagButton" >Import/Update all tags</g:Button>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="deleteAllTagsLabel"></g:Label>
+						<g:Label ui:field="updateLabel">Synchronize with peer</g:Label>
 					</td>
 					<td>
-						<g:Button ui:field="deleteAllTagsButton" />
+						<g:Button ui:field="updateButton" >Synchronize</g:Button>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="deleteAllPhotosLabel"></g:Label>
+						<g:Label ui:field="deleteAllTagsLabel">Delete all labels on the server</g:Label>
 					</td>
 					<td>
-						<g:Button ui:field="deleteAllPhotosButton" />
+						<g:Button ui:field="deleteAllTagsButton" >Delete all labels</g:Button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label ui:field="deleteAllPhotosLabel">Delete all photos on the server</g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="deleteAllPhotosButton" >Delete all photos</g:Button>
 					</td>
 				</tr>
 
