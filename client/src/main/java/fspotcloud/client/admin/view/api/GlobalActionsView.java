@@ -6,6 +6,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 
 public interface GlobalActionsView extends IsWidget {
 	interface GlobalActionsPresenter {
+		void init();
 		void deleteAllPhotos();
 		void deleteAllTags();
 		void importTags();

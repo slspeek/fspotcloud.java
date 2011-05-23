@@ -1,9 +1,22 @@
 package fspotcloud.client.place;
 
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class TagPlace extends Place {
 
+	public static class Tokenizer implements PlaceTokenizer<TagPlace> {
+		@Override
+		public TagPlace getPlace(String token) {
+			return new TagPlace(token);
+		}
+
+		@Override
+		public String getToken(TagPlace place) {
+			return place.getTagId() ;
+		}
+	}
+	
 	private String tagId;
 
 	public TagPlace(String tagId) {

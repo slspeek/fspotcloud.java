@@ -17,7 +17,7 @@
 				</g:west>
 				<g:center>
 					<g:HorizontalPanel>
-						<g:SimplePanel ui:field="tagDetailsViewContainer"></g:SimplePanel>
+						<g:SimplePanel width="400px" height="100%" ui:field="tagDetailsViewContainer"></g:SimplePanel>
 						<admin:GlobalActionsViewImpl ui:field="globalActionsView"></admin:GlobalActionsViewImpl>
 					</g:HorizontalPanel>
 				</g:center>

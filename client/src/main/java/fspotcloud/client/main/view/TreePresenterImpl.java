@@ -98,7 +98,7 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
 				log.warning("Root node is null");
 			}
 		} else {
-			log.warning("Root node is null");
+			log.warning("place is null");
 		}
 	}
 }

@@ -5,24 +5,27 @@ import java.util.logging.Logger;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.ui.RootLayoutPanel;
+import com.google.gwt.user.client.ui.Widget;
 
 import fspotcloud.client.admin.gin.AdminGinjector;
 import fspotcloud.client.admin.view.DashboardPresenter;
+import fspotcloud.client.admin.view.api.DashboardView;
 
 public class DashboardEntryPoint implements EntryPoint {
 
+	private static final Logger log = Logger
+			.getLogger(DashboardEntryPoint.class.getName());
 	private final AdminGinjector injector = GWT.create(AdminGinjector.class);
-
-	private static final Logger log = Logger.getLogger(DashboardEntryPoint.class
-			.getName());
 
 	@Override
 	public void onModuleLoad() {
 		log.info("New dashboard");
 		try {
-			DashboardPresenter dashboard = injector.getDashboardPresenter();
-			log.info("gin fininshed the constuction of the application graph");
-			} catch (Throwable e) {
+			MVPSetup setup = injector.getMVPSetup();
+			setup.setup();
+			log.info("Setup finished");
+		} catch (Throwable e) {
 			log.log(Level.SEVERE, "Uncaught exception", e);
 		}
 	}

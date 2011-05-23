@@ -28,17 +28,19 @@ public class FSpotCloudServletModule extends ServletModule {
 		serve("/fspotcloud/tag").with(TagServiceImpl.class);
 		serve("/celltree/tag").with(TagServiceImpl.class);
 		serve("/fspotcloud.admin/tag").with(TagServiceImpl.class);
+		serve("/fspotcloud.dashboard/tag").with(TagServiceImpl.class);
 		serve("/admin/task/photoCount").with(PhotoCountTaskServlet.class);
 		serve("/admin/task/photoDelete").with(PhotoDeleteTaskServlet.class);
 		serve("/control/task/imageData").with(ImageDataTaskServlet.class);
 		serve("/image").with(ImageServlet.class);
 		serve("/fspotcloud.admin/admin").with(AdminServiceImpl.class);
+		serve("/fspotcloud.dashboard/admin").with(AdminServiceImpl.class);
 
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("enabledForExtensions", "true");
 		String botSecret = System.getProperty("bot.secret");
 		serve("/xmlrpc/" + botSecret).with(GuiceXmlRpcServlet.class, params);
-		log.info("bot.secret: " + botSecret);
+		//log.info("bot.secret: " + botSecret);
 	}
 
 }
