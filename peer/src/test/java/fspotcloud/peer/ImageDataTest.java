@@ -3,9 +3,7 @@ package fspotcloud.peer;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -25,7 +23,7 @@ public class ImageDataTest extends TestCase {
 		super.tearDown();
 	}
 
-	public final void testGetScaledImageData() throws IOException {
+	public final void testGetScaledImageData() throws Exception {
 		URL url = ClassLoader.getSystemResource("images/img_0659.jpg");
 		Dimension size = new Dimension(200, 100);
 		byte[] data = target.getScaledImageData(url, size);
@@ -37,7 +35,7 @@ public class ImageDataTest extends TestCase {
 		assertEquals(100, h);
 	}
 
-	public final void testGetScaledImageDataPortrait() throws IOException {
+	public final void testGetScaledImageDataPortrait() throws Exception {
 		URL url = ClassLoader.getSystemResource("Photos/2010/06/04/Mac-classic.jpg");
 		Dimension size = new Dimension(200, 100);
 		byte[] data = target.getScaledImageData(url, size);
