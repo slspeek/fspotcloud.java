@@ -57,7 +57,7 @@ public class Bot {
 	}
 
 	private void dispatch(String cmd, Object[] args) {
-		System.out.println("Running " + cmd + "()");
+		System.out.println("Running " + cmd + "("+ String.valueOf(args) +")");
 		Method method = findMethod(cmd, BotWorker.class);
 		try {
 			method.invoke(botWorker, args);

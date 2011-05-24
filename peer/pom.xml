@@ -45,12 +45,6 @@
 			<version>2.5.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.sanselan</groupId>
-			<artifactId>sanselan</artifactId>
-			<version>0.97-incubator</version>
-			<scope>compile</scope>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

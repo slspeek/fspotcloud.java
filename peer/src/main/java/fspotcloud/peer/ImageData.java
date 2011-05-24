@@ -17,19 +17,6 @@ public class ImageData {
 		Process convert = Runtime.getRuntime().exec(command);
 		BufferedInputStream bis = new BufferedInputStream(
 				convert.getInputStream());
-		int exitStatus;
-		while (true) {
-			try {
-				exitStatus = convert.waitFor();
-				break;
-			} catch (java.lang.InterruptedException e) {
-				System.out.println("Interrupted: Ignoring and waiting");
-			}
-		}
-		if (exitStatus != 0) {
-			System.out.println("Error executing command: " + exitStatus);
-		}
-
 		ByteArrayOutputStream bas = new ByteArrayOutputStream();
 		int next = bis.read();
 		while (next > -1) {
@@ -42,8 +29,8 @@ public class ImageData {
 	}
 
 	private String getCommand(String path, int width, int height) {
-		String cmd = "/usr/bin/convert -geometry " + width + "x" + height + " " + path
-				+ " -";
+		String cmd = "/usr/bin/convert -geometry " + width + "x" + height + " "
+				+ path + " -";
 		return cmd;
 	}
 }
