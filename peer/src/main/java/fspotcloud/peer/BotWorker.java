@@ -1,8 +1,6 @@
 package fspotcloud.peer;
 
 import java.awt.Dimension;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 
@@ -82,20 +80,10 @@ public class BotWorker {
 			byte[] data = imageData.getScaledImageData(url, size);
 			Object[] params = new Object[] { photoId, data };
 			controller.execute("PhotoReciever.recieveImageData", params);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (XmlRpcException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+			
 		return 0;
 	}
 }
