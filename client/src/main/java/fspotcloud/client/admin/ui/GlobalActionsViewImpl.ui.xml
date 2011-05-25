@@ -16,7 +16,7 @@
 			<tbody>
 				<tr>
 					<td>
-						<g:Label ui:field="photoCountLabel">Number of photo-metadata object on the server</g:Label>
+						<g:Label>Number of photo-metadata object on the server</g:Label>
 					</td>
 					<td>
 						<g:Label ui:field="photoCountValueLabel"></g:Label>
@@ -24,7 +24,7 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="peerPhotoCountLabel">Number of photos on the peer</g:Label>
+						<g:Label >Number of photos on the peer</g:Label>
 					</td>
 					<td>
 						<g:Label ui:field="peerPhotoCountValueLabel"></g:Label>
@@ -32,7 +32,7 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="lastSeenPeerLabel">Date we last saw the peer</g:Label>
+						<g:Label >Date we last saw the peer</g:Label>
 					</td>
 					<td>
 						<g:Label ui:field="lastSeenPeerValueLabel"></g:Label>
@@ -40,15 +40,15 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="importTagsLabel">Import/Update tag information from the peer</g:Label>
+						<g:Label >Import/Update tag information from the peer</g:Label>
 					</td>
 					<td>
-						<g:Button ui:field="importTagButton" >Import/Update all tags</g:Button>
+						<g:Button ui:field="importTagsButton" >Import/Update all tags</g:Button>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="updateLabel">Synchronize with peer</g:Label>
+						<g:Label >Synchronize with peer</g:Label>
 					</td>
 					<td>
 						<g:Button ui:field="updateButton" >Synchronize</g:Button>
@@ -56,7 +56,7 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="deleteAllTagsLabel">Delete all labels on the server</g:Label>
+						<g:Label >Delete all labels on the server</g:Label>
 					</td>
 					<td>
 						<g:Button ui:field="deleteAllTagsButton" >Delete all labels</g:Button>
@@ -64,7 +64,7 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="deleteAllPhotosLabel">Delete all photos on the server</g:Label>
+						<g:Label >Delete all photos on the server</g:Label>
 					</td>
 					<td>
 						<g:Button ui:field="deleteAllPhotosButton" >Delete all photos</g:Button>

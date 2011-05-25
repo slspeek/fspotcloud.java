@@ -49,6 +49,24 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 			return tree;
 		}
 	}
+	
+	public List<TagNode> loadAdminTagTree() {
+		PeerDatabase p = defaultPeer.get();
+		if (false/*p.getCachedTagTree() != null*/) {
+			log.info("Got the tree from cache HIT");
+			return p.getCachedTagTree();
+		} else {
+			log.info("Missed the cache; building");
+			List<TagNode> tags = tagManager.getTags();
+			TreeBuilder builder = new TreeBuilder(tags);
+			List<TagNode> tree = builder.getRoots();
+			p.setCachedTagTree(tree);
+			log.info("Builded, about to save");
+			defaultPeer.save(p);
+			return tree;
+		}
+	}
+
 
 	@Override
 	public List<String> keysForTag(String tagId) {

@@ -16,7 +16,7 @@
 			<tbody>
 				<tr>
 					<td>
-						<g:Label ui:field="tagNameLabel">Name</g:Label>
+						<g:Label>Name</g:Label>
 					</td>
 					<td>
 						<g:Label ui:field="tagNameValueLabel"></g:Label>
@@ -24,7 +24,7 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="tagDescriptionLabel">Description</g:Label>
+						<g:Label>Description</g:Label>
 					</td>
 					<td>
 						<g:Label ui:field="tagDescriptionValueLabel"></g:Label>
@@ -32,7 +32,7 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="tagImportIssuedLabel">Import was requested</g:Label>
+						<g:Label>Import was requested</g:Label>
 					</td>
 					<td>
 						<g:Label ui:field="tagImportIssuedValueLabel"></g:Label>
@@ -40,7 +40,7 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="tagCountLabel">Number of photos in this label</g:Label>
+						<g:Label>Number of photos in this label</g:Label>
 					</td>
 					<td>
 						<g:Label ui:field="tagCountValueLabel"></g:Label>
@@ -48,7 +48,7 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="tagLoadedCountLabel">Number of photos loaded</g:Label>
+						<g:Label>Number of photos loaded</g:Label>
 					</td>
 					<td>
 						<g:Label ui:field="tagLoadedCountValueLabel"></g:Label>
@@ -56,7 +56,7 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label ui:field="importTagsLabel">Request import of this label</g:Label>
+						<g:Label>Request import of this label</g:Label>
 					</td>
 					<td>
 						<g:Button ui:field="importTagButton" >Import label</g:Button>

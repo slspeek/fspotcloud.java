@@ -50,7 +50,7 @@ public class AdminTreePresenterImpl implements TreeView.TreePresenter, Handler {
 	}
 
 	private void requestTagTreeData() {
-		dataManager.getTagTree(new AsyncCallback<List<TagNode>>() {
+		dataManager.getAdminTagTree(new AsyncCallback<List<TagNode>>() {
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Exception: " + caught);

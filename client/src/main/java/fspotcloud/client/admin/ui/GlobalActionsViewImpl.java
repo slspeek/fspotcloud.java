@@ -1,8 +1,10 @@
 package fspotcloud.client.admin.ui;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasEnabled;
@@ -22,60 +24,41 @@ public class GlobalActionsViewImpl extends Composite implements
 			UiBinder<Widget, GlobalActionsViewImpl> {
 	}
 
-	@UiField
-	Label headerLabel;
-	@UiField
-	Label photoCountLabel;
+	private GlobalActionsPresenter presenter;
+
 	@UiField
 	Label photoCountValueLabel;
 	@UiField
-	Label peerPhotoCountLabel;
-	@UiField
 	Label peerPhotoCountValueLabel;
-	@UiField
-	Label lastSeenPeerLabel;
 	@UiField
 	Label lastSeenPeerValueLabel;
 	@UiField
-	Label importTagsLabel;
-	@UiField
-	Button importTagButton;
-	@UiField
-	Label updateLabel;
+	Button importTagsButton;
 	@UiField
 	Button updateButton;
 	@UiField
-	Label deleteAllTagsLabel;
-	@UiField
 	Button deleteAllTagsButton;
-	@UiField
-	Label deleteAllPhotosLabel;
 	@UiField
 	Button deleteAllPhotosButton;
 
-	
 	public GlobalActionsViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
-	@Override
-	public HasText getHeader() {
-		return headerLabel;
+	@UiHandler("importTagsButton")
+	public void importButtonClicked(ClickEvent event) {
+		presenter.importTags();
+	}
+	
+	@UiHandler("deleteAllPhotosButton")
+	public void onDeleteAllPhotosButtonClicked(ClickEvent event) {
+		presenter.deleteAllPhotos();
 	}
 
-	@Override
-	public HasText getPhotoCount() {
-		return photoCountLabel;
-	}
 
 	@Override
 	public HasText getPhotoCountValue() {
 		return photoCountValueLabel;
-	}
-
-	@Override
-	public HasText getPhotoCountOnPeer() {
-		return peerPhotoCountLabel;
 	}
 
 	@Override
@@ -84,18 +67,8 @@ public class GlobalActionsViewImpl extends Composite implements
 	}
 
 	@Override
-	public HasText getDeleteAllTagsDescription() {
-		return deleteAllTagsLabel;
-	}
-
-	@Override
 	public HasEnabled getDeleteTagsAllButton() {
 		return deleteAllTagsButton;
-	}
-
-	@Override
-	public HasText getDeleteAllPhotosDescription() {
-		return deleteAllPhotosLabel;
 	}
 
 	@Override
@@ -104,18 +77,8 @@ public class GlobalActionsViewImpl extends Composite implements
 	}
 
 	@Override
-	public HasText getImportTagsDescription() {
-		return importTagsLabel;
-	}
-
-	@Override
 	public HasEnabled getImportTagsButton() {
-		return importTagButton;
-	}
-
-	@Override
-	public HasText getUpdateButtonDescription() {
-		return updateLabel;
+		return importTagsButton;
 	}
 
 	@Override
@@ -124,13 +87,13 @@ public class GlobalActionsViewImpl extends Composite implements
 	}
 
 	@Override
-	public HasText getLastSeenPeer() {
-		return lastSeenPeerLabel;
+	public HasText getLastSeenPeerValue() {
+		return lastSeenPeerValueLabel;
 	}
 
 	@Override
-	public HasText getLastSeenPeerValue() {
-		return lastSeenPeerValueLabel;
+	public void setPresenter(GlobalActionsPresenter presenter) {
+		this.presenter = presenter;
 	}
 
 }
