@@ -11,6 +11,7 @@ import fspotcloud.client.admin.view.api.TagDetailsView;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.place.TagPlace;
 import fspotcloud.rpc.AdminServiceAsync;
+import fspotcloud.shared.tag.TagNode;
 
 public class TagDetailsActivity extends AbstractActivity implements
 		TagDetailsView.TagDetailsPresenter {
@@ -34,6 +35,7 @@ public class TagDetailsActivity extends AbstractActivity implements
 	@Override
 	public void init() {
 		log.info("init");
+		populateView();
 	}
 
 	@Override
@@ -61,4 +63,26 @@ public class TagDetailsActivity extends AbstractActivity implements
 				});
 	}
 
+	private void populateView() {
+		String tagId = tagPlace.getTagId();
+		dataManager.getTagNode(tagId, new AsyncCallback<TagNode>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				
+			}
+
+			@Override
+			public void onSuccess(TagNode result) {
+				populateView(result);
+				
+			}
+		});
+		
+		
+	}
+	
+	private void populateView(TagNode tag) {
+		tagDetailsView.getTagNameValue().setText(tag.getTagName());
+	}
 }
