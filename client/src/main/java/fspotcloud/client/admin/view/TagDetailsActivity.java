@@ -65,7 +65,7 @@ public class TagDetailsActivity extends AbstractActivity implements
 
 	private void populateView() {
 		String tagId = tagPlace.getTagId();
-		dataManager.getTagNode(tagId, new AsyncCallback<TagNode>() {
+		dataManager.getAdminTagNode(tagId, new AsyncCallback<TagNode>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -84,5 +84,9 @@ public class TagDetailsActivity extends AbstractActivity implements
 	
 	private void populateView(TagNode tag) {
 		tagDetailsView.getTagNameValue().setText(tag.getTagName());
+		tagDetailsView.getTagDescriptionValue().setText(tag.getDescription());
+		tagDetailsView.getTagImageCountValue().setText(String.valueOf(tag.getCount()));
+		tagDetailsView.getTagImportIssuedValue().setText(tag.isImportIssued() ?  "yes" : "no");
+		tagDetailsView.getTagLoadedImagesCountValue().setText(String.valueOf(tag.getCachedPhotoList().lastIndex() + 1));
 	}
 }

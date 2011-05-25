@@ -40,6 +40,7 @@ public class TagManager implements Tags {
 				node.setImportIssued(tag.isImportIssued());
 				node.setParentId(tag.getParentId());
 				node.setTagName(tag.getTagName());
+				node.setCount(tag.getCount());
 				SortedSet<PhotoInfo> photoList = tag.getCachedPhotoList();
 				if (photoList != null) {
 					node.setCachedPhotoList(new PhotoInfoStore(photoList));

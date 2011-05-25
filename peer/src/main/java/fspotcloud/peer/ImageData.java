@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 
 public class ImageData {
@@ -15,15 +16,24 @@ public class ImageData {
 		String command = getCommand(inp.getAbsolutePath(), width, height);
 		System.out.println(command);
 		Process convert = Runtime.getRuntime().exec(command);
+		InputStream in = convert.getInputStream(); 
 		BufferedInputStream bis = new BufferedInputStream(
-				convert.getInputStream());
+				in);
 		ByteArrayOutputStream bas = new ByteArrayOutputStream();
+		try {
 		int next = bis.read();
 		while (next > -1) {
 			bas.write(next);
 			next = bis.read();
 		}
 		bas.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			in.close();
+			bas.close();
+		}
 		byte[] data = bas.toByteArray();
 		return data;
 	}

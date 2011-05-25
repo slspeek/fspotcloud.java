@@ -14,6 +14,7 @@ import fspotcloud.server.model.batch.BatchManagerTest;
 import fspotcloud.server.model.command.CommandManagerTest;
 import fspotcloud.server.model.peerdatabase.PeerDatabaseManagerTest;
 import fspotcloud.server.model.photo.PhotoManagerTest;
+import fspotcloud.server.model.tag.TagManagerTest;
 import fspotcloud.server.model.tag.TreeBuilderTest;
 import fspotcloud.server.util.TaskSchedulerTest;
 
@@ -25,6 +26,7 @@ public class MyTestRunnerConfig extends JUnit3Config {
 			@Override
 			public TestSuite getTestSuite() {
 				suite.addTestSuite(PhotoManagerTest.class);
+				suite.addTestSuite(TagManagerTest.class);
 				suite.addTestSuite(BatchManagerTest.class);
 				suite.addTestSuite(PersistenceManagerProviderTest.class);
 				suite.addTestSuite(CommandManagerTest.class);

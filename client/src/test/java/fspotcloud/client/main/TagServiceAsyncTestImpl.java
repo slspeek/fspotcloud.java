@@ -81,5 +81,10 @@ public class TagServiceAsyncTestImpl implements TagServiceAsync {
 	public void loadTagTree(AsyncCallback<List<TagNode>> callback) {
 		callback.onSuccess(tagTreeData);
 	}
+	
+	@Override
+	public void loadAdminTagTree(AsyncCallback<List<TagNode>> callback) {
+		callback.onSuccess(tagTreeData);
+	}
 
 }

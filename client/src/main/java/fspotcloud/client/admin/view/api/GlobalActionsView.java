@@ -12,22 +12,17 @@ public interface GlobalActionsView extends IsWidget {
 		void importTags();
 		void update();
 	}
-	HasText getHeader();
-	HasText getPhotoCount();
+	
+	void setPresenter(GlobalActionsPresenter presenter);
+	
 	HasText getPhotoCountValue();
-	HasText getPhotoCountOnPeer();
 	HasText getPhotoCountOnPeerValue();
 	
-	HasText getLastSeenPeer();
 	HasText getLastSeenPeerValue();
 	
-	HasText getDeleteAllTagsDescription();
 	HasEnabled getDeleteTagsAllButton();
-	HasText getDeleteAllPhotosDescription();
 	HasEnabled getDeleteAllPhotosButton();
 	
-	HasText getImportTagsDescription();
 	HasEnabled getImportTagsButton();
-	HasText getUpdateButtonDescription();
 	HasEnabled getUpdateButton();
 }
