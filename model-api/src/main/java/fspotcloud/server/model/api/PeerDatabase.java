@@ -50,4 +50,6 @@ public interface PeerDatabase {
 	void setPeerLastContact(Date date);
 	
 
+	void touchPeerContact();
+
 }

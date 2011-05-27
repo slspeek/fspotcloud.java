@@ -12,6 +12,8 @@ import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.Transform;
 import com.google.inject.Inject;
 
+import fspotcloud.server.model.api.PeerDatabase;
+import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.api.Tag;
@@ -24,14 +26,23 @@ public class PhotoReciever {
 
 	private final Photos photoManager;
 	private final Tags tagManager;
+	private final PeerDatabases defaultPeer;
 
 	@Inject
-	public PhotoReciever(Photos photoManager, Tags tagManager) {
+	public PhotoReciever(Photos photoManager, Tags tagManager, PeerDatabases defaultPeer) {
 		this.photoManager = photoManager;
 		this.tagManager = tagManager;
+		this.defaultPeer = defaultPeer;
 	}
 
+	private void touchPeerContact() {
+		PeerDatabase pd = defaultPeer.get();
+		pd.touchPeerContact();
+		defaultPeer.save(pd);
+	}
+	
 	public int recieveImageData(String id, byte[] data) {
+		touchPeerContact();
 		log.info("Recieved imagedata for : " + id);
 		Photo photo = photoManager.getOrNew(id);
 		List<String> tagIds = photo.getTagList();
@@ -62,6 +73,7 @@ public class PhotoReciever {
 	}
 
 	public int recievePhotoData(Object[] list) {
+		touchPeerContact();
 		List<Photo> photoList = new ArrayList<Photo>();
 		for (Object photo : list) {
 			Object[] photo_as_array = (Object[]) photo;
