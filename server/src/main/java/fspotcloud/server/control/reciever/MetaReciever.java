@@ -30,7 +30,7 @@ public class MetaReciever {
 		Queue queue = QueueFactory.getDefaultQueue();
 		queue.add(url("/control/task/photoData").param("offset", String.valueOf(previousCount))
 				.param("limit", String.valueOf(count - previousCount)));
-		p.setCount(count);
+		p.setPeerPhotoCount(count);
 		defaultPeer.save(p);
 		return 0;
 	}

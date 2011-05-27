@@ -72,7 +72,7 @@ public class PhotoDeleteTaskServlet extends HttpServlet {
 			// We stop
 			log.info("We stop" + batch.getKey());
 			PeerDatabase pd = defaultPeer.get();
-			pd.setCount(0);
+			pd.setPeerPhotoCount(0);
 			defaultPeer.save(pd);
 			batch.stop();
 			batchManager.save(batch);
