@@ -9,10 +9,14 @@
 			<my:ImageViewImpl></my:ImageViewImpl>
 		</g:center>
 		<g:south size="50">
-			<g:HorizontalPanel ui:field="buttonPanel">
-				<my:PagerViewImpl></my:PagerViewImpl>
-				<my:SlideshowViewImpl></my:SlideshowViewImpl>
-			</g:HorizontalPanel>
+			<g:HTMLPanel ui:field="buttonPanel">
+				<center>
+					<g:HorizontalPanel>
+						<my:PagerViewImpl></my:PagerViewImpl>
+						<my:SlideshowViewImpl></my:SlideshowViewImpl>
+					</g:HorizontalPanel>
+				</center>
+			</g:HTMLPanel>
 		</g:south>
 	</g:DockLayoutPanel>
 </ui:UiBinder> 
