@@ -7,7 +7,6 @@ import com.google.inject.Inject;
 
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.server.model.tag.TagDO;
 
 public class TagReciever {
 

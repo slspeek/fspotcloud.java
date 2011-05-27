@@ -65,4 +65,11 @@ public class PeerDatabaseManager implements PeerDatabases {
 			pm.close();
 		}
 	}
+	
+	public void touchPeerContact() {
+		PeerDatabase dp = get();
+		dp.setPeerLastContact(new Date());
+		save(dp);
+	}
+	
 }
