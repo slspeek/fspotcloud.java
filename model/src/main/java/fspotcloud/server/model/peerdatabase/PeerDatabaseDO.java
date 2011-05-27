@@ -20,7 +20,7 @@ public class PeerDatabaseDO implements PeerDatabase {
 	private String name;
 
 	@Persistent
-	private int count;
+	private int peerPhotoCount;
 
 	@Persistent
 	private int tagCount;
@@ -49,24 +49,27 @@ public class PeerDatabaseDO implements PeerDatabase {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getCount() {
-		return count;
+
+	public void setPeerPhotoCount(int count) {
+		this.peerPhotoCount = count;
 	}
-	public void setCount(int count) {
-		this.count = count;
-	}
+
 	public void setPeerName(String peerName) {
 		this.peerName = peerName;
 	}
+
 	public String getPeerName() {
 		return peerName;
 	}
+
 	public void setCachedTagTree(List<TagNode> cachedTagTree) {
 		this.cachedTagTree = cachedTagTree;
 	}
+
 	public List<TagNode> getCachedTagTree() {
 		return cachedTagTree;
 	}
+
 	public void setTagCount(int tagCount) {
 		this.tagCount = tagCount;
 	}
@@ -78,6 +81,11 @@ public class PeerDatabaseDO implements PeerDatabase {
 	@Override
 	public void touchPeerContact() {
 		setPeerLastContact(new Date());
+	}
+
+	@Override
+	public int getPeerPhotoCount() {
+		return peerPhotoCount;
 	}
 
 }
