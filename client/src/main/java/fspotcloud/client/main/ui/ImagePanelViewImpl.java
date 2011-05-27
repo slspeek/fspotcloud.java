@@ -7,7 +7,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
-import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.inject.Inject;
 
@@ -36,7 +36,7 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	@UiField
 	DockLayoutPanel mainPanel;
 	@UiField
-	HorizontalPanel buttonPanel;
+	HTMLPanel buttonPanel;
 
 	@Inject
 	public ImagePanelViewImpl(ImageView imageView, PagerView pagerView,

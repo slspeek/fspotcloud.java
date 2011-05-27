@@ -6,7 +6,7 @@
 	margin-right: auto;
 	display: block;
 	padding: 10px;
-	background-color: #D2B9D3; /** Thistle */
+	background-color: #7E354D;/** Pale Violet Red4	*/
 	text-align: center;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
@@ -17,17 +17,18 @@
 }
 
 .fsc-tag-split-panel {
+	
 }
 
 .fsc-image-panel-view {
-	background-color: #C8BBBE; /** Lavender Blush3 */
+	background-color: #D16587; /**Pale Violet Red*/
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 	height: 100%;
 }
 
 .gwt-Label-title {
-	background-color: #C8BBBE; /** Lavender Blush3 */
+	background-color: #D16587; /**Pale Violet Red*/
 	text-align: center;
 	font-weight: bold;
 	font-size: 200%;
@@ -36,12 +37,14 @@
 }
 
 .gwt-Label {
-	background-color: #D2B9D3; /** Thistle */
-	color: black;
+	background-color: #7E354D;/** Pale Violet Red4	*/
+	color: white;
 }
 
 .gwt-Image {
 	padding: 5px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .fsc-image-panel-spacer-top {
@@ -86,7 +89,7 @@
 
 .fsc-tag-status-label {
 	text-align: center;
-	background-color: #D2B9D3; /** Thistle */
+	background-color: #7E354D;/** Pale Violet Red4	*/
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 	font-size: 130%;
@@ -99,6 +102,11 @@
 .fsc-image-view-image {
 	margin: 10px;
 	padding-top: 10px;
+}
+
+.fsc-image-button-panel {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .fsc-image-view-pager-container {
@@ -119,20 +127,17 @@
 
 .fsc-slideshow {
 	padding: 5px;
-	
 }
 
 .fsc-slideshow-running {
 	padding: 5px;
 	background: red;
-	
 }
-
 
 .fsc-slideshow-interval {
 	padding-left: 10px;
 	padding-right: 10px;
-	background-color: #D2B9D3; /** Thistle */
+	background-color: #7E354D;/** Pale Violet Red4	*/
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 }
