@@ -20,7 +20,7 @@ public interface GlobalActionsView extends IsWidget {
 	
 	HasText getLastSeenPeerValue();
 	
-	HasEnabled getDeleteTagsAllButton();
+	HasEnabled getDeleteAllTagsButton();
 	HasEnabled getDeleteAllPhotosButton();
 	
 	HasEnabled getImportTagsButton();

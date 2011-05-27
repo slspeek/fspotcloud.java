@@ -1,7 +1,7 @@
 package fspotcloud.server.model.peerdatabase;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 import java.util.logging.Logger;
 
 import javax.jdo.JDOObjectNotFoundException;
@@ -15,6 +15,8 @@ import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.shared.tag.TagNode;
 
 public class PeerDatabaseManager implements PeerDatabases {
+	private static final String DEFAULT_PEER_ID = "1";
+
 	private static final Logger log = Logger
 			.getLogger(PeerDatabaseManager.class.getName());
 
@@ -25,16 +27,11 @@ public class PeerDatabaseManager implements PeerDatabases {
 		this.pmProvider = pmProvider;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fspotcloud.server.model.peerdatabase.PeerDatabases#get()
-	 */
 	public PeerDatabase get() {
 		PersistenceManager pm = pmProvider.get();
 		PeerDatabaseDO attachedPeerDatabase, peerDatabase;
 		try {
-			attachedPeerDatabase = pm.getObjectById(PeerDatabaseDO.class, "1");
+			attachedPeerDatabase = pm.getObjectById(PeerDatabaseDO.class, DEFAULT_PEER_ID);
 			peerDatabase = pm.detachCopy(attachedPeerDatabase);
 			if (attachedPeerDatabase.getCachedTagTree() != null) {
 				peerDatabase.setCachedTagTree(new ArrayList<TagNode>(
@@ -46,10 +43,11 @@ public class PeerDatabaseManager implements PeerDatabases {
 		} catch (JDOObjectNotFoundException firstTime) {
 			log.info("Default peer not found, creating one.");
 			peerDatabase = new PeerDatabaseDO();
-			peerDatabase.setName("1");
+			peerDatabase.setName(DEFAULT_PEER_ID);
 			peerDatabase.setCount(0);
 			peerDatabase.setTagCount(0);
 			peerDatabase.setPeerName("No given name");
+			peerDatabase.setPeerLastContact(new Date(0));
 			pm.makePersistent(peerDatabase);
 
 		} finally {
@@ -58,17 +56,10 @@ public class PeerDatabaseManager implements PeerDatabases {
 		return peerDatabase;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * fspotcloud.server.model.peerdatabase.PeerDatabases#save(fspotcloud.server
-	 * .model.peerdatabase.PeerDatabase)
-	 */
 	public void save(PeerDatabase pd) {
 		PersistenceManager pm = pmProvider.get();
 		try {
-			log.info("Saving default peer with count: " + pd.getCount());
+			log.info("Saving default peer: " + pd);
 			pm.makePersistent(pd);
 		} finally {
 			pm.close();

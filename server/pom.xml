@@ -5,11 +5,11 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-6.0.0</version>
+		<version>0.40-6.2.0</version>
 	</parent>
 	<groupId>fspotcloud</groupId>
 	<artifactId>server</artifactId>
-	<version>0.40-6.0.0</version>
+	<version>0.40-6.2.0</version>
 
 	<name>F-SpotCloud Server Component</name>
 	<description>The controller and data reading</description>

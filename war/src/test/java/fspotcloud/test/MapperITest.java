@@ -42,6 +42,6 @@ public class MapperITest extends SeleniumITest {
 		selenium.click("link=Detail");
 		selenium.waitForPageToLoad("30000");
 		assertTrue(selenium.isTextPresent("28"));
-		// assertTrue(selenium.isTextPresent("18"));
+		assertTrue(selenium.isTextPresent("12"));
 	}
 }

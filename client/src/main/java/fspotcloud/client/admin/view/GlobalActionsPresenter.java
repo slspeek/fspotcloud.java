@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.admin.view.api.GlobalActionsView;
 import fspotcloud.rpc.AdminServiceAsync;
+import fspotcloud.shared.admin.MetaDataInfo;
 
 public class GlobalActionsPresenter implements
 		GlobalActionsView.GlobalActionsPresenter {
@@ -21,6 +22,7 @@ public class GlobalActionsPresenter implements
 			AdminServiceAsync adminServiceAsync) {
 		super();
 		this.globalActionsView = globalActionsView;
+		globalActionsView.setPresenter(this);
 		this.adminServiceAsync = adminServiceAsync;
 	}
 
@@ -49,14 +51,33 @@ public class GlobalActionsPresenter implements
 
 	@Override
 	public void deleteAllTags() {
-		// TODO Auto-generated method stub
+		globalActionsView.getDeleteAllTagsButton().setEnabled(false);
+		adminServiceAsync.deleteAllTags(new AsyncCallback<Void>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				enableButton();
+
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				enableButton();
+
+			}
+
+			private void enableButton() {
+				globalActionsView.getDeleteAllTagsButton().setEnabled(true);
+			}
+		});
+		
 
 	}
 
 	@Override
 	public void importTags() {
 		globalActionsView.getImportTagsButton().setEnabled(false);
-		adminServiceAsync.deleteAllTags(new AsyncCallback<Void>() {
+		adminServiceAsync.importTags(new AsyncCallback<Void>() {
 
 			public void onFailure(Throwable caught) {
 				enableButton();
@@ -75,6 +96,7 @@ public class GlobalActionsPresenter implements
 
 	@Override
 	public void update() {
+		log.info("update");
 		globalActionsView.getUpdateButton().setEnabled(false);
 		adminServiceAsync.update(new AsyncCallback<Void>() {
 
@@ -84,6 +106,7 @@ public class GlobalActionsPresenter implements
 
 			@Override
 			public void onSuccess(Void result) {
+				log.info("succes update");
 				enableButton();
 			}
 
@@ -95,21 +118,29 @@ public class GlobalActionsPresenter implements
 
 	@Override
 	public void init() {
+		globalActionsView.setPresenter(this);
 		log.info("init");
-		getPhotoCount();
+		getMetaData();
 	}
 
-	private void getPhotoCount() {
-		adminServiceAsync.getPhotoCount(new AsyncCallback<Integer>() {
+	private void getMetaData() {
+		adminServiceAsync.getMetaData(new AsyncCallback<MetaDataInfo>() {
 			@Override
-			public void onSuccess(Integer result) {
-				globalActionsView.getPhotoCountOnPeerValue().setText(
-						String.valueOf(result));
+			public void onSuccess(MetaDataInfo meta) {
+				populateView(meta);
 			}
 
 			@Override
 			public void onFailure(Throwable caught) {
 			}
 		});
+	}
+	
+	private void populateView(MetaDataInfo info) {
+		log.info("populate");
+		globalActionsView.getLastSeenPeerValue().setText(String.valueOf(info.getPeerLastSeen()));
+		globalActionsView.getPhotoCountOnPeerValue().setText(String.valueOf(info.getPeerPhotoCount()));
+		
+		
 	}
 }

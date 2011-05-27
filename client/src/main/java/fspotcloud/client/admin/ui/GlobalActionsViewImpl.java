@@ -43,18 +43,31 @@ public class GlobalActionsViewImpl extends Composite implements
 
 	public GlobalActionsViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
+		deleteAllTagsButton.ensureDebugId("delete-all-tags-button");
+		importTagsButton.ensureDebugId("import-tags-button");
+		updateButton.ensureDebugId("update-button");
+		deleteAllPhotosButton.ensureDebugId("delete-all-photos-button");
 	}
 
 	@UiHandler("importTagsButton")
 	public void importButtonClicked(ClickEvent event) {
 		presenter.importTags();
 	}
-	
+
 	@UiHandler("deleteAllPhotosButton")
 	public void onDeleteAllPhotosButtonClicked(ClickEvent event) {
 		presenter.deleteAllPhotos();
 	}
 
+	@UiHandler("updateButton")
+	public void updateButtonClicked(ClickEvent event) {
+		presenter.update();
+	}
+
+	@UiHandler("deleteAllTagsButton")
+	public void deleteAllTagsButtonClicked(ClickEvent event) {
+		presenter.deleteAllTags();
+	}
 
 	@Override
 	public HasText getPhotoCountValue() {
@@ -67,7 +80,7 @@ public class GlobalActionsViewImpl extends Composite implements
 	}
 
 	@Override
-	public HasEnabled getDeleteTagsAllButton() {
+	public HasEnabled getDeleteAllTagsButton() {
 		return deleteAllTagsButton;
 	}
 

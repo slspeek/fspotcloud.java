@@ -12,11 +12,10 @@ public class FirefoxLocalSuite extends WebDriverSuite {
 		WebDriverSuite suite = new FirefoxLocalSuite();
 		String localUrl = WebDriverSuite.local;
 		Provider<WebDriver> provider = WebDriverSuite.factory.firefoxProvider();
-		suite.addTest(new ImportITest(provider, localUrl));
-		suite.addTest(new SimpleITest(provider, localUrl));
-		suite.addTest(new NavigationITest(provider, localUrl));
+		suite.addTest(new DashboardITest(provider, localUrl));
 		suite.addTest(new CloudcoverITest(provider, localUrl));
 		suite.addTest(new MapperITest(provider, localUrl));
+		suite.addTest(new NavigationITest(provider, localUrl));
 		return suite;
 	}
 }

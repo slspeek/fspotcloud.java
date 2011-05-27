@@ -1,5 +1,6 @@
 package fspotcloud.server.model.api;
 
+import java.util.Date;
 import java.util.List;
 
 import fspotcloud.shared.tag.TagNode;
@@ -43,5 +44,10 @@ public interface PeerDatabase {
 	 * @return the tagCount
 	 */
 	public abstract int getTagCount();
+	
+	Date getPeerLastContact();
+	
+	void setPeerLastContact(Date date);
+	
 
 }

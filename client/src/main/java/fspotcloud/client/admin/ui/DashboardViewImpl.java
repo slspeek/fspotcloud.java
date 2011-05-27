@@ -38,8 +38,8 @@ public class DashboardViewImpl extends Composite implements DashboardView{
 	}
 	
 	@UiFactory
-	public GlobalActionsView getGlobalActionsView() {
-		return globalActionsView;
+	public GlobalActionsViewImpl getGlobalActionsView() {
+		return (GlobalActionsViewImpl) globalActionsView;
 	}
 
 	@Override

@@ -239,7 +239,7 @@ public class Admin implements EntryPoint {
 	}
 
 	private void getPhotoCount() {
-		adminService.getPhotoCount(new AsyncCallback<Integer>() {
+		adminService.getPeerPhotoCount(new AsyncCallback<Integer>() {
 			@Override
 			public void onSuccess(Integer result) {
 				infoTable.setText(0, 0, "Photo count on the peer: ");

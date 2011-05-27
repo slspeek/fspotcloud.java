@@ -21,6 +21,7 @@ import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.admin.BatchInfo;
+import fspotcloud.shared.admin.MetaDataInfo;
 import fspotcloud.shared.photo.PhotoInfo;
 /**
  * The server side implementation of the RPC service.
@@ -60,7 +61,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public int getPhotoCount() {
+	public int getPeerPhotoCount() {
 		PeerDatabase pd = defaultPeer.get();
 		return pd.getCount();
 	}
@@ -116,5 +117,16 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		queue.add(withUrl("/control/task/imageData").param("minDate", "0").param(
 				"maxCount", "10000").param("tagId", String.valueOf(tagId)));
 		
+	}
+
+	@Override
+	public MetaDataInfo getMetaData() {
+		PeerDatabase peerDatabase = defaultPeer.get();
+		MetaDataInfo dataInfo = new MetaDataInfo();
+		dataInfo.setInstanceName(peerDatabase.getPeerName());
+		dataInfo.setPeerLastSeen(peerDatabase.getPeerLastContact());
+		dataInfo.setPeerPhotoCount(peerDatabase.getCount());
+		dataInfo.setTagCount(peerDatabase.getTagCount());
+		return dataInfo;
 	}
 }
