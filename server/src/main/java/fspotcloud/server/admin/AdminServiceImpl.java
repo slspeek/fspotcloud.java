@@ -63,7 +63,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public int getPeerPhotoCount() {
 		PeerDatabase pd = defaultPeer.get();
-		return pd.getCount();
+		return pd.getPeerPhotoCount();
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		MetaDataInfo dataInfo = new MetaDataInfo();
 		dataInfo.setInstanceName(peerDatabase.getPeerName());
 		dataInfo.setPeerLastSeen(peerDatabase.getPeerLastContact());
-		dataInfo.setPeerPhotoCount(peerDatabase.getCount());
+		dataInfo.setPeerPhotoCount(peerDatabase.getPeerPhotoCount());
 		dataInfo.setTagCount(peerDatabase.getTagCount());
 		return dataInfo;
 	}

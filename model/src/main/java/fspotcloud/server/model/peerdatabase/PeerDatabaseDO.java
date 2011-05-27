@@ -21,6 +21,9 @@ public class PeerDatabaseDO implements PeerDatabase {
 
 	@Persistent
 	private int peerPhotoCount;
+	
+	@Persistent
+	private int formalPhotoCount;
 
 	@Persistent
 	private int tagCount;
@@ -88,4 +91,11 @@ public class PeerDatabaseDO implements PeerDatabase {
 		return peerPhotoCount;
 	}
 
+	public void setFormalPhotoCount(int formalPhotoCount) {
+		this.formalPhotoCount = formalPhotoCount;
+	}
+
+	public int getFormalPhotoCount() {
+		return formalPhotoCount;
+	}
 }
