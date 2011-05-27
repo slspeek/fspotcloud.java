@@ -1,5 +1,6 @@
 package fspotcloud.server.model.peerdatabase;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.jdo.annotations.PersistenceCapable;
@@ -30,6 +31,17 @@ public class PeerDatabaseDO implements PeerDatabase {
 	
 	@Persistent
 	private String peerName;
+	
+	@Persistent
+	private Date peerLastContact;
+
+	public Date getPeerLastContact() {
+		return peerLastContact;
+	}
+
+	public void setPeerLastContact(Date peerLastContact) {
+		this.peerLastContact = peerLastContact;
+	}
 
 	/* (non-Javadoc)
 	 * @see fspotcloud.server.model.peerdatabase.PeerDatabase#getName()

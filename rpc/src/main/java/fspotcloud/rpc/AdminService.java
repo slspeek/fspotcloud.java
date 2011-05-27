@@ -4,6 +4,7 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import fspotcloud.shared.admin.BatchInfo;
+import fspotcloud.shared.admin.MetaDataInfo;
 
 /**
  * The client side stub for the RPC service.
@@ -13,8 +14,10 @@ public interface AdminService extends RemoteService {
 	long deleteAllPhotos();
 
 	void deleteAllTags();
+	
+	MetaDataInfo getMetaData();
 
-	int getPhotoCount();
+	int getPeerPhotoCount();
 
 	long getServerPhotoCount();
 

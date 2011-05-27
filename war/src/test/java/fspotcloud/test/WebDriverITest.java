@@ -37,4 +37,10 @@ public class WebDriverITest extends TestCase {
 	public void sleepShort() throws NumberFormatException, InterruptedException {
 		Thread.sleep(Long.valueOf(System.getProperty("short", "900")));
 	}
+	
+	public void sleepShort(int times) throws NumberFormatException, InterruptedException {
+		for (int i = 0; i < times; i++) {
+			sleepShort();
+		}
+	}
 }

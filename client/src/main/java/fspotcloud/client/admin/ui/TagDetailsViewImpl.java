@@ -41,6 +41,7 @@ public class TagDetailsViewImpl extends Composite implements TagDetailsView {
 
 	public TagDetailsViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
+		importTagButton.ensureDebugId("import-tag-button");
 	}
 
 	@Override
