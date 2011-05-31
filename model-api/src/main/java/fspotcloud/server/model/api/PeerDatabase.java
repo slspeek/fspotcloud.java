@@ -11,10 +11,6 @@ public interface PeerDatabase {
 
 	void setName(String name);
 
-	int getFormalPhotoCount();
-	
-	void setFormalPhotoCount(int count);
-	
 	int getPeerPhotoCount();
 
 	void setPeerPhotoCount(int count);

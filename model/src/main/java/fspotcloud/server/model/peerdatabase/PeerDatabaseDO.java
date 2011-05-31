@@ -23,9 +23,6 @@ public class PeerDatabaseDO implements PeerDatabase {
 	private int peerPhotoCount;
 	
 	@Persistent
-	private int formalPhotoCount;
-
-	@Persistent
 	private int tagCount;
 
 	@Persistent(serialized = "true")
@@ -89,13 +86,5 @@ public class PeerDatabaseDO implements PeerDatabase {
 	@Override
 	public int getPeerPhotoCount() {
 		return peerPhotoCount;
-	}
-
-	public void setFormalPhotoCount(int formalPhotoCount) {
-		this.formalPhotoCount = formalPhotoCount;
-	}
-
-	public int getFormalPhotoCount() {
-		return formalPhotoCount;
 	}
 }

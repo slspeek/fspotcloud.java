@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import fspotcloud.client.main.TagEntryPoint;
 import fspotcloud.shared.tag.TagNode;
 
 public class IndexingUtil {
 	
+	
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(IndexingUtil.class
 			.getName());
 

@@ -26,7 +26,7 @@ public class MetaReciever {
 	public int recieveMetaData(int count) {
 		log.info("Recieved count " + count);
 		PeerDatabase p = defaultPeer.get();
-		int previousCount = p.getFormalPhotoCount();
+		int previousCount = p.getPeerPhotoCount();
 		Queue queue = QueueFactory.getDefaultQueue();
 		queue.add(url("/control/task/photoData").param("offset", String.valueOf(previousCount))
 				.param("limit", String.valueOf(count - previousCount)));
