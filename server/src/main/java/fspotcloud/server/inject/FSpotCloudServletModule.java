@@ -1,4 +1,4 @@
-package fspotcloud.server.main;
+package fspotcloud.server.inject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +14,8 @@ import fspotcloud.server.control.Scheduler;
 import fspotcloud.server.control.TagImportServlet;
 import fspotcloud.server.control.task.ImageDataTaskServlet;
 import fspotcloud.server.control.task.PhotoDataTaskServlet;
+import fspotcloud.server.main.ImageServlet;
+import fspotcloud.server.main.TagServiceImpl;
 import fspotcloud.server.main.task.TagViewTaskServlet;
 
 public class FSpotCloudServletModule extends ServletModule {

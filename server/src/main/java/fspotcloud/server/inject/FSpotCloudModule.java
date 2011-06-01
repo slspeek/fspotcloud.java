@@ -1,7 +1,9 @@
-package fspotcloud.server.main;
+package fspotcloud.server.inject;
 
 import javax.jdo.PersistenceManager;
 
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
@@ -49,6 +51,9 @@ public class FSpotCloudModule extends AbstractModule {
 		bind(MetaReciever.class).in(Singleton.class);
 		bind(TagReciever.class).in(Singleton.class);
 		bind(PhotoReciever.class).in(Singleton.class);
+		
+		bind(Queue.class).annotatedWith(Names.named("default")).toInstance(
+				QueueFactory.getDefaultQueue());
 	}
 
 }
