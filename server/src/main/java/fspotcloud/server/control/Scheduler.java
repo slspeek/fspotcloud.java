@@ -8,7 +8,7 @@ import com.google.inject.Inject;
 import fspotcloud.server.model.api.Command;
 import fspotcloud.server.model.api.Commands;
 
-public class Scheduler {
+public class Scheduler implements SchedulerInterface {
 
 	private static final Logger log = Logger.getLogger(Scheduler.class
 			.getName());
@@ -20,6 +20,10 @@ public class Scheduler {
 		this.commandManager = commandManager;
 	}
 
+	/* (non-Javadoc)
+	 * @see fspotcloud.server.control.SchedulerInterface#schedule(java.lang.String, java.util.List)
+	 */
+	@Override
 	public boolean schedule(String cmd, List<String> args) {
 		if (!hasDuplicates(cmd, args)) {
 			Command c = commandManager.create();

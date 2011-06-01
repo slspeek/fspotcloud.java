@@ -139,6 +139,8 @@ public class PhotoManager implements Photos {
 			photo = new PhotoDO();
 			photo.setId(id);
 			photo.setImageLoaded(false);
+			photo.setFullsizeLoaded(false);
+			photo.setThumbLoaded(false);
 		}
 		return photo;
 	}

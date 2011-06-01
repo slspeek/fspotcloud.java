@@ -13,7 +13,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import fspotcloud.rpc.AdminService;
-import fspotcloud.server.control.Scheduler;
+import fspotcloud.server.control.SchedulerInterface;
 import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
 import fspotcloud.server.model.api.PeerDatabase;
@@ -42,7 +42,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	private PeerDatabases defaultPeer;
 	
 	@Inject
-	private Scheduler scheduler;
+	private SchedulerInterface scheduler;
 
 	@Override
 	public long deleteAllPhotos() {
