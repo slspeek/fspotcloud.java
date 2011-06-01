@@ -73,17 +73,21 @@ public class BotWorker {
 	}
 
 	public int sendImageData(String photoId, String width, String height) {
+		return sendImageData(photoId, width, height, "1");
+	}
+	
+	public int sendImageData(String photoId, String width, String height, String imageType) {
 		try {
 			URL url = data.getImageURL(photoId);
 			Dimension size = new Dimension(Integer.valueOf(width), Integer
 					.valueOf(height));
 			byte[] data = imageData.getScaledImageData(url, size);
-			Object[] params = new Object[] { photoId, data };
+			Object[] params = new Object[] { photoId, data, Integer.valueOf(imageType) };
 			controller.execute("PhotoReciever.recieveImageData", params);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			
 		return 0;
 	}
+	
 }
