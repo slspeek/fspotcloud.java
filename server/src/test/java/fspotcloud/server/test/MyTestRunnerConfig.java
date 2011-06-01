@@ -9,6 +9,7 @@ import com.google.appengine.testing.cloudcover.harness.junit3.JUnit3TestRun;
 import com.google.appengine.testing.cloudcover.spi.TestRun;
 
 import fspotcloud.server.control.ControllerTest;
+import fspotcloud.server.control.reciever.MetaRecieverTest;
 import fspotcloud.server.model.PersistenceManagerProviderTest;
 import fspotcloud.server.model.batch.BatchManagerTest;
 import fspotcloud.server.model.command.CommandManagerTest;
@@ -16,7 +17,6 @@ import fspotcloud.server.model.peerdatabase.PeerDatabaseManagerTest;
 import fspotcloud.server.model.photo.PhotoManagerTest;
 import fspotcloud.server.model.tag.TagManagerTest;
 import fspotcloud.server.model.tag.TreeBuilderTest;
-import fspotcloud.server.util.TaskSchedulerTest;
 
 public class MyTestRunnerConfig extends JUnit3Config {
 
@@ -39,7 +39,7 @@ public class MyTestRunnerConfig extends JUnit3Config {
 			@Override
 			public TestSuite getTestSuite() {
 				suite.addTestSuite(ControllerTest.class);
-				suite.addTestSuite(TaskSchedulerTest.class);
+				suite.addTestSuite(MetaRecieverTest.class);
 				return suite;
 			}
 		};

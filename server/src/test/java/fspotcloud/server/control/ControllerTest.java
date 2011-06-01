@@ -29,7 +29,7 @@ public class ControllerTest extends TestCase {
 			{
 				oneOf(commandsMock).popOldestCommand();
 				oneOf(peerDatabases).get();will(returnValue(pd));
-				oneOf(peerDatabases).save(with(pd));
+				oneOf(peerDatabases).save(pd);
 			}
 		});
 		Object[] cmd = controller.getCommand();
