@@ -17,14 +17,14 @@ import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import fspotcloud.server.control.Scheduler;
+import fspotcloud.server.control.SchedulerInterface;
 
 @SuppressWarnings("serial")
 @Singleton
 public class PhotoDataTaskServlet extends HttpServlet {
 
 	@Inject
-	private Scheduler scheduler;
+	private SchedulerInterface scheduler;
 
 	@Override
 	public void service(ServletRequest request, ServletResponse response)

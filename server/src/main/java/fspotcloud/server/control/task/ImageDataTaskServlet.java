@@ -19,7 +19,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
-import fspotcloud.server.control.Scheduler;
+import fspotcloud.server.control.SchedulerInterface;
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.api.Tag;
@@ -30,7 +30,7 @@ import fspotcloud.server.model.api.Tags;
 public class ImageDataTaskServlet extends HttpServlet {
 
 	@Inject
-	private Scheduler scheduler;
+	private SchedulerInterface scheduler;
 	@Inject
 	@Named("maxTicks")
 	private Integer maxTicks;
@@ -38,6 +38,8 @@ public class ImageDataTaskServlet extends HttpServlet {
 	private Photos photoManager;
 	@Inject
 	private Tags tagManager;
+	@Inject @Named("default")
+	private Queue queue;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -72,7 +74,6 @@ public class ImageDataTaskServlet extends HttpServlet {
 			if (needToSchedule) {
 				// Schedule the next task
 				int nextCount = count - maxTicks;
-				Queue queue = QueueFactory.getDefaultQueue();
 				queue.add(withUrl("/control/task/imageData")
 						.param("minDate", String.valueOf(newMinDateLong))
 						.param("maxCount", String.valueOf(nextCount))

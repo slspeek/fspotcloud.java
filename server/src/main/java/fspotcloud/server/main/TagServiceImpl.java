@@ -25,23 +25,22 @@ import fspotcloud.shared.tag.TagNode;
 public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 	private static final Logger log = Logger.getLogger(TagServiceImpl.class
 			.getName());
-	
+
 	@Inject
 	private Tags tagManager;
 	@Inject
 	private PeerDatabases defaultPeer;
-	
-	
+
 	public List<TagNode> loadTagTree() {
 		PeerDatabase p = defaultPeer.get();
-		if (false/*p.getCachedTagTree() != null*/) {
+		if (false/* p.getCachedTagTree() != null */) {
 			log.info("Got the tree from cache HIT");
 			return p.getCachedTagTree();
 		} else {
 			log.info("Missed the cache; building");
 			List<TagNode> tags = tagManager.getTags();
 			TreeBuilder builder = new TreeBuilder(tags);
-			//List<TagNode> tree = builder.getRoots();
+			// List<TagNode> tree = builder.getRoots();
 			List<TagNode> tree = builder.getPublicRoots();
 			p.setCachedTagTree(tree);
 			log.info("Builded, about to save");
@@ -49,30 +48,19 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 			return tree;
 		}
 	}
-	
-	public List<TagNode> loadAdminTagTree() {
-		PeerDatabase p = defaultPeer.get();
-		if (false/*p.getCachedTagTree() != null*/) {
-			log.info("Got the tree from cache HIT");
-			return p.getCachedTagTree();
-		} else {
-			log.info("Missed the cache; building");
-			List<TagNode> tags = tagManager.getTags();
-			TreeBuilder builder = new TreeBuilder(tags);
-			List<TagNode> tree = builder.getRoots();
-			p.setCachedTagTree(tree);
-			log.info("Builded, about to save");
-			defaultPeer.save(p);
-			return tree;
-		}
-	}
 
+	public List<TagNode> loadAdminTagTree() {
+		List<TagNode> tags = tagManager.getTags();
+		TreeBuilder builder = new TreeBuilder(tags);
+		List<TagNode> tree = builder.getRoots();
+		return tree;
+	}
 
 	@Override
 	public List<String> keysForTag(String tagId) {
 		Tag tag = tagManager.getById(tagId);
 		List<String> result = new ArrayList<String>();
-		for (PhotoInfo photo:tag.getCachedPhotoList()) {
+		for (PhotoInfo photo : tag.getCachedPhotoList()) {
 			result.add(photo.getId());
 		}
 		return result;

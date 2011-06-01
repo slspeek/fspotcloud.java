@@ -7,77 +7,47 @@ import com.google.appengine.api.datastore.Blob;
 
 public interface Photo {
 
-	/**
-	 * @param name
-	 *            the name to set
-	 */
-	public abstract void setId(String name);
+	final int IMAGE_TYPE_THUMB = 0;
+	final int IMAGE_TYPE_BIG = 1;
+	
+	void setId(String name);
 
-	/**
-	 * @return the name
-	 */
-	public abstract String getId();
+	String getId();
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
-	public abstract void setDescription(String description);
+	void setDescription(String description);
 
-	/**
-	 * @return the description
-	 */
-	public abstract String getDescription();
+	String getDescription();
 
-	/**
-	 * @param tagList
-	 *            the tagList to set
-	 */
-	public abstract void setTagList(List<String> tagList);
+	void setTagList(List<String> tagList);
 
-	/**
-	 * @return the tagList
-	 */
-	public abstract List<String> getTagList();
+	List<String> getTagList();
 
-	/**
-	 * @param date the date to set
-	 */
-	public abstract void setDate(Date date);
+	void setDate(Date date);
 
-	/**
-	 * @return the date
-	 */
-	public abstract Date getDate();
+	Date getDate();
 
-	/**
-	 * @param thumb the thumb to set
-	 */
-	public abstract void setThumb(Blob thumb);
+	void setThumb(Blob thumb);
 
-	/**
-	 * @return the thumb
-	 */
-	public abstract Blob getThumb();
+	Blob getThumb();
 
-	/**
-	 * @param image the image to set
-	 */
-	public abstract void setImage(Blob image);
+	void setImage(Blob image);
 
-	/**
-	 * @return the image
-	 */
-	public abstract Blob getImage();
+	Blob getImage();
 
-	/**
-	 * @param imageLoaded the imageLoaded to set
-	 */
-	public abstract void setImageLoaded(Boolean imageLoaded);
+	void setImageLoaded(Boolean imageLoaded);
 
-	/**
-	 * @return the imageLoaded
-	 */
-	public abstract Boolean getImageLoaded();
+	Boolean isImageLoaded();
+	
+	
+	void setThumbLoaded(Boolean thumbLoaded);
+	
+	Boolean isThumbLoaded();
+	
+	
+	void setFullsizeLoaded(Boolean fullsizeLoaded);
+	
+	Boolean isFullsizeLoaded();
+	
+	
 
 }

@@ -36,107 +36,85 @@ public class PhotoDO implements Photo {
 	private Boolean imageLoaded;
 	
 	@Persistent
+	private Boolean thumbLoaded;
+
+	@Persistent
+	private Boolean fullsizeLoaded;
+
+	@Persistent
 	private Blob image;
 	
 	@Persistent
 	private Blob thumb;
 	
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#setName(java.lang.String)
-	 */
 	public void setId(String name) {
 		this.name = name;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#getName()
-	 */
 	public String getId() {
 		return name;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#setDescription(java.lang.String)
-	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#getDescription()
-	 */
 	public String getDescription() {
 		return description;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#setTagList(java.util.List)
-	 */
 	public void setTagList(List<String> tagList) {
 		this.tagList = tagList;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#getTagList()
-	 */
 	public List<String> getTagList() {
 		return tagList;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#setDate(java.util.Date)
-	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#getDate()
-	 */
 	public Date getDate() {
 		return date;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#setThumb(com.google.appengine.api.datastore.Blob)
-	 */
 	public void setThumb(Blob thumb) {
 		this.thumb = thumb;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#getThumb()
-	 */
 	public Blob getThumb() {
 		return thumb;
 	}
-
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#setImage(com.google.appengine.api.datastore.Blob)
-	 */
 	public void setImage(Blob image) {
 		this.image = image;
 	}
-
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#getImage()
-	 */
 	public Blob getImage() {
 		return image;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#setImageLoaded(java.lang.Boolean)
-	 */
 	public void setImageLoaded(Boolean imageLoaded) {
 		this.imageLoaded = imageLoaded;
 	}
 
-	/* (non-Javadoc)
-	 * @see fspotcloud.server.model.photo.Photo#getImageLoaded()
-	 */
-	public Boolean getImageLoaded() {
+	public Boolean isImageLoaded() {
 		return imageLoaded;
+	}
+
+	public void setThumbLoaded(Boolean thumbLoaded) {
+		this.thumbLoaded = thumbLoaded;
+	}
+
+	public Boolean isThumbLoaded() {
+		return thumbLoaded;
+	}
+
+	public void setFullsizeLoaded(Boolean fullsizeLoaded) {
+		this.fullsizeLoaded = fullsizeLoaded;
+	}
+
+	public Boolean isFullsizeLoaded() {
+		return fullsizeLoaded;
 	}
 
 }
