@@ -33,4 +33,8 @@ public interface PeerDatabase {
 
 	void touchPeerContact();
 
+	List<String> getCachedImportedTags();
+
+	void setCachedImportedTags(List<String> importedTags);
+
 }

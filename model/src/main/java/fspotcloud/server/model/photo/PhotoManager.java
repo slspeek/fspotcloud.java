@@ -141,6 +141,7 @@ public class PhotoManager implements Photos {
 			photo.setImageLoaded(false);
 			photo.setFullsizeLoaded(false);
 			photo.setThumbLoaded(false);
+			photo.setTagList(new ArrayList<String>());
 		}
 		return photo;
 	}

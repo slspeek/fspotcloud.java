@@ -34,31 +34,25 @@ public class PhotoReciever {
 	public int recieveImageData(String id, byte[] data, int imageType) {
 		log.info("Recieved imagedata for : " + id);
 		Photo photo = photoManager.getOrNew(id);
-		List<String> tagIds = photo.getTagList();
-		for (String tagId : tagIds) {
-			Tag tag = tagManager.getById(tagId);
-			tag.getCachedPhotoList().add(
-					new PhotoInfo(photo.getId(), photo.getDescription(), photo
-							.getDate()));
-			tagManager.save(tag);
-		}
 		Blob blob = new Blob(data);
-		// make thumb
-		Blob thumb = new Blob(makeThumb(data));
-		photo.setThumb(thumb);
-		photo.setImage(blob);
-		photo.setImageLoaded(true);
+		if (imageType == Photo.IMAGE_TYPE_BIG) {
+			List<String> tagIds = photo.getTagList();
+			for (String tagId : tagIds) {
+				Tag tag = tagManager.getById(tagId);
+				tag.getCachedPhotoList().add(
+						new PhotoInfo(photo.getId(), photo.getDescription(),
+								photo.getDate()));
+				tagManager.save(tag);
+			}
+
+			photo.setImage(blob);
+			photo.setImageLoaded(true);
+		} else if (imageType == Photo.IMAGE_TYPE_THUMB) {
+			photo.setThumb(blob);
+			photo.setThumbLoaded(true);
+		}
 		photoManager.save(photo);
 		return 0;
-	}
-
-	private byte[] makeThumb(byte[] imageData) {
-		ImagesService imagesService = ImagesServiceFactory.getImagesService();
-		Image oldImage = ImagesServiceFactory.makeImage(imageData);
-		Transform resize = ImagesServiceFactory.makeResize(300, 200);
-		Image newImage = imagesService.applyTransform(resize, oldImage);
-		byte[] thumbData = newImage.getImageData();
-		return thumbData;
 	}
 
 	public int recievePhotoData(Object[] list) {

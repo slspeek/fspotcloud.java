@@ -4,30 +4,31 @@ import org.openqa.selenium.WebDriver;
 
 import com.google.inject.Provider;
 
-public class MapperITest extends SeleniumITest {
+public class ImageDataMapperITest extends SeleniumITest {
 
-	public MapperITest(Provider<WebDriver> provider, String baseURL) {
+	public ImageDataMapperITest(Provider<WebDriver> provider, String baseURL) {
 		super(provider, baseURL);
+		setName("ImageDataMapperITest");
 	}
 
-	public MapperITest() {
+	public ImageDataMapperITest() {
+		setName("ImageDataMapperITest");
 	}
-
+	
 	public void runTest() throws Exception {
-		testPhotoCountMapper();
+		testImageDataMapper();
 	}
 
-	public void testPhotoCountMapper() throws Exception {
+	public void testImageDataMapper() throws Exception {
 		selenium.open("/mapreduce/status");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("isAdmin");
 		selenium.click("action");
 		selenium.waitForPageToLoad("30000");
-		sleepShort(2);
+		Thread.sleep(600);
 		selenium.select("//div[@id='launch-control']/select",
-				"label=Photo Counter Mapper");
-		sleepShort(2);
-		selenium.click("//div[@id='launch-container']/form[3]/input[2]");
+				"label=Image Data Import Mapper");
+		selenium.click("//div[@id='launch-container']/form[2]/input[2]");
 		for (int second = 0;; second++) {
 			if (second >= 60)
 				fail("timeout");
@@ -40,12 +41,10 @@ public class MapperITest extends SeleniumITest {
 			}
 			Thread.sleep(1000);
 		}
-		sleepShort();
 		selenium.click("link=Detail");
 		selenium.waitForPageToLoad("30000");
-		assertTrue(selenium.isTextPresent("28"));
-		assertTrue(selenium.isTextPresent("12"));
 		selenium.click("link=Cleanup Job");
-		assertTrue(selenium.getConfirmation().matches("^Clean up job .*"));
+		assertTrue(selenium.getConfirmation().matches("^Clean up job \"Image Data Import Mapper\" .*"));
+
 	}
 }

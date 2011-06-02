@@ -72,10 +72,6 @@ public class BotWorker {
 		return result;
 	}
 
-	public int sendImageData(String photoId, String width, String height) {
-		return sendImageData(photoId, width, height, "1");
-	}
-	
 	public int sendImageData(String photoId, String width, String height, String imageType) {
 		try {
 			URL url = data.getImageURL(photoId);
