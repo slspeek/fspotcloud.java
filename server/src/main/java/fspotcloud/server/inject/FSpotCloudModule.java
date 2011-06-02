@@ -6,6 +6,7 @@ import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
+import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
 
 import fspotcloud.server.control.Controller;
@@ -57,6 +58,7 @@ public class FSpotCloudModule extends AbstractModule {
 		bind(Queue.class).annotatedWith(Names.named("default")).toInstance(
 				QueueFactory.getDefaultQueue());
 		bind(SchedulerInterface.class).to(Scheduler.class);
+		install(new FactoryModuleBuilder().build(ImageDataImporterFactory.class));
 	}
 
 }

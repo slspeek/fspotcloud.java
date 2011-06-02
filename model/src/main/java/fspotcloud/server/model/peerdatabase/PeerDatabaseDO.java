@@ -27,6 +27,17 @@ public class PeerDatabaseDO implements PeerDatabase {
 
 	@Persistent(serialized = "true")
 	private List<TagNode> cachedTagTree;
+	
+	@Persistent(serialized = "true")
+	private List<String> cachedImportedTags;
+
+	public List<String> getCachedImportedTags() {
+		return cachedImportedTags;
+	}
+
+	public void setCachedImportedTags(List<String> cachedImportedTags) {
+		this.cachedImportedTags = cachedImportedTags;
+	}
 
 	@Persistent
 	private String peerName;

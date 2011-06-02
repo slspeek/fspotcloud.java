@@ -45,9 +45,10 @@ public class PhotoManagerTest extends DatastoreTest {
 		assertEquals(Boolean.FALSE, photo.isFullsizeLoaded());
 		assertEquals(Boolean.FALSE, photo.isImageLoaded());
 		assertEquals(Boolean.FALSE, photo.isThumbLoaded());
+		assertNotNull(photo.getTagList());
 		try {
 			photoManager.getById("1");
-			// fail();
+			fail();
 		} catch (JDOObjectNotFoundException yes) {
 
 		}

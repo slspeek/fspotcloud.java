@@ -2,6 +2,8 @@ package fspotcloud.peer;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -57,7 +59,8 @@ public class Bot {
 	}
 
 	private void dispatch(String cmd, Object[] args) {
-		System.out.println("Running " + cmd + "("+ String.valueOf(args) +")");
+		List list = Arrays.asList(args);
+		System.out.println("Running " + cmd + "("+ String.valueOf(list) +")");
 		Method method = findMethod(cmd, BotWorker.class);
 		try {
 			method.invoke(botWorker, args);

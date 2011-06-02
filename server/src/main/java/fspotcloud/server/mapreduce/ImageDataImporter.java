@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.server.control.SchedulerInterface;
 import fspotcloud.server.model.api.Photo;
@@ -19,7 +21,8 @@ public class ImageDataImporter {
 	final private ImmutableList<String> tagsForImport;
 	final private SchedulerInterface scheduler;
 	
-	public ImageDataImporter(Photo photo, ImmutableList<String> tagsForImport,
+	@Inject 
+	public ImageDataImporter(@Assisted Photo photo, @Assisted ImmutableList<String> tagsForImport,
 			SchedulerInterface scheduler) {
 		super();
 		this.photo = photo;
@@ -40,7 +43,7 @@ public class ImageDataImporter {
 	private boolean isRelevant(Photo photo) {
 		List<String> photoTags = photo.getTagList();
 		for (String wantedTag: tagsForImport) {
-			if (photoTags.contains(wantedTag)) {
+			if (photoTags != null && photoTags.contains(wantedTag)) {
 				return true;
 			}
 		}

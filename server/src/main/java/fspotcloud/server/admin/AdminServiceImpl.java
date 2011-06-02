@@ -113,9 +113,15 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public void importTag(String tagId) {
-		Queue queue = QueueFactory.getDefaultQueue();
-		queue.add(withUrl("/control/task/imageData").param("minDate", "0").param(
-				"maxCount", "10000").param("tagId", String.valueOf(tagId)));
+		Tag tag = tagManager.getById(tagId);
+		tag.setImportIssued(true);
+		tagManager.save(tag);
+		PeerDatabase pd = defaultPeer.get();
+		pd.getCachedImportedTags().add(tagId);
+		defaultPeer.save(pd);
+//		Queue queue = QueueFactory.getDefaultQueue();
+//		queue.add(withUrl("/control/task/imageData").param("minDate", "0").param(
+//				"maxCount", "10000").param("tagId", String.valueOf(tagId)));
 		
 	}
 

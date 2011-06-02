@@ -1,6 +1,7 @@
 package fspotcloud.server.model.peerdatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -27,6 +28,7 @@ public class PeerDatabaseManager implements PeerDatabases {
 		this.pmProvider = pmProvider;
 	}
 
+	@SuppressWarnings("unchecked")
 	public PeerDatabase get() {
 		PersistenceManager pm = pmProvider.get();
 		PeerDatabaseDO attachedPeerDatabase, peerDatabase;
@@ -48,6 +50,7 @@ public class PeerDatabaseManager implements PeerDatabases {
 			peerDatabase.setTagCount(0);
 			peerDatabase.setPeerName("No given name");
 			peerDatabase.setPeerLastContact(new Date(0));
+			peerDatabase.setCachedImportedTags(new ArrayList<String>());
 			pm.makePersistent(peerDatabase);
 
 		} finally {

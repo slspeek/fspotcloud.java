@@ -14,7 +14,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 
 import com.google.appengine.api.taskqueue.Queue;
-import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
@@ -51,9 +50,7 @@ public class ImageDataTaskServlet extends HttpServlet {
 		int count = Integer.valueOf(countParam);
 
 		String tagId = request.getParameter("tagId");
-		Tag tag = tagManager.getById(tagId);
-		tag.setImportIssued(true);
-		tagManager.save(tag);
+		
 
 		// Do our part of the job, scheduling the oldest images
 		List<Photo> result = photoManager.getEmptyPhotosForTagAfter(tagId,
@@ -64,6 +61,7 @@ public class ImageDataTaskServlet extends HttpServlet {
 			args.add(photo.getId());
 			args.add("800");
 			args.add("600");
+			args.add(String.valueOf(Photo.IMAGE_TYPE_BIG));
 			scheduler.schedule("sendImageData", args);
 		}
 		if (!result.isEmpty()) {

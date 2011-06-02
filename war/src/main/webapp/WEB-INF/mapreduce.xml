@@ -25,8 +25,20 @@
     <property>
       <name human="Entity Kind to Map Over">mapreduce.mapper.inputformat.datastoreinputformat.entitykind</name>
       <value template="optional">BatchDO</value>
-      <value template="optional">PeerDatabaseDO</value>
-      <value template="optional">TagDO</value>
+    </property>
+  </configuration>
+     <configuration name="Image Data Import Mapper">
+    <property>
+      <name>mapreduce.map.class</name>
+      <value>fspotcloud.server.mapreduce.ImageDataMapper</value>
+    </property>
+    <property>
+      <name>mapreduce.inputformat.class</name>
+      <value>com.google.appengine.tools.mapreduce.DatastoreInputFormat</value>
+    </property>
+    <property>
+      <name human="Entity Kind to Map Over">mapreduce.mapper.inputformat.datastoreinputformat.entitykind</name>
+      <value template="optional">PhotoDO</value>
     </property>
   </configuration>
 </configurations>

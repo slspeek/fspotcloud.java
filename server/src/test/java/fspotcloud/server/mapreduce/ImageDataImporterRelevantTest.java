@@ -36,20 +36,19 @@ public class ImageDataImporterRelevantTest extends TestCase {
 				scheduler);
 		context.checking(new Expectations() {
 			{
-				oneOf(scheduler)
-						.schedule(
-								"sendImageData",
-								ImmutableList.of(
-										"1000",
-										String.valueOf(ImageDataImporter.IMAGE_WIDTH),
-										String.valueOf(ImageDataImporter.IMAGE_HEIGHT), "1"));
+				oneOf(scheduler).schedule(
+						"sendImageData",
+						ImmutableList.of("1000",
+								String.valueOf(ImageDataImporter.IMAGE_WIDTH),
+								String.valueOf(ImageDataImporter.IMAGE_HEIGHT),
+								"1"));
 			}
 		});
-		
+
 		importer.schedule(Photo.IMAGE_TYPE_BIG);
 		context.assertIsSatisfied();
 	}
-	
+
 	public void testScheduleThumb() {
 		final SchedulerInterface scheduler = context
 				.mock(SchedulerInterface.class);
@@ -57,18 +56,48 @@ public class ImageDataImporterRelevantTest extends TestCase {
 				scheduler);
 		context.checking(new Expectations() {
 			{
-				oneOf(scheduler)
-						.schedule(
-								"sendImageData",
-								ImmutableList.of(
-										"1000",
-										String.valueOf(ImageDataImporter.THUMB_WIDTH),
-										String.valueOf(ImageDataImporter.THUMB_HEIGHT), "0"));
+				oneOf(scheduler).schedule(
+						"sendImageData",
+						ImmutableList.of("1000",
+								String.valueOf(ImageDataImporter.THUMB_WIDTH),
+								String.valueOf(ImageDataImporter.THUMB_HEIGHT),
+								"0"));
 			}
 		});
-		
+
 		importer.schedule(Photo.IMAGE_TYPE_THUMB);
 		context.assertIsSatisfied();
 	}
 
+	public void testShouldNotScheduleLoadedThumb() {
+		final SchedulerInterface scheduler = context
+				.mock(SchedulerInterface.class);
+		photo.setThumbLoaded(true);
+		ImageDataImporter importer = new ImageDataImporter(photo, wantedTags,
+				scheduler);
+		context.checking(new Expectations() {
+			{
+				
+			}
+		});
+
+		importer.schedule(Photo.IMAGE_TYPE_THUMB);
+		context.assertIsSatisfied();
+	}
+	
+	public void testShouldNotScheduleLoadedImage() {
+		final SchedulerInterface scheduler = context
+				.mock(SchedulerInterface.class);
+		photo.setImageLoaded(true);
+		ImageDataImporter importer = new ImageDataImporter(photo, wantedTags,
+				scheduler);
+		context.checking(new Expectations() {
+			{
+				
+			}
+		});
+
+		importer.schedule(Photo.IMAGE_TYPE_BIG);
+		context.assertIsSatisfied();
+	}
 }

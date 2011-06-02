@@ -17,7 +17,6 @@ public class CommandFetcherImpl implements CommandFetcher {
 	public Object[] getCommand() throws Exception {
 		 Object[] result = (Object[]) endpoint.execute(
 					"Controller.getCommand", new Object[] {});
-		// TODO Auto-generated method stub
 		return result;
 	}
 	
