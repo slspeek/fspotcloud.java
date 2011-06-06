@@ -24,6 +24,9 @@ public class PeerDatabaseDO implements PeerDatabase {
 	
 	@Persistent
 	private int tagCount;
+	
+	@Persistent
+	private long photoCount;
 
 	@Persistent(serialized = "true")
 	private List<TagNode> cachedTagTree;
@@ -97,5 +100,13 @@ public class PeerDatabaseDO implements PeerDatabase {
 	@Override
 	public int getPeerPhotoCount() {
 		return peerPhotoCount;
+	}
+
+	public void setPhotoCount(long photoCount) {
+		this.photoCount = photoCount;
+	}
+
+	public long getPhotoCount() {
+		return photoCount;
 	}
 }

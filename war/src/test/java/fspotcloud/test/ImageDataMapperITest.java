@@ -28,7 +28,7 @@ public class ImageDataMapperITest extends SeleniumITest {
 		Thread.sleep(600);
 		selenium.select("//div[@id='launch-control']/select",
 				"label=Image Data Import Mapper");
-		selenium.click("//div[@id='launch-container']/form[2]/input[2]");
+		selenium.click("//div[@id='launch-container']/form[3]/input[2]");
 		for (int second = 0;; second++) {
 			if (second >= 60)
 				fail("timeout");

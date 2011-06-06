@@ -47,6 +47,7 @@ public class PeerDatabaseManager implements PeerDatabases {
 			peerDatabase = new PeerDatabaseDO();
 			peerDatabase.setName(DEFAULT_PEER_ID);
 			peerDatabase.setPeerPhotoCount(0);
+			peerDatabase.setPhotoCount(0);
 			peerDatabase.setTagCount(0);
 			peerDatabase.setPeerName("No given name");
 			peerDatabase.setPeerLastContact(new Date(0));

@@ -27,7 +27,6 @@ public class DashboardITest extends SeleniumITest {
 		selenium.click("action");
 		selenium.waitForPageToLoad("30000");
 	}
-
 	public void testImport() throws Exception {
 		loginDevAppServer();
 		selenium.waitForPageToLoad("2000");
@@ -67,4 +66,5 @@ public class DashboardITest extends SeleniumITest {
 		sleepShort();
 
 	}
+
 }

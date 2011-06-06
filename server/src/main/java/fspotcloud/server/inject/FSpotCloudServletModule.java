@@ -10,13 +10,13 @@ import fspotcloud.server.admin.AdminServiceImpl;
 import fspotcloud.server.admin.task.PhotoCountTaskServlet;
 import fspotcloud.server.admin.task.PhotoDeleteTaskServlet;
 import fspotcloud.server.control.GuiceXmlRpcServlet;
-import fspotcloud.server.control.Scheduler;
 import fspotcloud.server.control.TagImportServlet;
 import fspotcloud.server.control.task.ImageDataTaskServlet;
 import fspotcloud.server.control.task.PhotoDataTaskServlet;
 import fspotcloud.server.main.ImageServlet;
 import fspotcloud.server.main.TagServiceImpl;
 import fspotcloud.server.main.task.TagViewTaskServlet;
+import fspotcloud.server.mapreduce.CounterCompletedServlet;
 
 public class FSpotCloudServletModule extends ServletModule {
 
@@ -37,6 +37,7 @@ public class FSpotCloudServletModule extends ServletModule {
 		serve("/image").with(ImageServlet.class);
 		serve("/fspotcloud.admin/admin").with(AdminServiceImpl.class);
 		serve("/fspotcloud.dashboard/admin").with(AdminServiceImpl.class);
+		serve("/callbacks/counter_completed").with(CounterCompletedServlet.class);
 
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("enabledForExtensions", "true");
