@@ -52,7 +52,7 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
 		dataManager.getTagTree(new AsyncCallback<List<TagNode>>() {
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Exception: " + caught);
+				log.warning("Loading of the tree data failed: " + caught);
 			}
 
 			@Override
