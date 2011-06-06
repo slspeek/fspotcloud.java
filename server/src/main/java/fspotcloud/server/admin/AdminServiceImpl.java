@@ -6,8 +6,10 @@ import java.util.Collections;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 
+import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions.Method;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -46,18 +48,35 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public long deleteAllPhotos() {
-		Batch batch = batchManager.create("deleteAllPhotos");
-		long batchId = batchManager.save(batch);
-
 		Queue queue = QueueFactory.getDefaultQueue();
-		queue.add(withUrl("/admin/task/photoDelete").param("deleteCount", "0")
-				.param("batchId", String.valueOf(batchId)));
-		return batchId;
+		TaskOptions task =buildStartJob("Delete All Mapper");
+		addJobParam(task, "mapreduce.mapper.inputformat.datastoreinputformat.entitykind", "PhotoDO");
+		queue.add(task);
+		
+		return 0;
 	}
 
+	 private static TaskOptions buildStartJob(String jobName) {
+          return TaskOptions.Builder
+          .withUrl("/mapreduce/command/start_job")
+          .method(Method.POST)
+          .header("X-Requested-With", "XMLHttpRequest") // hack: we need to fix appengine-mapper so we can properly call start_job without need to pretend to be an ajaxmethod
+          .param("name", jobName);
+  }
+	 
+	 private static void addJobParam(TaskOptions task, String paramName, String paramValue ) {
+          task.param("mapper_params." + paramName, paramValue);
+  }
+  
+  private static void addJobParam(TaskOptions task, String paramName, long value) {
+          addJobParam(task, paramName, Long.toString(value));
+  }
 	@Override
 	public void deleteAllTags() {
-		tagManager.deleteAll();
+		Queue queue = QueueFactory.getDefaultQueue();
+		TaskOptions task =buildStartJob("Delete All Mapper");
+		addJobParam(task, "mapreduce.mapper.inputformat.datastoreinputformat.entitykind", "TagDO");
+		queue.add(task);
 	}
 
 	@Override
@@ -79,12 +98,11 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public long getServerPhotoCount() {
-		Batch batch = batchManager.create("getServerPhotoCount");
-		long batchId = batchManager.save(batch);
 		Queue queue = QueueFactory.getDefaultQueue();
-		queue.add(withUrl("/admin/task/photoCount").param("minDate", "0").param(
-				"count", "0").param("batchId", String.valueOf(batchId)));
-		return batchId;
+		TaskOptions task =buildStartJob("Entity Counter Mapper");
+		addJobParam(task, "mapreduce.mapper.inputformat.datastoreinputformat.entitykind", "PhotoDO");
+		queue.add(task);
+		return 0;
 	}
 
 	@Override
@@ -132,6 +150,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		dataInfo.setInstanceName(peerDatabase.getPeerName());
 		dataInfo.setPeerLastSeen(peerDatabase.getPeerLastContact());
 		dataInfo.setPeerPhotoCount(peerDatabase.getPeerPhotoCount());
+		dataInfo.setPhotoCount(peerDatabase.getPhotoCount());
 		dataInfo.setTagCount(peerDatabase.getTagCount());
 		return dataInfo;
 	}

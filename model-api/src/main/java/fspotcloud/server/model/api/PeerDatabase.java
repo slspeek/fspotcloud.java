@@ -10,6 +10,10 @@ public interface PeerDatabase {
 	String getName();
 
 	void setName(String name);
+	
+	void setPhotoCount(long photoCount);
+
+	long getPhotoCount();
 
 	int getPeerPhotoCount();
 

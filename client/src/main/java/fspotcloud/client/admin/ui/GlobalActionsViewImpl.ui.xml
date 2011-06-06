@@ -24,6 +24,14 @@
 				</tr>
 				<tr>
 					<td>
+						<g:Label >Count the photos on the server</g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="countPhotosButton" >Count photos</g:Button>
+					</td>
+				</tr>
+				<tr>
+					<td>
 						<g:Label >Number of photos on the peer</g:Label>
 					</td>
 					<td>

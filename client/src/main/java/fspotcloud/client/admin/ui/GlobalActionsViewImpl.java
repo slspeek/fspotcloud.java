@@ -40,6 +40,8 @@ public class GlobalActionsViewImpl extends Composite implements
 	Button deleteAllTagsButton;
 	@UiField
 	Button deleteAllPhotosButton;
+	@UiField
+	Button countPhotosButton;
 
 	public GlobalActionsViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -47,8 +49,15 @@ public class GlobalActionsViewImpl extends Composite implements
 		importTagsButton.ensureDebugId("import-tags-button");
 		updateButton.ensureDebugId("update-button");
 		deleteAllPhotosButton.ensureDebugId("delete-all-photos-button");
+		countPhotosButton.ensureDebugId("count-photos-button");
 	}
 
+	@UiHandler("countPhotosButton")
+	public void countButtonClicked(ClickEvent event) {
+		presenter.countPhotos();
+	}
+
+	
 	@UiHandler("importTagsButton")
 	public void importButtonClicked(ClickEvent event) {
 		presenter.importTags();

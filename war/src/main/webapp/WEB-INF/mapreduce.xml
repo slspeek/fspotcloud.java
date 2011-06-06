@@ -1,8 +1,8 @@
 <configurations>
-  <configuration name="Photo Counter Mapper">
+  <configuration name="Entity Counter Mapper">
     <property>
       <name>mapreduce.map.class</name>
-      <value>fspotcloud.server.mapreduce.PhotoCountMapper</value>
+      <value>fspotcloud.server.mapreduce.EntityCountMapper</value>
     </property>
     <property>
       <name>mapreduce.inputformat.class</name>
@@ -12,6 +12,12 @@
       <name human="Entity Kind to Map Over">mapreduce.mapper.inputformat.datastoreinputformat.entitykind</name>
       <value template="optional">PhotoDO</value>
     </property>
+     <property>
+      <!--  This is the URL to call after the entire Mapper has run -->
+      <name>mapreduce.appengine.donecallback.url</name>
+      <value>/callbacks/counter_completed</value>
+  </property>
+    
   </configuration>
    <configuration name="Delete All Mapper">
     <property>

@@ -25,9 +25,10 @@ public class MapperITest extends SeleniumITest {
 		selenium.waitForPageToLoad("30000");
 		sleepShort(2);
 		selenium.select("//div[@id='launch-control']/select",
-				"label=Photo Counter Mapper");
+				"label=Entity Counter Mapper");
 		sleepShort(2);
-		selenium.click("//div[@id='launch-container']/form[3]/input[2]");
+		
+		selenium.click("//div[@id='launch-container']/form[2]/input[2]");
 		for (int second = 0;; second++) {
 			if (second >= 60)
 				fail("timeout");

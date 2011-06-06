@@ -70,7 +70,6 @@ public class GlobalActionsPresenter implements
 				globalActionsView.getDeleteAllTagsButton().setEnabled(true);
 			}
 		});
-		
 
 	}
 
@@ -135,12 +134,31 @@ public class GlobalActionsPresenter implements
 			}
 		});
 	}
-	
+
 	private void populateView(MetaDataInfo info) {
 		log.info("populate");
-		globalActionsView.getLastSeenPeerValue().setText(String.valueOf(info.getPeerLastSeen()));
-		globalActionsView.getPhotoCountOnPeerValue().setText(String.valueOf(info.getPeerPhotoCount()));
+		globalActionsView.getLastSeenPeerValue().setText(
+				String.valueOf(info.getPeerLastSeen()));
+		globalActionsView.getPhotoCountOnPeerValue().setText(
+				String.valueOf(info.getPeerPhotoCount()));
+		globalActionsView.getPhotoCountValue().setText(
+				String.valueOf(info.getPhotoCount()));
+	}
+
+	@Override
+	public void countPhotos() {
 		
-		
+		adminServiceAsync.getServerPhotoCount(new AsyncCallback<Long>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+
+			}
+
+			@Override
+			public void onSuccess(Long result) {
+
+			}
+		});
 	}
 }

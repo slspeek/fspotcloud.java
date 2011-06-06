@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import org.apache.hadoop.io.NullWritable;
-import org.apache.hadoop.mapreduce.Mapper.Context;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
