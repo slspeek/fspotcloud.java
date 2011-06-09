@@ -39,7 +39,7 @@ public class ImageData {
 	}
 
 	private String getCommand(String path, int width, int height) {
-		String cmd = "/usr/bin/convert -auto-orient  -quality 50 -compress JPEG -geometry  " + width + "x" + height + " "
+		String cmd = "/usr/bin/convert.exe -auto-orient  -quality 50 -compress JPEG -geometry  " + width + "x" + height + " "
 				+ path + " -";
 		return cmd;
 	}
