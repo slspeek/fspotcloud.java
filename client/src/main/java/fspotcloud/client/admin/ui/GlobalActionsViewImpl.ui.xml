@@ -78,6 +78,14 @@
 						<g:Button ui:field="deleteAllPhotosButton" >Delete all photos</g:Button>
 					</td>
 				</tr>
+				<tr>
+					<td>
+						<g:Label >Start the loading of the images</g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="loadImagesButton" >Load images</g:Button>
+					</td>
+				</tr>
 
 			</tbody>
 		</table>

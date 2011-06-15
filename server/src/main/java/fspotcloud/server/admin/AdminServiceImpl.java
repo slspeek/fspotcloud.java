@@ -25,6 +25,7 @@ import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.admin.BatchInfo;
 import fspotcloud.shared.admin.MetaDataInfo;
 import fspotcloud.shared.photo.PhotoInfo;
+
 /**
  * The server side implementation of the RPC service.
  */
@@ -42,40 +43,55 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	private Tags tagManager;
 	@Inject
 	private PeerDatabases defaultPeer;
-	
+
 	@Inject
 	private SchedulerInterface scheduler;
 
 	@Override
 	public long deleteAllPhotos() {
 		Queue queue = QueueFactory.getDefaultQueue();
-		TaskOptions task =buildStartJob("Delete All Mapper");
-		addJobParam(task, "mapreduce.mapper.inputformat.datastoreinputformat.entitykind", "PhotoDO");
+		TaskOptions task = buildStartJob("Delete All Mapper");
+		addJobParam(task,
+				"mapreduce.mapper.inputformat.datastoreinputformat.entitykind",
+				"PhotoDO");
 		queue.add(task);
-		
+
 		return 0;
 	}
 
-	 private static TaskOptions buildStartJob(String jobName) {
-          return TaskOptions.Builder
-          .withUrl("/mapreduce/command/start_job")
-          .method(Method.POST)
-          .header("X-Requested-With", "XMLHttpRequest") // hack: we need to fix appengine-mapper so we can properly call start_job without need to pretend to be an ajaxmethod
-          .param("name", jobName);
-  }
-	 
-	 private static void addJobParam(TaskOptions task, String paramName, String paramValue ) {
-          task.param("mapper_params." + paramName, paramValue);
-  }
-  
-  private static void addJobParam(TaskOptions task, String paramName, long value) {
-          addJobParam(task, paramName, Long.toString(value));
-  }
+	private static TaskOptions buildStartJob(String jobName) {
+		return TaskOptions.Builder.withUrl("/mapreduce/command/start_job")
+				.method(Method.POST)
+				.header("X-Requested-With", "XMLHttpRequest") // hack: we need
+																// to fix
+																// appengine-mapper
+																// so we can
+																// properly call
+																// start_job
+																// without need
+																// to pretend to
+																// be an
+																// ajaxmethod
+				.param("name", jobName);
+	}
+
+	private static void addJobParam(TaskOptions task, String paramName,
+			String paramValue) {
+		task.param("mapper_params." + paramName, paramValue);
+	}
+
+	private static void addJobParam(TaskOptions task, String paramName,
+			long value) {
+		addJobParam(task, paramName, Long.toString(value));
+	}
+
 	@Override
 	public void deleteAllTags() {
 		Queue queue = QueueFactory.getDefaultQueue();
-		TaskOptions task =buildStartJob("Delete All Mapper");
-		addJobParam(task, "mapreduce.mapper.inputformat.datastoreinputformat.entitykind", "TagDO");
+		TaskOptions task = buildStartJob("Delete All Mapper");
+		addJobParam(task,
+				"mapreduce.mapper.inputformat.datastoreinputformat.entitykind",
+				"TagDO");
 		queue.add(task);
 	}
 
@@ -99,8 +115,10 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public long getServerPhotoCount() {
 		Queue queue = QueueFactory.getDefaultQueue();
-		TaskOptions task =buildStartJob("Entity Counter Mapper");
-		addJobParam(task, "mapreduce.mapper.inputformat.datastoreinputformat.entitykind", "PhotoDO");
+		TaskOptions task = buildStartJob("Entity Counter Mapper");
+		addJobParam(task,
+				"mapreduce.mapper.inputformat.datastoreinputformat.entitykind",
+				"PhotoDO");
 		queue.add(task);
 		return 0;
 	}
@@ -124,8 +142,9 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		Tag tag = tagManager.getById(tagId);
 		tag.setCachedPhotoList(new TreeSet<PhotoInfo>());
 		Queue queue = QueueFactory.getDefaultQueue();
-		queue.add(withUrl("/main/task/tagView").param("tagId", tagId).param(
-				"minDate", "0").param("batchId", String.valueOf(batchId)));
+		queue.add(withUrl("/main/task/tagView").param("tagId", tagId)
+				.param("minDate", "0")
+				.param("batchId", String.valueOf(batchId)));
 		return batchId;
 	}
 
@@ -137,10 +156,11 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		PeerDatabase pd = defaultPeer.get();
 		pd.getCachedImportedTags().add(tagId);
 		defaultPeer.save(pd);
-//		Queue queue = QueueFactory.getDefaultQueue();
-//		queue.add(withUrl("/control/task/imageData").param("minDate", "0").param(
-//				"maxCount", "10000").param("tagId", String.valueOf(tagId)));
-		
+		// Queue queue = QueueFactory.getDefaultQueue();
+		// queue.add(withUrl("/control/task/imageData").param("minDate",
+		// "0").param(
+		// "maxCount", "10000").param("tagId", String.valueOf(tagId)));
+
 	}
 
 	@Override
@@ -153,5 +173,16 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		dataInfo.setPhotoCount(peerDatabase.getPhotoCount());
 		dataInfo.setTagCount(peerDatabase.getTagCount());
 		return dataInfo;
+	}
+
+	@Override
+	public void importImageData() {
+		Queue queue = QueueFactory.getDefaultQueue();
+		TaskOptions task = buildStartJob("Image Data Import Mapper");
+		addJobParam(task,
+				"mapreduce.mapper.inputformat.datastoreinputformat.entitykind",
+				"PhotoDO");
+		queue.add(task);
+		log.info("Image Data Mapper scheduled.");
 	}
 }
