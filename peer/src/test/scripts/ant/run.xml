@@ -4,7 +4,7 @@
     </description>
 
 	<target name="run-local">
-		<java jar="${basedir}/target/peer-${project.version}-jar-with-dependencies.jar" fork="yes" >
+		<java jar="${basedir}/target/peer-${project.version}-jar-with-dependencies.jar" fork="yes">
 			<sysproperty key="db" value="${basedir}/src/test/resources/photos.db" />
 			<sysproperty key="endpoint" value="localhost:8080" />
 			<sysproperty key="bot.secret" value="SECRET" />
@@ -13,7 +13,7 @@
 		</java>
 	</target>
 	<target name="run-remote">
-		<java jar="${basedir}/target/peer-${project.version}-jar-with-dependencies.jar" fork="yes" >
+		<java jar="${basedir}/target/peer-${project.version}-jar-with-dependencies.jar" fork="yes">
 			<sysproperty key="db" value="${basedir}/src/test/resources/photos.db" />
 			<sysproperty key="endpoint" value="jfspotcloud.appspot.com" />
 			<sysproperty key="photo.dir.original" value="file:///home/fspotcloud/Pictures/Foto's" />

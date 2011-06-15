@@ -6,16 +6,16 @@ import java.util.Collections;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 
-import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.QueueFactory;
-import com.google.appengine.api.taskqueue.TaskOptions.Method;
+import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import fspotcloud.rpc.AdminService;
 import fspotcloud.server.control.SchedulerInterface;
+import fspotcloud.server.mapreduce.MapReduceUtil;
 import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
 import fspotcloud.server.model.api.PeerDatabase;
@@ -50,48 +50,15 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public long deleteAllPhotos() {
 		Queue queue = QueueFactory.getDefaultQueue();
-		TaskOptions task = buildStartJob("Delete All Mapper");
-		addJobParam(task,
-				"mapreduce.mapper.inputformat.datastoreinputformat.entitykind",
-				"PhotoDO");
+		TaskOptions task = MapReduceUtil.buildStartJob("Delete All Mapper", "PhotoDO");
 		queue.add(task);
-
 		return 0;
-	}
-
-	private static TaskOptions buildStartJob(String jobName) {
-		return TaskOptions.Builder.withUrl("/mapreduce/command/start_job")
-				.method(Method.POST)
-				.header("X-Requested-With", "XMLHttpRequest") // hack: we need
-																// to fix
-																// appengine-mapper
-																// so we can
-																// properly call
-																// start_job
-																// without need
-																// to pretend to
-																// be an
-																// ajaxmethod
-				.param("name", jobName);
-	}
-
-	private static void addJobParam(TaskOptions task, String paramName,
-			String paramValue) {
-		task.param("mapper_params." + paramName, paramValue);
-	}
-
-	private static void addJobParam(TaskOptions task, String paramName,
-			long value) {
-		addJobParam(task, paramName, Long.toString(value));
 	}
 
 	@Override
 	public void deleteAllTags() {
 		Queue queue = QueueFactory.getDefaultQueue();
-		TaskOptions task = buildStartJob("Delete All Mapper");
-		addJobParam(task,
-				"mapreduce.mapper.inputformat.datastoreinputformat.entitykind",
-				"TagDO");
+		TaskOptions task = MapReduceUtil.buildStartJob("Delete All Mapper", "TagDO");
 		queue.add(task);
 	}
 
@@ -114,12 +81,11 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public long getServerPhotoCount() {
-		Queue queue = QueueFactory.getDefaultQueue();
-		TaskOptions task = buildStartJob("Entity Counter Mapper");
-		addJobParam(task,
-				"mapreduce.mapper.inputformat.datastoreinputformat.entitykind",
-				"PhotoDO");
-		queue.add(task);
+//		Queue queue = QueueFactory.getDefaultQueue();
+//		TaskOptions task = MapReduceUtil.buildStartJob("Entity Counter Mapper", "PhotoDO");
+//		queue.add(task);
+		String msg = MapReduceUtil.startJob("Entity Counter Mapper", "PhotoDO");
+		log.info("Returned by start_job: " + msg);
 		return 0;
 	}
 
@@ -178,10 +144,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public void importImageData() {
 		Queue queue = QueueFactory.getDefaultQueue();
-		TaskOptions task = buildStartJob("Image Data Import Mapper");
-		addJobParam(task,
-				"mapreduce.mapper.inputformat.datastoreinputformat.entitykind",
-				"PhotoDO");
+		TaskOptions task = MapReduceUtil.buildStartJob("Image Data Import Mapper", "PhotoDO");
 		queue.add(task);
 		log.info("Image Data Mapper scheduled.");
 	}
