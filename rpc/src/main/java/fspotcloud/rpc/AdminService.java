@@ -33,4 +33,6 @@ public interface AdminService extends RemoteService {
 	
 	void importTag(String tagId);
 	
+	void importImageData();
+	
 }

@@ -12,6 +12,7 @@ public interface GlobalActionsView extends IsWidget {
 		void deleteAllTags();
 		void importTags();
 		void update();
+		void importImageData();
 	}
 	
 	void setPresenter(GlobalActionsPresenter presenter);
@@ -26,4 +27,6 @@ public interface GlobalActionsView extends IsWidget {
 	
 	HasEnabled getImportTagsButton();
 	HasEnabled getUpdateButton();
+	HasEnabled getLoadImagesButton();
+	HasEnabled getCountPhotosButton();
 }

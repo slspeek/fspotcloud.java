@@ -28,5 +28,7 @@ public interface AdminServiceAsync {
 	void importTag(String tagId, AsyncCallback<Void> callback);
 	
 	void getMetaData(AsyncCallback<MetaDataInfo> callback); 
+	
+	void importImageData(AsyncCallback<Void> callback);
 
 }
