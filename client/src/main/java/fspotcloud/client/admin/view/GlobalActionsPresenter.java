@@ -161,4 +161,23 @@ public class GlobalActionsPresenter implements
 			}
 		});
 	}
+
+	@Override
+	public void importImageData() {
+		adminServiceAsync.importImageData(new AsyncCallback<Void>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+	}
 }
