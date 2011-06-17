@@ -1,4 +1,4 @@
-package fspotcloud.client.view;
+package fspotcloud.client.place;
 
 import junit.framework.TestCase;
 

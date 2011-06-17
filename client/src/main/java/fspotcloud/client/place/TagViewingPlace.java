@@ -11,6 +11,12 @@ public class TagViewingPlace extends BasePlace {
 	}
 
 	
+	public TagViewingPlace(String tagId, String photoId, int columnCount,
+			int rowCount) {
+		super(tagId, photoId, columnCount, rowCount);
+	}
+
+
 	@Override
 	public boolean equals(Object other) {
 		if (other instanceof TagViewingPlace) {
@@ -26,8 +32,9 @@ public class TagViewingPlace extends BasePlace {
 	public static class Tokenizer implements PlaceTokenizer<TagViewingPlace> {
 		@Override
 		public TagViewingPlace getPlace(String token) {
-			String[] tokens = token.split(":");
-			return new TagViewingPlace(tokens[0], tokens[1]);
+			TokenizerUtil util = new TokenizerUtil(token);
+			return new TagViewingPlace(util.getTagId(), util.getPhotoId(),
+					util.getColumnCount(), util.getRowCount());
 		}
 
 		@Override

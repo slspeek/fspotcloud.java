@@ -21,7 +21,7 @@ public class NavigationITest extends WebDriverITest {
 	}
 
 	public void testBaseURL() throws Exception {
-		driver.get(baseURL+"/#TagViewingPlace:1:4");
+		driver.get(baseURL+"/#TagViewingPlace:1:4:1:1");
 		Thread.sleep(900);
 		WebElement element = driver.findElement(By.id("gwt-debug-pager-first-button"));
 		element.click();
