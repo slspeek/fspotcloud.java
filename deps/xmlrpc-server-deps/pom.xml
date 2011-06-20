@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>deps</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.40-6.2.9</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fspotcloud.deps</groupId>
+	<artifactId>xmlrpc-server-deps</artifactId>
+	<packaging>pom</packaging>
+	<name>Dependencies for XMLRPC server</name>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.xmlrpc</groupId>
+			<artifactId>xmlrpc-server</artifactId>
+			<version>3.1.3</version>
+			<exclusions>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlrpc</groupId>
+			<artifactId>xmlrpc-common</artifactId>
+			<version>3.1.3</version>
+		</dependency>
+	</dependencies>
+</project>
+

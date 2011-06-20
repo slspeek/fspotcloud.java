@@ -1,0 +1,93 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<g:HTMLPanel>
+		<table>
+			<theader>
+				<tr>
+					<td colspan="all">
+						<g:Label ui:field="headerLabel">Global actions</g:Label>
+					</td>
+				</tr>
+			</theader>
+			<tbody>
+				<tr>
+					<td>
+						<g:Label>Number of photo-metadata object on the server</g:Label>
+					</td>
+					<td>
+						<g:Label ui:field="photoCountValueLabel"></g:Label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label >Count the photos on the server</g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="countPhotosButton" >Count photos</g:Button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label >Number of photos on the peer</g:Label>
+					</td>
+					<td>
+						<g:Label ui:field="peerPhotoCountValueLabel"></g:Label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label >Date we last saw the peer</g:Label>
+					</td>
+					<td>
+						<g:Label ui:field="lastSeenPeerValueLabel"></g:Label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label >Import/Update tag information from the peer</g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="importTagsButton" >Import/Update all tags</g:Button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label >Synchronize with peer</g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="updateButton" >Synchronize</g:Button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label >Delete all labels on the server</g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="deleteAllTagsButton" >Delete all labels</g:Button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label >Delete all photos on the server</g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="deleteAllPhotosButton" >Delete all photos</g:Button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label >Start the loading of the images</g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="loadImagesButton" >Load images</g:Button>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 
