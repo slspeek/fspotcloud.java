@@ -34,6 +34,10 @@ public class PhotoInfoStore implements Serializable {
 		return store.get(index);
 	}
 	
+	public int size() {
+		return store.size();
+	}
+	
 	public int indexOf(String id) {
 		int index = -1;
 		ListIterator<PhotoInfo> it = store.listIterator();
