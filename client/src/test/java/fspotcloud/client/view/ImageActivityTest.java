@@ -23,7 +23,7 @@ public class ImageActivityTest extends TestCase {
 	}
 
 	protected ImagePresenterImpl create(BasePlace place, ImageView imageView) {
-		ImagePresenterImpl imageActivity = new ImagePresenterImpl(place, imageView);
+		ImagePresenterImpl imageActivity = new ImagePresenterImpl(place, imageView, false);
 		return imageActivity;
 	}
 	

@@ -7,6 +7,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 import fspotcloud.client.main.Navigator;
+import fspotcloud.client.main.PagingNavigator;
 import fspotcloud.client.main.Slideshow;
 import fspotcloud.client.main.view.api.ImagePanelView;
 import fspotcloud.client.place.BasePlace;
@@ -17,8 +18,8 @@ public class FullscreenImagePanelActivity extends ImagePanelActivity {
 
 	public FullscreenImagePanelActivity(BasePlace place,
 			ImagePanelView imagePanelView, Navigator navigator,
-			Slideshow slideshow, EventBus eventBus) {
-		super(place, imagePanelView, navigator, slideshow, eventBus);
+			Slideshow slideshow, EventBus eventBus, PagingNavigator pager) {
+		super(place, imagePanelView, navigator, slideshow, eventBus, pager);
 	}
 
 	@Override

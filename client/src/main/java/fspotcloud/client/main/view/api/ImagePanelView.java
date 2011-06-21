@@ -10,7 +10,7 @@ public interface ImagePanelView extends IsWidget {
 		void init();
 	}
 
-	ImageView getImageView();
+	ImageRasterView getImageRasterView();
 
 	PagerView getPagerView();
 

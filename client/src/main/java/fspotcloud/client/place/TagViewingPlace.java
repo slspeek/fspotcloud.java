@@ -2,20 +2,16 @@ package fspotcloud.client.place;
 
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-
-
 public class TagViewingPlace extends BasePlace {
 
 	public TagViewingPlace(String tagId, String photoId) {
 		super(tagId, photoId);
 	}
 
-	
 	public TagViewingPlace(String tagId, String photoId, int columnCount,
 			int rowCount) {
 		super(tagId, photoId, columnCount, rowCount);
 	}
-
 
 	@Override
 	public boolean equals(Object other) {
@@ -25,9 +21,8 @@ public class TagViewingPlace extends BasePlace {
 		} else {
 			return false;
 		}
-		
-	}
 
+	}
 
 	public static class Tokenizer implements PlaceTokenizer<TagViewingPlace> {
 		@Override
@@ -39,7 +34,8 @@ public class TagViewingPlace extends BasePlace {
 
 		@Override
 		public String getToken(TagViewingPlace place) {
-			return place.getTagId() + ":" + place.getPhotoId();
+			return place.getTagId() + ":" + place.getPhotoId() + ":"
+					+ place.getColumnCount() + ":" + place.getRowCount();
 		}
 	}
 }

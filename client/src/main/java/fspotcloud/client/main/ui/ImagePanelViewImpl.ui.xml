@@ -6,7 +6,7 @@
 	</ui:style>
 	<g:DockLayoutPanel ui:field="mainPanel">
 		<g:center>
-			<my:ImageViewImpl></my:ImageViewImpl>
+			<my:ImageRasterViewImpl></my:ImageRasterViewImpl>
 		</g:center>
 		<g:south size="50">
 			<g:HTMLPanel ui:field="buttonPanel">

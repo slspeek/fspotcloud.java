@@ -12,11 +12,13 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	final private ImageView imageView;
 	final private String tagId;
 	final private String photoId;
+	final private boolean thumb;
 
-	public ImagePresenterImpl(BasePlace place, ImageView imageView) {
+	public ImagePresenterImpl(BasePlace place, ImageView imageView, boolean thumb) {
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
 		this.imageView = imageView;
+		this.thumb = thumb;
 	}
 
 	public void init() {
@@ -26,7 +28,9 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 
 	public void setImage() {
 		if (photoId != null) {
-			imageView.setImageUrl("/image?id=" + photoId);
+			String url = "/image?id=" + photoId;
+			url += thumb ? "&thumb":"";
+			imageView.setImageUrl(url);
 		} else {
 			log.warning("No photoId defined for tagId:  " + tagId);
 		}

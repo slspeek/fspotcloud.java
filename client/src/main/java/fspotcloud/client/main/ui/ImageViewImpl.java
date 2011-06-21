@@ -29,13 +29,13 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	public ImageViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		image.ensureDebugId("image-view");
-		adjustImageSize();
+		//adjustImageSize();
 	}
 
 	@Override
 	public void setImageUrl(String url) {
 		log.info("About to setImage: " + url);
-		adjustImageSize();
+		//adjustImageSize();
 		image.setUrl(url);
 	}
 	
