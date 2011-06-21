@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.inject.Inject;
 
 import fspotcloud.client.main.view.api.ImagePanelView;
-import fspotcloud.client.main.view.api.ImageView;
+import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.PagerView;
 import fspotcloud.client.main.view.api.SlideshowView;
 
@@ -30,7 +30,7 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 			UiBinder<DockLayoutPanel, ImagePanelViewImpl> {
 	}
 
-	final private ImageView imageView;
+	final private ImageRasterView imageRasterView;
 	final private PagerView pagerView;
 	final private SlideshowView slideshowView;
 	@UiField
@@ -39,9 +39,9 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	HTMLPanel buttonPanel;
 
 	@Inject
-	public ImagePanelViewImpl(ImageView imageView, PagerView pagerView,
+	public ImagePanelViewImpl(ImageRasterView imageRasterView, PagerView pagerView,
 			SlideshowView slideshowView) {
-		this.imageView = imageView;
+		this.imageRasterView = imageRasterView;
 		this.pagerView = pagerView;
 		this.slideshowView = slideshowView;
 		initWidget(uiBinder.createAndBindUi(this));
@@ -50,8 +50,8 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	}
 
 	@UiFactory
-	public ImageViewImpl getImageView() {
-		return (ImageViewImpl) imageView;
+	public ImageRasterViewImpl getImageRasterView() {
+		return (ImageRasterViewImpl) imageRasterView;
 	}
 
 	@UiFactory

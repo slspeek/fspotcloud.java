@@ -12,10 +12,13 @@ import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.main.MVPSetup;
 import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.NavigatorImpl;
+import fspotcloud.client.main.PagingNavigator;
+import fspotcloud.client.main.PagingNavigatorImpl;
 import fspotcloud.client.main.PlaceSwapper;
 import fspotcloud.client.main.Slideshow;
 import fspotcloud.client.main.SlideshowImpl;
 import fspotcloud.client.main.ui.ImagePanelViewImpl;
+import fspotcloud.client.main.ui.ImageRasterViewImpl;
 import fspotcloud.client.main.ui.ImageViewImpl;
 import fspotcloud.client.main.ui.PagerViewImpl;
 import fspotcloud.client.main.ui.SlideshowTimer;
@@ -29,6 +32,7 @@ import fspotcloud.client.main.view.TreePresenterImpl;
 import fspotcloud.client.main.view.TreeSelectionHandler;
 import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
 import fspotcloud.client.main.view.api.ImagePanelView;
+import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.main.view.api.PagerView;
 import fspotcloud.client.main.view.api.SlideshowView;
@@ -79,5 +83,7 @@ public class AppModule extends AbstractGinModule {
 				ImagePanelActivityFactoryImpl.class);
 		bind(Navigator.class).to(NavigatorImpl.class).in(Singleton.class);
 		bind(Slideshow.class).to(SlideshowImpl.class).in(Singleton.class);
+		bind(PagingNavigator.class).to(PagingNavigatorImpl.class);
+		bind(ImageRasterView.class).to(ImageRasterViewImpl.class);
 	}
 }
