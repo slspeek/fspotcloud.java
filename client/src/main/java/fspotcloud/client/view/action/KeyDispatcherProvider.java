@@ -18,13 +18,17 @@ public class KeyDispatcherProvider implements Provider<KeyDispatcher> {
 
 	@Inject
 	public KeyDispatcherProvider(ToggleFullscreenAction toggleFullscreen,
-			EventBus eventBus, TreeFocusAction treeFocusAction) {
+			ToggleRasterViewAction toggleRasterViewAction, EventBus eventBus,
+			TreeFocusAction treeFocusAction) {
 		this.eventBus = eventBus;
 		List<Integer> list = new ArrayList<Integer>();
 		list.add((int) 'F');
 		list.add((int) '1');
 		list.add((int) '`');
 		keyDispatcher.register(toggleFullscreen, list);
+		list = new ArrayList<Integer>();
+		list.add((int) 'T');
+		keyDispatcher.register(toggleRasterViewAction, list);
 		list = new ArrayList<Integer>();
 		list.add((int) 'N');
 		list.add((int) '.');
@@ -73,7 +77,6 @@ public class KeyDispatcherProvider implements Provider<KeyDispatcher> {
 		list.add(KeyCodes.KEY_ESCAPE);
 		keyDispatcher.register(new HelpAction(), list);
 		list = new ArrayList<Integer>();
-		list.add((int) 'T');
 		list.add(KeyCodes.KEY_ENTER);
 		keyDispatcher.register(treeFocusAction, list);
 	}
