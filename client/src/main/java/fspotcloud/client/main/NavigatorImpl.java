@@ -95,20 +95,40 @@ public class NavigatorImpl implements Navigator {
 	}
 
 	private void go(boolean forward, BasePlace place, PhotoInfoStore store) {
-		int offset = indexOf(place, store);
+		int pageSize = place.getColumnCount() * place.getRowCount();
+		int pageNumber = pageOf(place, store, pageSize);
 		if (canGo(forward, place, store)) {
-			int increment = forward ? 1 : -1;
-			String photoId = store.get(offset + increment).getId();
+			int nextPage = pageNumber + (forward ? 1 : -1);
+			String photoId = store.get(nextPage * pageSize).getId();
 			goToPhoto(place, place.getTagId(), photoId);
+
 		}
 	}
 
-	private boolean canGo(boolean forward, BasePlace place, PhotoInfoStore store) {
+	protected int pageOf(BasePlace place, PhotoInfoStore store, int pageSize) {
+		int result;
 		int offset = indexOf(place, store);
+		result = offset / pageSize;
+		return result;
+	}
+
+	protected int pageCount(PhotoInfoStore store, int pageSize) {
+		int result = store.size() / pageSize;
+		if (store.size() % pageSize != 0) {
+			result++;
+		}
+		return result;
+	}
+
+	private boolean canGo(boolean forward, BasePlace place, PhotoInfoStore store) {
+		int pageSize = place.getColumnCount() * place.getRowCount();
+		int pageCount = pageCount(store, pageSize);
+		int pageNumber = pageOf(place, store, pageSize);
+
 		if (forward) {
-			return offset >= 0 && offset < store.lastIndex();
+			return pageNumber >= 0 && pageNumber < pageCount - 1;
 		} else {
-			return offset > 0;
+			return pageNumber > 0;
 		}
 	}
 
@@ -139,9 +159,11 @@ public class NavigatorImpl implements Navigator {
 	protected void goToPhoto(BasePlace place, String tagId, String photoId) {
 		BasePlace newPlace;
 		if (place instanceof ImageViewingPlace) {
-			newPlace = new ImageViewingPlace(tagId, photoId);
+			newPlace = new ImageViewingPlace(tagId, photoId,
+					place.getColumnCount(), place.getRowCount());
 		} else {
-			newPlace = new TagViewingPlace(tagId, photoId);
+			newPlace = new TagViewingPlace(tagId, photoId,
+					place.getColumnCount(), place.getRowCount());
 		}
 		log.info("About to go to: " + this + " : " + newPlace + " from: "
 				+ place);

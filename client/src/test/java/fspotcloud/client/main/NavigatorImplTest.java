@@ -19,10 +19,13 @@ public class NavigatorImplTest extends TestCase {
 	Navigator navigator;
 	Mockery context;
 	BasePlace daniel = new BasePlace("1", "1");
+	BasePlace danielRaster = new BasePlace("1", "1", 1, 2);
 	BasePlace jan = new BasePlace("1", "3");
+	BasePlace janRaster = new BasePlace("1", "3", 1, 2);
 	BasePlace snowie = new BasePlace("4", "11");
 	BasePlace siepie = new BasePlace("4", "12");
-
+	BasePlace r1_3 = new BasePlace("6", "101", 1, 3);
+	BasePlace r1_3next = new BasePlace("6", "103", 1, 3);
 		
 	@Override
 	protected void setUp() throws Exception {
@@ -77,6 +80,30 @@ public class NavigatorImplTest extends TestCase {
 		context.assertIsSatisfied();
 	}
 
+	public void testGoForwardInRaster() throws InterruptedException {
+		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
+		context.checking(new Expectations() {
+			{
+				oneOf(goTo).goTo(with(janRaster));
+			}
+		});
+		navigator = get(goTo);
+		navigator.go(true, danielRaster);
+		context.assertIsSatisfied();
+	}
+	
+	public void testGoForwardInRasterHarder() throws InterruptedException {
+		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
+		context.checking(new Expectations() {
+			{
+				oneOf(goTo).goTo(with(r1_3next));
+			}
+		});
+		navigator = get(goTo);
+		navigator.go(true, r1_3);
+		context.assertIsSatisfied();
+	}
+
 	public void testGoForward() throws InterruptedException {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		context.checking(new Expectations() {
@@ -88,7 +115,7 @@ public class NavigatorImplTest extends TestCase {
 		navigator.go(true, snowie);
 		context.assertIsSatisfied();
 	}
-
+	
 	public void testGoBackward() {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		context.checking(new Expectations() {
