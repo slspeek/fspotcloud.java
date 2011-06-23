@@ -3,9 +3,10 @@ package fspotcloud.client.main.ui;
 import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.Window;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
 import com.reveregroup.gwt.imagepreloader.FitImage;
@@ -26,22 +27,28 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	@UiField
 	FitImage image;
 
+	private ImageView.ImagePresenter presenter;
+
 	public ImageViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		image.ensureDebugId("image-view");
-		//adjustImageSize();
 	}
 
 	@Override
 	public void setImageUrl(String url) {
 		log.info("About to setImage: " + url);
-		//adjustImageSize();
 		image.setUrl(url);
 	}
-	
-	private void adjustImageSize(){
-		int width = (int) (Window.getClientWidth() *0.9);
-		int height = (int)(Window.getClientHeight() * 0.9);
-		image.setMaxSize(width, height);
+
+	@UiHandler("image")
+	public void imageClicked(ClickEvent event) {
+		log.info("image clicked");
+		this.presenter.imageClicked();
 	}
+
+	@Override
+	public void setPresenter(ImagePresenter presenter) {
+		this.presenter = presenter;
+	}
+
 }

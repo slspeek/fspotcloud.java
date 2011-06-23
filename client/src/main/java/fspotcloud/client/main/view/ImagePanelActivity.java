@@ -21,18 +21,14 @@ public class ImagePanelActivity extends AbstractActivity implements
 	final protected ImagePanelView imagePanelView;
 	final private ImageRasterView.ImageRasterPresenter imageRasterPresenter;
 	final private SlideShowPresenterImpl slideshowPresenter;
-	final private EventBus eventBus;
-	@SuppressWarnings("unused")
-	final private PagerPresenterImpl pagerPresenter;
-
+	
 	public ImagePanelActivity(BasePlace place, ImagePanelView imagePanelView,
 			Navigator navigator, Slideshow slideshow, EventBus eventBus, PagingNavigator pager) {
 		this.imagePanelView = imagePanelView;
-		this.eventBus = eventBus;
-		this.pagerPresenter = new PagerPresenterImpl(place,
+		new PagerPresenterImpl(place,
 				imagePanelView.getPagerView(), navigator);
 		this.imageRasterPresenter = new ImageRasterPresenterImpl(place,
-				imagePanelView.getImageRasterView(), pager);
+				imagePanelView.getImageRasterView(), pager, eventBus);
 		this.slideshowPresenter = new SlideShowPresenterImpl(
 				imagePanelView.getSlideshowView(), slideshow, eventBus);
 	}

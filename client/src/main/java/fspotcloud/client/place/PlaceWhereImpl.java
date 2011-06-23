@@ -12,8 +12,13 @@ public class PlaceWhereImpl extends PlaceGoToImpl implements PlaceWhere  {
 	}
 
 	@Override
-	public Place where() {
-		return placeController.getWhere();
+	public BasePlace where() {
+		Place place = placeController.getWhere();
+		if (place instanceof BasePlace) {
+			BasePlace new_name = (BasePlace) place;
+			return new_name;
+		}
+		throw new IllegalStateException("Not a BasePlace");
 	} 
 	
 }

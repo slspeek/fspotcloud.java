@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
+import com.google.gwt.event.shared.SimpleEventBus;
+
 import fspotcloud.client.main.view.ImagePresenterImpl;
 import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.main.view.api.PagerView;
@@ -23,7 +25,7 @@ public class ImageActivityTest extends TestCase {
 	}
 
 	protected ImagePresenterImpl create(BasePlace place, ImageView imageView) {
-		ImagePresenterImpl imageActivity = new ImagePresenterImpl(place, imageView, false);
+		ImagePresenterImpl imageActivity = new ImagePresenterImpl(place, imageView, false, new SimpleEventBus());
 		return imageActivity;
 	}
 	

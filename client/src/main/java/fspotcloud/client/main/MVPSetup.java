@@ -17,6 +17,7 @@ import fspotcloud.client.place.MainPlaceHistoryMapper;
 import fspotcloud.client.place.TagViewingPlace;
 import fspotcloud.client.view.action.NavigationEventHandler;
 import fspotcloud.client.view.action.SlideshowEventHandler;
+import fspotcloud.client.view.action.ZoomViewEventHandler;
 
 public class MVPSetup {
 
@@ -30,25 +31,29 @@ public class MVPSetup {
 	final private GlobalShortcutController keyboardHandler;
 	final private SlideshowEventHandler slideshowEventHandler;
 	final private NavigationEventHandler navigationEventHandler;
+	final private ZoomViewEventHandler zoomViewEventHandler;
 
 	@Inject
 	public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
 			PlaceController placeController,
 			GlobalShortcutController keyboardHandler,
 			SlideshowEventHandler slideshowEventHandler,
-			NavigationEventHandler navigationEventHandler) {
+			NavigationEventHandler navigationEventHandler,
+			ZoomViewEventHandler zoomViewEventHandler) {
 		this.activityMapper = activityMapper;
 		this.eventBus = eventBus;
 		this.placeController = placeController;
 		this.keyboardHandler = keyboardHandler;
 		this.slideshowEventHandler = slideshowEventHandler;
 		this.navigationEventHandler = navigationEventHandler;
+		this.zoomViewEventHandler = zoomViewEventHandler;
 	}
 
 	public void setup() {
 		keyboardHandler.setup();
 		slideshowEventHandler.init();
 		navigationEventHandler.init();
+		zoomViewEventHandler.init();
 		ActivityManager activityManager = new ActivityManager(activityMapper,
 				eventBus);
 		activityManager.setDisplay(appWidget);

@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>fspotcloud</groupId>
 		<artifactId>fspotcloud</artifactId>
-		<version>0.40-6.3.2</version>
+		<version>0.40-6.3.3</version>
 	</parent>
 	<groupId>fspotcloud</groupId>
 	<artifactId>peer</artifactId>

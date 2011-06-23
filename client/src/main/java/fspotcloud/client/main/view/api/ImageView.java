@@ -6,8 +6,10 @@ public interface ImageView extends IsWidget {
 
 	interface ImagePresenter {
 		void init();
+		void imageClicked();
 	}
 
 	void setImageUrl(String url);
+	void setPresenter(ImagePresenter presenter);
 	
 }
