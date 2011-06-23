@@ -3,6 +3,7 @@ package fspotcloud.client.main.view;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import fspotcloud.client.main.PagingNavigator;
@@ -22,11 +23,12 @@ public class ImageRasterPresenterImpl implements ImageRasterView.ImageRasterPres
 	final private boolean thumb;
 	final private ImageRasterView imageRasterView;
 	final private PagingNavigator pager;
+	final private EventBus eventBus;
 
 	List<ImageView> imageViewList;
 
 	public ImageRasterPresenterImpl(BasePlace place,
-			ImageRasterView imageRasterView, PagingNavigator pager) {
+			ImageRasterView imageRasterView, PagingNavigator pager, EventBus eventBus) {
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
 		columnCount = place.getColumnCount();
@@ -35,6 +37,7 @@ public class ImageRasterPresenterImpl implements ImageRasterView.ImageRasterPres
 		thumb = pageSize > 1;
 		this.pager = pager;
 		this.imageRasterView = imageRasterView;
+		this.eventBus = eventBus;
 	}
 
 	public void init() {
@@ -65,7 +68,7 @@ public class ImageRasterPresenterImpl implements ImageRasterView.ImageRasterPres
 	private void setImages(List<BasePlace> result) {
 		for (int i = 0; i < result.size(); i++) {
 			ImageView.ImagePresenter presenter = new ImagePresenterImpl(
-					result.get(i), imageViewList.get(i), thumb);
+					result.get(i), imageViewList.get(i), thumb, eventBus);
 			presenter.init();
 		}
 	}
