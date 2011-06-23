@@ -6,8 +6,8 @@ import fspotcloud.client.place.TagViewingPlace;
 
 public class PlaceSwapper {
 
-	public static final int DEFAULT_RASTER_WIDTH = 10;
-	public static final int DEFAULT_RASTER_HEIGHT = 9;
+	public static final int DEFAULT_RASTER_WIDTH = 9;
+	public static final int DEFAULT_RASTER_HEIGHT = 8;
 	
 	public BasePlace toggleRasterView(BasePlace place) {
 		String tagId  = place.getTagId();

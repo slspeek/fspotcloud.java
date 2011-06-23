@@ -65,10 +65,24 @@ public class TagServiceAsyncTestImpl implements TagServiceAsync {
 		photoList = ImmutableSortedSet.of(pi1, pi2, pi3);
 		woefje.setCachedPhotoList(new PhotoInfoStore(photoList));
 		
+		TagNode otherCats = createNode("6", "Other cats", 1);
+		pi1 = new PhotoInfo("100", "", new Date(100));
+		pi2 = new PhotoInfo("101", "", new Date(101));
+		pi3 = new PhotoInfo("102", "", new Date(102));
+		pi4 = new PhotoInfo("103", "", new Date(103));
+		PhotoInfo pi5 = new PhotoInfo("104", "", new Date(104));
+		PhotoInfo pi6 = new PhotoInfo("105", "", new Date(105));
+		PhotoInfo pi7 = new PhotoInfo("106", "", new Date(106));
+		PhotoInfo pi8 = new PhotoInfo("107", "", new Date(107));
+		PhotoInfo pi9 = new PhotoInfo("108", "", new Date(108));
+		photoList = ImmutableSortedSet.of(pi1, pi2, pi3, pi4, pi5, pi6, pi7, pi8, pi9);
+		otherCats.setCachedPhotoList(new PhotoInfoStore(photoList));
+		
 		cats.addChild(felix);
 		cats.addChild(woefje);
+		cats.addChild(otherCats);
 		tagTreeData = ImmutableList.of(root1, cats, root3);
-		System.out.println(felix.getCachedPhotoList());
+		//System.out.println(felix.getCachedPhotoList());
 		return tagTreeData;
 	}
 	
