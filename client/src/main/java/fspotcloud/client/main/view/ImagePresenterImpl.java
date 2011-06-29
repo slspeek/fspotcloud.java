@@ -12,14 +12,18 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	private static final Logger log = Logger.getLogger(ImagePresenterImpl.class
 			.getName());
 
+	final int maxWidth;
+	final int maxHeight;
 	final private ImageView imageView;
 	final private String tagId;
 	final private String photoId;
 	final private boolean thumb;
 	final private EventBus eventBus;
 
-	public ImagePresenterImpl(BasePlace place, ImageView imageView,
-			boolean thumb, EventBus eventBus) {
+	public ImagePresenterImpl(int maxWidth, int maxHeight, BasePlace place,
+			ImageView imageView, boolean thumb, EventBus eventBus) {
+		this.maxWidth = maxWidth;
+		this.maxHeight = maxHeight;
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
 		this.imageView = imageView;
@@ -31,6 +35,8 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 		log.info("init");
 		imageView.setPresenter(this);
 		setImage();
+		imageView.setMaxWidth(maxWidth);
+		imageView.setMaxHeight(maxHeight);
 	}
 
 	public void setImage() {
