@@ -18,6 +18,7 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	private static final Logger log = Logger.getLogger(ImageViewImpl.class
 			.getName());
 
+	private static int counter = 0;
 	private static ImageViewImplUiBinder uiBinder = GWT
 			.create(ImageViewImplUiBinder.class);
 
@@ -31,7 +32,7 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 
 	public ImageViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
-		image.ensureDebugId("image-view");
+		image.ensureDebugId("image-view-" + counter++);
 	}
 
 	@Override
