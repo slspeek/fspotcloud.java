@@ -51,4 +51,16 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 		this.presenter = presenter;
 	}
 
+	@Override
+	public void setMaxWidth(int width) {
+		this.image.setMaxWidth(width);
+		
+	}
+
+	@Override
+	public void setMaxHeight(int height) {
+		this.image.setMaxHeight(height);
+		
+	}
+
 }

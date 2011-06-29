@@ -43,5 +43,6 @@ public class ImagePanelActivity extends AbstractActivity implements
 		log.info("init");
 		imageRasterPresenter.init();
 		slideshowPresenter.init();
+		log.info(imageRasterPresenter.getWidth() + ", "+ imageRasterPresenter.getHeight());
 	}
 }

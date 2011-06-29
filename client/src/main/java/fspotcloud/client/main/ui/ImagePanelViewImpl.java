@@ -47,6 +47,7 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 		initWidget(uiBinder.createAndBindUi(this));
 		mainPanel.addStyleName("fsc-image-panel-view");
 		buttonPanel.addStyleName("fsc-image-button-panel");
+		imageRasterView.asWidget().addStyleName("fsc-image-raster-view");
 	}
 
 	@UiFactory
