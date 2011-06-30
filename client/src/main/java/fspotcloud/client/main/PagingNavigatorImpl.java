@@ -77,6 +77,7 @@ public class PagingNavigatorImpl implements PagingNavigator {
 	private void getPage(TagNode node, int pageSize, int pageNumber,
 			AsyncCallback<List<BasePlace>> callback) {
 		PhotoInfoStore store = node.getCachedPhotoList();
+		log.info("Store: " + store);
 		int offset = pageNumber * pageSize;
 		List<BasePlace> result = new ArrayList<BasePlace>();
 		for (int i = offset; i < offset + pageSize; i++) {
