@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-6.3.5</version>
+		<version>0.40-6.3.6</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>war</artifactId>
@@ -181,7 +181,7 @@
 							<directory>${project.build.directory}/dependency/</directory>
 						</resource>
 					</webResources>
-					<webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
+					<webXml>${basedir}/src/main/resources/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
 			<!-- Upload application to the appspot automatically, during release:perform -->
