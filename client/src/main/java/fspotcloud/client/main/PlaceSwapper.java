@@ -60,18 +60,18 @@ public class PlaceSwapper {
 	
 	public BasePlace toggleTreeViewVisible(BasePlace place) {
 		BasePlace result = null;
+		String tagId  = place.getTagId();
+		String photoId = place.getPhotoId();
+		int width = place.getColumnCount();
+		int height=place.getRowCount();
 		if (place instanceof TagViewingPlace && !(place instanceof ImageViewingPlace)) {
-			TagViewingPlace tagPlace = (TagViewingPlace) place;
-			ImageViewingPlace imagePlace = new ImageViewingPlace(
-					tagPlace.getTagId(), tagPlace.getPhotoId());
+			ImageViewingPlace imagePlace = new ImageViewingPlace(tagId, photoId, width, height);
 			result = imagePlace;
 		} else if (place instanceof ImageViewingPlace) {
-			ImageViewingPlace imagePlace = (ImageViewingPlace) place;
-			TagViewingPlace tagPlace = new TagViewingPlace(imagePlace
-					.getTagId(), imagePlace.getPhotoId());
+			TagViewingPlace tagPlace = new TagViewingPlace(tagId, photoId, width, height);
 			result = tagPlace;
 		} else {
-			throw new IllegalStateException();
+			throw new IllegalStateException("We only have TagViewingPlaces and ImageViewingPlaces.");
 		}
 		return result;
 	}

@@ -14,11 +14,13 @@ public class PlaceSwapperTest extends TestCase {
 	PlaceSwapper swapper = new PlaceSwapper();
 	
 	public void testSimpleSwap() {
-		BasePlace imageViewingPlace = new ImageViewingPlace("1", "10");
+		BasePlace imageViewingPlace = new ImageViewingPlace("1", "10", 8, 9);
 		BasePlace newPlace = swapper.toggleTreeViewVisible(imageViewingPlace);
 		assertEquals(TagViewingPlace.class, newPlace.getClass());
 		assertEquals("1", newPlace.getTagId());
 		assertEquals("10", newPlace.getPhotoId());
+		assertEquals(8, newPlace.getColumnCount());
+		assertEquals(9, newPlace.getRowCount());
 	}
 	
 	public void testReverse() {
@@ -27,6 +29,8 @@ public class PlaceSwapperTest extends TestCase {
 		assertEquals(ImageViewingPlace.class, newPlace.getClass());
 		assertEquals("1", ((ImageViewingPlace)newPlace).getTagId());
 		assertEquals("10", ((ImageViewingPlace)newPlace).getPhotoId());
+		assertEquals(1, ((ImageViewingPlace)newPlace).getColumnCount());
+		assertEquals(1, ((ImageViewingPlace)newPlace).getRowCount());
 	}
 	
 	public void testToggleRasterView() {
