@@ -17,6 +17,7 @@ import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.ImageViewingPlace;
 import fspotcloud.client.place.PlaceGoTo;
 import fspotcloud.client.place.PlaceWhere;
+import fspotcloud.client.place.TagViewingPlace;
 
 public class NavigatorImplTest extends TestCase {
 
@@ -32,6 +33,8 @@ public class NavigatorImplTest extends TestCase {
 	BasePlace janRaster = new BasePlace("1", "3", 1, 2);
 	BasePlace snowie = new BasePlace("4", "11");
 	BasePlace siepie = new BasePlace("4", "12");
+	BasePlace woefje = new TagViewingPlace("5", "23",
+			placeCalculator.getRasterWidth(), placeCalculator.getRasterHeight());
 	BasePlace r1_3 = new ImageViewingPlace("6", "101", 1, 3);
 	BasePlace r1_3_zoomed_in = new ImageViewingPlace("6", "101", 1, 1);
 	BasePlace r1_3next = new BasePlace("6", "103", 1, 3);
@@ -174,23 +177,25 @@ public class NavigatorImplTest extends TestCase {
 		navigator.goAsync(true);
 		context.assertIsSatisfied();
 	}
-	
+
 	public void testGetPageCount() {
 		final AsyncCallback<Integer> result = context.mock(AsyncCallback.class);
-		
+
 		context.checking(new Expectations() {
 			{
 				oneOf(result).onSuccess(with(2));
 			}
 		});
 		navigator = get(null);
-		navigator.getPageCountAsync("1",2, result);
+		navigator.getPageCountAsync("1", 2, result);
 		context.assertIsSatisfied();
 	}
 
 	public void testGetPageStringIntIntAsyncCallbackOfListOfBasePlace1() {
-		final AsyncCallback<List<BasePlace>> result = context.mock(AsyncCallback.class);
-		final ImmutableList<BasePlace> expected = ImmutableList.of(daniel, aute);
+		final AsyncCallback<List<BasePlace>> result = context
+				.mock(AsyncCallback.class);
+		final ImmutableList<BasePlace> expected = ImmutableList
+				.of(daniel, aute);
 		context.checking(new Expectations() {
 			{
 				oneOf(result).onSuccess(expected);
@@ -200,9 +205,10 @@ public class NavigatorImplTest extends TestCase {
 		navigator.getPageAsync("1", 2, 0, result);
 		context.assertIsSatisfied();
 	}
-	
+
 	public void testGetPageStringIntIntAsyncCallbackOfListOfBasePlace2() {
-		final AsyncCallback<List<BasePlace>> result = context.mock(AsyncCallback.class);
+		final AsyncCallback<List<BasePlace>> result = context
+				.mock(AsyncCallback.class);
 		final ImmutableList<BasePlace> expected = ImmutableList.of(jan);
 		context.checking(new Expectations() {
 			{
@@ -215,8 +221,10 @@ public class NavigatorImplTest extends TestCase {
 	}
 
 	public void testGetPageStringStringIntAsyncCallbackOfListOfBasePlace1() {
-		final AsyncCallback<List<BasePlace>> result = context.mock(AsyncCallback.class);
-		final ImmutableList<BasePlace> expected = ImmutableList.of(daniel, aute);
+		final AsyncCallback<List<BasePlace>> result = context
+				.mock(AsyncCallback.class);
+		final ImmutableList<BasePlace> expected = ImmutableList
+				.of(daniel, aute);
 		context.checking(new Expectations() {
 			{
 				oneOf(result).onSuccess(expected);
@@ -228,8 +236,10 @@ public class NavigatorImplTest extends TestCase {
 	}
 
 	public void testGetPageStringStringIntAsyncCallbackOfListOfBasePlace2() {
-		final AsyncCallback<List<BasePlace>> result = context.mock(AsyncCallback.class);
-		final ImmutableList<BasePlace> expected = ImmutableList.of(daniel, aute);
+		final AsyncCallback<List<BasePlace>> result = context
+				.mock(AsyncCallback.class);
+		final ImmutableList<BasePlace> expected = ImmutableList
+				.of(daniel, aute);
 		context.checking(new Expectations() {
 			{
 				oneOf(result).onSuccess(expected);
@@ -239,8 +249,10 @@ public class NavigatorImplTest extends TestCase {
 		navigator.getPageAsync("1", "1", 2, result);
 		context.assertIsSatisfied();
 	}
+
 	public void testGetPageStringStringIntAsyncCallbackOfListOfBasePlace3() {
-		final AsyncCallback<List<BasePlace>> result = context.mock(AsyncCallback.class);
+		final AsyncCallback<List<BasePlace>> result = context
+				.mock(AsyncCallback.class);
 		final ImmutableList<BasePlace> expected = ImmutableList.of(jan);
 		context.checking(new Expectations() {
 			{
@@ -251,20 +263,33 @@ public class NavigatorImplTest extends TestCase {
 		navigator.getPageAsync("1", "3", 2, result);
 		context.assertIsSatisfied();
 	}
-	
+
 	public void testToggleZoomView() {
-			final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
-			final PlaceWhere where = context.mock(PlaceWhere.class);
-			context.checking(new Expectations() {
-				{
-					oneOf(where).where();
-					will(returnValue(r1_3));
-					oneOf(goTo).goTo(with(r1_3_zoomed_in));
-				}
-			});
-			navigator = get(where, goTo);
-			navigator.toggleZoomViewAsync(r1_3.getTagId(), r1_3.getPhotoId());
-			context.assertIsSatisfied();
+		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
+		final PlaceWhere where = context.mock(PlaceWhere.class);
+		context.checking(new Expectations() {
+			{
+				oneOf(where).where();
+				will(returnValue(r1_3));
+				oneOf(goTo).goTo(with(r1_3_zoomed_in));
+			}
+		});
+		navigator = get(where, goTo);
+		navigator.toggleZoomViewAsync(r1_3.getTagId(), r1_3.getPhotoId());
+		context.assertIsSatisfied();
+	}
+
+	public void testGoToLatestTag() {
+		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
+		context.checking(new Expectations() {
+			{
+				oneOf(goTo).goTo(with(woefje));
+			}
+		});
+		navigator = get(goTo);
+		navigator.goToLatestTag();
+		context.assertIsSatisfied();
+
 	}
 
 }

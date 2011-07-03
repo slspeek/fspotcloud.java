@@ -116,11 +116,10 @@ public class DataManagerImpl implements DataManager {
 					callback.onFailure(caught);
 				}
 
-				public void onSuccess(List<TagNode> result) {
-					adminTagTreeData = result;
+				public void onSuccess(List<TagNode> adminTagTreeData) {
 					indexingUtil.rebuildTagNodeIndex(adminTagNodeIndex,
 							adminTagTreeData);
-					callback.onSuccess(result);
+					callback.onSuccess(adminTagTreeData);
 				}
 			});
 		}

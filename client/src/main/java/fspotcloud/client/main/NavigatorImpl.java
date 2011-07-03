@@ -1,7 +1,10 @@
 package fspotcloud.client.main;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,11 +12,13 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
 import fspotcloud.client.data.DataManager;
+import fspotcloud.client.data.IndexingUtil;
 import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.ImageViewingPlace;
 import fspotcloud.client.place.PlaceGoTo;
 import fspotcloud.client.place.PlaceWhere;
 import fspotcloud.client.place.TagViewingPlace;
+import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;
 
@@ -269,7 +274,52 @@ public class NavigatorImpl implements Navigator {
 
 	@Override
 	public void goToTag(String otherTagId, PhotoInfoStore store) {
-		goEnd(false, new TagViewingPlace(otherTagId, null, placeCalculator.getRasterWidth(), placeCalculator.getRasterHeight()), store);
+		goEnd(false,
+				new TagViewingPlace(otherTagId, null, placeCalculator
+						.getRasterWidth(), placeCalculator.getRasterHeight()),
+				store);
+	}
+
+	@Override
+	public void goToLatestTag() {
+		dataManager.getTagTree(new AsyncCallback<List<TagNode>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onSuccess(List<TagNode> result) {
+				Date latest = new Date(0);
+				TagNode latestNode = null;
+				IndexingUtil util = new IndexingUtil();
+				Map<String,TagNode> tagNodeIndex = new HashMap<String, TagNode>();
+				util.rebuildTagNodeIndex(tagNodeIndex, result);
+				for (String tagId  : tagNodeIndex.keySet()) {
+					TagNode node = tagNodeIndex.get(tagId);
+					PhotoInfo info = node.getCachedPhotoList().last();
+					Date lastDate = info.getDate();
+					if (lastDate.after(latest)) {
+						latest = lastDate;
+						latestNode = node;
+					}
+				}
+				goToTag(latestNode.getId(), latestNode.getCachedPhotoList());
+			}
+		});
+	}
+
+	
+	@Override
+	public void setRasterWidth(int width) {
+		placeCalculator.setRasterWidth(width);
+	}
+
+	@Override
+	public void setRasterHeight(int height) {
+		placeCalculator.setRasterHeight(height);
 	}
 
 }

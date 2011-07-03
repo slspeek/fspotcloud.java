@@ -22,10 +22,8 @@ public class IndexingUtil {
 	
 	private void addTagNodeIndex(Map<String,TagNode> tagNodeIndex, TagNode node) {
 		tagNodeIndex.put(node.getId(), node);
-		//log.info("BUG: " + node.toString());
 		for (TagNode child: node.getChildren()) {
 			addTagNodeIndex(tagNodeIndex, child);
-			//log.info("BUG: " + child.toString());
 		}
 	}
 }
