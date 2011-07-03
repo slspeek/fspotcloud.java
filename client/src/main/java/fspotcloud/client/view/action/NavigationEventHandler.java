@@ -21,16 +21,16 @@ public class NavigationEventHandler implements NavigationEvent.Handler {
 	public void onEvent(NavigationEvent e) {
 		switch (e.getActionType()) {
 		case NavigationEvent.BACK:
-			navigator.go(false);
+			navigator.goAsync(false);
 			break;
 		case NavigationEvent.FORWARD:
-			navigator.go(true);
+			navigator.goAsync(true);
 			break;
 		case NavigationEvent.BEGIN:
-			navigator.goEnd(true);
+			navigator.goEndAsync(true);
 			break;
 		case NavigationEvent.END:
-			navigator.goEnd(false);
+			navigator.goEndAsync(false);
 			break;
 		default:
 			break;

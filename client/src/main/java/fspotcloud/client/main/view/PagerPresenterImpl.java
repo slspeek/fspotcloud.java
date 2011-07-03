@@ -32,12 +32,12 @@ public class PagerPresenterImpl implements PagerPresenter {
 
 	@Override
 	public void go(boolean forward) {
-		navigator.go(forward, place);
+		navigator.goAsync(forward);
 	}
 
 	@Override
 	public void goEnd(boolean first) {
-		navigator.goEnd(first, place);
+		navigator.goEndAsync(first);
 	}
 
 }

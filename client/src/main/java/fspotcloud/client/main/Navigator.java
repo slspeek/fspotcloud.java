@@ -1,19 +1,29 @@
 package fspotcloud.client.main;
 
+import java.util.List;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import fspotcloud.client.place.BasePlace;
+import fspotcloud.shared.photo.PhotoInfoStore;
 
 public interface Navigator {
-	void goEnd(boolean first, BasePlace place);
+	void goEndAsync(boolean first);
 
-	void goEnd(boolean first);
+	void goAsync(boolean forward);
 
-	void go(boolean forward, BasePlace place);
+	void canGoAsync(boolean forward, AsyncCallback<Boolean> callback);
+	
+	void getPageCountAsync(String tagId, int pageSize,
+			AsyncCallback<Integer> callback);
 
-	void go(boolean forward);
+	void getPageAsync(String tagId, int pageSize, int pageNumber,
+			AsyncCallback<List<BasePlace>> callback);
 
-	void canGo(boolean forward, BasePlace place, AsyncCallback<Boolean> callback);
+	void getPageAsync(String tagId, String photoId, int pageSize,
+			AsyncCallback<List<BasePlace>> callback);
 
-	void canGo(boolean forward, AsyncCallback<Boolean> callback);
+	void toggleZoomViewAsync(String tagId, String photoId);
+
+	void goToTag(String otherTagId, PhotoInfoStore store);
 }
