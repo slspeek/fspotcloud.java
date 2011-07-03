@@ -26,4 +26,10 @@ public interface Navigator {
 	void toggleZoomViewAsync(String tagId, String photoId);
 
 	void goToTag(String otherTagId, PhotoInfoStore store);
+	
+	void goToLatestTag();
+
+	void setRasterWidth(int width);
+
+	void setRasterHeight(int height);
 }

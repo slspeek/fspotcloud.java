@@ -23,7 +23,7 @@ public class MVPSetup {
 
 	private static final Logger log = Logger
 			.getLogger(MVPSetup.class.getName());
-	final private Place defaultPlace = new TagViewingPlace("64", "8451");
+	final private Place defaultPlace = new TagViewingPlace("latest", "latest");
 	final private SimplePanel appWidget = new SimplePanel();
 	final private EventBus eventBus;
 	final private MainWindowActivityMapper activityMapper;
@@ -32,6 +32,7 @@ public class MVPSetup {
 	final private SlideshowEventHandler slideshowEventHandler;
 	final private NavigationEventHandler navigationEventHandler;
 	final private ZoomViewEventHandler zoomViewEventHandler;
+	private Navigator navigator;
 
 	@Inject
 	public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
@@ -39,7 +40,9 @@ public class MVPSetup {
 			GlobalShortcutController keyboardHandler,
 			SlideshowEventHandler slideshowEventHandler,
 			NavigationEventHandler navigationEventHandler,
-			ZoomViewEventHandler zoomViewEventHandler) {
+			ZoomViewEventHandler zoomViewEventHandler,
+			Navigator navigator) {
+		this.navigator = navigator;
 		this.activityMapper = activityMapper;
 		this.eventBus = eventBus;
 		this.placeController = placeController;
@@ -54,6 +57,7 @@ public class MVPSetup {
 		slideshowEventHandler.init();
 		navigationEventHandler.init();
 		zoomViewEventHandler.init();
+		
 		ActivityManager activityManager = new ActivityManager(activityMapper,
 				eventBus);
 		activityManager.setDisplay(appWidget);
@@ -65,6 +69,8 @@ public class MVPSetup {
 		historyHandler.register(placeController, eventBus, defaultPlace);
 
 		RootLayoutPanel.get().add(appWidget);
+		
+		//navigator.goToLatestTag();
 		log.info("Just before handleCurrentHistory()");
 		historyHandler.handleCurrentHistory();
 		log.info("Setup finished");
