@@ -4,7 +4,6 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
 import fspotcloud.client.main.Navigator;
-import fspotcloud.client.main.PagingNavigator;
 import fspotcloud.client.main.Slideshow;
 import fspotcloud.client.main.view.FullscreenImagePanelActivity;
 import fspotcloud.client.main.view.ImagePanelActivity;
@@ -24,11 +23,11 @@ public class ImagePanelActivityFactoryImpl implements ImagePanelActivityFactory 
 	final private Navigator navigator;
 	final private Slideshow slideshow;
 	final private EventBus eventBus;
-	final private PagingNavigator pager;
+	final private Navigator pager;
 
 	@Inject
 	public ImagePanelActivityFactoryImpl(ImagePanelView embeddedImagePanelView, ImagePanelView fullscreenImagePanelView,
-			Navigator navigator, Slideshow slideshow, EventBus eventBus, PagingNavigator pager) {
+			Navigator navigator, Slideshow slideshow, EventBus eventBus, Navigator pager) {
 		this.navigator = navigator;
 		this.slideshow = slideshow;
 		this.embeddedImagePanelView = embeddedImagePanelView;

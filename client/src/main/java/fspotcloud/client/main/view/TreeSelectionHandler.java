@@ -7,19 +7,20 @@ import com.google.gwt.view.client.SelectionChangeEvent.Handler;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 
-import fspotcloud.client.place.PlaceGoTo;
-import fspotcloud.client.place.TagViewingPlace;
+import fspotcloud.client.main.Navigator;
+import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;
 
 public class TreeSelectionHandler implements Handler {
 	private static final Logger log = Logger
 			.getLogger(TreeSelectionHandler.class.getName());
 	private SingleSelectionModel<TagNode> selectionModel;
-	final private PlaceGoTo placeGoTo;
+
+	final private Navigator navigator;
 
 	@Inject
-	public TreeSelectionHandler(PlaceGoTo placeGoTo) {
-		this.placeGoTo = placeGoTo;
+	public TreeSelectionHandler(Navigator navigator) {
+		this.navigator = navigator;
 	}
 
 	public void setSelectionModel(SingleSelectionModel<TagNode> selectionModel) {
@@ -32,18 +33,12 @@ public class TreeSelectionHandler implements Handler {
 		log.info("Selection event from tree" + selectionModel);
 		TagNode node = selectionModel.getSelectedObject();
 		if (node != null) {
-			log.info("Selection event: node != null");
-			if (node.getCachedPhotoList() !=null &&
-					!node.getCachedPhotoList().isEmpty()) {
-				log.info("Selection event: not empty");
-				String firstPhotoId = node.getCachedPhotoList().get(0).getId();
-				String tagId = node.getId();
-				goToPhoto(tagId, firstPhotoId);
-			}
+			String tagId = node.getId();
+			goToPhoto(tagId, node.getCachedPhotoList());
 		}
 	}
 
-	private void goToPhoto(String otherTagId, String photoId) {
-		placeGoTo.goTo(new TagViewingPlace(otherTagId, photoId));
+	private void goToPhoto(String otherTagId, PhotoInfoStore store) {
+		navigator.goToTag(otherTagId, store);
 	}
 }

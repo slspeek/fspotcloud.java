@@ -33,7 +33,7 @@ public class SlideshowImpl implements Slideshow {
 		timer.setRunnable(new Runnable() {
 			@Override
 			public void run() {
-				navigator.canGo(true, new AsyncCallback<Boolean>() {
+				navigator.canGoAsync(true, new AsyncCallback<Boolean>() {
 					@Override
 					public void onFailure(Throwable caught) {
 						log.warning(caught.getMessage());
@@ -51,7 +51,7 @@ public class SlideshowImpl implements Slideshow {
 
 	private void go(boolean canGo) {
 		if (canGo) {
-			navigator.go(true);
+			navigator.goAsync(true);
 		} else {
 			stop();
 			log.info("Timer stopped, because the end was reached.");

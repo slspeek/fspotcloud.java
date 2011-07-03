@@ -7,7 +7,6 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 import fspotcloud.client.main.Navigator;
-import fspotcloud.client.main.PagingNavigator;
 import fspotcloud.client.main.Slideshow;
 import fspotcloud.client.main.view.api.ImagePanelView;
 import fspotcloud.client.main.view.api.ImagePanelView.ImagePanelPresenter;
@@ -23,7 +22,7 @@ public class ImagePanelActivity extends AbstractActivity implements
 	final private SlideShowPresenterImpl slideshowPresenter;
 	
 	public ImagePanelActivity(BasePlace place, ImagePanelView imagePanelView,
-			Navigator navigator, Slideshow slideshow, EventBus eventBus, PagingNavigator pager) {
+			Navigator navigator, Slideshow slideshow, EventBus eventBus, Navigator pager) {
 		this.imagePanelView = imagePanelView;
 		new PagerPresenterImpl(place,
 				imagePanelView.getPagerView(), navigator);

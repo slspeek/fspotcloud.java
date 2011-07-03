@@ -9,9 +9,9 @@ import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.ImageViewingPlace;
 import fspotcloud.client.place.TagViewingPlace;
 
-public class PlaceSwapperTest extends TestCase {
+public class PlaceCalculatorTest extends TestCase {
 
-	PlaceSwapper swapper = new PlaceSwapper();
+	PlaceCalculator swapper = new PlaceCalculator();
 	
 	public void testSimpleSwap() {
 		BasePlace imageViewingPlace = new ImageViewingPlace("1", "10", 8, 9);
@@ -44,8 +44,7 @@ public class PlaceSwapperTest extends TestCase {
 	
 	public void testZoomView() {
 		BasePlace tagViewingPlace = new ImageViewingPlace("1", "10", 2, 1);
-		ZoomViewEvent event = new ZoomViewEvent("1", "11");
-		ImageViewingPlace newPlace = (ImageViewingPlace) swapper.toggleZoomView(tagViewingPlace, event);
+		ImageViewingPlace newPlace = (ImageViewingPlace) swapper.toggleZoomView(tagViewingPlace,"1", "11");
 		assertEquals("1", ((ImageViewingPlace)newPlace).getTagId());
 		assertEquals("11", ((ImageViewingPlace)newPlace).getPhotoId());
 		assertEquals(1, newPlace.getColumnCount());
@@ -54,12 +53,11 @@ public class PlaceSwapperTest extends TestCase {
 	
 	public void testZoomViewOut() {
 		BasePlace tagViewingPlace = new ImageViewingPlace("1", "10", 1, 1);
-		ZoomViewEvent event = new ZoomViewEvent("1", "10");
-		ImageViewingPlace newPlace = (ImageViewingPlace) swapper.toggleZoomView(tagViewingPlace, event);
+		ImageViewingPlace newPlace = (ImageViewingPlace) swapper.toggleZoomView(tagViewingPlace, "1", "10");
 		assertEquals("1", ((ImageViewingPlace)newPlace).getTagId());
 		assertEquals("10", ((ImageViewingPlace)newPlace).getPhotoId());
-		assertEquals(PlaceSwapper.DEFAULT_RASTER_WIDTH, newPlace.getColumnCount());
-		assertEquals(PlaceSwapper.DEFAULT_RASTER_HEIGHT, newPlace.getRowCount());
+		assertEquals(PlaceCalculator.DEFAULT_RASTER_WIDTH, newPlace.getColumnCount());
+		assertEquals(PlaceCalculator.DEFAULT_RASTER_HEIGHT, newPlace.getRowCount());
 	}
 	
 	

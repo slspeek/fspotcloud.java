@@ -12,9 +12,7 @@ import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.main.MVPSetup;
 import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.NavigatorImpl;
-import fspotcloud.client.main.PagingNavigator;
-import fspotcloud.client.main.PagingNavigatorImpl;
-import fspotcloud.client.main.PlaceSwapper;
+import fspotcloud.client.main.PlaceCalculator;
 import fspotcloud.client.main.Slideshow;
 import fspotcloud.client.main.SlideshowImpl;
 import fspotcloud.client.main.ui.ImagePanelViewImpl;
@@ -56,7 +54,7 @@ public class AppModule extends AbstractGinModule {
 		bind(MainWindowActivityMapper.class).in(Singleton.class);
 		bind(DataManager.class).to(DataManagerImpl.class).in(Singleton.class);
 		bind(MVPSetup.class).in(Singleton.class);
-		bind(PlaceSwapper.class);
+		bind(PlaceCalculator.class);
 		bind(TagCell.class);
 		bind(TagView.class).to(TagViewImpl.class);
 		bind(ImageView.class).to(ImageViewImpl.class);
@@ -83,7 +81,6 @@ public class AppModule extends AbstractGinModule {
 				ImagePanelActivityFactoryImpl.class);
 		bind(Navigator.class).to(NavigatorImpl.class).in(Singleton.class);
 		bind(Slideshow.class).to(SlideshowImpl.class).in(Singleton.class);
-		bind(PagingNavigator.class).to(PagingNavigatorImpl.class);
 		bind(ImageRasterView.class).to(ImageRasterViewImpl.class);
 	}
 }
