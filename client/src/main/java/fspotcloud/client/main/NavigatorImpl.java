@@ -343,4 +343,11 @@ public class NavigatorImpl implements Navigator {
 		BasePlace destination = placeCalculator.getTabularPlace(now);
 		placeGoTo.goTo(destination);
 	}
+
+	@Override
+	public void toggleShowTagTree() {
+		BasePlace now = placeWhere.where();
+		BasePlace destination = placeCalculator.toggleTreeViewVisible(now);
+		placeGoTo.goTo(destination);
+	}
 }
