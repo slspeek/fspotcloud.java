@@ -2,6 +2,7 @@ package fspotcloud.shared.tag;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import fspotcloud.shared.photo.PhotoInfoStore;
@@ -23,7 +24,7 @@ public class TagNode implements Serializable {
 
 	private String tagName;
 	
-	private PhotoInfoStore cachedPhotoList;
+	private PhotoInfoStore cachedPhotoList = new PhotoInfoStore(Collections.EMPTY_LIST);
 
 	private List<TagNode> children = new ArrayList<TagNode>();
 

@@ -33,5 +33,11 @@ public class PeerDatabaseManagerTest extends DatastoreTest {
 		PeerDatabase defaultPD = manager.get();
 		List<TagNode> list = defaultPD.getCachedTagTree();
 	}
-	
+
+	public void testDefaultsForThumbDimension() {
+		PeerDatabase defaultPD = manager.get();
+		String dim = defaultPD.getThumbDimension();
+		assertEquals("512x384", dim);
+	}
+
 }

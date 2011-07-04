@@ -295,15 +295,18 @@ public class NavigatorImpl implements Navigator {
 				Date latest = new Date(0);
 				TagNode latestNode = null;
 				IndexingUtil util = new IndexingUtil();
-				Map<String,TagNode> tagNodeIndex = new HashMap<String, TagNode>();
+				Map<String, TagNode> tagNodeIndex = new HashMap<String, TagNode>();
 				util.rebuildTagNodeIndex(tagNodeIndex, result);
-				for (String tagId  : tagNodeIndex.keySet()) {
+				for (String tagId : tagNodeIndex.keySet()) {
 					TagNode node = tagNodeIndex.get(tagId);
-					PhotoInfo info = node.getCachedPhotoList().last();
-					Date lastDate = info.getDate();
-					if (lastDate.after(latest)) {
-						latest = lastDate;
-						latestNode = node;
+					PhotoInfoStore store = node.getCachedPhotoList();
+					if (store != null && !store.isEmpty()) {
+						PhotoInfo info = store.last();
+						Date lastDate = info.getDate();
+						if (lastDate.after(latest)) {
+							latest = lastDate;
+							latestNode = node;
+						}
 					}
 				}
 				goToTag(latestNode.getId(), latestNode.getCachedPhotoList());
@@ -311,7 +314,6 @@ public class NavigatorImpl implements Navigator {
 		});
 	}
 
-	
 	@Override
 	public void setRasterWidth(int width) {
 		placeCalculator.setRasterWidth(width);
@@ -322,4 +324,23 @@ public class NavigatorImpl implements Navigator {
 		placeCalculator.setRasterHeight(height);
 	}
 
+	@Override
+	public void increaseRasterWidth(int amount) {
+		placeCalculator.setRasterWidth(placeCalculator.getRasterWidth()
+				+ amount);
+		reloadCurrentPlaceOnNewSize();
+	}
+
+	@Override
+	public void increaseRasterHeight(int amount) {
+		placeCalculator.setRasterHeight(placeCalculator.getRasterHeight()
+				+ amount);
+		reloadCurrentPlaceOnNewSize();
+	}
+
+	private void reloadCurrentPlaceOnNewSize() {
+		BasePlace now = placeWhere.where();
+		BasePlace destination = placeCalculator.getTabularPlace(now);
+		placeGoTo.goTo(destination);
+	}
 }

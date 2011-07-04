@@ -32,6 +32,18 @@ public class NavigationEventHandler implements NavigationEvent.Handler {
 		case NavigationEvent.END:
 			navigator.goEndAsync(false);
 			break;
+		case NavigationEvent.INCREASE_RASTER_WIDTH:
+			navigator.increaseRasterWidth(1);
+			break;
+		case NavigationEvent.DECREASE_RASTER_WIDTH:
+			navigator.increaseRasterWidth(-1);
+			break;
+		case NavigationEvent.INCREASE_RASTER_HEIGHT:
+			navigator.increaseRasterHeight(1);
+			break;
+		case NavigationEvent.DECREASE_RASTER_HEIGHT:
+			navigator.increaseRasterHeight(-1);
+			break;
 		default:
 			break;
 		}

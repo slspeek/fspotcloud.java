@@ -32,4 +32,8 @@ public interface Navigator {
 	void setRasterWidth(int width);
 
 	void setRasterHeight(int height);
+	
+	void increaseRasterWidth(int amount);
+	
+	void increaseRasterHeight(int amount);
 }

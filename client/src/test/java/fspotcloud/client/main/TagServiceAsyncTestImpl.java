@@ -43,6 +43,7 @@ public class TagServiceAsyncTestImpl implements TagServiceAsync {
 		photoList = ImmutableSortedSet.of(pi1, pi2, pi3);
 		cats.setCachedPhotoList(new PhotoInfoStore(photoList));
 		
+		TagNode empty = createNode("2.5", "Empty", 10);
 		TagNode root3 = createNode("3", "Languages", 10);
 		pi1 = new PhotoInfo("7", "Latin", new Date(1));
 		pi2 = new PhotoInfo("8", "Greek", new Date(2));
@@ -78,6 +79,7 @@ public class TagServiceAsyncTestImpl implements TagServiceAsync {
 		photoList = ImmutableSortedSet.of(pi1, pi2, pi3, pi4, pi5, pi6, pi7, pi8, pi9);
 		otherCats.setCachedPhotoList(new PhotoInfoStore(photoList));
 		
+		cats.addChild(empty);
 		cats.addChild(felix);
 		cats.addChild(woefje);
 		cats.addChild(otherCats);

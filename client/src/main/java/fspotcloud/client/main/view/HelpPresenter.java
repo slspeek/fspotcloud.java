@@ -21,6 +21,14 @@ public class HelpPresenter {
 				"Toggle fullscreen (hides/shows the tree view)");
 		helptext += generator.getHelpRow("ENTER", null, null,
 				"Puts keyboard focus on the category tree");
+		helptext += generator.getHelpRow("c", null, null,
+		"Adds one column to raster");
+		helptext += generator.getHelpRow("x", null, null,
+		"Removes one column from the raster");
+		helptext += generator.getHelpRow("r", null, null,
+		"Adds one row to raster");
+		helptext += generator.getHelpRow("e", null, null,
+		"Removes one row from the raster");
 		helptext += generator.getHelpRow("b", "HOME", null,
 				"Go to the first image of the category");
 		helptext += generator.getHelpRow("e", "z", "END",

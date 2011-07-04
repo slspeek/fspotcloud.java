@@ -47,29 +47,36 @@ public class KeyDispatcherProvider implements Provider<KeyDispatcher> {
 		keyDispatcher
 				.register(getNavigationAction(NavigationEvent.BEGIN), list);
 		list = new ArrayList<Integer>();
-		list.add((int) 'E');
 		list.add((int) 'Z');
 		list.add(KeyCodes.KEY_END);
 		keyDispatcher.register(getNavigationAction(NavigationEvent.END), list);
+		list = new ArrayList<Integer>();
+		list.add((int) 'C');
+		keyDispatcher.register(getNavigationAction(NavigationEvent.INCREASE_RASTER_WIDTH), list);
+		list = new ArrayList<Integer>();
+		list.add((int) 'X');
+		keyDispatcher.register(getNavigationAction(NavigationEvent.DECREASE_RASTER_WIDTH), list);
+		list = new ArrayList<Integer>();
+		list.add((int) 'R');
+		keyDispatcher.register(getNavigationAction(NavigationEvent.INCREASE_RASTER_HEIGHT), list);
+		list = new ArrayList<Integer>();
+		list.add((int) 'E');
+		keyDispatcher.register(getNavigationAction(NavigationEvent.DECREASE_RASTER_HEIGHT), list);
 		list = new ArrayList<Integer>();
 		list.add((int) 'S');
 		list.add((int) 'G');
 		keyDispatcher.register(getSlideshowAction(SlideshowEvent.ACTION_START),
 				list);
 		list = new ArrayList<Integer>();
-		list.add((int) 'X');
 		list.add((int) 'Q');
 		keyDispatcher.register(getSlideshowAction(SlideshowEvent.ACTION_STOP),
 				list);
 		list = new ArrayList<Integer>();
 		list.add((int) 'D');
-		list.add((int) '-');
 		keyDispatcher.register(
 				getSlideshowAction(SlideshowEvent.ACTION_SLOWER), list);
 		list = new ArrayList<Integer>();
 		list.add((int) 'I');
-		list.add((int) '=');
-		list.add((int) '+');
 		keyDispatcher.register(
 				getSlideshowAction(SlideshowEvent.ACTION_FASTER), list);
 		list = new ArrayList<Integer>();

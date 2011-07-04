@@ -8,26 +8,33 @@ import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.server.control.SchedulerInterface;
+import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Photo;
 
 public class ImageDataImporter {
 
-	final static  int THUMB_WIDTH = 100;
-	final static  int THUMB_HEIGHT = 75;
-	final static  int IMAGE_WIDTH = 1024;
-	final static  int IMAGE_HEIGHT = 768;
+	final String THUMB_WIDTH;
+	final String THUMB_HEIGHT;
+	final String IMAGE_WIDTH;
+	final String IMAGE_HEIGHT;
 
 	final private Photo photo;
 	final private ImmutableList<String> tagsForImport;
 	final private SchedulerInterface scheduler;
-	
-	@Inject 
-	public ImageDataImporter(@Assisted Photo photo, @Assisted ImmutableList<String> tagsForImport,
+
+	@Inject
+	public ImageDataImporter(@Assisted Photo photo,
+			@Assisted ImmutableList<String> tagsForImport,
+			@Assisted("thumb") String thumbDimension, @Assisted("image") String imageDimension,
 			SchedulerInterface scheduler) {
 		super();
 		this.photo = photo;
 		this.tagsForImport = tagsForImport;
 		this.scheduler = scheduler;
+		THUMB_WIDTH = thumbDimension.split("x")[0];
+		THUMB_HEIGHT = thumbDimension.split("x")[1];
+		IMAGE_WIDTH = imageDimension.split("x")[0];
+		IMAGE_HEIGHT = imageDimension.split("x")[1];
 	}
 
 	public void schedule(int IMAGE_TYPE) {
@@ -42,13 +49,14 @@ public class ImageDataImporter {
 
 	private boolean isRelevant(Photo photo) {
 		List<String> photoTags = photo.getTagList();
-		for (String wantedTag: tagsForImport) {
+		for (String wantedTag : tagsForImport) {
 			if (photoTags != null && photoTags.contains(wantedTag)) {
 				return true;
 			}
 		}
 		return false;
 	}
+
 	private void scheduleImage() {
 		if (!photo.isImageLoaded() && isRelevant(photo)) {
 			List<String> args = new ArrayList<String>();

@@ -33,6 +33,8 @@ public class ImageDataMapper extends
 
 	private PhotoDOBuilder builder = new PhotoDOBuilder();
 	private ImmutableList<String> wantedTags;
+	private String thumbDimension;
+	private String imageDimension;
 
 	public ImageDataMapper() {
 	}
@@ -40,10 +42,11 @@ public class ImageDataMapper extends
 	@Override
 	public void taskSetup(Context arg0) throws IOException,
 			InterruptedException {
-		PeerDatabases defaultPeer = injector
-				.getInstance(PeerDatabases.class);
+		PeerDatabases defaultPeer = injector.getInstance(PeerDatabases.class);
 		PeerDatabase pd = defaultPeer.get();
 		wantedTags = ImmutableList.copyOf(pd.getCachedImportedTags());
+		thumbDimension = pd.getThumbDimension();
+		imageDimension = pd.getImageDimension();
 		super.taskSetup(arg0);
 	}
 
@@ -51,7 +54,8 @@ public class ImageDataMapper extends
 	public void map(Key key, Entity value, Context context) {
 		Photo photo = builder.create(value);
 		photo.setId(key.getName());
-		ImageDataImporter importer = factory.create(photo, wantedTags);
+		ImageDataImporter importer = factory.create(photo, wantedTags,
+				thumbDimension, imageDimension);
 		importer.schedule(Photo.IMAGE_TYPE_BIG);
 		importer.schedule(Photo.IMAGE_TYPE_THUMB);
 	}

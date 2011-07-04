@@ -33,6 +33,28 @@ public class PeerDatabaseDO implements PeerDatabase {
 	
 	@Persistent(serialized = "true")
 	private List<String> cachedImportedTags;
+	
+	@Persistent
+	private String thumbDimension = "512x384";
+
+	@Persistent
+	private String imageDimension = "1024x768";
+
+	public String getThumbDimension() {
+		return thumbDimension;
+	}
+
+	public void setThumbDimension(String thumbDimension) {
+		this.thumbDimension = thumbDimension;
+	}
+
+	public String getImageDimension() {
+		return imageDimension;
+	}
+
+	public void setImageDimension(String imageDimension) {
+		this.imageDimension = imageDimension;
+	}
 
 	public List<String> getCachedImportedTags() {
 		return cachedImportedTags;
