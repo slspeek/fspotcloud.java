@@ -81,11 +81,9 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public long getServerPhotoCount() {
-//		Queue queue = QueueFactory.getDefaultQueue();
-//		TaskOptions task = MapReduceUtil.buildStartJob("Entity Counter Mapper", "PhotoDO");
-//		queue.add(task);
-		String msg = MapReduceUtil.startJob("Entity Counter Mapper", "PhotoDO");
-		log.info("Returned by start_job: " + msg);
+		Queue queue = QueueFactory.getDefaultQueue();
+		TaskOptions task = MapReduceUtil.buildStartJob("Entity Counter Mapper", "PhotoDO");
+		queue.add(task);
 		return 0;
 	}
 

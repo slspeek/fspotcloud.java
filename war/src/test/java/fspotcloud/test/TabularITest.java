@@ -20,16 +20,17 @@ public class TabularITest extends SeleniumITest {
 
 
 	public void testTabular() throws Exception {
-		
 		selenium.open("/");
 		selenium.waitForPageToLoad("30000");
-		selenium.click("gwt-debug-image-view-4");
+		selenium.click("gwt-debug-image-view-4x0");
 		selenium.waitForPageToLoad("30000");
-		//assertEquals("/image?id=4&thumb", selenium.getAttribute("//*[@id=\"gwt-debug-image-view-4\"]@src"));
+		selenium.click("gwt-debug-image-view-0x0");
 		selenium.waitForPageToLoad("30000");
-		selenium.click("gwt-debug-pager-next-button");
+		
+		selenium.open("/#ImageViewingPlace:1:12:2:2");
 		selenium.waitForPageToLoad("30000");
-		//assertEquals("/image?id=12", selenium.getAttribute("//*[@id=\"gwt-debug-image-view-74\"]@src"));
-		//selenium.click("gwt-debug-image-view-74");
+		selenium.click("gwt-debug-pager-previous-button");
+		selenium.waitForPageToLoad("30000");
+		assertEquals("/image?id=6&thumb", selenium.getAttribute("//*[@id=\"gwt-debug-image-view-0x1\"]@src"));
 	}
 }

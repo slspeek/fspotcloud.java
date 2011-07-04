@@ -42,7 +42,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements ImageRasterV
 		List<ImageView> result = new ArrayList<ImageView>();
 		for (int row = 0; row < rowCount; row++) {
 			for (int column = 0; column < columnCount; column++) {
-				ImageView view = new ImageViewImpl();
+				ImageView view = new ImageViewImpl(column+"x"+row);
 				grid.setWidget(row, column, view.asWidget());
 				result.add(view);
 			}

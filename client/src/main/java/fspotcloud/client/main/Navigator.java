@@ -24,6 +24,8 @@ public interface Navigator {
 			AsyncCallback<List<BasePlace>> callback);
 
 	void toggleZoomViewAsync(String tagId, String photoId);
+	
+	void toggleShowTagTree();
 
 	void goToTag(String otherTagId, PhotoInfoStore store);
 	

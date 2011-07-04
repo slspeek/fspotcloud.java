@@ -30,9 +30,9 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 
 	private ImageView.ImagePresenter presenter;
 
-	public ImageViewImpl() {
+	public ImageViewImpl(String dim) {
 		initWidget(uiBinder.createAndBindUi(this));
-		image.ensureDebugId("image-view-" + counter++);
+		image.ensureDebugId("image-view-" + dim);
 	}
 
 	@Override
