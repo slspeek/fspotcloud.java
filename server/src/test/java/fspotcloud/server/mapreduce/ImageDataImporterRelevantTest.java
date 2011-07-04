@@ -32,15 +32,14 @@ public class ImageDataImporterRelevantTest extends TestCase {
 	public void testScheduleBig() {
 		final SchedulerInterface scheduler = context
 				.mock(SchedulerInterface.class);
-		ImageDataImporter importer = new ImageDataImporter(photo, wantedTags,
-				scheduler);
+		ImageDataImporter importer = new ImageDataImporter(photo, wantedTags, "512x384", "1024x768",
+				scheduler );
 		context.checking(new Expectations() {
 			{
 				oneOf(scheduler).schedule(
 						"sendImageData",
 						ImmutableList.of("1000",
-								String.valueOf(ImageDataImporter.IMAGE_WIDTH),
-								String.valueOf(ImageDataImporter.IMAGE_HEIGHT),
+								"1024","768",
 								"1"));
 			}
 		});
@@ -48,19 +47,19 @@ public class ImageDataImporterRelevantTest extends TestCase {
 		importer.schedule(Photo.IMAGE_TYPE_BIG);
 		context.assertIsSatisfied();
 	}
+	
 
 	public void testScheduleThumb() {
 		final SchedulerInterface scheduler = context
 				.mock(SchedulerInterface.class);
-		ImageDataImporter importer = new ImageDataImporter(photo, wantedTags,
+		ImageDataImporter importer = new ImageDataImporter(photo, wantedTags, "512x384", "1024x768",
 				scheduler);
 		context.checking(new Expectations() {
 			{
 				oneOf(scheduler).schedule(
 						"sendImageData",
 						ImmutableList.of("1000",
-								String.valueOf(ImageDataImporter.THUMB_WIDTH),
-								String.valueOf(ImageDataImporter.THUMB_HEIGHT),
+								"512","384",
 								"0"));
 			}
 		});
@@ -73,7 +72,9 @@ public class ImageDataImporterRelevantTest extends TestCase {
 		final SchedulerInterface scheduler = context
 				.mock(SchedulerInterface.class);
 		photo.setThumbLoaded(true);
-		ImageDataImporter importer = new ImageDataImporter(photo, wantedTags,
+		ImageDataImporter importer = new ImageDataImporter(photo, wantedTags, "512x384",
+				"1024x768",
+				
 				scheduler);
 		context.checking(new Expectations() {
 			{
@@ -89,7 +90,9 @@ public class ImageDataImporterRelevantTest extends TestCase {
 		final SchedulerInterface scheduler = context
 				.mock(SchedulerInterface.class);
 		photo.setImageLoaded(true);
-		ImageDataImporter importer = new ImageDataImporter(photo, wantedTags,
+		ImageDataImporter importer = new ImageDataImporter(photo, wantedTags,"512x384",
+				"1024x768",
+				
 				scheduler);
 		context.checking(new Expectations() {
 			{

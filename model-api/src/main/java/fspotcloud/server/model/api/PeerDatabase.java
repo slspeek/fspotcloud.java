@@ -40,5 +40,13 @@ public interface PeerDatabase {
 	List<String> getCachedImportedTags();
 
 	void setCachedImportedTags(List<String> importedTags);
+	
+	String getThumbDimension();
+	
+	void setThumbDimension(String dim);
+	
+	String getImageDimension();
+	
+	void setImageDimension(String dim);
 
 }

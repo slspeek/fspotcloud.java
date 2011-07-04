@@ -27,9 +27,9 @@ public class BotModule extends AbstractModule {
 		bind(String.class).annotatedWith(Names.named("endpoint")).toInstance(
 				"http://" + System.getProperty("endpoint") + "/xmlrpc/" + System.getProperty("bot.secret"));
 		bind(Integer.class).annotatedWith(Names.named("stop port")).toInstance(
-				new Integer(4444));
+				Integer.valueOf(System.getProperty("stop.port", "4444")));
 		bind(Integer.class).annotatedWith(Names.named("pause")).toInstance(
-				new Integer(System.getProperty("pause", "10000")));
+				Integer.valueOf(System.getProperty("pause", "10000")));
 	}
 
 	@Provides

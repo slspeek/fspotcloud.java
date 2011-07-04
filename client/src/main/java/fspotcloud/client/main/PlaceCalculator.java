@@ -1,16 +1,28 @@
 package fspotcloud.client.main;
 
+import java.util.logging.Logger;
+
 import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.ImageViewingPlace;
 import fspotcloud.client.place.TagViewingPlace;
 
 public class PlaceCalculator {
 
-	public static final int DEFAULT_RASTER_WIDTH = 9;
-	public static final int DEFAULT_RASTER_HEIGHT = 8;
+	final private static Logger log = Logger.getLogger(PlaceCalculator.class
+			.getName());
+
+	public static final int DEFAULT_RASTER_WIDTH = 5;
+	public static final int DEFAULT_RASTER_HEIGHT = 4;
+
+	public static final int MINIMUM_RASTER_WIDTH = 2;
+	public static final int MINIMUM_RASTER_HEIGHT = 2;
 
 	private int rasterWidth = DEFAULT_RASTER_WIDTH;
 	private int rasterHeight = DEFAULT_RASTER_HEIGHT;
+
+	public PlaceCalculator() {
+		log.info("Created");
+	}
 
 	public BasePlace toggleRasterView(BasePlace place) {
 		String tagId = place.getTagId();
@@ -22,18 +34,12 @@ public class PlaceCalculator {
 			width = 1;
 			height = 1;
 		} else {
-			width = PlaceCalculator.DEFAULT_RASTER_WIDTH;
-			height = PlaceCalculator.DEFAULT_RASTER_HEIGHT;
+			width = getRasterWidth();
+			height = getRasterHeight();
 		}
 		BasePlace result;
-		if (place instanceof ImageViewingPlace) {
-			result = new ImageViewingPlace(tagId, photoId, width, height);
-		} else if (place instanceof TagViewingPlace) {
-			result = new TagViewingPlace(tagId, photoId, width, height);
-		} else {
-			throw new IllegalStateException(
-					"We only have TagViewingPlaces and ImageViewingPlaces.");
-		}
+		boolean tagView = place instanceof TagViewingPlace;
+		result = create(tagView, tagId, photoId, width, height);
 		return result;
 	}
 
@@ -51,14 +57,8 @@ public class PlaceCalculator {
 			height = getRasterHeight();
 		}
 		BasePlace result;
-		if (place instanceof ImageViewingPlace) {
-			result = new ImageViewingPlace(tagId, photoId, width, height);
-		} else if (place instanceof TagViewingPlace) {
-			result = new TagViewingPlace(tagId, photoId, width, height);
-		} else {
-			throw new IllegalStateException(
-					"We only have TagViewingPlaces and ImageViewingPlaces.");
-		}
+		boolean tagView = place instanceof TagViewingPlace;
+		result = create(tagView, tagId, photoId, width, height);
 		return result;
 	}
 
@@ -68,24 +68,26 @@ public class PlaceCalculator {
 		String photoId = place.getPhotoId();
 		int width = place.getColumnCount();
 		int height = place.getRowCount();
-		if (place instanceof TagViewingPlace
-				&& !(place instanceof ImageViewingPlace)) {
-			ImageViewingPlace imagePlace = new ImageViewingPlace(tagId,
-					photoId, width, height);
-			result = imagePlace;
-		} else if (place instanceof ImageViewingPlace) {
-			TagViewingPlace tagPlace = new TagViewingPlace(tagId, photoId,
-					width, height);
-			result = tagPlace;
+		boolean tagView = place instanceof ImageViewingPlace;
+		result = create(tagView, tagId, photoId, width, height);
+		return result;
+	}
+
+	private BasePlace create(boolean tagView, String tagId, String photoId,
+			int columns, int rows) {
+		BasePlace result;
+		if (tagView) {
+			result = new TagViewingPlace(tagId, photoId, columns, rows);
 		} else {
-			throw new IllegalStateException(
-					"We only have TagViewingPlaces and ImageViewingPlaces.");
+			result = new ImageViewingPlace(tagId, photoId, columns, rows);
 		}
 		return result;
 	}
 
 	public void setRasterHeight(int rasterHeight) {
-		this.rasterHeight = rasterHeight;
+		if (rasterHeight >= MINIMUM_RASTER_HEIGHT) {
+			this.rasterHeight = rasterHeight;
+		}
 	}
 
 	public int getRasterHeight() {
@@ -93,10 +95,19 @@ public class PlaceCalculator {
 	}
 
 	public void setRasterWidth(int rasterWidth) {
-		this.rasterWidth = rasterWidth;
+		if (rasterWidth >= MINIMUM_RASTER_WIDTH) {
+			this.rasterWidth = rasterWidth;
+		}
 	}
 
 	public int getRasterWidth() {
 		return rasterWidth;
+	}
+
+	public BasePlace getTabularPlace(BasePlace place) {
+		boolean tagView = place instanceof TagViewingPlace;
+		BasePlace result = create(tagView, place.getTagId(),
+				place.getPhotoId(), getRasterWidth(), getRasterHeight());
+		return result;
 	}
 }

@@ -31,7 +31,7 @@ public class ImageDataImporterNonRelevantTest extends TestCase {
 
 	public void testSchedule() {
 		final SchedulerInterface scheduler = context.mock(SchedulerInterface.class);
-		ImageDataImporter importer = new ImageDataImporter(photo, wantedTags, scheduler);
+		ImageDataImporter importer = new ImageDataImporter(photo, wantedTags, "1x1", "1x`1",scheduler);
 		importer.schedule(Photo.IMAGE_TYPE_BIG);
 		importer.schedule(Photo.IMAGE_TYPE_THUMB);
 		context.assertIsSatisfied();

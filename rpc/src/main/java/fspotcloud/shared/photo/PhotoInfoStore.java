@@ -17,8 +17,12 @@ public class PhotoInfoStore implements Serializable {
 		
 	}
 	
+	public PhotoInfoStore(List<PhotoInfo> data) {
+		this.store = data;
+	}
+	
 	public PhotoInfoStore(SortedSet<PhotoInfo> set) {
-		this.store = new ArrayList<PhotoInfo>(set);
+		this(new ArrayList<PhotoInfo>(set));
 	}
 	
 	public PhotoInfo getInfo(String id) {
