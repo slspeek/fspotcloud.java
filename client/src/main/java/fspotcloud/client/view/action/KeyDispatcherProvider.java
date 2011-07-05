@@ -18,17 +18,21 @@ public class KeyDispatcherProvider implements Provider<KeyDispatcher> {
 
 	@Inject
 	public KeyDispatcherProvider(ToggleFullscreenAction toggleFullscreen,
-			ToggleRasterViewAction toggleRasterViewAction, EventBus eventBus,
-			TreeFocusAction treeFocusAction) {
+			EventBus eventBus, TreeFocusAction treeFocusAction) {
 		this.eventBus = eventBus;
 		List<Integer> list = new ArrayList<Integer>();
 		list.add((int) 'F');
-		list.add((int) '1');
 		list.add((int) '`');
 		keyDispatcher.register(toggleFullscreen, list);
 		list = new ArrayList<Integer>();
 		list.add((int) 'T');
-		keyDispatcher.register(toggleRasterViewAction, list);
+		list.add((int) '1');
+		keyDispatcher.register(
+				getNavigationAction(NavigationEvent.TOGGLE_RASTER_VIEW), list);
+		list = new ArrayList<Integer>();
+		list.add((int) '0');
+		keyDispatcher.register(
+				getNavigationAction(NavigationEvent.SET_DEFAULT_RASTER), list);
 		list = new ArrayList<Integer>();
 		list.add((int) 'N');
 		list.add((int) '.');
@@ -52,16 +56,40 @@ public class KeyDispatcherProvider implements Provider<KeyDispatcher> {
 		keyDispatcher.register(getNavigationAction(NavigationEvent.END), list);
 		list = new ArrayList<Integer>();
 		list.add((int) 'C');
-		keyDispatcher.register(getNavigationAction(NavigationEvent.INCREASE_RASTER_WIDTH), list);
+		keyDispatcher.register(
+				getNavigationAction(NavigationEvent.INCREASE_RASTER_WIDTH),
+				list);
 		list = new ArrayList<Integer>();
 		list.add((int) 'X');
-		keyDispatcher.register(getNavigationAction(NavigationEvent.DECREASE_RASTER_WIDTH), list);
+		keyDispatcher.register(
+				getNavigationAction(NavigationEvent.DECREASE_RASTER_WIDTH),
+				list);
 		list = new ArrayList<Integer>();
 		list.add((int) 'R');
-		keyDispatcher.register(getNavigationAction(NavigationEvent.INCREASE_RASTER_HEIGHT), list);
+		keyDispatcher.register(
+				getNavigationAction(NavigationEvent.INCREASE_RASTER_HEIGHT),
+				list);
 		list = new ArrayList<Integer>();
 		list.add((int) 'E');
-		keyDispatcher.register(getNavigationAction(NavigationEvent.DECREASE_RASTER_HEIGHT), list);
+		keyDispatcher.register(
+				getNavigationAction(NavigationEvent.DECREASE_RASTER_HEIGHT),
+				list);
+		list = new ArrayList<Integer>();
+		list.add((int) '2');
+		keyDispatcher.register(
+				getNavigationAction(NavigationEvent.SET_RASTER_2x2), list);
+		list = new ArrayList<Integer>();
+		list.add((int) '3');
+		keyDispatcher.register(
+				getNavigationAction(NavigationEvent.SET_RASTER_3x3), list);
+		list = new ArrayList<Integer>();
+		list.add((int) '4');
+		keyDispatcher.register(
+				getNavigationAction(NavigationEvent.SET_RASTER_4x4), list);
+		list = new ArrayList<Integer>();
+		list.add((int) '5');
+		keyDispatcher.register(
+				getNavigationAction(NavigationEvent.SET_RASTER_5x5), list);
 		list = new ArrayList<Integer>();
 		list.add((int) 'S');
 		list.add((int) 'G');

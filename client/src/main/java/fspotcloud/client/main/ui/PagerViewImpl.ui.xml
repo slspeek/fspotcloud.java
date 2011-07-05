@@ -2,6 +2,9 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
+		table {
+			width: 100%;
+			}
 	</ui:style>
 	<g:HorizontalPanel ui:field="mainPanel">
 		<g:PushButton ui:field="firstButton" text="First"></g:PushButton>

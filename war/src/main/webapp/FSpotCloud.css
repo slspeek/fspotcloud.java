@@ -12,6 +12,9 @@
 	border-radius: 15px;
 }
 
+
+
+
 .fsc-tag {
 	
 }
@@ -21,14 +24,14 @@
 }
 
 .fsc-image-panel-view {
-	background-color: #D16587; /**Pale Violet Red*/
+	background-color: #D16587;/**Pale Violet Red*/
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 	height: 100%;
 }
 
 .gwt-Label-title {
-	background-color: #D16587; /**Pale Violet Red*/
+	background-color: #D16587;/**Pale Violet Red*/
 	text-align: center;
 	font-weight: bold;
 	font-size: 200%;
@@ -76,7 +79,7 @@
 
 .fsc-tag-tree-container {
 	color: black;
-	background-color: #C6AEC7; /** Thistle3 */
+	background-color: #C6AEC7;/** Thistle3 */
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 	-moz-border-radius: 15px;

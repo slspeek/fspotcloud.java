@@ -15,6 +15,13 @@ public class NavigationEvent extends GwtEvent<NavigationEvent.Handler> {
 	final public static int DECREASE_RASTER_WIDTH = 5;
 	final public static int INCREASE_RASTER_HEIGHT = 6;
 	final public static int DECREASE_RASTER_HEIGHT = 7;
+	final public static int TOGGLE_RASTER_VIEW = 8;
+	final public static int SET_RASTER_2x2 = 9;
+	final public static int SET_RASTER_3x3 = 10;
+	final public static int SET_RASTER_4x4 = 11;
+	final public static int SET_RASTER_5x5 = 12;
+	final public static int SET_DEFAULT_RASTER = 13;
+	
 	final private int actionType;
 
 	public NavigationEvent(int actionType) {

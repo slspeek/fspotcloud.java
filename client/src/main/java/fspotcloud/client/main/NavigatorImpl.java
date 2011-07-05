@@ -337,6 +337,14 @@ public class NavigatorImpl implements Navigator {
 				+ amount);
 		reloadCurrentPlaceOnNewSize();
 	}
+	
+	@Override
+	public void setRasterDimension(int i, int j) {
+		placeCalculator.setRasterWidth(i);
+		placeCalculator.setRasterHeight(j);
+		reloadCurrentPlaceOnNewSize();
+	}
+
 
 	private void reloadCurrentPlaceOnNewSize() {
 		BasePlace now = placeWhere.where();
@@ -350,4 +358,17 @@ public class NavigatorImpl implements Navigator {
 		BasePlace destination = placeCalculator.toggleTreeViewVisible(now);
 		placeGoTo.goTo(destination);
 	}
+
+	@Override
+	public void toggleRasterView() {
+		BasePlace now = placeWhere.where();
+		BasePlace destination = placeCalculator.toggleRasterView(now);
+		placeGoTo.goTo(destination);
+	}
+
+	@Override
+	public void resetRasterSize() {
+		setRasterDimension(PlaceCalculator.DEFAULT_RASTER_WIDTH, PlaceCalculator.DEFAULT_RASTER_HEIGHT);
+	}
+
 }

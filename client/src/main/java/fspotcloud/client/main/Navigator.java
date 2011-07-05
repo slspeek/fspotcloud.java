@@ -38,4 +38,10 @@ public interface Navigator {
 	void increaseRasterWidth(int amount);
 	
 	void increaseRasterHeight(int amount);
+
+	void toggleRasterView();
+
+	void setRasterDimension(int i, int j);
+
+	void resetRasterSize();
 }
