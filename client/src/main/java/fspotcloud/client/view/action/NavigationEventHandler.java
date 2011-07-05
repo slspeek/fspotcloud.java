@@ -44,8 +44,26 @@ public class NavigationEventHandler implements NavigationEvent.Handler {
 		case NavigationEvent.DECREASE_RASTER_HEIGHT:
 			navigator.increaseRasterHeight(-1);
 			break;
-		default:
+		case NavigationEvent.SET_RASTER_2x2:
+			navigator.setRasterDimension(2,2);
 			break;
+		case NavigationEvent.SET_RASTER_3x3:
+			navigator.setRasterDimension(3,3);
+			break;
+		case NavigationEvent.SET_RASTER_4x4:
+			navigator.setRasterDimension(4,4);
+			break;
+		case NavigationEvent.SET_RASTER_5x5:
+			navigator.setRasterDimension(5,5);
+			break;
+		case NavigationEvent.TOGGLE_RASTER_VIEW:
+			navigator.toggleRasterView();
+			break;
+		case NavigationEvent.SET_DEFAULT_RASTER:
+			navigator.resetRasterSize();
+			break;
+		default:
+		break;
 		}
 
 	}

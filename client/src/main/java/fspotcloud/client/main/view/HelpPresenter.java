@@ -15,9 +15,9 @@ public class HelpPresenter {
 
 	private String initHelpText() {
 		helptext = "<table>";
-		helptext += generator.getHelpRow("t", null, null,
+		helptext += generator.getHelpRow("t", "1", null,
 				"Toggle single/tabular image view");
-		helptext += generator.getHelpRow("f", "1", null,
+		helptext += generator.getHelpRow("f", null, null,
 				"Toggle fullscreen (hides/shows the tree view)");
 		helptext += generator.getHelpRow("ENTER", null, null,
 				"Puts keyboard focus on the category tree");
@@ -29,6 +29,20 @@ public class HelpPresenter {
 		"Adds one row to raster");
 		helptext += generator.getHelpRow("e", null, null,
 		"Removes one row from the raster");
+		helptext += generator.getHelpRow("d", null, null,
+		"Make the slideshow go slower");
+		helptext += generator.getHelpRow("d", null, null,
+		"Make the slideshow go slower");
+		helptext += generator.getHelpRow("2", null, null,
+		"Sets the raster to 2 x 2");
+		helptext += generator.getHelpRow("3", null, null,
+		"Sets the raster to 3 x 3");
+		helptext += generator.getHelpRow("4", null, null,
+		"Sets the raster to 4 x 4");
+		helptext += generator.getHelpRow("5", null, null,
+		"Sets the raster to 5 x 5");
+		helptext += generator.getHelpRow("0", null, null,
+		"Reset to raster to its defaults");
 		helptext += generator.getHelpRow("b", "HOME", null,
 				"Go to the first image of the category");
 		helptext += generator.getHelpRow("e", "z", "END",
@@ -43,7 +57,6 @@ public class HelpPresenter {
 				"Make the slideshow go faster");
 		helptext += generator.getHelpRow("d", null, null,
 				"Make the slideshow go slower");
-
 		helptext += generator.getHelpRow("h", "ESCAPE", null,
 				"Show/Hide keyboard shortcuts");
 		helptext += "</table>";
