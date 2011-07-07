@@ -1,0 +1,13 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<div class="fsc-help-popup">
+		<center><span class="{style.important}">Demo mode</span></center>
+		<hr/>
+		<center><span class="fsc-help-body" ui:field="demoBodySpan" /></center>
+	</div>
+</ui:UiBinder>

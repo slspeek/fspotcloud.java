@@ -8,7 +8,7 @@ import com.google.gwt.user.client.Event.NativePreviewEvent;
 import com.google.gwt.user.client.Event.NativePreviewHandler;
 import com.google.inject.Inject;
 
-import fspotcloud.client.view.action.ShortCutHandler;
+import fspotcloud.client.view.action.ShortcutHandler;
 
 public class GlobalShortcutController {
 
@@ -16,10 +16,10 @@ public class GlobalShortcutController {
 	private static final Logger log = Logger
 			.getLogger(GlobalShortcutController.class.getName());
 
-	private final ShortCutHandler handler;
+	private final ShortcutHandler handler;
 
 	@Inject
-	public GlobalShortcutController(ShortCutHandler handler) {
+	public GlobalShortcutController(ShortcutHandler handler) {
 		this.handler = handler;
 	}
 
