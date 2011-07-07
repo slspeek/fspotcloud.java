@@ -5,8 +5,6 @@ import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
-import com.google.common.collect.ImmutableList;
-
 public class KeyDispatcherTest extends TestCase {
 
 	Mockery context;
@@ -23,7 +21,7 @@ public class KeyDispatcherTest extends TestCase {
 	public void testOne() {
 		KeyDispatcher dispatcher = new KeyDispatcher();
 		final GestureAction action = context.mock(GestureAction.class);
-		dispatcher.register(action, ImmutableList.of((int)'a', (int)'d'));
+		dispatcher.register(action, new Shortcut("", new KeyStroke('a'), new KeyStroke('d')));
 		context.checking(new Expectations() {
 			{
 				exactly(2).of(action).perform();

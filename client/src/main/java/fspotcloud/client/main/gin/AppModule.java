@@ -43,7 +43,7 @@ import fspotcloud.client.place.PlaceGoToImpl;
 import fspotcloud.client.place.PlaceWhere;
 import fspotcloud.client.place.PlaceWhereImpl;
 import fspotcloud.client.view.action.KeyDispatcherProvider;
-import fspotcloud.client.view.action.ShortCutHandler;
+import fspotcloud.client.view.action.ShortcutHandler;
 
 public class AppModule extends AbstractGinModule {
 
@@ -62,7 +62,7 @@ public class AppModule extends AbstractGinModule {
 		bind(PlaceControllerProvider.class).in(Singleton.class);
 		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
 		bind(KeyDispatcherProvider.class).in(Singleton.class);
-		bind(ShortCutHandler.class).toProvider(KeyDispatcherProvider.class);
+		bind(ShortcutHandler.class).toProvider(KeyDispatcherProvider.class);
 		bind(SlideshowView.class).to(SlideshowViewImpl.class);
 		bind(SlideshowView.SlideshowPresenter.class).to(
 				SlideShowPresenterImpl.class);

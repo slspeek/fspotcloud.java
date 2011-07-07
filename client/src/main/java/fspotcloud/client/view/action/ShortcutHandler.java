@@ -1,5 +1,5 @@
 package fspotcloud.client.view.action;
 
-public interface ShortCutHandler {
+public interface ShortcutHandler {
 	boolean handle(int keycode);
 }
