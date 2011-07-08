@@ -13,9 +13,9 @@ public class DemoPresenter {
 	}
 
 	private String initText() {
-		String helptext = "<table>";
+		String helptext = "<table><tr><td>";
 		helptext += text;
-		helptext += "</table>";
+		helptext += "</td></tr></table>";
 		return helptext;
 	}
 
