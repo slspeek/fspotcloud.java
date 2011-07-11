@@ -16,7 +16,7 @@ public class SlideshowImpl implements Slideshow {
 	final private Navigator navigator;
 	final private TimerInterface timer;
 	private boolean isRunning = false;
-	final private float increaseFactor = 4f / 3f;
+	final private float INCREASE_FACTOR = 4f / 3f;
 	private float delay = 4f;
 	final private EventBus eventBus;
 
@@ -83,14 +83,14 @@ public class SlideshowImpl implements Slideshow {
 
 	@Override
 	public float faster() {
-		delay *= increaseFactor;
+		delay /= INCREASE_FACTOR;
 		fireStatusChanged();
 		return delay();
 	}
 
 	@Override
 	public float slower() {
-		delay /= increaseFactor;
+		delay *= INCREASE_FACTOR;
 		fireStatusChanged();
 		return delay();
 	}

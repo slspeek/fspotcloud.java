@@ -3,17 +3,27 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:main="urn:import:fspotcloud.client.main.ui"
 	xmlns:admin="urn:import:fspotcloud.client.admin.ui">
 	<ui:style>
-		
+		.title-label {
+			text-align: center;
+			font-size:200%;
+			background: #5CB3FF;
+			}
+		.tree {
+			background: #7AD1FF;
+			}
+		.main {
+			background: #98EFFF;
+			}
 	</ui:style>
 	<g:DockLayoutPanel unit='PX'>
 		<g:north size="30">
-			<g:Label ui:field="titleLabel" text="FSpotCloud Dashboard">
+			<g:Label styleName="{style.title-label}" ui:field="titleLabel" text="F-SpotCloud Dashboard">
 			</g:Label>
 		</g:north>
 		<g:center>
-			<g:SplitLayoutPanel ui:field="horizontalSplitPanel">
+			<g:SplitLayoutPanel styleName="{style.main}" ui:field="horizontalSplitPanel">
 				<g:west size="250">
-					<main:TreeViewImpl ui:field="treeView"></main:TreeViewImpl>
+					<main:TreeViewImpl styleName="{style.tree}" ui:field="treeView"></main:TreeViewImpl>
 				</g:west>
 				<g:center>
 					<g:HorizontalPanel>

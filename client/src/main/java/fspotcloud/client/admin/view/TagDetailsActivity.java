@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
@@ -58,9 +59,9 @@ public class TagDetailsActivity extends AbstractActivity implements
 					@Override
 					public void onSuccess(Void result) {
 						// TODO Auto-generated method stub
-
-					}
+								Window.Location.reload();			}
 				});
+		
 	}
 
 	private void populateView() {
