@@ -12,15 +12,15 @@ import com.google.inject.grapher.InjectorGrapher;
 import com.google.inject.grapher.graphviz.GraphvizModule;
 import com.google.inject.grapher.graphviz.GraphvizRenderer;
 
+import fspotcloud.client.main.gin.FakeForGrapherAppModule;
 import fspotcloud.peer.BotModule;
-import fspotcloud.server.main.FSpotCloudModule;
+import fspotcloud.server.inject.FSpotCloudModule;
 
 public class Grapher {
 
 	Injector serverInjector = Guice.createInjector(new FSpotCloudModule());
 	Injector peerInjector = Guice.createInjector(new BotModule());
-	Injector clientInjector = Guice.createInjector(new GinModuleAdapter(
-			new FakeForGrapherAppModule()));
+	Injector clientInjector = Guice.createInjector(new GinModuleAdapter(new FakeForGrapherAppModule()));
 
 	private void graph(String filename, Injector demoInjector)
 			throws IOException {

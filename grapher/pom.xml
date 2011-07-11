@@ -41,7 +41,7 @@
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-grapher</artifactId>
-			<version>3.0-rc2</version>
+			<version>${guice.version}</version>
 		</dependency>
 	</dependencies>
 	<build>

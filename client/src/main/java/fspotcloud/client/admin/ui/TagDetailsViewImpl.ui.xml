@@ -2,64 +2,77 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
+		.header-label {
+			font-size: 125%;
+			text-align: center;
+			background: #66BDFF;
+		}
 		
+		.property-label {
+			background: #66BDFF;
+		}
+		
+		.property-value {
+			background: #70C7FF;
+		}
 	</ui:style>
 	<g:HTMLPanel>
 		<table>
 			<theader>
 				<tr>
-					<td colspan="all">
-						<g:Label ui:field="headerLabel">Label details</g:Label>
+					<td colspan="2">
+						<g:Label styleName="{style.header-label}" ui:field="headerLabel">Label
+							details</g:Label>
 					</td>
 				</tr>
 			</theader>
 			<tbody>
 				<tr>
 					<td>
-						<g:Label>Name</g:Label>
+						<g:Label styleName="{style.property-label}">Name</g:Label>
 					</td>
 					<td>
-						<g:Label ui:field="tagNameValueLabel"></g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<g:Label>Description</g:Label>
-					</td>
-					<td>
-						<g:Label ui:field="tagDescriptionValueLabel"></g:Label>
+						<g:Label styleName="{style.property-value}" ui:field="tagNameValueLabel"></g:Label>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<g:Label>Import was requested</g:Label>
+						<g:Label styleName="{style.property-label}">Description</g:Label>
 					</td>
 					<td>
-						<g:Label ui:field="tagImportIssuedValueLabel"></g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<g:Label>Number of photos in this label</g:Label>
-					</td>
-					<td>
-						<g:Label ui:field="tagCountValueLabel"></g:Label>
+						<g:Label styleName="{style.property-value}" ui:field="tagDescriptionValueLabel"></g:Label>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<g:Label>Number of photos loaded</g:Label>
+						<g:Label styleName="{style.property-label}">Import was requested</g:Label>
 					</td>
 					<td>
-						<g:Label ui:field="tagLoadedCountValueLabel"></g:Label>
+						<g:Label styleName="{style.property-value}" ui:field="tagImportIssuedValueLabel"></g:Label>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<g:Label>Request import of this label</g:Label>
+						<g:Label styleName="{style.property-label}">Number of photos in this label</g:Label>
 					</td>
 					<td>
-						<g:Button ui:field="importTagButton" >Import label</g:Button>
+						<g:Label styleName="{style.property-value}" ui:field="tagCountValueLabel"></g:Label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label styleName="{style.property-label}">Number of photos loaded</g:Label>
+					</td>
+					<td>
+						<g:Label styleName="{style.property-value}" ui:field="tagLoadedCountValueLabel"></g:Label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label styleName="{style.property-label}">Request import of this label</g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="importTagButton">Import label</g:Button>
 					</td>
 				</tr>
 			</tbody>

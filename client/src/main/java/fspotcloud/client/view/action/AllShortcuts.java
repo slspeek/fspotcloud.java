@@ -41,7 +41,7 @@ public class AllShortcuts {
 			"Next image in this category");
 	public final static Shortcut SLIDESHOW_START = create('S', 'G',
 			"Start slideshow");
-	public final static Shortcut SLIDESHOW__END = create('Q', 'X',
+	public final static Shortcut SLIDESHOW__END = create('Q', null,
 			"Stop slideshow");
 	public final static Shortcut SLIDESHOW_SLOWER = create('U', null,
 			"Makes the slideshow go slower");
