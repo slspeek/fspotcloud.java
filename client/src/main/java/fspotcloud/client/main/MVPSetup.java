@@ -23,7 +23,7 @@ public class MVPSetup {
 
 	private static final Logger log = Logger
 			.getLogger(MVPSetup.class.getName());
-	final private Place defaultPlace = new BasePlace("latest", "latest");
+	final private Place defaultPlace = new BasePlace("latest", "latest", 1, 1, true);
 	final private SimplePanel appWidget = new SimplePanel();
 	final private EventBus eventBus;
 	final private MainWindowActivityMapper activityMapper;
