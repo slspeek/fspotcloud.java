@@ -3,8 +3,6 @@ package fspotcloud.client.main;
 import java.util.logging.Logger;
 
 import fspotcloud.client.place.BasePlace;
-import fspotcloud.client.place.ImageViewingPlace;
-import fspotcloud.client.place.TagViewingPlace;
 
 public class PlaceCalculator {
 
@@ -38,8 +36,8 @@ public class PlaceCalculator {
 			height = getRasterHeight();
 		}
 		BasePlace result;
-		boolean tagView = place instanceof TagViewingPlace;
-		result = create(tagView, tagId, photoId, width, height);
+		boolean tagView = place.isTreeVisible();
+		result = create(tagId, photoId, width, height, tagView);
 		return result;
 	}
 
@@ -57,8 +55,8 @@ public class PlaceCalculator {
 			height = getRasterHeight();
 		}
 		BasePlace result;
-		boolean tagView = place instanceof TagViewingPlace;
-		result = create(tagView, tagId, photoId, width, height);
+		boolean tagView = !place.isTreeVisible();
+		result = create(tagId, photoId, width, height, tagView);
 		return result;
 	}
 
@@ -68,19 +66,15 @@ public class PlaceCalculator {
 		String photoId = place.getPhotoId();
 		int width = place.getColumnCount();
 		int height = place.getRowCount();
-		boolean tagView = place instanceof ImageViewingPlace;
-		result = create(tagView, tagId, photoId, width, height);
+		boolean treeVisible = !place.isTreeVisible();
+		result = create(tagId, photoId, width, height, treeVisible);
 		return result;
 	}
 
-	private BasePlace create(boolean tagView, String tagId, String photoId,
-			int columns, int rows) {
+	private BasePlace create(String tagId, String photoId, int columns,
+			int rows, boolean tagView) {
 		BasePlace result;
-		if (tagView) {
-			result = new TagViewingPlace(tagId, photoId, columns, rows);
-		} else {
-			result = new ImageViewingPlace(tagId, photoId, columns, rows);
-		}
+		result = new BasePlace(tagId, photoId, columns, rows, tagView);
 		return result;
 	}
 
@@ -105,9 +99,9 @@ public class PlaceCalculator {
 	}
 
 	public BasePlace getTabularPlace(BasePlace place) {
-		boolean tagView = place instanceof TagViewingPlace;
-		BasePlace result = create(tagView, place.getTagId(),
-				place.getPhotoId(), getRasterWidth(), getRasterHeight());
+		boolean tagView = place.isTreeVisible();
+		BasePlace result = create(place.getTagId(), place.getPhotoId(),
+				getRasterWidth(), getRasterHeight(), tagView);
 		return result;
 	}
 }

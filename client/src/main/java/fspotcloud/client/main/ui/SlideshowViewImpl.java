@@ -5,10 +5,12 @@ import java.util.logging.Logger;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.Widget;
@@ -48,6 +50,7 @@ public class SlideshowViewImpl extends Composite implements SlideshowView {
 		stopButton.addStyleName("fsc-slideshow-stop");
 		fasterButton.addStyleName("fsc-slideshow-decrease");
 		intervalLabel.addStyleName("fsc-slideshow-interval");
+		
 	}
 
 	@UiHandler("slowerButton")

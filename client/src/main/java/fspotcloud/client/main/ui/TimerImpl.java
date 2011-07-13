@@ -6,15 +6,15 @@ import com.google.gwt.user.client.Timer;
 
 import fspotcloud.client.main.view.api.TimerInterface;
 
-public class SlideshowTimer extends Timer implements TimerInterface {
+public class TimerImpl extends Timer implements TimerInterface {
 
 	@SuppressWarnings("unused")
-	private static final Logger log = Logger.getLogger(SlideshowTimer.class
+	private static final Logger log = Logger.getLogger(TimerImpl.class
 			.getName());
 
 	private Runnable runnable;
 
-	public SlideshowTimer() {
+	public TimerImpl() {
 	}
 
 	public void run() {

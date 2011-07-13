@@ -19,7 +19,7 @@ import fspotcloud.client.main.TagServiceAsyncTestImpl;
 import fspotcloud.client.main.ui.ImagePanelViewImpl;
 import fspotcloud.client.main.ui.ImageRasterViewImpl;
 import fspotcloud.client.main.ui.PagerViewImpl;
-import fspotcloud.client.main.ui.SlideshowTimer;
+import fspotcloud.client.main.ui.TimerImpl;
 import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
 import fspotcloud.client.main.ui.TreeViewImpl;
@@ -69,7 +69,7 @@ public class FakeForGrapherAppModule extends AbstractGinModule {
 		bind(SlideshowView.SlideshowPresenter.class).to(
 				SlideShowPresenterImpl.class);
 		bind(PagerView.class).to(PagerViewImpl.class);
-		bind(TimerInterface.class).to(SlideshowTimer.class);
+		bind(TimerInterface.class).to(TimerImpl.class);
 		bind(TagPresenterFactory.class).to(TagPresenterFactoryImpl.class);
 		bind(TreeView.TreePresenter.class).to(TreePresenterImpl.class);
 		bind(SelectionChangeEvent.Handler.class).to(TreeSelectionHandler.class);

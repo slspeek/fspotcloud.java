@@ -11,8 +11,6 @@ import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
 import fspotcloud.client.place.BasePlace;
-import fspotcloud.client.place.ImageViewingPlace;
-import fspotcloud.client.place.TagViewingPlace;
 
 public class MainWindowActivityMapper implements ActivityMapper {
 	private static final Logger log = Logger
@@ -34,22 +32,22 @@ public class MainWindowActivityMapper implements ActivityMapper {
 
 	@Override
 	public Activity getActivity(Place place) {
+		log.info("getActivity : " + place);
 		storeCurrentRasterDimension(place);
+		Activity activity = null;
 		if (place instanceof BasePlace) {
 			BasePlace basePlace = (BasePlace) place;
 			if (basePlace.getTagId().equals("latest")) {
 				navigator.goToLatestTag();
 			}
-		}
-		Activity activity = null;
-		log.info("getActivity : " + place);
-		if (place instanceof ImageViewingPlace) {
-			activity = imagePanelActivityFactory
-					.getFullscreen((BasePlace) place);
-		} else if (place instanceof TagViewingPlace) {
-			activity = tagPresenterFactory.get((BasePlace) place);
+			if (basePlace.isTreeVisible()){
+				activity = imagePanelActivityFactory
+				.getFullscreen((BasePlace) place);
+			} else {
+				activity = tagPresenterFactory.get((BasePlace) place);	
+			}
 		} else {
-			log.warning("getActivity will return null for place: " + place);
+			log.warning("getActivity will return null for:" + place);
 		}
 		return activity;
 	}

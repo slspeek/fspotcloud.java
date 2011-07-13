@@ -5,7 +5,6 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.shared.ZoomViewEvent;
-import fspotcloud.client.place.BasePlace;
 
 public class ZoomViewEventHandler implements ZoomViewEvent.Handler {
 
@@ -19,13 +18,9 @@ public class ZoomViewEventHandler implements ZoomViewEvent.Handler {
 		this.eventBus = eventBus;
 	}
 
-	
 	public void init() {
 		eventBus.addHandler(ZoomViewEvent.TYPE, this);
 	}
-
-
-	
 
 	@Override
 	public void onEvent(ZoomViewEvent e) {

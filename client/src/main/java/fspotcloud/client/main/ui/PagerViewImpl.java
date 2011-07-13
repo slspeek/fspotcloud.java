@@ -34,9 +34,13 @@ public class PagerViewImpl extends Composite implements PagerView {
 	@UiField
 	PushButton firstButton;
 	@UiField
+	PushButton pageUpButton;
+	@UiField
 	PushButton prevButton;
 	@UiField
 	PushButton nextButton;
+	@UiField
+	PushButton pageDownButton;
 	@UiField
 	PushButton lastButton;
 
@@ -73,6 +77,16 @@ public class PagerViewImpl extends Composite implements PagerView {
 	@UiHandler("lastButton")
 	public void onLastButtonClicked(ClickEvent event) {
 		presenter.goEnd(false);
+	}
+	
+	@UiHandler("pageUpButton")
+	public void onPageUpButtonClicked(ClickEvent event) {
+		presenter.go(false);
+	}
+
+	@UiHandler("pageDownButton")
+	public void onPageDownButtonClicked(ClickEvent event) {
+		presenter.go(true);
 	}
 
 	@Override

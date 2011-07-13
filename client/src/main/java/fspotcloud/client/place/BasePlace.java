@@ -1,23 +1,33 @@
 package fspotcloud.client.place;
 
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceTokenizer;
 
-public class BasePlace extends Place {
+import fspotcloud.client.place.api.ViewingPlace;
+
+public class BasePlace extends Place implements ViewingPlace {
 
 	final private String tagId;
 	final private String photoId;
 	final private int columnCount;
 	final private int rowCount;
+	final private boolean isTreeVisible;
 
 	public BasePlace(String tagId, String photoId) {
 		this(tagId, photoId, 1, 1);
 	}
 
 	public BasePlace(String tagId, String photoId, int columnCount, int rowCount) {
+		this(tagId, photoId, columnCount, rowCount, false);
+	}
+
+	public BasePlace(String tagId, String photoId, int columnCount,
+			int rowCount, boolean treeVisible) {
 		this.tagId = tagId;
 		this.photoId = photoId;
 		this.columnCount = columnCount;
 		this.rowCount = rowCount;
+		this.isTreeVisible = treeVisible;
 	}
 
 	public String getTagId() {
@@ -47,6 +57,7 @@ public class BasePlace extends Place {
 		hash += Integer.valueOf(rowCount).hashCode();
 		return hash;
 	}
+
 	@Override
 	public boolean equals(Object other) {
 		if (other instanceof BasePlace) {
@@ -55,18 +66,20 @@ public class BasePlace extends Place {
 			String photoId = basePlace.getPhotoId();
 			int columnCount = basePlace.getColumnCount();
 			int rowCount = basePlace.getRowCount();
+			boolean isTreeVisible = basePlace.isTreeVisible();
 			return equal(this.tagId, tagId) && equal(this.photoId, photoId)
 					&& equal(this.rowCount, rowCount)
-					&& equal(this.columnCount, columnCount);
+					&& equal(this.columnCount, columnCount)
+					&& isTreeVisible == isTreeVisible();
 		} else {
 			return false;
 		}
 	}
 
-
 	public String toString() {
-		String result = getClass().getName() + ": tagId: " + tagId
-				+ " photoId: " + photoId + "(" + columnCount + "x" + rowCount + ")";
+		String result = "<<Place tagId: " + tagId + " photoId: " + photoId
+				+ "(" + columnCount + "x" + rowCount + ")  " + isTreeVisible
+				+ ">>";
 		return result;
 	}
 
@@ -81,5 +94,25 @@ public class BasePlace extends Place {
 			return a.equals(b);
 		}
 
+	}
+
+	public boolean isTreeVisible() {
+		return isTreeVisible;
+	}
+
+	public static class Tokenizer implements PlaceTokenizer<BasePlace> {
+		@Override
+		public BasePlace getPlace(String token) {
+			TokenizerUtil util = new TokenizerUtil(token);
+			return new BasePlace(util.getTagId(), util.getPhotoId(),
+					util.getColumnCount(), util.getRowCount());
+		}
+
+		@Override
+		public String getToken(BasePlace place) {
+			return place.getTagId() + ":" + place.getPhotoId() + ":"
+					+ place.getColumnCount() + ":" + place.getRowCount() + ":"
+					+ place.isTreeVisible();
+		}
 	}
 }

@@ -14,10 +14,8 @@ import com.google.inject.Inject;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.IndexingUtil;
 import fspotcloud.client.place.BasePlace;
-import fspotcloud.client.place.ImageViewingPlace;
 import fspotcloud.client.place.PlaceGoTo;
 import fspotcloud.client.place.PlaceWhere;
-import fspotcloud.client.place.TagViewingPlace;
 import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;
@@ -165,13 +163,8 @@ public class NavigatorImpl implements Navigator {
 
 	protected void goToPhoto(BasePlace place, String tagId, String photoId) {
 		BasePlace newPlace;
-		if (place instanceof ImageViewingPlace) {
-			newPlace = new ImageViewingPlace(tagId, photoId,
-					place.getColumnCount(), place.getRowCount());
-		} else {
-			newPlace = new TagViewingPlace(tagId, photoId,
-					place.getColumnCount(), place.getRowCount());
-		}
+		newPlace = new BasePlace(tagId, photoId,
+					place.getColumnCount(), place.getRowCount(), place.isTreeVisible());
 		log.info("About to go to: " + this + " : " + newPlace + " from: "
 				+ place);
 		placeGoTo.goTo(newPlace);
@@ -233,7 +226,7 @@ public class NavigatorImpl implements Navigator {
 		List<BasePlace> result = new ArrayList<BasePlace>();
 		for (int i = offset; i < offset + pageSize; i++) {
 			if (i <= store.lastIndex()) {
-				result.add(new ImageViewingPlace(node.getId(), store.get(i)
+				result.add(new BasePlace(node.getId(), store.get(i)
 						.getId()));
 			} else {
 				break;
@@ -275,8 +268,8 @@ public class NavigatorImpl implements Navigator {
 	@Override
 	public void goToTag(String otherTagId, PhotoInfoStore store) {
 		goEnd(false,
-				new TagViewingPlace(otherTagId, null, placeCalculator
-						.getRasterWidth(), placeCalculator.getRasterHeight()),
+				new BasePlace(otherTagId, null, placeCalculator
+						.getRasterWidth(), placeCalculator.getRasterHeight(), true),
 				store);
 	}
 
