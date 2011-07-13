@@ -55,7 +55,7 @@ public class PlaceCalculator {
 			height = getRasterHeight();
 		}
 		BasePlace result;
-		boolean tagView = !place.isTreeVisible();
+		boolean tagView = place.isTreeVisible();
 		result = create(tagId, photoId, width, height, tagView);
 		return result;
 	}

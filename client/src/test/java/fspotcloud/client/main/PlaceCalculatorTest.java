@@ -36,14 +36,26 @@ public class PlaceCalculatorTest extends TestCase {
 		assertEquals(1, newPlace.getRowCount());
 	}
 	
-	public void testZoomView() {
+	public void testZoomViewWithTree() {
 		BasePlace tagViewingPlace = new BasePlace("1", "10", 2, 1, true);
 		BasePlace newPlace = (BasePlace) swapper.toggleZoomView(tagViewingPlace,"1", "11");
 		assertEquals("1", ((BasePlace)newPlace).getTagId());
 		assertEquals("11", ((BasePlace)newPlace).getPhotoId());
 		assertEquals(1, newPlace.getColumnCount());
 		assertEquals(1, newPlace.getRowCount());
+		assertEquals(true, newPlace.isTreeVisible());
 	}
+	
+	public void testZoomViewWithoutTree() {
+		BasePlace tagViewingPlace = new BasePlace("1", "10", 2, 1, false);
+		BasePlace newPlace = (BasePlace) swapper.toggleZoomView(tagViewingPlace,"1", "11");
+		assertEquals("1", ((BasePlace)newPlace).getTagId());
+		assertEquals("11", ((BasePlace)newPlace).getPhotoId());
+		assertEquals(1, newPlace.getColumnCount());
+		assertEquals(1, newPlace.getRowCount());
+		assertEquals(false, newPlace.isTreeVisible());
+	}
+	
 	
 	public void testZoomViewOut() {
 		BasePlace tagViewingPlace = new BasePlace("1", "10", 1, 1);
