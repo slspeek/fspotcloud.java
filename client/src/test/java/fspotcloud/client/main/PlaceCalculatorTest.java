@@ -1,22 +1,16 @@
 package fspotcloud.client.main;
 
 import junit.framework.TestCase;
-
-import com.google.gwt.place.shared.Place;
-
-import fspotcloud.client.main.shared.ZoomViewEvent;
 import fspotcloud.client.place.BasePlace;
-import fspotcloud.client.place.ImageViewingPlace;
-import fspotcloud.client.place.TagViewingPlace;
 
 public class PlaceCalculatorTest extends TestCase {
 
 	PlaceCalculator swapper = new PlaceCalculator();
 	
 	public void testSimpleSwap() {
-		BasePlace imageViewingPlace = new ImageViewingPlace("1", "10", 8, 9);
+		BasePlace imageViewingPlace = new BasePlace("1", "10", 8, 9, false);
 		BasePlace newPlace = swapper.toggleTreeViewVisible(imageViewingPlace);
-		assertEquals(TagViewingPlace.class, newPlace.getClass());
+		assertTrue(newPlace.isTreeVisible());
 		assertEquals("1", newPlace.getTagId());
 		assertEquals("10", newPlace.getPhotoId());
 		assertEquals(8, newPlace.getColumnCount());
@@ -24,38 +18,38 @@ public class PlaceCalculatorTest extends TestCase {
 	}
 	
 	public void testReverse() {
-		BasePlace tagViewingPlace = new TagViewingPlace("1", "10");
-		Place newPlace = swapper.toggleTreeViewVisible(tagViewingPlace);
-		assertEquals(ImageViewingPlace.class, newPlace.getClass());
-		assertEquals("1", ((ImageViewingPlace)newPlace).getTagId());
-		assertEquals("10", ((ImageViewingPlace)newPlace).getPhotoId());
-		assertEquals(1, ((ImageViewingPlace)newPlace).getColumnCount());
-		assertEquals(1, ((ImageViewingPlace)newPlace).getRowCount());
+		BasePlace tagViewingPlace = new BasePlace("1", "10", 1, 1, true);
+		BasePlace newPlace = swapper.toggleTreeViewVisible(tagViewingPlace);
+		assertEquals(false, newPlace.isTreeVisible());
+		assertEquals("1", ((BasePlace)newPlace).getTagId());
+		assertEquals("10", ((BasePlace)newPlace).getPhotoId());
+		assertEquals(1, ((BasePlace)newPlace).getColumnCount());
+		assertEquals(1, ((BasePlace)newPlace).getRowCount());
 	}
 	
 	public void testToggleRasterView() {
-		BasePlace tagViewingPlace = new ImageViewingPlace("1", "10", 2, 1);
-		ImageViewingPlace newPlace = (ImageViewingPlace) swapper.toggleRasterView(tagViewingPlace);
-		assertEquals("1", ((ImageViewingPlace)newPlace).getTagId());
-		assertEquals("10", ((ImageViewingPlace)newPlace).getPhotoId());
+		BasePlace tagViewingPlace = new BasePlace("1", "10", 2, 1);
+		BasePlace newPlace = (BasePlace) swapper.toggleRasterView(tagViewingPlace);
+		assertEquals("1", ((BasePlace)newPlace).getTagId());
+		assertEquals("10", ((BasePlace)newPlace).getPhotoId());
 		assertEquals(1, newPlace.getColumnCount());
 		assertEquals(1, newPlace.getRowCount());
 	}
 	
 	public void testZoomView() {
-		BasePlace tagViewingPlace = new ImageViewingPlace("1", "10", 2, 1);
-		ImageViewingPlace newPlace = (ImageViewingPlace) swapper.toggleZoomView(tagViewingPlace,"1", "11");
-		assertEquals("1", ((ImageViewingPlace)newPlace).getTagId());
-		assertEquals("11", ((ImageViewingPlace)newPlace).getPhotoId());
+		BasePlace tagViewingPlace = new BasePlace("1", "10", 2, 1, true);
+		BasePlace newPlace = (BasePlace) swapper.toggleZoomView(tagViewingPlace,"1", "11");
+		assertEquals("1", ((BasePlace)newPlace).getTagId());
+		assertEquals("11", ((BasePlace)newPlace).getPhotoId());
 		assertEquals(1, newPlace.getColumnCount());
 		assertEquals(1, newPlace.getRowCount());
 	}
 	
 	public void testZoomViewOut() {
-		BasePlace tagViewingPlace = new ImageViewingPlace("1", "10", 1, 1);
-		ImageViewingPlace newPlace = (ImageViewingPlace) swapper.toggleZoomView(tagViewingPlace, "1", "10");
-		assertEquals("1", ((ImageViewingPlace)newPlace).getTagId());
-		assertEquals("10", ((ImageViewingPlace)newPlace).getPhotoId());
+		BasePlace tagViewingPlace = new BasePlace("1", "10", 1, 1);
+		BasePlace newPlace = (BasePlace) swapper.toggleZoomView(tagViewingPlace, "1", "10");
+		assertEquals("1", ((BasePlace)newPlace).getTagId());
+		assertEquals("10", ((BasePlace)newPlace).getPhotoId());
 		assertEquals(PlaceCalculator.DEFAULT_RASTER_WIDTH, newPlace.getColumnCount());
 		assertEquals(PlaceCalculator.DEFAULT_RASTER_HEIGHT, newPlace.getRowCount());
 	}

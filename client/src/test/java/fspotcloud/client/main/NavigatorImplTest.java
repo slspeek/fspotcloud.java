@@ -15,10 +15,8 @@ import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.data.IndexingUtil;
 import fspotcloud.client.place.BasePlace;
-import fspotcloud.client.place.ImageViewingPlace;
 import fspotcloud.client.place.PlaceGoTo;
 import fspotcloud.client.place.PlaceWhere;
-import fspotcloud.client.place.TagViewingPlace;
 
 public class NavigatorImplTest extends TestCase {
 
@@ -34,10 +32,10 @@ public class NavigatorImplTest extends TestCase {
 	BasePlace janRaster = new BasePlace("1", "3", 1, 2);
 	BasePlace snowie = new BasePlace("4", "11");
 	BasePlace siepie = new BasePlace("4", "12");
-	BasePlace woefje = new TagViewingPlace("5", "23",
-			placeCalculator.getRasterWidth(), placeCalculator.getRasterHeight());
-	BasePlace r1_3 = new ImageViewingPlace("6", "101", 1, 3);
-	BasePlace r1_3_zoomed_in = new ImageViewingPlace("6", "101", 1, 1);
+	BasePlace woefje = new BasePlace("5", "23",
+			placeCalculator.getRasterWidth(), placeCalculator.getRasterHeight(), true);
+	BasePlace r1_3 = new BasePlace("6", "101", 1, 3, false);
+	BasePlace r1_3_zoomed_in = new BasePlace("6", "101", 1, 1, false);
 	BasePlace r1_3next = new BasePlace("6", "103", 1, 3);
 
 	@Override

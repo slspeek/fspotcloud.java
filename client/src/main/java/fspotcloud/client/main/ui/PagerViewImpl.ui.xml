@@ -8,8 +8,10 @@
 	</ui:style>
 	<g:HorizontalPanel ui:field="mainPanel">
 		<g:PushButton ui:field="firstButton" text="First"></g:PushButton>
-		<g:PushButton ui:field="prevButton" text="Previous"></g:PushButton>
+		<g:PushButton ui:field="pageUpButton" text="Page back"></g:PushButton>
+		<g:PushButton ui:field="prevButton" text="Back"></g:PushButton>
 		<g:PushButton ui:field="nextButton" text="Next"></g:PushButton>
+		<g:PushButton ui:field="pageDownButton" text="Next page"></g:PushButton>
 		<g:PushButton ui:field="lastButton" text="Last"></g:PushButton>
 	</g:HorizontalPanel>
 </ui:UiBinder> 

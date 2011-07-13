@@ -12,7 +12,6 @@ import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.main.view.api.PagerView;
 import fspotcloud.client.main.view.api.PagerView.PagerPresenter;
 import fspotcloud.client.place.BasePlace;
-import fspotcloud.client.place.ImageViewingPlace;
 
 public class ImageActivityTest extends TestCase {
 
@@ -32,7 +31,7 @@ public class ImageActivityTest extends TestCase {
 	public void testImageActivitySetPlace() {
 		final PagerView.PagerPresenter pager = context.mock(PagerPresenter.class);
 		final ImageView imageView = context.mock(ImageView.class);
-		final BasePlace place = new ImageViewingPlace("1", "1");
+		final BasePlace place = new BasePlace("1", "1");
 		context.checking(new Expectations() {
 			{
 				oneOf(imageView).setImageUrl(with("/image?id=1"));
