@@ -40,7 +40,7 @@ public class MainWindowActivityMapper implements ActivityMapper {
 			if (basePlace.getTagId().equals("latest")) {
 				navigator.goToLatestTag();
 			}
-			if (basePlace.isTreeVisible()){
+			if (!basePlace.isTreeVisible()){
 				activity = imagePanelActivityFactory
 				.getFullscreen((BasePlace) place);
 			} else {
