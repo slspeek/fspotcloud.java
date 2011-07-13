@@ -27,7 +27,7 @@ public class TabularITest extends SeleniumITest {
 		selenium.click("gwt-debug-image-view-0x0");
 		selenium.waitForPageToLoad("30000");
 		
-		selenium.open("/#ImageViewingPlace:1:12:2:2");
+		selenium.open("/#BasePlace:1:12:2:2:false");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("gwt-debug-pager-previous-button");
 		selenium.waitForPageToLoad("30000");
