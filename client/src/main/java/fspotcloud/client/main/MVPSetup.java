@@ -13,8 +13,8 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Inject;
 
 import fspotcloud.client.main.view.MainWindowActivityMapper;
+import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.MainPlaceHistoryMapper;
-import fspotcloud.client.place.TagViewingPlace;
 import fspotcloud.client.view.action.NavigationEventHandler;
 import fspotcloud.client.view.action.SlideshowEventHandler;
 import fspotcloud.client.view.action.ZoomViewEventHandler;
@@ -23,7 +23,7 @@ public class MVPSetup {
 
 	private static final Logger log = Logger
 			.getLogger(MVPSetup.class.getName());
-	final private Place defaultPlace = new TagViewingPlace("latest", "latest");
+	final private Place defaultPlace = new BasePlace("latest", "latest");
 	final private SimplePanel appWidget = new SimplePanel();
 	final private EventBus eventBus;
 	final private MainWindowActivityMapper activityMapper;
