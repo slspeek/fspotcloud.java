@@ -6,7 +6,7 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.main.Navigator;
 
-public class ToggleFullscreenAction implements GestureAction {
+public class ToggleFullscreenAction implements Runnable {
 
 	@SuppressWarnings("unused")
 	private static final Logger log = Logger
@@ -21,7 +21,7 @@ public class ToggleFullscreenAction implements GestureAction {
 	}
 
 	@Override
-	public void perform() {
+	public void run() {
 		navigator.toggleShowTagTree();
 	}
 }

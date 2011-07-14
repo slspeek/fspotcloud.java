@@ -1,7 +1,7 @@
 package fspotcloud.client.main;
 
 import fspotcloud.client.view.action.KeyStroke;
-import fspotcloud.client.view.action.Shortcut;
+import fspotcloud.client.view.action.api.UserAction;
 
 public class HelpContentGenerator {
 
@@ -23,7 +23,7 @@ public class HelpContentGenerator {
 		return row;
 	}
 
-	public String getHelpText(Shortcut shortcut) {
+	public String getHelpText(UserAction shortcut) {
 		String key, altKey;
 		KeyStroke stroke, altStroke;
 		stroke = shortcut.getKey();

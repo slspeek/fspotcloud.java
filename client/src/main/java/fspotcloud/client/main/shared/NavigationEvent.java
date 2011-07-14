@@ -21,6 +21,10 @@ public class NavigationEvent extends GwtEvent<NavigationEvent.Handler> {
 	final public static int SET_RASTER_4x4 = 11;
 	final public static int SET_RASTER_5x5 = 12;
 	final public static int SET_DEFAULT_RASTER = 13;
+	final public static int GOTO_LATEST = 14;
+	final public static int PAGE_UP = 15;
+	final public static int PAGE_DOWN = 16;
+	final public static int TOGGLE_TAG_TREE = 17;
 	
 	final private int actionType;
 

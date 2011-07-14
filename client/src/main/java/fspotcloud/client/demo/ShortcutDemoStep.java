@@ -1,18 +1,22 @@
 package fspotcloud.client.demo;
 
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+
 import fspotcloud.client.main.HelpContentGenerator;
-import fspotcloud.client.view.action.Shortcut;
 import fspotcloud.client.view.action.ShortcutHandler;
+import fspotcloud.client.view.action.api.UserAction;
 
 public class ShortcutDemoStep implements DemoStep {
 
 	final private ShortcutHandler shortcutHandler;
-	final private Shortcut shortcut;
+	final private UserAction shortcut;
 	final private int pause;
 	final private HelpContentGenerator generator = new HelpContentGenerator();
 
-	public ShortcutDemoStep(ShortcutHandler shortcutHandler, Shortcut shortcut,
-			int pause) {
+	@Inject
+	public ShortcutDemoStep(ShortcutHandler shortcutHandler, @Assisted UserAction shortcut,
+			@Assisted int pause) {
 		this.shortcutHandler = shortcutHandler;
 		this.shortcut = shortcut;
 		this.pause = pause;

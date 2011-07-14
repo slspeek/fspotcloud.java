@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.main.view.api.TreeView;
 
-public class TreeFocusAction implements GestureAction {
+public class TreeFocusAction implements Runnable {
 
 	final private TreeView treeView;
 
@@ -14,7 +14,7 @@ public class TreeFocusAction implements GestureAction {
 	}
 
 	@Override
-	public void perform() {
+	public void run() {
 		treeView.requestFocus();
 	}
 

@@ -22,7 +22,7 @@ public class DemoRunner extends Timer {
 
 	@Override
 	public void run() {
-		action.perform();
+		action.run();
 	}
 
 }
