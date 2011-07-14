@@ -5,57 +5,66 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.google.gwt.user.client.Timer;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.client.demo.DemoRunner;
 import fspotcloud.client.demo.DemoStep;
 import fspotcloud.client.demo.DemoStepFactory;
 import fspotcloud.client.main.view.DemoPresenter;
+import fspotcloud.client.view.action.api.AllUserActions;
+import fspotcloud.client.view.action.api.UserAction;
 
-public class DemoAction implements GestureAction {
+public class DemoAction implements Runnable {
 	private static final Logger log = Logger.getLogger(KeyDispatcher.class
 			.getName());
 	List<DemoStep> demo;
 	int stepPointer = -1;
 	final private DemoStepFactory factory;
+	final private AllUserActions actions;
 
-	public DemoAction(DemoStepFactory factory) {
+	@Inject
+	public DemoAction(DemoStepFactory factory, @Assisted AllUserActions actions) {
 		this.factory = factory;
+		this.actions = actions;
 		initDemo();
+		log.warning("&^%$###CREATED");
 	}
 
 	private void initDemo() {
 		demo = new ArrayList<DemoStep>();
-		addStep(AllShortcuts.SET_RASTER_2x2, 3000);
-		addStep(AllShortcuts.SET_RASTER_3x3, 2000);
-		addStep(AllShortcuts.SET_RASTER_4x4, 4000);
-		addStep(AllShortcuts.ADD_COLUMN, 1000);
-		addStep(AllShortcuts.ADD_COLUMN, 4000, "You can do this again and again");
-		addStep(AllShortcuts.ADD_COLUMN, 4000, "And again");
-		addStep(AllShortcuts.TOGGLE_TABULAR_VIEW, 2000);
-		addStep(AllShortcuts.GOTO_END, 3000);
-		addStep(AllShortcuts.GO_BACK, 3000);
-		addStep(AllShortcuts.GOTO_START, 2000);
-		addStep(AllShortcuts.GO_FORWARD, 3000);
-		addStep(AllShortcuts.TOGGLE_TABULAR_VIEW, 1000, "Again to go back to tabular view");
-		addStep(AllShortcuts.SET_DEFAULT_RASTER, 3000);
-		addStep(AllShortcuts.TOGGLE_HELP, 5000);
-		addStep(AllShortcuts.TOGGLE_HELP, 1000, "Again to hide the help.");
+		addStep(actions.setRaster2x2(), 3000);
+		addStep(actions.setRaster3x3(), 2000);
+		addStep(actions.setRaster4x4(), 4000);
+		addStep(actions.addColumm()	, 1000);
+		addStep(actions.addColumm()	, 4000, "You can do this again and again");
+		addStep(actions.addColumm()	, 4000, "And again");
+		addStep(actions.toggleTabularView(), 2000);
+		addStep(actions.end(), 3000);
+		addStep(actions.back(), 3000);
+		addStep(actions.home(), 2000);
+		addStep(actions.next(), 3000);
+		addStep(actions.toggleTabularView(), 2000, "Again to go back to tabular view");
+		addStep(actions.toggleTreeVisible(), 2000, "Again to go back to tabular view");
+		addStep(actions.resetRaster(), 3000);
+		addStep(actions.toggleHelp(), 5000);
+		addStep(actions.toggleHelp(), 1000, "Again to hide the help.");
 	}
 
-	private void addStep(Shortcut shortcut, int pause) {
+	private void addStep(UserAction shortcut, int pause) {
 		DemoStep step = factory.getDemoStep(shortcut, pause);
 		demo.add(step);
 	}
 
-	private void addStep(Shortcut shortcut, int pause,
+	private void addStep(UserAction shortcut, int pause,
 			String descriptionOverride) {
-		DemoStep step = factory.getDemoStep(new Shortcut(descriptionOverride,
-				shortcut.getKey(), shortcut.getAlternateKey()), pause);
+		DemoStep step = factory.getDemoStep(new Shortcut(shortcut.getCaption(), descriptionOverride,
+				shortcut.getKey(), shortcut.getAlternateKey(), shortcut.getIcon(), shortcut), pause);
 		demo.add(step);
 	}
 
 	@Override
-	public void perform() {
+	public void run() {
 		stepPointer++;
 		if (stepPointer < demo.size()) {
 			DemoStep step = demo.get(stepPointer);

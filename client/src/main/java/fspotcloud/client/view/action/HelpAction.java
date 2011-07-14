@@ -1,22 +1,19 @@
 package fspotcloud.client.view.action;
 
 import fspotcloud.client.main.view.HelpPresenter;
+import fspotcloud.client.view.action.api.AllUserActions;
 
-public class HelpAction implements GestureAction {
+public class HelpAction implements Runnable {
 
-	final private static int ACTION_SHOW = 0;
-	final private static int ACTION_HIDE = 1;
-	
 	private HelpPresenter helpPresenter;
 	private boolean isShowing = false;
 
-	
-	public HelpAction() {
-		helpPresenter = new HelpPresenter();
+	public HelpAction(AllUserActions actions) {
+		helpPresenter = new HelpPresenter(actions);
 	}
 
 	@Override
-	public void perform() {
+	public void run() {
 		if (isShowing) {
 			helpPresenter.hide();
 			isShowing = false;

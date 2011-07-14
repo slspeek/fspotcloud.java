@@ -1,18 +1,19 @@
 package fspotcloud.client.view.action;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+
+import fspotcloud.client.view.action.api.UserAction;
 
 public class KeyDispatcher implements ShortcutHandler {
 
 	private static final Logger log = Logger.getLogger(KeyDispatcher.class
 			.getName());
 
-	Map<Integer, GestureAction> registeredActions = new HashMap<Integer, GestureAction>();
+	Map<Integer, Runnable> registeredActions = new HashMap<Integer, Runnable>();
 
-	public void register(GestureAction action, Shortcut shortcut) {
+	public void register(UserAction shortcut) {
 		int[] keys;
 		if (shortcut.getAlternateKey() != null) {
 			keys = new int[2];
@@ -22,16 +23,16 @@ public class KeyDispatcher implements ShortcutHandler {
 		}
 		keys[0] = shortcut.getKey().getKeyCode();
 		for (int key : keys) {
-			registeredActions.put(key, action);
+			registeredActions.put(key, shortcut);
 		}
 	}
 
 	@Override
 	public boolean handle(int keycode) {
 		log.info("Handling: code " + keycode);
-		GestureAction action = registeredActions.get(keycode);
+		Runnable action = registeredActions.get(keycode);
 		if (action != null) {
-			action.perform();
+			action.run();
 			return true;
 		}
 		return false;

@@ -32,4 +32,21 @@ public class SlideshowEvent extends GwtEvent<SlideshowEvent.Handler> {
 	public int getActionType() {
 		return actionType;
 	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof SlideshowEvent) {
+			SlideshowEvent other = (SlideshowEvent) o;
+			if (getActionType() == other.getActionType()) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	public int hashCode() {
+		return getActionType();
+	}
 }

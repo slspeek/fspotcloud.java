@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
+import fspotcloud.client.view.action.api.UserAction;
+
 public class KeyDispatcherTest extends TestCase {
 
 	Mockery context;
@@ -20,11 +22,11 @@ public class KeyDispatcherTest extends TestCase {
 
 	public void testOne() {
 		KeyDispatcher dispatcher = new KeyDispatcher();
-		final GestureAction action = context.mock(GestureAction.class);
-		dispatcher.register(action, new Shortcut("", new KeyStroke('a'), new KeyStroke('d')));
+		final Runnable action = context.mock(Runnable.class);
+		dispatcher.register(new Shortcut("","", new KeyStroke('a'), new KeyStroke('d'), null, action));
 		context.checking(new Expectations() {
 			{
-				exactly(2).of(action).perform();
+				exactly(2).of(action).run();
 			}
 		});
 		assertFalse(dispatcher.handle('w'));

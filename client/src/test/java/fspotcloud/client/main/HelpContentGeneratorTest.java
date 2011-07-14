@@ -1,8 +1,8 @@
 package fspotcloud.client.main;
 
+import junit.framework.TestCase;
 import fspotcloud.client.view.action.KeyStroke;
 import fspotcloud.client.view.action.Shortcut;
-import junit.framework.TestCase;
 
 public class HelpContentGeneratorTest extends TestCase {
 
@@ -15,7 +15,7 @@ public class HelpContentGeneratorTest extends TestCase {
 	}
 
 	public void testOne() {
-		Shortcut s = new Shortcut("Start slideshow", new KeyStroke('s'), null);
+		Shortcut s = new Shortcut("","Start slideshow", new KeyStroke('s'), null, null, null);
 		String row = gen.getHelpText(s);
 		String desired = "<span class='fsc-help-key'>s</span></td>" 
 			 + "<td><span class='fsc-help-separator'>:</span></td>"

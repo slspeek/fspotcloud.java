@@ -3,12 +3,16 @@ package fspotcloud.client.main.gin;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.AbstractGinModule;
+import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.inject.Singleton;
 
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
+import fspotcloud.client.demo.DemoStep;
+import fspotcloud.client.demo.DemoStepFactory;
+import fspotcloud.client.demo.ShortcutDemoStep;
 import fspotcloud.client.main.MVPSetup;
 import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.NavigatorImpl;
@@ -18,9 +22,9 @@ import fspotcloud.client.main.SlideshowImpl;
 import fspotcloud.client.main.ui.ImagePanelViewImpl;
 import fspotcloud.client.main.ui.ImageRasterViewImpl;
 import fspotcloud.client.main.ui.PagerViewImpl;
-import fspotcloud.client.main.ui.TimerImpl;
 import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
+import fspotcloud.client.main.ui.TimerImpl;
 import fspotcloud.client.main.ui.TreeViewImpl;
 import fspotcloud.client.main.view.MainWindowActivityMapper;
 import fspotcloud.client.main.view.SlideShowPresenterImpl;
@@ -42,8 +46,14 @@ import fspotcloud.client.place.PlaceGoTo;
 import fspotcloud.client.place.PlaceGoToImpl;
 import fspotcloud.client.place.PlaceWhere;
 import fspotcloud.client.place.PlaceWhereImpl;
+import fspotcloud.client.view.action.AllShortcuts;
+import fspotcloud.client.view.action.AllUserActionsProvider;
+import fspotcloud.client.view.action.DemoActionFactory;
 import fspotcloud.client.view.action.KeyDispatcherProvider;
+import fspotcloud.client.view.action.NavigationActionFactory;
 import fspotcloud.client.view.action.ShortcutHandler;
+import fspotcloud.client.view.action.api.AllUserActions;
+import fspotcloud.client.view.action.api.SlideshowActionFactory;
 
 public class AppModule extends AbstractGinModule {
 
@@ -79,5 +89,13 @@ public class AppModule extends AbstractGinModule {
 		bind(Navigator.class).to(NavigatorImpl.class).in(Singleton.class);
 		bind(Slideshow.class).to(SlideshowImpl.class).in(Singleton.class);
 		bind(ImageRasterView.class).to(ImageRasterViewImpl.class);
+		
+		install(new GinFactoryModuleBuilder().build(NavigationActionFactory.class));
+		install(new GinFactoryModuleBuilder().build(SlideshowActionFactory.class));
+		//bind(DemoStep.class).to(ShortcutDemoStep.class);
+		//install(new GinFactoryModuleBuilder().implement(DemoStep.class, ShortcutDemoStep.class).build(DemoStepFactory.class));
+		//install(new GinFactoryModuleBuilder().build(DemoActionFactory.class));
+		bind(AllUserActions.class).toProvider(AllUserActionsProvider.class).in(Singleton.class);
+				
 	}
 }
