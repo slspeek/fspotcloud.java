@@ -37,7 +37,7 @@ public class AllShortcuts implements AllUserActions {
 	public UserAction SLIDESHOW_SLOWER;
 	public UserAction SLIDESHOW_FASTER;
 	public UserAction TOGGLE_HELP;
-	public UserAction START_DEMO;
+	public UserAction START_DEMO; //22 = 4 + 4 + 10 + 4
 
 	private ShortcutFactory factory;
 	private ToggleFullscreenAction toggleFullscreen;
@@ -68,7 +68,7 @@ public class AllShortcuts implements AllUserActions {
 		initSlideshowActions();
 	}
 
-	private void initSlideshowActions() {
+	private void initSlideshowActions() { //4
 		SLIDESHOW_START = createSlideshow("Play", 'S', (int) 'G', "Start slideshow",
 				null, SlideshowEvent.ACTION_START);
 		SLIDESHOW__END = createSlideshow("Stop", 'Q', null, "Stop slideshow",
@@ -81,7 +81,7 @@ public class AllShortcuts implements AllUserActions {
 				SlideshowEvent.ACTION_FASTER);
 	}
 
-	private void initMovementActions() {
+	private void initMovementActions() { //4
 		GOTO_START = createNavigation("Home", 'B', KeyCodes.KEY_HOME,
 				"Go to the first image of the category", null,
 				NavigationEvent.BEGIN);
@@ -94,7 +94,7 @@ public class AllShortcuts implements AllUserActions {
 				"Next image in this category", null, NavigationEvent.FORWARD);
 	}
 
-	private void initRasterActions() {
+	private void initRasterActions() { //10
 		ADD_COLUMN = createNavigation("Add column", 'C', null,
 				"Adds one column to raster", null,
 				NavigationEvent.INCREASE_RASTER_WIDTH);
@@ -114,9 +114,11 @@ public class AllShortcuts implements AllUserActions {
 				"Sets the raster to 4 x 4",null, NavigationEvent.SET_RASTER_4x4);
 		SET_RASTER_5x5 = createNavigation("5x5", '5', null,
 				"Sets the raster to 5 x 5",null, NavigationEvent.SET_RASTER_5x5);
+		TOGGLE_TABULAR_VIEW =createNavigation("Toggle raster", 'T', null,
+				"Toggle tabular viewing",null, NavigationEvent.TOGGLE_RASTER_VIEW);
 	}
 
-	private void initApplicationActions() {
+	private void initApplicationActions() { //4
 		TOGGLE_HELP = SET_DEFAULT_RASTER;
 		START_DEMO = SET_DEFAULT_RASTER;
 		TREE_FOCUS = new Shortcut("Focus tree",
@@ -243,12 +245,12 @@ public class AllShortcuts implements AllUserActions {
 
 	@Override
 	public UserAction toggleHelp() {
-		return SLIDESHOW_FASTER;//TOGGLE_HELP;
+		return TOGGLE_HELP;
 	}
 
 	@Override
 	public UserAction demo() {
-		return SLIDESHOW__END;//START_DEMO;
+		return START_DEMO;
 	}
 
 	@Override
