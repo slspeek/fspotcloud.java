@@ -2,6 +2,7 @@ package fspotcloud.client.view.action;
 
 import com.google.inject.Inject;
 
+import fspotcloud.client.view.action.api.NavigationActionFactory;
 import fspotcloud.client.view.action.api.SlideshowActionFactory;
 import fspotcloud.client.view.action.api.UserAction;
 
@@ -23,11 +24,11 @@ public class ShortcutFactory {
 		SlideshowAction action = slideshowActionFactory.get(actionType);
 		Shortcut shortcut;
 		if (keyCode2 != null) {
-			shortcut = new Shortcut(caption, description, new KeyStroke(keyCode), new KeyStroke(keyCode2), null, action);
+			//shortcut// = new Shortcut(caption, description, new KeyStroke(keyCode), new KeyStroke(keyCode2), null, action);
 		} else {
-			shortcut = new Shortcut(caption, description, new KeyStroke(keyCode), null, null, action);
+			//shortcut// = new Shortcut(caption, description, new KeyStroke(keyCode), null, null, action);
 		}
-		return shortcut;
+		return null;//shortcut;
 	}
 	
 	UserAction getNavigation(String caption, int keyCode, Integer keyCode2,
@@ -35,11 +36,11 @@ public class ShortcutFactory {
 		NavigationAction action = navigationActionFactory.get(actionType);
 		Shortcut shortcut;
 		if (keyCode2 != null) {
-			shortcut = new Shortcut(caption, description, new KeyStroke(keyCode), new KeyStroke(keyCode2), null, action);
+			//shortcut// = new Shortcut(caption, description, new KeyStroke(keyCode), new KeyStroke(keyCode2), null, action);
 		} else {
-			shortcut = new Shortcut(caption, description, new KeyStroke(keyCode), null, null, action);
+			//shortcut// = new Shortcut(caption, description, new KeyStroke(keyCode), null, null, action);
 		}
-		return shortcut;
+		return null;//shortcut;
 	}
 
 }

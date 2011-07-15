@@ -11,10 +11,10 @@ import fspotcloud.client.view.action.api.UserAction;
 public class KeyDispatcherProvider implements Provider<KeyDispatcher> {
 
 	private static final Logger log = Logger
-	.getLogger(KeyDispatcherProvider.class.getName());
+			.getLogger(KeyDispatcherProvider.class.getName());
 	final private KeyDispatcher keyDispatcher = new KeyDispatcher();
 	final private AllUserActions actions;
-	
+
 	@Inject
 	public KeyDispatcherProvider(AllUserActions actions) {
 		this.actions = actions;
@@ -23,8 +23,8 @@ public class KeyDispatcherProvider implements Provider<KeyDispatcher> {
 	}
 
 	private void registerShortcuts() {
-		((AllShortcuts)actions).init();
-		for (UserAction action: actions.allActions()) {
+
+		for (UserAction action : actions.allActions()) {
 			if (action != null) {
 				keyDispatcher.register(action);
 			} else {
@@ -32,6 +32,7 @@ public class KeyDispatcherProvider implements Provider<KeyDispatcher> {
 			}
 		}
 	}
+
 	@Override
 	public KeyDispatcher get() {
 		return keyDispatcher;

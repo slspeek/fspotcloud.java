@@ -11,11 +11,7 @@ import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
 import fspotcloud.client.main.view.api.ImagePanelView;
 import fspotcloud.client.main.view.api.ImagePanelView.ImagePanelPresenter;
 import fspotcloud.client.place.BasePlace;
-/**
- * *
- * Mimics assisted inject
- *
- */
+
 public class ImagePanelActivityFactoryImpl implements ImagePanelActivityFactory {
 
 	final private ImagePanelView embeddedImagePanelView;

@@ -19,6 +19,12 @@ import fspotcloud.client.main.NavigatorImpl;
 import fspotcloud.client.main.PlaceCalculator;
 import fspotcloud.client.main.Slideshow;
 import fspotcloud.client.main.SlideshowImpl;
+import fspotcloud.client.main.shared.ApplicationEventFactory;
+import fspotcloud.client.main.shared.ApplicationEventProviderFactory;
+import fspotcloud.client.main.shared.NavigationEventFactory;
+import fspotcloud.client.main.shared.NavigationEventProviderFactory;
+import fspotcloud.client.main.shared.SlideshowEventFactory;
+import fspotcloud.client.main.shared.SlideshowEventProviderFactory;
 import fspotcloud.client.main.ui.ImagePanelViewImpl;
 import fspotcloud.client.main.ui.ImageRasterViewImpl;
 import fspotcloud.client.main.ui.PagerViewImpl;
@@ -47,13 +53,14 @@ import fspotcloud.client.place.PlaceGoToImpl;
 import fspotcloud.client.place.PlaceWhere;
 import fspotcloud.client.place.PlaceWhereImpl;
 import fspotcloud.client.view.action.AllShortcuts;
-import fspotcloud.client.view.action.AllUserActionsProvider;
-import fspotcloud.client.view.action.DemoActionFactory;
 import fspotcloud.client.view.action.KeyDispatcherProvider;
-import fspotcloud.client.view.action.NavigationActionFactory;
+import fspotcloud.client.view.action.Shortcut;
+import fspotcloud.client.view.action.ShortcutAssistedFactory;
 import fspotcloud.client.view.action.ShortcutHandler;
 import fspotcloud.client.view.action.api.AllUserActions;
+import fspotcloud.client.view.action.api.NavigationActionFactory;
 import fspotcloud.client.view.action.api.SlideshowActionFactory;
+import fspotcloud.client.view.action.api.UserAction;
 
 public class AppModule extends AbstractGinModule {
 
@@ -89,13 +96,32 @@ public class AppModule extends AbstractGinModule {
 		bind(Navigator.class).to(NavigatorImpl.class).in(Singleton.class);
 		bind(Slideshow.class).to(SlideshowImpl.class).in(Singleton.class);
 		bind(ImageRasterView.class).to(ImageRasterViewImpl.class);
-		
-		install(new GinFactoryModuleBuilder().build(NavigationActionFactory.class));
-		install(new GinFactoryModuleBuilder().build(SlideshowActionFactory.class));
-		//bind(DemoStep.class).to(ShortcutDemoStep.class);
-		//install(new GinFactoryModuleBuilder().implement(DemoStep.class, ShortcutDemoStep.class).build(DemoStepFactory.class));
-		//install(new GinFactoryModuleBuilder().build(DemoActionFactory.class));
-		bind(AllUserActions.class).toProvider(AllUserActionsProvider.class).in(Singleton.class);
-				
+		bind(AllUserActions.class).to(AllShortcuts.class);
+
+		install(new GinFactoryModuleBuilder()
+				.build(NavigationActionFactory.class));
+		install(new GinFactoryModuleBuilder()
+				.build(SlideshowActionFactory.class));
+		// bind(DemoStep.class).to(ShortcutDemoStep.class);
+		install(new GinFactoryModuleBuilder().implement(DemoStep.class,
+				ShortcutDemoStep.class).build(DemoStepFactory.class));
+		install(new GinFactoryModuleBuilder()
+				.build(ApplicationEventProviderFactory.class));
+		install(new GinFactoryModuleBuilder()
+				.build(NavigationEventProviderFactory.class));
+		install(new GinFactoryModuleBuilder()
+				.build(NavigationEventFactory.class));
+
+		install(new GinFactoryModuleBuilder()
+				.build(SlideshowEventFactory.class));
+
+		install(new GinFactoryModuleBuilder()
+				.build(ApplicationEventFactory.class));
+
+		install(new GinFactoryModuleBuilder()
+				.build(SlideshowEventProviderFactory.class));
+		install(new GinFactoryModuleBuilder().implement(UserAction.class,
+				Shortcut.class).build(ShortcutAssistedFactory.class));
+
 	}
 }
