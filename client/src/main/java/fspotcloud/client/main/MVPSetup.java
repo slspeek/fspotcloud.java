@@ -12,14 +12,13 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Inject;
 
+import fspotcloud.client.main.view.ApplicationEventHandler;
 import fspotcloud.client.main.view.MainWindowActivityMapper;
 import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.MainPlaceHistoryMapper;
-import fspotcloud.client.view.action.AllShortcuts;
 import fspotcloud.client.view.action.NavigationEventHandler;
 import fspotcloud.client.view.action.SlideshowEventHandler;
 import fspotcloud.client.view.action.ZoomViewEventHandler;
-import fspotcloud.client.view.action.api.AllUserActions;
 
 public class MVPSetup {
 
@@ -34,8 +33,7 @@ public class MVPSetup {
 	final private SlideshowEventHandler slideshowEventHandler;
 	final private NavigationEventHandler navigationEventHandler;
 	final private ZoomViewEventHandler zoomViewEventHandler;
-	final private Navigator navigator;
-	final private AllUserActions actions;
+	final private ApplicationEventHandler applicationEventHandler;
 
 	@Inject
 	public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
@@ -44,8 +42,8 @@ public class MVPSetup {
 			SlideshowEventHandler slideshowEventHandler,
 			NavigationEventHandler navigationEventHandler,
 			ZoomViewEventHandler zoomViewEventHandler,
-			Navigator navigator, AllUserActions actions) {
-		this.navigator = navigator;
+			ApplicationEventHandler applicationEventHandler
+			) {
 		this.activityMapper = activityMapper;
 		this.eventBus = eventBus;
 		this.placeController = placeController;
@@ -53,18 +51,15 @@ public class MVPSetup {
 		this.slideshowEventHandler = slideshowEventHandler;
 		this.navigationEventHandler = navigationEventHandler;
 		this.zoomViewEventHandler = zoomViewEventHandler;
-		this.actions = actions;
+		this.applicationEventHandler = applicationEventHandler;
 	}
 
 	public void setup() {
-		log.info("setup: before all.init()");
-		((AllShortcuts)actions).init();
-		log.info("setup: after all.init()");
 		keyboardHandler.setup();
-		log.info("setup: after keyboard setup");
 		slideshowEventHandler.init();
 		navigationEventHandler.init();
 		zoomViewEventHandler.init();
+		applicationEventHandler.init();
 		
 		ActivityManager activityManager = new ActivityManager(activityMapper,
 				eventBus);
@@ -78,7 +73,6 @@ public class MVPSetup {
 
 		RootLayoutPanel.get().add(appWidget);
 		
-		//navigator.goToLatestTag();
 		log.info("Just before handleCurrentHistory()");
 		historyHandler.handleCurrentHistory();
 		log.info("Setup finished");

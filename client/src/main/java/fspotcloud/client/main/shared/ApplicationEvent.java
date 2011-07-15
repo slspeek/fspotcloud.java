@@ -5,23 +5,23 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
-public class SlideshowEvent extends GwtEvent<SlideshowEvent.Handler> {
+public class ApplicationEvent extends GwtEvent<ApplicationEvent.Handler> {
 
-	final public static Type<SlideshowEvent.Handler> TYPE = new Type<SlideshowEvent.Handler>();
+	final public static Type<ApplicationEvent.Handler> TYPE = new Type<ApplicationEvent.Handler>();
 
-	final public static int ACTION_START = 0;
-	final public static int ACTION_STOP = 1;
-	final public static int ACTION_FASTER = 2;
-	final public static int ACTION_SLOWER = 3;
+	final public static int ACTION_HELP = 0;
+	final public static int ACTION_TOGGLE_TREE_VISIBLE = 1;
+	final public static int ACTION_DEMO = 2;
+	final public static int ACTION_TREE_FOCUS = 3;
 	final private int actionType;
 
 	@Inject 
-	public SlideshowEvent(@Assisted int actionType) {
+	public ApplicationEvent(@Assisted int actionType) {
 		this.actionType = actionType;
 	}
 
 	public static interface Handler extends EventHandler {
-		void onEvent(SlideshowEvent e);
+		void onEvent(ApplicationEvent e);
 	}
 
 	public Type<Handler> getAssociatedType() {
@@ -37,8 +37,8 @@ public class SlideshowEvent extends GwtEvent<SlideshowEvent.Handler> {
 	}
 	
 	public boolean equals(Object o) {
-		if (o instanceof SlideshowEvent) {
-			SlideshowEvent other = (SlideshowEvent) o;
+		if (o instanceof ApplicationEvent) {
+			ApplicationEvent other = (ApplicationEvent) o;
 			if (getActionType() == other.getActionType()) {
 				return true;
 			} else {

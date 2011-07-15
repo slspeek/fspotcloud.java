@@ -22,13 +22,13 @@ public class DemoAction implements Runnable {
 	int stepPointer = -1;
 	final private DemoStepFactory factory;
 	final private AllUserActions actions;
+	final private ShortcutAssistedFactory shortcutFactory;
 
 	@Inject
-	public DemoAction(DemoStepFactory factory, @Assisted AllUserActions actions) {
+	public DemoAction(DemoStepFactory factory, ShortcutAssistedFactory shortcutFactory, AllUserActions actions) {
 		this.factory = factory;
 		this.actions = actions;
-		initDemo();
-		log.warning("&^%$###CREATED");
+		this.shortcutFactory = shortcutFactory;
 	}
 
 	private void initDemo() {
@@ -58,13 +58,14 @@ public class DemoAction implements Runnable {
 
 	private void addStep(UserAction shortcut, int pause,
 			String descriptionOverride) {
-		DemoStep step = factory.getDemoStep(new Shortcut(shortcut.getCaption(), descriptionOverride,
-				shortcut.getKey(), shortcut.getAlternateKey(), shortcut.getIcon(), shortcut), pause);
+		DemoStep step = factory.getDemoStep(shortcutFactory.get(shortcut.getCaption(), descriptionOverride,
+				shortcut.getKey(), shortcut.getAlternateKey(), shortcut.getIcon(), shortcut.getEventProvider()), pause);
 		demo.add(step);
 	}
 
 	@Override
 	public void run() {
+		initDemo();
 		stepPointer++;
 		if (stepPointer < demo.size()) {
 			DemoStep step = demo.get(stepPointer);
