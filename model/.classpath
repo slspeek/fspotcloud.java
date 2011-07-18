@@ -1,32 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-  <classpathentry kind="src" path="src/test/java" output="target/test-classes" including="**/*.java"/>
-  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
-  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
-  <classpathentry kind="output" path="target/classes"/>
-  <classpathentry kind="var" path="M2_REPO/javax/inject/javax.inject/1/javax.inject-1.jar" sourcepath="M2_REPO/javax/inject/javax.inject/1/javax.inject-1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/javax/jdo/jdo2-api/2.3-eb/jdo2-api-2.3-eb.jar" sourcepath="M2_REPO/javax/jdo/jdo2-api/2.3-eb/jdo2-api-2.3-eb-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/javax/transaction/jta/1.1/jta-1.1.jar" sourcepath="M2_REPO/javax/transaction/jta/1.1/jta-1.1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" sourcepath="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-1.0-sdk/1.5.0/appengine-api-1.0-sdk-1.5.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-labs/1.5.0/appengine-api-labs-1.5.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-stubs/1.5.0/appengine-api-stubs-1.5.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-local-runtime/1.5.0/appengine-local-runtime-1.5.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-testing/1.5.0/appengine-testing-1.5.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/testing/cloudcover/cloudcover/1.0.1.final-forGAE1.4.3-1/cloudcover-1.0.1.final-forGAE1.4.3-1.jar" sourcepath="M2_REPO/com/google/appengine/testing/cloudcover/cloudcover/1.0.1.final-forGAE1.4.3-1/cloudcover-1.0.1.final-forGAE1.4.3-1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/orm/datanucleus-appengine/1.0.4.1/datanucleus-appengine-1.0.4.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/datanucleus/datanucleus-core/1.1.5/datanucleus-core-1.1.5.jar" sourcepath="M2_REPO/org/datanucleus/datanucleus-core/1.1.5/datanucleus-core-1.1.5-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/datanucleus-jpa/1.1.5/datanucleus-jpa-1.1.5.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/geronimo-jpa_3.0_spec/1.1.1/geronimo-jpa_3.0_spec-1.1.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/gwt/inject/gin/1.5.0/gin-1.5.0.jar" sourcepath="M2_REPO/com/google/gwt/inject/gin/1.5.0/gin-1.5.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/r07/guava-r07.jar" sourcepath="M2_REPO/com/google/guava/guava/r07/guava-r07-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/inject/guice/3.0/guice-3.0.jar" sourcepath="M2_REPO/com/google/inject/guice/3.0/guice-3.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/inject/extensions/guice-assistedinject/3.0/guice-assistedinject-3.0.jar" sourcepath="M2_REPO/com/google/inject/extensions/guice-assistedinject/3.0/guice-assistedinject-3.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/inject/extensions/guice-servlet/3.0/guice-servlet-3.0.jar" sourcepath="M2_REPO/com/google/inject/extensions/guice-servlet/3.0/guice-servlet-3.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/reveregroup/gwt/gwt-image-loader/1.1.4/gwt-image-loader-1.1.4.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-servlet/2.2.0/gwt-servlet-2.2.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-servlet/2.2.0/gwt-servlet-2.2.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-user/2.2.0/gwt-user-2.2.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-user/2.2.0/gwt-user-2.2.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar" sourcepath="M2_REPO/junit/junit/3.8.1/junit-3.8.1-sources.jar"/>
-  <classpathentry kind="src" path="/model-api"/>
-  <classpathentry kind="src" path="/rpc"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" output="target/classes" path="src/main/java"/>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
