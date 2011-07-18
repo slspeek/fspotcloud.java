@@ -14,6 +14,7 @@ import com.google.inject.Inject;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.IndexingUtil;
 import fspotcloud.client.place.BasePlace;
+import fspotcloud.client.place.PlaceCalculator;
 import fspotcloud.client.place.PlaceGoTo;
 import fspotcloud.client.place.PlaceWhere;
 import fspotcloud.shared.photo.PhotoInfo;

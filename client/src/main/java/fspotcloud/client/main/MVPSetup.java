@@ -12,13 +12,9 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Inject;
 
-import fspotcloud.client.main.view.ApplicationEventHandler;
 import fspotcloud.client.main.view.MainWindowActivityMapper;
 import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.MainPlaceHistoryMapper;
-import fspotcloud.client.view.action.NavigationEventHandler;
-import fspotcloud.client.view.action.SlideshowEventHandler;
-import fspotcloud.client.view.action.ZoomViewEventHandler;
 
 public class MVPSetup {
 
@@ -30,37 +26,25 @@ public class MVPSetup {
 	final private MainWindowActivityMapper activityMapper;
 	final private PlaceController placeController;
 	final private GlobalShortcutController keyboardHandler;
-	final private SlideshowEventHandler slideshowEventHandler;
-	final private NavigationEventHandler navigationEventHandler;
-	final private ZoomViewEventHandler zoomViewEventHandler;
-	final private ApplicationEventHandler applicationEventHandler;
-
+	final private EventHandlersSetup eventSetup;
 	@Inject
 	public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
 			PlaceController placeController,
 			GlobalShortcutController keyboardHandler,
-			SlideshowEventHandler slideshowEventHandler,
-			NavigationEventHandler navigationEventHandler,
-			ZoomViewEventHandler zoomViewEventHandler,
-			ApplicationEventHandler applicationEventHandler
+			EventHandlersSetup eventSetup
 			) {
 		this.activityMapper = activityMapper;
 		this.eventBus = eventBus;
 		this.placeController = placeController;
 		this.keyboardHandler = keyboardHandler;
-		this.slideshowEventHandler = slideshowEventHandler;
-		this.navigationEventHandler = navigationEventHandler;
-		this.zoomViewEventHandler = zoomViewEventHandler;
-		this.applicationEventHandler = applicationEventHandler;
+		this.eventSetup = eventSetup;
 	}
 
 	public void setup() {
-		keyboardHandler.setup();
-		slideshowEventHandler.init();
-		navigationEventHandler.init();
-		zoomViewEventHandler.init();
-		applicationEventHandler.init();
 		
+		keyboardHandler.setup();
+		log.info("New event setup");
+		eventSetup.setUp();
 		ActivityManager activityManager = new ActivityManager(activityMapper,
 				eventBus);
 		activityManager.setDisplay(appWidget);

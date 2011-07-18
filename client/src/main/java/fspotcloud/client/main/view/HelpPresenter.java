@@ -20,12 +20,26 @@ public class HelpPresenter {
 
 	private String initHelpText() {
 		helptext = "<table>";
-		for (UserAction shortcut : actions.allActions()) {
+		helptext += "<tr><td colspan=3 class='fsc-help-category'>" + "Navigation" + "</td></tr> ";
+		for (UserAction shortcut : actions.navigation().allActions()) {
 			helptext += "<tr><td>" + generator.getHelpText(shortcut) + "</td></tr>";
 		}
-			helptext += "</table>";
+		helptext += "<tr><td colspan=3 class='fsc-help-category'>" + "Raster" + "</td></tr> ";
+		for (UserAction shortcut : actions.raster().allActions()) {
+			helptext += "<tr><td>" + generator.getHelpText(shortcut) + "</td></tr>";
+		}
+		helptext += "<tr><td colspan=3 class='fsc-help-category'>" + "Slideshow" + "</td></tr> ";
+		for (UserAction shortcut : actions.slideshow().allActions()) {
+			helptext += "<tr><td>" + generator.getHelpText(shortcut) + "</td></tr>";
+		}
+		helptext += "<tr><td colspan=3 class='fsc-help-category'>" + "Application" + "</td></tr> ";
+		for (UserAction shortcut : actions.application().allActions()) {
+			helptext += "<tr><td>" + generator.getHelpText(shortcut) + "</td></tr>";
+		}
+		helptext += "</table>";
 		return helptext;
 	}
+	
 
 	public void show() {
 		popupView.setGlassEnabled(true);

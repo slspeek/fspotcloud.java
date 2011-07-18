@@ -9,7 +9,7 @@ public class GwtTestMVPSetup extends GWTTestCase {
 
 	@Override
 	public String getModuleName() {
-		return "fspotcloud.FSpotCloud";
+		return "FSpotCloud";
 	}
 	
 	public void testMVPSetup() {

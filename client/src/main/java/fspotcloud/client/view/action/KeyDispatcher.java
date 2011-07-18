@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import fspotcloud.client.view.action.api.ShortcutHandler;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class KeyDispatcher implements ShortcutHandler {

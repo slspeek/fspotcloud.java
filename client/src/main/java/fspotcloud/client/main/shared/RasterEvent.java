@@ -2,25 +2,24 @@ package fspotcloud.client.main.shared;
 
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 
 public class RasterEvent extends GwtEvent<RasterEvent.Handler> {
 
 	final public static Type<RasterEvent.Handler> TYPE = new Type<RasterEvent.Handler>();
 
-	final public static int INCREASE_RASTER_WIDTH = 4;
-	final public static int DECREASE_RASTER_WIDTH = 5;
-	final public static int INCREASE_RASTER_HEIGHT = 6;
-	final public static int DECREASE_RASTER_HEIGHT = 7;
-	final public static int TOGGLE_RASTER_VIEW = 8;
-	final public static int SET_RASTER_2x2 = 9;
-	final public static int SET_RASTER_3x3 = 10;
-	final public static int SET_RASTER_4x4 = 11;
-	final public static int SET_RASTER_5x5 = 12;
-	final public static int SET_DEFAULT_RASTER = 13;
-	
-	final private int actionType;
+	public static enum ActionType {
+		INCREASE_RASTER_WIDTH, DECREASE_RASTER_WIDTH, INCREASE_RASTER_HEIGHT,
+		DECREASE_RASTER_HEIGHT, TOGGLE_RASTER_VIEW, SET_RASTER_2x2,
+		SET_RASTER_3x3, SET_RASTER_4x4, SET_RASTER_5x5,
+		SET_DEFAULT_RASTER
+	}
 
-	public RasterEvent(int actionType) {
+	final private ActionType actionType;
+
+	@Inject
+	public RasterEvent(@Assisted ActionType actionType) {
 		this.actionType = actionType;
 	}
 
@@ -36,7 +35,7 @@ public class RasterEvent extends GwtEvent<RasterEvent.Handler> {
 		handler.onEvent(this);
 	}
 
-	public int getActionType() {
+	public ActionType getActionType() {
 		return actionType;
 	}
 }
