@@ -16,15 +16,8 @@ import fspotcloud.client.demo.ShortcutDemoStep;
 import fspotcloud.client.main.MVPSetup;
 import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.NavigatorImpl;
-import fspotcloud.client.main.PlaceCalculator;
 import fspotcloud.client.main.Slideshow;
 import fspotcloud.client.main.SlideshowImpl;
-import fspotcloud.client.main.shared.ApplicationEventFactory;
-import fspotcloud.client.main.shared.ApplicationEventProviderFactory;
-import fspotcloud.client.main.shared.NavigationEventFactory;
-import fspotcloud.client.main.shared.NavigationEventProviderFactory;
-import fspotcloud.client.main.shared.SlideshowEventFactory;
-import fspotcloud.client.main.shared.SlideshowEventProviderFactory;
 import fspotcloud.client.main.ui.ImagePanelViewImpl;
 import fspotcloud.client.main.ui.ImageRasterViewImpl;
 import fspotcloud.client.main.ui.PagerViewImpl;
@@ -32,11 +25,15 @@ import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
 import fspotcloud.client.main.ui.TimerImpl;
 import fspotcloud.client.main.ui.TreeViewImpl;
+import fspotcloud.client.main.view.FullscreenImagePanelActivity;
+import fspotcloud.client.main.view.ImagePanelActivity;
 import fspotcloud.client.main.view.MainWindowActivityMapper;
 import fspotcloud.client.main.view.SlideShowPresenterImpl;
 import fspotcloud.client.main.view.TagCell;
 import fspotcloud.client.main.view.TreePresenterImpl;
 import fspotcloud.client.main.view.TreeSelectionHandler;
+import fspotcloud.client.main.view.api.EmbeddedImagePanelViewAssistedFactory;
+import fspotcloud.client.main.view.api.FullscreenImagePanelViewAssistedFactory;
 import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
 import fspotcloud.client.main.view.api.ImagePanelView;
 import fspotcloud.client.main.view.api.ImageRasterView;
@@ -48,19 +45,13 @@ import fspotcloud.client.main.view.api.TimerInterface;
 import fspotcloud.client.main.view.api.TreeView;
 import fspotcloud.client.main.view.factory.ImagePanelActivityFactoryImpl;
 import fspotcloud.client.main.view.factory.TagPresenterFactoryImpl;
+import fspotcloud.client.place.PlaceCalculator;
 import fspotcloud.client.place.PlaceGoTo;
 import fspotcloud.client.place.PlaceGoToImpl;
 import fspotcloud.client.place.PlaceWhere;
 import fspotcloud.client.place.PlaceWhereImpl;
-import fspotcloud.client.view.action.AllShortcuts;
 import fspotcloud.client.view.action.KeyDispatcherProvider;
-import fspotcloud.client.view.action.Shortcut;
-import fspotcloud.client.view.action.ShortcutAssistedFactory;
-import fspotcloud.client.view.action.ShortcutHandler;
-import fspotcloud.client.view.action.api.AllUserActions;
-import fspotcloud.client.view.action.api.NavigationActionFactory;
-import fspotcloud.client.view.action.api.SlideshowActionFactory;
-import fspotcloud.client.view.action.api.UserAction;
+import fspotcloud.client.view.action.api.ShortcutHandler;
 
 public class AppModule extends AbstractGinModule {
 
@@ -96,32 +87,15 @@ public class AppModule extends AbstractGinModule {
 		bind(Navigator.class).to(NavigatorImpl.class).in(Singleton.class);
 		bind(Slideshow.class).to(SlideshowImpl.class).in(Singleton.class);
 		bind(ImageRasterView.class).to(ImageRasterViewImpl.class);
-		bind(AllUserActions.class).to(AllShortcuts.class);
 
-		install(new GinFactoryModuleBuilder()
-				.build(NavigationActionFactory.class));
-		install(new GinFactoryModuleBuilder()
-				.build(SlideshowActionFactory.class));
-		// bind(DemoStep.class).to(ShortcutDemoStep.class);
 		install(new GinFactoryModuleBuilder().implement(DemoStep.class,
 				ShortcutDemoStep.class).build(DemoStepFactory.class));
-		install(new GinFactoryModuleBuilder()
-				.build(ApplicationEventProviderFactory.class));
-		install(new GinFactoryModuleBuilder()
-				.build(NavigationEventProviderFactory.class));
-		install(new GinFactoryModuleBuilder()
-				.build(NavigationEventFactory.class));
-
-		install(new GinFactoryModuleBuilder()
-				.build(SlideshowEventFactory.class));
-
-		install(new GinFactoryModuleBuilder()
-				.build(ApplicationEventFactory.class));
-
-		install(new GinFactoryModuleBuilder()
-				.build(SlideshowEventProviderFactory.class));
-		install(new GinFactoryModuleBuilder().implement(UserAction.class,
-				Shortcut.class).build(ShortcutAssistedFactory.class));
+		
+		install(new GinFactoryModuleBuilder().implement(ImagePanelView.ImagePanelPresenter.class,
+				FullscreenImagePanelActivity.class).build(FullscreenImagePanelViewAssistedFactory.class));
+		
+		install(new GinFactoryModuleBuilder().implement(ImagePanelView.ImagePanelPresenter.class,
+				ImagePanelActivity.class).build(EmbeddedImagePanelViewAssistedFactory.class));
 
 	}
 }

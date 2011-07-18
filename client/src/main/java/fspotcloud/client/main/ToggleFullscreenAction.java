@@ -1,10 +1,9 @@
-package fspotcloud.client.view.action;
+package fspotcloud.client.main;
 
 import java.util.logging.Logger;
 
 import com.google.inject.Inject;
 
-import fspotcloud.client.main.Navigator;
 
 public class ToggleFullscreenAction implements Runnable {
 

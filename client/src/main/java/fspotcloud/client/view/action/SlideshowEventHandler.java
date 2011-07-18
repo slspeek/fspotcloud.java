@@ -20,16 +20,16 @@ public class SlideshowEventHandler implements SlideshowEvent.Handler {
 	@Override
 	public void onEvent(SlideshowEvent e) {
 		switch (e.getActionType()) {
-		case SlideshowEvent.ACTION_START:
+		case START:
 			slideshow.start();
 			break;
-		case SlideshowEvent.ACTION_STOP:
+		case STOP:
 			slideshow.stop();
 			break;
-		case SlideshowEvent.ACTION_FASTER:
+		case FASTER:
 			slideshow.faster();
 			break;
-		case SlideshowEvent.ACTION_SLOWER:
+		case SLOWER:
 			slideshow.slower();
 			break;
 		default:

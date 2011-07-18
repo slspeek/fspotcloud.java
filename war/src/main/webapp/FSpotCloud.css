@@ -61,9 +61,15 @@
 	color: white;
 	font-size: 180%;
 }
+.fsc-help-category {
+	font-size: 90%;
+	border-bottom: solid;
+	border-top: solid;
+}
 
 .fsc-help-description {
 	font-size: 130%;
+	text-align: left;
 }
 
 .fsc-help-separator {

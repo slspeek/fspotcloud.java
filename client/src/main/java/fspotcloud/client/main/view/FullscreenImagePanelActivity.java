@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.Slideshow;
@@ -15,7 +17,8 @@ public class FullscreenImagePanelActivity extends ImagePanelActivity {
 	private static final Logger log = Logger
 			.getLogger(FullscreenImagePanelActivity.class.getName());
 
-	public FullscreenImagePanelActivity(BasePlace place,
+	@Inject
+	public FullscreenImagePanelActivity(@Assisted BasePlace place,
 			ImagePanelView imagePanelView, Navigator navigator,
 			Slideshow slideshow, EventBus eventBus, Navigator pager) {
 		super(place, imagePanelView, navigator, slideshow, eventBus, pager);

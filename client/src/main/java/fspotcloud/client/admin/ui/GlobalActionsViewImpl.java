@@ -48,10 +48,10 @@ public class GlobalActionsViewImpl extends Composite implements
 
 	public GlobalActionsViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
-		deleteAllTagsButton.ensureDebugId("delete-all-tags-button");
+		deleteAllTagsButton.ensureDebugId("delete-allGroups-tags-button");
 		importTagsButton.ensureDebugId("import-tags-button");
 		updateButton.ensureDebugId("update-button");
-		deleteAllPhotosButton.ensureDebugId("delete-all-photos-button");
+		deleteAllPhotosButton.ensureDebugId("delete-allGroups-photos-button");
 		countPhotosButton.ensureDebugId("count-photos-button");
 		loadImagesButton.ensureDebugId("load-images-button");
 	}

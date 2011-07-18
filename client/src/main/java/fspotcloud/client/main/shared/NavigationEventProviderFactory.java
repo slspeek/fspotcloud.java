@@ -1,5 +1,5 @@
 package fspotcloud.client.main.shared;
 
 public interface NavigationEventProviderFactory {
-	NavigationEventProvider get(int actionType);
+	NavigationEventProvider get(NavigationEvent.ActionType actionType);
 }

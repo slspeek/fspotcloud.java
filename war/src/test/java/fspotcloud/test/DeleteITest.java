@@ -32,9 +32,9 @@ public class DeleteITest extends SeleniumITest {
 	public void testImport() throws Exception {
 		loginDevAppServer();
 		selenium.waitForPageToLoad("2000");
-		selenium.click("gwt-debug-delete-all-tags-button");
+		selenium.click("gwt-debug-delete-allGroups-tags-button");
 		sleepShort();
-		selenium.click("gwt-debug-delete-all-photos-button");
+		selenium.click("gwt-debug-delete-allGroups-photos-button");
 		sleepShort();
 		selenium.open("/Dashboard.html");
 		selenium.waitForPageToLoad("5000");

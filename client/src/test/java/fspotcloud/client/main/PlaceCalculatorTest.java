@@ -2,6 +2,7 @@ package fspotcloud.client.main;
 
 import junit.framework.TestCase;
 import fspotcloud.client.place.BasePlace;
+import fspotcloud.client.place.PlaceCalculator;
 
 public class PlaceCalculatorTest extends TestCase {
 

@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.Slideshow;
@@ -21,7 +23,8 @@ public class ImagePanelActivity extends AbstractActivity implements
 	final private ImageRasterView.ImageRasterPresenter imageRasterPresenter;
 	final private SlideShowPresenterImpl slideshowPresenter;
 	
-	public ImagePanelActivity(BasePlace place, ImagePanelView imagePanelView,
+	@Inject
+	public ImagePanelActivity(@Assisted BasePlace place, ImagePanelView imagePanelView,
 			Navigator navigator, Slideshow slideshow, EventBus eventBus, Navigator pager) {
 		this.imagePanelView = imagePanelView;
 		new PagerPresenterImpl(place,

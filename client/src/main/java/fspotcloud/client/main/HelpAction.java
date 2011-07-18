@@ -1,4 +1,4 @@
-package fspotcloud.client.view.action;
+package fspotcloud.client.main;
 
 import com.google.inject.Inject;
 

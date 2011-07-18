@@ -2,7 +2,6 @@ package fspotcloud.client.demo;
 
 import com.google.gwt.user.client.Timer;
 
-import fspotcloud.client.view.action.DemoAction;
 
 public class DemoRunner extends Timer {
 

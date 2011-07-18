@@ -1,5 +1,6 @@
 package fspotcloud.client.view.action;
 
+import fspotcloud.client.main.ToggleFullscreenAction;
 import junit.framework.TestCase;
 
 public class ToggleFullscreenTest extends TestCase {

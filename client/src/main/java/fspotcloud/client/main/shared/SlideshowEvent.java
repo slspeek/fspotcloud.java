@@ -9,14 +9,11 @@ public class SlideshowEvent extends GwtEvent<SlideshowEvent.Handler> {
 
 	final public static Type<SlideshowEvent.Handler> TYPE = new Type<SlideshowEvent.Handler>();
 
-	final public static int ACTION_START = 0;
-	final public static int ACTION_STOP = 1;
-	final public static int ACTION_FASTER = 2;
-	final public static int ACTION_SLOWER = 3;
-	final private int actionType;
+	static public enum ActionType { START, STOP, FASTER, SLOWER }
+	final private ActionType actionType;
 
 	@Inject 
-	public SlideshowEvent(@Assisted int actionType) {
+	public SlideshowEvent(@Assisted ActionType actionType) {
 		this.actionType = actionType;
 	}
 
@@ -32,7 +29,7 @@ public class SlideshowEvent extends GwtEvent<SlideshowEvent.Handler> {
 		handler.onEvent(this);
 	}
 
-	public int getActionType() {
+	public ActionType getActionType() {
 		return actionType;
 	}
 	
@@ -50,6 +47,6 @@ public class SlideshowEvent extends GwtEvent<SlideshowEvent.Handler> {
 	}
 	
 	public int hashCode() {
-		return getActionType();
+		return getActionType().toString().hashCode();
 	}
 }

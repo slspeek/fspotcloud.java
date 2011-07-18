@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.client.main.HelpContentGenerator;
-import fspotcloud.client.view.action.ShortcutHandler;
+import fspotcloud.client.view.action.api.ShortcutHandler;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class ShortcutDemoStep implements DemoStep {

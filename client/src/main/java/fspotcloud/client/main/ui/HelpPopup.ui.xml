@@ -7,7 +7,6 @@
 	</ui:style>
 	<div class="fsc-help-popup">
 		<center><span class="{style.important}">Keyboard shortcuts</span></center>
-		<hr/>
-		<center><span class="fsc-help-body" ui:field="helpBodySpan" /></center>
+		<span class="fsc-help-body" ui:field="helpBodySpan" />
 	</div>
 </ui:UiBinder>

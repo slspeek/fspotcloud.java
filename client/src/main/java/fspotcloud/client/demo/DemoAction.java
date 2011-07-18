@@ -1,4 +1,4 @@
-package fspotcloud.client.view.action;
+package fspotcloud.client.demo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +8,10 @@ import com.google.gwt.user.client.Timer;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
-import fspotcloud.client.demo.DemoRunner;
-import fspotcloud.client.demo.DemoStep;
-import fspotcloud.client.demo.DemoStepFactory;
 import fspotcloud.client.main.view.DemoPresenter;
+import fspotcloud.client.view.action.KeyDispatcher;
 import fspotcloud.client.view.action.api.AllUserActions;
+import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class DemoAction implements Runnable {
@@ -33,22 +32,22 @@ public class DemoAction implements Runnable {
 
 	private void initDemo() {
 		demo = new ArrayList<DemoStep>();
-		addStep(actions.setRaster2x2(), 3000);
-		addStep(actions.setRaster3x3(), 2000);
-		addStep(actions.setRaster4x4(), 4000);
-		addStep(actions.addColumm()	, 1000);
-		addStep(actions.addColumm()	, 4000, "You can do this again and again");
-		addStep(actions.addColumm()	, 4000, "And again");
-		addStep(actions.toggleTabularView(), 2000);
-		addStep(actions.end(), 3000);
-		addStep(actions.back(), 3000);
-		addStep(actions.home(), 2000);
-		addStep(actions.next(), 3000);
-		addStep(actions.toggleTabularView(), 2000, "Again to go back to tabular view");
-		addStep(actions.toggleTreeVisible(), 2000, "Again to go back to tabular view");
-		addStep(actions.resetRaster(), 3000);
-		addStep(actions.toggleHelp(), 5000);
-		addStep(actions.toggleHelp(), 1000, "Again to hide the help.");
+		addStep(actions.raster().setRaster2x2(), 3000);
+		addStep(actions.raster().setRaster3x3(), 2000);
+		addStep(actions.raster().setRaster4x4(), 4000);
+		addStep(actions.raster().addColumm()	, 1000);
+		addStep(actions.raster().addColumm()	, 4000, "You can do this again and again");
+		addStep(actions.raster().addColumm()	, 4000, "And again");
+		addStep(actions.raster().toggleTabularView(), 2000);
+		addStep(actions.navigation().end(), 3000);
+		addStep(actions.navigation().back(), 3000);
+		addStep(actions.navigation().home(), 2000);
+		addStep(actions.navigation().next(), 3000);
+		addStep(actions.raster().toggleTabularView(), 2000, "Again to go back to tabular view");
+		addStep(actions.application().toggleTreeVisible(), 2000, "Again to go back to tabular view");
+		addStep(actions.raster().resetRaster(), 3000);
+		addStep(actions.application().toggleHelp(), 5000);
+		addStep(actions.application().toggleHelp(), 1000, "Again to hide the help.");
 	}
 
 	private void addStep(UserAction shortcut, int pause) {

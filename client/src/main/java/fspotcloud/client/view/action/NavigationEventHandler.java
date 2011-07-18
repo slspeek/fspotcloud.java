@@ -20,50 +20,20 @@ public class NavigationEventHandler implements NavigationEvent.Handler {
 	@Override
 	public void onEvent(NavigationEvent e) {
 		switch (e.getActionType()) {
-		case NavigationEvent.BACK:
+		case BACK:
 			navigator.goAsync(false);
 			break;
-		case NavigationEvent.FORWARD:
+		case NEXT:
 			navigator.goAsync(true);
 			break;
-		case NavigationEvent.BEGIN:
+		case HOME:
 			navigator.goEndAsync(true);
 			break;
-		case NavigationEvent.END:
+		case END:
 			navigator.goEndAsync(false);
 			break;
-		case NavigationEvent.INCREASE_RASTER_WIDTH:
-			navigator.increaseRasterWidth(1);
-			break;
-		case NavigationEvent.DECREASE_RASTER_WIDTH:
-			navigator.increaseRasterWidth(-1);
-			break;
-		case NavigationEvent.INCREASE_RASTER_HEIGHT:
-			navigator.increaseRasterHeight(1);
-			break;
-		case NavigationEvent.DECREASE_RASTER_HEIGHT:
-			navigator.increaseRasterHeight(-1);
-			break;
-		case NavigationEvent.SET_RASTER_2x2:
-			navigator.setRasterDimension(2,2);
-			break;
-		case NavigationEvent.SET_RASTER_3x3:
-			navigator.setRasterDimension(3,3);
-			break;
-		case NavigationEvent.SET_RASTER_4x4:
-			navigator.setRasterDimension(4,4);
-			break;
-		case NavigationEvent.SET_RASTER_5x5:
-			navigator.setRasterDimension(5,5);
-			break;
-		case NavigationEvent.TOGGLE_RASTER_VIEW:
-			navigator.toggleRasterView();
-			break;
-		case NavigationEvent.SET_DEFAULT_RASTER:
-			navigator.resetRasterSize();
-			break;
 		default:
-		break;
+			break;
 		}
 
 	}

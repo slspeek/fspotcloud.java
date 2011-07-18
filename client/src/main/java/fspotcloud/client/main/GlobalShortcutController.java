@@ -8,7 +8,7 @@ import com.google.gwt.user.client.Event.NativePreviewEvent;
 import com.google.gwt.user.client.Event.NativePreviewHandler;
 import com.google.inject.Inject;
 
-import fspotcloud.client.view.action.ShortcutHandler;
+import fspotcloud.client.view.action.api.ShortcutHandler;
 
 public class GlobalShortcutController {
 

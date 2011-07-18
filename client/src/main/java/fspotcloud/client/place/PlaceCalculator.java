@@ -1,8 +1,7 @@
-package fspotcloud.client.main;
+package fspotcloud.client.place;
 
 import java.util.logging.Logger;
 
-import fspotcloud.client.place.BasePlace;
 
 public class PlaceCalculator {
 

@@ -18,7 +18,6 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	private static final Logger log = Logger.getLogger(ImageViewImpl.class
 			.getName());
 
-	private static int counter = 0;
 	private static ImageViewImplUiBinder uiBinder = GWT
 			.create(ImageViewImplUiBinder.class);
 
@@ -30,9 +29,9 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 
 	private ImageView.ImagePresenter presenter;
 
-	public ImageViewImpl(String dim) {
+	public ImageViewImpl(String location) {
 		initWidget(uiBinder.createAndBindUi(this));
-		image.ensureDebugId("image-view-" + dim);
+		image.ensureDebugId("image-view-" + location);
 	}
 
 	@Override
@@ -61,7 +60,5 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	@Override
 	public void setMaxHeight(int height) {
 		this.image.setMaxHeight(height);
-		
 	}
-
 }
