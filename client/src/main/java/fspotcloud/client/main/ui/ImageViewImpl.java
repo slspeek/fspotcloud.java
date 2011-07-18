@@ -7,13 +7,16 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.ResizeComposite;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.RequiresResize;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 import com.reveregroup.gwt.imagepreloader.FitImage;
 
 import fspotcloud.client.main.view.api.ImageView;
 
-public class ImageViewImpl extends ResizeComposite implements ImageView {
+public class ImageViewImpl extends Composite implements ImageView, RequiresResize {
 
 	private static final Logger log = Logger.getLogger(ImageViewImpl.class
 			.getName());
@@ -29,7 +32,8 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 
 	private ImageView.ImagePresenter presenter;
 
-	public ImageViewImpl(String location) {
+	@Inject
+	public ImageViewImpl(@Assisted String location) {
 		initWidget(uiBinder.createAndBindUi(this));
 		image.ensureDebugId("image-view-" + location);
 	}
@@ -60,5 +64,11 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	@Override
 	public void setMaxHeight(int height) {
 		this.image.setMaxHeight(height);
+	}
+
+	@Override
+	public void onResize() {
+		// TODO Auto-generated method stub
+		
 	}
 }

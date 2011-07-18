@@ -3,13 +3,15 @@ package fspotcloud.client.main.view;
 import java.util.List;
 import java.util.logging.Logger;
 
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 
-import fspotcloud.client.main.Navigator;
+import fspotcloud.client.main.view.api.ImagePresenterFactory;
 import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.place.BasePlace;
+import fspotcloud.client.place.api.Navigator;
 
 public class ImageRasterPresenterImpl implements
 		ImageRasterView.ImageRasterPresenter {
@@ -26,13 +28,13 @@ public class ImageRasterPresenterImpl implements
 	final private boolean thumb;
 	final private ImageRasterView imageRasterView;
 	final private Navigator pager;
-	final private EventBus eventBus;
-
+	final private ImagePresenterFactory imagePresenterFactory;
 	List<ImageView> imageViewList;
 
-	public ImageRasterPresenterImpl(BasePlace place,
-			ImageRasterView imageRasterView, Navigator pager,
-			EventBus eventBus) {
+	@Inject
+	public ImageRasterPresenterImpl(@Assisted BasePlace place,
+			@Assisted ImageRasterView imageRasterView, Navigator pager,
+			ImagePresenterFactory imagePresenterFactory) {
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
 		columnCount = place.getColumnCount();
@@ -41,7 +43,7 @@ public class ImageRasterPresenterImpl implements
 		thumb = pageSize > 1;
 		this.pager = pager;
 		this.imageRasterView = imageRasterView;
-		this.eventBus = eventBus;
+		this.imagePresenterFactory = imagePresenterFactory;
 	}
 
 	public void init() {
@@ -78,7 +80,7 @@ public class ImageRasterPresenterImpl implements
 
 					@Override
 					public void onFailure(Throwable caught) {
-						// TODO Auto-generated method stub
+						
 
 					}
 				});
@@ -87,9 +89,9 @@ public class ImageRasterPresenterImpl implements
 
 	private void setImages(List<BasePlace> result) {
 		for (int i = 0; i < result.size(); i++) {
-			ImageView.ImagePresenter presenter = new ImagePresenterImpl(
+			ImageView.ImagePresenter presenter = imagePresenterFactory.get(
 					getImageWidth(), getImageHeight(), result.get(i), imageViewList.get(i),
-					thumb, eventBus);
+					thumb);
 			presenter.init();
 		}
 	}

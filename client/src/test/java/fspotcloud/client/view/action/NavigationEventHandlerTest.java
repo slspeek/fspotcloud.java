@@ -8,8 +8,8 @@ import org.jmock.Mockery;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 
-import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.shared.NavigationEvent;
+import fspotcloud.client.place.api.Navigator;
 
 public class NavigationEventHandlerTest extends TestCase {
 

@@ -1,6 +1,6 @@
 package fspotcloud.client.main.view;
 
-import fspotcloud.client.main.HelpContentGenerator;
+import fspotcloud.client.main.help.HelpContentGenerator;
 import fspotcloud.client.main.ui.HelpPopup;
 import fspotcloud.client.view.action.api.AllUserActions;
 import fspotcloud.client.view.action.api.UserAction;

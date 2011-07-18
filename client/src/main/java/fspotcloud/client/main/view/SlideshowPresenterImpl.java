@@ -7,14 +7,14 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.inject.Inject;
 
-import fspotcloud.client.main.Slideshow;
 import fspotcloud.client.main.shared.SlideshowStatusEvent;
 import fspotcloud.client.main.view.api.SlideshowView;
+import fspotcloud.client.place.api.Slideshow;
 
-public class SlideShowPresenterImpl implements
+public class SlideshowPresenterImpl implements
 		SlideshowView.SlideshowPresenter, SlideshowStatusEvent.Handler {
 	private static final Logger log = Logger
-			.getLogger(SlideShowPresenterImpl.class.getName());
+			.getLogger(SlideshowPresenterImpl.class.getName());
 
 	final private SlideshowView slideshowView;
 	final private Slideshow slideshow;
@@ -24,7 +24,7 @@ public class SlideShowPresenterImpl implements
 	private HandlerRegistration registration;
 
 	@Inject
-	public SlideShowPresenterImpl(SlideshowView slideshowView,
+	public SlideshowPresenterImpl(SlideshowView slideshowView,
 			Slideshow slideshow, EventBus eventBus) {
 		this.eventBus = eventBus;
 		this.slideshowView = slideshowView;

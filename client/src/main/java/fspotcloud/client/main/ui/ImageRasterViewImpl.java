@@ -11,9 +11,11 @@ import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
 
 import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.ImageView;
+import fspotcloud.client.main.view.api.ImageViewFactory;
 
 public class ImageRasterViewImpl extends ResizeComposite implements ImageRasterView {
 
@@ -29,8 +31,11 @@ public class ImageRasterViewImpl extends ResizeComposite implements ImageRasterV
 
 	@UiField
 	SimplePanel simplePanel;
+	private final ImageViewFactory imageViewFactory;
 
-	public ImageRasterViewImpl() {
+	@Inject
+	public ImageRasterViewImpl(ImageViewFactory imageViewFactory) {
+		this.imageViewFactory = imageViewFactory;
 		initWidget(uiBinder.createAndBindUi(this));
 		simplePanel.ensureDebugId("image-raster-view");
 	}
@@ -42,7 +47,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements ImageRasterV
 		List<ImageView> result = new ArrayList<ImageView>();
 		for (int row = 0; row < rowCount; row++) {
 			for (int column = 0; column < columnCount; column++) {
-				ImageView view = new ImageViewImpl(column+"x"+row);
+				ImageView view = imageViewFactory.get(column+"x"+row);
 				grid.setWidget(row, column, view.asWidget());
 				result.add(view);
 			}

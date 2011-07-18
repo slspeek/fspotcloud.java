@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import com.google.inject.Inject;
 
+import fspotcloud.client.place.api.Navigator;
+
 
 public class ToggleFullscreenAction implements Runnable {
 

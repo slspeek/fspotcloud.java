@@ -1,4 +1,4 @@
-package fspotcloud.client.main;
+package fspotcloud.client.place;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,10 +13,9 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.IndexingUtil;
-import fspotcloud.client.place.BasePlace;
-import fspotcloud.client.place.PlaceCalculator;
-import fspotcloud.client.place.PlaceGoTo;
-import fspotcloud.client.place.PlaceWhere;
+import fspotcloud.client.place.api.Navigator;
+import fspotcloud.client.place.api.PlaceGoTo;
+import fspotcloud.client.place.api.PlaceWhere;
 import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;

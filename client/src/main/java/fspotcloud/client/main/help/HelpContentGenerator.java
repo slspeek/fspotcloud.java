@@ -1,4 +1,4 @@
-package fspotcloud.client.main;
+package fspotcloud.client.main.help;
 
 import fspotcloud.client.view.action.KeyStroke;
 import fspotcloud.client.view.action.api.UserAction;

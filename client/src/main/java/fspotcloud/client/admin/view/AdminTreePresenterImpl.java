@@ -14,8 +14,8 @@ import fspotcloud.client.data.DataManager;
 import fspotcloud.client.main.view.TagTreeModel;
 import fspotcloud.client.main.view.api.TreeView;
 import fspotcloud.client.place.BasePlace;
-import fspotcloud.client.place.PlaceGoTo;
 import fspotcloud.client.place.TagPlace;
+import fspotcloud.client.place.api.PlaceGoTo;
 import fspotcloud.shared.tag.TagNode;
 
 public class AdminTreePresenterImpl implements TreeView.TreePresenter, Handler {

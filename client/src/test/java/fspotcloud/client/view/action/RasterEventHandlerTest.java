@@ -9,8 +9,8 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
 
-import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.shared.RasterEvent;
+import fspotcloud.client.place.api.Navigator;
 
 public class RasterEventHandlerTest extends TestCase {
 
