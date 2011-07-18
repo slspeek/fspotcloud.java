@@ -1,4 +1,4 @@
-package fspotcloud.client.main;
+package fspotcloud.client.place;
 
 import java.util.logging.Logger;
 
@@ -8,6 +8,8 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.main.shared.SlideshowStatusEvent;
 import fspotcloud.client.main.view.api.TimerInterface;
+import fspotcloud.client.place.api.Navigator;
+import fspotcloud.client.place.api.Slideshow;
 
 public class SlideshowImpl implements Slideshow {
 

@@ -4,7 +4,7 @@
 	<groupId>fspotcloud</groupId>
 	<artifactId>fspotcloud</artifactId>
 	<packaging>pom</packaging>
-	<version>0.40-6.4.3</version>
+	<version>0.40-6.4.4</version>
 	<name>F-Spot Cloud Java Edition</name>
 	<prerequisites>
 		<maven>3.0.0</maven>
@@ -155,7 +155,7 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
 				<version>2.5.1</version>
-				<inherited>true</inherited>
+<!-- 				<inherited>true</inherited> -->
 				<configuration>
 					<aggregate>true</aggregate>
 				</configuration>

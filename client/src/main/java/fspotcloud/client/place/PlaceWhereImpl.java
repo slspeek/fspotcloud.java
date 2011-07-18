@@ -4,6 +4,8 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.inject.Inject;
 
+import fspotcloud.client.place.api.PlaceWhere;
+
 public class PlaceWhereImpl extends PlaceGoToImpl implements PlaceWhere  {
 
 	@Inject

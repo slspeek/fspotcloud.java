@@ -1,5 +1,5 @@
 
-package fspotcloud.client.main;
+package fspotcloud.client.place;
 
 import java.util.List;
 
@@ -14,10 +14,13 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.data.IndexingUtil;
+import fspotcloud.client.main.TagServiceAsyncTestImpl;
 import fspotcloud.client.place.BasePlace;
+import fspotcloud.client.place.NavigatorImpl;
 import fspotcloud.client.place.PlaceCalculator;
-import fspotcloud.client.place.PlaceGoTo;
-import fspotcloud.client.place.PlaceWhere;
+import fspotcloud.client.place.api.Navigator;
+import fspotcloud.client.place.api.PlaceGoTo;
+import fspotcloud.client.place.api.PlaceWhere;
 
 public class NavigatorImplTest extends TestCase {
 

@@ -2,10 +2,13 @@ package fspotcloud.client.main.view;
 
 import java.util.logging.Logger;
 
-import fspotcloud.client.main.Navigator;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+
 import fspotcloud.client.main.view.api.PagerView;
 import fspotcloud.client.main.view.api.PagerView.PagerPresenter;
 import fspotcloud.client.place.BasePlace;
+import fspotcloud.client.place.api.Navigator;
 
 public class PagerPresenterImpl implements PagerPresenter {
 
@@ -21,7 +24,8 @@ public class PagerPresenterImpl implements PagerPresenter {
 	Integer offset = null;
 	boolean fullscreenTarget = false;
 
-	public PagerPresenterImpl(BasePlace place, PagerView pagerView,
+	@Inject
+	public PagerPresenterImpl(@Assisted BasePlace place, @Assisted PagerView pagerView,
 			Navigator navigator) {
 		this.place = place;
 		this.navigator = navigator;

@@ -14,12 +14,9 @@ import fspotcloud.client.demo.DemoStep;
 import fspotcloud.client.demo.DemoStepFactory;
 import fspotcloud.client.demo.ShortcutDemoStep;
 import fspotcloud.client.main.MVPSetup;
-import fspotcloud.client.main.Navigator;
-import fspotcloud.client.main.NavigatorImpl;
-import fspotcloud.client.main.Slideshow;
-import fspotcloud.client.main.SlideshowImpl;
 import fspotcloud.client.main.ui.ImagePanelViewImpl;
 import fspotcloud.client.main.ui.ImageRasterViewImpl;
+import fspotcloud.client.main.ui.ImageViewImpl;
 import fspotcloud.client.main.ui.PagerViewImpl;
 import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
@@ -27,17 +24,26 @@ import fspotcloud.client.main.ui.TimerImpl;
 import fspotcloud.client.main.ui.TreeViewImpl;
 import fspotcloud.client.main.view.FullscreenImagePanelActivity;
 import fspotcloud.client.main.view.ImagePanelActivity;
+import fspotcloud.client.main.view.ImagePresenterImpl;
+import fspotcloud.client.main.view.ImageRasterPresenterImpl;
 import fspotcloud.client.main.view.MainWindowActivityMapper;
-import fspotcloud.client.main.view.SlideShowPresenterImpl;
+import fspotcloud.client.main.view.PagerPresenterImpl;
+import fspotcloud.client.main.view.SlideshowPresenterImpl;
 import fspotcloud.client.main.view.TagCell;
 import fspotcloud.client.main.view.TreePresenterImpl;
 import fspotcloud.client.main.view.TreeSelectionHandler;
-import fspotcloud.client.main.view.api.EmbeddedImagePanelViewAssistedFactory;
-import fspotcloud.client.main.view.api.FullscreenImagePanelViewAssistedFactory;
+import fspotcloud.client.main.view.api.EmbeddedImagePanelPresenterAssistedFactory;
+import fspotcloud.client.main.view.api.FullscreenImagePanelPresenterAssistedFactory;
 import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
 import fspotcloud.client.main.view.api.ImagePanelView;
+import fspotcloud.client.main.view.api.ImagePresenterFactory;
+import fspotcloud.client.main.view.api.ImageRasterPresenterFactory;
 import fspotcloud.client.main.view.api.ImageRasterView;
+import fspotcloud.client.main.view.api.ImageView;
+import fspotcloud.client.main.view.api.ImageViewFactory;
+import fspotcloud.client.main.view.api.PagerPresenterFactory;
 import fspotcloud.client.main.view.api.PagerView;
+import fspotcloud.client.main.view.api.SlideshowPresenterFactory;
 import fspotcloud.client.main.view.api.SlideshowView;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
 import fspotcloud.client.main.view.api.TagView;
@@ -45,11 +51,15 @@ import fspotcloud.client.main.view.api.TimerInterface;
 import fspotcloud.client.main.view.api.TreeView;
 import fspotcloud.client.main.view.factory.ImagePanelActivityFactoryImpl;
 import fspotcloud.client.main.view.factory.TagPresenterFactoryImpl;
+import fspotcloud.client.place.NavigatorImpl;
 import fspotcloud.client.place.PlaceCalculator;
-import fspotcloud.client.place.PlaceGoTo;
 import fspotcloud.client.place.PlaceGoToImpl;
-import fspotcloud.client.place.PlaceWhere;
 import fspotcloud.client.place.PlaceWhereImpl;
+import fspotcloud.client.place.SlideshowImpl;
+import fspotcloud.client.place.api.Navigator;
+import fspotcloud.client.place.api.PlaceGoTo;
+import fspotcloud.client.place.api.PlaceWhere;
+import fspotcloud.client.place.api.Slideshow;
 import fspotcloud.client.view.action.KeyDispatcherProvider;
 import fspotcloud.client.view.action.api.ShortcutHandler;
 
@@ -73,7 +83,7 @@ public class AppModule extends AbstractGinModule {
 		bind(ShortcutHandler.class).toProvider(KeyDispatcherProvider.class);
 		bind(SlideshowView.class).to(SlideshowViewImpl.class);
 		bind(SlideshowView.SlideshowPresenter.class).to(
-				SlideShowPresenterImpl.class);
+				SlideshowPresenterImpl.class);
 		bind(PagerView.class).to(PagerViewImpl.class);
 		bind(TimerInterface.class).to(TimerImpl.class);
 		bind(TagPresenterFactory.class).to(TagPresenterFactoryImpl.class);
@@ -87,15 +97,36 @@ public class AppModule extends AbstractGinModule {
 		bind(Navigator.class).to(NavigatorImpl.class).in(Singleton.class);
 		bind(Slideshow.class).to(SlideshowImpl.class).in(Singleton.class);
 		bind(ImageRasterView.class).to(ImageRasterViewImpl.class);
+		install(new GinFactoryModuleBuilder().implement(
+				PagerView.PagerPresenter.class,
+				PagerPresenterImpl.class).build(
+				PagerPresenterFactory.class));
+		install(new GinFactoryModuleBuilder().implement(
+				SlideshowView.SlideshowPresenter.class,
+				SlideshowPresenterImpl.class).build(
+				SlideshowPresenterFactory.class));
+		install(new GinFactoryModuleBuilder().implement(
+				ImageRasterView.ImageRasterPresenter.class,
+				ImageRasterPresenterImpl.class).build(
+				ImageRasterPresenterFactory.class));
+		install(new GinFactoryModuleBuilder().implement(
+				ImageView.ImagePresenter.class, ImagePresenterImpl.class)
+				.build(ImagePresenterFactory.class));
+		install(new GinFactoryModuleBuilder().implement(ImageView.class,
+				ImageViewImpl.class).build(ImageViewFactory.class));
 
 		install(new GinFactoryModuleBuilder().implement(DemoStep.class,
 				ShortcutDemoStep.class).build(DemoStepFactory.class));
-		
-		install(new GinFactoryModuleBuilder().implement(ImagePanelView.ImagePanelPresenter.class,
-				FullscreenImagePanelActivity.class).build(FullscreenImagePanelViewAssistedFactory.class));
-		
-		install(new GinFactoryModuleBuilder().implement(ImagePanelView.ImagePanelPresenter.class,
-				ImagePanelActivity.class).build(EmbeddedImagePanelViewAssistedFactory.class));
+
+		install(new GinFactoryModuleBuilder().implement(
+				ImagePanelView.ImagePanelPresenter.class,
+				FullscreenImagePanelActivity.class).build(
+				FullscreenImagePanelPresenterAssistedFactory.class));
+
+		install(new GinFactoryModuleBuilder().implement(
+				ImagePanelView.ImagePanelPresenter.class,
+				ImagePanelActivity.class).build(
+				EmbeddedImagePanelPresenterAssistedFactory.class));
 
 	}
 }

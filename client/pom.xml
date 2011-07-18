@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-6.4.3</version>
+		<version>0.40-6.4.4</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>client</artifactId>
@@ -77,7 +77,7 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.3.1</version>
 				<configuration>
-					<classesDirectory>${project.build.directory}/${pom.artifactId}-${version}
+					<classesDirectory>${project.build.directory}/${project.artifactId}-${project.version}
 					</classesDirectory>
 				</configuration>
 			</plugin>
@@ -120,8 +120,9 @@
 					<extraJvmArgs>-Xmx512m</extraJvmArgs>
 					<runTarget>/FSpotCloud.html</runTarget>
 					<style>PRETTY</style>
+					<mode>htmlunit</mode>
 					<gwtVersion>${gwt.version}</gwtVersion>
-					<skipTests>true</skipTests>
+<!-- 					<skipTests>true</skipTests> -->
 				</configuration>
 				<executions>
 					<execution>

@@ -1,4 +1,4 @@
-package fspotcloud.client.place;
+package fspotcloud.client.place.api;
 
 import com.google.gwt.place.shared.Place;
 

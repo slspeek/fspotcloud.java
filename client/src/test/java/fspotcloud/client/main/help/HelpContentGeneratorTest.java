@@ -1,6 +1,7 @@
-package fspotcloud.client.main;
+package fspotcloud.client.main.help;
 
 import junit.framework.TestCase;
+import fspotcloud.client.main.help.HelpContentGenerator;
 import fspotcloud.client.view.action.KeyStroke;
 import fspotcloud.client.view.action.Shortcut;
 

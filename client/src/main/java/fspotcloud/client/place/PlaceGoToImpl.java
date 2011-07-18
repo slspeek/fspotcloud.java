@@ -4,6 +4,8 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.inject.Inject;
 
+import fspotcloud.client.place.api.PlaceGoTo;
+
 public class PlaceGoToImpl implements PlaceGoTo {
 
 	protected final PlaceController placeController;

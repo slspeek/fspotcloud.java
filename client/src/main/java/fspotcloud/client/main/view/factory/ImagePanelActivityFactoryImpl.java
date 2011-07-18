@@ -2,21 +2,21 @@ package fspotcloud.client.main.view.factory;
 
 import com.google.inject.Inject;
 
-import fspotcloud.client.main.view.api.EmbeddedImagePanelViewAssistedFactory;
-import fspotcloud.client.main.view.api.FullscreenImagePanelViewAssistedFactory;
+import fspotcloud.client.main.view.api.EmbeddedImagePanelPresenterAssistedFactory;
+import fspotcloud.client.main.view.api.FullscreenImagePanelPresenterAssistedFactory;
 import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
 import fspotcloud.client.main.view.api.ImagePanelView.ImagePanelPresenter;
 import fspotcloud.client.place.BasePlace;
 
 public class ImagePanelActivityFactoryImpl implements ImagePanelActivityFactory {
 
-	private final EmbeddedImagePanelViewAssistedFactory embeddedFactory;
-	private final FullscreenImagePanelViewAssistedFactory fullscreenFactory;
+	private final EmbeddedImagePanelPresenterAssistedFactory embeddedFactory;
+	private final FullscreenImagePanelPresenterAssistedFactory fullscreenFactory;
 	
 	@Inject
 	public ImagePanelActivityFactoryImpl(
-			EmbeddedImagePanelViewAssistedFactory embeddedFactory,
-			FullscreenImagePanelViewAssistedFactory fullscreenFactory) {
+			EmbeddedImagePanelPresenterAssistedFactory embeddedFactory,
+			FullscreenImagePanelPresenterAssistedFactory fullscreenFactory) {
 		super();
 		this.embeddedFactory = embeddedFactory;
 		this.fullscreenFactory = fullscreenFactory;

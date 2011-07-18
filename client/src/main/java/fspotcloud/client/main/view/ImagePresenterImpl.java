@@ -3,6 +3,8 @@ package fspotcloud.client.main.view;
 import java.util.logging.Logger;
 
 import com.google.gwt.event.shared.EventBus;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.client.main.shared.ZoomViewEvent;
 import fspotcloud.client.main.view.api.ImageView;
@@ -20,8 +22,11 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	final private boolean thumb;
 	final private EventBus eventBus;
 
-	public ImagePresenterImpl(int maxWidth, int maxHeight, BasePlace place,
-			ImageView imageView, boolean thumb, EventBus eventBus) {
+	@Inject
+	public ImagePresenterImpl(@Assisted("maxWidth") int maxWidth,
+			@Assisted("maxHeight") int maxHeight, @Assisted BasePlace place,
+			@Assisted ImageView imageView, @Assisted boolean thumb,
+			EventBus eventBus) {
 		this.maxWidth = maxWidth;
 		this.maxHeight = maxHeight;
 		tagId = place.getTagId();
@@ -32,7 +37,7 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	}
 
 	public void init() {
-		log.info("init");
+		log.info("init: given size (" + +maxWidth + ", " + maxHeight + ")");
 		imageView.setPresenter(this);
 		setImage();
 		imageView.setMaxWidth(maxWidth);

@@ -29,7 +29,7 @@ public class ActionModule extends AbstractGinModule {
 
 	@Override
 	protected void configure() {
-	
+		
 		bind(AllUserActions.class).to(AllShortcuts.class);
 		
 		bind(NavigationActions.class).to(NavigationActionsImpl.class);

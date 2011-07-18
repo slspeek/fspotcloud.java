@@ -1,4 +1,4 @@
-package fspotcloud.client.main;
+package fspotcloud.client.place.api;
 
 public interface Slideshow {
 	

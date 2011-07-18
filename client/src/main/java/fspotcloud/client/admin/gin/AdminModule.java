@@ -21,8 +21,8 @@ import fspotcloud.client.main.gin.PlaceControllerProvider;
 import fspotcloud.client.main.ui.TreeViewImpl;
 import fspotcloud.client.main.view.TagCell;
 import fspotcloud.client.main.view.api.TreeView;
-import fspotcloud.client.place.PlaceGoTo;
 import fspotcloud.client.place.PlaceGoToImpl;
+import fspotcloud.client.place.api.PlaceGoTo;
 
 
 public class AdminModule extends AbstractGinModule {

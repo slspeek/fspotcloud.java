@@ -4,9 +4,9 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
 import fspotcloud.client.demo.DemoAction;
-import fspotcloud.client.main.HelpAction;
 import fspotcloud.client.main.ToggleFullscreenAction;
 import fspotcloud.client.main.TreeFocusAction;
+import fspotcloud.client.main.help.HelpAction;
 import fspotcloud.client.main.shared.ApplicationEvent;
 
 public class ApplicationEventHandler implements ApplicationEvent.Handler {

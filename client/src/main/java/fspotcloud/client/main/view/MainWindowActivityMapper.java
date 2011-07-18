@@ -7,10 +7,10 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 
-import fspotcloud.client.main.Navigator;
 import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
 import fspotcloud.client.place.BasePlace;
+import fspotcloud.client.place.api.Navigator;
 
 public class MainWindowActivityMapper implements ActivityMapper {
 	private static final Logger log = Logger
