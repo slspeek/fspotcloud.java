@@ -8,14 +8,21 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.inject.Singleton;
 
-import fspotcloud.client.admin.ui.UserButtonViewImpl;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.demo.DemoStep;
 import fspotcloud.client.demo.DemoStepFactory;
 import fspotcloud.client.demo.ShortcutDemoStep;
 import fspotcloud.client.main.MVPSetup;
-import fspotcloud.client.main.ui.ButtonPanelViewImpl;
+import fspotcloud.client.main.TagServiceAsyncTestImpl;
+import fspotcloud.client.main.shared.ApplicationEventFactory;
+import fspotcloud.client.main.shared.ApplicationEventProviderFactory;
+import fspotcloud.client.main.shared.NavigationEventFactory;
+import fspotcloud.client.main.shared.NavigationEventProviderFactory;
+import fspotcloud.client.main.shared.RasterEventFactory;
+import fspotcloud.client.main.shared.RasterEventProviderFactory;
+import fspotcloud.client.main.shared.SlideshowEventFactory;
+import fspotcloud.client.main.shared.SlideshowEventProviderFactory;
 import fspotcloud.client.main.ui.ImagePanelViewImpl;
 import fspotcloud.client.main.ui.ImageRasterViewImpl;
 import fspotcloud.client.main.ui.ImageViewImpl;
@@ -24,7 +31,6 @@ import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
 import fspotcloud.client.main.ui.TimerImpl;
 import fspotcloud.client.main.ui.TreeViewImpl;
-import fspotcloud.client.main.view.ButtonPanelPresenterImpl;
 import fspotcloud.client.main.view.FullscreenImagePanelActivity;
 import fspotcloud.client.main.view.ImagePanelActivity;
 import fspotcloud.client.main.view.ImagePresenterImpl;
@@ -35,9 +41,6 @@ import fspotcloud.client.main.view.SlideshowPresenterImpl;
 import fspotcloud.client.main.view.TagCell;
 import fspotcloud.client.main.view.TreePresenterImpl;
 import fspotcloud.client.main.view.TreeSelectionHandler;
-import fspotcloud.client.main.view.UserButtonPresenterImpl;
-import fspotcloud.client.main.view.api.ButtonPanelPresenterFactory;
-import fspotcloud.client.main.view.api.ButtonPanelView;
 import fspotcloud.client.main.view.api.EmbeddedImagePanelPresenterAssistedFactory;
 import fspotcloud.client.main.view.api.FullscreenImagePanelPresenterAssistedFactory;
 import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
@@ -55,8 +58,6 @@ import fspotcloud.client.main.view.api.TagPresenterFactory;
 import fspotcloud.client.main.view.api.TagView;
 import fspotcloud.client.main.view.api.TimerInterface;
 import fspotcloud.client.main.view.api.TreeView;
-import fspotcloud.client.main.view.api.UserButtonFactory;
-import fspotcloud.client.main.view.api.UserButtonView;
 import fspotcloud.client.main.view.factory.ImagePanelActivityFactoryImpl;
 import fspotcloud.client.main.view.factory.TagPresenterFactoryImpl;
 import fspotcloud.client.place.NavigatorImpl;
@@ -68,16 +69,30 @@ import fspotcloud.client.place.api.Navigator;
 import fspotcloud.client.place.api.PlaceGoTo;
 import fspotcloud.client.place.api.PlaceWhere;
 import fspotcloud.client.place.api.Slideshow;
+import fspotcloud.client.view.action.AllShortcuts;
+import fspotcloud.client.view.action.ApplicationActionsImpl;
 import fspotcloud.client.view.action.KeyDispatcherProvider;
+import fspotcloud.client.view.action.NavigationActionsImpl;
+import fspotcloud.client.view.action.RasterActionsImpl;
+import fspotcloud.client.view.action.Shortcut;
+import fspotcloud.client.view.action.SlideshowActionsImpl;
+import fspotcloud.client.view.action.api.AllUserActions;
+import fspotcloud.client.view.action.api.ApplicationActions;
+import fspotcloud.client.view.action.api.NavigationActions;
+import fspotcloud.client.view.action.api.RasterActions;
+import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
 import fspotcloud.client.view.action.api.ShortcutHandler;
+import fspotcloud.client.view.action.api.SlideshowActions;
+import fspotcloud.client.view.action.api.UserAction;
+import fspotcloud.rpc.TagServiceAsync;
 
-public class AppModule extends AbstractGinModule {
+public class FakeForGrapherAppModule extends AbstractGinModule {
 
 	@Override
 	protected void configure() {
-		bind(MainWindowActivityMapper.class).in(Singleton.class);
-		bind(DataManager.class).to(DataManagerImpl.class).in(Singleton.class);
-		bind(MVPSetup.class).in(Singleton.class);
+		bind(MainWindowActivityMapper.class);
+		bind(DataManager.class).to(DataManagerImpl.class);
+		bind(MVPSetup.class);
 		bind(PlaceCalculator.class);
 		bind(TagCell.class);
 		bind(TagView.class).to(TagViewImpl.class);
@@ -85,9 +100,9 @@ public class AppModule extends AbstractGinModule {
 		bind(PlaceGoTo.class).to(PlaceGoToImpl.class);
 		bind(PlaceWhere.class).to(PlaceWhereImpl.class);
 		bind(PlaceController.class).toProvider(PlaceControllerProvider.class);
-		bind(PlaceControllerProvider.class).in(Singleton.class);
-		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
-		bind(KeyDispatcherProvider.class).in(Singleton.class);
+		bind(PlaceControllerProvider.class);
+		bind(EventBus.class).to(SimpleEventBus.class);
+		bind(KeyDispatcherProvider.class);
 		bind(ShortcutHandler.class).toProvider(KeyDispatcherProvider.class);
 		bind(SlideshowView.class).to(SlideshowViewImpl.class);
 		bind(SlideshowView.SlideshowPresenter.class).to(
@@ -95,15 +110,13 @@ public class AppModule extends AbstractGinModule {
 		bind(PagerView.class).to(PagerViewImpl.class);
 		bind(TimerInterface.class).to(TimerImpl.class);
 		bind(TagPresenterFactory.class).to(TagPresenterFactoryImpl.class);
-		bind(TreeView.TreePresenter.class).to(TreePresenterImpl.class).in(
-				Singleton.class);
-		bind(SelectionChangeEvent.Handler.class).to(TreeSelectionHandler.class)
-				.in(Singleton.class);
-		bind(TreeView.class).to(TreeViewImpl.class).in(Singleton.class);
+		bind(TreeView.TreePresenter.class).to(TreePresenterImpl.class);
+		bind(SelectionChangeEvent.Handler.class).to(TreeSelectionHandler.class);
+		bind(TreeView.class).to(TreeViewImpl.class);
 		bind(ImagePanelActivityFactory.class).to(
 				ImagePanelActivityFactoryImpl.class);
-		bind(Navigator.class).to(NavigatorImpl.class).in(Singleton.class);
-		bind(Slideshow.class).to(SlideshowImpl.class).in(Singleton.class);
+		bind(Navigator.class).to(NavigatorImpl.class);
+		bind(Slideshow.class).to(SlideshowImpl.class);
 		bind(ImageRasterView.class).to(ImageRasterViewImpl.class);
 		install(new GinFactoryModuleBuilder().implement(
 				PagerView.PagerPresenter.class, PagerPresenterImpl.class)
@@ -134,14 +147,34 @@ public class AppModule extends AbstractGinModule {
 				ImagePanelView.ImagePanelPresenter.class,
 				ImagePanelActivity.class).build(
 				EmbeddedImagePanelPresenterAssistedFactory.class));
-		bind(UserButtonView.class).to(UserButtonViewImpl.class);
-		install(new GinFactoryModuleBuilder().implement(
-				UserButtonView.UserButtonPresenter.class,
-				UserButtonPresenterImpl.class).build(UserButtonFactory.class));
-		install(new GinFactoryModuleBuilder().implement(ButtonPanelView.ButtonPanelPresenter.class,
-				ButtonPanelPresenterImpl.class).build(ButtonPanelPresenterFactory.class));
-		bind(ButtonPanelView.class).to(ButtonPanelViewImpl.class);
-		
+
+		bind(AllUserActions.class).to(AllShortcuts.class);
+
+		bind(NavigationActions.class).to(NavigationActionsImpl.class);
+		bind(RasterActions.class).to(RasterActionsImpl.class);
+		bind(SlideshowActions.class).to(SlideshowActionsImpl.class);
+		bind(ApplicationActions.class).to(ApplicationActionsImpl.class);
+		bind(TagServiceAsync.class).to(TagServiceAsyncTestImpl.class);
+
+		install(new GinFactoryModuleBuilder()
+				.build(NavigationEventProviderFactory.class));
+		install(new GinFactoryModuleBuilder()
+				.build(SlideshowEventProviderFactory.class));
+		install(new GinFactoryModuleBuilder()
+				.build(RasterEventProviderFactory.class));
+		install(new GinFactoryModuleBuilder()
+				.build(ApplicationEventProviderFactory.class));
+
+		install(new GinFactoryModuleBuilder()
+				.build(NavigationEventFactory.class));
+		install(new GinFactoryModuleBuilder()
+				.build(SlideshowEventFactory.class));
+		install(new GinFactoryModuleBuilder()
+				.build(ApplicationEventFactory.class));
+		install(new GinFactoryModuleBuilder().build(RasterEventFactory.class));
+
+		install(new GinFactoryModuleBuilder().implement(UserAction.class,
+				Shortcut.class).build(ShortcutAssistedFactory.class));
 
 	}
 }

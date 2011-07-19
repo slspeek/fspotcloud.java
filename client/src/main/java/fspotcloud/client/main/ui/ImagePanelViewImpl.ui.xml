@@ -3,21 +3,23 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:my="urn:import:fspotcloud.client.main.ui">
 	<ui:style>
 		table {
-	margin: auto;
-}
-		
+			margin: auto;
+		}
 	</ui:style>
 	<g:DockLayoutPanel ui:field="mainPanel">
 		<g:center>
 			<my:ImageRasterViewImpl></my:ImageRasterViewImpl>
 		</g:center>
-		<g:south size="50">
+		<g:south size="100">
 			<g:HTMLPanel ui:field="buttonPanel">
 				<center>
-					<g:HorizontalPanel>
-						<my:PagerViewImpl></my:PagerViewImpl>
-						<my:SlideshowViewImpl></my:SlideshowViewImpl>
-					</g:HorizontalPanel>
+					<g:VerticalPanel>
+						<g:HorizontalPanel>
+							<my:PagerViewImpl></my:PagerViewImpl>
+							<my:SlideshowViewImpl></my:SlideshowViewImpl>
+						</g:HorizontalPanel>
+						<my:ButtonPanelViewImpl></my:ButtonPanelViewImpl>
+					</g:VerticalPanel>
 				</center>
 			</g:HTMLPanel>
 		</g:south>

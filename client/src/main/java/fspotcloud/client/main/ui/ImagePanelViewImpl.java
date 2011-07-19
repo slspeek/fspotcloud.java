@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.inject.Inject;
 
+import fspotcloud.client.main.view.api.ButtonPanelView;
 import fspotcloud.client.main.view.api.ImagePanelView;
 import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.PagerView;
@@ -33,6 +34,7 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	final private ImageRasterView imageRasterView;
 	final private PagerView pagerView;
 	final private SlideshowView slideshowView;
+	final private ButtonPanelView buttonPanelView;
 	@UiField
 	DockLayoutPanel mainPanel;
 	@UiField
@@ -40,7 +42,8 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 
 	@Inject
 	public ImagePanelViewImpl(ImageRasterView imageRasterView, PagerView pagerView,
-			SlideshowView slideshowView) {
+			SlideshowView slideshowView, ButtonPanelView buttonPanelView) {
+		this.buttonPanelView = buttonPanelView;
 		this.imageRasterView = imageRasterView;
 		this.pagerView = pagerView;
 		this.slideshowView = slideshowView;
@@ -65,7 +68,14 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 		return (SlideshowViewImpl) slideshowView;
 	}
 
+	@UiFactory
+	public ButtonPanelViewImpl getButtonPanelView() {
+		log.info("getButtonPanelView called");
+		return (ButtonPanelViewImpl) buttonPanelView;
+	}
+
 	public void setSize(int width, int height) {
 		//mainPanel.setPixelSize(width, height);
 	}
-}
+
+	}

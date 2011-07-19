@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
+import fspotcloud.client.main.view.api.ButtonPanelPresenterFactory;
 import fspotcloud.client.main.view.api.ImagePanelView;
 import fspotcloud.client.main.view.api.ImageRasterPresenterFactory;
 import fspotcloud.client.main.view.api.PagerPresenterFactory;
@@ -20,10 +21,13 @@ public class FullscreenImagePanelActivity extends ImagePanelActivity {
 
 	@Inject
 	public FullscreenImagePanelActivity(@Assisted BasePlace place,
-			ImagePanelView imagePanelView,ImageRasterPresenterFactory imageRasterFactory,
+			ImagePanelView imagePanelView,
+			ImageRasterPresenterFactory imageRasterFactory,
 			PagerPresenterFactory pagerPresenterFactory,
-			SlideshowPresenterFactory slideshowPresenterFactory) {
-		super(place, imagePanelView, imageRasterFactory, pagerPresenterFactory, slideshowPresenterFactory);
+			SlideshowPresenterFactory slideshowPresenterFactory,
+			ButtonPanelPresenterFactory buttonPanelPresenterFactory) {
+		super(place, imagePanelView, imageRasterFactory, pagerPresenterFactory,
+				slideshowPresenterFactory, buttonPanelPresenterFactory);
 	}
 
 	@Override

@@ -16,5 +16,7 @@ public interface ImagePanelView extends IsWidget {
 
 	SlideshowView getSlideshowView();
 	
+	ButtonPanelView getButtonPanelView();
+	
 	void setSize(int width, int height);
 }
