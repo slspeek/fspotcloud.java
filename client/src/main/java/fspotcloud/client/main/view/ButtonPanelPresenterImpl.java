@@ -32,9 +32,7 @@ public class ButtonPanelPresenterImpl implements
 	@Override
 	public void init() {
 		log.info("init called!!");
-		addActionGroup(allActions.navigation());
 		addActionGroup(allActions.raster());
-		addActionGroup(allActions.slideshow());
 		addActionGroup(allActions.application());
 	}
 	
