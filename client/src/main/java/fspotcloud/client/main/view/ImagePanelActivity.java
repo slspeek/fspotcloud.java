@@ -8,6 +8,8 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
+import fspotcloud.client.main.view.api.ButtonPanelPresenterFactory;
+import fspotcloud.client.main.view.api.ButtonPanelView;
 import fspotcloud.client.main.view.api.ImagePanelView;
 import fspotcloud.client.main.view.api.ImagePanelView.ImagePanelPresenter;
 import fspotcloud.client.main.view.api.ImageRasterPresenterFactory;
@@ -24,25 +26,22 @@ public class ImagePanelActivity extends AbstractActivity implements
 	final protected ImagePanelView imagePanelView;
 	final private ImageRasterView.ImageRasterPresenter imageRasterPresenter;
 	final private SlideshowView.SlideshowPresenter slideshowPresenter;
-	final private ImageRasterPresenterFactory imageRasterFactory;
-	final private PagerPresenterFactory pagerPresenterFactory;
-	final private SlideshowPresenterFactory slideshowPresenterFactory;
-
+	final private ButtonPanelView.ButtonPanelPresenter buttonPanelPresenter;
 	@Inject
 	public ImagePanelActivity(@Assisted BasePlace place,
 			ImagePanelView imagePanelView,
 			ImageRasterPresenterFactory imageRasterFactory,
 			PagerPresenterFactory pagerPresenterFactory,
-			SlideshowPresenterFactory slideshowPresenterFactory) {
+			SlideshowPresenterFactory slideshowPresenterFactory,
+			ButtonPanelPresenterFactory buttonPanelPresenterFactory) {
 		this.imagePanelView = imagePanelView;
-		this.slideshowPresenterFactory = slideshowPresenterFactory;
-		this.pagerPresenterFactory = pagerPresenterFactory;
-		this.imageRasterFactory = imageRasterFactory;
 		pagerPresenterFactory.get(place, imagePanelView.getPagerView());
 		this.imageRasterPresenter = imageRasterFactory.get(place,
 				imagePanelView.getImageRasterView());
 		this.slideshowPresenter = slideshowPresenterFactory.get(imagePanelView
 				.getSlideshowView());
+		this.buttonPanelPresenter = buttonPanelPresenterFactory.get(imagePanelView.getButtonPanelView());
+		
 	}
 
 	@Override
@@ -57,5 +56,6 @@ public class ImagePanelActivity extends AbstractActivity implements
 		slideshowPresenter.init();
 		log.info(imageRasterPresenter.getWidth() + ", "
 				+ imageRasterPresenter.getHeight());
+		buttonPanelPresenter.init();
 	}
 }
