@@ -40,7 +40,6 @@ public class UserButtonPresenterImpl implements UserButtonView.UserButtonPresent
 
 	@Override
 	public Widget getView() {
-		log.info("getWidget called");
 		return view.asWidget();
 	}
 	

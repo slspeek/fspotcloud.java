@@ -8,10 +8,9 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
-import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Inject;
 
+import fspotcloud.client.main.ui.AppWidget;
 import fspotcloud.client.main.view.MainWindowActivityMapper;
 import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.MainPlaceHistoryMapper;
@@ -21,12 +20,13 @@ public class MVPSetup {
 	private static final Logger log = Logger
 			.getLogger(MVPSetup.class.getName());
 	final private Place defaultPlace = new BasePlace("latest", "latest", 1, 1, true);
-	final private SimplePanel appWidget = new SimplePanel();
+	final private AppWidget appWidget = new AppWidget();
 	final private EventBus eventBus;
 	final private MainWindowActivityMapper activityMapper;
 	final private PlaceController placeController;
 	final private GlobalShortcutController keyboardHandler;
 	final private EventHandlersSetup eventSetup;
+	
 	@Inject
 	public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
 			PlaceController placeController,
@@ -41,9 +41,8 @@ public class MVPSetup {
 	}
 
 	public void setup() {
-		
 		keyboardHandler.setup();
-		log.info("New event setup");
+		log.info("Starting MVP setup");
 		eventSetup.setUp();
 		ActivityManager activityManager = new ActivityManager(activityMapper,
 				eventBus);
@@ -54,8 +53,6 @@ public class MVPSetup {
 		PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(
 				historyMapper);
 		historyHandler.register(placeController, eventBus, defaultPlace);
-
-		RootLayoutPanel.get().add(appWidget);
 		
 		log.info("Just before handleCurrentHistory()");
 		historyHandler.handleCurrentHistory();

@@ -23,7 +23,7 @@ public class TagEntryPoint implements EntryPoint {
 			log.info("gin fininshed the constuction of the application graph");
 			setup.setup();
 		} catch (Throwable e) {
-			log.log(Level.SEVERE, "Uncaught exception", e);
+			log.log(Level.SEVERE, "Uncaught exception in MVP setup", e);
 		}
 	}
 }

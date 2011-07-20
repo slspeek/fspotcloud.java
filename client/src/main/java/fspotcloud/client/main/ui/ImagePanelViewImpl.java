@@ -7,7 +7,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.inject.Inject;
 
@@ -20,7 +19,6 @@ import fspotcloud.client.main.view.api.SlideshowView;
 public class ImagePanelViewImpl extends ResizeComposite implements
 		ImagePanelView {
 
-	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(ImagePanelViewImpl.class
 			.getName());
 
@@ -38,18 +36,20 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	@UiField
 	DockLayoutPanel mainPanel;
 	@UiField
-	HTMLPanel buttonPanel;
+	ImageRasterView imageRaster;
+	@UiField
+	ButtonPanelView genericButtons;
 
 	@Inject
-	public ImagePanelViewImpl(ImageRasterView imageRasterView, PagerView pagerView,
-			SlideshowView slideshowView, ButtonPanelView buttonPanelView) {
+	public ImagePanelViewImpl(ImageRasterView imageRasterView,
+			PagerView pagerView, SlideshowView slideshowView,
+			ButtonPanelView buttonPanelView) {
 		this.buttonPanelView = buttonPanelView;
 		this.imageRasterView = imageRasterView;
 		this.pagerView = pagerView;
 		this.slideshowView = slideshowView;
 		initWidget(uiBinder.createAndBindUi(this));
 		mainPanel.addStyleName("fsc-image-panel-view");
-		buttonPanel.addStyleName("fsc-image-button-panel");
 		imageRasterView.asWidget().addStyleName("fsc-image-raster-view");
 	}
 
@@ -70,12 +70,18 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 
 	@UiFactory
 	public ButtonPanelViewImpl getButtonPanelView() {
-		log.info("getButtonPanelView called");
+
 		return (ButtonPanelViewImpl) buttonPanelView;
 	}
 
 	public void setSize(int width, int height) {
-		//mainPanel.setPixelSize(width, height);
+		// mainPanel.setPixelSize(width, height);
 	}
 
+	@Override
+	public void onResize() {
+		log.info("%%%%%%%%%%ON RESIZE");
+		super.onResize();
 	}
+
+}

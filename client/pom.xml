@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-6.4.5</version>
+		<version>0.40-6.4.6</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>client</artifactId>
@@ -124,7 +124,7 @@
 					<style>PRETTY</style>
 					<mode>htmlunit</mode>
 					<gwtVersion>${gwt.version}</gwtVersion>
-					<!-- <skipTests>true</skipTests> -->
+					<skipTests>true</skipTests>
 				</configuration>
 				<executions>
 					<execution>

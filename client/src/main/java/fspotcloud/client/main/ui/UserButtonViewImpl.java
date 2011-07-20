@@ -1,4 +1,4 @@
-package fspotcloud.client.admin.ui;
+package fspotcloud.client.main.ui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
