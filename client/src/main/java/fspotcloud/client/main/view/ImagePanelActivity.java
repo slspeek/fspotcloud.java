@@ -41,21 +41,26 @@ public class ImagePanelActivity extends AbstractActivity implements
 		this.slideshowPresenter = slideshowPresenterFactory.get(imagePanelView
 				.getSlideshowView());
 		this.buttonPanelPresenter = buttonPanelPresenterFactory.get(imagePanelView.getButtonPanelView());
-		
 	}
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
+		log.info("In start before setWidget panelView: size " + imagePanelView.asWidget().getOffsetWidth() + ", "
+				+ imagePanelView.asWidget().getOffsetHeight());
 		panel.setWidget(imagePanelView);
+		log.info("In start after setWidget panelView: size " + imagePanelView.asWidget().getOffsetWidth() + ", "
+				+ imagePanelView.asWidget().getOffsetHeight());
+		imageRasterPresenter.init();
+		
 	}
 
 	@Override
 	public void init() {
 		log.info("init");
-		imageRasterPresenter.init();
+		
 		slideshowPresenter.init();
-		log.info(imageRasterPresenter.getWidth() + ", "
-				+ imageRasterPresenter.getHeight());
+		log.info("panelView: size " + imagePanelView.asWidget().getOffsetWidth() + ", "
+				+ imagePanelView.asWidget().getOffsetHeight());
 		buttonPanelPresenter.init();
 	}
 }

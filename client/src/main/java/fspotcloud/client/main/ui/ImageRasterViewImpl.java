@@ -17,21 +17,24 @@ import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.main.view.api.ImageViewFactory;
 
-public class ImageRasterViewImpl extends ResizeComposite implements ImageRasterView {
+public class ImageRasterViewImpl extends ResizeComposite implements
+		ImageRasterView {
 
 	@SuppressWarnings("unused")
-	private static final Logger log = Logger.getLogger(ImageRasterViewImpl.class
-			.getName());
+	private static final Logger log = Logger
+			.getLogger(ImageRasterViewImpl.class.getName());
 
 	private static ImageRasterViewImplUiBinder uiBinder = GWT
 			.create(ImageRasterViewImplUiBinder.class);
 
-	interface ImageRasterViewImplUiBinder extends UiBinder<Widget, ImageRasterViewImpl> {
+	interface ImageRasterViewImplUiBinder extends
+			UiBinder<Widget, ImageRasterViewImpl> {
 	}
 
 	@UiField
 	SimplePanel simplePanel;
 	private final ImageViewFactory imageViewFactory;
+	private ImageRasterView.ImageRasterPresenter presenter;
 
 	@Inject
 	public ImageRasterViewImpl(ImageViewFactory imageViewFactory) {
@@ -43,16 +46,34 @@ public class ImageRasterViewImpl extends ResizeComposite implements ImageRasterV
 	@Override
 	public List<ImageView> buildRaster(int rowCount, int columnCount) {
 		Grid grid = new Grid(rowCount, columnCount);
-		simplePanel.setWidget(grid);
+		
 		List<ImageView> result = new ArrayList<ImageView>();
 		for (int row = 0; row < rowCount; row++) {
 			for (int column = 0; column < columnCount; column++) {
-				ImageView view = imageViewFactory.get(column+"x"+row);
+				ImageView view = imageViewFactory.get(column + "x" + row);
 				grid.setWidget(row, column, view.asWidget());
 				result.add(view);
 			}
 		}
+		simplePanel.setWidget(grid);
+		log.info("At end of buildraster: size: ("
+				+ getOffsetWidth()+ ", "
+				+ getOffsetWidth() + ")");
+		log.info("At end of buildraster: simple panel size: ("
+				+ simplePanel.getOffsetWidth() + ", "
+				+ simplePanel.getOffsetHeight() + ")");
 		return result;
 	}
-	
+
+	@Override
+	public void onResize() {
+		log.info("Current size: " + getOffsetWidth());
+		presenter.onResize();
+		super.onResize();
+	}
+
+	@Override
+	public void setPresenter(ImageRasterPresenter presenter) {
+		this.presenter = presenter;
+	}
 }

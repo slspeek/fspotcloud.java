@@ -3,7 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
 		table {
-			width: 100%;
+			
 			}
 	</ui:style>
 	<g:HorizontalPanel ui:field="mainPanel">

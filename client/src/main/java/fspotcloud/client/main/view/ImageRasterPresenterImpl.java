@@ -1,5 +1,6 @@
 package fspotcloud.client.main.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -30,6 +31,7 @@ public class ImageRasterPresenterImpl implements
 	final private Navigator pager;
 	final private ImagePresenterFactory imagePresenterFactory;
 	List<ImageView> imageViewList;
+	List<ImageView.ImagePresenter> imagePresenterList = new ArrayList<ImageView.ImagePresenter>();
 
 	@Inject
 	public ImageRasterPresenterImpl(@Assisted BasePlace place,
@@ -48,16 +50,17 @@ public class ImageRasterPresenterImpl implements
 
 	public void init() {
 		log.info("init");
+		imageRasterView.setPresenter(this);
 		imageViewList = imageRasterView.buildRaster(rowCount, columnCount);
 		setImages();
 	}
 
 	public int getWidth() {
-		return imageRasterView.asWidget().getElement().getClientWidth();
+		return imageRasterView.asWidget().getOffsetWidth();
 	}
 
 	public int getHeight() {
-		return imageRasterView.asWidget().getElement().getClientHeight();
+		return imageRasterView.asWidget().getOffsetHeight();
 	}
 	
 	private int getImageWidth() {
@@ -88,11 +91,21 @@ public class ImageRasterPresenterImpl implements
 	}
 
 	private void setImages(List<BasePlace> result) {
+		imagePresenterList.clear();
 		for (int i = 0; i < result.size(); i++) {
 			ImageView.ImagePresenter presenter = imagePresenterFactory.get(
 					getImageWidth(), getImageHeight(), result.get(i), imageViewList.get(i),
 					thumb);
+			imagePresenterList.add(presenter);
 			presenter.init();
+		}
+	}
+
+	@Override
+	public void onResize() {
+		for (ImageView.ImagePresenter presenter: imagePresenterList) {
+			presenter.setMaxWidth(getImageWidth());
+			presenter.setMaxHeight(getImageHeight());
 		}
 	}
 }

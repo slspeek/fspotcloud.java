@@ -6,7 +6,8 @@ public interface ImageView extends IsWidget {
 
 	interface ImagePresenter {
 		void init();
-
+		void setMaxWidth(int width);
+		void setMaxHeight(int height);
 		void imageClicked();
 	}
 

@@ -8,7 +8,6 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.inject.Singleton;
 
-import fspotcloud.client.admin.ui.UserButtonViewImpl;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.demo.DemoStep;
@@ -24,6 +23,7 @@ import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
 import fspotcloud.client.main.ui.TimerImpl;
 import fspotcloud.client.main.ui.TreeViewImpl;
+import fspotcloud.client.main.ui.UserButtonViewImpl;
 import fspotcloud.client.main.view.ButtonPanelPresenterImpl;
 import fspotcloud.client.main.view.FullscreenImagePanelActivity;
 import fspotcloud.client.main.view.ImagePanelActivity;

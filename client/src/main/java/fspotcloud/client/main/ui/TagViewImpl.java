@@ -10,7 +10,6 @@ import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResizeComposite;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -28,6 +27,8 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	interface TagViewImplUiBinder extends UiBinder<Widget, TagViewImpl> {
 	}
 
+	private final TreeView treeView;
+
 	@UiField
 	DockLayoutPanel mainPanel;
 	@UiField
@@ -38,13 +39,12 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	@UiField
 	Label statusLabel;
 
-	TreeView treeView;
 	@UiField
-	SimplePanel imageViewPanel;
-
+	DockLayoutPanel imageViewPanel;
+	
 	@Inject
 	public TagViewImpl(TreeView treeView) {
-		this.treeView =  treeView;
+		this.treeView = treeView;
 		initWidget(uiBinder.createAndBindUi(this));
 		mainPanel.addStyleName("fsc-tag");
 		horizontalSplitPanel.addStyleName("fsc-tag-split-panel");
@@ -56,7 +56,6 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 
 	@UiFactory
 	public TreeViewImpl getView() {
-		log.info("getView");
 		return (TreeViewImpl) treeView;
 	}
 
@@ -67,12 +66,11 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 
 	@Override
 	public HasOneWidget getImageViewPanelContainer() {
-		return imageViewPanel;
+		return new HasOneWidgetAdapter(imageViewPanel);
 	}
 
 	@Override
 	public void setSize(int width, int height) {
-		mainPanel.setPixelSize(width, height);
+		// mainPanel.setPixelSize(width, height);
 	}
-	
 }

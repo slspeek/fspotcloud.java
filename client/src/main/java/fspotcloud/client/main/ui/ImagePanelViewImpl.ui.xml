@@ -8,20 +8,11 @@
 	</ui:style>
 	<g:DockLayoutPanel ui:field="mainPanel">
 		<g:center>
-			<my:ImageRasterViewImpl></my:ImageRasterViewImpl>
+			<my:ImageRasterViewImpl width="100%" height="100%"
+				ui:field="imageRaster"></my:ImageRasterViewImpl>
 		</g:center>
-		<g:south size="100">
-			<g:HTMLPanel ui:field="buttonPanel">
-				<center>
-					<g:VerticalPanel>
-						<g:HorizontalPanel>
-							<my:PagerViewImpl></my:PagerViewImpl>
-							<my:SlideshowViewImpl></my:SlideshowViewImpl>
-						</g:HorizontalPanel>
-						<my:ButtonPanelViewImpl></my:ButtonPanelViewImpl>
-					</g:VerticalPanel>
-				</center>
-			</g:HTMLPanel>
+		<g:south size="26">
+			<my:ButtonPanelViewImpl ui:field="genericButtons"></my:ButtonPanelViewImpl>
 		</g:south>
 	</g:DockLayoutPanel>
 </ui:UiBinder> 

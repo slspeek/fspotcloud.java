@@ -24,7 +24,6 @@ public class KeyDispatcher implements ShortcutHandler {
 		}
 		keys[0] = shortcut.getKey().getKeyCode();
 		for (int key : keys) {
-			log.info("Putting: " + key + " " + shortcut.getCaption());
 			registeredActions.put(key, shortcut);
 		}
 	}

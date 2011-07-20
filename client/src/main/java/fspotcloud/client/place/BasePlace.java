@@ -105,7 +105,7 @@ public class BasePlace extends Place implements ViewingPlace {
 		public BasePlace getPlace(String token) {
 			TokenizerUtil util = new TokenizerUtil(token);
 			return new BasePlace(util.getTagId(), util.getPhotoId(),
-					util.getColumnCount(), util.getRowCount());
+					util.getColumnCount(), util.getRowCount(), util.isTreeVisible());
 		}
 
 		@Override

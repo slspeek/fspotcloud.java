@@ -14,8 +14,6 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	private static final Logger log = Logger.getLogger(ImagePresenterImpl.class
 			.getName());
 
-	final int maxWidth;
-	final int maxHeight;
 	final private ImageView imageView;
 	final private String tagId;
 	final private String photoId;
@@ -27,21 +25,18 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 			@Assisted("maxHeight") int maxHeight, @Assisted BasePlace place,
 			@Assisted ImageView imageView, @Assisted boolean thumb,
 			EventBus eventBus) {
-		this.maxWidth = maxWidth;
-		this.maxHeight = maxHeight;
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
 		this.imageView = imageView;
 		this.thumb = thumb;
 		this.eventBus = eventBus;
+		setMaxWidth(maxWidth);
+		setMaxHeight(maxHeight);
 	}
 
 	public void init() {
-		log.info("init: given size (" + +maxWidth + ", " + maxHeight + ")");
 		imageView.setPresenter(this);
 		setImage();
-		imageView.setMaxWidth(maxWidth);
-		imageView.setMaxHeight(maxHeight);
 	}
 
 	public void setImage() {
@@ -58,5 +53,15 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	public void imageClicked() {
 		log.info("about to fire zoom event");
 		eventBus.fireEvent(new ZoomViewEvent(tagId, photoId));
+	}
+
+	@Override
+	public void setMaxWidth(int width) {
+		imageView.setMaxWidth(width);
+	}
+
+	@Override
+	public void setMaxHeight(int height) {
+		imageView.setMaxHeight(height);
 	}
 }
