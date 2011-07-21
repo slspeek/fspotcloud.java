@@ -1,4 +1,4 @@
-package fspotcloud.client.view;
+package fspotcloud.client.main.view;
 
 import java.util.List;
 

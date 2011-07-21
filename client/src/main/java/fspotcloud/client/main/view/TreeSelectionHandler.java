@@ -3,15 +3,16 @@ package fspotcloud.client.main.view;
 import java.util.logging.Logger;
 
 import com.google.gwt.view.client.SelectionChangeEvent;
-import com.google.gwt.view.client.SelectionChangeEvent.Handler;
+import com.google.gwt.view.client.SelectionModel;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 
+import fspotcloud.client.main.view.api.TreeSelectionHandlerInterface;
 import fspotcloud.client.place.api.Navigator;
 import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;
 
-public class TreeSelectionHandler implements Handler {
+public class TreeSelectionHandler implements TreeSelectionHandlerInterface {
 	private static final Logger log = Logger
 			.getLogger(TreeSelectionHandler.class.getName());
 	private SingleSelectionModel<TagNode> selectionModel;
@@ -41,4 +42,6 @@ public class TreeSelectionHandler implements Handler {
 	private void goToPhoto(String otherTagId, PhotoInfoStore store) {
 		navigator.goToTag(otherTagId, store);
 	}
+
+
 }
