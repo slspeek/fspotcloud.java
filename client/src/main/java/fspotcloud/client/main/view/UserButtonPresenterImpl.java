@@ -31,6 +31,7 @@ public class UserButtonPresenterImpl implements UserButtonView.UserButtonPresent
 	
 	private void initButton() {
 		view.setCaption(action.getCaption());
+		view.setDebugId(action.getId());
 	}
 
 	@Override

@@ -12,49 +12,52 @@ import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
 import fspotcloud.client.view.action.api.SlideshowActions;
 import fspotcloud.client.view.action.api.UserAction;
 
-public class SlideshowActionsImpl extends ActionsFactory  implements SlideshowActions {
+public class SlideshowActionsImpl extends ActionsFactory implements
+		SlideshowActions {
 
 	public UserAction SLIDESHOW_START;
 	public UserAction SLIDESHOW__END;
 	public UserAction SLIDESHOW_SLOWER;
 	public UserAction SLIDESHOW_FASTER;
 	private List<UserAction> all;
-	
-	
+
 	final private SlideshowEventProviderFactory slideshow;
-	
+
 	@Inject
-	public SlideshowActionsImpl(ShortcutAssistedFactory shortcutFactory, SlideshowEventProviderFactory slideshow) {
+	public SlideshowActionsImpl(ShortcutAssistedFactory shortcutFactory,
+			SlideshowEventProviderFactory slideshow) {
 		super(shortcutFactory);
 		this.slideshow = slideshow;
 		init();
 	}
 
 	private void init() {
-		SLIDESHOW_START = createSlideshow("Play", 'S', (int) 'G',
+		SLIDESHOW_START = createSlideshow("play", "Play", 'S', (int) 'G',
 				"Start slideshow", null, SlideshowEvent.ActionType.START);
-		SLIDESHOW__END = createSlideshow("Stop", 'Q', null, "Stop slideshow",
+		SLIDESHOW__END = createSlideshow("stop", "Stop", 'Q', null, "Stop slideshow",
 				null, SlideshowEvent.ActionType.STOP);
-		SLIDESHOW_SLOWER = createSlideshow("Slower", 'U', null,
+		SLIDESHOW_SLOWER = createSlideshow("slower", "Slower", 'U', null,
 				"Makes the slideshow go slower", null,
 				SlideshowEvent.ActionType.SLOWER);
-		SLIDESHOW_FASTER = createSlideshow("Faster", 'I', null,
+		SLIDESHOW_FASTER = createSlideshow("faster","Faster", 'I', null,
 				"Makes the slideshow go faster", null,
 				SlideshowEvent.ActionType.FASTER);
-		all = Arrays.asList(SLIDESHOW_FASTER, SLIDESHOW_START, SLIDESHOW__END, SLIDESHOW_SLOWER);
+		all = Arrays.asList(SLIDESHOW_FASTER, SLIDESHOW_START, SLIDESHOW__END,
+				SLIDESHOW_SLOWER);
 	}
 
-	public UserAction createSlideshow(String caption, int key, Integer altKey,
-			String description, ImageResource icon, SlideshowEvent.ActionType actionType) {
-		return create(caption, key, altKey, description, icon, slideshow.get(actionType));
+	public UserAction createSlideshow(String id, String caption, int key,
+			Integer altKey, String description, ImageResource icon,
+			SlideshowEvent.ActionType actionType) {
+		return create(id, caption, key, altKey, description, icon,
+				slideshow.get(actionType));
 	}
-
-
 
 	@Override
 	public List<UserAction> allActions() {
 		return all;
 	}
+
 	@Override
 	public UserAction startSlideshow() {
 		return SLIDESHOW_START;
@@ -76,5 +79,4 @@ public class SlideshowActionsImpl extends ActionsFactory  implements SlideshowAc
 		return SLIDESHOW_FASTER;
 	}
 
-		
 }

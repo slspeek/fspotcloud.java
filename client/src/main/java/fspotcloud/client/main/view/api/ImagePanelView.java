@@ -3,7 +3,6 @@ package fspotcloud.client.main.view.api;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.user.client.ui.IsWidget;
 
-
 public interface ImagePanelView extends IsWidget {
 
 	interface ImagePanelPresenter extends Activity {
@@ -15,8 +14,6 @@ public interface ImagePanelView extends IsWidget {
 	PagerView getPagerView();
 
 	SlideshowView getSlideshowView();
-	
+
 	ButtonPanelView getButtonPanelView();
-	
-	void setSize(int width, int height);
 }

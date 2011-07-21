@@ -37,4 +37,10 @@ public class UserButtonViewImpl extends PushButton implements UserButtonView {
 	public void setCaption(String caption) {
 		setText(caption);
 	}
+
+
+	@Override
+	public void setDebugId(String id) {
+		ensureDebugId(id);
+	}
 }

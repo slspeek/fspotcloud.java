@@ -3,6 +3,8 @@ package fspotcloud.client.main.view;
 import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
@@ -50,7 +52,16 @@ public class ImagePanelActivity extends AbstractActivity implements
 		panel.setWidget(imagePanelView);
 		log.info("In start after setWidget panelView: size " + imagePanelView.asWidget().getOffsetWidth() + ", "
 				+ imagePanelView.asWidget().getOffsetHeight());
-		imageRasterPresenter.init();
+		Scheduler scheduler = Scheduler.get();
+		scheduler.scheduleDeferred(new ScheduledCommand() {
+
+			@Override
+			public void execute() {
+				imageRasterPresenter.init();
+			}
+			
+		});
+
 		
 	}
 
@@ -58,9 +69,10 @@ public class ImagePanelActivity extends AbstractActivity implements
 	public void init() {
 		log.info("init");
 		
-		slideshowPresenter.init();
+		//slideshowPresenter.init();
 		log.info("panelView: size " + imagePanelView.asWidget().getOffsetWidth() + ", "
 				+ imagePanelView.asWidget().getOffsetHeight());
 		buttonPanelPresenter.init();
+		//imageRasterPresenter.init();
 	}
 }

@@ -4,7 +4,7 @@
 	<groupId>fspotcloud</groupId>
 	<artifactId>fspotcloud</artifactId>
 	<packaging>pom</packaging>
-	<version>0.40-6.4.6</version>
+	<version>0.40-6.5</version>
 	<name>F-Spot Cloud Java Edition</name>
 	<prerequisites>
 		<maven>3.0.0</maven>
@@ -128,6 +128,7 @@
 		<gae.home>${user.home}/appengine-java-sdk-${gae.version}</gae.home>
 		<bot.secret>SECRET</bot.secret>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<gwt.plugin.version>2.2.0</gwt.plugin.version>
 	</properties>
 	<pluginRepositories>
 		<pluginRepository>

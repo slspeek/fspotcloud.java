@@ -8,11 +8,10 @@
 	</ui:style>
 	<g:DockLayoutPanel ui:field="mainPanel">
 		<g:center>
-			<my:ImageRasterViewImpl width="100%" height="100%"
-				ui:field="imageRaster"></my:ImageRasterViewImpl>
+			<my:ImageRasterViewImpl></my:ImageRasterViewImpl>
 		</g:center>
-		<g:south size="26">
-			<my:ButtonPanelViewImpl ui:field="genericButtons"></my:ButtonPanelViewImpl>
+		<g:south size="30">
+			<my:ButtonPanelViewImpl></my:ButtonPanelViewImpl>
 		</g:south>
 	</g:DockLayoutPanel>
 </ui:UiBinder> 

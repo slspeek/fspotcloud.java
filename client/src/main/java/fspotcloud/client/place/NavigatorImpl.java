@@ -59,8 +59,10 @@ public class NavigatorImpl implements Navigator {
 
 			@Override
 			public void onSuccess(TagNode result) {
-				PhotoInfoStore store = result.getCachedPhotoList();
-				goEnd(first, place, store);
+				if (result != null) {
+					PhotoInfoStore store = result.getCachedPhotoList();
+					goEnd(first, place, store);
+				} 
 			}
 
 		});
@@ -163,8 +165,8 @@ public class NavigatorImpl implements Navigator {
 
 	protected void goToPhoto(BasePlace place, String tagId, String photoId) {
 		BasePlace newPlace;
-		newPlace = new BasePlace(tagId, photoId,
-					place.getColumnCount(), place.getRowCount(), place.isTreeVisible());
+		newPlace = new BasePlace(tagId, photoId, place.getColumnCount(),
+				place.getRowCount(), place.isTreeVisible());
 		log.info("About to go to: " + this + " : " + newPlace + " from: "
 				+ place);
 		placeGoTo.goTo(newPlace);
@@ -226,8 +228,7 @@ public class NavigatorImpl implements Navigator {
 		List<BasePlace> result = new ArrayList<BasePlace>();
 		for (int i = offset; i < offset + pageSize; i++) {
 			if (i <= store.lastIndex()) {
-				result.add(new BasePlace(node.getId(), store.get(i)
-						.getId()));
+				result.add(new BasePlace(node.getId(), store.get(i).getId()));
 			} else {
 				break;
 			}
@@ -269,8 +270,8 @@ public class NavigatorImpl implements Navigator {
 	public void goToTag(String otherTagId, PhotoInfoStore store) {
 		goEnd(false,
 				new BasePlace(otherTagId, null, placeCalculator
-						.getRasterWidth(), placeCalculator.getRasterHeight(), true),
-				store);
+						.getRasterWidth(), placeCalculator.getRasterHeight(),
+						true), store);
 	}
 
 	@Override
@@ -330,14 +331,13 @@ public class NavigatorImpl implements Navigator {
 				+ amount);
 		reloadCurrentPlaceOnNewSize();
 	}
-	
+
 	@Override
 	public void setRasterDimension(int i, int j) {
 		placeCalculator.setRasterWidth(i);
 		placeCalculator.setRasterHeight(j);
 		reloadCurrentPlaceOnNewSize();
 	}
-
 
 	private void reloadCurrentPlaceOnNewSize() {
 		BasePlace now = placeWhere.where();
@@ -361,7 +361,8 @@ public class NavigatorImpl implements Navigator {
 
 	@Override
 	public void resetRasterSize() {
-		setRasterDimension(PlaceCalculator.DEFAULT_RASTER_WIDTH, PlaceCalculator.DEFAULT_RASTER_HEIGHT);
+		setRasterDimension(PlaceCalculator.DEFAULT_RASTER_WIDTH,
+				PlaceCalculator.DEFAULT_RASTER_HEIGHT);
 	}
 
 }

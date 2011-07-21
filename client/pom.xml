@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-6.4.6</version>
+		<version>0.40-6.5</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>client</artifactId>
@@ -104,7 +104,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>2.2.0</version>
+				<version>${gwt.plugin.version}</version>
 				<configuration>
 					<compileSourcesArtifacts>
 						<compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact>
@@ -144,7 +144,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>2.2.0</version>
+				<version>${gwt.plugin.version}</version>
 				<configuration>
 					<compileSourcesArtifacts>
 						<compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact>

@@ -33,22 +33,22 @@ public class NavigationActionsImpl extends ActionsFactory  implements Navigation
 	}
 
 	private void init() {
-		HOME = createNavigation("Home", 'B', KeyCodes.KEY_HOME,
+		HOME = createNavigation("home", "Home", 'B', KeyCodes.KEY_HOME,
 				"Go to the first image of the category", null,
 				NavigationEvent.ActionType.HOME);
-		END = createNavigation("End", KeyCodes.KEY_END, null,
+		END = createNavigation("end", "End", KeyCodes.KEY_END, null,
 				"Go to the last image of the category", null,
 				NavigationEvent.ActionType.END);
-		BACK = createNavigation("Back", 'N', KeyCodes.KEY_LEFT,
+		BACK = createNavigation("back", "Back", 'N', KeyCodes.KEY_LEFT,
 				"Previous image in this category", null, NavigationEvent.ActionType.BACK);
-		NEXT = createNavigation("Next", 'M', KeyCodes.KEY_RIGHT,
+		NEXT = createNavigation("next", "Next", 'M', KeyCodes.KEY_RIGHT,
 				"Next image in this category", null, NavigationEvent.ActionType.NEXT);
 		all = Arrays.asList(HOME, END, BACK, NEXT);
 	}
 
-	public UserAction createNavigation(String caption, int key, Integer altKey,
+	public UserAction createNavigation(String id, String caption, int key, Integer altKey,
 			String description, ImageResource icon, NavigationEvent.ActionType actionType) {
-		return create(caption, key, altKey, description, icon, navigation.get(actionType));
+		return create(id, caption, key, altKey, description, icon, navigation.get(actionType));
 	}
 
 

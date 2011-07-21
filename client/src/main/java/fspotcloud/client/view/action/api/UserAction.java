@@ -18,4 +18,6 @@ public interface UserAction extends Runnable {
 	ImageResource getIcon();
 	
 	Provider<? extends GwtEvent> getEventProvider();
+
+	String getId();
 }

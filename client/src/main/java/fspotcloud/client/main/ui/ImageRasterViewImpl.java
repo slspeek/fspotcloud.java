@@ -42,7 +42,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 		initWidget(uiBinder.createAndBindUi(this));
 		simplePanel.ensureDebugId("image-raster-view");
 	}
-
+	
 	@Override
 	public List<ImageView> buildRaster(int rowCount, int columnCount) {
 		Grid grid = new Grid(rowCount, columnCount);
@@ -68,7 +68,9 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	@Override
 	public void onResize() {
 		log.info("Current size: " + getOffsetWidth());
-		presenter.onResize();
+		if (presenter != null) {
+			presenter.onResize();
+		}
 		super.onResize();
 	}
 
@@ -76,4 +78,5 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	public void setPresenter(ImageRasterPresenter presenter) {
 		this.presenter = presenter;
 	}
+	
 }

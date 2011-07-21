@@ -16,5 +16,7 @@ public interface UserButtonView extends IsWidget {
 	void setCaption(String caption);
 
 	void setPresenter(UserButtonPresenter presenter);
+	
+	void setDebugId(String id);
 
 }

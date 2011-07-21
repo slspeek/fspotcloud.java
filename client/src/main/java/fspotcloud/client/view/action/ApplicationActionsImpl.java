@@ -33,15 +33,15 @@ public class ApplicationActionsImpl extends ActionsFactory implements
 	}
 
 	private void init() {
-		TOGGLE_HELP = createApplication("Help",
+		TOGGLE_HELP = createApplication("help", "Help",
 				"Display a popup with the keyboard shortcuts", 'H',
 				KeyCodes.KEY_ESCAPE, null, ApplicationEvent.ActionType.HELP);
-		START_DEMO = createApplication("Demo", "Play a demo", '7', null, null,
+		START_DEMO = createApplication("demo", "Demo", "Play a demo", '7', null, null,
 				ApplicationEvent.ActionType.DEMO);
-		TREE_FOCUS = createApplication("Focus tree",
+		TREE_FOCUS = createApplication("tree", "Focus tree",
 				"Puts keyboard focus on the category tree", KeyCodes.KEY_ENTER,
 				null, null, ApplicationEvent.ActionType.TREE_FOCUS);
-		TOGGLE_FULLSCREEN = createApplication("Show/Hide tree",
+		TOGGLE_FULLSCREEN = createApplication("fullscreen", "Show/Hide tree",
 				"Toggles fullscreen (hides/shows the tree view)", 'F', null,
 				null, ApplicationEvent.ActionType.TOGGLE_TREE_VISIBLE);
 		all = Arrays.asList(TOGGLE_HELP, TOGGLE_FULLSCREEN, START_DEMO,
@@ -49,9 +49,9 @@ public class ApplicationActionsImpl extends ActionsFactory implements
 	}
 
 
-	public UserAction createApplication(String caption, String description,
+	public UserAction createApplication(String id, String caption, String description,
 			int key, Integer altKey, ImageResource icon, ApplicationEvent.ActionType actionType) {
-		return create(caption, key, altKey, description, icon, application.get(actionType));
+		return create(id, caption, key, altKey, description, icon, application.get(actionType));
 	}
 
 	@Override
