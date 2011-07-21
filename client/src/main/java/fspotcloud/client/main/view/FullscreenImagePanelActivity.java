@@ -3,7 +3,6 @@ package fspotcloud.client.main.view;
 import java.util.logging.Logger;
 
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
@@ -16,6 +15,7 @@ import fspotcloud.client.main.view.api.SlideshowPresenterFactory;
 import fspotcloud.client.place.BasePlace;
 
 public class FullscreenImagePanelActivity extends ImagePanelActivity {
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger
 			.getLogger(FullscreenImagePanelActivity.class.getName());
 
@@ -32,15 +32,6 @@ public class FullscreenImagePanelActivity extends ImagePanelActivity {
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		adjustSize();
 		super.start(panel, eventBus);
 	}
-
-	private void adjustSize() {
-		int width = Window.getClientWidth();
-		int height = Window.getClientHeight();
-		imagePanelView.setSize(width, height);
-		log.info("set size: " + width + " , " + height);
-	}
-
 }

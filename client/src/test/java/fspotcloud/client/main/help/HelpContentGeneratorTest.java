@@ -16,7 +16,7 @@ public class HelpContentGeneratorTest extends TestCase {
 	}
 
 	public void testOne() {
-		Shortcut s = new Shortcut("","Start slideshow", new KeyStroke('s'), null, null, null, null);
+		Shortcut s = new Shortcut("", "","Start slideshow", new KeyStroke('s'), null, null, null, null);
 		String row = gen.getHelpText(s);
 		String desired = "<span class='fsc-help-key'>s</span></td>" 
 			 + "<td><span class='fsc-help-separator'>:</span></td>"

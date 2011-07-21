@@ -18,14 +18,14 @@ public class ActionsFactory {
 		this.factory = factory;
 	}
 	
-	protected UserAction create(String caption, int key, Integer altKey,
+	protected UserAction create(String id, String caption, int key, Integer altKey,
 			String description, ImageResource icon, Provider<? extends GwtEvent> provider) {
 		UserAction userAction;
 		if (altKey != null) {
-			userAction = factory.get(caption, description, new KeyStroke(key),
+			userAction = factory.get(id, caption, description, new KeyStroke(key),
 					new KeyStroke(altKey), icon, provider);
 		} else {
-			userAction = factory.get(caption, description, new KeyStroke(key),
+			userAction = factory.get(id, caption, description, new KeyStroke(key),
 					null, icon, provider);
 		}
 		return userAction;

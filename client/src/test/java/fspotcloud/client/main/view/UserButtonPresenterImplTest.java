@@ -35,6 +35,8 @@ public class UserButtonPresenterImplTest extends TestCase {
 			oneOf(action).getCaption();will(returnValue("Ape"));
 			oneOf(view).setCaption("Ape");
 			oneOf(view).setPresenter(presenter);
+			oneOf(action).getId();will(returnValue("ID"));
+			oneOf(view).setDebugId("ID");
 		} });
 		presenter.init();
 		context.assertIsSatisfied();

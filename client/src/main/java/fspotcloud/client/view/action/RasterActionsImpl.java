@@ -38,34 +38,34 @@ public class RasterActionsImpl extends ActionsFactory implements
 	}
 
 	private void init() {
-		ADD_COLUMN = createRaster("Add column", 'C', null,
+		ADD_COLUMN = createRaster("add_colum", "Add column", 'C', null,
 				"Adds one column to raster", null,
 				RasterEvent.ActionType.INCREASE_RASTER_WIDTH);
-		ADD_ROW = createRaster("Add row", 'R', null,
+		ADD_ROW = createRaster("add-row", "Add row", 'R', null,
 				"Adds one row to raster", null,
 				RasterEvent.ActionType.INCREASE_RASTER_WIDTH);
-		REMOVE_COLUMN = createRaster("Remove column", 'X', null,
+		REMOVE_COLUMN = createRaster("remove-column", "Remove column", 'X', null,
 				"Removes one column from the raster", null,
 				RasterEvent.ActionType.DECREASE_RASTER_WIDTH);
-		REMOVE_ROW = createRaster("Remove row", 'E', null,
+		REMOVE_ROW = createRaster("remove-row", "Remove row", 'E', null,
 				"Removes one row from the raster", null,
 				RasterEvent.ActionType.DECREASE_RASTER_HEIGHT);
-		SET_DEFAULT_RASTER = createRaster("Reset raster", '0', null,
+		SET_DEFAULT_RASTER = createRaster("reset", "Reset raster", '0', null,
 				"Resets raster to defaults", null,
 				RasterEvent.ActionType.SET_DEFAULT_RASTER);
-		SET_RASTER_2x2 = createRaster("2x2", '2', null,
+		SET_RASTER_2x2 = createRaster("2x2","2x2", '2', null,
 				"Sets the raster to 2 x 2", null,
 				RasterEvent.ActionType.SET_RASTER_2x2);
-		SET_RASTER_3x3 = createRaster("3x3", '3', null,
+		SET_RASTER_3x3 = createRaster("3x3","3x3", '3', null,
 				"Sets the raster to 3 x 3", null,
 				RasterEvent.ActionType.SET_RASTER_3x3);
-		SET_RASTER_4x4 = createRaster("4x4", '4', null,
+		SET_RASTER_4x4 = createRaster("4x4", "4x4", '4', null,
 				"Sets the raster to 4 x 4", null,
 				RasterEvent.ActionType.SET_RASTER_4x4);
-		SET_RASTER_5x5 = createRaster("5x5", '5', null,
+		SET_RASTER_5x5 = createRaster("5x5", "5x5", '5', null,
 				"Sets the raster to 5 x 5", null,
 				RasterEvent.ActionType.SET_RASTER_5x5);
-		TOGGLE_TABULAR_VIEW = createRaster("Toggle raster", 'T', (int) '1',
+		TOGGLE_TABULAR_VIEW = createRaster("raster", "Toggle raster", 'T', (int) '1',
 				"Toggle tabular viewing", null,
 				RasterEvent.ActionType.TOGGLE_RASTER_VIEW);
 		all = Arrays.asList(TOGGLE_TABULAR_VIEW,
@@ -77,9 +77,9 @@ public class RasterActionsImpl extends ActionsFactory implements
 	}
 
 
-	public UserAction createRaster(String caption, 
+	public UserAction createRaster(String id, String caption, 
 			int key, Integer altKey, String description, ImageResource icon, RasterEvent.ActionType actionType) {
-		return create(caption, key, altKey, description, icon, raster.get(actionType));
+		return create(id, caption, key, altKey, description, icon, raster.get(actionType));
 	}
 
 	@Override

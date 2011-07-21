@@ -1,15 +1,14 @@
 package fspotcloud.client.main.ui;
 
-import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
 public class HasOneWidgetAdapter implements HasOneWidget {
 
-	final private DockLayoutPanel panel;
-	public HasOneWidgetAdapter(DockLayoutPanel panel) {
+	final private ComplexPanel panel;
+	public HasOneWidgetAdapter(ComplexPanel panel) {
 		this.panel = panel;
 	}
 
@@ -43,5 +42,4 @@ public class HasOneWidgetAdapter implements HasOneWidget {
 			panel.add(w);
 		}
 	}
-
 }

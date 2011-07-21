@@ -8,7 +8,8 @@ import com.google.inject.assistedinject.Assisted;
 import fspotcloud.client.view.action.KeyStroke;
 
 public interface ShortcutAssistedFactory {
-	UserAction get(@Assisted("caption") String caption,
+	UserAction get(@Assisted("id") String id,
+			@Assisted("caption") String caption,
 			@Assisted("description") String description,
 			@Assisted("key") KeyStroke key,
 			@Assisted("altKey") KeyStroke alternateKey,

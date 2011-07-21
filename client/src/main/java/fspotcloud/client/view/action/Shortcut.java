@@ -19,15 +19,17 @@ public class Shortcut implements UserAction {
 	final private KeyStroke alternateKey;
 	final private ImageResource imageResource;
 	final private String caption;
+	final private String id;
 	final private Provider<? extends GwtEvent> eventProvider;
 	
 	final private EventBus eventBus;
 
 	@Inject
-	public Shortcut(@Assisted("caption") String caption, @Assisted("description")  String description, @Assisted("key") KeyStroke key,@Assisted("altKey") 
+	public Shortcut(@Assisted("id") String id, @Assisted("caption") String caption, @Assisted("description")  String description, @Assisted("key") KeyStroke key,@Assisted("altKey") 
 			KeyStroke alternateKey, @Assisted ImageResource imageResource,
 			@Assisted Provider<? extends GwtEvent> eventProvider, EventBus eventBus) {
 		super();
+		this.id = id;
 		this.caption = caption;
 		this.description = description;
 		this.key = key;
@@ -66,6 +68,10 @@ public class Shortcut implements UserAction {
 	@Override
 	public String getCaption() {
 		return caption;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 }

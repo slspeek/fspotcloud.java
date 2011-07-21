@@ -57,7 +57,7 @@ public class DemoAction implements Runnable {
 
 	private void addStep(UserAction shortcut, int pause,
 			String descriptionOverride) {
-		DemoStep step = factory.getDemoStep(shortcutFactory.get(shortcut.getCaption(), descriptionOverride,
+		DemoStep step = factory.getDemoStep(shortcutFactory.get(shortcut.getId(), shortcut.getCaption(), descriptionOverride,
 				shortcut.getKey(), shortcut.getAlternateKey(), shortcut.getIcon(), shortcut.getEventProvider()), pause);
 		demo.add(step);
 	}

@@ -35,11 +35,7 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	final private ButtonPanelView buttonPanelView;
 	@UiField
 	DockLayoutPanel mainPanel;
-	@UiField
-	ImageRasterView imageRaster;
-	@UiField
-	ButtonPanelView genericButtons;
-
+	
 	@Inject
 	public ImagePanelViewImpl(ImageRasterView imageRasterView,
 			PagerView pagerView, SlideshowView slideshowView,
@@ -70,18 +66,12 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 
 	@UiFactory
 	public ButtonPanelViewImpl getButtonPanelView() {
-
 		return (ButtonPanelViewImpl) buttonPanelView;
-	}
-
-	public void setSize(int width, int height) {
-		// mainPanel.setPixelSize(width, height);
 	}
 
 	@Override
 	public void onResize() {
-		log.info("%%%%%%%%%%ON RESIZE");
+		log.info("ON RESIZE to super");
 		super.onResize();
 	}
-
 }
