@@ -54,6 +54,7 @@ import fspotcloud.client.main.view.api.SlideshowView;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
 import fspotcloud.client.main.view.api.TagView;
 import fspotcloud.client.main.view.api.TimerInterface;
+import fspotcloud.client.main.view.api.TreeSelectionHandlerInterface;
 import fspotcloud.client.main.view.api.TreeView;
 import fspotcloud.client.main.view.api.UserButtonFactory;
 import fspotcloud.client.main.view.api.UserButtonView;
@@ -141,6 +142,7 @@ public class AppModule extends AbstractGinModule {
 		install(new GinFactoryModuleBuilder().implement(ButtonPanelView.ButtonPanelPresenter.class,
 				ButtonPanelPresenterImpl.class).build(ButtonPanelPresenterFactory.class));
 		bind(ButtonPanelView.class).to(ButtonPanelViewImpl.class);
+		bind(TreeSelectionHandlerInterface.class).to(TreeSelectionHandler.class);
 		
 
 	}

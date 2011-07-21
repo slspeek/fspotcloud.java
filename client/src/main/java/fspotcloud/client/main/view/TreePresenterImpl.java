@@ -5,13 +5,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.gwt.user.cellview.client.TreeNode;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.view.client.SelectionChangeEvent.Handler;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 
 import fspotcloud.client.data.DataManager;
+import fspotcloud.client.main.view.api.TreeSelectionHandlerInterface;
 import fspotcloud.client.main.view.api.TreeView;
 import fspotcloud.client.place.BasePlace;
 import fspotcloud.shared.tag.TagNode;
@@ -23,14 +22,14 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
 	final private TreeView treeView;
 	final private DataManager dataManager;
 	final private SingleSelectionModel<TagNode> selectionModel;
-	final private TreeSelectionHandler  treeSelectionHandler;
+	final private TreeSelectionHandlerInterface  treeSelectionHandler;
 
 	private BasePlace place;
 
 	@Inject
 	public TreePresenterImpl(TreeView treeView, DataManager dataManager,
 			SingleSelectionModel<TagNode> singleSelectionModel,
-			TreeSelectionHandler treeSelectionHandler) {
+			TreeSelectionHandlerInterface treeSelectionHandler) {
 		this.treeView = treeView;
 		this.dataManager = dataManager;
 		this.selectionModel = singleSelectionModel;
