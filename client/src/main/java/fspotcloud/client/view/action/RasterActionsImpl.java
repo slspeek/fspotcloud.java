@@ -43,7 +43,7 @@ public class RasterActionsImpl extends ActionsFactory implements
 				RasterEvent.ActionType.INCREASE_RASTER_WIDTH);
 		ADD_ROW = createRaster("add-row", "Add row", 'R', null,
 				"Adds one row to raster", null,
-				RasterEvent.ActionType.INCREASE_RASTER_WIDTH);
+				RasterEvent.ActionType.INCREASE_RASTER_HEIGHT);
 		REMOVE_COLUMN = createRaster("remove-column", "Remove column", 'X', null,
 				"Removes one column from the raster", null,
 				RasterEvent.ActionType.DECREASE_RASTER_WIDTH);
