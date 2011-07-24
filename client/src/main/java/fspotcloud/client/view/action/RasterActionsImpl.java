@@ -140,4 +140,9 @@ public class RasterActionsImpl extends ActionsFactory implements
 		return SET_RASTER_5x5;
 	}
 
+	@Override
+	public String getDescription() {
+		return "Raster";
+	}
+
 }

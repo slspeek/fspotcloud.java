@@ -78,5 +78,10 @@ public class NavigationActionsImpl extends ActionsFactory  implements Navigation
 		return END;
 	}
 
+	@Override
+	public String getDescription() {
+		return "Navigation";
+	}
+
 	
 }

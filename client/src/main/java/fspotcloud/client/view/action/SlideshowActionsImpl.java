@@ -34,12 +34,12 @@ public class SlideshowActionsImpl extends ActionsFactory implements
 	private void init() {
 		SLIDESHOW_START = createSlideshow("play", "Play", 'S', (int) 'G',
 				"Start slideshow", null, SlideshowEvent.ActionType.START);
-		SLIDESHOW__END = createSlideshow("stop", "Stop", 'Q', null, "Stop slideshow",
-				null, SlideshowEvent.ActionType.STOP);
+		SLIDESHOW__END = createSlideshow("stop", "Stop", 'Q', null,
+				"Stop slideshow", null, SlideshowEvent.ActionType.STOP);
 		SLIDESHOW_SLOWER = createSlideshow("slower", "Slower", 'U', null,
 				"Makes the slideshow go slower", null,
 				SlideshowEvent.ActionType.SLOWER);
-		SLIDESHOW_FASTER = createSlideshow("faster","Faster", 'I', null,
+		SLIDESHOW_FASTER = createSlideshow("faster", "Faster", 'I', null,
 				"Makes the slideshow go faster", null,
 				SlideshowEvent.ActionType.FASTER);
 		all = Arrays.asList(SLIDESHOW_FASTER, SLIDESHOW_START, SLIDESHOW__END,
@@ -77,6 +77,11 @@ public class SlideshowActionsImpl extends ActionsFactory implements
 	@Override
 	public UserAction faster() {
 		return SLIDESHOW_FASTER;
+	}
+
+	@Override
+	public String getDescription() {
+		return "Slideshow";
 	}
 
 }
