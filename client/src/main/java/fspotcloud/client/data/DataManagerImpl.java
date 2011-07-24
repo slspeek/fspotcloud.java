@@ -3,6 +3,7 @@ package fspotcloud.client.data;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -88,7 +89,7 @@ public class DataManagerImpl implements DataManager {
 		} else {
 			tagService.loadTagTree(new AsyncCallback<List<TagNode>>() {
 				public void onFailure(Throwable caught) {
-					log.warning(caught.getLocalizedMessage());
+					log.log(Level.SEVERE, "Uncaught exception in getTagTree", caught);
 					callback.onFailure(caught);
 				}
 
