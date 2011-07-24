@@ -2,6 +2,7 @@ package fspotcloud.client.main.view;
 
 import java.util.logging.Logger;
 
+import com.google.gwt.user.client.DOM;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
@@ -31,21 +32,27 @@ public class ButtonPanelPresenterImpl implements
 
 	@Override
 	public void init() {
-		//log.info("init called!!");
-		addActionGroup(allActions.raster());
-		addActionGroup(allActions.application());
+		// log.info("init called!!");
+		addActionGroup(allActions.raster(), true);
+		addActionGroup(allActions.navigation(), true);
+		addActionGroup(allActions.slideshow(), false);
+		addActionGroup(allActions.application(), false);
 	}
-	
-	private void addActionGroup(ActionGroup group) {
-		for (UserAction action:group.allActions()){
-			addAction(action);
+
+	private void addActionGroup(ActionGroup group, boolean north) {
+		for (UserAction action : group.allActions()) {
+			addAction(action, north);
 		}
 	}
 
-	private void addAction(UserAction action) {
+	private void addAction(UserAction action, boolean north) {
 		UserButtonView.UserButtonPresenter buttonPresenter = buttonPresenterFactory
 				.get(action);
 		buttonPresenter.init();
-		buttonPanelView.add(buttonPresenter.getView());
+		if (north) {
+			buttonPanelView.addNorth(buttonPresenter.getView());
+		} else {
+			buttonPanelView.addSouth(buttonPresenter.getView());
+		}
 	}
 }

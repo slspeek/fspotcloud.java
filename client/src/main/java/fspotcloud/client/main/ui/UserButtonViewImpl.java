@@ -11,9 +11,9 @@ public class UserButtonViewImpl extends PushButton implements UserButtonView {
 	private UserButtonPresenter presenter;
 
 	public UserButtonViewImpl() {
+		
 	}
 
-	
 	@Override
 	public void setPresenter(UserButtonPresenter presenter) {
 		this.presenter = presenter;
@@ -21,8 +21,8 @@ public class UserButtonViewImpl extends PushButton implements UserButtonView {
 	}
 
 	private void registerClickEvents() {
-		//Maybe unregister old one first?
-		//For now setPresenter must be called only once.
+		// Maybe unregister old one first?
+		// For now setPresenter must be called only once.
 		addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				if (presenter != null) {
@@ -32,12 +32,10 @@ public class UserButtonViewImpl extends PushButton implements UserButtonView {
 		});
 	}
 
-
 	@Override
 	public void setCaption(String caption) {
 		setText(caption);
 	}
-
 
 	@Override
 	public void setDebugId(String id) {

@@ -8,5 +8,6 @@ public interface ButtonPanelView extends IsWidget {
 		void init();
 	}
 	
-	void add(Widget widget);
+	void addNorth(Widget widget);
+	void addSouth(Widget widget);
 }
