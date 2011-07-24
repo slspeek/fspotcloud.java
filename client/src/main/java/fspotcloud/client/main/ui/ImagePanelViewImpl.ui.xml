@@ -10,7 +10,7 @@
 		<g:center>
 			<my:ImageRasterViewImpl></my:ImageRasterViewImpl>
 		</g:center>
-		<g:south size="30">
+		<g:south size="98">
 			<my:ButtonPanelViewImpl></my:ButtonPanelViewImpl>
 		</g:south>
 	</g:DockLayoutPanel>
