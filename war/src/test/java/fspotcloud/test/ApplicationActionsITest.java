@@ -4,13 +4,13 @@ import org.openqa.selenium.WebDriver;
 
 import com.google.inject.Provider;
 
-public class TabularITest extends SeleniumITest {
+public class ApplicationActionsITest extends SeleniumITest {
 
-	public TabularITest(Provider<WebDriver> provider, String baseURL) {
+	public ApplicationActionsITest(Provider<WebDriver> provider, String baseURL) {
 		super(provider, baseURL);
 	}
 
-	public TabularITest() {
+	public ApplicationActionsITest() {
 	}
 
 	@Override
@@ -22,15 +22,15 @@ public class TabularITest extends SeleniumITest {
 	public void testTabular() throws Exception {
 		selenium.open("/");
 		selenium.waitForPageToLoad("30000");
-		selenium.click("gwt-debug-image-view-4x0");
+		selenium.click("gwt-debug-maven");
 		selenium.waitForPageToLoad("30000");
-		selenium.click("gwt-debug-image-view-0x0");
+		selenium.goBack();
 		selenium.waitForPageToLoad("30000");
-		
-		selenium.open("/#BasePlace:1:12:2:2:false");
+		selenium.click("gwt-debug-help");
+		sleepShort();
+		selenium.click("//div[@id='gwt-debug-help']/div");
 		selenium.waitForPageToLoad("30000");
-		selenium.click("gwt-debug-back");
+		selenium.click("gwt-debug-fullscreen");
 		selenium.waitForPageToLoad("30000");
-		assertEquals("/image?id=6&thumb", selenium.getAttribute("//*[@id=\"gwt-debug-image-view-0x1\"]@src"));
 	}
 }

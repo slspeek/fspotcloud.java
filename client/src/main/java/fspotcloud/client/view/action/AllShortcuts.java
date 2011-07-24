@@ -75,6 +75,11 @@ public class AllShortcuts implements AllUserActions {
 	public List<UserAction> allActions() {
 		return allActions;
 	}
+
+	@Override
+	public String getDescription() {
+		return "All user actions";
+	}
 	
 
 }

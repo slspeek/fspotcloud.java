@@ -94,4 +94,9 @@ public class ApplicationActionsImpl extends ActionsFactory implements
 		return START_DEMO;
 	}
 
+	@Override
+	public String getDescription() {
+		return "Application";
+	}
+
 }
