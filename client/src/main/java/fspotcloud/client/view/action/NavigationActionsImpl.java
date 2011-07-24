@@ -39,9 +39,9 @@ public class NavigationActionsImpl extends ActionsFactory  implements Navigation
 		END = createNavigation("end", "End", KeyCodes.KEY_END, null,
 				"Go to the last image of the category", null,
 				NavigationEvent.ActionType.END);
-		BACK = createNavigation("back", "Back", 'N', KeyCodes.KEY_LEFT,
+		BACK = createNavigation("back", "Back",  KeyCodes.KEY_LEFT, null,
 				"Previous image in this category", null, NavigationEvent.ActionType.BACK);
-		NEXT = createNavigation("next", "Next", 'M', KeyCodes.KEY_RIGHT,
+		NEXT = createNavigation("next", "Next", KeyCodes.KEY_RIGHT, null,
 				"Next image in this category", null, NavigationEvent.ActionType.NEXT);
 		all = Arrays.asList(HOME, END, BACK, NEXT);
 	}

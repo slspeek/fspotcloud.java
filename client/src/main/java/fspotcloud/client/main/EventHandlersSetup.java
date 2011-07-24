@@ -2,7 +2,7 @@ package fspotcloud.client.main;
 
 import com.google.inject.Inject;
 
-import fspotcloud.client.main.view.ApplicationEventHandler;
+import fspotcloud.client.view.action.ApplicationEventHandler;
 import fspotcloud.client.view.action.NavigationEventHandler;
 import fspotcloud.client.view.action.RasterEventHandler;
 import fspotcloud.client.view.action.SlideshowEventHandler;
