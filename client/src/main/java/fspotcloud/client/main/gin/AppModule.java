@@ -18,6 +18,7 @@ import fspotcloud.client.main.ui.ButtonPanelViewImpl;
 import fspotcloud.client.main.ui.ImagePanelViewImpl;
 import fspotcloud.client.main.ui.ImageRasterViewImpl;
 import fspotcloud.client.main.ui.ImageViewImpl;
+import fspotcloud.client.main.ui.LoadNewLocationImpl;
 import fspotcloud.client.main.ui.PagerViewImpl;
 import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
@@ -47,6 +48,7 @@ import fspotcloud.client.main.view.api.ImageRasterPresenterFactory;
 import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.main.view.api.ImageViewFactory;
+import fspotcloud.client.main.view.api.LoadNewLocation;
 import fspotcloud.client.main.view.api.PagerPresenterFactory;
 import fspotcloud.client.main.view.api.PagerView;
 import fspotcloud.client.main.view.api.SlideshowPresenterFactory;
@@ -70,6 +72,7 @@ import fspotcloud.client.place.api.PlaceGoTo;
 import fspotcloud.client.place.api.PlaceWhere;
 import fspotcloud.client.place.api.Slideshow;
 import fspotcloud.client.view.action.KeyDispatcherProvider;
+import fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
 import fspotcloud.client.view.action.api.ShortcutHandler;
 
 public class AppModule extends AbstractGinModule {
@@ -139,11 +142,16 @@ public class AppModule extends AbstractGinModule {
 		install(new GinFactoryModuleBuilder().implement(
 				UserButtonView.UserButtonPresenter.class,
 				UserButtonPresenterImpl.class).build(UserButtonFactory.class));
-		install(new GinFactoryModuleBuilder().implement(ButtonPanelView.ButtonPanelPresenter.class,
-				ButtonPanelPresenterImpl.class).build(ButtonPanelPresenterFactory.class));
+		install(new GinFactoryModuleBuilder().implement(
+				ButtonPanelView.ButtonPanelPresenter.class,
+				ButtonPanelPresenterImpl.class).build(
+				ButtonPanelPresenterFactory.class));
 		bind(ButtonPanelView.class).to(ButtonPanelViewImpl.class);
-		bind(TreeSelectionHandlerInterface.class).to(TreeSelectionHandler.class);
-		
+		bind(TreeSelectionHandlerInterface.class)
+				.to(TreeSelectionHandler.class);
+		install(new GinFactoryModuleBuilder()
+				.build(LoadNewLocationActionFactory.class));
+		bind(LoadNewLocation.class).to(LoadNewLocationImpl.class);
 
 	}
 }
