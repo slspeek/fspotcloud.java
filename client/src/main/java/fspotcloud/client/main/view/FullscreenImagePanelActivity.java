@@ -10,7 +10,6 @@ import com.google.inject.assistedinject.Assisted;
 import fspotcloud.client.main.view.api.ButtonPanelPresenterFactory;
 import fspotcloud.client.main.view.api.ImagePanelView;
 import fspotcloud.client.main.view.api.ImageRasterPresenterFactory;
-import fspotcloud.client.main.view.api.PagerPresenterFactory;
 import fspotcloud.client.main.view.api.SlideshowPresenterFactory;
 import fspotcloud.client.place.BasePlace;
 
@@ -23,11 +22,10 @@ public class FullscreenImagePanelActivity extends ImagePanelActivity {
 	public FullscreenImagePanelActivity(@Assisted BasePlace place,
 			ImagePanelView imagePanelView,
 			ImageRasterPresenterFactory imageRasterFactory,
-			PagerPresenterFactory pagerPresenterFactory,
 			SlideshowPresenterFactory slideshowPresenterFactory,
 			ButtonPanelPresenterFactory buttonPanelPresenterFactory) {
-		super(place, imagePanelView, imageRasterFactory, pagerPresenterFactory,
-				slideshowPresenterFactory, buttonPanelPresenterFactory);
+		super(place, imagePanelView, imageRasterFactory,
+				buttonPanelPresenterFactory);
 	}
 
 	@Override

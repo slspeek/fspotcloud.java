@@ -19,7 +19,6 @@ import fspotcloud.client.main.ui.ImagePanelViewImpl;
 import fspotcloud.client.main.ui.ImageRasterViewImpl;
 import fspotcloud.client.main.ui.ImageViewImpl;
 import fspotcloud.client.main.ui.LoadNewLocationImpl;
-import fspotcloud.client.main.ui.PagerViewImpl;
 import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
 import fspotcloud.client.main.ui.TimerImpl;
@@ -31,7 +30,6 @@ import fspotcloud.client.main.view.ImagePanelActivity;
 import fspotcloud.client.main.view.ImagePresenterImpl;
 import fspotcloud.client.main.view.ImageRasterPresenterImpl;
 import fspotcloud.client.main.view.MainWindowActivityMapper;
-import fspotcloud.client.main.view.PagerPresenterImpl;
 import fspotcloud.client.main.view.SlideshowPresenterImpl;
 import fspotcloud.client.main.view.TagCell;
 import fspotcloud.client.main.view.TreePresenterImpl;
@@ -49,8 +47,6 @@ import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.main.view.api.ImageViewFactory;
 import fspotcloud.client.main.view.api.LoadNewLocation;
-import fspotcloud.client.main.view.api.PagerPresenterFactory;
-import fspotcloud.client.main.view.api.PagerView;
 import fspotcloud.client.main.view.api.SlideshowPresenterFactory;
 import fspotcloud.client.main.view.api.SlideshowView;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
@@ -96,7 +92,6 @@ public class AppModule extends AbstractGinModule {
 		bind(SlideshowView.class).to(SlideshowViewImpl.class);
 		bind(SlideshowView.SlideshowPresenter.class).to(
 				SlideshowPresenterImpl.class);
-		bind(PagerView.class).to(PagerViewImpl.class);
 		bind(TimerInterface.class).to(TimerImpl.class);
 		bind(TagPresenterFactory.class).to(TagPresenterFactoryImpl.class);
 		bind(TreeView.TreePresenter.class).to(TreePresenterImpl.class).in(
@@ -109,9 +104,6 @@ public class AppModule extends AbstractGinModule {
 		bind(Navigator.class).to(NavigatorImpl.class).in(Singleton.class);
 		bind(Slideshow.class).to(SlideshowImpl.class).in(Singleton.class);
 		bind(ImageRasterView.class).to(ImageRasterViewImpl.class);
-		install(new GinFactoryModuleBuilder().implement(
-				PagerView.PagerPresenter.class, PagerPresenterImpl.class)
-				.build(PagerPresenterFactory.class));
 		install(new GinFactoryModuleBuilder().implement(
 				SlideshowView.SlideshowPresenter.class,
 				SlideshowPresenterImpl.class).build(

@@ -2,15 +2,14 @@ package fspotcloud.client.main.view;
 
 import java.util.logging.Logger;
 
-import com.google.gwt.user.client.DOM;
-import com.google.inject.Inject;
-import com.google.inject.assistedinject.Assisted;
-
 import fspotcloud.client.main.view.api.ButtonPanelView;
+import fspotcloud.client.main.view.api.SlideshowPresenterFactory;
+import fspotcloud.client.main.view.api.SlideshowView;
 import fspotcloud.client.main.view.api.UserButtonFactory;
 import fspotcloud.client.main.view.api.UserButtonView;
 import fspotcloud.client.view.action.api.ActionGroup;
 import fspotcloud.client.view.action.api.AllUserActions;
+import fspotcloud.client.view.action.api.SlideshowActions;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class ButtonPanelPresenterImpl implements
@@ -20,23 +19,39 @@ public class ButtonPanelPresenterImpl implements
 	private final ButtonPanelView buttonPanelView;
 	private final AllUserActions allActions;
 	private final UserButtonFactory buttonPresenterFactory;
+	final private SlideshowView.SlideshowPresenter slideshowPresenter;
 
 	@Inject
 	public ButtonPanelPresenterImpl(@Assisted ButtonPanelView buttonPanelView,
-			AllUserActions allActions, UserButtonFactory buttonPresenterFactory) {
+			AllUserActions allActions,
+			UserButtonFactory buttonPresenterFactory, SlideshowPresenterFactory slideshowPresenterFactory) {
 		super();
 		this.buttonPanelView = buttonPanelView;
 		this.allActions = allActions;
 		this.buttonPresenterFactory = buttonPresenterFactory;
+		this.slideshowPresenter = slideshowPresenterFactory.get(buttonPanelView.getSlideshowView());
 	}
 
 	@Override
 	public void init() {
-		// log.info("init called!!");
-		addActionGroup(allActions.raster(), true);
 		addActionGroup(allActions.navigation(), true);
-		addActionGroup(allActions.slideshow(), false);
+		
+		addSpacer(true);
+		addActionGroup(allActions.raster(), true);
+		
+		SlideshowActions actions = allActions.slideshow();
+		addAction(actions.slower(), false);
+		addAction(actions.stopSlideshow(),false);
+		addSpacer(false);
+		Widget w = slideshowPresenter.getView().asWidget();
+		buttonPanelView.add(w, false);
+		addSpacer(false);
+		addAction(actions.startSlideshow(), true);
+		addAction(actions.faster(), true);
+		addSpacer(false);
+		
 		addActionGroup(allActions.application(), false);
+		slideshowPresenter.init();
 	}
 
 	private void addActionGroup(ActionGroup group, boolean north) {
@@ -49,10 +64,11 @@ public class ButtonPanelPresenterImpl implements
 		UserButtonView.UserButtonPresenter buttonPresenter = buttonPresenterFactory
 				.get(action);
 		buttonPresenter.init();
-		if (north) {
-			buttonPanelView.addNorth(buttonPresenter.getView());
-		} else {
-			buttonPanelView.addSouth(buttonPresenter.getView());
-		}
+		buttonPanelView.add(buttonPresenter.getView(), north);
+	}
+
+	private void addSpacer(boolean north) {
+		Widget space = buttonPanelView.getSpacer();
+		buttonPanelView.add(space, north);
 	}
 }

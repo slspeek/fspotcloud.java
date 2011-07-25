@@ -13,7 +13,6 @@ import com.google.inject.Inject;
 import fspotcloud.client.main.view.api.ButtonPanelView;
 import fspotcloud.client.main.view.api.ImagePanelView;
 import fspotcloud.client.main.view.api.ImageRasterView;
-import fspotcloud.client.main.view.api.PagerView;
 import fspotcloud.client.main.view.api.SlideshowView;
 
 public class ImagePanelViewImpl extends ResizeComposite implements
@@ -30,7 +29,6 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	}
 
 	final private ImageRasterView imageRasterView;
-	final private PagerView pagerView;
 	final private SlideshowView slideshowView;
 	final private ButtonPanelView buttonPanelView;
 	@UiField
@@ -38,11 +36,10 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	
 	@Inject
 	public ImagePanelViewImpl(ImageRasterView imageRasterView,
-			PagerView pagerView, SlideshowView slideshowView,
+			SlideshowView slideshowView,
 			ButtonPanelView buttonPanelView) {
 		this.buttonPanelView = buttonPanelView;
 		this.imageRasterView = imageRasterView;
-		this.pagerView = pagerView;
 		this.slideshowView = slideshowView;
 		initWidget(uiBinder.createAndBindUi(this));
 		mainPanel.addStyleName("fsc-image-panel-view");
@@ -52,11 +49,6 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	@UiFactory
 	public ImageRasterViewImpl getImageRasterView() {
 		return (ImageRasterViewImpl) imageRasterView;
-	}
-
-	@UiFactory
-	public PagerViewImpl getPagerView() {
-		return (PagerViewImpl) pagerView;
 	}
 
 	@UiFactory

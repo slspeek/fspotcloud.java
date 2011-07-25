@@ -4,7 +4,7 @@
 	<groupId>fspotcloud</groupId>
 	<artifactId>fspotcloud</artifactId>
 	<packaging>pom</packaging>
-	<version>0.40-6.5.1</version>
+	<version>0.40-6.5.2</version>
 	<name>F-Spot Cloud Java Edition</name>
 	<prerequisites>
 		<maven>3.0.0</maven>
@@ -49,6 +49,39 @@
 	</modules>
 	<build>
 		<defaultGoal>install</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution>
+						<id>pre-test</id>
+						<phase>process-test-resources</phase>
+						<configuration>
+							<tasks>
+								<delete dir="${basedir}/extras" includeemptydirs="true" />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>clear</id>
+						<phase>clean</phase>
+						<configuration>
+							<tasks>
+								<delete dir="${basedir}/extrasF" includeemptydirs="true" />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>
