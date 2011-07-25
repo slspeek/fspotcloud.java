@@ -5,12 +5,6 @@
 	</ui:style>
 	<ui:with type="fspotcloud.client.main.ui.Resources" field="res"></ui:with>
 	<g:HorizontalPanel ui:field="mainPanel">
-		<g:PushButton ui:field="slowerButton" text="Decrease"></g:PushButton>
-		<g:PushButton ui:field="startButton">
-		<g:upFace image="{res.playIcon}"> </g:upFace>
-		</g:PushButton>
 		<g:Label ui:field="intervalLabel"></g:Label>
-		<g:PushButton ui:field="stopButton" text="Stop"></g:PushButton>
-		<g:PushButton ui:field="fasterButton" text="Increase"></g:PushButton>
 	</g:HorizontalPanel>
 </ui:UiBinder> 

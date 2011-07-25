@@ -4,7 +4,7 @@ import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 
 public class SlideshowStatusEvent extends
-		GwtEvent<SlideshowStatusEvent.Handler> {
+		GwtEvent<SlideshowStatusEvent.Handler> implements SlideshowStatus {
 
 	final public static Type<SlideshowStatusEvent.Handler> TYPE = new Type<SlideshowStatusEvent.Handler>();
 

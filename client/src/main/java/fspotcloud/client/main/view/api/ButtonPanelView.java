@@ -7,7 +7,10 @@ public interface ButtonPanelView extends IsWidget {
 	interface ButtonPanelPresenter {
 		void init();
 	}
+
+	void add(Widget widget, boolean north);
+
+	Widget getSpacer();
 	
-	void addNorth(Widget widget);
-	void addSouth(Widget widget);
+	SlideshowView getSlideshowView();
 }

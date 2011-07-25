@@ -11,9 +11,5 @@ public interface ImagePanelView extends IsWidget {
 
 	ImageRasterView getImageRasterView();
 
-	PagerView getPagerView();
-
-	SlideshowView getSlideshowView();
-
 	ButtonPanelView getButtonPanelView();
 }

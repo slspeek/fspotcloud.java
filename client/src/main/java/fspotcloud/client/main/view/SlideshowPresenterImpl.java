@@ -29,7 +29,6 @@ public class SlideshowPresenterImpl implements
 		this.eventBus = eventBus;
 		this.slideshowView = slideshowView;
 		this.slideshow = slideshow;
-		slideshowView.setPresenter(this);
 		log.info("SlideshowActivity Created");
 	}
 
@@ -53,28 +52,12 @@ public class SlideshowPresenterImpl implements
 	}
 
 	@Override
-	public void faster() {
-		slideshow.faster();
-	}
-
-	@Override
-	public void slower() {
-		slideshow.slower();
-	}
-
-	@Override
-	public void start() {
-		slideshow.start();
-	}
-
-	@Override
-	public void stop() {
-		slideshow.stop();
-	}
-
-	@Override
 	public void onEvent(SlideshowStatusEvent e) {
 		redraw(e.getDelay(), e.isRunning());
 	}
 
+	@Override
+	public SlideshowView getView() {
+		return slideshowView;
+	}
 }
