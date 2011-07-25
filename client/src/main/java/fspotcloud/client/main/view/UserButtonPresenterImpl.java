@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.client.main.view.api.UserButtonView;
+import fspotcloud.client.main.view.api.UserButtonViewFactory;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class UserButtonPresenterImpl implements UserButtonView.UserButtonPresenter {
@@ -14,19 +15,20 @@ public class UserButtonPresenterImpl implements UserButtonView.UserButtonPresent
 	.getLogger(UserButtonPresenterImpl.class.getName());
 
 	private final UserAction action;
-	private final UserButtonView view;
-
+	private final UserButtonViewFactory viewFactory;
+	private UserButtonView view;
 	@Inject
-	public UserButtonPresenterImpl(@Assisted UserAction action, UserButtonView view) {
+	public UserButtonPresenterImpl(@Assisted UserAction action, UserButtonViewFactory viewFactory) {
 		super();
 		this.action = action;
-		this.view = view;
+		this.viewFactory = viewFactory;
 	}
 	
 	@Override
 	public void init() {
-		initButton();
+		view = viewFactory.get(action);
 		view.setPresenter(this);
+		initButton();
 	}
 	
 	private void initButton() {

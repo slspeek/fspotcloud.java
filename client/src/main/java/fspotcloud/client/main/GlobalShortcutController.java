@@ -8,9 +8,10 @@ import com.google.gwt.user.client.Event.NativePreviewEvent;
 import com.google.gwt.user.client.Event.NativePreviewHandler;
 import com.google.inject.Inject;
 
+import fspotcloud.client.main.api.Initializable;
 import fspotcloud.client.view.action.api.ShortcutHandler;
 
-public class GlobalShortcutController {
+public class GlobalShortcutController implements Initializable {
 
 	@SuppressWarnings("unused")
 	private static final Logger log = Logger
@@ -40,7 +41,7 @@ public class GlobalShortcutController {
 		}
 	}
 
-	public void setup() {
+	public void init() {
 		Event.addNativePreviewHandler(new Preview());
 	}
 

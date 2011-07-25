@@ -23,7 +23,6 @@ import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
 import fspotcloud.client.main.ui.TimerImpl;
 import fspotcloud.client.main.ui.TreeViewImpl;
-import fspotcloud.client.main.ui.UserButtonViewImpl;
 import fspotcloud.client.main.view.ButtonPanelPresenterImpl;
 import fspotcloud.client.main.view.FullscreenImagePanelActivity;
 import fspotcloud.client.main.view.ImagePanelActivity;
@@ -54,10 +53,12 @@ import fspotcloud.client.main.view.api.TagView;
 import fspotcloud.client.main.view.api.TimerInterface;
 import fspotcloud.client.main.view.api.TreeSelectionHandlerInterface;
 import fspotcloud.client.main.view.api.TreeView;
-import fspotcloud.client.main.view.api.UserButtonFactory;
+import fspotcloud.client.main.view.api.UserButtonPresenterFactory;
 import fspotcloud.client.main.view.api.UserButtonView;
+import fspotcloud.client.main.view.api.UserButtonViewFactory;
 import fspotcloud.client.main.view.factory.ImagePanelActivityFactoryImpl;
 import fspotcloud.client.main.view.factory.TagPresenterFactoryImpl;
+import fspotcloud.client.main.view.factory.UserButtonViewFactoryImpl;
 import fspotcloud.client.place.NavigatorImpl;
 import fspotcloud.client.place.PlaceCalculator;
 import fspotcloud.client.place.PlaceGoToImpl;
@@ -130,10 +131,10 @@ public class AppModule extends AbstractGinModule {
 				ImagePanelView.ImagePanelPresenter.class,
 				ImagePanelActivity.class).build(
 				EmbeddedImagePanelPresenterAssistedFactory.class));
-		bind(UserButtonView.class).to(UserButtonViewImpl.class);
+		bind(UserButtonViewFactory.class).to(UserButtonViewFactoryImpl.class);
 		install(new GinFactoryModuleBuilder().implement(
 				UserButtonView.UserButtonPresenter.class,
-				UserButtonPresenterImpl.class).build(UserButtonFactory.class));
+				UserButtonPresenterImpl.class).build(UserButtonPresenterFactory.class));
 		install(new GinFactoryModuleBuilder().implement(
 				ButtonPanelView.ButtonPanelPresenter.class,
 				ButtonPanelPresenterImpl.class).build(

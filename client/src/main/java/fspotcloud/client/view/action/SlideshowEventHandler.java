@@ -3,10 +3,11 @@ package fspotcloud.client.view.action;
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
+import fspotcloud.client.main.api.Initializable;
 import fspotcloud.client.main.shared.SlideshowEvent;
 import fspotcloud.client.place.api.Slideshow;
 
-public class SlideshowEventHandler implements SlideshowEvent.Handler {
+public class SlideshowEventHandler implements SlideshowEvent.Handler, Initializable {
 
 	final private Slideshow slideshow;
 	final private EventBus eventBus;
