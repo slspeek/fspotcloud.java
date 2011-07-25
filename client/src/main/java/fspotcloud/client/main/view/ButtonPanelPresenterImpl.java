@@ -9,7 +9,7 @@ import com.google.inject.assistedinject.Assisted;
 import fspotcloud.client.main.view.api.ButtonPanelView;
 import fspotcloud.client.main.view.api.SlideshowPresenterFactory;
 import fspotcloud.client.main.view.api.SlideshowView;
-import fspotcloud.client.main.view.api.UserButtonFactory;
+import fspotcloud.client.main.view.api.UserButtonPresenterFactory;
 import fspotcloud.client.main.view.api.UserButtonView;
 import fspotcloud.client.view.action.api.ActionGroup;
 import fspotcloud.client.view.action.api.AllUserActions;
@@ -23,13 +23,13 @@ public class ButtonPanelPresenterImpl implements
 			.getLogger(ButtonPanelPresenterImpl.class.getName());
 	private final ButtonPanelView buttonPanelView;
 	private final AllUserActions allActions;
-	private final UserButtonFactory buttonPresenterFactory;
+	private final UserButtonPresenterFactory buttonPresenterFactory;
 	final private SlideshowView.SlideshowPresenter slideshowPresenter;
 
 	@Inject
 	public ButtonPanelPresenterImpl(@Assisted ButtonPanelView buttonPanelView,
 			AllUserActions allActions,
-			UserButtonFactory buttonPresenterFactory, SlideshowPresenterFactory slideshowPresenterFactory) {
+			UserButtonPresenterFactory buttonPresenterFactory, SlideshowPresenterFactory slideshowPresenterFactory) {
 		super();
 		this.buttonPanelView = buttonPanelView;
 		this.allActions = allActions;
@@ -51,8 +51,8 @@ public class ButtonPanelPresenterImpl implements
 		Widget w = slideshowPresenter.getView().asWidget();
 		buttonPanelView.add(w, false);
 		addSpacer(false);
-		addAction(actions.startSlideshow(), true);
-		addAction(actions.faster(), true);
+		addAction(actions.startSlideshow(), false);
+		addAction(actions.faster(), false);
 		addSpacer(false);
 		
 		addActionGroup(allActions.application(), false);

@@ -6,19 +6,21 @@ import com.google.inject.Inject;
 import fspotcloud.client.demo.DemoAction;
 import fspotcloud.client.main.ToggleFullscreenAction;
 import fspotcloud.client.main.TreeFocusAction;
+import fspotcloud.client.main.api.Initializable;
 import fspotcloud.client.main.help.HelpAction;
 import fspotcloud.client.main.shared.ApplicationEvent;
 import fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
-import fspotcloud.client.view.action.api.UserAction;
 
-public class ApplicationEventHandler implements ApplicationEvent.Handler {
+public class ApplicationEventHandler implements ApplicationEvent.Handler,
+		Initializable {
 
 	final private DemoAction demoAction;
 	final private HelpAction helpAction;
 	final private TreeFocusAction treeFocusAction;
 	final private ToggleFullscreenAction toggleFullscreenAction;
 	final private LoadNewLocationActionFactory locationFactory;
-	private Runnable projectHostingAction, stevenAction, mavenAction, dashboardAction;
+	private Runnable projectHostingAction, stevenAction, mavenAction,
+			dashboardAction;
 	final private EventBus eventBus;
 
 	@Inject
@@ -73,9 +75,12 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler {
 	}
 
 	private void initLocationActions() {
-		projectHostingAction = locationFactory.get("http://code.google.com/p/fspotcloud");
-		mavenAction = locationFactory.get("http://slspeek.github.com/FSpotCloudSite/");
+		projectHostingAction = locationFactory
+				.get("http://code.google.com/p/fspotcloud");
+		mavenAction = locationFactory
+				.get("http://slspeek.github.com/FSpotCloudSite/");
 		dashboardAction = locationFactory.get("/Dashboard.html");
-		stevenAction = locationFactory.get("http://profiles.google.com/slspeek");
+		stevenAction = locationFactory
+				.get("http://profiles.google.com/slspeek");
 	}
 }

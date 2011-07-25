@@ -3,13 +3,12 @@ package fspotcloud.client.main.view.api;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
+import fspotcloud.client.main.api.Initializable;
+
 public interface UserButtonView extends IsWidget {
 
-	interface UserButtonPresenter {
+	interface UserButtonPresenter extends Initializable {
 		void buttonClicked();
-
-		void init();
-
 		Widget getView();
 	}
 

@@ -3,10 +3,12 @@ package fspotcloud.client.view.action;
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
+import fspotcloud.client.main.api.Initializable;
 import fspotcloud.client.main.shared.NavigationEvent;
 import fspotcloud.client.place.api.Navigator;
 
-public class NavigationEventHandler implements NavigationEvent.Handler {
+public class NavigationEventHandler implements NavigationEvent.Handler,
+		Initializable {
 
 	final private Navigator navigator;
 	final private EventBus eventBus;

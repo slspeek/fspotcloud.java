@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.inject.Inject;
 
+import fspotcloud.client.main.api.Initializable;
 import fspotcloud.client.main.ui.HasOneWidgetAdapter;
 import fspotcloud.client.main.view.MainWindowActivityMapper;
 import fspotcloud.client.place.BasePlace;
@@ -27,7 +28,7 @@ public class MVPSetup {
 	final private EventBus eventBus;
 	final private MainWindowActivityMapper activityMapper;
 	final private PlaceController placeController;
-	final private GlobalShortcutController keyboardHandler;
+	final private Initializable keyboardHandler;
 	final private EventHandlersSetup eventSetup;
 	
 	@Inject
@@ -44,7 +45,7 @@ public class MVPSetup {
 	}
 
 	public void setup() {
-		keyboardHandler.setup();
+		keyboardHandler.init();
 		log.info("Starting MVP setup");
 		eventSetup.setUp();
 		ActivityManager activityManager = new ActivityManager(activityMapper,
