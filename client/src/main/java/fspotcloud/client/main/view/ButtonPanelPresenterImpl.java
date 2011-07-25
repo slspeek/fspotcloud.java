@@ -2,6 +2,10 @@ package fspotcloud.client.main.view;
 
 import java.util.logging.Logger;
 
+import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
+import com.google.inject.assistedinject.Assisted;
+
 import fspotcloud.client.main.view.api.ButtonPanelView;
 import fspotcloud.client.main.view.api.SlideshowPresenterFactory;
 import fspotcloud.client.main.view.api.SlideshowView;
@@ -14,6 +18,7 @@ import fspotcloud.client.view.action.api.UserAction;
 
 public class ButtonPanelPresenterImpl implements
 		ButtonPanelView.ButtonPanelPresenter {
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger
 			.getLogger(ButtonPanelPresenterImpl.class.getName());
 	private final ButtonPanelView buttonPanelView;
