@@ -87,6 +87,7 @@ public class SlideshowImpl implements Slideshow {
 	public float faster() {
 		delay /= INCREASE_FACTOR;
 		fireStatusChanged();
+		reschedule();
 		return delay();
 	}
 
@@ -94,6 +95,7 @@ public class SlideshowImpl implements Slideshow {
 	public float slower() {
 		delay *= INCREASE_FACTOR;
 		fireStatusChanged();
+		reschedule();
 		return delay();
 	}
 
