@@ -9,49 +9,53 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.main.shared.NavigationEvent;
 import fspotcloud.client.main.shared.NavigationEventProviderFactory;
+import fspotcloud.client.main.ui.Resources;
 import fspotcloud.client.view.action.api.NavigationActions;
 import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
 import fspotcloud.client.view.action.api.UserAction;
 
-public class NavigationActionsImpl extends ActionsFactory  implements NavigationActions{
+public class NavigationActionsImpl extends ActionsFactory implements
+		NavigationActions {
 
 	public UserAction HOME;
 	public UserAction END;
 	public UserAction BACK;
 	public UserAction NEXT;
-	
+
 	private List<UserAction> all;
-	
-	
+
 	final private NavigationEventProviderFactory navigation;
-	
+
 	@Inject
-	public NavigationActionsImpl(ShortcutAssistedFactory shortcutFactory, NavigationEventProviderFactory navigation) {
-		super(shortcutFactory);
+	public NavigationActionsImpl(ShortcutAssistedFactory shortcutFactory,
+			NavigationEventProviderFactory navigation, Resources resources) {
+		super(shortcutFactory, resources);
 		this.navigation = navigation;
 		init();
 	}
 
 	private void init() {
 		HOME = createNavigation("home", "Home", 'B', KeyCodes.KEY_HOME,
-				"Go to the first image of the category", null,
+				"Go to the first image of the category", resources.homeIcon(),
 				NavigationEvent.ActionType.HOME);
 		END = createNavigation("end", "End", KeyCodes.KEY_END, null,
-				"Go to the last image of the category", null,
+				"Go to the last image of the category", resources.endIcon(),
 				NavigationEvent.ActionType.END);
-		BACK = createNavigation("back", "Back",  KeyCodes.KEY_LEFT, null,
-				"Previous image in this category", null, NavigationEvent.ActionType.BACK);
+		BACK = createNavigation("back", "Back", KeyCodes.KEY_LEFT, null,
+				"Previous image in this category", resources.backIcon(),
+				NavigationEvent.ActionType.BACK);
 		NEXT = createNavigation("next", "Next", KeyCodes.KEY_RIGHT, null,
-				"Next image in this category", null, NavigationEvent.ActionType.NEXT);
+				"Next image in this category", resources.nextIcon(),
+				NavigationEvent.ActionType.NEXT);
 		all = Arrays.asList(HOME, END, BACK, NEXT);
 	}
 
-	public UserAction createNavigation(String id, String caption, int key, Integer altKey,
-			String description, ImageResource icon, NavigationEvent.ActionType actionType) {
-		return create(id, caption, key, altKey, description, icon, navigation.get(actionType));
+	public UserAction createNavigation(String id, String caption, int key,
+			Integer altKey, String description, ImageResource icon,
+			NavigationEvent.ActionType actionType) {
+		return create(id, caption, key, altKey, description, icon,
+				navigation.get(actionType));
 	}
-
-
 
 	@Override
 	public List<UserAction> allActions() {
@@ -83,5 +87,4 @@ public class NavigationActionsImpl extends ActionsFactory  implements Navigation
 		return "Navigation";
 	}
 
-	
 }

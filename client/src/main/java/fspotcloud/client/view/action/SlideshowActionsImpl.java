@@ -8,6 +8,7 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.main.shared.SlideshowEvent;
 import fspotcloud.client.main.shared.SlideshowEventProviderFactory;
+import fspotcloud.client.main.ui.Resources;
 import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
 import fspotcloud.client.view.action.api.SlideshowActions;
 import fspotcloud.client.view.action.api.UserAction;
@@ -25,22 +26,22 @@ public class SlideshowActionsImpl extends ActionsFactory implements
 
 	@Inject
 	public SlideshowActionsImpl(ShortcutAssistedFactory shortcutFactory,
-			SlideshowEventProviderFactory slideshow) {
-		super(shortcutFactory);
+			SlideshowEventProviderFactory slideshow, Resources resources) {
+		super(shortcutFactory, resources);
 		this.slideshow = slideshow;
 		init();
 	}
 
 	private void init() {
 		SLIDESHOW_START = createSlideshow("play", "Play", 'S', (int) 'G',
-				"Start slideshow", null, SlideshowEvent.ActionType.START);
+				"Start slideshow", resources.playIcon(), SlideshowEvent.ActionType.START);
 		SLIDESHOW__END = createSlideshow("stop", "Stop", 'Q', null,
-				"Stop slideshow", null, SlideshowEvent.ActionType.STOP);
+				"Stop slideshow", resources.stopIcon(), SlideshowEvent.ActionType.STOP);
 		SLIDESHOW_SLOWER = createSlideshow("slower", "Slower", 'U', null,
-				"Makes the slideshow go slower", null,
+				"Makes the slideshow go slower", resources.slowerIcon(),
 				SlideshowEvent.ActionType.SLOWER);
 		SLIDESHOW_FASTER = createSlideshow("faster", "Faster", 'I', null,
-				"Makes the slideshow go faster", null,
+				"Makes the slideshow go faster", resources.fasterIcon(),
 				SlideshowEvent.ActionType.FASTER);
 		all = Arrays.asList(SLIDESHOW_FASTER, SLIDESHOW_START, SLIDESHOW__END,
 				SLIDESHOW_SLOWER);

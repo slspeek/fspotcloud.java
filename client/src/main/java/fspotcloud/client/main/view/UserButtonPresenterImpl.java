@@ -10,29 +10,34 @@ import fspotcloud.client.main.view.api.UserButtonView;
 import fspotcloud.client.main.view.api.UserButtonViewFactory;
 import fspotcloud.client.view.action.api.UserAction;
 
-public class UserButtonPresenterImpl implements UserButtonView.UserButtonPresenter {
+public class UserButtonPresenterImpl implements
+		UserButtonView.UserButtonPresenter {
 	private static final Logger log = Logger
-	.getLogger(UserButtonPresenterImpl.class.getName());
+			.getLogger(UserButtonPresenterImpl.class.getName());
 
 	private final UserAction action;
 	private final UserButtonViewFactory viewFactory;
 	private UserButtonView view;
+
 	@Inject
-	public UserButtonPresenterImpl(@Assisted UserAction action, UserButtonViewFactory viewFactory) {
+	public UserButtonPresenterImpl(@Assisted UserAction action,
+			UserButtonViewFactory viewFactory) {
 		super();
 		this.action = action;
 		this.viewFactory = viewFactory;
 	}
-	
+
 	@Override
 	public void init() {
 		view = viewFactory.get(action);
 		view.setPresenter(this);
 		initButton();
 	}
-	
+
 	private void initButton() {
-		view.setCaption(action.getCaption());
+		if (action.getIcon() == null) {
+			view.setCaption(action.getCaption());
+		}
 		view.setDebugId(action.getId());
 	}
 
@@ -45,5 +50,5 @@ public class UserButtonPresenterImpl implements UserButtonView.UserButtonPresent
 	public Widget getView() {
 		return view.asWidget();
 	}
-	
+
 }

@@ -4,7 +4,7 @@
 	<groupId>fspotcloud</groupId>
 	<artifactId>fspotcloud</artifactId>
 	<packaging>pom</packaging>
-	<version>0.40-6.5.2</version>
+	<version>0.40-6.5.3</version>
 	<name>F-Spot Cloud Java Edition</name>
 	<prerequisites>
 		<maven>3.0.0</maven>
@@ -53,15 +53,14 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.1</version>
 				<executions>
 					<execution>
 						<id>pre-test</id>
 						<phase>process-test-resources</phase>
 						<configuration>
-							<tasks>
+							<target>
 								<delete dir="${basedir}/extras" includeemptydirs="true" />
-							</tasks>
+							</target>
 						</configuration>
 						<goals>
 							<goal>run</goal>
@@ -71,9 +70,9 @@
 						<id>clear</id>
 						<phase>clean</phase>
 						<configuration>
-							<tasks>
-								<delete dir="${basedir}/extrasF" includeemptydirs="true" />
-							</tasks>
+							<target>
+								<delete dir="${basedir}/extras" includeemptydirs="true" />
+							</target>
 						</configuration>
 						<goals>
 							<goal>run</goal>
@@ -131,6 +130,11 @@
 					<artifactId>findbugs-maven-plugin</artifactId>
 					<version>2.3.2</version>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>antrun-maven-plugin</artifactId>
+					<version>1.6</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<extensions>
@@ -156,12 +160,13 @@
 		<guice.version>3.0</guice.version>
 		<gin.version>1.5.0</gin.version>
 		<gwt.version>2.3.0</gwt.version>
+		<gwt.plugin.version>2.3.0</gwt.plugin.version>
 		<gae.version>1.5.0</gae.version>
 		<org.apache.xmlrpc.version>3.1.3</org.apache.xmlrpc.version>
 		<gae.home>${user.home}/appengine-java-sdk-${gae.version}</gae.home>
 		<bot.secret>SECRET</bot.secret>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<gwt.plugin.version>2.3.0</gwt.plugin.version>
+		<icon.size>48x48</icon.size>
 	</properties>
 	<pluginRepositories>
 		<pluginRepository>
@@ -189,8 +194,8 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
 				<version>2.5.1</version>
- 				<inherited>true</inherited>
-				</plugin>
+				<inherited>true</inherited>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>

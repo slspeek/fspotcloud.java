@@ -19,8 +19,8 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	final private TreeFocusAction treeFocusAction;
 	final private ToggleFullscreenAction toggleFullscreenAction;
 	final private LoadNewLocationActionFactory locationFactory;
-	private Runnable projectHostingAction, stevenAction, mavenAction,
-			dashboardAction;
+	private Runnable projectHostingAction, mavenAction, dashboardAction,
+			protonAction, licenseAction, stevenAction;
 	final private EventBus eventBus;
 
 	@Inject
@@ -61,6 +61,12 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 		case MAVEN:
 			mavenAction.run();
 			break;
+		case PROTON:
+			protonAction.run();
+			break;
+		case LICENSE:
+			licenseAction.run();
+			break;
 		case STEVEN:
 			stevenAction.run();
 			break;
@@ -80,7 +86,11 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 		mavenAction = locationFactory
 				.get("http://slspeek.github.com/FSpotCloudSite/");
 		dashboardAction = locationFactory.get("/Dashboard.html");
+		licenseAction = locationFactory
+				.get("http://slspeek.github.com/FSpotCloudSite/license.html");
+		protonAction = locationFactory.get("http://protonradio.com");
 		stevenAction = locationFactory
 				.get("http://profiles.google.com/slspeek");
+
 	}
 }
