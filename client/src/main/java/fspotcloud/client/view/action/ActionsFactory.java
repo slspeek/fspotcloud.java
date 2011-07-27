@@ -5,17 +5,20 @@ import com.google.gwt.resources.client.ImageResource;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
+import fspotcloud.client.main.ui.Resources;
 import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class ActionsFactory {
 	
 	private ShortcutAssistedFactory factory;
+	final protected Resources resources; 
 
 	@Inject
-	public ActionsFactory(ShortcutAssistedFactory factory) {
+	public ActionsFactory(ShortcutAssistedFactory factory, Resources resources) {
 		super();
 		this.factory = factory;
+		this.resources = resources;
 	}
 	
 	protected UserAction create(String id, String caption, int key, Integer altKey,

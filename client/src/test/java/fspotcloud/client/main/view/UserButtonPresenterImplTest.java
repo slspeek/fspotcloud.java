@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
+import com.google.gwt.resources.client.ImageResource;
+
 import fspotcloud.client.main.view.api.UserButtonView;
 import fspotcloud.client.main.view.api.UserButtonViewFactory;
 import fspotcloud.client.view.action.api.UserAction;
@@ -17,6 +19,7 @@ public class UserButtonPresenterImplTest extends TestCase {
 	UserButtonView view;
 	UserButtonViewFactory viewFactory;
 	UserButtonView.UserButtonPresenter presenter;
+	ImageResource fakeImage;
 	
 	
 	@Override
@@ -25,6 +28,7 @@ public class UserButtonPresenterImplTest extends TestCase {
 		action = context.mock(UserAction.class);
 		view = context.mock(UserButtonView.class);
 		viewFactory = context.mock(UserButtonViewFactory.class);
+		fakeImage = context.mock(ImageResource.class);
 		super.setUp();
 	}
 
@@ -33,10 +37,11 @@ public class UserButtonPresenterImplTest extends TestCase {
 		context.assertIsSatisfied();
 	}
 	
-	public void testInit() {
+	public void testInitWithoutIcon() {
 		testConstructor();
 		context.checking(new Expectations() { {
 			oneOf(viewFactory).get(action);will(returnValue(view));
+			oneOf(action).getIcon();will(returnValue(null));
 			oneOf(action).getCaption();will(returnValue("Ape"));
 			oneOf(view).setCaption("Ape");
 			oneOf(view).setPresenter(presenter);
@@ -46,6 +51,22 @@ public class UserButtonPresenterImplTest extends TestCase {
 		presenter.init();
 		context.assertIsSatisfied();
 	}
+	
+	public void testInitWithIcon() {
+		testConstructor();
+		context.checking(new Expectations() { {
+			oneOf(viewFactory).get(action);will(returnValue(view));
+			oneOf(action).getIcon();will(returnValue(fakeImage));
+			//oneOf(action).getCaption();will(returnValue("Ape"));
+			//oneOf(view).setCaption("Ape");
+			oneOf(view).setPresenter(presenter);
+			oneOf(action).getId();will(returnValue("ID"));
+			oneOf(view).setDebugId("ID");
+		} });
+		presenter.init();
+		context.assertIsSatisfied();
+	}
+	
 
 	public void testButtonClicked() {
 		testConstructor();

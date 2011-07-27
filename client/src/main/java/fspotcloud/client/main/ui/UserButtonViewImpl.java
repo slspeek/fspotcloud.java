@@ -14,9 +14,11 @@ public class UserButtonViewImpl extends PushButton implements UserButtonView {
 
 	public UserButtonViewImpl(ImageResource icon) {
 		super(new Image(icon));
+		setStyleName("fsc-user-button");
 	}
 
 	public UserButtonViewImpl() {
+		setStyleName("fsc-user-button");
 	}
 
 	@Override
