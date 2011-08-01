@@ -30,5 +30,6 @@ public interface AdminServiceAsync {
 	void getMetaData(AsyncCallback<MetaDataInfo> callback); 
 	
 	void importImageData(AsyncCallback<Void> callback);
-
+	
+	void resetPeerPhotoCount(AsyncCallback<Void> callback);
 }

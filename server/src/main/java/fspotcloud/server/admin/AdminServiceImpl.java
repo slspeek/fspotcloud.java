@@ -146,4 +146,11 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		queue.add(task);
 		log.info("Image Data Mapper scheduled.");
 	}
+
+	@Override
+	public void resetPeerPhotoCount() {
+		PeerDatabase peerDatabase = defaultPeer.get();
+		peerDatabase.setPeerPhotoCount(0);
+		defaultPeer.save(peerDatabase);
+	}
 }

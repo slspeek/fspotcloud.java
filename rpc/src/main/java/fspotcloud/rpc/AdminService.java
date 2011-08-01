@@ -18,6 +18,8 @@ public interface AdminService extends RemoteService {
 	MetaDataInfo getMetaData();
 
 	int getPeerPhotoCount();
+	
+	void resetPeerPhotoCount();
 
 	long getServerPhotoCount();
 
