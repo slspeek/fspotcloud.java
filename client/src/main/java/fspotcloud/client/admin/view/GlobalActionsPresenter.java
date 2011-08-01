@@ -92,6 +92,26 @@ public class GlobalActionsPresenter implements
 		});
 
 	}
+	
+	@Override
+	public void resetPeerPhotoCount() {
+		globalActionsView.getResetMetaDataButton().setEnabled(false);
+		adminServiceAsync.resetPeerPhotoCount(new AsyncCallback<Void>() {
+
+			public void onFailure(Throwable caught) {
+				enableButton();
+			}
+
+			public void onSuccess(Void result) {
+				enableButton();
+			}
+
+			private void enableButton() {
+				globalActionsView.getResetMetaDataButton().setEnabled(true);
+			}
+		});
+
+	}
 
 	@Override
 	public void update() {

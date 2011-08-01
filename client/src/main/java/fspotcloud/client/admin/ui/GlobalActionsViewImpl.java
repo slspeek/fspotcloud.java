@@ -44,16 +44,25 @@ public class GlobalActionsViewImpl extends Composite implements
 	Button countPhotosButton;
 	@UiField
 	Button loadImagesButton;
+	@UiField
+	Button resetMetaDataButton;
 
+	
 
 	public GlobalActionsViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
-		deleteAllTagsButton.ensureDebugId("delete-allGroups-tags-button");
+		deleteAllTagsButton.ensureDebugId("delete-all-tags-button");
 		importTagsButton.ensureDebugId("import-tags-button");
 		updateButton.ensureDebugId("update-button");
-		deleteAllPhotosButton.ensureDebugId("delete-allGroups-photos-button");
+		deleteAllPhotosButton.ensureDebugId("delete-all-photos-button");
 		countPhotosButton.ensureDebugId("count-photos-button");
 		loadImagesButton.ensureDebugId("load-images-button");
+		resetMetaDataButton.ensureDebugId("reset-meta-data-button");
+	}
+
+	@UiHandler("resetMetaDataButton")
+	public void resetMetaDataButtonClicked(ClickEvent event) {
+		presenter.resetPeerPhotoCount();
 	}
 
 	@UiHandler("countPhotosButton")
@@ -135,6 +144,11 @@ public class GlobalActionsViewImpl extends Composite implements
 	@Override
 	public HasEnabled getCountPhotosButton() {
 		return countPhotosButton;
+	}
+
+	@Override
+	public HasEnabled getResetMetaDataButton() {
+		return resetMetaDataButton;
 	}
 
 

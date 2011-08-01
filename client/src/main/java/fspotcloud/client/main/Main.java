@@ -8,11 +8,11 @@ import com.google.gwt.core.client.GWT;
 
 import fspotcloud.client.main.gin.AppGinjector;
 
-public class TagEntryPoint implements EntryPoint {
+public class Main implements EntryPoint {
 
 	private final AppGinjector injector = GWT.create(AppGinjector.class);
 
-	private static final Logger log = Logger.getLogger(TagEntryPoint.class
+	private static final Logger log = Logger.getLogger(Main.class
 			.getName());
 
 	@Override

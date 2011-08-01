@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-6.5.3</version>
+		<version>0.40-6.5.4</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>client</artifactId>
@@ -46,7 +46,19 @@
 			<version>2.5.1</version>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.seleniumhq.selenium.client-drivers</groupId>
+			<artifactId>selenium-java-client-driver</artifactId>
+			<version>1.0.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium</artifactId>
+			<version>2.0b3</version>
+			<type>pom</type>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -65,6 +77,18 @@
 									classpathref="maven.plugin.classpath" />
 								<ant antfile="${basedir}/icon-convert-ant.xml" target="convert-all" />
 							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+						<execution>
+						<id>clear</id>
+						<phase>clean</phase>
+						<configuration>
+							<tasks>
+								<delete dir="${basedir}/war" includeemptydirs="true" />
+							</tasks>
 						</configuration>
 						<goals>
 							<goal>run</goal>
@@ -105,6 +129,7 @@
 				<configuration>
 					<excludes>
 						<exclude>**/*GwtTest.java</exclude>
+						<exclude>**/DefaultGwtTestSuite.java</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
@@ -158,9 +183,11 @@
 					<extraJvmArgs>-Xmx512m</extraJvmArgs>
 					<runTarget>/FSpotCloud.html</runTarget>
 					<style>PRETTY</style>
+					<selenium>localhost:4444/*firefox"</selenium>
 					<mode>htmlunit</mode>
 					<gwtVersion>${gwt.version}</gwtVersion>
-					<skipTests>true</skipTests>
+					<skipTests>false</skipTests>
+					<includes>**/DefaultGwtTestSuite.java</includes>
 				</configuration>
 				<executions>
 					<execution>
@@ -172,7 +199,11 @@
 						</goals>
 					</execution>
 				</executions>
+				<dependencies>
+
+				</dependencies>
 			</plugin>
+			
 		</plugins>
 	</build>
 	<reporting>

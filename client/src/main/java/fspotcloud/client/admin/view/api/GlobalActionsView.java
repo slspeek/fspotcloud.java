@@ -13,6 +13,7 @@ public interface GlobalActionsView extends IsWidget {
 		void importTags();
 		void update();
 		void importImageData();
+		void resetPeerPhotoCount();
 	}
 	
 	void setPresenter(GlobalActionsPresenter presenter);
@@ -29,4 +30,6 @@ public interface GlobalActionsView extends IsWidget {
 	HasEnabled getUpdateButton();
 	HasEnabled getLoadImagesButton();
 	HasEnabled getCountPhotosButton();
+
+	HasEnabled getResetMetaDataButton();
 }

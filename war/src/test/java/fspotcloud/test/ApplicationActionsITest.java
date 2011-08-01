@@ -28,7 +28,7 @@ public class ApplicationActionsITest extends SeleniumITest {
 		selenium.waitForPageToLoad("30000");
 		selenium.click("gwt-debug-help");
 		sleepShort();
-		selenium.click("//div[@id='gwt-debug-help']/div");
+		selenium.click("//div[3]/div");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("gwt-debug-fullscreen");
 		selenium.waitForPageToLoad("30000");

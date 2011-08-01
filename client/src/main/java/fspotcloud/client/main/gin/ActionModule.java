@@ -36,24 +36,7 @@ public class ActionModule extends AbstractGinModule {
 		bind(RasterActions.class).to(RasterActionsImpl.class);
 		bind(SlideshowActions.class).to(SlideshowActionsImpl.class);
 		bind(ApplicationActions.class).to(ApplicationActionsImpl.class);
-		
-		install(new GinFactoryModuleBuilder()
-				.build(NavigationEventProviderFactory.class));
-		install(new GinFactoryModuleBuilder()
-				.build(SlideshowEventProviderFactory.class));
-		install(new GinFactoryModuleBuilder()
-				.build(RasterEventProviderFactory.class));
-		install(new GinFactoryModuleBuilder()
-				.build(ApplicationEventProviderFactory.class));
-
-		install(new GinFactoryModuleBuilder()
-				.build(NavigationEventFactory.class));
-		install(new GinFactoryModuleBuilder()
-				.build(SlideshowEventFactory.class));
-		install(new GinFactoryModuleBuilder()
-				.build(ApplicationEventFactory.class));
-		install(new GinFactoryModuleBuilder().build(RasterEventFactory.class));
-
+	
 		install(new GinFactoryModuleBuilder().implement(UserAction.class,
 				Shortcut.class).build(ShortcutAssistedFactory.class));
 		

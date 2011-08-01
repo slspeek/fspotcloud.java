@@ -64,6 +64,15 @@ public class DashboardITest extends SeleniumITest {
 		sleepShort();
 		selenium.click("gwt-debug-import-tag-button");
 		sleepShort();
+		selenium.click("gwt-debug-count-photos-button");
+		sleepShort(4);
+		selenium.open("/Dashboard.html");
+		selenium.waitForPageToLoad("30000");
+		selenium.open("/Dashboard.html");
+		selenium.waitForPageToLoad("5000");
+		sleepShort();
+		assertEquals("28", selenium.getText("//td[2]/div/table/tbody[2]/tr[1]/td[2]/div"));
+
 		selenium.click("gwt-debug-load-images-button");
 		sleepShort();
 	}

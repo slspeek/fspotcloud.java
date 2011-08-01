@@ -102,7 +102,14 @@
 						<g:Button ui:field="deleteAllPhotosButton" >Delete all photos</g:Button>
 					</td>
 				</tr>
-				
+				<tr>
+					<td>
+						<g:Label  styleName="{style.property-label}">Reset the synchronization point</g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="resetMetaDataButton" >Reset synchronization</g:Button>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 	</g:HTMLPanel>
