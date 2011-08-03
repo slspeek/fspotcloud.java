@@ -16,6 +16,9 @@ import fspotcloud.server.control.SchedulerInterface;
 import fspotcloud.server.control.reciever.MetaReciever;
 import fspotcloud.server.control.reciever.PhotoReciever;
 import fspotcloud.server.control.reciever.TagReciever;
+import fspotcloud.server.control.task.DelayedPhotoDataScheduler;
+import fspotcloud.server.control.task.PhotoDataScheduler;
+import fspotcloud.server.control.task.PhotoDataSchedulerImpl;
 import fspotcloud.server.model.PersistenceManagerProvider;
 import fspotcloud.server.model.api.Batches;
 import fspotcloud.server.model.api.Commands;
@@ -59,6 +62,11 @@ public class FSpotCloudModule extends AbstractModule {
 				QueueFactory.getDefaultQueue());
 		bind(SchedulerInterface.class).to(Scheduler.class);
 		install(new FactoryModuleBuilder().build(ImageDataImporterFactory.class));
+		
+		bind(PhotoDataScheduler.class).annotatedWith(Names.named("delayed")).to(DelayedPhotoDataScheduler.class);
+		bind(PhotoDataScheduler.class).annotatedWith(Names.named("default")).to(PhotoDataSchedulerImpl.class);
+		
+		bind(Queue.class).toInstance(QueueFactory.getDefaultQueue());
 	}
 
 }

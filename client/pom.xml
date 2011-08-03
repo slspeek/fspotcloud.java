@@ -4,13 +4,13 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-6.5.4</version>
+		<version>0.40-6.5.4.1</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>client</artifactId>
 	<packaging>jar</packaging>
-	<name>GWT User interface and client logic</name>
-	<description>The user interface and the admin console.</description>
+	<name>GWT client</name>
+	<description>The user interface and the dashboard</description>
 	<dependencies>
 		<dependency>
 			<groupId>fspotcloud</groupId>
