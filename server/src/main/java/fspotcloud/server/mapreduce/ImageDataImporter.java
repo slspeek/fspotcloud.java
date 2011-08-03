@@ -8,7 +8,6 @@ import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.server.control.SchedulerInterface;
-import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Photo;
 
 public class ImageDataImporter {

@@ -10,25 +10,26 @@ import javax.servlet.http.HttpServlet;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.google.inject.name.Named;
 
 @SuppressWarnings("serial")
 @Singleton
-public class PhotoDataTaskServlet extends HttpServlet {
+public class DataTaskServlet extends HttpServlet {
 
-	@Named("default") @Inject
-	private PhotoDataScheduler scheduler;
+	@Inject
+	private DefaultDataSchedulerFactory schedulerFactory;
 
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
 		String startParam = request.getParameter("offset");
 		String countParam = request.getParameter("limit");
+		String kind = request.getParameter("kind");
 		int start = Integer.valueOf(startParam);
 		int count = Integer.valueOf(countParam);
-		scheduler.schedulePhotoDataImport(start, count);
+		DataScheduler scheduler = schedulerFactory.get(kind);
+		scheduler.scheduleDataImport(start, count);
 		PrintWriter out = response.getWriter();
-		out.println("PhotoDataTask ran.");
+		out.println("DataTask ran.");
 		out.close();
 	}
 }

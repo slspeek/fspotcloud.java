@@ -12,6 +12,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import fspotcloud.server.control.task.TaskModule;
 import fspotcloud.server.inject.FSpotCloudModule;
 import fspotcloud.server.inject.ImageDataImporterFactory;
 import fspotcloud.server.model.api.PeerDatabase;
@@ -26,7 +27,7 @@ public class ImageDataMapper extends
 			.getName());
 
 	private final static Injector injector = Guice
-			.createInjector(new FSpotCloudModule());
+			.createInjector(new FSpotCloudModule(), new TaskModule());
 
 	private ImageDataImporterFactory factory = injector
 			.getInstance(ImageDataImporterFactory.class);
