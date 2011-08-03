@@ -13,30 +13,48 @@ public class PhotoDataSchedulerImplTest extends TestCase {
 
 	Mockery context;
 	SchedulerInterface scheduler;
-	PhotoDataScheduler recursiveCall;
-	PhotoDataScheduler photoDataImporter;
-	
+	DataScheduler recursiveCall;
+	DataScheduler photoDataImporter;
+
 	@Override
 	protected void setUp() throws Exception {
 		context = new Mockery();
-		recursiveCall = context.mock(PhotoDataScheduler.class);
+		recursiveCall = context.mock(DataScheduler.class);
 		scheduler = context.mock(SchedulerInterface.class);
 		super.setUp();
 	}
-	
+
 	public void testPhotoDataSchedulerImpl() {
-		photoDataImporter = new PhotoDataSchedulerImpl(recursiveCall, scheduler, 2);
+		photoDataImporter = new DataSchedulerImpl(scheduler, 2, "Photo",
+				recursiveCall);
 		assertNotNull(photoDataImporter);
 	}
 
 	public void testSchedulePhotoDataImport() {
 		testPhotoDataSchedulerImpl();
-		context.checking(new Expectations() {{
-			oneOf(recursiveCall).schedulePhotoDataImport(14, 1);
-			oneOf(scheduler).schedule("sendPhotoData", ImmutableList.of("10", "2"));
-			oneOf(scheduler).schedule("sendPhotoData", ImmutableList.of("12", "2"));
-		}});
-		photoDataImporter.schedulePhotoDataImport(10, 5);
+		context.checking(new Expectations() {
+			{
+				oneOf(recursiveCall).scheduleDataImport(14, 1);
+				oneOf(scheduler).schedule("sendPhotoData",
+						ImmutableList.of("10", "2"));
+				oneOf(scheduler).schedule("sendPhotoData",
+						ImmutableList.of("12", "2"));
+			}
+		});
+		photoDataImporter.scheduleDataImport(10, 5);
+	}
+
+	public void testSchedulePhotoDataImportSingleRun() {
+		testPhotoDataSchedulerImpl();
+		context.checking(new Expectations() {
+			{
+				oneOf(scheduler).schedule("sendPhotoData",
+						ImmutableList.of("10", "2"));
+				oneOf(scheduler).schedule("sendPhotoData",
+						ImmutableList.of("12", "2"));
+			}
+		});
+		photoDataImporter.scheduleDataImport(10, 4);
 	}
 
 }

@@ -16,9 +16,13 @@ import fspotcloud.server.control.SchedulerInterface;
 import fspotcloud.server.control.reciever.MetaReciever;
 import fspotcloud.server.control.reciever.PhotoReciever;
 import fspotcloud.server.control.reciever.TagReciever;
-import fspotcloud.server.control.task.DelayedPhotoDataScheduler;
-import fspotcloud.server.control.task.PhotoDataScheduler;
-import fspotcloud.server.control.task.PhotoDataSchedulerImpl;
+import fspotcloud.server.control.task.DataScheduler;
+import fspotcloud.server.control.task.DataSchedulerAssistedFactory;
+import fspotcloud.server.control.task.DataSchedulerFactory;
+import fspotcloud.server.control.task.DataSchedulerImpl;
+import fspotcloud.server.control.task.DefaultDataSchedulerFactory;
+import fspotcloud.server.control.task.DelayedDataScheduler;
+import fspotcloud.server.control.task.DelayedDataSchedulerFactory;
 import fspotcloud.server.model.PersistenceManagerProvider;
 import fspotcloud.server.model.api.Batches;
 import fspotcloud.server.model.api.Commands;
@@ -37,7 +41,8 @@ public class FSpotCloudModule extends AbstractModule {
 	protected void configure() {
 		bind(Batches.class).to(BatchManager.class).in(Singleton.class);
 		bind(Photos.class).to(PhotoManager.class).in(Singleton.class);
-		bind(PeerDatabases.class).to(PeerDatabaseManager.class).in(Singleton.class);
+		bind(PeerDatabases.class).to(PeerDatabaseManager.class).in(
+				Singleton.class);
 		bind(Tags.class).to(TagManager.class).in(Singleton.class);
 		bind(Commands.class).to(CommandManager.class).in(Singleton.class);
 		bind(PersistenceManager.class).toProvider(
@@ -57,16 +62,12 @@ public class FSpotCloudModule extends AbstractModule {
 		bind(MetaReciever.class).in(Singleton.class);
 		bind(TagReciever.class).in(Singleton.class);
 		bind(PhotoReciever.class).in(Singleton.class);
-		
+
 		bind(Queue.class).annotatedWith(Names.named("default")).toInstance(
 				QueueFactory.getDefaultQueue());
 		bind(SchedulerInterface.class).to(Scheduler.class);
-		install(new FactoryModuleBuilder().build(ImageDataImporterFactory.class));
-		
-		bind(PhotoDataScheduler.class).annotatedWith(Names.named("delayed")).to(DelayedPhotoDataScheduler.class);
-		bind(PhotoDataScheduler.class).annotatedWith(Names.named("default")).to(PhotoDataSchedulerImpl.class);
-		
-		bind(Queue.class).toInstance(QueueFactory.getDefaultQueue());
+		install(new FactoryModuleBuilder()
+				.build(ImageDataImporterFactory.class));
 	}
 
 }

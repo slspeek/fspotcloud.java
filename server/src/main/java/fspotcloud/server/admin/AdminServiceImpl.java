@@ -15,6 +15,7 @@ import com.google.inject.Singleton;
 
 import fspotcloud.rpc.AdminService;
 import fspotcloud.server.control.SchedulerInterface;
+import fspotcloud.server.control.task.DefaultDataSchedulerFactory;
 import fspotcloud.server.mapreduce.MapReduceUtil;
 import fspotcloud.server.model.api.Batch;
 import fspotcloud.server.model.api.Batches;
@@ -46,6 +47,9 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 
 	@Inject
 	private SchedulerInterface scheduler;
+	
+	@Inject 
+	private DefaultDataSchedulerFactory dataSchedulerFactory;
 
 	@Override
 	public long deleteAllPhotos() {

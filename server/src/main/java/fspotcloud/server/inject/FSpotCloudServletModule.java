@@ -9,7 +9,7 @@ import com.google.inject.servlet.ServletModule;
 import fspotcloud.server.admin.AdminServiceImpl;
 import fspotcloud.server.control.GuiceXmlRpcServlet;
 import fspotcloud.server.control.TagImportServlet;
-import fspotcloud.server.control.task.PhotoDataTaskServlet;
+import fspotcloud.server.control.task.DataTaskServlet;
 import fspotcloud.server.main.ImageServlet;
 import fspotcloud.server.main.TagServiceImpl;
 import fspotcloud.server.mapreduce.CounterCompletedServlet;
@@ -21,8 +21,7 @@ public class FSpotCloudServletModule extends ServletModule {
 			.getName());
 	@Override
 	protected void configureServlets() {
-		serve("/control/task/photoData").with(PhotoDataTaskServlet.class);
-
+		serve("/control/task/data").with(DataTaskServlet.class);
 		serve("/cron/import_tags").with(TagImportServlet.class);
 		serve("/fspotcloud/tag").with(TagServiceImpl.class);
 		serve("/fspotcloud.dashboard/tag").with(TagServiceImpl.class);
@@ -35,7 +34,6 @@ public class FSpotCloudServletModule extends ServletModule {
 		params.put("enabledForExtensions", "true");
 		String botSecret = System.getProperty("bot.secret");
 		serve("/xmlrpc/" + botSecret).with(GuiceXmlRpcServlet.class, params);
-		//log.info("bot.secret: " + botSecret);
 	}
 
 }
