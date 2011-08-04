@@ -26,7 +26,6 @@ public class FSpotCloudServletModule extends ServletModule {
 		serve("/fspotcloud/tag").with(TagServiceImpl.class);
 		serve("/fspotcloud.dashboard/tag").with(TagServiceImpl.class);
 		serve("/image").with(ImageServlet.class);
-		serve("/fspotcloud.admin/admin").with(AdminServiceImpl.class);
 		serve("/fspotcloud.dashboard/admin").with(AdminServiceImpl.class);
 		serve("/callbacks/counter_completed").with(CounterCompletedServlet.class);
 
