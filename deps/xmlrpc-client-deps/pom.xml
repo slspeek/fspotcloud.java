@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>deps</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.40-6.5.6</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fspotcloud.deps</groupId>
+	<artifactId>xmlrpc-client-deps</artifactId>
+	<packaging>pom</packaging>
+	<name>Dependencies for XMLRPC client</name>
+	<dependencies>
+		<dependency>
+			<groupId>xmlrpc</groupId>
+			<artifactId>xmlrpc-client</artifactId>
+			<version>3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+</project>
+

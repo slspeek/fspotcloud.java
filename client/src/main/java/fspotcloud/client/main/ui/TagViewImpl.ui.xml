@@ -1,0 +1,29 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:my="urn:import:fspotcloud.client.main.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:DockLayoutPanel ui:field="mainPanel">
+		<g:north size="30">
+			<g:Label ui:field="titleLabel" text="FSpotCloud Java Edition">
+			</g:Label>
+		</g:north>
+		<g:center>
+			<g:SplitLayoutPanel ui:field="horizontalSplitPanel">
+				<g:west size="250">
+					<my:TreeViewImpl></my:TreeViewImpl>
+				</g:west>
+				<g:center>
+					<g:DockLayoutPanel ui:field="imageViewPanel"></g:DockLayoutPanel> 
+				</g:center>
+			</g:SplitLayoutPanel>
+		</g:center>
+		<g:south size="20">
+			<g:Label ui:field="statusLabel" text="Press h for help, 7 for demo"></g:Label>
+		</g:south>
+	</g:DockLayoutPanel>
+</ui:UiBinder> 

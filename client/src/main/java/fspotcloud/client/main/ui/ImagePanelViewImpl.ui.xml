@@ -1,0 +1,17 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:my="urn:import:fspotcloud.client.main.ui">
+	<ui:style>
+		table {
+			margin: auto;
+		}
+	</ui:style>
+	<g:DockLayoutPanel ui:field="mainPanel">
+		<g:center>
+			<my:ImageRasterViewImpl></my:ImageRasterViewImpl>
+		</g:center>
+		<g:south size="98">
+			<my:ButtonPanelViewImpl></my:ButtonPanelViewImpl>
+		</g:south>
+	</g:DockLayoutPanel>
+</ui:UiBinder> 
