@@ -11,12 +11,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
 public class Data {
 
+	final static private Logger log = Logger.getLogger(Data.class.getName());
+	
 	static {
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -89,7 +92,7 @@ public class Data {
 			long time = rs.getLong(3);
 			Date date = new Date();
 			date.setTime(time * 1000);
-			System.out.println(time + " " + date);
+			log.info(time + " " + date);
 			Object[] tagList = getTagsForPhoto(Integer.valueOf(id));
 			photoList.add(new Object[] { id, desc, date, tagList });
 		}
