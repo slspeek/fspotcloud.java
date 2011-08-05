@@ -4,19 +4,25 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
+
+
 public class Bot {
 
+	final static private Logger log = Logger.getLogger(Bot.class.getName());
 	private BotWorker botWorker;
 	private Pauser pauser;
 	private CommandFetcher fetcher;
 	private int pause;
-	
+
 	@Inject
-	private Bot(BotWorker botWorker, CommandFetcher fetcher, Pauser pauser, @Named("pause") int pause) {
+	private Bot(BotWorker botWorker, CommandFetcher fetcher, Pauser pauser,
+			@Named("pause") int pause) {
 		this.botWorker = botWorker;
 		this.pauser = pauser;
 		this.fetcher = fetcher;
@@ -31,8 +37,7 @@ public class Bot {
 			try {
 				commandReturn = fetcher.getCommand();
 			} catch (Exception e) {
-				System.out
-						.println("Not able to get new command, sleeping for 5s ");
+				log.info("Not able to get new command, sleeping for 5s ");
 				e.printStackTrace();
 				pauser.pause(5000);
 				continue;
@@ -43,14 +48,14 @@ public class Bot {
 				try {
 					dispatch(cmd, args);
 				} catch (Exception e) {
-					System.out
-							.println("Exception during execution of " + cmd + ", sleeping for 2s");
-					e.printStackTrace();
+					log.log(Level.SEVERE, "Exception during execution of " + cmd,e);
+					log.info("Will sleep for 2 seconds");
 					pauser.pause(2000);
 				}
 
 			} else {
-				System.out.println("No action at this time, sleeping for " + (pause/1000) + "s");
+				log.info("No action at this time, sleeping for "
+						+ (pause / 1000) + "s");
 				pauser.pause(pause);
 			}
 
@@ -60,23 +65,23 @@ public class Bot {
 
 	private void dispatch(String cmd, Object[] args) {
 		List list = Arrays.asList(args);
-		System.out.println("Running " + cmd + "("+ String.valueOf(list) +")");
+		String whatWeRun = cmd + "(" + String.valueOf(list) + ")";
+		log.info("Running " + whatWeRun);
 		Method method = findMethod(cmd, BotWorker.class);
 		try {
 			method.invoke(botWorker, args);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Illegal Argument for: " + whatWeRun, e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Illegal Access for: " + whatWeRun, e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Invocation Target for: " + whatWeRun, e);
 		}
 	}
 
 	private Method findMethod(String name, Class c) {
 		Method[] all = c.getDeclaredMethods();
 		for (Method m : all) {
-			// System.out.println(m.getName());
 			if (m.getName().equals(name)) {
 				return m;
 			}
