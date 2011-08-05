@@ -4,75 +4,65 @@
 package fspotcloud.peer.db;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 import junit.framework.TestCase;
 
-/**
- * 
- * 
- */
 public class DataTest extends TestCase {
-
+	final static private Logger log = Logger
+			.getLogger(DataTest.class.getName());
 	private Data data;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see junit.framework.TestCase#setUp()
-	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-		data = new Data("jdbc:sqlite:/home/fspotcloud/workbench/fspotcloud/peer/src/test/resource");
+		URL testDatabase = ClassLoader.getSystemResource("photos.db");
+		String path = testDatabase.getPath();
+		data = new Data("jdbc:sqlite:" +path);
+
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see junit.framework.TestCase#tearDown()
-	 */
 	protected void tearDown() throws Exception {
 		super.tearDown();
 		data = null;
 	}
 
-	/**
-	 * Test method for {@link fspotcloud.peer.db.Data#getPhotoCount()}.
-	 */
-/*	public final void testGetPhotoCount() {
-		try {
-			int count = data.getPhotoCount();
-			assertTrue(count > 100);
-		} catch (SQLException e) {
-			fail(e.getMessage());
-		}
-	}*/
-
-	/**
-	 * Test method for {@link fspotcloud.peer.db.Data#getTagList()}.
-	 */
-	public final void testGetTagList() {
-		//fail("Not yet implemented"); // TODO
+	public void testGetPhotoCount() throws SQLException {
+		int count = data.getCount("photos");
+		assertEquals(28, count);
+	}
+	
+	public void testGetTagCount() throws SQLException {
+		int count = data.getCount("tags");
+		assertEquals(8, count);
 	}
 
-	/**
-	 * Test method for
-	 * {@link fspotcloud.peer.db.Data#getPhotoList(java.lang.String, java.lang.String)}
-	 * .
-	 */
-	public final void testGetPhotoList() {
-		//fail("Not yet implemented"); // TODO
+
+	public final void testGetTagList() throws SQLException {
+		Object[] result = data.getTagData();
+		assertEquals(8, result.length);
 	}
 
-	/**
-	 * Test method for
-	 * {@link fspotcloud.peer.db.Data#getImageURL(java.lang.String)}.
-	 * @throws SQLException 
-	 * @throws MalformedURLException 
-	 */
-/*	public final void testGetImageURL() throws MalformedURLException, SQLException {
-		data.getImageURL("7000");
+	public final void testGetTagList2() throws SQLException {
+		Object[] result = data.getTagData("0", "1");
+		assertEquals(1, result.length);
+	}
+
+	public final void testGetTagListOverItsSize() throws SQLException {
+		Object[] result = data.getTagData("8","2");
+		assertEquals(0, result.length);
+	}
+
+	public final void testGetPhotoList() throws SQLException {
+		Object[] result = data.getPhotoData("0", "2");
+		assertEquals(2, result.length);
+	}
+
+	public final void testGetImageURL() throws MalformedURLException,
+			SQLException {
+		URL url = data.getImageURL("20");
+		assertEquals("file:/home/fspotcloud/Pictures/Foto's/2010/06/22/img_0859-1.jpg", String.valueOf(url));
 		
-	}*/
-
+	}
 }
