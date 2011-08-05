@@ -1,5 +1,6 @@
 package fspotcloud.peer.db;
 
+import java.awt.Dimension;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
@@ -16,10 +17,12 @@ import java.util.logging.Logger;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
+import fspotcloud.peer.ImageData;
+
 public class Data {
 
 	final static private Logger log = Logger.getLogger(Data.class.getName());
-	
+
 	static {
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -31,25 +34,26 @@ public class Data {
 	private final String jdbcURL;
 	private final String photoDirectoryOverride;
 	private final String photoDirectoryOriginalPath;
-	
+	private final ImageData imageData = new ImageData();
+
 	@Inject
 	public Data(@Named("JDBC URL") String jdbcURL) {
 		this.jdbcURL = jdbcURL;
 		this.photoDirectoryOverride = System.getProperty("photo.dir.override");
-		this.photoDirectoryOriginalPath = System.getProperty("photo.dir.original");
+		this.photoDirectoryOriginalPath = System
+				.getProperty("photo.dir.original");
 	}
 
 	private Connection getConnection() throws SQLException {
-		Connection conn = DriverManager
-				.getConnection(jdbcURL);
+		Connection conn = DriverManager.getConnection(jdbcURL);
 		return conn;
 	}
 
-	public int getPhotoCount() throws SQLException {
+	public int getCount(String kind) throws SQLException {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
 		int result;
-		ResultSet rs = stmt.executeQuery("SELECT count(id) FROM photos");
+		ResultSet rs = stmt.executeQuery("SELECT count(id) FROM " + kind);
 		if (rs.next()) {
 			result = rs.getInt(1);
 		} else {
@@ -58,7 +62,11 @@ public class Data {
 		return result;
 	}
 
-	public Object[] getTagList() throws SQLException {
+	public Object[] getMetaData() throws SQLException {
+		return new Object[] { getCount("photos"), getCount("tags") };
+	}
+
+	public Object[] getTagData() throws SQLException {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
 		List<Object[]> tagList = new ArrayList<Object[]>();
@@ -78,7 +86,28 @@ public class Data {
 		return tagList.toArray();
 	}
 
-	public Object[] getPhotoList(String offset, String limit)
+	public Object[] getTagData(String offset, String limit) throws SQLException {
+		Connection conn = getConnection();
+		Statement stmt = conn.createStatement();
+		List<Object[]> tagList = new ArrayList<Object[]>();
+		ResultSet rs = stmt
+				.executeQuery("SELECT id, name, category_id FROM tags ORDER BY id LIMIT "
+						+ limit + " OFFSET " + offset);
+		while (rs.next()) {
+			String tagId = rs.getString(1);
+			String tagName = rs.getString(2);
+			String parentId = rs.getString(3);
+			String photoCount = String.valueOf(getPhotoCountForTag(Integer
+					.valueOf(tagId)));
+			tagList.add(new Object[] { tagId, tagName, parentId, photoCount });
+		}
+		rs.close();
+		conn.close();
+
+		return tagList.toArray();
+	}
+
+	public Object[] getPhotoData(String offset, String limit)
 			throws SQLException {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
@@ -101,6 +130,15 @@ public class Data {
 		return photoList.toArray();
 	}
 
+	public Object getImageData(String photoId, String width, String height,
+			String imageType) throws Exception {
+		URL url = getImageURL(photoId);
+		Dimension size = new Dimension(Integer.valueOf(width),
+				Integer.valueOf(height));
+		byte[] data = imageData.getScaledImageData(url, size);
+		return data;
+	}
+
 	public URL getImageURL(String photoId) throws SQLException,
 			MalformedURLException {
 		String url = null;
@@ -115,8 +153,9 @@ public class Data {
 				url = rs.getString(2) + rs.getString(3);
 			} else {
 				stmt = conn.createStatement();
-				query = "SELECT base_uri, filename " + "FROM photo_versions WHERE photo_id ="
-						+ photoId + " AND version_id=" + version;
+				query = "SELECT base_uri, filename "
+						+ "FROM photo_versions WHERE photo_id =" + photoId
+						+ " AND version_id=" + version;
 				rs = stmt.executeQuery(query);
 				if (rs.next()) {
 					url = rs.getString(1) + rs.getString(2);
@@ -126,7 +165,8 @@ public class Data {
 		rs.close();
 		conn.close();
 		if (photoDirectoryOverride != null) {
-			url = url.replaceFirst(photoDirectoryOriginalPath, photoDirectoryOverride);
+			url = url.replaceFirst(photoDirectoryOriginalPath,
+					photoDirectoryOverride);
 		}
 		return new URL(url);
 	}

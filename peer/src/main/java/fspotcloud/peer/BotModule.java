@@ -21,6 +21,7 @@ public class BotModule extends AbstractModule {
 		bind(BotWorker.class);
 		bind(ImageData.class);
 		bind(Pauser.class).to(PauserImpl.class);
+		bind(RemoteExecutor.class).to(DefaultRemoteExecutor.class);
 		bind(CommandFetcher.class).to(CommandFetcherImpl.class);
 		bind(String.class).annotatedWith(Names.named("JDBC URL")).toInstance(
 				"jdbc:sqlite:" + System.getProperty("db"));

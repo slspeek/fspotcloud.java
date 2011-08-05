@@ -37,8 +37,8 @@ public class Bot {
 			try {
 				commandReturn = fetcher.getCommand();
 			} catch (Exception e) {
+				log.log(Level.SEVERE, "Exception during fetching of new command",e);
 				log.info("Not able to get new command, sleeping for 5s ");
-				e.printStackTrace();
 				pauser.pause(5000);
 				continue;
 			}

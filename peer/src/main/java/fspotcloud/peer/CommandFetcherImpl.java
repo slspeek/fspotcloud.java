@@ -1,15 +1,13 @@
 package fspotcloud.peer;
 
-import org.apache.xmlrpc.client.XmlRpcClient;
-
 import com.google.inject.Inject;
 
 public class CommandFetcherImpl implements CommandFetcher {
 	
-	private XmlRpcClient endpoint;
+	private RemoteExecutor endpoint;
 
 	@Inject  
-	public CommandFetcherImpl(XmlRpcClient endpoint) {
+	public CommandFetcherImpl(RemoteExecutor endpoint) {
 		this.endpoint = endpoint;
 	}
 
