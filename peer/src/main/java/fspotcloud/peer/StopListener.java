@@ -2,12 +2,14 @@ package fspotcloud.peer;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.logging.Logger;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
 public class StopListener extends Thread {
 
+	final static private Logger log = Logger.getLogger(StopListener.class.getName());
 	final int stopPort;
 	private ServerSocket server;
 
@@ -21,7 +23,8 @@ public class StopListener extends Thread {
 			server = new ServerSocket(stopPort);
 			server.accept();
 		} catch (IOException e) {
-			System.out.println("Could not listen on port " + stopPort);
+			log.warning("Could not listen on port " + stopPort);
+			log.warning("Aborting on request");
 			System.exit(-1);
 		}
 		System.exit(0);

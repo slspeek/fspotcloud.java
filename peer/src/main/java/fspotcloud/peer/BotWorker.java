@@ -3,6 +3,8 @@ package fspotcloud.peer;
 import java.awt.Dimension;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.xmlrpc.XmlRpcException;
 import org.apache.xmlrpc.client.XmlRpcClient;
@@ -13,6 +15,8 @@ import fspotcloud.peer.db.Data;
 
 public class BotWorker {
 
+	final static private Logger log = Logger.getLogger(BotWorker.class.getName());
+	
 	final private XmlRpcClient controller;
 	final private Data data;
 	final private ImageData imageData;
@@ -31,10 +35,10 @@ public class BotWorker {
 			Object[] args = new Object[] { tags };
 			controller.execute("TagReciever.recieveTagData", args);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "sendTagData threw (SQL) : ",e);
 			result = 1;
 		} catch (XmlRpcException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "sendTagData threw (XmlRpc) : ",e);
 			result = 2;
 		}
 		return result;
@@ -47,10 +51,10 @@ public class BotWorker {
 			Object[] args = new Object[] { count };
 			controller.execute("MetaReciever.recieveMetaData", args);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "sendMetaData threw (SQL) : ",e);
 			result = 1;
 		} catch (XmlRpcException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "sendMetaData threw (XmlRpc) : ",e);
 			result = 2;
 		}
 		return result;
@@ -63,10 +67,10 @@ public class BotWorker {
 			Object[] args = new Object[] { photos };
 			controller.execute("PhotoReciever.recievePhotoData", args);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "sendPhotoData threw (XmlRpc) : ",e);
 			result = 1;
 		} catch (XmlRpcException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "sendPhotoData threw (XmlRpc) : ",e);
 			result = 2;
 		}
 		return result;
@@ -81,7 +85,7 @@ public class BotWorker {
 			Object[] params = new Object[] { photoId, data, Integer.valueOf(imageType) };
 			controller.execute("PhotoReciever.recieveImageData", params);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, "sendImageData threw: ",e);
 		}
 		return 0;
 	}
