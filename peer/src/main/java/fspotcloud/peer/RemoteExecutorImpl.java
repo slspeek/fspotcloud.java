@@ -5,12 +5,12 @@ import org.apache.xmlrpc.client.XmlRpcClient;
 
 import com.google.inject.Inject;
 
-public class DefaultRemoteExecutor implements RemoteExecutor {
+public class RemoteExecutorImpl implements RemoteExecutor {
 
 	final private XmlRpcClient client;
 	
 	@Inject
-	public DefaultRemoteExecutor(XmlRpcClient client) {
+	public RemoteExecutorImpl(XmlRpcClient client) {
 		super();
 		this.client = client;
 	}

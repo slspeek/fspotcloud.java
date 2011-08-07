@@ -1,7 +1,7 @@
 package fspotcloud.peer;
 
-import org.apache.xmlrpc.client.XmlRpcClientException;
+import org.apache.xmlrpc.XmlRpcException;
 
 public interface DataSender {
-	Object sendData(String remoteMethod, Object data) throws XmlRpcClientException;
+	Object sendData(String remoteMethod, Object[] args) throws XmlRpcException;
 }

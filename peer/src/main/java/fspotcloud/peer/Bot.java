@@ -1,7 +1,5 @@
 package fspotcloud.peer;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,15 +13,15 @@ import com.google.inject.name.Named;
 public class Bot {
 
 	final static private Logger log = Logger.getLogger(Bot.class.getName());
-	private BotWorker botWorker;
+	private CommandWorkerFactory workerFactory;
 	private Pauser pauser;
 	private CommandFetcher fetcher;
 	private int pause;
 
 	@Inject
-	private Bot(BotWorker botWorker, CommandFetcher fetcher, Pauser pauser,
+	private Bot(CommandWorkerFactory workerFactory, CommandFetcher fetcher, Pauser pauser,
 			@Named("pause") int pause) {
-		this.botWorker = botWorker;
+		this.workerFactory = workerFactory;
 		this.pauser = pauser;
 		this.fetcher = fetcher;
 		this.pause = pause;
@@ -67,26 +65,9 @@ public class Bot {
 		List list = Arrays.asList(args);
 		String whatWeRun = cmd + "(" + String.valueOf(list) + ")";
 		log.info("Running " + whatWeRun);
-		Method method = findMethod(cmd, BotWorker.class);
-		try {
-			method.invoke(botWorker, args);
-		} catch (IllegalArgumentException e) {
-			log.log(Level.SEVERE, "Illegal Argument for: " + whatWeRun, e);
-		} catch (IllegalAccessException e) {
-			log.log(Level.SEVERE, "Illegal Access for: " + whatWeRun, e);
-		} catch (InvocationTargetException e) {
-			log.log(Level.SEVERE, "Invocation Target for: " + whatWeRun, e);
-		}
+		CommandWorker worker = workerFactory.get(cmd, args);
+		worker.run();
 	}
 
-	private Method findMethod(String name, Class c) {
-		Method[] all = c.getDeclaredMethods();
-		for (Method m : all) {
-			if (m.getName().equals(name)) {
-				return m;
-			}
-		}
-		return null;
-	}
 
 }

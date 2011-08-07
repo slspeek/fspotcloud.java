@@ -27,8 +27,10 @@ public class DataFetcherImplTest extends TestCase {
 	}
 
 	public void testGetPhotoCount() throws Exception {
-		Object[] args = new Object[] { "photos" };
-		Object result = fetcher.getData("getCount", args);
-		assertEquals("28", String.valueOf(result));
+		Object[] args = new Object[] {};
+		Object[] result = (Object[]) fetcher.getData("getMetaData", args);
+		
+		assertEquals("28", String.valueOf(result[0]));
+		assertEquals("8", String.valueOf(result[1]));
 	}
 }

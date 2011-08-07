@@ -65,4 +65,11 @@ public class DataTest extends TestCase {
 		assertEquals("file:/home/fspotcloud/Pictures/Foto's/2010/06/22/img_0859-1.jpg", String.valueOf(url));
 		
 	}
+	
+	public void testImageData() throws Exception {
+		Object[] args = new Object[] { "1001", "1024", "768", "1" };
+		Object[] result = data.getImageData("20", "1024", "768", "0");
+		assertEquals("0", String.valueOf(result[2]));
+		assertEquals("20", String.valueOf(result[0]));
+	}
 }

@@ -7,9 +7,6 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		Injector injector = Guice.createInjector(new BotModule());
 
-	    /*
-	     * Now that we've got the injector, we can build objects.
-	     */
 		StopListener stopListener = injector.getInstance(StopListener.class);
 	    stopListener.start();
 		

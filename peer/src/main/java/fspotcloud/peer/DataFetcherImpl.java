@@ -21,7 +21,7 @@ public class DataFetcherImpl implements DataFetcher{
 		Method method = findMethod(dataMethod);
 		Object result = null;
 		try {
-			result = method.invoke(data, args);
+			result =  method.invoke(data, args);
 		} catch (IllegalArgumentException e) {
 			throw new MethodNotFoundException(e);
 		} catch (IllegalAccessException e) {
