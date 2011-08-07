@@ -25,8 +25,10 @@ public class MetaReciever {
 		this.dataSchedulerFactory = dataSchedulerFactory;
 	}
 	
-	public int recieveMetaData(int count) {
-		log.info("Recieved count " + count);
+	public int recieveMetaData(Object[] metaData) {
+		int count = (Integer) metaData[0];
+		int tagCount = (Integer) metaData[1];
+		log.info("Recieved count " + count + " Tag count: " + tagCount);
 		PeerDatabase p = defaultPeer.get();
 		int previousCount = p.getPeerPhotoCount();
 		DataScheduler scheduler = dataSchedulerFactory.get("Photo");

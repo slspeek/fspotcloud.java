@@ -8,6 +8,7 @@ import org.apache.xmlrpc.client.XmlRpcCommonsTransportFactory;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 
@@ -18,19 +19,23 @@ public class BotModule extends AbstractModule {
 	protected void configure() {
 		bind(Bot.class);
 		bind(Data.class);
-		bind(BotWorker.class);
 		bind(ImageData.class);
 		bind(Pauser.class).to(PauserImpl.class);
-		bind(RemoteExecutor.class).to(DefaultRemoteExecutor.class);
+		bind(RemoteExecutor.class).to(RemoteExecutorImpl.class);
 		bind(CommandFetcher.class).to(CommandFetcherImpl.class);
+		bind(DataFetcher.class).to(DataFetcherImpl.class);
+		bind(DataSender.class).to(DataSenderImpl.class);
 		bind(String.class).annotatedWith(Names.named("JDBC URL")).toInstance(
 				"jdbc:sqlite:" + System.getProperty("db"));
 		bind(String.class).annotatedWith(Names.named("endpoint")).toInstance(
-				"http://" + System.getProperty("endpoint") + "/xmlrpc/" + System.getProperty("bot.secret"));
+				"http://" + System.getProperty("endpoint") + "/xmlrpc/"
+						+ System.getProperty("bot.secret"));
 		bind(Integer.class).annotatedWith(Names.named("stop port")).toInstance(
 				Integer.valueOf(System.getProperty("stop.port", "4444")));
 		bind(Integer.class).annotatedWith(Names.named("pause")).toInstance(
 				Integer.valueOf(System.getProperty("pause", "10000")));
+		install(new FactoryModuleBuilder().implement(CommandWorker.class,
+				CommandWorkerImpl.class).build(CommandWorkerFactory.class));
 	}
 
 	@Provides

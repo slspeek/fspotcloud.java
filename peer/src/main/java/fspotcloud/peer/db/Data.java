@@ -130,13 +130,14 @@ public class Data {
 		return photoList.toArray();
 	}
 
-	public Object getImageData(String photoId, String width, String height,
+	public Object[] getImageData(String photoId, String width, String height,
 			String imageType) throws Exception {
 		URL url = getImageURL(photoId);
 		Dimension size = new Dimension(Integer.valueOf(width),
 				Integer.valueOf(height));
-		byte[] data = imageData.getScaledImageData(url, size);
-		return data;
+		byte[] imageBytes = imageData.getScaledImageData(url, size);
+		Object[] params = new Object[] { photoId, imageBytes, Integer.valueOf(imageType) };
+		return params;
 	}
 
 	public URL getImageURL(String photoId) throws SQLException,

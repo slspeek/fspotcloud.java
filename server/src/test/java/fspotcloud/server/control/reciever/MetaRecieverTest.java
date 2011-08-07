@@ -48,7 +48,7 @@ public class MetaRecieverTest extends TestCase {
 			}
 		});
 
-		reciever.recieveMetaData(10);
+		reciever.recieveMetaData(new Object[] {10, 10});
 		context.assertIsSatisfied();
 		context.checking(new Expectations() {
 			{
@@ -59,7 +59,7 @@ public class MetaRecieverTest extends TestCase {
 				oneOf(scheduler).scheduleDataImport(10, 11);
 			}
 		});
-		reciever.recieveMetaData(21);
+		reciever.recieveMetaData(new Object[] {21, 10});
 		context.assertIsSatisfied();
 
 	}

@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>fspotcloud</groupId>
 		<artifactId>fspotcloud</artifactId>
-		<version>0.40-6.5.7</version>
+		<version>0.40-6.5.8</version>
 	</parent>
 	<groupId>fspotcloud</groupId>
 	<artifactId>peer</artifactId>
@@ -35,9 +35,10 @@
 			<version>3.6.7</version>
 		</dependency>
 		<dependency>
-			<groupId>com.google.inject</groupId>
-			<artifactId>guice</artifactId>
-			<version>${guice.version}</version>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>guice-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
 		</dependency>
 		<dependency>
 			<groupId>org.jmock</groupId>
