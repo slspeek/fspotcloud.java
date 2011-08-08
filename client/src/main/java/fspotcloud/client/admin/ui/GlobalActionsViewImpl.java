@@ -33,7 +33,9 @@ public class GlobalActionsViewImpl extends Composite implements
 	@UiField
 	Label lastSeenPeerValueLabel;
 	@UiField
-	Button importTagsButton;
+	Label tagCountOnPeerValueLabel;
+	@UiField
+	Label pendingCommandCountValueLabel;
 	@UiField
 	Button updateButton;
 	@UiField
@@ -52,12 +54,15 @@ public class GlobalActionsViewImpl extends Composite implements
 	public GlobalActionsViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		deleteAllTagsButton.ensureDebugId("delete-all-tags-button");
-		importTagsButton.ensureDebugId("import-tags-button");
+		tagCountOnPeerValueLabel.ensureDebugId("tag-count-on-peer-label");
+		photoCountValueLabel.ensureDebugId("photo-count-label");
+		peerPhotoCountValueLabel.ensureDebugId("peer-photo-count-label");
 		updateButton.ensureDebugId("update-button");
 		deleteAllPhotosButton.ensureDebugId("delete-all-photos-button");
 		countPhotosButton.ensureDebugId("count-photos-button");
 		loadImagesButton.ensureDebugId("load-images-button");
 		resetMetaDataButton.ensureDebugId("reset-meta-data-button");
+		pendingCommandCountValueLabel.ensureDebugId("pending-command-count-label");
 	}
 
 	@UiHandler("resetMetaDataButton")
@@ -74,13 +79,7 @@ public class GlobalActionsViewImpl extends Composite implements
 	public void loadImagesButtonClicked(ClickEvent event) {
 		presenter.importImageData();
 	}
-
-	
-	@UiHandler("importTagsButton")
-	public void importButtonClicked(ClickEvent event) {
-		presenter.importTags();
-	}
-
+		
 	@UiHandler("deleteAllPhotosButton")
 	public void onDeleteAllPhotosButtonClicked(ClickEvent event) {
 		presenter.deleteAllPhotos();
@@ -117,11 +116,6 @@ public class GlobalActionsViewImpl extends Composite implements
 	}
 
 	@Override
-	public HasEnabled getImportTagsButton() {
-		return importTagsButton;
-	}
-
-	@Override
 	public HasEnabled getUpdateButton() {
 		return updateButton;
 	}
@@ -149,6 +143,16 @@ public class GlobalActionsViewImpl extends Composite implements
 	@Override
 	public HasEnabled getResetMetaDataButton() {
 		return resetMetaDataButton;
+	}
+
+	@Override
+	public HasText getTagCountValue() {
+		return tagCountOnPeerValueLabel;
+	}
+
+	@Override
+	public HasText getPendingCommandCountValue() {
+		return pendingCommandCountValueLabel;
 	}
 
 

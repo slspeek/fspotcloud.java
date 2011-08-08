@@ -95,4 +95,19 @@ public class CommandManager implements Commands {
 		}
 	}
 
+	@Override
+	public int getCountUnderAThousend() {
+		PersistenceManager pm = pmProvider.get();
+		int count = -1;
+		try {
+			Query query = pm.newQuery(CommandDO.class);
+			List<CommandDO> rs = (List<CommandDO>) query.execute();
+			count =  rs.size();;
+		} finally {
+			pm.close();
+		}
+
+		return count;
+	}
+
 }

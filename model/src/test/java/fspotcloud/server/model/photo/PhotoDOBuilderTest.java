@@ -2,6 +2,8 @@ package fspotcloud.server.model.photo;
 
 import java.util.Date;
 
+import junit.framework.TestSuite;
+
 import com.google.appengine.api.datastore.Entity;
 import com.google.common.collect.ImmutableList;
 
@@ -10,7 +12,12 @@ import fspotcloud.server.model.api.Photo;
 
 public class PhotoDOBuilderTest extends DatastoreTest {
 
+	public static TestSuite suite() {
+		return new TestSuite(PhotoDOBuilderTest.class);
+	}
+
 	public static final Date NOW = new Date();
+
 	public void testCreate() {
 		Entity e = new Entity("PhotoDO");
 		e.setProperty("id", "1");
@@ -20,7 +27,7 @@ public class PhotoDOBuilderTest extends DatastoreTest {
 		e.setProperty("imageLoaded", false);
 		e.setProperty("thumbLoaded", false);
 		e.setProperty("fullsizeLoaded", false);
-		
+
 		Photo photo = (new PhotoDOBuilder()).create(e);
 		assertEquals("1", photo.getId());
 		assertEquals("nice", photo.getDescription());
@@ -29,7 +36,7 @@ public class PhotoDOBuilderTest extends DatastoreTest {
 		assertEquals(Boolean.FALSE, photo.isFullsizeLoaded());
 		assertEquals(Boolean.FALSE, photo.isImageLoaded());
 		assertEquals(Boolean.FALSE, photo.isThumbLoaded());
-		
+
 	}
 
 }

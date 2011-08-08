@@ -66,26 +66,6 @@ public class Data {
 		return new Object[] { getCount("photos"), getCount("tags") };
 	}
 
-	public Object[] getTagData() throws SQLException {
-		Connection conn = getConnection();
-		Statement stmt = conn.createStatement();
-		List<Object[]> tagList = new ArrayList<Object[]>();
-		ResultSet rs = stmt
-				.executeQuery("SELECT id, name, category_id FROM tags ORDER BY id");
-		while (rs.next()) {
-			String tagId = rs.getString(1);
-			String tagName = rs.getString(2);
-			String parentId = rs.getString(3);
-			String photoCount = String.valueOf(getPhotoCountForTag(Integer
-					.valueOf(tagId)));
-			tagList.add(new Object[] { tagId, tagName, parentId, photoCount });
-		}
-		rs.close();
-		conn.close();
-
-		return tagList.toArray();
-	}
-
 	public Object[] getTagData(String offset, String limit) throws SQLException {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();

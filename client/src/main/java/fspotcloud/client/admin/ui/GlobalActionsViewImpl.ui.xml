@@ -54,6 +54,15 @@
 						<g:Label ui:field="peerPhotoCountValueLabel"></g:Label>
 					</td>
 				</tr>
+					<tr>
+					<td>
+						<g:Label  styleName="{style.property-label}">Number of commands pending</g:Label>
+					</td>
+					<td>
+						<g:Label ui:field="pendingCommandCountValueLabel"></g:Label>
+					</td>
+				</tr>
+				
 				<tr>
 					<td>
 						<g:Label  styleName="{style.property-label}">Date we last saw the peer</g:Label>
@@ -64,10 +73,10 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label  styleName="{style.property-label}">Import/Update tag information from the peer</g:Label>
+						<g:Label  styleName="{style.property-label}">Tag count on peer</g:Label>
 					</td>
 					<td>
-						<g:Button ui:field="importTagsButton" >Import/Update all tags</g:Button>
+						<g:Label  styleName="{style.property-value}" ui:field="tagCountOnPeerValueLabel"></g:Label>
 					</td>
 				</tr>
 				<tr>

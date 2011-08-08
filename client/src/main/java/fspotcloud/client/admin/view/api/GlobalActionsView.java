@@ -10,7 +10,6 @@ public interface GlobalActionsView extends IsWidget {
 		void countPhotos();
 		void deleteAllPhotos();
 		void deleteAllTags();
-		void importTags();
 		void update();
 		void importImageData();
 		void resetPeerPhotoCount();
@@ -18,15 +17,16 @@ public interface GlobalActionsView extends IsWidget {
 	
 	void setPresenter(GlobalActionsPresenter presenter);
 	
+	HasText getTagCountValue();
 	HasText getPhotoCountValue();
 	HasText getPhotoCountOnPeerValue();
+	HasText getPendingCommandCountValue();
 	
 	HasText getLastSeenPeerValue();
 	
 	HasEnabled getDeleteAllTagsButton();
 	HasEnabled getDeleteAllPhotosButton();
 	
-	HasEnabled getImportTagsButton();
 	HasEnabled getUpdateButton();
 	HasEnabled getLoadImagesButton();
 	HasEnabled getCountPhotosButton();

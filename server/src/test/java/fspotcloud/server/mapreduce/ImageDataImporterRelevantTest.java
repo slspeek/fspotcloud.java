@@ -1,6 +1,7 @@
 package fspotcloud.server.mapreduce;
 
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -12,7 +13,9 @@ import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.photo.PhotoDO;
 
 public class ImageDataImporterRelevantTest extends TestCase {
-
+	public static TestSuite suite() {
+		return new TestSuite(ImageDataImporterRelevantTest.class);
+	}
 	public ImmutableList<String> wantedTags = ImmutableList.of("1");
 	public Photo photo = new PhotoDO();
 
