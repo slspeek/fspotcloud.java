@@ -31,9 +31,12 @@ public class MetaReciever {
 		log.info("Recieved count " + count + " Tag count: " + tagCount);
 		PeerDatabase p = defaultPeer.get();
 		int previousCount = p.getPeerPhotoCount();
-		DataScheduler scheduler = dataSchedulerFactory.get("Photo");
-		scheduler.scheduleDataImport(previousCount,count - previousCount);
+		DataScheduler photoScheduler = dataSchedulerFactory.get("Photo");
+		photoScheduler.scheduleDataImport(previousCount,count - previousCount);
+		DataScheduler tagScheduler = dataSchedulerFactory.get("Tag");
+		tagScheduler.scheduleDataImport(0, tagCount);
 		p.setPeerPhotoCount(count);
+		p.setTagCount(tagCount);
 		defaultPeer.save(p);
 		return 0;
 	}

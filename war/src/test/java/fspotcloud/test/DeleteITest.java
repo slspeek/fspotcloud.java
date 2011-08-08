@@ -44,7 +44,7 @@ public class DeleteITest extends SeleniumITest {
 		sleepShort();
 		selenium.open("/Dashboard.html");
 		selenium.waitForPageToLoad("5000");
-		assertEquals("0", selenium.getText("//td[2]/div/table/tbody[2]/tr[1]/td[2]/div"));
+		assertEquals("0", selenium.getText("gwt-debug-photo-count-label"));
 		sleepShort();
 	}
 }

@@ -2,6 +2,7 @@ package fspotcloud.server.control.task;
 
 import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withUrl;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -11,6 +12,9 @@ import com.google.appengine.api.taskqueue.TaskOptions;
 
 public class DelayedDataSchedulerTest extends TestCase {
 
+	public static TestSuite suite() {
+		return new TestSuite(DelayedDataSchedulerTest.class);
+	}
 	Mockery context;
 	Queue queue;
 	DelayedDataScheduler scheduler;

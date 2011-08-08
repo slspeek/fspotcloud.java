@@ -74,26 +74,6 @@ public class GlobalActionsPresenter implements
 	}
 
 	@Override
-	public void importTags() {
-		globalActionsView.getImportTagsButton().setEnabled(false);
-		adminServiceAsync.importTags(new AsyncCallback<Void>() {
-
-			public void onFailure(Throwable caught) {
-				enableButton();
-			}
-
-			public void onSuccess(Void result) {
-				enableButton();
-			}
-
-			private void enableButton() {
-				globalActionsView.getImportTagsButton().setEnabled(true);
-			}
-		});
-
-	}
-	
-	@Override
 	public void resetPeerPhotoCount() {
 		globalActionsView.getResetMetaDataButton().setEnabled(false);
 		adminServiceAsync.resetPeerPhotoCount(new AsyncCallback<Void>() {
@@ -163,20 +143,20 @@ public class GlobalActionsPresenter implements
 				String.valueOf(info.getPeerPhotoCount()));
 		globalActionsView.getPhotoCountValue().setText(
 				String.valueOf(info.getPhotoCount()));
+		globalActionsView.getTagCountValue().setText(String.valueOf(info.getTagCount()));
+		globalActionsView.getPendingCommandCountValue().setText(String.valueOf(info.getPendingCommandCount()));
 	}
 
 	@Override
 	public void countPhotos() {
-		
-		adminServiceAsync.getServerPhotoCount(new AsyncCallback<Long>() {
-
+		adminServiceAsync.countPhotos(new AsyncCallback<Void>() {
 			@Override
 			public void onFailure(Throwable caught) {
 
 			}
 
 			@Override
-			public void onSuccess(Long result) {
+			public void onSuccess(Void result) {
 
 			}
 		});
@@ -189,15 +169,15 @@ public class GlobalActionsPresenter implements
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void onSuccess(Void result) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 	}
 }

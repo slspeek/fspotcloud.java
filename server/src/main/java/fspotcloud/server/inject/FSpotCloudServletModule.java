@@ -8,7 +8,6 @@ import com.google.inject.servlet.ServletModule;
 
 import fspotcloud.server.admin.AdminServiceImpl;
 import fspotcloud.server.control.GuiceXmlRpcServlet;
-import fspotcloud.server.control.TagImportServlet;
 import fspotcloud.server.control.task.DataTaskServlet;
 import fspotcloud.server.main.ImageServlet;
 import fspotcloud.server.main.TagServiceImpl;
@@ -22,12 +21,11 @@ public class FSpotCloudServletModule extends ServletModule {
 	@Override
 	protected void configureServlets() {
 		serve("/control/task/data").with(DataTaskServlet.class);
-		serve("/cron/import_tags").with(TagImportServlet.class);
 		serve("/fspotcloud/tag").with(TagServiceImpl.class);
 		serve("/fspotcloud.dashboard/tag").with(TagServiceImpl.class);
-		serve("/image").with(ImageServlet.class);
 		serve("/fspotcloud.dashboard/admin").with(AdminServiceImpl.class);
 		serve("/callbacks/counter_completed").with(CounterCompletedServlet.class);
+		serve("/image").with(ImageServlet.class);
 
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("enabledForExtensions", "true");

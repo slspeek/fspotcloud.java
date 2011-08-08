@@ -1,6 +1,7 @@
 package fspotcloud.server.control.task;
 
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -10,7 +11,9 @@ import com.google.appengine.repackaged.com.google.common.collect.ImmutableList;
 import fspotcloud.server.control.SchedulerInterface;
 
 public class PhotoDataSchedulerImplTest extends TestCase {
-
+	public static TestSuite suite() {
+		return new TestSuite(PhotoDataSchedulerImplTest.class);
+	}
 	Mockery context;
 	SchedulerInterface scheduler;
 	DataScheduler recursiveCall;

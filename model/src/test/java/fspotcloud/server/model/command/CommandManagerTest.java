@@ -1,11 +1,9 @@
 package fspotcloud.server.model.command;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
 
-import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import com.google.common.collect.ImmutableList;
@@ -68,6 +66,10 @@ public class CommandManagerTest extends DatastoreTest {
 		assertFalse(commandManager.allReadyExists(cmd2, args2));
 		testCreate2();
 		assertTrue(commandManager.allReadyExists(cmd2, args2));
+	}
+	
+	public void testCountZero() {
+		assertEquals(0, commandManager.getCountUnderAThousend());
 	}
 
 }

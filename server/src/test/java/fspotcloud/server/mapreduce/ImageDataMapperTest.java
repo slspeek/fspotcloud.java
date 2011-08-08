@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import junit.framework.TestSuite;
+
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
@@ -11,7 +13,9 @@ import com.google.appengine.api.datastore.KeyFactory;
 import fspotcloud.server.model.DatastoreTest;
 
 public class ImageDataMapperTest extends DatastoreTest {
-
+	public static TestSuite suite() {
+		return new TestSuite(ImageDataMapperTest.class);
+	}
 	ImageDataMapper mapper;
 	
 	public void testImageDataMapper() {

@@ -38,12 +38,6 @@ public class DataTest extends TestCase {
 		assertEquals(8, count);
 	}
 
-
-	public final void testGetTagList() throws SQLException {
-		Object[] result = data.getTagData();
-		assertEquals(8, result.length);
-	}
-
 	public final void testGetTagList2() throws SQLException {
 		Object[] result = data.getTagData("0", "1");
 		assertEquals(1, result.length);

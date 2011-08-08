@@ -30,8 +30,6 @@ public class DashboardITest extends SeleniumITest {
 	public void testImport() throws Exception {
 		loginDevAppServer();
 		selenium.waitForPageToLoad("30000");
-		selenium.click("gwt-debug-import-tags-button");
-		sleepShort();
 		selenium.click("gwt-debug-update-button");
 		sleepShort(3);
 		selenium.open("/Dashboard.html");
@@ -71,7 +69,7 @@ public class DashboardITest extends SeleniumITest {
 		selenium.open("/Dashboard.html");
 		selenium.waitForPageToLoad("5000");
 		sleepShort();
-		assertEquals("28", selenium.getText("//td[2]/div/table/tbody[2]/tr[1]/td[2]/div"));
+		assertEquals("28", selenium.getText("gwt-debug-photo-count-label"));
 
 		selenium.click("gwt-debug-load-images-button");
 		sleepShort();

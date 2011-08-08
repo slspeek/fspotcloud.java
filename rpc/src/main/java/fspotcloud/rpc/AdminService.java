@@ -17,24 +17,13 @@ public interface AdminService extends RemoteService {
 	
 	MetaDataInfo getMetaData();
 
-	int getPeerPhotoCount();
-	
 	void resetPeerPhotoCount();
 
-	long getServerPhotoCount();
-
-	int getTagCount();
-
-	void importTags();
+	void countPhotos();
 
 	void update();
 
-	long tagViewablePhotos(String tagId);
-
-	BatchInfo getBatchInfo(long batchId);
-	
 	void importTag(String tagId);
 	
 	void importImageData();
-	
 }

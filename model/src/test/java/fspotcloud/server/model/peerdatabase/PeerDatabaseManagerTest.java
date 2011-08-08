@@ -39,5 +39,11 @@ public class PeerDatabaseManagerTest extends DatastoreTest {
 		String dim = defaultPD.getThumbDimension();
 		assertEquals("512x384", dim);
 	}
+	
+	public void testDefaultForGetTagCount() {
+		PeerDatabase defaultPD = manager.get();
+		int count = defaultPD.getTagCount();
+		assertEquals(0, count);
+	}
 
 }

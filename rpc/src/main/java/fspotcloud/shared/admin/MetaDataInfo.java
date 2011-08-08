@@ -9,6 +9,7 @@ public class MetaDataInfo implements IsSerializable {
 	private Date created;
 	private int peerPhotoCount;
 	private int tagCount;
+	private int pendingCommandCount;
 	private Date peerLastSeen;
 	private String instanceName;
 	private long photoCount;
@@ -68,6 +69,14 @@ public class MetaDataInfo implements IsSerializable {
 
 	public void setInstanceName(String instanceName) {
 		this.instanceName = instanceName;
+	}
+
+	public void setPendingCommandCount(int pendingCommandCount) {
+		this.pendingCommandCount = pendingCommandCount;
+	}
+
+	public int getPendingCommandCount() {
+		return pendingCommandCount;
 	}
 
 }
