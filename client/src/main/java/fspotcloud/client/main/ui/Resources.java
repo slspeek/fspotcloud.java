@@ -90,4 +90,7 @@ public interface Resources extends ClientBundle {
 
 	@Source("images/TreeFocus.png")
 	ImageResource treeFocusIcon();
+
+	@Source("images/ToggleButtons.png")
+	ImageResource toggleButtonsIcon();
 }

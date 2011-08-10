@@ -24,9 +24,9 @@ import fspotcloud.client.main.ui.TagViewImpl;
 import fspotcloud.client.main.ui.TimerImpl;
 import fspotcloud.client.main.ui.TreeViewImpl;
 import fspotcloud.client.main.view.ButtonPanelPresenterImpl;
-import fspotcloud.client.main.view.FullscreenImagePanelActivity;
 import fspotcloud.client.main.view.ImagePanelActivity;
 import fspotcloud.client.main.view.ImagePresenterImpl;
+import fspotcloud.client.main.view.ImageRasterActivity;
 import fspotcloud.client.main.view.ImageRasterPresenterImpl;
 import fspotcloud.client.main.view.MainWindowActivityMapper;
 import fspotcloud.client.main.view.SlideshowPresenterImpl;
@@ -36,11 +36,11 @@ import fspotcloud.client.main.view.TreeSelectionHandler;
 import fspotcloud.client.main.view.UserButtonPresenterImpl;
 import fspotcloud.client.main.view.api.ButtonPanelPresenterFactory;
 import fspotcloud.client.main.view.api.ButtonPanelView;
-import fspotcloud.client.main.view.api.EmbeddedImagePanelPresenterAssistedFactory;
-import fspotcloud.client.main.view.api.FullscreenImagePanelPresenterAssistedFactory;
 import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
+import fspotcloud.client.main.view.api.ImagePanelPresenterAssistedFactory;
 import fspotcloud.client.main.view.api.ImagePanelView;
 import fspotcloud.client.main.view.api.ImagePresenterFactory;
+import fspotcloud.client.main.view.api.ImageRasterActivityFactory;
 import fspotcloud.client.main.view.api.ImageRasterPresenterFactory;
 import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.ImageView;
@@ -124,13 +124,8 @@ public class AppModule extends AbstractGinModule {
 
 		install(new GinFactoryModuleBuilder().implement(
 				ImagePanelView.ImagePanelPresenter.class,
-				FullscreenImagePanelActivity.class).build(
-				FullscreenImagePanelPresenterAssistedFactory.class));
-
-		install(new GinFactoryModuleBuilder().implement(
-				ImagePanelView.ImagePanelPresenter.class,
 				ImagePanelActivity.class).build(
-				EmbeddedImagePanelPresenterAssistedFactory.class));
+				ImagePanelPresenterAssistedFactory.class));
 		bind(UserButtonViewFactory.class).to(UserButtonViewFactoryImpl.class);
 		install(new GinFactoryModuleBuilder().implement(
 				UserButtonView.UserButtonPresenter.class,
@@ -145,6 +140,9 @@ public class AppModule extends AbstractGinModule {
 		install(new GinFactoryModuleBuilder()
 				.build(LoadNewLocationActionFactory.class));
 		bind(LoadNewLocation.class).to(LoadNewLocationImpl.class);
+		
+		install(new GinFactoryModuleBuilder().implement(ImageRasterView.ImageRasterPresenter.class,
+				ImageRasterActivity.class).build(ImageRasterActivityFactory.class));
 
 	}
 }

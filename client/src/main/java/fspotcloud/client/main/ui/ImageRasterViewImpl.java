@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -64,6 +65,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 				+ simplePanel.getOffsetHeight() + ")");
 		return result;
 	}
+	
 
 	@Override
 	public void onResize() {

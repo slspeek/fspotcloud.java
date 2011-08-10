@@ -1,9 +1,12 @@
 package fspotcloud.client.view.action;
 
+import java.util.logging.Logger;
+
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
 import fspotcloud.client.demo.DemoAction;
+import fspotcloud.client.main.ToggleButtonsAction;
 import fspotcloud.client.main.ToggleFullscreenAction;
 import fspotcloud.client.main.TreeFocusAction;
 import fspotcloud.client.main.api.Initializable;
@@ -13,11 +16,14 @@ import fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
 
 public class ApplicationEventHandler implements ApplicationEvent.Handler,
 		Initializable {
-
+	@SuppressWarnings("unused")
+	private static final Logger log = Logger
+			.getLogger(ApplicationEventHandler.class.getName());
 	final private DemoAction demoAction;
 	final private HelpAction helpAction;
 	final private TreeFocusAction treeFocusAction;
 	final private ToggleFullscreenAction toggleFullscreenAction;
+	final private ToggleButtonsAction toggleButtonsAction;
 	final private LoadNewLocationActionFactory locationFactory;
 	private Runnable projectHostingAction, mavenAction, dashboardAction,
 			protonAction, licenseAction, stevenAction;
@@ -27,9 +33,11 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	public ApplicationEventHandler(DemoAction demoAction,
 			HelpAction helpAction, TreeFocusAction treeFocusAction,
 			ToggleFullscreenAction toggleFullscreenAction,
+			ToggleButtonsAction toggleButtonsAction,
 			LoadNewLocationActionFactory locationFactory, EventBus eventBus) {
 		super();
 		this.locationFactory = locationFactory;
+		this.toggleButtonsAction = toggleButtonsAction;
 		this.demoAction = demoAction;
 		this.helpAction = helpAction;
 		this.treeFocusAction = treeFocusAction;
@@ -39,6 +47,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 
 	@Override
 	public void onEvent(ApplicationEvent e) {
+		log.info("On application event of type " + e.getActionType());
 		switch (e.getActionType()) {
 		case DEMO:
 			demoAction.run();
@@ -51,6 +60,9 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 			break;
 		case TOGGLE_TREE_VISIBLE:
 			toggleFullscreenAction.run();
+			break;
+		case TOGGLE_BUTTONS_VISIBLE:
+			toggleButtonsAction.run();
 			break;
 		case DASHBOARD:
 			dashboardAction.run();
