@@ -6,7 +6,7 @@
 		<antcall target="convert">
 			<param name="icon" value="Fullscreen" />
 		</antcall>
-		<foreach list="Fullscreen,Play,Stop,Dashboard,Slower,Faster,Next,Back,Demo,License,Author,2x2,3x3,4x4,5x5,ToggleTabular,Help,ProjectSite,Maven,Proton,Home,End,AddColumn,RemoveColumn,AddRow,RemoveRow,Reset,TreeFocus" param="icon" target="convert" />
+		<foreach list="ToggleButtons,Fullscreen,Play,Stop,Dashboard,Slower,Faster,Next,Back,Demo,License,Author,2x2,3x3,4x4,5x5,ToggleTabular,Help,ProjectSite,Maven,Proton,Home,End,AddColumn,RemoveColumn,AddRow,RemoveRow,Reset,TreeFocus" param="icon" target="convert" />
 	</target>
 	<target name="convert">
 		<echo message="${icon}">

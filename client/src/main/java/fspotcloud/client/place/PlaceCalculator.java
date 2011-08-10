@@ -2,7 +2,6 @@ package fspotcloud.client.place;
 
 import java.util.logging.Logger;
 
-
 public class PlaceCalculator {
 
 	final private static Logger log = Logger.getLogger(PlaceCalculator.class
@@ -35,8 +34,9 @@ public class PlaceCalculator {
 			height = getRasterHeight();
 		}
 		BasePlace result;
-		boolean tagView = place.isTreeVisible();
-		result = create(tagId, photoId, width, height, tagView);
+		boolean tagView = place.hasTreeVisible();
+		boolean buttonsVisible = place.hasButtonsVisible();
+		result = create(tagId, photoId, width, height, tagView, buttonsVisible);
 		return result;
 	}
 
@@ -54,8 +54,9 @@ public class PlaceCalculator {
 			height = getRasterHeight();
 		}
 		BasePlace result;
-		boolean tagView = place.isTreeVisible();
-		result = create(tagId, photoId, width, height, tagView);
+		boolean tagView = place.hasTreeVisible();
+		boolean buttonsVisible = place.hasButtonsVisible();
+		result = create(tagId, photoId, width, height, tagView, buttonsVisible);
 		return result;
 	}
 
@@ -65,15 +66,18 @@ public class PlaceCalculator {
 		String photoId = place.getPhotoId();
 		int width = place.getColumnCount();
 		int height = place.getRowCount();
-		boolean treeVisible = !place.isTreeVisible();
-		result = create(tagId, photoId, width, height, treeVisible);
+		//next line we toggle
+		boolean treeVisible = !place.hasTreeVisible();
+		boolean buttonsVisible = place.hasButtonsVisible();
+		result = create(tagId, photoId, width, height, treeVisible,
+				buttonsVisible);
 		return result;
 	}
 
 	private BasePlace create(String tagId, String photoId, int columns,
-			int rows, boolean tagView) {
+			int rows, boolean tagView, boolean buttons) {
 		BasePlace result;
-		result = new BasePlace(tagId, photoId, columns, rows, tagView);
+		result = new BasePlace(tagId, photoId, columns, rows, tagView, buttons);
 		return result;
 	}
 
@@ -98,9 +102,24 @@ public class PlaceCalculator {
 	}
 
 	public BasePlace getTabularPlace(BasePlace place) {
-		boolean tagView = place.isTreeVisible();
+		boolean tagView = place.hasTreeVisible();
+		boolean buttonsVisible = place.hasButtonsVisible();
 		BasePlace result = create(place.getTagId(), place.getPhotoId(),
-				getRasterWidth(), getRasterHeight(), tagView);
+				getRasterWidth(), getRasterHeight(), tagView, buttonsVisible);
+		return result;
+	}
+
+	public BasePlace toggleButtonsVisible(BasePlace place) {
+		BasePlace result = null;
+		String tagId = place.getTagId();
+		String photoId = place.getPhotoId();
+		int width = place.getColumnCount();
+		int height = place.getRowCount();
+		boolean treeVisible = place.hasTreeVisible();
+		//next line we toggle
+		boolean buttonsVisible = !place.hasButtonsVisible();
+		result = create(tagId, photoId, width, height, treeVisible,
+				buttonsVisible);
 		return result;
 	}
 }

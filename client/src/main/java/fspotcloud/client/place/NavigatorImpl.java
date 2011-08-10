@@ -166,7 +166,7 @@ public class NavigatorImpl implements Navigator {
 	protected void goToPhoto(BasePlace place, String tagId, String photoId) {
 		BasePlace newPlace;
 		newPlace = new BasePlace(tagId, photoId, place.getColumnCount(),
-				place.getRowCount(), place.isTreeVisible());
+				place.getRowCount(), place.hasTreeVisible(), place.hasButtonsVisible());
 		log.info("About to go to: " + this + " : " + newPlace + " from: "
 				+ place);
 		placeGoTo.goTo(newPlace);
@@ -363,6 +363,13 @@ public class NavigatorImpl implements Navigator {
 	public void resetRasterSize() {
 		setRasterDimension(PlaceCalculator.DEFAULT_RASTER_WIDTH,
 				PlaceCalculator.DEFAULT_RASTER_HEIGHT);
+	}
+
+	@Override
+	public void toggleButtonsVisible() {
+		BasePlace now = placeWhere.where();
+		BasePlace destination = placeCalculator.toggleButtonsVisible(now);
+		placeGoTo.goTo(destination);
 	}
 
 }

@@ -17,6 +17,7 @@ import fspotcloud.client.view.action.api.UserAction;
 public class ApplicationActionsImpl extends ActionsFactory implements
 		ApplicationActions {
 
+	public UserAction TOGGLE_BUTTONS_VISIBLE;
 	public UserAction TOGGLE_FULLSCREEN;
 	public UserAction TREE_FOCUS;
 	public UserAction TOGGLE_HELP;
@@ -46,6 +47,9 @@ public class ApplicationActionsImpl extends ActionsFactory implements
 		TOGGLE_FULLSCREEN = createApplication("fullscreen", "Show/Hide tree",
 				"Toggles fullscreen (hides/shows the tree view)", 'F', null,
 				resources.fullscreenIcon(), ApplicationEvent.ActionType.TOGGLE_TREE_VISIBLE);
+		TOGGLE_BUTTONS_VISIBLE = createApplication("toggle-buttons", "Show/Hide buttons",
+				"Toggles visibility of the buttons", 'B', null,
+				resources.toggleButtonsIcon(), ApplicationEvent.ActionType.TOGGLE_BUTTONS_VISIBLE);
 		DASHBOARD = createApplication("dashboard", "Dashboard",
 				"Go to the dashboard (admin only)", 'D', null, resources.dashboardIcon(),
 				ApplicationEvent.ActionType.DASHBOARD);
@@ -66,7 +70,7 @@ public class ApplicationActionsImpl extends ActionsFactory implements
 				"Go to the authors website", 'Z', null, resources.authorIcon(),
 				ApplicationEvent.ActionType.STEVEN);
 
-		all = Arrays.asList(TOGGLE_HELP, TOGGLE_FULLSCREEN, START_DEMO,
+		all = Arrays.asList(TOGGLE_HELP, TOGGLE_FULLSCREEN, TOGGLE_BUTTONS_VISIBLE, START_DEMO,
 				TREE_FOCUS, DASHBOARD, LICENSE, PROJECT_HOSTING, MAVEN, PROTON,STEVEN);
 	}
 

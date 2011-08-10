@@ -10,11 +10,12 @@ public class ApplicationEvent extends GwtEvent<ApplicationEvent.Handler> {
 	final public static Type<ApplicationEvent.Handler> TYPE = new Type<ApplicationEvent.Handler>();
 
 	public static enum ActionType {
-		HELP, TOGGLE_TREE_VISIBLE, DEMO, TREE_FOCUS, DASHBOARD, MAVEN, PROJECT_HOSTING, STEVEN, LICENSE, PROTON
+		HELP, TOGGLE_TREE_VISIBLE, DEMO, TREE_FOCUS, DASHBOARD, MAVEN, PROJECT_HOSTING, STEVEN, LICENSE, PROTON, TOGGLE_BUTTONS_VISIBLE
 	}
+
 	final private ActionType actionType;
 
-	@Inject 
+	@Inject
 	public ApplicationEvent(@Assisted ActionType actionType) {
 		this.actionType = actionType;
 	}
@@ -34,7 +35,7 @@ public class ApplicationEvent extends GwtEvent<ApplicationEvent.Handler> {
 	public ActionType getActionType() {
 		return actionType;
 	}
-	
+
 	public boolean equals(Object o) {
 		if (o instanceof ApplicationEvent) {
 			ApplicationEvent other = (ApplicationEvent) o;
@@ -47,7 +48,7 @@ public class ApplicationEvent extends GwtEvent<ApplicationEvent.Handler> {
 			return false;
 		}
 	}
-	
+
 	public int hashCode() {
 		return getActionType().toString().hashCode();
 	}

@@ -48,12 +48,32 @@ public class NavigatorImplTest extends TestCase {
 		super.setUp();
 	}
 
+	
 	public Navigator get(PlaceGoTo goTo) {
 		return new NavigatorImpl(null, goTo, placeCalculator, dataManager);
 	}
 
 	public Navigator get(PlaceWhere where, PlaceGoTo goTo) {
 		return new NavigatorImpl(where, goTo, placeCalculator, dataManager);
+	}
+
+	public void testToggleButtonsVisible() {
+		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
+		final PlaceWhere where = context.mock(PlaceWhere.class);
+		final BasePlace withButtons = new BasePlace("6", "101", 1, 1, false, true);
+		final BasePlace withoutButtons = new BasePlace("6", "101", 1, 1, false, false);
+
+		context.checking(new Expectations() {
+			{
+				oneOf(where).where();
+				will(returnValue(withButtons));
+				oneOf(goTo).goTo(with(withoutButtons));
+			}
+		});
+		navigator = get(where, goTo);
+		
+		navigator.toggleButtonsVisible();
+		context.assertIsSatisfied();
 	}
 
 	public void testGoLast() {

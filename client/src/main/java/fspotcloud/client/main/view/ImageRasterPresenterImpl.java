@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
@@ -14,7 +17,7 @@ import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.api.Navigator;
 
-public class ImageRasterPresenterImpl implements
+public class ImageRasterPresenterImpl extends AbstractActivity implements
 		ImageRasterView.ImageRasterPresenter {
 	private static final Logger log = Logger
 			.getLogger(ImageRasterPresenterImpl.class.getName());
@@ -27,7 +30,7 @@ public class ImageRasterPresenterImpl implements
 	final private int rowCount;
 	final private int pageSize;
 	final private boolean thumb;
-	final private ImageRasterView imageRasterView;
+	protected final ImageRasterView imageRasterView;
 	final private Navigator pager;
 	final private ImagePresenterFactory imagePresenterFactory;
 	List<ImageView> imageViewList;
@@ -108,4 +111,12 @@ public class ImageRasterPresenterImpl implements
 			presenter.setMaxHeight(getImageHeight());
 		}
 	}
+
+	@Override
+	public void start(AcceptsOneWidget panel, EventBus eventBus) {
+		panel.setWidget(imageRasterView);
+		
+	}
+
+	
 }

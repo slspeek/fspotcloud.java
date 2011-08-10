@@ -35,7 +35,7 @@ public class NavigationActionsImpl extends ActionsFactory implements
 	}
 
 	private void init() {
-		HOME = createNavigation("home", "Home", 'B', KeyCodes.KEY_HOME,
+		HOME = createNavigation("home", "Home", KeyCodes.KEY_HOME, null,
 				"Go to the first image of the category", resources.homeIcon(),
 				NavigationEvent.ActionType.HOME);
 		END = createNavigation("end", "End", KeyCodes.KEY_END, null,

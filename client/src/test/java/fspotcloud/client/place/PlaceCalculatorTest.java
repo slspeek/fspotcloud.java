@@ -11,7 +11,7 @@ public class PlaceCalculatorTest extends TestCase {
 	public void testSimpleSwap() {
 		BasePlace imageViewingPlace = new BasePlace("1", "10", 8, 9, false);
 		BasePlace newPlace = swapper.toggleTreeViewVisible(imageViewingPlace);
-		assertTrue(newPlace.isTreeVisible());
+		assertTrue(newPlace.hasTreeVisible());
 		assertEquals("1", newPlace.getTagId());
 		assertEquals("10", newPlace.getPhotoId());
 		assertEquals(8, newPlace.getColumnCount());
@@ -21,7 +21,7 @@ public class PlaceCalculatorTest extends TestCase {
 	public void testReverse() {
 		BasePlace tagViewingPlace = new BasePlace("1", "10", 1, 1, true);
 		BasePlace newPlace = swapper.toggleTreeViewVisible(tagViewingPlace);
-		assertEquals(false, newPlace.isTreeVisible());
+		assertEquals(false, newPlace.hasTreeVisible());
 		assertEquals("1", ((BasePlace)newPlace).getTagId());
 		assertEquals("10", ((BasePlace)newPlace).getPhotoId());
 		assertEquals(1, ((BasePlace)newPlace).getColumnCount());
@@ -44,7 +44,7 @@ public class PlaceCalculatorTest extends TestCase {
 		assertEquals("11", ((BasePlace)newPlace).getPhotoId());
 		assertEquals(1, newPlace.getColumnCount());
 		assertEquals(1, newPlace.getRowCount());
-		assertEquals(true, newPlace.isTreeVisible());
+		assertEquals(true, newPlace.hasTreeVisible());
 	}
 	
 	public void testZoomViewWithoutTree() {
@@ -54,7 +54,7 @@ public class PlaceCalculatorTest extends TestCase {
 		assertEquals("11", ((BasePlace)newPlace).getPhotoId());
 		assertEquals(1, newPlace.getColumnCount());
 		assertEquals(1, newPlace.getRowCount());
-		assertEquals(false, newPlace.isTreeVisible());
+		assertEquals(false, newPlace.hasTreeVisible());
 	}
 	
 	
