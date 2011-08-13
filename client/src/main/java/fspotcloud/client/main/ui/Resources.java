@@ -9,7 +9,7 @@ public interface Resources extends ClientBundle {
 	public interface Style extends CssResource {
 		String darkerBlock();
 		
-		String ligherBlock();
+		String lighterBlock();
 		
 		String treeBlock();
 	}

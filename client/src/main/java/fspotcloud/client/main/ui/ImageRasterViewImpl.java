@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.ResizeComposite;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
@@ -33,7 +33,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	}
 
 	@UiField
-	SimplePanel simplePanel;
+	DockLayoutPanel dockPanel;
 	private final ImageViewFactory imageViewFactory;
 	private ImageRasterView.ImageRasterPresenter presenter;
 
@@ -41,7 +41,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	public ImageRasterViewImpl(ImageViewFactory imageViewFactory) {
 		this.imageViewFactory = imageViewFactory;
 		initWidget(uiBinder.createAndBindUi(this));
-		simplePanel.ensureDebugId("image-raster-view");
+		dockPanel.ensureDebugId("image-raster-view");
 	}
 	
 	@Override
@@ -56,20 +56,21 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 				result.add(view);
 			}
 		}
-		simplePanel.setWidget(grid);
+		dockPanel.clear();
+		dockPanel.add(grid);
 		log.info("At end of buildraster: size: ("
 				+ getOffsetWidth()+ ", "
 				+ getOffsetWidth() + ")");
 		log.info("At end of buildraster: simple panel size: ("
-				+ simplePanel.getOffsetWidth() + ", "
-				+ simplePanel.getOffsetHeight() + ")");
+				+ dockPanel.getOffsetWidth() + ", "
+				+ dockPanel.getOffsetHeight() + ")");
 		return result;
 	}
 	
 
 	@Override
 	public void onResize() {
-		log.info("Current size: " + getOffsetWidth());
+		log.info("Current size: (yes debug) " + getOffsetWidth());
 		if (presenter != null) {
 			presenter.onResize();
 		}

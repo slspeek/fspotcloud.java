@@ -1,16 +1,11 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:my="urn:import:fspotcloud.client.main.ui">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:my="urn:import:fspotcloud.client.main.ui">
 	<ui:with type="fspotcloud.client.main.ui.Resources" field="res"></ui:with>
-	<ui:style>
-		.important {
-			font-weight: bold;
-		}
-	</ui:style>
 	<g:DockLayoutPanel ui:field="mainPanel">
 		<g:north size="30">
-			<g:Label styleName="{res.style.darkerBlock}" ui:field="titleLabel" text="FSpotCloud Java Edition">
+			<g:Label styleName="{res.style.darkerBlock}" ui:field="titleLabel"
+				text="FSpotCloud Java Edition">
 			</g:Label>
 		</g:north>
 		<g:center>
@@ -19,12 +14,17 @@
 					<my:TreeViewImpl></my:TreeViewImpl>
 				</g:west>
 				<g:center>
-					<g:DockLayoutPanel ui:field="imageViewPanel"></g:DockLayoutPanel> 
+					<g:DockLayoutPanel ui:field="imageViewPanel"></g:DockLayoutPanel>
 				</g:center>
 			</g:SplitLayoutPanel>
 		</g:center>
 		<g:south size="20">
-			<g:Label styleName="{res.style.darkerBlock}" ui:field="statusLabel" text="Press h for help, 7 for demo"></g:Label>
+			<g:HTMLPanel>
+				<div class="{res.style.lighterBlock}">
+					<g:Label styleName="{res.style.darkerBlock}" ui:field="statusLabel"
+						text="Press h for help, 7 for demo"></g:Label>
+				</div>
+			</g:HTMLPanel>
 		</g:south>
 	</g:DockLayoutPanel>
 </ui:UiBinder> 

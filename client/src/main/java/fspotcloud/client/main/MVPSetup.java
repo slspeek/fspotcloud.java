@@ -15,6 +15,7 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.main.api.Initializable;
 import fspotcloud.client.main.ui.HasOneWidgetAdapter;
+import fspotcloud.client.main.ui.Resources;
 import fspotcloud.client.main.view.MainWindowActivityMapper;
 import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.MainPlaceHistoryMapper;
@@ -35,13 +36,14 @@ public class MVPSetup {
 	public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
 			PlaceController placeController,
 			GlobalShortcutController keyboardHandler,
-			EventHandlersSetup eventSetup
-			) {
+			EventHandlersSetup eventSetup, Resources resources)
+			 {
 		this.activityMapper = activityMapper;
 		this.eventBus = eventBus;
 		this.placeController = placeController;
 		this.keyboardHandler = keyboardHandler;
 		this.eventSetup = eventSetup;
+		resources.style().ensureInjected();
 	}
 
 	public void setup() {
