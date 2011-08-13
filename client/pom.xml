@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-6.6.1</version>
+		<version>0.40-6.6.2</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>client</artifactId>
@@ -61,6 +61,14 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/webapp</directory>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -158,20 +166,19 @@
 						<compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact>
 					</compileSourcesArtifacts>
 					<logLevel>INFO</logLevel>
-					<!-- match -Dgae.port -->
-					<port>${gae.port}</port>
-					<!-- This must point to your GWT modules! -->
 					<compileTargets>
 						<value>fspotcloud.FSpotCloud</value>
 						<value>fspotcloud.dashboard</value>
 					</compileTargets>
 					<extraJvmArgs>-Xmx512m</extraJvmArgs>
-					<runTarget>/FSpotCloud.html</runTarget>
+					<runTarget>http://localhost:8080/FSpotCloud.html</runTarget>
 					<style>PRETTY</style>
 					<mode>htmlunit</mode>
 					<gwtVersion>${gwt.version}</gwtVersion>
 					<skipTests>false</skipTests>
+					<webXml>../war/src/main/webapp/WEB-INF/web.xml</webXml>
 					<includes>**/DefaultGwtTestSuite.java</includes>
+					<noserver>true</noserver>
 				</configuration>
 				<executions>
 					<execution>

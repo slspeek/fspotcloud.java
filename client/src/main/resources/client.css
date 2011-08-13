@@ -1,10 +1,14 @@
 .darkerBlock {
-	background: grey;
-	}
+	background: black;
+	color: white;
+	text-align: center;
+}
+
+.lighterBlock {
+	background: yellow;
 	
-.ligherBlock {
-	background: lightgrey;
-	}
-	
+}
+
 .treeBlock {
+	background: blue;
 }
