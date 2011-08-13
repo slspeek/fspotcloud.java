@@ -15,7 +15,7 @@
 			<arg value="-geometry" />
 			<arg value="${icon.size}" />
 			<arg value="src/main/resources/images/originals/${icon}.png" />
-			<arg value="target/classes/images/${icon}.png" />
+			<arg value="target/${project.artifactId}-${project.version}/images/${icon}.png" />
 		</exec>
 	</target>
 

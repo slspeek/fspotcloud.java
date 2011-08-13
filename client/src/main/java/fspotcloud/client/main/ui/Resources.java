@@ -1,12 +1,22 @@
 package fspotcloud.client.main.ui;
 
 import com.google.gwt.resources.client.ClientBundle;
+import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.resources.client.ImageResource;
 
 public interface Resources extends ClientBundle {
 
-	// Resources INSTANCE = GWT.create(Resources.class);
+	public interface Style extends CssResource {
+		String darkerBlock();
+		
+		String ligherBlock();
+		
+		String treeBlock();
+	}
 
+	@Source("client.css")
+	Style style();
+	
 	@Source("images/Play.png")
 	ImageResource playIcon();
 
@@ -54,7 +64,7 @@ public interface Resources extends ClientBundle {
 
 	@Source("images/ToggleTabular.png")
 	ImageResource tabularIcon();
-	
+
 	@Source("images/Help.png")
 	ImageResource helpIcon();
 

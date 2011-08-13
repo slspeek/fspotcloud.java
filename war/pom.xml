@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-6.6.0</version>
+		<version>0.40-6.6.1</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>war</artifactId>
@@ -162,7 +162,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<splitJars/>
+					<splitJars />
 				</configuration>
 			</plugin>
 			<plugin>
@@ -178,7 +178,29 @@
 					</webResources>
 					<webResources>
 						<resource>
+							<directory>${project.build.directory}/dependency/classes</directory>
+							<includes>
+								<include>**</include>
+							</includes>
+						</resource>
+						<resource>
+							<directory>${project.build.directory}/dependency/client-${project.version}/</directory>
+							<includes>
+								<include>**</include>
+							</includes>
+							<excludes>
+								<exclude>classes/**</exclude>
+							</excludes>
+						</resource>
+						<resource>
 							<directory>${project.build.directory}/dependency/</directory>
+							<includes>
+								<include>cloudcover.css</include>
+								<include>cloudcover.html</include>
+								<include>com.google.appengine.testing.cloudcover.CloudCover/**</include>
+								<include>META-INF</include>
+								<include>WEB-INF</include>
+							</includes>
 						</resource>
 					</webResources>
 					<webXml>${basedir}/src/main/resources/WEB-INF/web.xml</webXml>
@@ -211,7 +233,8 @@
 									<sysproperty key="endpoint" value="localhost:8080" />
 									<sysproperty key="bot.secret" value="${bot.secret}" />
 									<sysproperty key="pause" value="2000" />
-									<sysproperty key="photo.dir.original" value="file:///home/fspotcloud/Pictures/Foto's" />
+									<sysproperty key="photo.dir.original"
+										value="file:///home/fspotcloud/Pictures/Foto's" />
 									<sysproperty key="photo.dir.override"
 										value="file://${basedir}/../peer/src/test/resources/Photos" />
 								</java>

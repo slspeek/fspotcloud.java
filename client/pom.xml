@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-6.6.0</version>
+		<version>0.40-6.6.1</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>client</artifactId>
@@ -72,17 +72,17 @@
 						<phase>process-test-resources</phase>
 						<configuration>
 							<target>
-								<echo> ${icon.size} </echo>
-								<taskdef resource="net/sf/antcontrib/antcontrib.properties"
-									classpathref="maven.plugin.classpath" />
-								<ant antfile="${basedir}/icon-convert-ant.xml" target="convert-all" />
+								<exec failonerror="true" executable="${basedir}/convert.sh">
+									<arg value="${project.version}" />
+									<arg value="${icon.size}" />
+								</exec>
 							</target>
 						</configuration>
 						<goals>
 							<goal>run</goal>
 						</goals>
 					</execution>
-						<execution>
+					<execution>
 						<id>clear</id>
 						<phase>clean</phase>
 						<configuration>
@@ -138,28 +138,15 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.3.1</version>
 				<configuration>
-					<classesDirectory>${project.build.directory}/${project.artifactId}-${project.version}
+					<classesDirectory>${project.build.directory}					
 					</classesDirectory>
+					<includes>
+						<include>classes/*.html</include>
+						<include>classes/*.css</include>
+						<include>classes/*.ico</include>
+						<include>${project.artifactId}-${project.version}/**</include>
+					</includes>
 				</configuration>
-			</plugin>
-			<plugin>
-				<!-- NOTE: We don't need a groupId specification because the group is 
-					org.apache.maven.plugins ...which is assumed by default. -->
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>bin</descriptorRef>
-					</descriptorRefs>
-				</configuration>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<!-- All the fantastical settings that GWT needs -->
 			<plugin>
@@ -171,8 +158,6 @@
 						<compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact>
 					</compileSourcesArtifacts>
 					<logLevel>INFO</logLevel>
-					<soyc>true</soyc>
-					<soycDetailed>true</soycDetailed>
 					<!-- match -Dgae.port -->
 					<port>${gae.port}</port>
 					<!-- This must point to your GWT modules! -->
@@ -183,7 +168,6 @@
 					<extraJvmArgs>-Xmx512m</extraJvmArgs>
 					<runTarget>/FSpotCloud.html</runTarget>
 					<style>PRETTY</style>
-					<selenium>localhost:4444/*firefox"</selenium>
 					<mode>htmlunit</mode>
 					<gwtVersion>${gwt.version}</gwtVersion>
 					<skipTests>false</skipTests>
@@ -203,7 +187,7 @@
 
 				</dependencies>
 			</plugin>
-			
+
 		</plugins>
 	</build>
 	<reporting>
