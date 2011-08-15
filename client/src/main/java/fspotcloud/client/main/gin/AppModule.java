@@ -15,6 +15,7 @@ import fspotcloud.client.demo.DemoStepFactory;
 import fspotcloud.client.demo.ShortcutDemoStep;
 import fspotcloud.client.main.MVPSetup;
 import fspotcloud.client.main.ui.ButtonPanelViewImpl;
+import fspotcloud.client.main.ui.HelpPopup;
 import fspotcloud.client.main.ui.ImagePanelViewImpl;
 import fspotcloud.client.main.ui.ImageRasterViewImpl;
 import fspotcloud.client.main.ui.ImageViewImpl;
@@ -46,6 +47,7 @@ import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.main.view.api.ImageViewFactory;
 import fspotcloud.client.main.view.api.LoadNewLocation;
+import fspotcloud.client.main.view.api.PopupView;
 import fspotcloud.client.main.view.api.SlideshowPresenterFactory;
 import fspotcloud.client.main.view.api.SlideshowView;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
@@ -143,6 +145,8 @@ public class AppModule extends AbstractGinModule {
 		
 		install(new GinFactoryModuleBuilder().implement(ImageRasterView.ImageRasterPresenter.class,
 				ImageRasterActivity.class).build(ImageRasterActivityFactory.class));
+		
+		bind(PopupView.class).to(HelpPopup.class);
 
 	}
 }

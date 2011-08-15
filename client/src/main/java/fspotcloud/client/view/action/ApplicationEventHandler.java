@@ -10,6 +10,7 @@ import fspotcloud.client.main.ToggleButtonsAction;
 import fspotcloud.client.main.ToggleFullscreenAction;
 import fspotcloud.client.main.TreeFocusAction;
 import fspotcloud.client.main.api.Initializable;
+import fspotcloud.client.main.help.AboutAction;
 import fspotcloud.client.main.help.HelpAction;
 import fspotcloud.client.main.shared.ApplicationEvent;
 import fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
@@ -20,6 +21,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	private static final Logger log = Logger
 			.getLogger(ApplicationEventHandler.class.getName());
 	final private DemoAction demoAction;
+	final private AboutAction aboutAction;
 	final private HelpAction helpAction;
 	final private TreeFocusAction treeFocusAction;
 	final private ToggleFullscreenAction toggleFullscreenAction;
@@ -30,7 +32,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	final private EventBus eventBus;
 
 	@Inject
-	public ApplicationEventHandler(DemoAction demoAction,
+	public ApplicationEventHandler(AboutAction aboutAction, DemoAction demoAction,
 			HelpAction helpAction, TreeFocusAction treeFocusAction,
 			ToggleFullscreenAction toggleFullscreenAction,
 			ToggleButtonsAction toggleButtonsAction,
@@ -42,6 +44,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 		this.helpAction = helpAction;
 		this.treeFocusAction = treeFocusAction;
 		this.toggleFullscreenAction = toggleFullscreenAction;
+		this.aboutAction = aboutAction;
 		this.eventBus = eventBus;
 	}
 
@@ -66,6 +69,9 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 			break;
 		case DASHBOARD:
 			dashboardAction.run();
+			break;
+		case ABOUT:
+			aboutAction.run();
 			break;
 		case PROJECT_HOSTING:
 			projectHostingAction.run();

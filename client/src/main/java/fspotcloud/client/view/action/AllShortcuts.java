@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import com.google.inject.Inject;
 
+import fspotcloud.client.view.action.api.AboutActions;
 import fspotcloud.client.view.action.api.ActionGroup;
 import fspotcloud.client.view.action.api.AllUserActions;
 import fspotcloud.client.view.action.api.ApplicationActions;
@@ -23,25 +24,28 @@ public class AllShortcuts implements AllUserActions {
 	final private NavigationActions navigation;
 	final private SlideshowActions slideshow;
 	final private RasterActions raster;
+	final private AboutActions about;
 
 	List<ActionGroup> allGroups;
-	List<UserAction> allActions =  new ArrayList<UserAction>();
+	List<UserAction> allActions = new ArrayList<UserAction>();
 
 	@Inject
 	public AllShortcuts(ApplicationActions application,
 			NavigationActions navigation, SlideshowActions slideshow,
-			RasterActions raster) {
+			RasterActions raster, AboutActions about) {
 		super();
+		this.about = about;
 		this.application = application;
 		this.navigation = navigation;
 		this.slideshow = slideshow;
 		this.raster = raster;
-		allGroups = Arrays.asList(navigation, raster, slideshow, application);
+		allGroups = Arrays.asList(navigation, raster, slideshow, application,
+				about);
 		initAllActions();
 	}
 
 	private void initAllActions() {
-		for (ActionGroup group: allGroups()) {
+		for (ActionGroup group : allGroups()) {
 			allActions.addAll(group.allActions());
 		}
 	}
@@ -80,6 +84,10 @@ public class AllShortcuts implements AllUserActions {
 	public String getDescription() {
 		return "All user actions";
 	}
-	
+
+	@Override
+	public AboutActions about() {
+		return about;
+	}
 
 }
