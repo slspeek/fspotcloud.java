@@ -22,9 +22,11 @@ public class ApplicationActionsITest extends SeleniumITest {
 	public void testTabular() throws Exception {
 		selenium.open("/");
 		selenium.waitForPageToLoad("30000");
-		selenium.click("gwt-debug-maven");
+		selenium.click("gwt-debug-about");
+		sleepShort();
 		selenium.waitForPageToLoad("30000");
-		selenium.goBack();
+		selenium.click("gwt-debug-about");
+		selenium.waitForPageToLoad("30000");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("gwt-debug-help");
 		sleepShort();
