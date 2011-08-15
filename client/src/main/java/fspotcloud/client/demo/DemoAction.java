@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 import com.google.gwt.user.client.Timer;
 import com.google.inject.Inject;
-import com.google.inject.assistedinject.Assisted;
+import com.google.inject.Provider;
 
 import fspotcloud.client.main.view.DemoPresenter;
 import fspotcloud.client.view.action.KeyDispatcher;
@@ -22,12 +22,14 @@ public class DemoAction implements Runnable {
 	final private DemoStepFactory factory;
 	final private AllUserActions actions;
 	final private ShortcutAssistedFactory shortcutFactory;
+	final private Provider<DemoPresenter> demoPresenterProvider; 
 
 	@Inject
-	public DemoAction(DemoStepFactory factory, ShortcutAssistedFactory shortcutFactory, AllUserActions actions) {
+	public DemoAction(DemoStepFactory factory, ShortcutAssistedFactory shortcutFactory, AllUserActions actions, Provider<DemoPresenter> demoPresenterProvider) {
 		this.factory = factory;
 		this.actions = actions;
 		this.shortcutFactory = shortcutFactory;
+		this.demoPresenterProvider = demoPresenterProvider;
 	}
 
 	private void initDemo() {
@@ -69,8 +71,8 @@ public class DemoAction implements Runnable {
 		if (stepPointer < demo.size()) {
 			DemoStep step = demo.get(stepPointer);
 			DemoRunner runner = new DemoRunner(step, this);
-			final DemoPresenter demoPresenter = new DemoPresenter(
-					step.getDescription());
+			final DemoPresenter demoPresenter = demoPresenterProvider.get();
+					demoPresenter.setText(step.getDescription());
 			demoPresenter.show();
 			Timer hideTimer = new Timer() {
 				@Override
@@ -81,8 +83,8 @@ public class DemoAction implements Runnable {
 			hideTimer.schedule(step.pauseTime());
 		} else {
 			log.info("Demo ended");
-			final DemoPresenter demoPresenter = new DemoPresenter(
-					"Demo ended.<br> Thank you.");
+			final DemoPresenter demoPresenter = demoPresenterProvider.get();
+			demoPresenter.setText("Demo ended.<br> Thank you.");
 			demoPresenter.show();
 			Timer hideTimer = new Timer() {
 				@Override

@@ -7,5 +7,5 @@
 			text-align: center;
 		}
 	</ui:style>
-	<g:DockLayoutPanel styleName="{res.style.darkerBlock}" ui:field="dockPanel"></g:DockLayoutPanel>
+	<g:DockLayoutPanel styleName="{res.style.imagePanelBlock}" ui:field="dockPanel"></g:DockLayoutPanel>
 </ui:UiBinder> 

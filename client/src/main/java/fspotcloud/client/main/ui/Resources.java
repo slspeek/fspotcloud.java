@@ -7,16 +7,30 @@ import com.google.gwt.resources.client.ImageResource;
 public interface Resources extends ClientBundle {
 
 	public interface Style extends CssResource {
-		String darkerBlock();
-		
-		String lighterBlock();
-		
+		String titleBlock();
+
+		String footerBlock();
+
+		String imagePanelBlock();
+
 		String treeBlock();
+
+		String helpCategory();
+
+		String helpDescription();
+
+		String helpKey();
+
+		String helpPopup();
+
+		String helpSeparator();
+		
+		String helpTitle();
 	}
 
 	@Source("client.css")
 	Style style();
-	
+
 	@Source("images/Play.png")
 	ImageResource playIcon();
 

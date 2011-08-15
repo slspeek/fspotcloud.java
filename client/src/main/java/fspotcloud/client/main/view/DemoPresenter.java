@@ -1,15 +1,23 @@
 package fspotcloud.client.main.view;
 
-import fspotcloud.client.main.ui.DemoPopup;
+import com.google.inject.Inject;
+
+import fspotcloud.client.main.ui.HelpPopup;
 
 public class DemoPresenter {
 
-	final private DemoPopup popupView;
-	final private String text;
+	final private HelpPopup popupView;
+	private String text;
 
-	public DemoPresenter(String text) {
+	@Inject
+	public DemoPresenter(HelpPopup popupView) {
+		this.popupView = popupView;
+	}
+	
+
+	public void setText(String text) {
 		this.text = text;
-		popupView = new DemoPopup(initText());
+		popupView.setText(initText());
 	}
 
 	private String initText() {

@@ -4,27 +4,23 @@
 	<ui:with type="fspotcloud.client.main.ui.Resources" field="res"></ui:with>
 	<g:DockLayoutPanel ui:field="mainPanel">
 		<g:north size="30">
-			<g:Label styleName="{res.style.darkerBlock}" ui:field="titleLabel"
+			<g:Label styleName="{res.style.titleBlock}" ui:field="titleLabel"
 				text="FSpotCloud Java Edition">
 			</g:Label>
 		</g:north>
 		<g:center>
 			<g:SplitLayoutPanel ui:field="horizontalSplitPanel">
 				<g:west size="250">
-					<my:TreeViewImpl></my:TreeViewImpl>
+					<my:TreeViewImpl styleName="{res.style.treeBlock}"></my:TreeViewImpl>
 				</g:west>
 				<g:center>
-					<g:DockLayoutPanel ui:field="imageViewPanel"></g:DockLayoutPanel>
+					<g:DockLayoutPanel ui:field="imageViewPanel" styleName="{res.style.imagePanelBlock}"></g:DockLayoutPanel>
 				</g:center>
 			</g:SplitLayoutPanel>
 		</g:center>
 		<g:south size="20">
-			<g:HTMLPanel>
-				<div class="{res.style.lighterBlock}">
-					<g:Label styleName="{res.style.darkerBlock}" ui:field="statusLabel"
+				<g:Label styleName="{res.style.footerBlock}" ui:field="statusLabel"
 						text="Press h for help, 7 for demo"></g:Label>
-				</div>
-			</g:HTMLPanel>
 		</g:south>
 	</g:DockLayoutPanel>
 </ui:UiBinder> 

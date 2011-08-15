@@ -12,12 +12,13 @@ public class ShortcutDemoStep implements DemoStep {
 	final private ShortcutHandler shortcutHandler;
 	final private UserAction shortcut;
 	final private int pause;
-	final private HelpContentGenerator generator = new HelpContentGenerator();
+	final private HelpContentGenerator generator;
 
 	@Inject
-	public ShortcutDemoStep(ShortcutHandler shortcutHandler, @Assisted UserAction shortcut,
+	public ShortcutDemoStep(HelpContentGenerator generator, ShortcutHandler shortcutHandler, @Assisted UserAction shortcut,
 			@Assisted int pause) {
 		this.shortcutHandler = shortcutHandler;
+		this.generator = generator;
 		this.shortcut = shortcut;
 		this.pause = pause;
 	}

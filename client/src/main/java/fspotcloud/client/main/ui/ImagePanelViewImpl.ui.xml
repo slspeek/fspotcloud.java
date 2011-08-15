@@ -6,7 +6,8 @@
 			margin: auto;
 		}
 	</ui:style>
-	<g:DockLayoutPanel ui:field="mainPanel">
+	<ui:with type="fspotcloud.client.main.ui.Resources" field="res"></ui:with>
+	<g:DockLayoutPanel styleName="{res.style.imagePanelBlock}" ui:field="mainPanel">
 		<g:center>
 			<my:ImageRasterViewImpl></my:ImageRasterViewImpl>
 		</g:center>
