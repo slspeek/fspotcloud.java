@@ -22,7 +22,8 @@ public class ApplicationActionsImpl extends ActionsFactory implements
 	public UserAction TREE_FOCUS;
 	public UserAction TOGGLE_HELP;
 	public UserAction START_DEMO;
-	public UserAction DASHBOARD, MAVEN, PROJECT_HOSTING, STEVEN, PROTON, LICENSE;
+	public UserAction DASHBOARD;
+	public UserAction ABOUT;
 	private List<UserAction> all;
 
 	final private ApplicationEventProviderFactory application;
@@ -53,25 +54,11 @@ public class ApplicationActionsImpl extends ActionsFactory implements
 		DASHBOARD = createApplication("dashboard", "Dashboard",
 				"Go to the dashboard (admin only)", 'D', null, resources.dashboardIcon(),
 				ApplicationEvent.ActionType.DASHBOARD);
-		PROJECT_HOSTING = createApplication("project-hosting", "Project site",
-				"Go to the site on Google Project Hosting", 'J', null, resources.projectSiteIcon(),
-				ApplicationEvent.ActionType.PROJECT_HOSTING);
-		MAVEN = createApplication("maven", "Maven site",
-				"Go to the Maven generated site", 'M', null, resources.mavenIcon(),
-				ApplicationEvent.ActionType.MAVEN);
-		LICENSE = createApplication("license", "License",
-				"View the license", 'L', null, resources.licenceIcon(),
-				ApplicationEvent.ActionType.LICENSE);
-		PROTON = createApplication("proton", "Proton radio",
-				"Go to the Proton site", 'P', null, resources.protonIcon(),
-				ApplicationEvent.ActionType.PROTON);
-		
-		STEVEN = createApplication("steven", "Authors website",
-				"Go to the authors website", 'Z', null, resources.authorIcon(),
-				ApplicationEvent.ActionType.STEVEN);
-
+		ABOUT = createApplication("about", "About",
+				"About this open source project", 'A', null, resources.aboutIcon(),
+				ApplicationEvent.ActionType.ABOUT);
 		all = Arrays.asList(TOGGLE_HELP, TOGGLE_FULLSCREEN, TOGGLE_BUTTONS_VISIBLE, START_DEMO,
-				TREE_FOCUS, DASHBOARD, LICENSE, PROJECT_HOSTING, MAVEN, PROTON,STEVEN);
+				TREE_FOCUS, DASHBOARD, ABOUT);
 	}
 
 	public UserAction createApplication(String id, String caption,

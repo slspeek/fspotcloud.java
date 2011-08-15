@@ -39,7 +39,6 @@ public class DemoAction implements Runnable {
 		addStep(actions.raster().setRaster4x4(), 4000);
 		addStep(actions.raster().addColumm()	, 1000);
 		addStep(actions.raster().addColumm()	, 4000, "You can do this again and again");
-		addStep(actions.raster().addColumm()	, 4000, "And again");
 		addStep(actions.raster().toggleTabularView(), 2000);
 		addStep(actions.navigation().end(), 3000);
 		addStep(actions.navigation().back(), 3000);
@@ -50,6 +49,7 @@ public class DemoAction implements Runnable {
 		addStep(actions.raster().resetRaster(), 3000);
 		addStep(actions.application().toggleHelp(), 5000);
 		addStep(actions.application().toggleHelp(), 1000, "Again to hide the help.");
+		
 	}
 
 	private void addStep(UserAction shortcut, int pause) {

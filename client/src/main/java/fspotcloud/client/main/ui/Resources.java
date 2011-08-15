@@ -3,6 +3,7 @@ package fspotcloud.client.main.ui;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.resources.client.TextResource;
 
 public interface Resources extends ClientBundle {
 
@@ -28,6 +29,9 @@ public interface Resources extends ClientBundle {
 		String helpTitle();
 	}
 
+	@Source("version.txt")
+	TextResource getVersion();
+	
 	@Source("client.css")
 	Style style();
 
@@ -117,4 +121,7 @@ public interface Resources extends ClientBundle {
 
 	@Source("images/ToggleButtons.png")
 	ImageResource toggleButtonsIcon();
+
+	@Source("images/About.png")
+	ImageResource aboutIcon();
 }

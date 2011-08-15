@@ -91,6 +91,20 @@
 						</goals>
 					</execution>
 					<execution>
+						<id>write-version-text</id>
+						<phase>process-test-resources</phase>
+						<configuration>
+							<target>
+								<exec failonerror="true" executable="${basedir}/write_version.sh">
+									<arg value="${project.version}" />
+								</exec>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
 						<id>clear</id>
 						<phase>clean</phase>
 						<configuration>

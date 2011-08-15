@@ -9,11 +9,9 @@ public class HelpAction implements Runnable {
 
 	private HelpPresenter helpPresenter;
 	private boolean isShowing = false;
-	private AllUserActions actions;
 
 	@Inject
-	public HelpAction(AllUserActions actions, HelpPresenter helpPresenter) {
-		this.actions = actions;
+	public HelpAction(HelpPresenter helpPresenter) {
 		this.helpPresenter = helpPresenter;
 	}
 

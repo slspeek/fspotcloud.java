@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface AllActionGroups {
 	ApplicationActions application();
+	AboutActions about();
 	NavigationActions navigation();
 	SlideshowActions slideshow();
 	RasterActions raster();

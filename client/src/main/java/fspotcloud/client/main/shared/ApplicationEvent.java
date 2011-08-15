@@ -10,7 +10,7 @@ public class ApplicationEvent extends GwtEvent<ApplicationEvent.Handler> {
 	final public static Type<ApplicationEvent.Handler> TYPE = new Type<ApplicationEvent.Handler>();
 
 	public static enum ActionType {
-		HELP, TOGGLE_TREE_VISIBLE, DEMO, TREE_FOCUS, DASHBOARD, MAVEN, PROJECT_HOSTING, STEVEN, LICENSE, PROTON, TOGGLE_BUTTONS_VISIBLE
+		HELP, TOGGLE_TREE_VISIBLE, DEMO, TREE_FOCUS, DASHBOARD, MAVEN, PROJECT_HOSTING, STEVEN, LICENSE, PROTON, TOGGLE_BUTTONS_VISIBLE, ABOUT
 	}
 
 	final private ActionType actionType;

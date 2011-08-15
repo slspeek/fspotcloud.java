@@ -3,20 +3,14 @@ package fspotcloud.client.main.gin;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
 
-import fspotcloud.client.main.shared.ApplicationEventFactory;
-import fspotcloud.client.main.shared.ApplicationEventProviderFactory;
-import fspotcloud.client.main.shared.NavigationEventFactory;
-import fspotcloud.client.main.shared.NavigationEventProviderFactory;
-import fspotcloud.client.main.shared.RasterEventFactory;
-import fspotcloud.client.main.shared.RasterEventProviderFactory;
-import fspotcloud.client.main.shared.SlideshowEventFactory;
-import fspotcloud.client.main.shared.SlideshowEventProviderFactory;
+import fspotcloud.client.view.action.AboutActionsImpl;
 import fspotcloud.client.view.action.AllShortcuts;
 import fspotcloud.client.view.action.ApplicationActionsImpl;
 import fspotcloud.client.view.action.NavigationActionsImpl;
 import fspotcloud.client.view.action.RasterActionsImpl;
 import fspotcloud.client.view.action.Shortcut;
 import fspotcloud.client.view.action.SlideshowActionsImpl;
+import fspotcloud.client.view.action.api.AboutActions;
 import fspotcloud.client.view.action.api.AllUserActions;
 import fspotcloud.client.view.action.api.ApplicationActions;
 import fspotcloud.client.view.action.api.NavigationActions;
@@ -36,6 +30,7 @@ public class ActionModule extends AbstractGinModule {
 		bind(RasterActions.class).to(RasterActionsImpl.class);
 		bind(SlideshowActions.class).to(SlideshowActionsImpl.class);
 		bind(ApplicationActions.class).to(ApplicationActionsImpl.class);
+		bind(AboutActions.class).to(AboutActionsImpl.class);
 	
 		install(new GinFactoryModuleBuilder().implement(UserAction.class,
 				Shortcut.class).build(ShortcutAssistedFactory.class));
