@@ -54,7 +54,6 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	public void init() {
 		log.info("init");
 		imageRasterView.setPresenter(this);
-		imageViewList = imageRasterView.buildRaster(rowCount, columnCount);
 		setImages();
 	}
 
@@ -80,8 +79,8 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 
 					@Override
 					public void onSuccess(List<BasePlace> result) {
+						imageViewList = imageRasterView.buildRaster(rowCount, columnCount);
 						setImages(result);
-
 					}
 
 					@Override

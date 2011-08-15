@@ -1,5 +1,7 @@
 package fspotcloud.client.main.view;
 
+import com.google.inject.Inject;
+
 import fspotcloud.client.main.help.HelpContentGenerator;
 import fspotcloud.client.main.ui.HelpPopup;
 import fspotcloud.client.view.action.api.ActionGroup;
@@ -9,13 +11,16 @@ import fspotcloud.client.view.action.api.UserAction;
 public class HelpPresenter {
 
 	final private HelpPopup popupView;
-	final private HelpContentGenerator generator = new HelpContentGenerator();
+	final private HelpContentGenerator generator;
 	private String helptext;
 	private final AllUserActions actions;
 
-	public HelpPresenter(AllUserActions actions) {
+	@Inject
+	public HelpPresenter(AllUserActions actions, HelpContentGenerator generator, HelpPopup popupView) {
 		this.actions = actions;
-		popupView = new HelpPopup(initHelpText());
+		this.generator = generator;
+		this.popupView = popupView;
+		popupView.setText(initHelpText());
 	}
 
 	private String initHelpText() {

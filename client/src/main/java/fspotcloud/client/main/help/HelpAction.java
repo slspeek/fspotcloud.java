@@ -12,15 +12,13 @@ public class HelpAction implements Runnable {
 	private AllUserActions actions;
 
 	@Inject
-	public HelpAction(AllUserActions actions) {
+	public HelpAction(AllUserActions actions, HelpPresenter helpPresenter) {
 		this.actions = actions;
+		this.helpPresenter = helpPresenter;
 	}
 
 	@Override
 	public void run() {
-		if (helpPresenter == null) {
-			helpPresenter = new HelpPresenter(actions);
-		}
 		if (isShowing) {
 			helpPresenter.hide();
 			isShowing = false;

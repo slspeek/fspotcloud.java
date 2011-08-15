@@ -18,11 +18,13 @@ public class ButtonPanelViewImpl extends DockLayoutPanel implements
 	HorizontalPanel southPanel = new HorizontalPanel();
 
 	@Inject 
-	public ButtonPanelViewImpl(SlideshowView slideshowView) {
+	public ButtonPanelViewImpl(SlideshowView slideshowView, Resources resources) {
 		super(Unit.PX);
 		this.slideshowView = slideshowView;
 		super.addNorth(northPanel, 48);
 		super.addSouth(southPanel, 48);
+		setStyleName(resources.style().imagePanelBlock());
+		slideshowView.asWidget().setStyleName(resources.style().footerBlock());
 	}
 
 	@Override

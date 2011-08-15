@@ -1,14 +1,72 @@
-.darkerBlock {
-	background: black;
-	color: white;
+@def darkColor #8BB381 ; /**Dark Sea Green */ 
+@def ligherColor 	#C3FDB8 ; /**  Dark Sea Green1	 */ 
+@def treeColor #B5EAAA ; /**  Dark Sea Green2	 */ 
+@def borderRadius  7px ;
+@def foregroundColor #595454 ; /** Grey40 */ 
+
+.titleBlock {
+	background-color: darkColor;
+	color: foregroundColor;
 	text-align: center;
+	font-size: large;
+	font-weight: bold;
+	-moz-border-radius: borderRadius;
+	border-radius: borderRadius;
 }
 
-.lighterBlock {
-	background: yellow;
-	
+.imagePanelBlock {
+	background-color: ligherColor;
+	-moz-border-radius: borderRadius;
+	border-radius: borderRadius;
 }
 
 .treeBlock {
-	background: blue;
+	background-color: treeColor;
+	-moz-border-radius: borderRadius;
+	border-radius: borderRadius;
+}
+
+.footerBlock {
+	background-color: darkColor;
+	color: foregroundColor;
+	-moz-border-radius: borderRadius;
+	border-radius: borderRadius;
+	text-align: center;
+}
+
+.helpPopup {
+	padding: 20px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	font-size: 180%;
+}
+
+.helpCategory {
+	font-size: 90%;
+	border-bottom: solid;
+	border-top: solid;
+}
+
+.helpDescription {
+	font-size: 130%;
+	text-align: left;
+}
+
+.helpTitle {
+	font-size: large;
+	text-align: center;
+	font-style: bold;
+}
+
+.helpSeparator {
+	font-weight: bold;
+	font-size: 130%;
+}
+
+.helpKey {
+	color: yellow;
+	font-weight: bold;
+	font-size: 130%;
 }
