@@ -6,16 +6,16 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 import fspotcloud.client.main.ui.Resources;
-import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
+import fspotcloud.client.view.action.api.UserActionFactory;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class ActionsFactory {
 	
-	private ShortcutAssistedFactory factory;
+	private UserActionFactory factory;
 	final protected Resources resources; 
 
 	@Inject
-	public ActionsFactory(ShortcutAssistedFactory factory, Resources resources) {
+	public ActionsFactory(UserActionFactory factory, Resources resources) {
 		super();
 		this.factory = factory;
 		this.resources = resources;

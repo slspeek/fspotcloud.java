@@ -11,41 +11,41 @@ public class ShortcutTest extends TestCase {
 	KeyStroke key2 = new KeyStroke(KeyCodes.KEY_BACKSPACE);
 	String caption = "Help";
 	String description = "Press h to see help";
-	Shortcut shortcut;
+	UserActionImpl userActionImpl;
 
 	public void testShortcut() {
-		shortcut = new Shortcut(id, caption, description, key1, key2, null, null, null);
-		assertNotNull(shortcut);
+		userActionImpl = new UserActionImpl(id, caption, description, key1, key2, null, null, null);
+		assertNotNull(userActionImpl);
 	}
 
 	public void testGetDescription() {
-		shortcut = new Shortcut(id, caption, description, key1, key2, null, null, null);
-		assertEquals(description, shortcut.getDescription());
+		userActionImpl = new UserActionImpl(id, caption, description, key1, key2, null, null, null);
+		assertEquals(description, userActionImpl.getDescription());
 	}
 
 	public void testGetKey() {
-		shortcut = new Shortcut(id, caption, description, key1, key2, null, null, null);
-		assertEquals(key1, shortcut.getKey());
+		userActionImpl = new UserActionImpl(id, caption, description, key1, key2, null, null, null);
+		assertEquals(key1, userActionImpl.getKey());
 	}
 
 	public void testGetAlternateKey() {
-		shortcut = new Shortcut(id, caption, description, key1, key2, null, null, null);
-		assertEquals(key2, shortcut.getAlternateKey());
+		userActionImpl = new UserActionImpl(id, caption, description, key1, key2, null, null, null);
+		assertEquals(key2, userActionImpl.getAlternateKey());
 	}
 
 	public void testGetIcon() {
-		shortcut = new Shortcut(id, caption, description, key1, key2, null, null, null);
-		assertNull(shortcut.getIcon());
+		userActionImpl = new UserActionImpl(id, caption, description, key1, key2, null, null, null);
+		assertNull(userActionImpl.getIcon());
 	}
 
 	public void testGetCaption() {
-		shortcut = new Shortcut(id, caption, description, key1, key2, null, null, null);
-		assertEquals(caption, shortcut.getCaption());
+		userActionImpl = new UserActionImpl(id, caption, description, key1, key2, null, null, null);
+		assertEquals(caption, userActionImpl.getCaption());
 	}
 
 	public void testGetId() {
-		shortcut = new Shortcut(id, caption, description, key1, key2, null, null, null);
-		assertEquals(id, shortcut.getId());
+		userActionImpl = new UserActionImpl(id, caption, description, key1, key2, null, null, null);
+		assertEquals(id, userActionImpl.getId());
 	}
 
 }

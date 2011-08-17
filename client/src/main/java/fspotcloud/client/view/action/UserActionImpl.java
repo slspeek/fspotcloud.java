@@ -11,9 +11,9 @@ import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.client.view.action.api.UserAction;
 
-public class Shortcut implements UserAction {
+public class UserActionImpl implements UserAction {
 	private static final Logger log = Logger
-			.getLogger(Shortcut.class.getName());
+			.getLogger(UserActionImpl.class.getName());
 	final private String description;
 	final private KeyStroke key;
 	final private KeyStroke alternateKey;
@@ -25,7 +25,7 @@ public class Shortcut implements UserAction {
 	final private EventBus eventBus;
 
 	@Inject
-	public Shortcut(@Assisted("id") String id, @Assisted("caption") String caption, @Assisted("description")  String description, @Assisted("key") KeyStroke key,@Assisted("altKey") 
+	public UserActionImpl(@Assisted("id") String id, @Assisted("caption") String caption, @Assisted("description")  String description, @Assisted("key") KeyStroke key,@Assisted("altKey") 
 			KeyStroke alternateKey, @Assisted ImageResource imageResource,
 			@Assisted Provider<? extends GwtEvent> eventProvider, EventBus eventBus) {
 		super();

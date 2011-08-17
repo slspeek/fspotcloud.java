@@ -10,7 +10,7 @@ import fspotcloud.client.main.shared.ApplicationEvent;
 import fspotcloud.client.main.shared.ApplicationEventProviderFactory;
 import fspotcloud.client.main.ui.Resources;
 import fspotcloud.client.view.action.api.AboutActions;
-import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
+import fspotcloud.client.view.action.api.UserActionFactory;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class AboutActionsImpl extends ActionsFactory implements AboutActions {
@@ -21,7 +21,7 @@ public class AboutActionsImpl extends ActionsFactory implements AboutActions {
 	final private ApplicationEventProviderFactory application;
 
 	@Inject
-	public AboutActionsImpl(ShortcutAssistedFactory shortcutFactory,
+	public AboutActionsImpl(UserActionFactory shortcutFactory,
 			ApplicationEventProviderFactory application, Resources resources) {
 		super(shortcutFactory, resources);
 		this.application = application;
