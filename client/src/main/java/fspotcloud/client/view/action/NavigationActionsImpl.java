@@ -11,7 +11,7 @@ import fspotcloud.client.main.shared.NavigationEvent;
 import fspotcloud.client.main.shared.NavigationEventProviderFactory;
 import fspotcloud.client.main.ui.Resources;
 import fspotcloud.client.view.action.api.NavigationActions;
-import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
+import fspotcloud.client.view.action.api.UserActionFactory;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class NavigationActionsImpl extends ActionsFactory implements
@@ -27,7 +27,7 @@ public class NavigationActionsImpl extends ActionsFactory implements
 	final private NavigationEventProviderFactory navigation;
 
 	@Inject
-	public NavigationActionsImpl(ShortcutAssistedFactory shortcutFactory,
+	public NavigationActionsImpl(UserActionFactory shortcutFactory,
 			NavigationEventProviderFactory navigation, Resources resources) {
 		super(shortcutFactory, resources);
 		this.navigation = navigation;

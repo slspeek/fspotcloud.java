@@ -10,7 +10,7 @@ import fspotcloud.client.main.shared.RasterEvent;
 import fspotcloud.client.main.shared.RasterEventProviderFactory;
 import fspotcloud.client.main.ui.Resources;
 import fspotcloud.client.view.action.api.RasterActions;
-import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
+import fspotcloud.client.view.action.api.UserActionFactory;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class RasterActionsImpl extends ActionsFactory implements
@@ -31,7 +31,7 @@ public class RasterActionsImpl extends ActionsFactory implements
 	final private RasterEventProviderFactory raster;
 
 	@Inject
-	public RasterActionsImpl(ShortcutAssistedFactory shortcutFactory,
+	public RasterActionsImpl(UserActionFactory shortcutFactory,
 			RasterEventProviderFactory raster, Resources resources) {
 		super(shortcutFactory, resources);
 		this.raster = raster;

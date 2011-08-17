@@ -7,7 +7,7 @@ import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.client.view.action.KeyStroke;
 
-public interface ShortcutAssistedFactory {
+public interface UserActionFactory {
 	UserAction get(@Assisted("id") String id,
 			@Assisted("caption") String caption,
 			@Assisted("description") String description,

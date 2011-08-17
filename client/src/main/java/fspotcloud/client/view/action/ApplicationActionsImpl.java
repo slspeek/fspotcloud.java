@@ -11,7 +11,7 @@ import fspotcloud.client.main.shared.ApplicationEvent;
 import fspotcloud.client.main.shared.ApplicationEventProviderFactory;
 import fspotcloud.client.main.ui.Resources;
 import fspotcloud.client.view.action.api.ApplicationActions;
-import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
+import fspotcloud.client.view.action.api.UserActionFactory;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class ApplicationActionsImpl extends ActionsFactory implements
@@ -29,7 +29,7 @@ public class ApplicationActionsImpl extends ActionsFactory implements
 	final private ApplicationEventProviderFactory application;
 
 	@Inject
-	public ApplicationActionsImpl(ShortcutAssistedFactory shortcutFactory,
+	public ApplicationActionsImpl(UserActionFactory shortcutFactory,
 			ApplicationEventProviderFactory application, Resources resources) {
 		super(shortcutFactory, resources);
 		this.application = application;

@@ -2,7 +2,7 @@ package fspotcloud.client.place;
 
 import java.util.logging.Logger;
 
-public class PlaceCalculator {
+public class PlaceCalculator  {
 
 	final private static Logger log = Logger.getLogger(PlaceCalculator.class
 			.getName());

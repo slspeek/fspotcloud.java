@@ -11,7 +11,7 @@ import com.google.inject.Provider;
 import fspotcloud.client.main.view.DemoPresenter;
 import fspotcloud.client.view.action.KeyDispatcher;
 import fspotcloud.client.view.action.api.AllUserActions;
-import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
+import fspotcloud.client.view.action.api.UserActionFactory;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class DemoAction implements Runnable {
@@ -21,11 +21,11 @@ public class DemoAction implements Runnable {
 	int stepPointer = -1;
 	final private DemoStepFactory factory;
 	final private AllUserActions actions;
-	final private ShortcutAssistedFactory shortcutFactory;
+	final private UserActionFactory shortcutFactory;
 	final private Provider<DemoPresenter> demoPresenterProvider; 
 
 	@Inject
-	public DemoAction(DemoStepFactory factory, ShortcutAssistedFactory shortcutFactory, AllUserActions actions, Provider<DemoPresenter> demoPresenterProvider) {
+	public DemoAction(DemoStepFactory factory, UserActionFactory shortcutFactory, AllUserActions actions, Provider<DemoPresenter> demoPresenterProvider) {
 		this.factory = factory;
 		this.actions = actions;
 		this.shortcutFactory = shortcutFactory;

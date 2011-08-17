@@ -9,7 +9,7 @@ import com.google.inject.Inject;
 import fspotcloud.client.main.shared.SlideshowEvent;
 import fspotcloud.client.main.shared.SlideshowEventProviderFactory;
 import fspotcloud.client.main.ui.Resources;
-import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
+import fspotcloud.client.view.action.api.UserActionFactory;
 import fspotcloud.client.view.action.api.SlideshowActions;
 import fspotcloud.client.view.action.api.UserAction;
 
@@ -25,7 +25,7 @@ public class SlideshowActionsImpl extends ActionsFactory implements
 	final private SlideshowEventProviderFactory slideshow;
 
 	@Inject
-	public SlideshowActionsImpl(ShortcutAssistedFactory shortcutFactory,
+	public SlideshowActionsImpl(UserActionFactory shortcutFactory,
 			SlideshowEventProviderFactory slideshow, Resources resources) {
 		super(shortcutFactory, resources);
 		this.slideshow = slideshow;

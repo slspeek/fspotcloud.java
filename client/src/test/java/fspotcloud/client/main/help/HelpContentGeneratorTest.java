@@ -10,7 +10,7 @@ import com.google.gwt.resources.client.ImageResource;
 import fspotcloud.client.main.ui.Resources;
 import fspotcloud.client.main.ui.Resources.Style;
 import fspotcloud.client.view.action.KeyStroke;
-import fspotcloud.client.view.action.Shortcut;
+import fspotcloud.client.view.action.UserActionImpl;
 
 public class HelpContentGeneratorTest extends TestCase {
 
@@ -40,7 +40,7 @@ public class HelpContentGeneratorTest extends TestCase {
 			exactly(1).of(style).helpSeparator(); will(returnValue("fsc-help-separator"));
 		}});
 		gen = new HelpContentGenerator(resources);
-		Shortcut s = new Shortcut("", "","Start slideshow", new KeyStroke('s'), null, icon, null, null);
+		UserActionImpl s = new UserActionImpl("", "","Start slideshow", new KeyStroke('s'), null, icon, null, null);
 		String row = gen.getHelpText(s);
 		String desired = "<span class='fsc-help-key'>s</span></td>" 
 			 + "<td><span class='fsc-help-separator'>:</span></td><td><img src='bar' /></td>"

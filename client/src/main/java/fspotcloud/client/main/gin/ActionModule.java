@@ -8,14 +8,14 @@ import fspotcloud.client.view.action.AllShortcuts;
 import fspotcloud.client.view.action.ApplicationActionsImpl;
 import fspotcloud.client.view.action.NavigationActionsImpl;
 import fspotcloud.client.view.action.RasterActionsImpl;
-import fspotcloud.client.view.action.Shortcut;
+import fspotcloud.client.view.action.UserActionImpl;
 import fspotcloud.client.view.action.SlideshowActionsImpl;
 import fspotcloud.client.view.action.api.AboutActions;
 import fspotcloud.client.view.action.api.AllUserActions;
 import fspotcloud.client.view.action.api.ApplicationActions;
 import fspotcloud.client.view.action.api.NavigationActions;
 import fspotcloud.client.view.action.api.RasterActions;
-import fspotcloud.client.view.action.api.ShortcutAssistedFactory;
+import fspotcloud.client.view.action.api.UserActionFactory;
 import fspotcloud.client.view.action.api.SlideshowActions;
 import fspotcloud.client.view.action.api.UserAction;
 
@@ -33,7 +33,7 @@ public class ActionModule extends AbstractGinModule {
 		bind(AboutActions.class).to(AboutActionsImpl.class);
 	
 		install(new GinFactoryModuleBuilder().implement(UserAction.class,
-				Shortcut.class).build(ShortcutAssistedFactory.class));
+				UserActionImpl.class).build(UserActionFactory.class));
 		
 
 	}
