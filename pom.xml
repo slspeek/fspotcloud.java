@@ -168,7 +168,7 @@
 		<bot.secret>SECRET</bot.secret>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<icon.size>40x40</icon.size>
-		<application.id>jfspotcloud</application.id>
+		<application.id>${env.GAE_APPLICATION_ID}</application.id>
 	</properties>
 	<pluginRepositories>
 		<pluginRepository>
