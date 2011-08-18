@@ -10,9 +10,11 @@ import fspotcloud.client.main.ToggleButtonsAction;
 import fspotcloud.client.main.ToggleFullscreenAction;
 import fspotcloud.client.main.TreeFocusAction;
 import fspotcloud.client.main.api.Initializable;
+import fspotcloud.client.main.event.UserEvent;
+import fspotcloud.client.main.event.application.ApplicationEvent;
+import fspotcloud.client.main.event.application.ApplicationType;
 import fspotcloud.client.main.help.AboutAction;
 import fspotcloud.client.main.help.HelpAction;
-import fspotcloud.client.main.shared.ApplicationEvent;
 import fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
 
 public class ApplicationEventHandler implements ApplicationEvent.Handler,
@@ -27,13 +29,13 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	final private ToggleFullscreenAction toggleFullscreenAction;
 	final private ToggleButtonsAction toggleButtonsAction;
 	final private LoadNewLocationActionFactory locationFactory;
-	private Runnable projectHostingAction, mavenAction, dashboardAction,
-			protonAction, licenseAction, stevenAction;
+	private Runnable dashboardAction;
 	final private EventBus eventBus;
 
 	@Inject
-	public ApplicationEventHandler(AboutAction aboutAction, DemoAction demoAction,
-			HelpAction helpAction, TreeFocusAction treeFocusAction,
+	public ApplicationEventHandler(AboutAction aboutAction,
+			DemoAction demoAction, HelpAction helpAction,
+			TreeFocusAction treeFocusAction,
 			ToggleFullscreenAction toggleFullscreenAction,
 			ToggleButtonsAction toggleButtonsAction,
 			LoadNewLocationActionFactory locationFactory, EventBus eventBus) {
@@ -49,19 +51,19 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	}
 
 	@Override
-	public void onEvent(ApplicationEvent e) {
-		log.info("On application event of type " + e.getActionType());
-		switch (e.getActionType()) {
-		case DEMO:
+	public void onEvent(UserEvent e) {
+		log.info("On application event of type " + e.getActionDef());
+		switch ((ApplicationType) e.getActionDef()) {
+		case START_DEMO:
 			demoAction.run();
 			break;
-		case HELP:
+		case TOGGLE_HELP:
 			helpAction.run();
 			break;
 		case TREE_FOCUS:
 			treeFocusAction.run();
 			break;
-		case TOGGLE_TREE_VISIBLE:
+		case TOGGLE_FULLSCREEN:
 			toggleFullscreenAction.run();
 			break;
 		case TOGGLE_BUTTONS_VISIBLE:
@@ -72,21 +74,6 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 			break;
 		case ABOUT:
 			aboutAction.run();
-			break;
-		case PROJECT_HOSTING:
-			projectHostingAction.run();
-			break;
-		case MAVEN:
-			mavenAction.run();
-			break;
-		case PROTON:
-			protonAction.run();
-			break;
-		case LICENSE:
-			licenseAction.run();
-			break;
-		case STEVEN:
-			stevenAction.run();
 			break;
 		default:
 			break;
@@ -99,16 +86,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	}
 
 	private void initLocationActions() {
-		projectHostingAction = locationFactory
-				.get("http://code.google.com/p/fspotcloud");
-		mavenAction = locationFactory
-				.get("http://slspeek.github.com/FSpotCloudSite/");
 		dashboardAction = locationFactory.get("/Dashboard.html");
-		licenseAction = locationFactory
-				.get("http://slspeek.github.com/FSpotCloudSite/license.html");
-		protonAction = locationFactory.get("http://protonradio.com");
-		stevenAction = locationFactory
-				.get("http://profiles.google.com/slspeek");
-
 	}
+
 }

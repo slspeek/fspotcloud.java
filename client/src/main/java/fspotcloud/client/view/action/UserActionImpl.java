@@ -9,25 +9,33 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.assistedinject.Assisted;
 
+import fspotcloud.client.main.event.UserEvent;
+import fspotcloud.client.main.event.UserEventHandler;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class UserActionImpl implements UserAction {
-	private static final Logger log = Logger
-			.getLogger(UserActionImpl.class.getName());
+	private static final Logger log = Logger.getLogger(UserActionImpl.class
+			.getName());
 	final private String description;
 	final private KeyStroke key;
 	final private KeyStroke alternateKey;
 	final private ImageResource imageResource;
 	final private String caption;
 	final private String id;
-	final private Provider<? extends GwtEvent> eventProvider;
-	
+	final private Provider<? extends UserEvent<? extends UserEventHandler>> eventProvider;
+
 	final private EventBus eventBus;
 
 	@Inject
-	public UserActionImpl(@Assisted("id") String id, @Assisted("caption") String caption, @Assisted("description")  String description, @Assisted("key") KeyStroke key,@Assisted("altKey") 
-			KeyStroke alternateKey, @Assisted ImageResource imageResource,
-			@Assisted Provider<? extends GwtEvent> eventProvider, EventBus eventBus) {
+	public UserActionImpl(
+			@Assisted("id") String id,
+			@Assisted("caption") String caption,
+			@Assisted("description") String description,
+			@Assisted("key") KeyStroke key,
+			@Assisted("altKey") KeyStroke alternateKey,
+			@Assisted ImageResource imageResource,
+			@Assisted Provider<? extends UserEvent<? extends UserEventHandler>> eventProvider,
+			EventBus eventBus) {
 		super();
 		this.id = id;
 		this.caption = caption;
@@ -38,8 +46,8 @@ public class UserActionImpl implements UserAction {
 		this.eventProvider = eventProvider;
 		this.eventBus = eventBus;
 	}
-	
-	public Provider<? extends GwtEvent> getEventProvider() {
+
+	public Provider<? extends UserEvent<? extends UserEventHandler>> getEventProvider() {
 		return eventProvider;
 	}
 
