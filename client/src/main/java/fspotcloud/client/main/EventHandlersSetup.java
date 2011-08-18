@@ -3,6 +3,7 @@ package fspotcloud.client.main;
 import com.google.inject.Inject;
 
 import fspotcloud.client.main.api.Initializable;
+import fspotcloud.client.view.action.AboutEventHandler;
 import fspotcloud.client.view.action.ApplicationEventHandler;
 import fspotcloud.client.view.action.NavigationEventHandler;
 import fspotcloud.client.view.action.RasterEventHandler;
@@ -14,14 +15,18 @@ public class EventHandlersSetup {
 	private final Initializable navigation;
 	private final Initializable application;
 	private final Initializable raster;
+	private final Initializable about;
 	final private Initializable zoomViewEventHandler;
 
 	@Inject
 	public EventHandlersSetup(SlideshowEventHandler slideshow,
 			NavigationEventHandler navigation,
-			ApplicationEventHandler application, RasterEventHandler raster,
+			ApplicationEventHandler application,
+			AboutEventHandler about,
+			RasterEventHandler raster,
 			ZoomViewEventHandler zoomViewEventHandler) {
 		super();
+		this.about = about;
 		this.slideshow = slideshow;
 		this.navigation = navigation;
 		this.application = application;
@@ -30,6 +35,7 @@ public class EventHandlersSetup {
 	}
 
 	public void setUp() {
+		about.init();
 		slideshow.init();
 		navigation.init();
 		application.init();

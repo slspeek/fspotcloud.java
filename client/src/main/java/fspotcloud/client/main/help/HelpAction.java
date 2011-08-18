@@ -3,7 +3,6 @@ package fspotcloud.client.main.help;
 import com.google.inject.Inject;
 
 import fspotcloud.client.main.view.HelpPresenter;
-import fspotcloud.client.view.action.api.AllUserActions;
 
 public class HelpAction implements Runnable {
 

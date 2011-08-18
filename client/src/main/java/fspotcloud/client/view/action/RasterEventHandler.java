@@ -4,7 +4,9 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
 import fspotcloud.client.main.api.Initializable;
-import fspotcloud.client.main.shared.RasterEvent;
+import fspotcloud.client.main.event.UserEvent;
+import fspotcloud.client.main.event.raster.RasterEvent;
+import fspotcloud.client.main.event.raster.RasterType;
 import fspotcloud.client.place.api.Navigator;
 
 public class RasterEventHandler implements RasterEvent.Handler, Initializable {
@@ -19,18 +21,18 @@ public class RasterEventHandler implements RasterEvent.Handler, Initializable {
 	}
 
 	@Override
-	public void onEvent(RasterEvent e) {
-		switch (e.getActionType()) {
-		case INCREASE_RASTER_WIDTH:
+	public void onEvent(UserEvent e) {
+		switch ((RasterType)e.getActionDef()) {
+		case ADD_COLUMN:
 			navigator.increaseRasterWidth(1);
 			break;
-		case DECREASE_RASTER_WIDTH:
+		case REMOVE_COLUMN:
 			navigator.increaseRasterWidth(-1);
 			break;
-		case INCREASE_RASTER_HEIGHT:
+		case ADD_ROW:
 			navigator.increaseRasterHeight(1);
 			break;
-		case DECREASE_RASTER_HEIGHT:
+		case REMOVE_ROW:
 			navigator.increaseRasterHeight(-1);
 			break;
 		case SET_RASTER_2x2:
@@ -45,7 +47,7 @@ public class RasterEventHandler implements RasterEvent.Handler, Initializable {
 		case SET_RASTER_5x5:
 			navigator.setRasterDimension(5,5);
 			break;
-		case TOGGLE_RASTER_VIEW:
+		case TOGGLE_TABULAR_VIEW:
 			navigator.toggleRasterView();
 			break;
 		case SET_DEFAULT_RASTER:

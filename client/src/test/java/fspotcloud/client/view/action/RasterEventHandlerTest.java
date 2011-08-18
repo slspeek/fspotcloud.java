@@ -9,7 +9,8 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
 
-import fspotcloud.client.main.shared.RasterEvent;
+import fspotcloud.client.main.event.raster.RasterEvent;
+import fspotcloud.client.main.event.raster.RasterType;
 import fspotcloud.client.place.api.Navigator;
 
 public class RasterEventHandlerTest extends TestCase {
@@ -32,7 +33,7 @@ public class RasterEventHandlerTest extends TestCase {
 
 
 	public void testToggleTabularview() {
-		event = new RasterEvent(RasterEvent.ActionType.TOGGLE_RASTER_VIEW);
+		event = new RasterEvent(RasterType.TOGGLE_TABULAR_VIEW);
 		context.checking(new Expectations() {
 			{
 				oneOf(navigator).toggleRasterView();
@@ -45,7 +46,7 @@ public class RasterEventHandlerTest extends TestCase {
 
 
 	public void testDescreaseRasterHeight() {
-		event = new RasterEvent(RasterEvent.ActionType.DECREASE_RASTER_HEIGHT);
+		event = new RasterEvent(RasterType.REMOVE_ROW);
 		context.checking(new Expectations() {
 			{
 				oneOf(navigator).increaseRasterHeight(with(-1));
@@ -57,7 +58,7 @@ public class RasterEventHandlerTest extends TestCase {
 	}
 
 	public void testIncreaseRasterHeight() {
-		event = new RasterEvent(RasterEvent.ActionType.INCREASE_RASTER_HEIGHT);
+		event = new RasterEvent(RasterType.ADD_ROW);
 		context.checking(new Expectations() {
 			{
 				oneOf(navigator).increaseRasterHeight(with(1));
@@ -69,7 +70,7 @@ public class RasterEventHandlerTest extends TestCase {
 	}
 
 	public void testDescreaseRasterWidth() {
-		event = new RasterEvent(RasterEvent.ActionType.DECREASE_RASTER_WIDTH);
+		event = new RasterEvent(RasterType.REMOVE_COLUMN);
 		context.checking(new Expectations() {
 			{
 				oneOf(navigator).increaseRasterWidth(with(-1));
@@ -81,7 +82,7 @@ public class RasterEventHandlerTest extends TestCase {
 	}
 
 	public void testIncreaseRasterWidth() {
-		event = new RasterEvent(RasterEvent.ActionType.INCREASE_RASTER_WIDTH);
+		event = new RasterEvent(RasterType.ADD_COLUMN);
 		context.checking(new Expectations() {
 			{
 				oneOf(navigator).increaseRasterWidth(with(1));
@@ -92,7 +93,7 @@ public class RasterEventHandlerTest extends TestCase {
 		context.assertIsSatisfied();
 	}
 
-	public void testSetRasterXxY(final int x, final int y, final RasterEvent.ActionType eventType) {
+	public void testSetRasterXxY(final int x, final int y, final RasterType eventType) {
 		event = new RasterEvent(eventType);
 		context.checking(new Expectations() {
 			{
@@ -104,23 +105,23 @@ public class RasterEventHandlerTest extends TestCase {
 		context.assertIsSatisfied();
 	}
 	public void testSetRaster2x2() {
-		testSetRasterXxY(2, 2, RasterEvent.ActionType.SET_RASTER_2x2);
+		testSetRasterXxY(2, 2, RasterType.SET_RASTER_2x2);
 	}
 
 	public void testSetRaster3x3() {
-		testSetRasterXxY(3, 3, RasterEvent.ActionType.SET_RASTER_3x3);
+		testSetRasterXxY(3, 3, RasterType.SET_RASTER_3x3);
 	}
 
 	public void testSetRaster4x4() {
-		testSetRasterXxY(4, 4, RasterEvent.ActionType.SET_RASTER_4x4);
+		testSetRasterXxY(4, 4,RasterType.SET_RASTER_4x4);
 	}
 
 	public void testSetRaster5x5() {
-		testSetRasterXxY(5, 5, RasterEvent.ActionType.SET_RASTER_5x5);
+		testSetRasterXxY(5, 5,RasterType.SET_RASTER_5x5);
 	}
 
 	public void testResetRaster() {
-		event = new RasterEvent(RasterEvent.ActionType.SET_DEFAULT_RASTER);
+		event = new RasterEvent(RasterType.SET_DEFAULT_RASTER);
 		context.checking(new Expectations() {
 			{
 				oneOf(navigator).resetRasterSize();

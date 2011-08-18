@@ -4,7 +4,9 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
 import fspotcloud.client.main.api.Initializable;
-import fspotcloud.client.main.shared.SlideshowEvent;
+import fspotcloud.client.main.event.UserEvent;
+import fspotcloud.client.main.event.slideshow.SlideshowEvent;
+import fspotcloud.client.main.event.slideshow.SlideshowType;
 import fspotcloud.client.place.api.Slideshow;
 
 public class SlideshowEventHandler implements SlideshowEvent.Handler, Initializable {
@@ -19,18 +21,18 @@ public class SlideshowEventHandler implements SlideshowEvent.Handler, Initializa
 	}
 
 	@Override
-	public void onEvent(SlideshowEvent e) {
-		switch (e.getActionType()) {
-		case START:
+	public void onEvent(UserEvent e) {
+		switch ((SlideshowType)e.getActionDef()) {
+		case SLIDESHOW_START:
 			slideshow.start();
 			break;
-		case STOP:
+		case SLIDESHOW__END:
 			slideshow.stop();
 			break;
-		case FASTER:
+		case SLIDESHOW_FASTER:
 			slideshow.faster();
 			break;
-		case SLOWER:
+		case SLIDESHOW_SLOWER:
 			slideshow.slower();
 			break;
 		default:

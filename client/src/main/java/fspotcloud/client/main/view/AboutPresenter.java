@@ -1,12 +1,13 @@
 package fspotcloud.client.main.view;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
+import fspotcloud.client.main.event.AbstractActionMap;
+import fspotcloud.client.main.event.ActionMap;
 import fspotcloud.client.main.help.HelpContentGenerator;
 import fspotcloud.client.main.ui.Resources;
 import fspotcloud.client.main.view.api.PopupView;
-import fspotcloud.client.view.action.api.AboutActions;
-import fspotcloud.client.view.action.api.ActionGroup;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class AboutPresenter implements PopupView.PopupPresenter {
@@ -14,11 +15,11 @@ public class AboutPresenter implements PopupView.PopupPresenter {
 	final private PopupView popupView;
 	final private HelpContentGenerator generator;
 	private String helptext;
-	private final AboutActions actions;
+	private final ActionMap actions;
 	private Resources resources;
 
 	@Inject
-	public AboutPresenter(AboutActions actions, HelpContentGenerator generator, PopupView popupView, Resources resources) {
+	public AboutPresenter(@Named("about") AbstractActionMap actions, HelpContentGenerator generator, PopupView popupView, Resources resources) {
 		this.actions = actions;
 		this.resources = resources;
 		this.generator = generator;
@@ -40,7 +41,7 @@ public class AboutPresenter implements PopupView.PopupPresenter {
 		return helptext;
 	}
 
-	private String getAboutGroup(ActionGroup group) {
+	private String getAboutGroup(ActionMap group) {
 		for (UserAction shortcut : group.allActions()) {
 			helptext += "<tr><td>" + generator.getHelpText(shortcut)
 					+ "</td></tr>";

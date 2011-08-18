@@ -4,9 +4,9 @@ import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 
 import fspotcloud.client.main.MVPSetup;
-import fspotcloud.client.main.shared.EventModule;
+import fspotcloud.client.main.event.EventModule;
 
-@GinModules({AppModule.class, ActionModule.class, EventModule.class})
+@GinModules({AppModule.class,  EventModule.class})
 public interface AppGinjector extends Ginjector {
 
 	MVPSetup getMVPSetup();

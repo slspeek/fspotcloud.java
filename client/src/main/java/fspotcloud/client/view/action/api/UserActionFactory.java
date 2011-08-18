@@ -1,10 +1,11 @@
 package fspotcloud.client.view.action.api;
 
-import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.inject.Provider;
 import com.google.inject.assistedinject.Assisted;
 
+import fspotcloud.client.main.event.UserEvent;
+import fspotcloud.client.main.event.UserEventHandler;
 import fspotcloud.client.view.action.KeyStroke;
 
 public interface UserActionFactory {
@@ -14,5 +15,5 @@ public interface UserActionFactory {
 			@Assisted("key") KeyStroke key,
 			@Assisted("altKey") KeyStroke alternateKey,
 			@Assisted ImageResource imageResource,
-			@Assisted Provider<? extends GwtEvent> eventProvider);
+			@Assisted Provider<? extends UserEvent<? extends UserEventHandler>> eventProvider);
 }
