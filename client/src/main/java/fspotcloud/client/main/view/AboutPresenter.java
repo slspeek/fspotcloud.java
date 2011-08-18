@@ -21,6 +21,7 @@ public class AboutPresenter implements PopupView.PopupPresenter {
 	@Inject
 	public AboutPresenter(@Named("about") AbstractActionMap actions, HelpContentGenerator generator, PopupView popupView, Resources resources) {
 		this.actions = actions;
+		actions.buildMap();
 		this.resources = resources;
 		this.generator = generator;
 		this.popupView = popupView;
