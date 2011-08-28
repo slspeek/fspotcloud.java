@@ -5,23 +5,22 @@
 	<inherits name='com.google.gwt.user.theme.standard.Standard' />
 	<inherits name='fspotcloud.rpc' />
 	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
-	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
-	<!-- Other module inherits                                      -->
-	<inherits name="com.google.gwt.user.Debug"/>
+	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/> -->
+	<!-- Other module inherits -->
+	<inherits name="com.google.gwt.user.Debug" />
+
 	<inherits name="com.google.gwt.logging.Logging" />
 	<inherits name="com.google.gwt.activity.Activity" />
 	<inherits name="com.google.gwt.place.Place" />
-	<inherits name="com.google.gwt.inject.Inject"/>
-	<!-- Other module inherits                                      -->
+	<inherits name="com.google.gwt.inject.Inject" />
+	<!-- Other module inherits -->
 	<inherits name="com.google.gwt.activity.Activity" />
 	<inherits name="com.reveregroup.gwt.imagepreloader.ImagePreloader" />
 	<entry-point class='fspotcloud.client.admin.DashboardEntryPoint' />
-
-	<!-- Specify the paths for translatable code                    -->
-	<!--
-		<source path='shared'/> <source path="client/admin"/> <source
-		path="client/"/>
-	-->
-	<set-property name="gwt.logging.popupHandler" value="DISABLED"/>
+	<!-- GWT dispatch -->
+	<inherits name='net.customware.gwt.dispatch.Dispatch' />
+	<!-- Specify the paths for translatable code -->
+	<!-- <source path='shared'/> <source path="client/admin"/> <source path="client/"/> -->
+	<set-property name="gwt.logging.popupHandler" value="DISABLED" />
 </module>
 

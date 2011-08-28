@@ -52,7 +52,7 @@ public class MyTestRunnerConfig extends JUnit3Config {
 				suite.addTestSuite(MetaRecieverTest.class);
 				suite.addTestSuite(DelayedDataSchedulerTest.class);
 				suite.addTestSuite(PhotoDataSchedulerImplTest.class);
-				suite.addTestSuite(InjectorTest.class);
+				//suite.addTestSuite(InjectorTest.class);
 				suite.addTestSuite(ImageDataImporterNonRelevantTest.class);
 				suite.addTestSuite(ImageDataImporterRelevantTest.class);
 				suite.addTestSuite(ImageDataMapperTest.class);

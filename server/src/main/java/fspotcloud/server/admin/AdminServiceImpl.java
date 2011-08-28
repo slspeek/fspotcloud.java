@@ -18,7 +18,6 @@ import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.shared.admin.MetaDataInfo;
 
 /**
  * The server side implementation of the RPC service.
@@ -79,26 +78,7 @@ public class AdminServiceImpl extends RemoteServiceServlet implements
 		pd.getCachedImportedTags().add(tagId);
 		defaultPeer.save(pd);
 	}
-
-	@Override
-	public MetaDataInfo getMetaData() {
-		PeerDatabase peerDatabase = defaultPeer.get();
-		MetaDataInfo dataInfo = new MetaDataInfo();
-		dataInfo.setInstanceName(peerDatabase.getPeerName());
-		dataInfo.setPeerLastSeen(peerDatabase.getPeerLastContact());
-		dataInfo.setPeerPhotoCount(peerDatabase.getPeerPhotoCount());
-		dataInfo.setPhotoCount(peerDatabase.getPhotoCount());
-		dataInfo.setTagCount(peerDatabase.getTagCount());
-		dataInfo.setPendingCommandCount(getPendingCommandCount());
-		return dataInfo;
-	}
-
 	
-	private int getPendingCommandCount() {
-		int result = commandManager.getCountUnderAThousend();
-		return result;
-	}
-
 	@Override
 	public void importImageData() {
 		Queue queue = QueueFactory.getDefaultQueue();

@@ -19,12 +19,8 @@ public class FSpotCloudModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(
-				new Integer(100));
 		bind(Integer.class).annotatedWith(Names.named("maxTicks")).toInstance(
 				new Integer(100));
-		bind(Integer.class).annotatedWith(Names.named("maxCount")).toInstance(
-				new Integer(333));
 		/* For XmlRpc server */
 		bind(GuiceRequestProcessorFactoryFactory.class).in(Singleton.class);
 		bind(Controller.class).in(Singleton.class);
