@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import net.customware.gwt.dispatch.server.guice.GuiceStandardDispatchServlet;
+
 import com.google.inject.servlet.ServletModule;
 
 import fspotcloud.server.admin.AdminServiceImpl;
@@ -20,6 +22,8 @@ public class FSpotCloudServletModule extends ServletModule {
 			.getName());
 	@Override
 	protected void configureServlets() {
+		serve("/fspotcloud/dispatch").with(GuiceStandardDispatchServlet.class);
+		serve("/fspotcloud.dashboard/dispatch").with(GuiceStandardDispatchServlet.class);
 		serve("/control/task/data").with(DataTaskServlet.class);
 		serve("/fspotcloud/tag").with(TagServiceImpl.class);
 		serve("/fspotcloud.dashboard/tag").with(TagServiceImpl.class);

@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>deps</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-6.7.0</version>
+		<version>0.40-6.7.1</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>gwt-deps</artifactId>
@@ -12,7 +12,7 @@
 	<packaging>pom</packaging>
 	<name>Dependencies for Google Web Toolkit</name>
 	<dependencies>
-			<dependency>
+		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-servlet</artifactId>
 			<version>${gwt.version}</version>
@@ -36,6 +36,11 @@
 			<version>1.1.4</version>
 			<type>jar</type>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.customware.gwt.dispatch</groupId>
+			<artifactId>gwt-dispatch</artifactId>
+			<version>1.2.0</version>
 		</dependency>
 	</dependencies>
 </project>

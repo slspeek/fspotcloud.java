@@ -2,12 +2,15 @@ package fspotcloud.client.admin.view;
 
 import java.util.logging.Logger;
 
+import net.customware.gwt.dispatch.client.DispatchAsync;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
 import fspotcloud.client.admin.view.api.GlobalActionsView;
 import fspotcloud.rpc.AdminServiceAsync;
-import fspotcloud.shared.admin.MetaDataInfo;
+import fspotcloud.shared.actions.GetMetaData;
+import fspotcloud.shared.admin.GetMetaDataResult;
 
 public class GlobalActionsPresenter implements
 		GlobalActionsView.GlobalActionsPresenter {
@@ -16,14 +19,17 @@ public class GlobalActionsPresenter implements
 
 	final private GlobalActionsView globalActionsView;
 	final private AdminServiceAsync adminServiceAsync;
+	final private DispatchAsync dispatcher;
 
 	@Inject
 	public GlobalActionsPresenter(GlobalActionsView globalActionsView,
-			AdminServiceAsync adminServiceAsync) {
+			AdminServiceAsync adminServiceAsync,
+			DispatchAsync dispatcher) {
 		super();
 		this.globalActionsView = globalActionsView;
 		globalActionsView.setPresenter(this);
 		this.adminServiceAsync = adminServiceAsync;
+		this.dispatcher = dispatcher;
 	}
 
 	@Override
@@ -123,9 +129,9 @@ public class GlobalActionsPresenter implements
 	}
 
 	private void getMetaData() {
-		adminServiceAsync.getMetaData(new AsyncCallback<MetaDataInfo>() {
+		dispatcher.execute(new GetMetaData(), new AsyncCallback<GetMetaDataResult>() {
 			@Override
-			public void onSuccess(MetaDataInfo meta) {
+			public void onSuccess(GetMetaDataResult meta) {
 				populateView(meta);
 			}
 
@@ -133,9 +139,10 @@ public class GlobalActionsPresenter implements
 			public void onFailure(Throwable caught) {
 			}
 		});
+		
 	}
 
-	private void populateView(MetaDataInfo info) {
+	private void populateView(GetMetaDataResult info) {
 		log.info("populate");
 		globalActionsView.getLastSeenPeerValue().setText(
 				String.valueOf(info.getPeerLastSeen()));
@@ -143,8 +150,10 @@ public class GlobalActionsPresenter implements
 				String.valueOf(info.getPeerPhotoCount()));
 		globalActionsView.getPhotoCountValue().setText(
 				String.valueOf(info.getPhotoCount()));
-		globalActionsView.getTagCountValue().setText(String.valueOf(info.getTagCount()));
-		globalActionsView.getPendingCommandCountValue().setText(String.valueOf(info.getPendingCommandCount()));
+		globalActionsView.getTagCountValue().setText(
+				String.valueOf(info.getTagCount()));
+		globalActionsView.getPendingCommandCountValue().setText(
+				String.valueOf(info.getPendingCommandCount()));
 	}
 
 	@Override

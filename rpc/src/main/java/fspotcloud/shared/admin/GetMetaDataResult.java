@@ -2,9 +2,11 @@ package fspotcloud.shared.admin;
 
 import java.util.Date;
 
+import net.customware.gwt.dispatch.shared.Result;
+
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class MetaDataInfo implements IsSerializable {
+public class GetMetaDataResult implements IsSerializable, Result {
 
 	private Date created;
 	private int peerPhotoCount;
@@ -31,7 +33,7 @@ public class MetaDataInfo implements IsSerializable {
 		this.photosLastCounted = photosLastCounted;
 	}
 
-	public MetaDataInfo() {
+	public GetMetaDataResult() {
 		created = new Date();
 	}
 

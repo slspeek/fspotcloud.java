@@ -2,8 +2,6 @@ package fspotcloud.rpc;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import fspotcloud.shared.admin.MetaDataInfo;
-
 public interface AdminServiceAsync {
 
 	void deleteAllPhotos(AsyncCallback<Long> callback);
@@ -15,8 +13,6 @@ public interface AdminServiceAsync {
 	void update(AsyncCallback<Void> callback);
 
 	void importTag(String tagId, AsyncCallback<Void> callback);
-	
-	void getMetaData(AsyncCallback<MetaDataInfo> callback); 
 	
 	void importImageData(AsyncCallback<Void> callback);
 	

@@ -19,6 +19,7 @@ public class RasterMapBuilder extends AbstractActionMap {
 		this.resources = resources;
 	}
 
+	@Override
 	public void buildMap() {
 		put(RasterType.ADD_COLUMN, resources.addColumnIcon());
 		put(RasterType.ADD_ROW, resources.addRowIcon());

@@ -53,7 +53,6 @@ public class ImagePanelActivity extends AbstractActivity implements
 	@Override
 	public void init() {
 		log.info("init");
-		//slideshowPresenter.init();
 		buttonPanelPresenter.init();
 	}
 }

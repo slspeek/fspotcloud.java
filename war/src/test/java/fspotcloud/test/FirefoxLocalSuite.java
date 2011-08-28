@@ -13,10 +13,17 @@ public class FirefoxLocalSuite extends WebDriverSuite {
 		String localUrl = WebDriverSuite.local;
 		Provider<WebDriver> provider = WebDriverSuite.factory.firefoxProvider();
 		suite.addTest(new DashboardITest(provider, localUrl));
-		suite.addTest(new CloudcoverITest(provider, localUrl));
-		suite.addTest(new TabularITest(provider, localUrl));
+
+//		try {
+//			Thread.sleep(3000);
+//		} catch (InterruptedException e) {
+//		}
 		suite.addTest(new ApplicationActionsITest(provider, localUrl));
-		suite.addTest(new DeleteITest(provider, localUrl));
+		suite.addTest(new TabularITest(provider, localUrl));
+		if (System.getProperty("nodelete", "false").equals("false")) {
+			suite.addTest(new DeleteITest(provider, localUrl));
+		}
+		suite.addTest(new CloudcoverITest(provider, localUrl));
 		return suite;
 	}
 }
