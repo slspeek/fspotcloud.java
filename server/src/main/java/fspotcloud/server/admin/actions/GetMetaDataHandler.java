@@ -20,7 +20,7 @@ public class GetMetaDataHandler extends
 	final private PeerDatabases defaultPeer;
 
 	@Inject
-	private GetMetaDataHandler(Commands commandManager,
+	public GetMetaDataHandler(Commands commandManager,
 			PeerDatabases defaultPeer) {
 		super();
 		this.commandManager = commandManager;
