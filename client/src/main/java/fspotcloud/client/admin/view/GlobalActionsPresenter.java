@@ -1,5 +1,6 @@
 package fspotcloud.client.admin.view;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.customware.gwt.dispatch.client.DispatchAsync;
@@ -44,6 +45,7 @@ public class GlobalActionsPresenter implements
 					@Override
 					public void onFailure(Throwable caught) {
 						enableButton();
+						log.log(Level.SEVERE, "Action Exception ", caught);
 					}
 
 					@Override
@@ -67,6 +69,7 @@ public class GlobalActionsPresenter implements
 			@Override
 			public void onFailure(Throwable caught) {
 				enableButton();
+				log.log(Level.SEVERE, "Action Exception ", caught);
 
 			}
 
@@ -91,6 +94,7 @@ public class GlobalActionsPresenter implements
 
 					public void onFailure(Throwable caught) {
 						enableButton();
+						log.log(Level.SEVERE, "Action Exception ", caught);
 					}
 
 					public void onSuccess(VoidResult result) {
@@ -114,6 +118,7 @@ public class GlobalActionsPresenter implements
 
 					public void onFailure(Throwable caught) {
 						enableButton();
+						log.log(Level.SEVERE, "Action Exception ", caught);
 					}
 
 					@Override
@@ -145,6 +150,7 @@ public class GlobalActionsPresenter implements
 
 					@Override
 					public void onFailure(Throwable caught) {
+						log.log(Level.SEVERE, "Action Exception ", caught);
 					}
 				});
 
@@ -169,7 +175,7 @@ public class GlobalActionsPresenter implements
 		dispatcher.execute(new CountPhotos(), new AsyncCallback<VoidResult>() {
 			@Override
 			public void onFailure(Throwable caught) {
-
+				log.log(Level.SEVERE, "Action Exception ", caught);
 			}
 
 			@Override
@@ -186,6 +192,7 @@ public class GlobalActionsPresenter implements
 
 					@Override
 					public void onFailure(Throwable caught) {
+						log.log(Level.SEVERE, "Action Exception ", caught);
 					}
 
 					@Override
