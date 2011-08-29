@@ -1,5 +1,7 @@
 package fspotcloud.client.admin.gin;
 
+import net.customware.gwt.dispatch.client.DispatchAsync;
+
 import com.google.inject.Inject;
 
 import fspotcloud.client.admin.view.TagDetailsActivity;
@@ -8,27 +10,26 @@ import fspotcloud.client.admin.view.api.TagDetailsView;
 import fspotcloud.client.admin.view.api.TagDetailsView.TagDetailsPresenter;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.place.TagPlace;
-import fspotcloud.rpc.AdminServiceAsync;
 
 public class TagDetailsActivityFactoryImpl implements TagDetailsActivityFactory {
 
 	final private TagDetailsView tagDetailsView;
 	final private DataManager dataManager;
-	final private AdminServiceAsync adminServiceAsync;
+	final private DispatchAsync dispatch;
 
 	@Inject
 	public TagDetailsActivityFactoryImpl(TagDetailsView tagDetailsView,
-			DataManager dataManager, AdminServiceAsync adminServiceAsync) {
+			DataManager dataManager, DispatchAsync dispatch) {
 		super();
 		this.tagDetailsView = tagDetailsView;
 		this.dataManager = dataManager;
-		this.adminServiceAsync = adminServiceAsync;
+		this.dispatch = dispatch;
 	}
 
 	@Override
 	public TagDetailsPresenter get(TagPlace place) {
 		TagDetailsPresenter presenter = new TagDetailsActivity(tagDetailsView,
-				place, dataManager, adminServiceAsync);
+				place, dataManager, dispatch);
 		presenter.init();
 		return presenter;
 	}
