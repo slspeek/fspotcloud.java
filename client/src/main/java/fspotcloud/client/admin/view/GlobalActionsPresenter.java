@@ -8,9 +8,15 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
 import fspotcloud.client.admin.view.api.GlobalActionsView;
-import fspotcloud.rpc.AdminServiceAsync;
-import fspotcloud.shared.actions.GetMetaData;
 import fspotcloud.shared.admin.GetMetaDataResult;
+import fspotcloud.shared.dashboard.actions.CountPhotos;
+import fspotcloud.shared.dashboard.actions.DeleteAllPhotos;
+import fspotcloud.shared.dashboard.actions.DeleteAllTags;
+import fspotcloud.shared.dashboard.actions.GetMetaData;
+import fspotcloud.shared.dashboard.actions.ImportImageData;
+import fspotcloud.shared.dashboard.actions.ResetSynchronizationPoint;
+import fspotcloud.shared.dashboard.actions.SynchronizePeer;
+import fspotcloud.shared.dashboard.actions.VoidResult;
 
 public class GlobalActionsPresenter implements
 		GlobalActionsView.GlobalActionsPresenter {
@@ -18,47 +24,45 @@ public class GlobalActionsPresenter implements
 			.getLogger(GlobalActionsPresenter.class.getName());
 
 	final private GlobalActionsView globalActionsView;
-	final private AdminServiceAsync adminServiceAsync;
 	final private DispatchAsync dispatcher;
 
 	@Inject
 	public GlobalActionsPresenter(GlobalActionsView globalActionsView,
-			AdminServiceAsync adminServiceAsync,
 			DispatchAsync dispatcher) {
 		super();
 		this.globalActionsView = globalActionsView;
 		globalActionsView.setPresenter(this);
-		this.adminServiceAsync = adminServiceAsync;
 		this.dispatcher = dispatcher;
 	}
 
 	@Override
 	public void deleteAllPhotos() {
 		globalActionsView.getDeleteAllPhotosButton().setEnabled(false);
-		adminServiceAsync.deleteAllPhotos(new AsyncCallback<Long>() {
+		dispatcher.execute(new DeleteAllPhotos(),
+				new AsyncCallback<VoidResult>() {
 
-			@Override
-			public void onFailure(Throwable caught) {
-				enableButton();
+					@Override
+					public void onFailure(Throwable caught) {
+						enableButton();
+					}
 
-			}
+					@Override
+					public void onSuccess(VoidResult result) {
+						enableButton();
 
-			@Override
-			public void onSuccess(Long result) {
-				enableButton();
+					}
 
-			}
-
-			private void enableButton() {
-				globalActionsView.getDeleteAllPhotosButton().setEnabled(true);
-			}
-		});
+					private void enableButton() {
+						globalActionsView.getDeleteAllPhotosButton()
+								.setEnabled(true);
+					}
+				});
 	}
 
 	@Override
 	public void deleteAllTags() {
 		globalActionsView.getDeleteAllTagsButton().setEnabled(false);
-		adminServiceAsync.deleteAllTags(new AsyncCallback<Void>() {
+		dispatcher.execute(new DeleteAllTags(), new AsyncCallback<VoidResult>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -67,7 +71,7 @@ public class GlobalActionsPresenter implements
 			}
 
 			@Override
-			public void onSuccess(Void result) {
+			public void onSuccess(VoidResult result) {
 				enableButton();
 
 			}
@@ -82,20 +86,22 @@ public class GlobalActionsPresenter implements
 	@Override
 	public void resetPeerPhotoCount() {
 		globalActionsView.getResetMetaDataButton().setEnabled(false);
-		adminServiceAsync.resetPeerPhotoCount(new AsyncCallback<Void>() {
+		dispatcher.execute(new ResetSynchronizationPoint(),
+				new AsyncCallback<VoidResult>() {
 
-			public void onFailure(Throwable caught) {
-				enableButton();
-			}
+					public void onFailure(Throwable caught) {
+						enableButton();
+					}
 
-			public void onSuccess(Void result) {
-				enableButton();
-			}
+					public void onSuccess(VoidResult result) {
+						enableButton();
+					}
 
-			private void enableButton() {
-				globalActionsView.getResetMetaDataButton().setEnabled(true);
-			}
-		});
+					private void enableButton() {
+						globalActionsView.getResetMetaDataButton().setEnabled(
+								true);
+					}
+				});
 
 	}
 
@@ -103,22 +109,23 @@ public class GlobalActionsPresenter implements
 	public void update() {
 		log.info("update");
 		globalActionsView.getUpdateButton().setEnabled(false);
-		adminServiceAsync.update(new AsyncCallback<Void>() {
+		dispatcher.execute(new SynchronizePeer(),
+				new AsyncCallback<VoidResult>() {
 
-			public void onFailure(Throwable caught) {
-				enableButton();
-			}
+					public void onFailure(Throwable caught) {
+						enableButton();
+					}
 
-			@Override
-			public void onSuccess(Void result) {
-				log.info("succes update");
-				enableButton();
-			}
+					@Override
+					public void onSuccess(VoidResult result) {
+						log.info("succes update");
+						enableButton();
+					}
 
-			private void enableButton() {
-				globalActionsView.getUpdateButton().setEnabled(true);
-			}
-		});
+					private void enableButton() {
+						globalActionsView.getUpdateButton().setEnabled(true);
+					}
+				});
 	}
 
 	@Override
@@ -129,17 +136,18 @@ public class GlobalActionsPresenter implements
 	}
 
 	private void getMetaData() {
-		dispatcher.execute(new GetMetaData(), new AsyncCallback<GetMetaDataResult>() {
-			@Override
-			public void onSuccess(GetMetaDataResult meta) {
-				populateView(meta);
-			}
+		dispatcher.execute(new GetMetaData(),
+				new AsyncCallback<GetMetaDataResult>() {
+					@Override
+					public void onSuccess(GetMetaDataResult meta) {
+						populateView(meta);
+					}
 
-			@Override
-			public void onFailure(Throwable caught) {
-			}
-		});
-		
+					@Override
+					public void onFailure(Throwable caught) {
+					}
+				});
+
 	}
 
 	private void populateView(GetMetaDataResult info) {
@@ -158,14 +166,14 @@ public class GlobalActionsPresenter implements
 
 	@Override
 	public void countPhotos() {
-		adminServiceAsync.countPhotos(new AsyncCallback<Void>() {
+		dispatcher.execute(new CountPhotos(), new AsyncCallback<VoidResult>() {
 			@Override
 			public void onFailure(Throwable caught) {
 
 			}
 
 			@Override
-			public void onSuccess(Void result) {
+			public void onSuccess(VoidResult result) {
 
 			}
 		});
@@ -173,20 +181,17 @@ public class GlobalActionsPresenter implements
 
 	@Override
 	public void importImageData() {
-		adminServiceAsync.importImageData(new AsyncCallback<Void>() {
+		dispatcher.execute(new ImportImageData(),
+				new AsyncCallback<VoidResult>() {
 
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
+					@Override
+					public void onFailure(Throwable caught) {
+					}
 
-			}
-
-			@Override
-			public void onSuccess(Void result) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+					@Override
+					public void onSuccess(VoidResult result) {
+					}
+				});
 
 	}
 }

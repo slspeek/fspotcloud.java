@@ -8,7 +8,6 @@ import net.customware.gwt.dispatch.server.guice.GuiceStandardDispatchServlet;
 
 import com.google.inject.servlet.ServletModule;
 
-import fspotcloud.server.admin.AdminServiceImpl;
 import fspotcloud.server.control.GuiceXmlRpcServlet;
 import fspotcloud.server.control.task.DataTaskServlet;
 import fspotcloud.server.main.ImageServlet;
@@ -18,17 +17,19 @@ import fspotcloud.server.mapreduce.CounterCompletedServlet;
 public class FSpotCloudServletModule extends ServletModule {
 
 	@SuppressWarnings("unused")
-	private static final Logger log = Logger.getLogger(FSpotCloudServletModule.class
-			.getName());
+	private static final Logger log = Logger
+			.getLogger(FSpotCloudServletModule.class.getName());
+
 	@Override
 	protected void configureServlets() {
 		serve("/fspotcloud/dispatch").with(GuiceStandardDispatchServlet.class);
-		serve("/fspotcloud.dashboard/dispatch").with(GuiceStandardDispatchServlet.class);
+		serve("/fspotcloud.dashboard/dispatch").with(
+				GuiceStandardDispatchServlet.class);
 		serve("/control/task/data").with(DataTaskServlet.class);
 		serve("/fspotcloud/tag").with(TagServiceImpl.class);
 		serve("/fspotcloud.dashboard/tag").with(TagServiceImpl.class);
-		serve("/fspotcloud.dashboard/admin").with(AdminServiceImpl.class);
-		serve("/callbacks/counter_completed").with(CounterCompletedServlet.class);
+		serve("/callbacks/counter_completed").with(
+				CounterCompletedServlet.class);
 		serve("/image").with(ImageServlet.class);
 
 		Map<String, String> params = new HashMap<String, String>();
