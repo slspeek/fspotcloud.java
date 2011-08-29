@@ -8,11 +8,12 @@ import com.google.appengine.testing.cloudcover.harness.junit3.JUnit3Config;
 import com.google.appengine.testing.cloudcover.harness.junit3.JUnit3TestRun;
 import com.google.appengine.testing.cloudcover.spi.TestRun;
 
+import fspotcloud.server.admin.actions.CountPhotosHandlerTest;
 import fspotcloud.server.control.ControllerTest;
 import fspotcloud.server.control.reciever.MetaRecieverTest;
 import fspotcloud.server.control.task.DelayedDataSchedulerTest;
 import fspotcloud.server.control.task.PhotoDataSchedulerImplTest;
-import fspotcloud.server.inject.InjectorTest;
+import fspotcloud.server.cron.CronTest;
 import fspotcloud.server.mapreduce.ImageDataImporterNonRelevantTest;
 import fspotcloud.server.mapreduce.ImageDataImporterRelevantTest;
 import fspotcloud.server.mapreduce.ImageDataMapperTest;
@@ -56,6 +57,8 @@ public class MyTestRunnerConfig extends JUnit3Config {
 				suite.addTestSuite(ImageDataImporterNonRelevantTest.class);
 				suite.addTestSuite(ImageDataImporterRelevantTest.class);
 				suite.addTestSuite(ImageDataMapperTest.class);
+				suite.addTestSuite(CountPhotosHandlerTest.class);
+				suite.addTestSuite(CronTest.class);
 				return suite;
 			}
 		};

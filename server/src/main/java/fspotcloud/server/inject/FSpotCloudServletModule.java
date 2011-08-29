@@ -10,6 +10,7 @@ import com.google.inject.servlet.ServletModule;
 
 import fspotcloud.server.control.GuiceXmlRpcServlet;
 import fspotcloud.server.control.task.DataTaskServlet;
+import fspotcloud.server.cron.CronServlet;
 import fspotcloud.server.main.ImageServlet;
 import fspotcloud.server.main.TagServiceImpl;
 import fspotcloud.server.mapreduce.CounterCompletedServlet;
@@ -31,6 +32,7 @@ public class FSpotCloudServletModule extends ServletModule {
 		serve("/callbacks/counter_completed").with(
 				CounterCompletedServlet.class);
 		serve("/image").with(ImageServlet.class);
+		serve("/cron").with(CronServlet.class);
 
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("enabledForExtensions", "true");
