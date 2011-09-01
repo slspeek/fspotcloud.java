@@ -42,6 +42,12 @@ public class UserButtonViewImpl extends PushButton implements UserButtonView {
 	@Override
 	public void setCaption(String caption) {
 		setText(caption);
+
+	}
+
+	@Override
+	public void setTooltip(String tooltip) {
+		asWidget().setTitle(tooltip);
 	}
 
 	@Override

@@ -45,7 +45,11 @@ public class ImageViewImpl extends Composite implements ImageView {
 	@UiHandler("image")
 	public void imageClicked(ClickEvent event) {
 		log.info("image clicked");
-		this.presenter.imageClicked();
+		if(event.isShiftKeyDown()){
+			presenter.imageDoubleClicked();
+		} else {
+			this.presenter.imageClicked();
+		}
 	}
 
 	@Override
@@ -62,5 +66,10 @@ public class ImageViewImpl extends Composite implements ImageView {
 	@Override
 	public void setMaxHeight(int height) {
 		this.image.setMaxHeight(height);
+	}
+
+	@Override
+	public void setTooltip(String text) {
+		asWidget().setTitle(text);
 	}
 }

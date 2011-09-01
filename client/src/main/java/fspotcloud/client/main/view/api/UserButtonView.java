@@ -18,4 +18,6 @@ public interface UserButtonView extends IsWidget {
 	
 	void setDebugId(String id);
 
+	void setTooltip(String tooltip);
+
 }

@@ -202,7 +202,7 @@ public class NavigatorImpl implements Navigator {
 
 	@Override
 	public void getPageAsync(String tagId, final int pageSize,
-			final int pageNumber, final AsyncCallback<List<BasePlace>> callback) {
+			final int pageNumber, final AsyncCallback<List<PhotoInfo>> callback) {
 		dataManager.getTagNode(tagId, new AsyncCallback<TagNode>() {
 
 			@Override
@@ -221,14 +221,14 @@ public class NavigatorImpl implements Navigator {
 	}
 
 	private void getPage(TagNode node, int pageSize, int pageNumber,
-			AsyncCallback<List<BasePlace>> callback) {
+			AsyncCallback<List<PhotoInfo>> callback) {
 		PhotoInfoStore store = node.getCachedPhotoList();
 		log.info("Store: " + store);
 		int offset = pageNumber * pageSize;
-		List<BasePlace> result = new ArrayList<BasePlace>();
+		List<PhotoInfo> result = new ArrayList<PhotoInfo>();
 		for (int i = offset; i < offset + pageSize; i++) {
 			if (i <= store.lastIndex()) {
-				result.add(new BasePlace(node.getId(), store.get(i).getId()));
+				result.add(store.get(i));
 			} else {
 				break;
 			}
@@ -238,7 +238,7 @@ public class NavigatorImpl implements Navigator {
 
 	@Override
 	public void getPageAsync(String tagId, final String photoId,
-			final int pageSize, final AsyncCallback<List<BasePlace>> callback) {
+			final int pageSize, final AsyncCallback<List<PhotoInfo>> callback) {
 		dataManager.getTagNode(tagId, new AsyncCallback<TagNode>() {
 
 			@Override

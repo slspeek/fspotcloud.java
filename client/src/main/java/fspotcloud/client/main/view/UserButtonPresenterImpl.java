@@ -35,9 +35,11 @@ public class UserButtonPresenterImpl implements
 	}
 
 	private void initButton() {
+		String caption = action.getCaption();
 		if (action.getIcon() == null) {
-			view.setCaption(action.getCaption());
+			view.setCaption(caption);
 		}
+		view.setTooltip(caption);
 		view.setDebugId(action.getId());
 	}
 

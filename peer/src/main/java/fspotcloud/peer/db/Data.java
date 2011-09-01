@@ -1,7 +1,9 @@
 package fspotcloud.peer.db;
 
 import java.awt.Dimension;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -88,7 +90,7 @@ public class Data {
 	}
 
 	public Object[] getPhotoData(String offset, String limit)
-			throws SQLException {
+			throws SQLException, MalformedURLException, URISyntaxException, IOException {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
 		List<Object[]> photoList = new ArrayList<Object[]>();
@@ -103,7 +105,8 @@ public class Data {
 			date.setTime(time * 1000);
 			log.info(time + " " + date);
 			Object[] tagList = getTagsForPhoto(Integer.valueOf(id));
-			photoList.add(new Object[] { id, desc, date, tagList });
+			String exif = imageData.getExifData(getImageURL(id));
+			photoList.add(new Object[] { id, desc, date, tagList, exif });
 		}
 		rs.close();
 		conn.close();
