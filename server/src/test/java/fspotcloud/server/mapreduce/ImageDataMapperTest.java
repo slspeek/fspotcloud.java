@@ -38,6 +38,7 @@ public class ImageDataMapperTest extends DatastoreTest {
 		entity.setProperty("fullsizeLoaded", false);
 		entity.setProperty("imageLoaded", false);
 		entity.setProperty("thumbLoaded", false);
+		
 		mapper.map(key, entity, null);
 	}
 

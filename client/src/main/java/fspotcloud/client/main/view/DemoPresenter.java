@@ -29,8 +29,6 @@ public class DemoPresenter {
 	}
 
 	public void show() {
-		//popupView.setGlassEnabled(true);
-		popupView.center();
 		popupView.setPopupPosition(30,30);
 		popupView.show();
 	}

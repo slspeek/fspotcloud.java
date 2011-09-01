@@ -9,6 +9,7 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
 
 	private String id;
 	private String description;
+	private String exifData;
 	private Date date;
 
 	@SuppressWarnings("unused")
@@ -17,11 +18,14 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
 	}
 	
 	public PhotoInfo(String id, String description, Date date) {
-		if (id == null || date == null)
-			throw new NullPointerException();
 		this.id = id;
 		this.description = description;
 		this.date = date;
+	}
+	
+	public PhotoInfo(String id, String description, Date date, String exifData) {
+		this(id, description, date);
+		this.exifData = exifData;
 	}
 
 	public Date getDate() {
@@ -59,5 +63,13 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
 
 	public String toString() {
 		return "PhotoInfo(" + id + ", " + (date)+ ")";
+	}
+
+	public void setExifData(String exifData) {
+		this.exifData = exifData;
+	}
+
+	public String getExifData() {
+		return exifData;
 	}
 }

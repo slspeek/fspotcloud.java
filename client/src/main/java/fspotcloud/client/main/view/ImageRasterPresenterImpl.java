@@ -16,6 +16,7 @@ import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.api.Navigator;
+import fspotcloud.shared.photo.PhotoInfo;
 
 public class ImageRasterPresenterImpl extends AbstractActivity implements
 		ImageRasterView.ImageRasterPresenter {
@@ -75,10 +76,10 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 
 	public void setImages() {
 		pager.getPageAsync(tagId, photoId, pageSize,
-				new AsyncCallback<List<BasePlace>>() {
+				new AsyncCallback<List<PhotoInfo>>() {
 
 					@Override
-					public void onSuccess(List<BasePlace> result) {
+					public void onSuccess(List<PhotoInfo> result) {
 						imageViewList = imageRasterView.buildRaster(rowCount, columnCount);
 						setImages(result);
 					}
@@ -92,11 +93,11 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 
 	}
 
-	private void setImages(List<BasePlace> result) {
+	private void setImages(List<PhotoInfo> result) {
 		imagePresenterList.clear();
 		for (int i = 0; i < result.size(); i++) {
 			ImageView.ImagePresenter presenter = imagePresenterFactory.get(
-					getImageWidth(), getImageHeight(), result.get(i), imageViewList.get(i),
+					getImageWidth(), getImageHeight(), tagId, result.get(i), imageViewList.get(i),
 					thumb);
 			imagePresenterList.add(presenter);
 			presenter.init();

@@ -17,6 +17,10 @@ public interface Photo {
 	void setDescription(String description);
 
 	String getDescription();
+	
+	void setExifData(String data);
+	
+	String getExifData();
 
 	void setTagList(List<String> tagList);
 

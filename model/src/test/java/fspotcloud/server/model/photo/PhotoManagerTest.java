@@ -37,7 +37,13 @@ public class PhotoManagerTest extends DatastoreTest {
 
 	public void testGetPhotosStartingAtDate() {
 		Photo before = new PhotoDO();
+		before.setId("bar");
 		before.setDate(getDate(2006, 0, 0));
+		before.setExifData("foo");
+		photoManager.save(before);
+		
+		Photo afterLoad = photoManager.getById("bar");
+		assertEquals("foo", afterLoad.getExifData());
 	}
 
 	public void testGetOrNew() {

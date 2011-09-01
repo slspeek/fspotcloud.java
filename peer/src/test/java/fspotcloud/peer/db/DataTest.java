@@ -48,7 +48,7 @@ public class DataTest extends TestCase {
 		assertEquals(0, result.length);
 	}
 
-	public final void testGetPhotoList() throws SQLException {
+	public final void testGetPhotoList() throws Exception {
 		Object[] result = data.getPhotoData("0", "2");
 		assertEquals(2, result.length);
 	}

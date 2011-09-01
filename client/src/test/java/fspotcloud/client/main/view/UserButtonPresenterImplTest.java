@@ -6,6 +6,8 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 
 import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.user.client.ui.UIObject;
+import com.google.gwt.user.client.ui.Widget;
 
 import fspotcloud.client.main.view.api.UserButtonView;
 import fspotcloud.client.main.view.api.UserButtonViewFactory;
@@ -44,6 +46,7 @@ public class UserButtonPresenterImplTest extends TestCase {
 			oneOf(action).getIcon();will(returnValue(null));
 			oneOf(action).getCaption();will(returnValue("Ape"));
 			oneOf(view).setCaption("Ape");
+			oneOf(view).setTooltip("Ape");
 			oneOf(view).setPresenter(presenter);
 			oneOf(action).getId();will(returnValue("ID"));
 			oneOf(view).setDebugId("ID");
@@ -57,8 +60,8 @@ public class UserButtonPresenterImplTest extends TestCase {
 		context.checking(new Expectations() { {
 			oneOf(viewFactory).get(action);will(returnValue(view));
 			oneOf(action).getIcon();will(returnValue(fakeImage));
-			//oneOf(action).getCaption();will(returnValue("Ape"));
-			//oneOf(view).setCaption("Ape");
+			oneOf(view).setTooltip("Ape");
+			oneOf(action).getCaption();will(returnValue("Ape"));
 			oneOf(view).setPresenter(presenter);
 			oneOf(action).getId();will(returnValue("ID"));
 			oneOf(view).setDebugId("ID");

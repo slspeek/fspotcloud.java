@@ -12,6 +12,8 @@ public interface ImageView extends IsWidget {
 		void setMaxHeight(int height);
 
 		void imageClicked();
+
+		void imageDoubleClicked();
 	}
 
 	void setImageUrl(String url);
@@ -21,4 +23,6 @@ public interface ImageView extends IsWidget {
 	void setMaxWidth(int width);
 
 	void setMaxHeight(int height);
+
+	void setTooltip(String date);
 }

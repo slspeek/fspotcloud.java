@@ -41,7 +41,7 @@ public class PhotoReciever {
 				Tag tag = tagManager.getById(tagId);
 				tag.getCachedPhotoList().add(
 						new PhotoInfo(photo.getId(), photo.getDescription(),
-								photo.getDate()));
+								photo.getDate(), photo.getExifData()));
 				tagManager.save(tag);
 			}
 
@@ -71,6 +71,8 @@ public class PhotoReciever {
 		String desc = (String) photo_data[1];
 		Date date = (Date) photo_data[2];
 		Object[] tags = (Object[]) photo_data[3];
+		String exif = (String) photo_data[4];
+		log.info("Exif:" + exif);
 
 		Photo photo = photoManager.getOrNew(keyName);
 		photo.setDescription(desc);
@@ -80,6 +82,7 @@ public class PhotoReciever {
 			tagList.add(String.valueOf(tag));
 		}
 		photo.setTagList(tagList);
+		photo.setExifData(exif);
 		return photo;
 	}
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import fspotcloud.client.place.BasePlace;
+import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.photo.PhotoInfoStore;
 
 public interface Navigator {
@@ -18,10 +18,10 @@ public interface Navigator {
 			AsyncCallback<Integer> callback);
 
 	void getPageAsync(String tagId, int pageSize, int pageNumber,
-			AsyncCallback<List<BasePlace>> callback);
+			AsyncCallback<List<PhotoInfo>> callback);
 
 	void getPageAsync(String tagId, String photoId, int pageSize,
-			AsyncCallback<List<BasePlace>> callback);
+			AsyncCallback<List<PhotoInfo>> callback);
 
 	void toggleZoomViewAsync(String tagId, String photoId);
 	

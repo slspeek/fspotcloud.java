@@ -11,6 +11,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Blob;
+import com.google.appengine.api.datastore.Text;
 
 import fspotcloud.server.model.api.Photo;
 
@@ -18,13 +19,16 @@ import fspotcloud.server.model.api.Photo;
  * @author slspeek@gmail.com
  * 
  */
-@PersistenceCapable(detachable="true")
+@PersistenceCapable(detachable = "true")
 public class PhotoDO implements Photo {
 	@PrimaryKey
 	private String name;
 
 	@Persistent
 	private String description;
+
+	@Persistent
+	private com.google.appengine.api.datastore.Text exifData;
 
 	@Persistent
 	private Date date;
@@ -34,19 +38,19 @@ public class PhotoDO implements Photo {
 
 	@Persistent
 	private Boolean imageLoaded;
-	
+
 	@Persistent
 	private Boolean thumbLoaded;
 
 	@Persistent
-	private Boolean fullsizeLoaded;
+	private Boolean fullsizeLoaded = false;
 
 	@Persistent
 	private Blob image;
-	
+
 	@Persistent
 	private Blob thumb;
-	
+
 	public void setId(String name) {
 		this.name = name;
 	}
@@ -86,9 +90,11 @@ public class PhotoDO implements Photo {
 	public Blob getThumb() {
 		return thumb;
 	}
+
 	public void setImage(Blob image) {
 		this.image = image;
 	}
+
 	public Blob getImage() {
 		return image;
 	}
@@ -115,6 +121,21 @@ public class PhotoDO implements Photo {
 
 	public Boolean isFullsizeLoaded() {
 		return fullsizeLoaded;
+	}
+
+	@Override
+	public void setExifData(String data) {
+		this.exifData = new Text(data);
+
+	}
+
+	@Override
+	public String getExifData() {
+		if (exifData != null) {
+			return exifData.getValue();
+		} else {
+			return null;
+		}
 	}
 
 }

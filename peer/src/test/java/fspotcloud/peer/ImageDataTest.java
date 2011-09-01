@@ -5,13 +5,15 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
 import junit.framework.TestCase;
 
 public class ImageDataTest extends TestCase {
-
+	private static final Logger log = Logger.getLogger(ImageDataTest.class
+			.getName());
 	private ImageData target;
 	
 	protected void setUp() throws Exception {
@@ -47,4 +49,10 @@ public class ImageDataTest extends TestCase {
 		assertEquals(100, h);
 	}
 
+	public final void testExifDataPortrait() throws Exception {
+		URL url = ClassLoader.getSystemResource("Photos/2010/06/04/Mac-classic.jpg");
+		String exif = target.getExifData(url);
+		assertNotNull(exif);
+		log.info(exif);
+	}
 }
