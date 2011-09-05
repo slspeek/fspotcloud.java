@@ -65,7 +65,11 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	}
 	@Override
 	public void imageDoubleClicked() {
-		popupView.setText(info.getExifData());
+		String exif = info.getExifData();
+		if (exif != null) {
+			exif.replaceAll("\n", "<br>");
+		}
+		popupView.setText(exif);
 		popupView.center();
 		popupView.show();
 	}
