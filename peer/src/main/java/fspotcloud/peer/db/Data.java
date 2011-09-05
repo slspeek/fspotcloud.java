@@ -103,10 +103,8 @@ public class Data {
 			long time = rs.getLong(3);
 			Date date = new Date();
 			date.setTime(time * 1000);
-			log.info(time + " " + date);
 			Object[] tagList = getTagsForPhoto(Integer.valueOf(id));
-			String exif = imageData.getExifData(getImageURL(id));
-			photoList.add(new Object[] { id, desc, date, tagList, exif });
+			photoList.add(new Object[] { id, desc, date, tagList});
 		}
 		rs.close();
 		conn.close();
@@ -119,7 +117,9 @@ public class Data {
 		Dimension size = new Dimension(Integer.valueOf(width),
 				Integer.valueOf(height));
 		byte[] imageBytes = imageData.getScaledImageData(url, size);
-		Object[] params = new Object[] { photoId, imageBytes, Integer.valueOf(imageType) };
+		String exif = imageData.getExifData(getImageURL(photoId));
+		//log.info("Exif: " + exif);
+		Object[] params = new Object[] { photoId, exif, imageBytes, Integer.valueOf(imageType)};
 		return params;
 	}
 
