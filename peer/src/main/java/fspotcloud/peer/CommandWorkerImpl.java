@@ -35,7 +35,7 @@ public class CommandWorkerImpl implements CommandWorker {
 		Object result;
 		try {
 			Object[] data; 
-			result = fetcher.getData(getDataMethod(dataMethod), args);
+			result = fetcher.getData(getDataMethod(), args);
 			if (dataMethod.equals("sendImageData")) {
 				data = (Object[]) result;
 			} else {
@@ -49,7 +49,7 @@ public class CommandWorkerImpl implements CommandWorker {
 		}
 	}
 
-	private String getDataMethod(String dataMethod) throws MethodNotFoundException {
+	private String getDataMethod() throws MethodNotFoundException {
 		return namingUtil.getDataMethod(dataMethod);
 	}
 

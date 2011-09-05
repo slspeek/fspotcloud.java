@@ -25,9 +25,6 @@ public class NamingUtil {
 	public String getRemoteMethod(String method) throws MethodNotFoundException {
 		validateMethod(method);
 		String entity = getEntity(method);
-		if (entity.equals("Image")) {
-			entity = "Photo";
-		}
 		return method.replace("send", entity + "Reciever.recieve");
 	}
 }

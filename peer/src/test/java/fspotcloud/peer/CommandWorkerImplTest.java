@@ -45,7 +45,7 @@ public class CommandWorkerImplTest extends TestCase {
 		worker = new CommandWorkerImpl(sender, fetcher, "sendImageData", imageArgs);
 		context.checking(new Expectations() {
 			{
-				oneOf(sender).sendData(with("PhotoReciever.recieveImageData"),
+				oneOf(sender).sendData(with("ImageReciever.recieveImageData"),
 						with(imageReturn));
 				oneOf(fetcher).getData(with("getImageData"),
 						with(imageArgs));will(returnValue(imageReturn));

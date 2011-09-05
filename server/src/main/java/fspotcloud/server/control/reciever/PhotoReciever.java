@@ -5,54 +5,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
-import com.google.appengine.api.datastore.Blob;
-import com.google.appengine.api.images.Image;
-import com.google.appengine.api.images.ImagesService;
-import com.google.appengine.api.images.ImagesServiceFactory;
-import com.google.appengine.api.images.Transform;
 import com.google.inject.Inject;
 
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
-import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.shared.photo.PhotoInfo;
 
 public class PhotoReciever {
 	private static final Logger log = Logger.getLogger(PhotoReciever.class
 			.getName());
 
 	private final Photos photoManager;
-	private final Tags tagManager;
 
 	@Inject
-	public PhotoReciever(Photos photoManager, Tags tagManager) {
+	public PhotoReciever(Photos photoManager) {
 		this.photoManager = photoManager;
-		this.tagManager = tagManager;
-	}
-
-	public int recieveImageData(String id, byte[] data, int imageType) {
-		log.info("Recieved imagedata for : " + id);
-		Photo photo = photoManager.getOrNew(id);
-		Blob blob = new Blob(data);
-		if (imageType == Photo.IMAGE_TYPE_BIG) {
-			List<String> tagIds = photo.getTagList();
-			for (String tagId : tagIds) {
-				Tag tag = tagManager.getById(tagId);
-				tag.getCachedPhotoList().add(
-						new PhotoInfo(photo.getId(), photo.getDescription(),
-								photo.getDate(), photo.getExifData()));
-				tagManager.save(tag);
-			}
-
-			photo.setImage(blob);
-			photo.setImageLoaded(true);
-		} else if (imageType == Photo.IMAGE_TYPE_THUMB) {
-			photo.setThumb(blob);
-			photo.setThumbLoaded(true);
-		}
-		photoManager.save(photo);
-		return 0;
 	}
 
 	public int recievePhotoData(Object[] list) {
@@ -71,8 +38,6 @@ public class PhotoReciever {
 		String desc = (String) photo_data[1];
 		Date date = (Date) photo_data[2];
 		Object[] tags = (Object[]) photo_data[3];
-		String exif = (String) photo_data[4];
-		log.info("Exif:" + exif);
 
 		Photo photo = photoManager.getOrNew(keyName);
 		photo.setDescription(desc);
@@ -82,7 +47,6 @@ public class PhotoReciever {
 			tagList.add(String.valueOf(tag));
 		}
 		photo.setTagList(tagList);
-		photo.setExifData(exif);
 		return photo;
 	}
 

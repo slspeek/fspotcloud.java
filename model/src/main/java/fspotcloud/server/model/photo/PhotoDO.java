@@ -37,10 +37,10 @@ public class PhotoDO implements Photo {
 	private List<String> tagList;
 
 	@Persistent
-	private Boolean imageLoaded;
+	private Boolean imageLoaded = false;
 
 	@Persistent
-	private Boolean thumbLoaded;
+	private Boolean thumbLoaded = false;
 
 	@Persistent
 	private Boolean fullsizeLoaded = false;

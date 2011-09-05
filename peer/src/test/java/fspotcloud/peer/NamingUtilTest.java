@@ -27,7 +27,7 @@ public class NamingUtilTest extends TestCase {
 	}
 	
 	public void testGetRemoteMethodImageData() throws MethodNotFoundException {
-		assertEquals("PhotoReciever.recieveImageData", util.getRemoteMethod("sendImageData"));
+		assertEquals("ImageReciever.recieveImageData", util.getRemoteMethod("sendImageData"));
 	}
 
 }
