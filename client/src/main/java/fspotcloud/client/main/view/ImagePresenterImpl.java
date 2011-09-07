@@ -48,7 +48,13 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 
 	public void setImage() {
 		if (photoId != null) {
-			String date = DateTimeFormat.getFormat(PredefinedFormat.DATE_TIME_FULL).format(info.getDate());
+			String date;
+			if(thumb) {
+				date = DateTimeFormat.getFormat(PredefinedFormat.DATE_MEDIUM).format(info.getDate());
+			} else {
+				date = DateTimeFormat.getFormat(PredefinedFormat.DATE_FULL).format(info.getDate()) + " " +
+				DateTimeFormat.getFormat(PredefinedFormat.TIME_MEDIUM).format(info.getDate()) ;
+			}
 			imageView.setTooltip(date);
 			String url = "/image?id=" + photoId;
 			url += thumb ? "&thumb" : "";

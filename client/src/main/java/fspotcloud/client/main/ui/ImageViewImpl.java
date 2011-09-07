@@ -8,6 +8,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
@@ -27,6 +28,8 @@ public class ImageViewImpl extends Composite implements ImageView {
 	}
 
 	@UiField
+	Label info;
+	@UiField
 	FitImage image;
 
 	private ImageView.ImagePresenter presenter;
@@ -45,11 +48,14 @@ public class ImageViewImpl extends Composite implements ImageView {
 	@UiHandler("image")
 	public void imageClicked(ClickEvent event) {
 		log.info("image clicked");
-		if(event.isShiftKeyDown()){
-			presenter.imageDoubleClicked();
-		} else {
-			this.presenter.imageClicked();
-		}
+		this.presenter.imageClicked();
+	}
+
+	@UiHandler("info")
+	public void infoClicked(ClickEvent event) {
+		log.info("label clicked");
+		presenter.imageDoubleClicked();
+
 	}
 
 	@Override
@@ -60,7 +66,7 @@ public class ImageViewImpl extends Composite implements ImageView {
 	@Override
 	public void setMaxWidth(int width) {
 		this.image.setMaxWidth(width);
-		
+
 	}
 
 	@Override
@@ -70,6 +76,6 @@ public class ImageViewImpl extends Composite implements ImageView {
 
 	@Override
 	public void setTooltip(String text) {
-		asWidget().setTitle(text);
+		info.setText(text);
 	}
 }

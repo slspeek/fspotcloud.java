@@ -24,6 +24,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 			.getLogger(ImageRasterPresenterImpl.class.getName());
 
 	private static final int MAGIC = 4;
+	private static final int LABEL_HEIGHT = 15;
 
 	final private String tagId;
 	final private String photoId;
@@ -71,7 +72,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	}
 
 	private int getImageHeight() {
-		return (int)((float)getHeight()/(float)rowCount) - MAGIC;
+		return (int)((float)getHeight()/(float)rowCount) - LABEL_HEIGHT - MAGIC;
 	}
 
 	public void setImages() {

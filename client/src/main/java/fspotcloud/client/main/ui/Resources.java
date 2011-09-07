@@ -13,6 +13,8 @@ public interface Resources extends ClientBundle {
 		String footerBlock();
 
 		String imagePanelBlock();
+		
+		String photoInfoLabel();
 
 		String treeBlock();
 
