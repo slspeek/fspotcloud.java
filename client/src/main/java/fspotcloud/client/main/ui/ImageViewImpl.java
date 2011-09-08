@@ -4,19 +4,20 @@ import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.DoubleClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.reveregroup.gwt.imagepreloader.FitImage;
 
 import fspotcloud.client.main.view.api.ImageView;
 
-public class ImageViewImpl extends Composite implements ImageView {
+public class ImageViewImpl extends ResizeComposite implements ImageView {
 
 	private static final Logger log = Logger.getLogger(ImageViewImpl.class
 			.getName());
@@ -24,13 +25,16 @@ public class ImageViewImpl extends Composite implements ImageView {
 	private static ImageViewImplUiBinder uiBinder = GWT
 			.create(ImageViewImplUiBinder.class);
 
-	interface ImageViewImplUiBinder extends UiBinder<Widget, ImageViewImpl> {
+	interface ImageViewImplUiBinder extends
+			UiBinder<LayoutPanel, ImageViewImpl> {
 	}
 
 	@UiField
 	Label info;
 	@UiField
 	FitImage image;
+	@UiField
+	LayoutPanel layout;
 
 	private ImageView.ImagePresenter presenter;
 
@@ -52,7 +56,7 @@ public class ImageViewImpl extends Composite implements ImageView {
 	}
 
 	@UiHandler("info")
-	public void infoClicked(ClickEvent event) {
+	public void infoClicked(DoubleClickEvent event) {
 		log.info("label clicked");
 		presenter.imageDoubleClicked();
 
@@ -78,4 +82,11 @@ public class ImageViewImpl extends Composite implements ImageView {
 	public void setTooltip(String text) {
 		info.setText(text);
 	}
+
+	@Override
+	public void onResize() {
+		log.info("Onresize");
+		super.onResize();
+	}
+
 }

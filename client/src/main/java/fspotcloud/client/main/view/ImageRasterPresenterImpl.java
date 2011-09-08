@@ -72,7 +72,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	}
 
 	private int getImageHeight() {
-		return (int)((float)getHeight()/(float)rowCount) - LABEL_HEIGHT - MAGIC;
+		return (int)((float)getHeight()/(float)rowCount) -  MAGIC;
 	}
 
 	public void setImages() {

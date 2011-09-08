@@ -16,13 +16,14 @@
 
 .imagePanelBlock {
 	background-color: ligherColor;
-	-moz-border-radius: borderRadius;
 	border-radius: borderRadius;
+	margin: auto;
 }
 
 .photoInfoLabel {
 	text-align: center;
 	color: foregroundColor;
+	font-size: 12px;
 }
 
 .treeBlock {

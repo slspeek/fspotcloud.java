@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.resources.client.CssResource;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
-import com.google.gwt.user.client.ui.Grid;
+import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -46,13 +46,16 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	
 	@Override
 	public List<ImageView> buildRaster(int rowCount, int columnCount) {
-		Grid grid = new Grid(rowCount, columnCount);
-		
+		LayoutPanel grid = new LayoutPanel();//(rowCount, columnCount);
+		//AbsolutePanel grid = new AbsolutePanel();
 		List<ImageView> result = new ArrayList<ImageView>();
 		for (int row = 0; row < rowCount; row++) {
 			for (int column = 0; column < columnCount; column++) {
 				ImageView view = imageViewFactory.get(column + "x" + row);
-				grid.setWidget(row, column, view.asWidget());
+				Widget asWidget = view.asWidget();
+				grid.add(asWidget);
+				grid.setWidgetTopHeight(asWidget, row * (100/(float)rowCount), Unit.PCT, 100/rowCount, Unit.PCT);
+				grid.setWidgetLeftWidth(asWidget, column * (100/(float)columnCount) , Unit.PCT, 100/rowCount, Unit.PCT);
 				result.add(view);
 			}
 		}
