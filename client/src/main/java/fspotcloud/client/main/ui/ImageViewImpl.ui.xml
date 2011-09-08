@@ -2,9 +2,13 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:fit="urn:import:com.reveregroup.gwt.imagepreloader">
 	<ui:with type="fspotcloud.client.main.ui.Resources" field="res"></ui:with>
-	<g:VerticalPanel>
-		<fit:FitImage styleName="{res.style.imagePanelBlock}"
-			ui:field="image"></fit:FitImage>
-		<g:Label styleName="{res.style.photoInfoLabel}" ui:field="info"></g:Label>
-	</g:VerticalPanel>
+	<g:LayoutPanel ui:field="layout">
+		<g:layer>
+			<fit:FitImage styleName="{res.style.imagePanelBlock}"
+				ui:field="image"></fit:FitImage>
+		</g:layer>
+		<g:layer left='25%' right='25%' bottom='0cm' height="16px" >
+			<g:Label styleName="{res.style.photoInfoLabel}" ui:field="info"></g:Label>
+		</g:layer>
+	</g:LayoutPanel>
 </ui:UiBinder> 
