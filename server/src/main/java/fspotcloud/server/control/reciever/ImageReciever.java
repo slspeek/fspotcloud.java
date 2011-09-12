@@ -37,7 +37,7 @@ public class ImageReciever {
 				Tag tag = tagManager.getById(tagId);
 				tag.getCachedPhotoList().add(
 						new PhotoInfo(photo.getId(), photo.getDescription(),
-								photo.getDate(), exif));
+								photo.getDate()));
 				tagManager.save(tag);
 			}
 			

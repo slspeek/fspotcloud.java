@@ -8,10 +8,17 @@ import fspotcloud.client.view.action.api.ActionDef;
 public enum ApplicationType implements ActionDef {
 
 	TOGGLE_HELP("help", "Help", "Display a popup with the keyboard shortcuts",
-			new KeyStroke('H'), new KeyStroke(KeyCodes.KEY_ESCAPE)), START_DEMO(
+			new KeyStroke('H'), null),
+	ZOOM_IN("zoom-in", "Zoom in", "Zoom into the current image",
+					new KeyStroke(187), null),
+					ZOOM_OUT("zoom-out", "Zoom out", "Zoom out of the current image",
+							new KeyStroke(189), null),
+					
+	START_DEMO(
 			"demo", "Demo", "Play a demo", new KeyStroke('7'), null), TREE_FOCUS(
 			"tree", "Focus tree", "Puts keyboard focus on the category tree",
-			new KeyStroke(KeyCodes.KEY_ENTER), null), TOGGLE_FULLSCREEN(
+			new KeyStroke(KeyCodes.KEY_ENTER), null),
+			TOGGLE_FULLSCREEN(
 			"fullscreen", "Show/Hide tree",
 			"Toggles fullscreen (hides/shows the tree view)",
 			new KeyStroke('F'), null), TOGGLE_BUTTONS_VISIBLE("toggle-buttons",

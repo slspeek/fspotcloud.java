@@ -46,21 +46,20 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	
 	@Override
 	public List<ImageView> buildRaster(int rowCount, int columnCount) {
-		LayoutPanel grid = new LayoutPanel();//(rowCount, columnCount);
-		//AbsolutePanel grid = new AbsolutePanel();
+		LayoutPanel layout = new LayoutPanel();
 		List<ImageView> result = new ArrayList<ImageView>();
 		for (int row = 0; row < rowCount; row++) {
 			for (int column = 0; column < columnCount; column++) {
 				ImageView view = imageViewFactory.get(column + "x" + row);
 				Widget asWidget = view.asWidget();
-				grid.add(asWidget);
-				grid.setWidgetTopHeight(asWidget, row * (100/(float)rowCount), Unit.PCT, 100/rowCount, Unit.PCT);
-				grid.setWidgetLeftWidth(asWidget, column * (100/(float)columnCount) , Unit.PCT, 100/rowCount, Unit.PCT);
+				layout.add(asWidget);
+				layout.setWidgetTopHeight(asWidget, row * (100/(float)rowCount), Unit.PCT, 100/rowCount, Unit.PCT);
+				layout.setWidgetLeftWidth(asWidget, column * (100/(float)columnCount) , Unit.PCT, 100/rowCount, Unit.PCT);
 				result.add(view);
 			}
 		}
 		dockPanel.clear();
-		dockPanel.add(grid);
+		dockPanel.add(layout);
 		log.info("At end of buildraster: size: ("
 				+ getOffsetWidth()+ ", "
 				+ getOffsetWidth() + ")");

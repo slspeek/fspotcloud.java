@@ -15,6 +15,8 @@ import fspotcloud.client.main.event.application.ApplicationEvent;
 import fspotcloud.client.main.event.application.ApplicationType;
 import fspotcloud.client.main.help.AboutAction;
 import fspotcloud.client.main.help.HelpAction;
+import fspotcloud.client.place.api.Navigator;
+import fspotcloud.client.place.api.Navigator.Zoom;
 import fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
 
 public class ApplicationEventHandler implements ApplicationEvent.Handler,
@@ -31,6 +33,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	final private LoadNewLocationActionFactory locationFactory;
 	private Runnable dashboardAction;
 	final private EventBus eventBus;
+	final private Navigator navigator;
 
 	@Inject
 	public ApplicationEventHandler(AboutAction aboutAction,
@@ -38,8 +41,10 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 			TreeFocusAction treeFocusAction,
 			ToggleFullscreenAction toggleFullscreenAction,
 			ToggleButtonsAction toggleButtonsAction,
-			LoadNewLocationActionFactory locationFactory, EventBus eventBus) {
+			LoadNewLocationActionFactory locationFactory,
+			Navigator navigator, EventBus eventBus) {
 		super();
+		this.navigator = navigator;
 		this.locationFactory = locationFactory;
 		this.toggleButtonsAction = toggleButtonsAction;
 		this.demoAction = demoAction;
@@ -74,6 +79,12 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 			break;
 		case ABOUT:
 			aboutAction.run();
+			break;
+		case ZOOM_IN:
+			navigator.zoom(Zoom.IN);
+			break;
+		case ZOOM_OUT:
+			navigator.zoom(Zoom.OUT);
 			break;
 		default:
 			break;

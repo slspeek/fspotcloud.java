@@ -372,4 +372,36 @@ public class NavigatorImpl implements Navigator {
 		placeGoTo.goTo(destination);
 	}
 
+	@Override
+	public void fullscreen() {
+		BasePlace now = placeWhere.where();
+		BasePlace destination = placeCalculator.getFullscreen(now);
+		placeGoTo.goTo(destination);
+	}
+
+	@Override
+	public void setButtonsVisible(boolean visible) {
+		BasePlace now = placeWhere.where();
+		BasePlace destination = placeCalculator.setButtonsVisible(now, visible);
+		placeGoTo.goTo(destination);
+		
+	}
+
+	@Override
+	public void setTreeVisible(boolean visible) {
+		BasePlace now = placeWhere.where();
+		BasePlace destination = placeCalculator.setTreeVisible(now, visible);
+		placeGoTo.goTo(destination);
+		
+	}
+
+	@Override
+	public void zoom(Zoom direction) {
+		BasePlace now = placeWhere.where();
+		BasePlace destination = placeCalculator.zoom(now, direction);
+		placeGoTo.goTo(destination);
+		
+		
+	}
+	
 }
