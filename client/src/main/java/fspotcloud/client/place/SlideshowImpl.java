@@ -71,6 +71,7 @@ public class SlideshowImpl implements Slideshow {
 	public void start() {
 		log.info("Starting slideshow");
 		isRunning = true;
+		navigator.fullscreen();
 		reschedule();
 		fireStatusChanged();
 	}

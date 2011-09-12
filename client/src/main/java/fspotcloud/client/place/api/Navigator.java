@@ -46,4 +46,17 @@ public interface Navigator {
 	void setRasterDimension(int i, int j);
 
 	void resetRasterSize();
+	
+	void fullscreen();
+	
+	void setButtonsVisible(boolean visible);
+	
+	void setTreeVisible(boolean visible);
+	
+	enum Zoom {
+		IN, OUT;
+	}
+	
+	void zoom(Zoom direction);
+	
 }

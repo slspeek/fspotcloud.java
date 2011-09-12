@@ -22,5 +22,7 @@ public interface PopupView {
 	void center();
 
 	void setPopupPosition(int i, int j);
+	
+	void focus();
 
 }

@@ -2,6 +2,10 @@ package fspotcloud.client.place;
 
 import java.util.logging.Logger;
 
+import fspotcloud.client.place.api.Navigator;
+import fspotcloud.client.place.api.Navigator.Zoom;
+import fspotcloud.client.place.api.PhotoInTag;
+
 public class PlaceCalculator  {
 
 	final private static Logger log = Logger.getLogger(PlaceCalculator.class
@@ -15,11 +19,19 @@ public class PlaceCalculator  {
 
 	private int rasterWidth = DEFAULT_RASTER_WIDTH;
 	private int rasterHeight = DEFAULT_RASTER_HEIGHT;
+		
 
 	public PlaceCalculator() {
 		log.info("Created");
 	}
 
+	public BasePlace getFullscreen(PhotoInTag place) {
+		String photoId = place.getPhotoId();
+		String tagId = place.getTagId();
+		BasePlace dest = new BasePlace(tagId, photoId, 1, 1, false, false);
+		return dest;
+	}
+	
 	public BasePlace toggleRasterView(BasePlace place) {
 		String tagId = place.getTagId();
 		String photoId = place.getPhotoId();
@@ -61,17 +73,8 @@ public class PlaceCalculator  {
 	}
 
 	public BasePlace toggleTreeViewVisible(BasePlace place) {
-		BasePlace result = null;
-		String tagId = place.getTagId();
-		String photoId = place.getPhotoId();
-		int width = place.getColumnCount();
-		int height = place.getRowCount();
-		//next line we toggle
 		boolean treeVisible = !place.hasTreeVisible();
-		boolean buttonsVisible = place.hasButtonsVisible();
-		result = create(tagId, photoId, width, height, treeVisible,
-				buttonsVisible);
-		return result;
+		return setTreeVisible(place, treeVisible);
 	}
 
 	private BasePlace create(String tagId, String photoId, int columns,
@@ -110,16 +113,73 @@ public class PlaceCalculator  {
 	}
 
 	public BasePlace toggleButtonsVisible(BasePlace place) {
+		boolean buttonsVisible = !place.hasButtonsVisible();
+		return setButtonsVisible(place, buttonsVisible);
+	}
+
+	public BasePlace setButtonsVisible(BasePlace place, boolean visible) {
 		BasePlace result = null;
 		String tagId = place.getTagId();
 		String photoId = place.getPhotoId();
 		int width = place.getColumnCount();
 		int height = place.getRowCount();
 		boolean treeVisible = place.hasTreeVisible();
-		//next line we toggle
-		boolean buttonsVisible = !place.hasButtonsVisible();
 		result = create(tagId, photoId, width, height, treeVisible,
-				buttonsVisible);
+				visible);
 		return result;
+	}
+
+	public BasePlace setTreeVisible(BasePlace place, boolean visible) {
+		BasePlace result = null;
+		String tagId = place.getTagId();
+		String photoId = place.getPhotoId();
+		int width = place.getColumnCount();
+		int height = place.getRowCount();
+		boolean buttonsVisible = place.hasButtonsVisible();
+		if (visible) {
+			result = create(tagId, photoId, width, height, visible,
+					true);
+		} else {
+			result = create(tagId, photoId, width, height, visible,
+					buttonsVisible);
+		}
+		return result;
+	}
+
+	public BasePlace zoom(BasePlace now, Navigator.Zoom direction) {
+		BasePlace dest;
+		if (direction == Zoom.IN) {
+			if (now.hasTreeVisible()) {
+				dest = setTreeVisible(now, false);
+			} else if (now.hasButtonsVisible()){
+				dest = setButtonsVisible(now, false);
+			} else {
+				int width = now.getColumnCount();
+				int height = now.getRowCount();
+				setRasterWidth(width - 1);
+				setRasterHeight(height - 1);
+				if (width == getRasterWidth()) {
+					//switch to 1x1 
+					dest  = getFullscreen(now);
+				} else {
+					dest = new BasePlace(now.getTagId(), now.getPhotoId(), getRasterWidth(), getRasterHeight(), false, false); 
+				}
+				
+			}
+			
+		} else {
+			if (!now.hasButtonsVisible()){
+				dest = setButtonsVisible(now, true);
+			} else if (!now.hasTreeVisible()) {
+				dest = setTreeVisible(now, true);
+			} else {
+				int width = now.getColumnCount();
+				int height = now.getRowCount();
+				setRasterWidth(width + 1);
+				setRasterHeight(height + 1);
+				dest = new BasePlace(now.getTagId(), now.getPhotoId(), getRasterWidth(), getRasterHeight(), false, false); 
+			}
+		}
+		return dest;
 	}
 }

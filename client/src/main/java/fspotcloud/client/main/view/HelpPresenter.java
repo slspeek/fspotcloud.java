@@ -57,6 +57,7 @@ public class HelpPresenter implements PopupView.PopupPresenter {
 		popupView.setGlassEnabled(true);
 		popupView.center();
 		popupView.show();
+		popupView.focus();
 	}
 
 	public void hide() {

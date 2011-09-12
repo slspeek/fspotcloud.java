@@ -8,9 +8,9 @@ import fspotcloud.client.view.action.KeyStroke;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class HelpContentGenerator {
-	
+
 	final private Resources.Style style;
-	
+
 	@Inject
 	public HelpContentGenerator(Resources res) {
 		super();
@@ -22,17 +22,23 @@ public class HelpContentGenerator {
 		String row = "";
 		row += "<span class='" + style.helpKey() + "'>" + key + "</span>";
 		if (altKey1 != null) {
-			row += " or <span class='" + style.helpKey() + "'>" + altKey1 + "</span>";
+			row += " or <span class='" + style.helpKey() + "'>" + altKey1
+					+ "</span>";
 			if (altKey2 != null) {
-				row += " or <span class='" + style.helpKey() + "'>" + altKey2 + "</span>";
+				row += " or <span class='" + style.helpKey() + "'>" + altKey2
+						+ "</span>";
 			}
 		}
 		row += "</td>";
 
 		row += "<td><span class='" + style.helpSeparator() + "'>:</span></td>";
-		row += "<td><img src='" + icon.getURL() +"' /></td>";
-		row += "<td><span class='" + style.helpDescription() + "'>" + description
-				+ "</span>";
+		row += "<td>";
+		if (icon != null) {
+			row += "<img src='" + icon.getURL() + "' />";
+		}
+		row += "</td>";
+		row += "<td><span class='" + style.helpDescription() + "'>"
+				+ description + "</span>";
 		return row;
 	}
 
@@ -44,10 +50,12 @@ public class HelpContentGenerator {
 		key = stroke.getKeyString();
 		if (altStroke != null) {
 			altKey = altStroke.getKeyString();
-			return getHelpRow(key, altKey, null, shortcut.getDescription(), shortcut.getIcon());
-			
+			return getHelpRow(key, altKey, null, shortcut.getDescription(),
+					shortcut.getIcon());
+
 		} else {
-			return getHelpRow(key, null, null, shortcut.getDescription(), shortcut.getIcon());
+			return getHelpRow(key, null, null, shortcut.getDescription(),
+					shortcut.getIcon());
 		}
 	}
 }

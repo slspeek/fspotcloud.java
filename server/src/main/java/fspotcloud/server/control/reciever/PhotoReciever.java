@@ -9,7 +9,6 @@ import com.google.inject.Inject;
 
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
-import fspotcloud.server.model.api.Tags;
 
 public class PhotoReciever {
 	private static final Logger log = Logger.getLogger(PhotoReciever.class
