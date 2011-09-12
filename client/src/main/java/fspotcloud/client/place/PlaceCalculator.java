@@ -6,7 +6,7 @@ import fspotcloud.client.place.api.Navigator;
 import fspotcloud.client.place.api.Navigator.Zoom;
 import fspotcloud.client.place.api.PhotoInTag;
 
-public class PlaceCalculator  {
+public class PlaceCalculator {
 
 	final private static Logger log = Logger.getLogger(PlaceCalculator.class
 			.getName());
@@ -19,7 +19,6 @@ public class PlaceCalculator  {
 
 	private int rasterWidth = DEFAULT_RASTER_WIDTH;
 	private int rasterHeight = DEFAULT_RASTER_HEIGHT;
-		
 
 	public PlaceCalculator() {
 		log.info("Created");
@@ -31,7 +30,7 @@ public class PlaceCalculator  {
 		BasePlace dest = new BasePlace(tagId, photoId, 1, 1, false, false);
 		return dest;
 	}
-	
+
 	public BasePlace toggleRasterView(BasePlace place) {
 		String tagId = place.getTagId();
 		String photoId = place.getPhotoId();
@@ -124,8 +123,7 @@ public class PlaceCalculator  {
 		int width = place.getColumnCount();
 		int height = place.getRowCount();
 		boolean treeVisible = place.hasTreeVisible();
-		result = create(tagId, photoId, width, height, treeVisible,
-				visible);
+		result = create(tagId, photoId, width, height, treeVisible, visible);
 		return result;
 	}
 
@@ -137,8 +135,7 @@ public class PlaceCalculator  {
 		int height = place.getRowCount();
 		boolean buttonsVisible = place.hasButtonsVisible();
 		if (visible) {
-			result = create(tagId, photoId, width, height, visible,
-					true);
+			result = create(tagId, photoId, width, height, visible, true);
 		} else {
 			result = create(tagId, photoId, width, height, visible,
 					buttonsVisible);
@@ -149,26 +146,32 @@ public class PlaceCalculator  {
 	public BasePlace zoom(BasePlace now, Navigator.Zoom direction) {
 		BasePlace dest;
 		if (direction == Zoom.IN) {
-			if (now.hasTreeVisible()) {
-				dest = setTreeVisible(now, false);
-			} else if (now.hasButtonsVisible()){
-				dest = setButtonsVisible(now, false);
+			int width = now.getColumnCount();
+			int height = now.getRowCount();
+			if (width * height == 1) {
+				if (now.hasTreeVisible()) {
+					dest = setTreeVisible(now, false);
+				} else if (now.hasButtonsVisible()) {
+					dest = setButtonsVisible(now, false);
+				} else {
+					dest = now;
+				}
 			} else {
-				int width = now.getColumnCount();
-				int height = now.getRowCount();
 				setRasterWidth(width - 1);
 				setRasterHeight(height - 1);
-				if (width == getRasterWidth()) {
-					//switch to 1x1 
-					dest  = getFullscreen(now);
+				if (width - 1 != getRasterWidth()) {
+					// switch to 1x1
+					dest = new BasePlace(now.getTagId(), now.getPhotoId(),
+							1, 1, true, true);
 				} else {
-					dest = new BasePlace(now.getTagId(), now.getPhotoId(), getRasterWidth(), getRasterHeight(), false, false); 
+					dest = new BasePlace(now.getTagId(), now.getPhotoId(),
+							getRasterWidth(), getRasterHeight(), true, true);
 				}
-				
+
 			}
-			
+
 		} else {
-			if (!now.hasButtonsVisible()){
+			if (!now.hasButtonsVisible()) {
 				dest = setButtonsVisible(now, true);
 			} else if (!now.hasTreeVisible()) {
 				dest = setTreeVisible(now, true);
@@ -177,7 +180,8 @@ public class PlaceCalculator  {
 				int height = now.getRowCount();
 				setRasterWidth(width + 1);
 				setRasterHeight(height + 1);
-				dest = new BasePlace(now.getTagId(), now.getPhotoId(), getRasterWidth(), getRasterHeight(), false, false); 
+				dest = new BasePlace(now.getTagId(), now.getPhotoId(),
+						getRasterWidth(), getRasterHeight(), true, true);
 			}
 		}
 		return dest;
