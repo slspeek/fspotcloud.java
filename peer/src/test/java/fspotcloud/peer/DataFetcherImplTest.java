@@ -31,6 +31,6 @@ public class DataFetcherImplTest extends TestCase {
 		Object[] result = (Object[]) fetcher.getData("getMetaData", args);
 		
 		assertEquals("28", String.valueOf(result[0]));
-		assertEquals("8", String.valueOf(result[1]));
+		assertEquals("5", String.valueOf(result[1]));
 	}
 }

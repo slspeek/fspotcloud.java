@@ -5,20 +5,26 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.PushButton;
+import com.google.inject.Inject;
 
 import fspotcloud.client.main.view.api.UserButtonView;
 
 public class UserButtonViewImpl extends PushButton implements UserButtonView {
 
 	private UserButtonPresenter presenter;
+	final private Resources resources;
 
-	public UserButtonViewImpl(ImageResource icon) {
+	@Inject
+	public UserButtonViewImpl(Resources resources, ImageResource icon) {
 		super(new Image(icon));
-		setStyleName("fsc-user-button");
+		this.resources = resources;
+		setStyleName(resources.style().button());
 	}
 
-	public UserButtonViewImpl() {
-		setStyleName("fsc-user-button");
+	@Inject 
+	public UserButtonViewImpl(Resources resources) {
+		this.resources = resources;
+		setStyleName(resources.style().button());
 	}
 
 	@Override

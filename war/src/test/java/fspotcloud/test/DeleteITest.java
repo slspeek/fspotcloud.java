@@ -36,15 +36,19 @@ public class DeleteITest extends SeleniumITest {
 		selenium.click("gwt-debug-delete-all-photos-button");
 		sleepShort();
 		selenium.click("gwt-debug-reset-meta-data-button");
-		sleepShort();
+		sleepShort(4);
 		selenium.click("gwt-debug-count-photos-button");
 		sleepShort(4);
 		selenium.open("/Dashboard.html");
 		selenium.waitForPageToLoad("5000");
 		sleepShort();
-		selenium.open("/Dashboard.html");
-		selenium.waitForPageToLoad("5000");
-		assertEquals("0", selenium.getText("gwt-debug-photo-count-label"));
+		for (int second = 0;; second++) {
+			if (second >= 60) fail("timeout");
+			try { selenium.open("/Dashboard.html");
+			selenium.waitForPageToLoad("10000");
+			if ("28".equals(selenium.getText("gwt-debug-photo-count-label"))) break; } catch (Exception e) {}
+			Thread.sleep(1000);
+		}
 		sleepShort();
 	}
 }

@@ -35,7 +35,7 @@ public class DataTest extends TestCase {
 	
 	public void testGetTagCount() throws SQLException {
 		int count = data.getCount("tags");
-		assertEquals(8, count);
+		assertEquals(5, count);
 	}
 
 	public final void testGetTagList2() throws SQLException {
@@ -50,14 +50,13 @@ public class DataTest extends TestCase {
 
 	public final void testGetPhotoList() throws Exception {
 		Object[] result = data.getPhotoData("0", "2");
-		
 		assertEquals(2, result.length);
 	}
 
 	public final void testGetImageURL() throws MalformedURLException,
 			SQLException {
 		URL url = data.getImageURL("20");
-		assertEquals("file:/home/fspotcloud/Pictures/Foto's/2010/06/22/img_0859-1.jpg", String.valueOf(url));
+		assertEquals("file:/home/steven/Photos/2010/06/22/img_0859-1.jpg", String.valueOf(url));
 		
 	}
 	

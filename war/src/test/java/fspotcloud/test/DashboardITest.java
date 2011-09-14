@@ -35,44 +35,21 @@ public class DashboardITest extends SeleniumITest {
 		selenium.open("/Dashboard.html");
 		selenium.waitForPageToLoad("30000");
 		sleepShort();
-		selenium.click("//div[3]/div[2]/div/div[4]/div/div[2]/div/div/div/div/div/div/div[2]/div/div/div/img");
-		sleepShort();
-		selenium.click("//div[1]/div[3]/div/div/div[2]");
-		sleepShort();
-
-		selenium.click("//div[3]/div[1]/div/div[2]");
-		sleepShort();
-
+		//import Furniture		
 		selenium.click("gwt-debug-import-tag-button");
-		sleepShort();
+		selenium.waitForPageToLoad("30000");
 		
-		selenium.click("//div/div/div/div[1]/div[3]/div");
-		sleepShort();
-
-		selenium.click("gwt-debug-import-tag-button");
-		sleepShort();
-
-		selenium.click("//div[4]/div/div/div[2]");
-		sleepShort();
-
-		selenium.click("gwt-debug-import-tag-button");
-		sleepShort();
-
-		selenium.click("//div[1]/div[1]/div/div/div[2]");
-		sleepShort();
-		selenium.click("gwt-debug-import-tag-button");
-		sleepShort();
+		selenium.click("gwt-debug-load-images-button");
 		selenium.click("gwt-debug-count-photos-button");
 		sleepShort(4);
-		selenium.open("/Dashboard.html");
-		selenium.waitForPageToLoad("30000");
-		selenium.open("/Dashboard.html");
-		selenium.waitForPageToLoad("5000");
 		sleepShort();
-		assertEquals("28", selenium.getText("gwt-debug-photo-count-label"));
-
-		selenium.click("gwt-debug-load-images-button");
-		sleepShort();
+		for (int second = 0;; second++) {
+			if (second >= 60) fail("timeout");
+			try { selenium.open("/Dashboard.html");
+			selenium.waitForPageToLoad("10000");
+			if ("28".equals(selenium.getText("gwt-debug-photo-count-label"))) break; } catch (Exception e) {}
+			Thread.sleep(1000);
+		}
 	}
 
 }

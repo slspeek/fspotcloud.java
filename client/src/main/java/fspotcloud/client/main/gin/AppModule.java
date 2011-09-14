@@ -131,7 +131,8 @@ public class AppModule extends AbstractGinModule {
 		bind(UserButtonViewFactory.class).to(UserButtonViewFactoryImpl.class);
 		install(new GinFactoryModuleBuilder().implement(
 				UserButtonView.UserButtonPresenter.class,
-				UserButtonPresenterImpl.class).build(UserButtonPresenterFactory.class));
+				UserButtonPresenterImpl.class).build(
+				UserButtonPresenterFactory.class));
 		install(new GinFactoryModuleBuilder().implement(
 				ButtonPanelView.ButtonPanelPresenter.class,
 				ButtonPanelPresenterImpl.class).build(
@@ -142,11 +143,12 @@ public class AppModule extends AbstractGinModule {
 		install(new GinFactoryModuleBuilder()
 				.build(LoadNewLocationActionFactory.class));
 		bind(LoadNewLocation.class).to(LoadNewLocationImpl.class);
-		
-		install(new GinFactoryModuleBuilder().implement(ImageRasterView.ImageRasterPresenter.class,
-				ImageRasterActivity.class).build(ImageRasterActivityFactory.class));
-		
-		bind(PopupView.class).to(HelpPopup.class);
 
+		install(new GinFactoryModuleBuilder().implement(
+				ImageRasterView.ImageRasterPresenter.class,
+				ImageRasterActivity.class).build(
+				ImageRasterActivityFactory.class));
+
+		bind(PopupView.class).to(HelpPopup.class);
 	}
 }

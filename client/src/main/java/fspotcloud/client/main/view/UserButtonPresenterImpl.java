@@ -8,6 +8,7 @@ import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.client.main.view.api.UserButtonView;
 import fspotcloud.client.main.view.api.UserButtonViewFactory;
+import fspotcloud.client.view.action.KeyStroke;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class UserButtonPresenterImpl implements
@@ -39,8 +40,20 @@ public class UserButtonPresenterImpl implements
 		if (action.getIcon() == null) {
 			view.setCaption(caption);
 		}
-		view.setTooltip(caption);
+		String tooltip = getTooltip();
+		view.setTooltip(tooltip);
 		view.setDebugId(action.getId());
+	}
+
+	private String getTooltip() {
+		KeyStroke key = action.getKey();
+		KeyStroke altKey = action.getAlternateKey();
+		String caption = action.getCaption();
+		String tip = caption + " ( " + key.getKeyString() + " )";
+		if (altKey != null) {
+			tip  =  caption + "( " + key.getKeyString() + " or " + altKey.getKeyString() + " )";
+		}
+		return tip;
 	}
 
 	@Override

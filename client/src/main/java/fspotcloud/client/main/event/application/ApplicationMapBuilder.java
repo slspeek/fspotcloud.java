@@ -24,8 +24,8 @@ public class ApplicationMapBuilder extends AbstractActionMap {
 		put(ApplicationType.TOGGLE_HELP ,resources.helpIcon());
 		put(ApplicationType.START_DEMO ,resources.demoIcon());
 		put(ApplicationType.TREE_FOCUS , resources.treeFocusIcon());
-		put(ApplicationType.ZOOM_IN, null);
-		put(ApplicationType.ZOOM_OUT, null);
+		put(ApplicationType.ZOOM_IN, resources.zoomInIcon());
+		put(ApplicationType.ZOOM_OUT, resources.zoomOutIcon());
 		put(ApplicationType.TOGGLE_FULLSCREEN,	resources.fullscreenIcon());
 		put(ApplicationType.TOGGLE_BUTTONS_VISIBLE, resources.toggleButtonsIcon());
 		put(ApplicationType.DASHBOARD , resources.dashboardIcon());
