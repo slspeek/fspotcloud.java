@@ -6,11 +6,10 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 
 import com.google.gwt.resources.client.ImageResource;
-import com.google.gwt.user.client.ui.UIObject;
-import com.google.gwt.user.client.ui.Widget;
 
 import fspotcloud.client.main.view.api.UserButtonView;
 import fspotcloud.client.main.view.api.UserButtonViewFactory;
+import fspotcloud.client.view.action.KeyStroke;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class UserButtonPresenterImplTest extends TestCase {
@@ -44,11 +43,13 @@ public class UserButtonPresenterImplTest extends TestCase {
 		context.checking(new Expectations() { {
 			oneOf(viewFactory).get(action);will(returnValue(view));
 			oneOf(action).getIcon();will(returnValue(null));
-			oneOf(action).getCaption();will(returnValue("Ape"));
+			exactly(2).of(action).getCaption();will(returnValue("Ape"));
 			oneOf(view).setCaption("Ape");
-			oneOf(view).setTooltip("Ape");
+			oneOf(view).setTooltip("Ape ( A )");
 			oneOf(view).setPresenter(presenter);
 			oneOf(action).getId();will(returnValue("ID"));
+			oneOf(action).getKey();will(returnValue(new KeyStroke('A')));
+			oneOf(action).getAlternateKey();will(returnValue(null));
 			oneOf(view).setDebugId("ID");
 		} });
 		presenter.init();
@@ -60,10 +61,12 @@ public class UserButtonPresenterImplTest extends TestCase {
 		context.checking(new Expectations() { {
 			oneOf(viewFactory).get(action);will(returnValue(view));
 			oneOf(action).getIcon();will(returnValue(fakeImage));
-			oneOf(view).setTooltip("Ape");
-			oneOf(action).getCaption();will(returnValue("Ape"));
+			oneOf(view).setTooltip("Ape ( A )");
+			exactly(2).of(action).getCaption();will(returnValue("Ape"));
 			oneOf(view).setPresenter(presenter);
 			oneOf(action).getId();will(returnValue("ID"));
+			oneOf(action).getKey();will(returnValue(new KeyStroke('A')));
+			oneOf(action).getAlternateKey();will(returnValue(null));
 			oneOf(view).setDebugId("ID");
 		} });
 		presenter.init();
