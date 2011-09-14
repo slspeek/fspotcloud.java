@@ -26,6 +26,7 @@ public class HasOneWidgetAdapter implements HasOneWidget {
 	private void clear() {
 		if (currentWidget != null) {
 			panel.remove(currentWidget);
+			currentWidget = null;
 		}
 		
 	}

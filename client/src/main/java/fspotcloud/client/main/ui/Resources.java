@@ -11,6 +11,8 @@ public interface Resources extends ClientBundle {
 		String titleBlock();
 
 		String footerBlock();
+		
+		String button();
 
 		String imagePanelBlock();
 		
@@ -126,4 +128,10 @@ public interface Resources extends ClientBundle {
 
 	@Source("images/About.png")
 	ImageResource aboutIcon();
+	
+	@Source("images/ZoomOut.png")
+	ImageResource zoomOutIcon();
+	
+	@Source("images/ZoomIn.png")
+	ImageResource zoomInIcon();
 }

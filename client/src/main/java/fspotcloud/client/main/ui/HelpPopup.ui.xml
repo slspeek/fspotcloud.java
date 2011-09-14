@@ -8,7 +8,6 @@
 				<span ui:field="titleSpan" class="{res.style.helpTitle}"></span>
 			</center>
 			<div ui:field="helpBodyDiv"></div>
-			<center>Press any key to close</center>
 		</g:HTMLPanel>
 	</g:FocusPanel>
 </ui:UiBinder>

@@ -1,7 +1,21 @@
 <projectDescription>
   <name>grapher</name>
   <comment>Visualization of the Guice Object Graph. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects/>
+  <projects>
+    <project>appengine-deps</project>
+    <project>client</project>
+    <project>cloudcover-deps</project>
+    <project>guice-deps</project>
+    <project>gwt-deps</project>
+    <project>mapreduce-deps</project>
+    <project>model</project>
+    <project>model-api</project>
+    <project>peer</project>
+    <project>rpc</project>
+    <project>server</project>
+    <project>servlet-deps</project>
+    <project>xmlrpc-server-deps</project>
+  </projects>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
