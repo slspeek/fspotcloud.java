@@ -134,7 +134,7 @@ public class Data {
 		if (rs.next()) {
 			int version = rs.getInt(1);
 			if (version == 1) {
-				url = rs.getString(2) + rs.getString(3);
+				url = rs.getString(2) + "/" + rs.getString(3);
 			} else {
 				stmt = conn.createStatement();
 				query = "SELECT base_uri, filename "
@@ -142,7 +142,7 @@ public class Data {
 						+ " AND version_id=" + version;
 				rs = stmt.executeQuery(query);
 				if (rs.next()) {
-					url = rs.getString(1) + rs.getString(2);
+					url = rs.getString(1) + "/" +  rs.getString(2);
 				}
 			}
 		}
