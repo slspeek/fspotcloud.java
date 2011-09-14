@@ -70,6 +70,11 @@
 									<arg
 										value="${project.build.directory}/${project.artifactId}-${project.version}-jar-with-dependencies.jar" />
 								</exec>
+								<copy todir="${basedir}/src/site/resources/">
+									<fileset dir="${project.build.directory}">
+										<include name="*.png" />
+									</fileset>
+								</copy>
 							</tasks>
 						</configuration>
 						<goals>
