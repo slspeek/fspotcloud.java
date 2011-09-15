@@ -2,8 +2,6 @@ package fspotcloud.server.model;
 
 import javax.jdo.PersistenceManager;
 
-import fspotcloud.server.model.batch.BatchManagerTest;
-
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 

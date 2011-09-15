@@ -1,29 +1,23 @@
-
 package fspotcloud.client.place;
 
-import java.util.List;
-
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import junit.framework.TestCase;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
-import com.google.common.collect.ImmutableList;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
-import fspotcloud.client.data.IndexingUtil;
 import fspotcloud.client.main.TagServiceAsyncTestImpl;
 import fspotcloud.client.place.api.Navigator;
 import fspotcloud.client.place.api.PlaceGoTo;
 import fspotcloud.client.place.api.PlaceWhere;
-import fspotcloud.shared.photo.PhotoInfo;
-
 public class NavigatorImplTest extends TestCase {
 
-	DataManager dataManager = new DataManagerImpl(
-			new TagServiceAsyncTestImpl(), new IndexingUtil());
+	DataManager dataManager = new DataManagerImpl(new TagServiceAsyncTestImpl());
 	PlaceCalculator placeCalculator = new PlaceCalculator();
 	Navigator navigator;
 	Mockery context;
@@ -34,8 +28,9 @@ public class NavigatorImplTest extends TestCase {
 	BasePlace janRaster = new BasePlace("1", "3", 1, 2);
 	BasePlace snowie = new BasePlace("4", "11");
 	BasePlace siepie = new BasePlace("4", "12");
-	BasePlace woefje = new BasePlace("5", "23",
-			placeCalculator.getRasterWidth(), placeCalculator.getRasterHeight(), true);
+	BasePlace woefje = new BasePlace("5", "21",
+			placeCalculator.getRasterWidth(),
+			placeCalculator.getRasterHeight(), true);
 	BasePlace r1_3 = new BasePlace("6", "101", 1, 3, false);
 	BasePlace r1_3_zoomed_in = new BasePlace("6", "101", 1, 1, false);
 	BasePlace r1_3next = new BasePlace("6", "103", 1, 3);
@@ -46,7 +41,6 @@ public class NavigatorImplTest extends TestCase {
 		super.setUp();
 	}
 
-	
 	public Navigator get(PlaceGoTo goTo) {
 		return new NavigatorImpl(null, goTo, placeCalculator, dataManager);
 	}
@@ -58,8 +52,10 @@ public class NavigatorImplTest extends TestCase {
 	public void testToggleButtonsVisible() {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		final PlaceWhere where = context.mock(PlaceWhere.class);
-		final BasePlace withButtons = new BasePlace("6", "101", 1, 1, false, true);
-		final BasePlace withoutButtons = new BasePlace("6", "101", 1, 1, false, false);
+		final BasePlace withButtons = new BasePlace("6", "101", 1, 1, false,
+				true);
+		final BasePlace withoutButtons = new BasePlace("6", "101", 1, 1, false,
+				false);
 
 		context.checking(new Expectations() {
 			{
@@ -69,7 +65,7 @@ public class NavigatorImplTest extends TestCase {
 			}
 		});
 		navigator = get(where, goTo);
-		
+
 		navigator.toggleButtonsVisible();
 		context.assertIsSatisfied();
 	}
@@ -212,9 +208,6 @@ public class NavigatorImplTest extends TestCase {
 		context.assertIsSatisfied();
 	}
 
-	
-	
-	
 	public void testToggleZoomView() {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		final PlaceWhere where = context.mock(PlaceWhere.class);
@@ -231,15 +224,10 @@ public class NavigatorImplTest extends TestCase {
 	}
 
 	public void testGoToLatestTag() {
-		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
-		context.checking(new Expectations() {
-			{
-				oneOf(goTo).goTo(with(woefje));
-			}
-		});
+		final PlaceGoTo goTo = mock(PlaceGoTo.class);
 		navigator = get(goTo);
 		navigator.goToLatestTag();
-		context.assertIsSatisfied();
+		verify(goTo).goTo(woefje);;
 
 	}
 

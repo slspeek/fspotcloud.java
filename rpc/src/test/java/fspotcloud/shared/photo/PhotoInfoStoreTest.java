@@ -26,6 +26,8 @@ public class PhotoInfoStoreTest extends TestCase {
 		set.add(new PhotoInfo("2", "Pete", new Date(4)));
 		@SuppressWarnings("unused")
 		PhotoInfoStore store = new PhotoInfoStore(set);
+		assertFalse(store.isEmpty());
+		assertEquals(4, store.size());
 	}
 
 	public void testGetInfo() {
@@ -57,6 +59,7 @@ public class PhotoInfoStoreTest extends TestCase {
 		assertEquals(1, store.indexOf("4"));
 		assertEquals(2, store.indexOf("3"));
 		assertEquals(3, store.indexOf("2"));
+		
 	}
 
 	public void testLast() {

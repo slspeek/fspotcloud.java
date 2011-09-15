@@ -152,6 +152,7 @@ public class Data {
 			url = url.replaceFirst(photoDirectoryOriginalPath,
 					photoDirectoryOverride);
 		}
+		//log.info("URL-String: " + url);
 		return new URL(url);
 	}
 
