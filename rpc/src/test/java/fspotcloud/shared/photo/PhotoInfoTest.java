@@ -1,5 +1,11 @@
 package fspotcloud.shared.photo;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,12 +20,13 @@ public class PhotoInfoTest extends TestCase {
 	PhotoInfo man;
 	String photoApe = "1";
 	String photoMan = "2";
+	String exif = "EXIF:";
 
 	protected void setUp() throws Exception {
 		longAgo = formatter.parse("20100101");
 		ago = formatter.parse("20100102");
 		ape = new PhotoInfo(photoApe, "Ape", longAgo);
-		man = new PhotoInfo(photoMan, "Human", ago);
+		man = new PhotoInfo(photoMan, "Human", ago, exif);
 		super.setUp();
 	}
 
@@ -39,6 +46,7 @@ public class PhotoInfoTest extends TestCase {
 		assertEquals(1, man.compareTo(ape));
 	}
 	public void testEquals() throws Exception {
+		assertTrue(ape.equals(photoApe));
 		assertTrue(ape.equals(ape));
 		assertFalse(ape.equals(man));
 		assertFalse(man.equals(ape));
@@ -49,9 +57,30 @@ public class PhotoInfoTest extends TestCase {
 		assertTrue(man.equals(photoMan));
 	}
 
-//	public void testToString() {
-//		String s = man.toString();
-//		System.out.println(s);
-//		assertEquals("PhotoInfo(2, Sat Jan 02 00:00:00 CET 2010)", s);
-//	}
+	public void testHashCode() {
+		PhotoInfo sameMan = new PhotoInfo(photoMan, "Foo", new Date(), "Bar");
+		assertEquals(sameMan.hashCode(), man.hashCode());
+		assertEquals(sameMan, man);
+	}
+	
+	public void testExif() {
+		assertNull(ape.getExifData());
+		ape.setExifData(exif);
+		assertEquals(exif, ape.getExifData());
+	}
+	
+	public void testToString() {
+		String s = man.toString();
+		assertEquals("PhotoInfo(2)", s);
+	}
+	
+	public void testSerialization() throws IOException, ClassNotFoundException {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		ObjectOutputStream objectOut = new ObjectOutputStream(out);
+		objectOut.writeObject(ape);
+		InputStream in = new ByteArrayInputStream(out.toByteArray());
+		ObjectInputStream objectIn = new ObjectInputStream(in);
+		PhotoInfo apeReadBack = (PhotoInfo) objectIn.readObject();
+		assertEquals(ape, apeReadBack);
+	}
 }

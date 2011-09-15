@@ -62,7 +62,7 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
 	}
 
 	public String toString() {
-		return "PhotoInfo(" + id + ", " + (date)+ ")";
+		return "PhotoInfo(" + id + ")";
 	}
 
 	public void setExifData(String exifData) {

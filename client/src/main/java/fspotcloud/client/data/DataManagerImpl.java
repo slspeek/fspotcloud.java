@@ -1,9 +1,9 @@
 package fspotcloud.client.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -19,7 +19,17 @@ public class DataManagerImpl implements DataManager {
 	private final TagServiceAsync tagService;
 	private final IndexingUtil indexingUtil;
 	private boolean isCalled = false;
-	private Runnable hook;
+	private List<Runnable> queue = new ArrayList<Runnable>();
+	private Runnable callbackHook = new Runnable() {
+
+		@Override
+		public void run() {
+			for (Runnable task : queue) {
+				task.run();
+			}
+			queue.clear();
+		}
+	};
 
 	private List<TagNode> tagTreeData = null;
 	private List<TagNode> adminTagTreeData = null;
@@ -27,15 +37,15 @@ public class DataManagerImpl implements DataManager {
 	private final Map<String, TagNode> adminTagNodeIndex = new HashMap<String, TagNode>();
 
 	@Inject
-	public DataManagerImpl(TagServiceAsync tagService, IndexingUtil indexingUtil) {
+	public DataManagerImpl(TagServiceAsync tagService) {
 		this.tagService = tagService;
-		this.indexingUtil = indexingUtil;
+		this.indexingUtil = new IndexingUtil();
 	}
 
 	public void getTagNode(final String id,
 			final AsyncCallback<TagNode> callback) {
-		TagNode node = tagNodeIndex.get(id);
-		if (node != null) {
+		if (tagTreeData != null) {
+			TagNode node = tagNodeIndex.get(id);	
 			callback.onSuccess(node);
 		} else {
 			if (!isCalled) {
@@ -51,12 +61,12 @@ public class DataManagerImpl implements DataManager {
 					}
 				});
 			} else {
-				hook = new Runnable() {
+				queue.add(new Runnable() {
 					@Override
 					public void run() {
 						callback.onSuccess(tagNodeIndex.get(id));
 					}
-				};
+				});
 			}
 		}
 	}
@@ -83,27 +93,32 @@ public class DataManagerImpl implements DataManager {
 	}
 
 	public void getTagTree(final AsyncCallback<List<TagNode>> callback) {
-		isCalled = true;
 		if (tagTreeData != null) {
 			callback.onSuccess(tagTreeData);
 		} else {
-			tagService.loadTagTree(new AsyncCallback<List<TagNode>>() {
-				public void onFailure(Throwable caught) {
-					log.log(Level.SEVERE, "Uncaught exception in getTagTree", caught);
-					callback.onFailure(caught);
-				}
-
-				public void onSuccess(List<TagNode> result) {
-					tagTreeData = result;
-					indexingUtil.rebuildTagNodeIndex(tagNodeIndex, tagTreeData);
-					callback.onSuccess(result);
-					if (hook != null) {
-						hook.run();
-						log.info("Hook ran !");
-					}
+			queue.add(new Runnable() {
+				@Override
+				public void run() {
+					callback.onSuccess(tagTreeData);
 				}
 			});
+			if (!isCalled) {
+				isCalled = true;
+				tagService.loadTagTree(new AsyncCallback<List<TagNode>>() {
 
+					public void onFailure(Throwable caught) {
+						callback.onFailure(caught);
+					}
+
+					public void onSuccess(List<TagNode> result) {
+						tagTreeData = result;
+						indexingUtil.rebuildTagNodeIndex(tagNodeIndex,
+								tagTreeData);
+						callbackHook.run();
+						log.info("Hook ran !");
+					}
+				});
+			}
 		}
 	}
 

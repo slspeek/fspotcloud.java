@@ -5,7 +5,11 @@ import java.util.logging.Logger;
 import fspotcloud.client.place.api.Navigator;
 import fspotcloud.client.place.api.Navigator.Zoom;
 import fspotcloud.client.place.api.PhotoInTag;
-
+/**
+ * Holds the current raster size
+ * @author steven
+ *
+ */
 public class PlaceCalculator {
 
 	final private static Logger log = Logger.getLogger(PlaceCalculator.class

@@ -6,7 +6,6 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
-import fspotcloud.client.main.event.slideshow.SlideshowEvent;
 import fspotcloud.client.view.action.api.ActionDef;
 
 public class UserEvent<H extends UserEventHandler> extends GwtEvent<H> {

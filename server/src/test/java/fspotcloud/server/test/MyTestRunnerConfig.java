@@ -19,7 +19,6 @@ import fspotcloud.server.mapreduce.ImageDataImporterRelevantTest;
 import fspotcloud.server.mapreduce.ImageDataMapperTest;
 import fspotcloud.server.model.ModelModuleTest;
 import fspotcloud.server.model.PersistenceManagerProviderTest;
-import fspotcloud.server.model.batch.BatchManagerTest;
 import fspotcloud.server.model.command.CommandManagerTest;
 import fspotcloud.server.model.peerdatabase.PeerDatabaseManagerTest;
 import fspotcloud.server.model.photo.PhotoDOBuilderTest;
@@ -37,7 +36,6 @@ public class MyTestRunnerConfig extends JUnit3Config {
 				suite.addTestSuite(PhotoManagerTest.class);
 				suite.addTestSuite(PhotoDOBuilderTest.class);
 				suite.addTestSuite(TagManagerTest.class);
-				suite.addTestSuite(BatchManagerTest.class);
 				suite.addTestSuite(PersistenceManagerProviderTest.class);
 				suite.addTestSuite(CommandManagerTest.class);
 				suite.addTestSuite(PeerDatabaseManagerTest.class);

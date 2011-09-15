@@ -268,7 +268,7 @@ public class NavigatorImpl implements Navigator {
 
 	@Override
 	public void goToTag(String otherTagId, PhotoInfoStore store) {
-		goEnd(false,
+		goEnd(true,
 				new BasePlace(otherTagId, null, placeCalculator
 						.getRasterWidth(), placeCalculator.getRasterHeight(),
 						true), store);
