@@ -57,6 +57,8 @@ public class PlaceCalculator {
 	public BasePlace toggleZoomView(BasePlace place, String tagId,
 			String photoId) {
 		PlaceConverter converter = new PlaceConverter(place);
+		converter.setTagId(tagId);
+		converter.setPhotoId(photoId);
 		int width = place.getColumnCount();
 		int height = place.getRowCount();
 		if (width * height > 1) {

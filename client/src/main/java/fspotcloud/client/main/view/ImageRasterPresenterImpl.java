@@ -35,7 +35,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	final private int pageSize;
 	final private boolean thumb;
 	protected final ImageRasterView imageRasterView;
-	final private Navigator pager;
+	final private Navigator navigator;
 	final private ImagePresenterFactory imagePresenterFactory;
 	List<ImageView> imageViewList;
 	List<ImageView.ImagePresenter> imagePresenterList = new ArrayList<ImageView.ImagePresenter>();
@@ -49,7 +49,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 		rowCount = place.getRowCount();
 		pageSize = columnCount * rowCount;
 		thumb = pageSize > 1;
-		this.pager = pager;
+		this.navigator = pager;
 		this.imageRasterView = imageRasterView;
 		this.imagePresenterFactory = imagePresenterFactory;
 	}
@@ -77,7 +77,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	}
 
 	public void setImages() {
-		pager.getPageAsync(tagId, photoId, pageSize,
+		navigator.getPageAsync(tagId, photoId, pageSize,
 				new AsyncCallback<List<PhotoInfo>>() {
 
 					@Override
@@ -131,6 +131,18 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		panel.setWidget(imageRasterView);
+		
+	}
+	
+	@Override
+	public void onMouseWheelNorth() {
+		navigator.goAsync(false);
+		
+	}
+
+	@Override
+	public void onMouseWheelSouth() {
+		navigator.goAsync(true);
 		
 	}
 

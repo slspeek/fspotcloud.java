@@ -19,7 +19,7 @@ import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.SlideshowView;
 
 public class ImagePanelViewImpl extends ResizeComposite implements
-		ImagePanelView, MouseWheelHandler{
+		ImagePanelView{
 
 	private static final Logger log = Logger.getLogger(ImagePanelViewImpl.class
 			.getName());
@@ -49,7 +49,7 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 		initWidget(uiBinder.createAndBindUi(this));
 		mainPanel.addStyleName("fsc-image-panel-view");
 		imageRasterView.asWidget().addStyleName("fsc-image-raster-view");
-		addDomHandler(this, MouseWheelEvent.getType());
+		
 	}
 
 	@UiFactory
@@ -73,14 +73,7 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 		super.onResize();
 	}
 
-	@Override
-	public void onMouseWheel(MouseWheelEvent event) {
-		if(event.isNorth()) {
-			presenter.onMouseWheelNorth();
-		} else {
-			presenter.onMouseWheelSouth();
-		}
-	}
+	
 
 	@Override
 	public void setPresenter(ImagePanelPresenter presenter) {

@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.MouseWheelEvent;
+import com.google.gwt.event.dom.client.MouseWheelHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
@@ -19,7 +21,7 @@ import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.main.view.api.ImageViewFactory;
 
 public class ImageRasterViewImpl extends ResizeComposite implements
-		ImageRasterView {
+		ImageRasterView, MouseWheelHandler {
 
 	@SuppressWarnings("unused")
 	private static final Logger log = Logger
@@ -42,6 +44,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 		this.imageViewFactory = imageViewFactory;
 		initWidget(uiBinder.createAndBindUi(this));
 		dockPanel.ensureDebugId("image-raster-view");
+		dockPanel.addDomHandler(this, MouseWheelEvent.getType());
 	}
 	
 	@Override
@@ -82,6 +85,15 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	@Override
 	public void setPresenter(ImageRasterPresenter presenter) {
 		this.presenter = presenter;
+	}
+
+	@Override
+	public void onMouseWheel(MouseWheelEvent event) {
+		if(event.isNorth()) {
+			presenter.onMouseWheelNorth();
+		} else {
+			presenter.onMouseWheelSouth();
+		}
 	}
 	
 }
