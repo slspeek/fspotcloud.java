@@ -9,9 +9,7 @@ public interface ImagePanelView extends IsWidget {
 
 	interface ImagePanelPresenter extends Activity, Initializable {
 		
-		public void onMouseWheelNorth();
-
-		public void onMouseWheelSouth();
+		
 	}
 
 	ImageRasterView getImageRasterView();

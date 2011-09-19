@@ -15,6 +15,9 @@ public interface ImageRasterView extends IsWidget {
 
 		void onResize();
 
+		public void onMouseWheelNorth();
+
+		public void onMouseWheelSouth();
 	}
 
 	List<ImageView> buildRaster(int rowCount, int columnCount);

@@ -60,15 +60,5 @@ public class ImagePanelActivity extends AbstractActivity implements
 		buttonPanelPresenter.init();
 	}
 
-	@Override
-	public void onMouseWheelNorth() {
-		navigator.goAsync(false);
-		
-	}
 
-	@Override
-	public void onMouseWheelSouth() {
-		navigator.goAsync(true);
-		
-	}
 }
