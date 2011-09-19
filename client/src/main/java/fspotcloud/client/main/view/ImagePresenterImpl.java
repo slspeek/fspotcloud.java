@@ -89,4 +89,9 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	public void setMaxHeight(int height) {
 		imageView.setMaxHeight(height);
 	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		imageView.setVisible(visible);
+	}
 }

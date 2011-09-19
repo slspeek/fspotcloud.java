@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
@@ -37,7 +39,6 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	final private ImagePresenterFactory imagePresenterFactory;
 	List<ImageView> imageViewList;
 	List<ImageView.ImagePresenter> imagePresenterList = new ArrayList<ImageView.ImagePresenter>();
-
 	@Inject
 	public ImageRasterPresenterImpl(@Assisted BasePlace place,
 			@Assisted ImageRasterView imageRasterView, Navigator pager,
@@ -83,6 +84,14 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 					public void onSuccess(List<PhotoInfo> result) {
 						imageViewList = imageRasterView.buildRaster(rowCount, columnCount);
 						setImages(result);
+						DeferredCommand.add(new Command() {
+							
+							@Override
+							public void execute() {
+								setImagesVisible(true);
+								
+							}
+						});
 					}
 
 					@Override
@@ -94,6 +103,12 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 
 	}
 
+	private void setImagesVisible(boolean visible) {
+		for (ImageView.ImagePresenter presenter: imagePresenterList) {
+			presenter.setVisible(visible);
+			
+		}
+	}
 	private void setImages(List<PhotoInfo> result) {
 		imagePresenterList.clear();
 		for (int i = 0; i < result.size(); i++) {
