@@ -14,6 +14,8 @@ import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.reveregroup.gwt.imagepreloader.FitImage;
+import com.reveregroup.gwt.imagepreloader.FitImageLoadEvent;
+import com.reveregroup.gwt.imagepreloader.FitImageLoadHandler;
 
 import fspotcloud.client.main.view.api.ImageView;
 
@@ -42,6 +44,15 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	public ImageViewImpl(@Assisted String location) {
 		initWidget(uiBinder.createAndBindUi(this));
 		image.ensureDebugId("image-view-" + location);
+		image.setVisible(false);
+		image.addFitImageLoadHandler(new FitImageLoadHandler() {
+			
+			@Override
+			public void imageLoaded(FitImageLoadEvent event) {
+				image.setVisible(true);
+				
+			}
+		});
 	}
 
 	@Override
@@ -89,4 +100,7 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 		super.onResize();
 	}
 
+	public void setVisible(boolean visible) {
+		//image.setVisible(visible);
+	}
 }

@@ -28,35 +28,35 @@ public class PlaceCalculator {
 		log.info("Created");
 	}
 
-	public BasePlace getFullscreen(PhotoInTag place) {
-		String photoId = place.getPhotoId();
-		String tagId = place.getTagId();
-		BasePlace dest = new BasePlace(tagId, photoId, 1, 1, false, false);
+	public BasePlace getFullscreen(BasePlace place) {
+		PlaceConverter converter = new PlaceConverter(place);
+		converter.setRowCount(1);
+		converter.setColumnCount(1);
+		converter.setButtonsVisible(false);
+		converter.setTreeVisible(false);
+		BasePlace dest = converter.getNewPlace();
 		return dest;
 	}
 
 	public BasePlace toggleRasterView(BasePlace place) {
-		String tagId = place.getTagId();
-		String photoId = place.getPhotoId();
+		PlaceConverter converter = new PlaceConverter(place);
 		int width = place.getColumnCount();
 		int height = place.getRowCount();
 		if (width * height > 1) {
-			// switch to single view
 			width = 1;
 			height = 1;
 		} else {
 			width = getRasterWidth();
 			height = getRasterHeight();
 		}
-		BasePlace result;
-		boolean tagView = place.hasTreeVisible();
-		boolean buttonsVisible = place.hasButtonsVisible();
-		result = create(tagId, photoId, width, height, tagView, buttonsVisible);
-		return result;
+		converter.setColumnCount(width);
+		converter.setRowCount(height);
+		return converter.getNewPlace();
 	}
 
 	public BasePlace toggleZoomView(BasePlace place, String tagId,
 			String photoId) {
+		PlaceConverter converter = new PlaceConverter(place);
 		int width = place.getColumnCount();
 		int height = place.getRowCount();
 		if (width * height > 1) {
@@ -68,23 +68,14 @@ public class PlaceCalculator {
 			width = getRasterWidth();
 			height = getRasterHeight();
 		}
-		BasePlace result;
-		boolean tagView = place.hasTreeVisible();
-		boolean buttonsVisible = place.hasButtonsVisible();
-		result = create(tagId, photoId, width, height, tagView, buttonsVisible);
-		return result;
+		converter.setColumnCount(width);
+		converter.setRowCount(height);
+		return converter.getNewPlace();
 	}
 
 	public BasePlace toggleTreeViewVisible(BasePlace place) {
 		boolean treeVisible = !place.hasTreeVisible();
 		return setTreeVisible(place, treeVisible);
-	}
-
-	private BasePlace create(String tagId, String photoId, int columns,
-			int rows, boolean tagView, boolean buttons) {
-		BasePlace result;
-		result = new BasePlace(tagId, photoId, columns, rows, tagView, buttons);
-		return result;
 	}
 
 	public void setRasterHeight(int rasterHeight) {
@@ -108,11 +99,10 @@ public class PlaceCalculator {
 	}
 
 	public BasePlace getTabularPlace(BasePlace place) {
-		boolean tagView = place.hasTreeVisible();
-		boolean buttonsVisible = place.hasButtonsVisible();
-		BasePlace result = create(place.getTagId(), place.getPhotoId(),
-				getRasterWidth(), getRasterHeight(), tagView, buttonsVisible);
-		return result;
+		PlaceConverter converter = new PlaceConverter(place);
+		converter.setColumnCount(getRasterWidth());
+		converter.setRowCount(getRasterHeight());
+		return converter.getNewPlace();
 	}
 
 	public BasePlace toggleButtonsVisible(BasePlace place) {
@@ -121,30 +111,20 @@ public class PlaceCalculator {
 	}
 
 	public BasePlace setButtonsVisible(BasePlace place, boolean visible) {
-		BasePlace result = null;
-		String tagId = place.getTagId();
-		String photoId = place.getPhotoId();
-		int width = place.getColumnCount();
-		int height = place.getRowCount();
-		boolean treeVisible = place.hasTreeVisible();
-		result = create(tagId, photoId, width, height, treeVisible, visible);
-		return result;
+		PlaceConverter converter = new PlaceConverter(place);
+		converter.setButtonsVisible(visible);
+		return converter.getNewPlace();
 	}
 
 	public BasePlace setTreeVisible(BasePlace place, boolean visible) {
-		BasePlace result = null;
-		String tagId = place.getTagId();
-		String photoId = place.getPhotoId();
-		int width = place.getColumnCount();
-		int height = place.getRowCount();
-		boolean buttonsVisible = place.hasButtonsVisible();
+		PlaceConverter converter = new PlaceConverter(place);
 		if (visible) {
-			result = create(tagId, photoId, width, height, visible, true);
+			converter.setButtonsVisible(true);
+			converter.setTreeVisible(true);
 		} else {
-			result = create(tagId, photoId, width, height, visible,
-					buttonsVisible);
+			converter.setTreeVisible(false);
 		}
-		return result;
+		return converter.getNewPlace();
 	}
 
 	public BasePlace zoom(BasePlace now, Navigator.Zoom direction) {

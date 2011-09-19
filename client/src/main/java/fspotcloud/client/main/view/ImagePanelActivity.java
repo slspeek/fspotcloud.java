@@ -17,6 +17,7 @@ import fspotcloud.client.main.view.api.ImagePanelView.ImagePanelPresenter;
 import fspotcloud.client.main.view.api.ImageRasterPresenterFactory;
 import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.place.BasePlace;
+import fspotcloud.client.place.api.Navigator;
 
 public class ImagePanelActivity extends AbstractActivity implements
 		ImagePanelPresenter {
@@ -26,11 +27,13 @@ public class ImagePanelActivity extends AbstractActivity implements
 	final private ImageRasterView.ImageRasterPresenter imageRasterPresenter;
 	
 	final private ButtonPanelView.ButtonPanelPresenter buttonPanelPresenter;
+	final private Navigator navigator;
 	@Inject
 	public ImagePanelActivity(@Assisted BasePlace place,
 			ImagePanelView imagePanelView,
 			ImageRasterPresenterFactory imageRasterFactory,
-			ButtonPanelPresenterFactory buttonPanelPresenterFactory) {
+			ButtonPanelPresenterFactory buttonPanelPresenterFactory, Navigator navigator) {
+		this.navigator = navigator;
 		this.imagePanelView = imagePanelView;
 		this.imageRasterPresenter = imageRasterFactory.get(place,
 				imagePanelView.getImageRasterView());
@@ -39,6 +42,7 @@ public class ImagePanelActivity extends AbstractActivity implements
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
+		imagePanelView.setPresenter(this);
 		panel.setWidget(imagePanelView);
 		Scheduler scheduler = Scheduler.get();
 		scheduler.scheduleDeferred(new ScheduledCommand() {
@@ -54,5 +58,17 @@ public class ImagePanelActivity extends AbstractActivity implements
 	public void init() {
 		log.info("init");
 		buttonPanelPresenter.init();
+	}
+
+	@Override
+	public void onMouseWheelNorth() {
+		navigator.goAsync(false);
+		
+	}
+
+	@Override
+	public void onMouseWheelSouth() {
+		navigator.goAsync(true);
+		
 	}
 }

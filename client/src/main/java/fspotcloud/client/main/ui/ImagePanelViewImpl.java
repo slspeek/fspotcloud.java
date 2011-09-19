@@ -3,6 +3,8 @@ package fspotcloud.client.main.ui;
 import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.MouseWheelEvent;
+import com.google.gwt.event.dom.client.MouseWheelHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
@@ -12,11 +14,12 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.main.view.api.ButtonPanelView;
 import fspotcloud.client.main.view.api.ImagePanelView;
+import fspotcloud.client.main.view.api.ImagePanelView.ImagePanelPresenter;
 import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.SlideshowView;
 
 public class ImagePanelViewImpl extends ResizeComposite implements
-		ImagePanelView {
+		ImagePanelView, MouseWheelHandler{
 
 	private static final Logger log = Logger.getLogger(ImagePanelViewImpl.class
 			.getName());
@@ -33,6 +36,8 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	final private ButtonPanelView buttonPanelView;
 	@UiField
 	DockLayoutPanel mainPanel;
+
+	private ImagePanelPresenter presenter;
 	
 	@Inject
 	public ImagePanelViewImpl(ImageRasterView imageRasterView,
@@ -44,6 +49,7 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 		initWidget(uiBinder.createAndBindUi(this));
 		mainPanel.addStyleName("fsc-image-panel-view");
 		imageRasterView.asWidget().addStyleName("fsc-image-raster-view");
+		addDomHandler(this, MouseWheelEvent.getType());
 	}
 
 	@UiFactory
@@ -65,5 +71,20 @@ public class ImagePanelViewImpl extends ResizeComposite implements
 	public void onResize() {
 		log.info("ON RESIZE to super");
 		super.onResize();
+	}
+
+	@Override
+	public void onMouseWheel(MouseWheelEvent event) {
+		if(event.isNorth()) {
+			presenter.onMouseWheelNorth();
+		} else {
+			presenter.onMouseWheelSouth();
+		}
+	}
+
+	@Override
+	public void setPresenter(ImagePanelPresenter presenter) {
+		this.presenter = presenter;
+		
 	}
 }

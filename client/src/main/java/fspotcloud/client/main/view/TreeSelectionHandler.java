@@ -3,7 +3,6 @@ package fspotcloud.client.main.view;
 import java.util.logging.Logger;
 
 import com.google.gwt.view.client.SelectionChangeEvent;
-import com.google.gwt.view.client.SelectionModel;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 

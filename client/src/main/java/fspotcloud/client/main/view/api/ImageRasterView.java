@@ -14,9 +14,11 @@ public interface ImageRasterView extends IsWidget {
 		int getHeight();
 
 		void onResize();
+
 	}
 
 	List<ImageView> buildRaster(int rowCount, int columnCount);
 
 	void setPresenter(ImageRasterPresenter presenter);
+
 }
