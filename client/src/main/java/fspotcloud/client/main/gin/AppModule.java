@@ -20,6 +20,7 @@ import fspotcloud.client.main.ui.ImagePanelViewImpl;
 import fspotcloud.client.main.ui.ImageRasterViewImpl;
 import fspotcloud.client.main.ui.ImageViewImpl;
 import fspotcloud.client.main.ui.LoadNewLocationImpl;
+import fspotcloud.client.main.ui.SingleImageViewImpl;
 import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
 import fspotcloud.client.main.ui.TimerImpl;
@@ -30,6 +31,7 @@ import fspotcloud.client.main.view.ImagePresenterImpl;
 import fspotcloud.client.main.view.ImageRasterActivity;
 import fspotcloud.client.main.view.ImageRasterPresenterImpl;
 import fspotcloud.client.main.view.MainWindowActivityMapper;
+import fspotcloud.client.main.view.SingleImageActivity;
 import fspotcloud.client.main.view.SlideshowPresenterImpl;
 import fspotcloud.client.main.view.TagCell;
 import fspotcloud.client.main.view.TreePresenterImpl;
@@ -48,6 +50,9 @@ import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.main.view.api.ImageViewFactory;
 import fspotcloud.client.main.view.api.LoadNewLocation;
 import fspotcloud.client.main.view.api.PopupView;
+import fspotcloud.client.main.view.api.SingleImageView;
+import fspotcloud.client.main.view.api.SingleViewActivityFactory;
+import fspotcloud.client.main.view.api.SlideshowControlsPresenterFactory;
 import fspotcloud.client.main.view.api.SlideshowPresenterFactory;
 import fspotcloud.client.main.view.api.SlideshowView;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
@@ -148,6 +153,11 @@ public class AppModule extends AbstractGinModule {
 				ImageRasterView.ImageRasterPresenter.class,
 				ImageRasterActivity.class).build(
 				ImageRasterActivityFactory.class));
+		
+		install(new GinFactoryModuleBuilder().build(SlideshowControlsPresenterFactory.class));
+		install(new GinFactoryModuleBuilder().implement(SingleImageView.SingleImagePresenter.class, SingleImageActivity.class).build(SingleViewActivityFactory.class));
+		
+		bind(SingleImageView.class).to(SingleImageViewImpl.class);
 
 		bind(PopupView.class).to(HelpPopup.class);
 	}

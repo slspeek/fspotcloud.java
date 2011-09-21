@@ -33,6 +33,7 @@ public class SlideshowViewImpl extends Composite implements SlideshowView {
 		initWidget(uiBinder.createAndBindUi(this));
 		mainPanel.addStyleName("fsc-slideshow");
 		intervalLabel.addStyleName("fsc-slideshow-interval");
+		log.info("created");
 	}
 
 	@Override

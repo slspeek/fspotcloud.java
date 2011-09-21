@@ -21,7 +21,7 @@ public class ImagePanelActivityFactoryImpl implements ImagePanelActivityFactory 
 	
 	@Override
 	public ImagePanelPresenter get(BasePlace place) {
-		ImagePanelPresenter presenter = factory.getEmbedded(place);
+		ImagePanelPresenter presenter = factory.get(place);
 		presenter.init();
 		return presenter;
 	}

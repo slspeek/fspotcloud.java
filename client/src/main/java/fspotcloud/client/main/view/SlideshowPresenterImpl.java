@@ -29,11 +29,12 @@ public class SlideshowPresenterImpl implements
 		this.eventBus = eventBus;
 		this.slideshowView = slideshowView;
 		this.slideshow = slideshow;
-		log.info("SlideshowActivity Created");
+		log.info("Created");
 	}
 
 	@Override
 	public void init() {
+		log.info("<<<<<<<<<<<<<<<<INIT");
 		registration = eventBus.addHandler(SlideshowStatusEvent.TYPE, this);
 		redraw(slideshow.delay(), slideshow.isRunning());
 	}
