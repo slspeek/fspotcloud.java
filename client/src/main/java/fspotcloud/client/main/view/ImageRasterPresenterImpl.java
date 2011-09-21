@@ -84,14 +84,6 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 					public void onSuccess(List<PhotoInfo> result) {
 						imageViewList = imageRasterView.buildRaster(rowCount, columnCount);
 						setImages(result);
-						DeferredCommand.add(new Command() {
-							
-							@Override
-							public void execute() {
-								setImagesVisible(true);
-								
-							}
-						});
 					}
 
 					@Override
@@ -103,12 +95,6 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 
 	}
 
-	private void setImagesVisible(boolean visible) {
-		for (ImageView.ImagePresenter presenter: imagePresenterList) {
-			presenter.setVisible(visible);
-			
-		}
-	}
 	private void setImages(List<PhotoInfo> result) {
 		imagePresenterList.clear();
 		for (int i = 0; i < result.size(); i++) {
@@ -118,6 +104,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 			imagePresenterList.add(presenter);
 			presenter.init();
 		}
+		imageRasterView.animate(0);
 	}
 
 	@Override

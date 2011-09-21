@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 
 import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
 import fspotcloud.client.main.view.api.ImageRasterActivityFactory;
+import fspotcloud.client.main.view.api.SingleViewActivityFactory;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
 import fspotcloud.client.place.BasePlace;
 import fspotcloud.client.place.api.Navigator;
@@ -22,11 +23,16 @@ public class MainWindowActivityMapper implements ActivityMapper {
 	final private ImageRasterActivityFactory imageRasterActivityFactory;
 	final private Navigator navigator;
 
+	private SingleViewActivityFactory singleViewActivityFactory;
+
 	@Inject
 	public MainWindowActivityMapper(TagPresenterFactory tagPresenterFactory,
-			ImagePanelActivityFactory imagePanelPresenterFactory, ImageRasterActivityFactory imageRasterActivityFactory,
+			ImagePanelActivityFactory imagePanelPresenterFactory,
+			ImageRasterActivityFactory imageRasterActivityFactory,
+			SingleViewActivityFactory singleViewActivityFactory,
 			Navigator navigator) {
 		super();
+		this.singleViewActivityFactory = singleViewActivityFactory;
 		this.tagPresenterFactory = tagPresenterFactory;
 		this.imagePanelActivityFactory = imagePanelPresenterFactory;
 		this.imageRasterActivityFactory = imageRasterActivityFactory;
@@ -43,15 +49,18 @@ public class MainWindowActivityMapper implements ActivityMapper {
 			if (basePlace.getTagId().equals("latest")) {
 				navigator.goToLatestTag();
 			}
-			if (!basePlace.hasTreeVisible()){
+			if (!basePlace.hasTreeVisible()) {
 				if (basePlace.hasButtonsVisible()) {
-				activity = imagePanelActivityFactory
-				.get(basePlace);
+					activity = imagePanelActivityFactory.get(basePlace);
 				} else {
-					activity = imageRasterActivityFactory.get(basePlace);
+					if (basePlace.getColumnCount()*basePlace.getRowCount() == 1) {
+						activity = singleViewActivityFactory.get(basePlace);
+					} else {
+						activity = imageRasterActivityFactory.get(basePlace);
+					}
 				}
 			} else {
-				activity = tagPresenterFactory.get(basePlace);	
+				activity = tagPresenterFactory.get(basePlace);
 			}
 		} else {
 			log.warning("getActivity will return null for:" + place);

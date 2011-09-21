@@ -71,6 +71,6 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 
 	@Override
 	public void setSize(int width, int height) {
-		// mainPanel.setPixelSize(width, height);
+		// layout.setPixelSize(width, height);
 	}
 }

@@ -5,6 +5,12 @@
 @def borderRadius   7px  ;
 @def foregroundColor #595454; /** Grey40 */
 
+@def darkColor #66BDFF;
+@def ligherColor 	#98EFFF; 
+@def treeColor #98EFFF; 
+@def borderRadius   7px  ;
+@def foregroundColor white;
+
  .titleBlock {
 	background-color: darkColor;
 	color: foregroundColor;

@@ -38,6 +38,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	DockLayoutPanel dockPanel;
 	private final ImageViewFactory imageViewFactory;
 	private ImageRasterView.ImageRasterPresenter presenter;
+	private LayoutPanel layout;
 
 	@Inject
 	public ImageRasterViewImpl(ImageViewFactory imageViewFactory) {
@@ -49,7 +50,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	
 	@Override
 	public List<ImageView> buildRaster(int rowCount, int columnCount) {
-		LayoutPanel layout = new LayoutPanel();
+		layout = new LayoutPanel();
 		List<ImageView> result = new ArrayList<ImageView>();
 		for (int row = 0; row < rowCount; row++) {
 			for (int column = 0; column < columnCount; column++) {
@@ -63,6 +64,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 		}
 		dockPanel.clear();
 		dockPanel.add(layout);
+		//layout.forceLayout();
 		log.info("At end of buildraster: size: ("
 				+ getOffsetWidth()+ ", "
 				+ getOffsetWidth() + ")");
@@ -94,6 +96,11 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 		} else {
 			presenter.onMouseWheelSouth();
 		}
+	}
+
+	@Override
+	public void animate(int i) {
+		layout.animate(i);
 	}
 	
 }

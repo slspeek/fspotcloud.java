@@ -24,4 +24,7 @@ public interface ImageRasterView extends IsWidget {
 
 	void setPresenter(ImageRasterPresenter presenter);
 
+	void animate(int i);
+
+	
 }

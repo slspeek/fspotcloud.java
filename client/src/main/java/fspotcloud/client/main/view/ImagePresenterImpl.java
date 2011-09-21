@@ -10,7 +10,6 @@ import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.client.main.shared.ZoomViewEvent;
 import fspotcloud.client.main.view.api.ImageView;
-import fspotcloud.client.main.view.api.PopupView;
 import fspotcloud.shared.photo.PhotoInfo;
 
 public class ImagePresenterImpl implements ImageView.ImagePresenter {
@@ -23,15 +22,13 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	final private boolean thumb;
 	final private EventBus eventBus;
 	final private PhotoInfo info;
-	final private PopupView popupView;
 
 	@Inject
 	public ImagePresenterImpl(@Assisted("maxWidth") int maxWidth,
 			@Assisted("maxHeight") int maxHeight, @Assisted String tagId,
 			@Assisted ImageView imageView, @Assisted boolean thumb, @Assisted PhotoInfo info,
-			EventBus eventBus, PopupView popupView) {
+			EventBus eventBus) {
 		this.tagId =  tagId; 
-		this.popupView = popupView;
 		photoId = info.getId();
 		this.imageView = imageView;
 		this.thumb = thumb;
@@ -44,6 +41,7 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	public void init() {
 		imageView.setPresenter(this);
 		setImage();
+		imageView.hideLabelLater(4000);
 	}
 
 	public void setImage() {
@@ -55,7 +53,7 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 				date = DateTimeFormat.getFormat(PredefinedFormat.DATE_FULL).format(info.getDate()) + " " +
 				DateTimeFormat.getFormat(PredefinedFormat.TIME_MEDIUM).format(info.getDate()) ;
 			}
-			imageView.setTooltip(date);
+			imageView.setDescription(date);
 			String url = "/image?id=" + photoId;
 			url += thumb ? "&thumb" : "";
 			imageView.setImageUrl(url);
@@ -69,15 +67,9 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 		log.info("about to fire zoom event");
 		eventBus.fireEvent(new ZoomViewEvent(tagId, photoId));
 	}
+
 	@Override
 	public void imageDoubleClicked() {
-		String exif = info.getExifData();
-		if (exif != null) {
-			exif.replaceAll("\n", "<br>");
-		}
-		popupView.setText(exif);
-		popupView.center();
-		popupView.show();
 	}
 
 	@Override
@@ -90,8 +82,4 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 		imageView.setMaxHeight(height);
 	}
 
-	@Override
-	public void setVisible(boolean visible) {
-		imageView.setVisible(visible);
-	}
 }
