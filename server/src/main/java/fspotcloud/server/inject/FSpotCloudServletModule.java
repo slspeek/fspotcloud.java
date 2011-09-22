@@ -14,6 +14,7 @@ import fspotcloud.server.cron.CronServlet;
 import fspotcloud.server.main.ImageServlet;
 import fspotcloud.server.main.TagServiceImpl;
 import fspotcloud.server.mapreduce.CounterCompletedServlet;
+import fspotcloud.server.mapreduce.DeleteTagsCompletedServlet;
 
 public class FSpotCloudServletModule extends ServletModule {
 
@@ -31,6 +32,8 @@ public class FSpotCloudServletModule extends ServletModule {
 		serve("/fspotcloud.dashboard/tag").with(TagServiceImpl.class);
 		serve("/callbacks/counter_completed").with(
 				CounterCompletedServlet.class);
+		serve("/callbacks/delete_tags_completed").with(
+				DeleteTagsCompletedServlet.class);
 		serve("/image").with(ImageServlet.class);
 		serve("/cron").with(CronServlet.class);
 

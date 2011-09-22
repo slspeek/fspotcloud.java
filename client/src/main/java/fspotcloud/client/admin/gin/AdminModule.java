@@ -18,8 +18,10 @@ import fspotcloud.client.admin.view.api.TagDetailsView;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.main.gin.PlaceControllerProvider;
+import fspotcloud.client.main.ui.TimerImpl;
 import fspotcloud.client.main.ui.TreeViewImpl;
 import fspotcloud.client.main.view.TagCell;
+import fspotcloud.client.main.view.api.TimerInterface;
 import fspotcloud.client.main.view.api.TreeView;
 import fspotcloud.client.place.PlaceGoToImpl;
 import fspotcloud.client.place.api.PlaceGoTo;
@@ -43,5 +45,6 @@ public class AdminModule extends AbstractGinModule {
 		bind(TreeView.TreePresenter.class).to(AdminTreePresenterImpl.class).in(
 				Singleton.class);
 		bind(TreeView.class).to(TreeViewImpl.class).in(Singleton.class);
+		bind(TimerInterface.class).to(TimerImpl.class);
 	}
 }

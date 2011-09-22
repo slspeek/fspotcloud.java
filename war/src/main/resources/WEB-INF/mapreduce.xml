@@ -1,50 +1,79 @@
 <configurations>
-  <configuration name="Entity Counter Mapper">
-    <property>
-      <name>mapreduce.map.class</name>
-      <value>fspotcloud.server.mapreduce.EntityCountMapper</value>
-    </property>
-    <property>
-      <name>mapreduce.inputformat.class</name>
-      <value>com.google.appengine.tools.mapreduce.DatastoreInputFormat</value>
-    </property>
-    <property>
-      <name human="Entity Kind to Map Over">mapreduce.mapper.inputformat.datastoreinputformat.entitykind</name>
-      <value template="optional">PhotoDO</value>
-    </property>
-     <property>
-      <!--  This is the URL to call after the entire Mapper has run -->
-      <name>mapreduce.appengine.donecallback.url</name>
-      <value>/callbacks/counter_completed</value>
-  </property>
-    
-  </configuration>
-   <configuration name="Delete All Mapper">
-    <property>
-      <name>mapreduce.map.class</name>
-      <value>fspotcloud.server.mapreduce.DeleteAllMapper</value>
-    </property>
-    <property>
-      <name>mapreduce.inputformat.class</name>
-      <value>com.google.appengine.tools.mapreduce.DatastoreInputFormat</value>
-    </property>
-    <property>
-      <name human="Entity Kind to Map Over">mapreduce.mapper.inputformat.datastoreinputformat.entitykind</name>
-      <value template="optional">BatchDO</value>
-    </property>
-  </configuration>
-     <configuration name="Image Data Import Mapper">
-    <property>
-      <name>mapreduce.map.class</name>
-      <value>fspotcloud.server.mapreduce.ImageDataMapper</value>
-    </property>
-    <property>
-      <name>mapreduce.inputformat.class</name>
-      <value>com.google.appengine.tools.mapreduce.DatastoreInputFormat</value>
-    </property>
-    <property>
-      <name human="Entity Kind to Map Over">mapreduce.mapper.inputformat.datastoreinputformat.entitykind</name>
-      <value template="optional">PhotoDO</value>
-    </property>
-  </configuration>
+	<configuration name="Entity Counter Mapper">
+		<property>
+			<name>mapreduce.map.class</name>
+			<value>fspotcloud.server.mapreduce.EntityCountMapper</value>
+		</property>
+		<property>
+			<name>mapreduce.inputformat.class</name>
+			<value>com.google.appengine.tools.mapreduce.DatastoreInputFormat</value>
+		</property>
+		<property>
+			<name human="Entity Kind to Map Over">mapreduce.mapper.inputformat.datastoreinputformat.entitykind
+			</name>
+			<value template="optional">PhotoDO</value>
+		</property>
+		<property>
+			<!-- This is the URL to call after the entire Mapper has run -->
+			<name>mapreduce.appengine.donecallback.url</name>
+			<value>/callbacks/counter_completed</value>
+		</property>
+	</configuration>
+
+
+	<configuration name="Delete All Tags Mapper">
+		<property>
+			<name>mapreduce.map.class</name>
+			<value>fspotcloud.server.mapreduce.DeleteAllTagsMapper</value>
+		</property>
+		<property>
+			<name>mapreduce.inputformat.class</name>
+			<value>com.google.appengine.tools.mapreduce.DatastoreInputFormat</value>
+		</property>
+		<property>
+			<name human="Entity Kind to Map Over">mapreduce.mapper.inputformat.datastoreinputformat.entitykind
+			</name>
+			<value template="optional">BatchDO</value>
+		</property>
+		<property>
+			<!-- This is the URL to call after the entire Mapper has run -->
+			<name>mapreduce.appengine.donecallback.url</name>
+			<value>/callbacks/delete_tags_completed</value>
+		</property>
+	</configuration>
+
+
+	<configuration name="Delete All Mapper">
+		<property>
+			<name>mapreduce.map.class</name>
+			<value>fspotcloud.server.mapreduce.DeleteAllMapper</value>
+		</property>
+		<property>
+			<name>mapreduce.inputformat.class</name>
+			<value>com.google.appengine.tools.mapreduce.DatastoreInputFormat</value>
+		</property>
+		<property>
+			<name human="Entity Kind to Map Over">mapreduce.mapper.inputformat.datastoreinputformat.entitykind</name>
+			<value template="optional">BatchDO</value>
+		</property>
+
+	</configuration>
+
+
+	<configuration name="Image Data Import Mapper">
+		<property>
+			<name>mapreduce.map.class</name>
+			<value>fspotcloud.server.mapreduce.ImageDataMapper</value>
+		</property>
+		<property>
+			<name>mapreduce.inputformat.class</name>
+			<value>com.google.appengine.tools.mapreduce.DatastoreInputFormat</value>
+		</property>
+		<property>
+			<name human="Entity Kind to Map Over">mapreduce.mapper.inputformat.datastoreinputformat.entitykind</name>
+			<value template="optional">PhotoDO</value>
+		</property>
+	</configuration>
+
+
 </configurations>

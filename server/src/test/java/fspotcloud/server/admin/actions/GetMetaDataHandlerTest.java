@@ -4,6 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import junit.framework.TestCase;
 import net.customware.gwt.dispatch.shared.DispatchException;
+import fspotcloud.server.mapreduce.MapReduceInfo;
 import fspotcloud.server.model.api.Commands;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
@@ -15,6 +16,7 @@ public class GetMetaDataHandlerTest extends TestCase {
 
 	GetMetaDataHandler handler;
 	GetMetaData action = new GetMetaData();
+	MapReduceInfo mapInfo;
 	Commands commandManager;
 	PeerDatabases defaultPeer;
 	PeerDatabase pd;
@@ -23,8 +25,10 @@ public class GetMetaDataHandlerTest extends TestCase {
 	protected void setUp() throws Exception {
 		commandManager = mock(Commands.class);
 		defaultPeer = mock(PeerDatabases.class);
+		mapInfo = mock(MapReduceInfo.class);
+		when(mapInfo.activeCount("Delete All Mapper")).thenReturn(2);
 		pd = new PeerDatabaseDO();
-		handler = new GetMetaDataHandler(commandManager, defaultPeer);
+		handler = new GetMetaDataHandler(commandManager, defaultPeer, mapInfo);
 	}
 
 	public void testExecute() throws DispatchException {
@@ -34,6 +38,9 @@ public class GetMetaDataHandlerTest extends TestCase {
 		assertNull(result.getInstanceName());
 		assertEquals(0, result.getPeerPhotoCount());
 		assertEquals(100, result.getPendingCommandCount());
+		assertFalse(result.isCountPhotosActive());
+		assertTrue(result.isDeletePhotosActive());
+		assertFalse(result.isDeleteTagsActive());
 	}
 
 	public void testException() {

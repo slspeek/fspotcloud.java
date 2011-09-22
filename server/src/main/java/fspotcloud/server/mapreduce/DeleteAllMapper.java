@@ -13,14 +13,14 @@ import com.google.appengine.tools.mapreduce.DatastoreMutationPool;
 
 public class DeleteAllMapper extends
 		AppEngineMapper<Key, Entity, NullWritable, NullWritable> {
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(DeleteAllMapper.class
 			.getName());
 
 	@Override
 	public void map(Key key, Entity value, Context context) {
-		log.info("Adding key to deletion pool: " + key);
 		DatastoreMutationPool mutationPool = this.getAppEngineContext(context)
 				.getMutationPool();
-		mutationPool.delete(value.getKey());
+		mutationPool.delete(key);
 	}
 }
