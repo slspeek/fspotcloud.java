@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
 import fspotcloud.client.admin.view.api.GlobalActionsView;
+import fspotcloud.client.main.view.api.TimerInterface;
 import fspotcloud.shared.admin.GetMetaDataResult;
 import fspotcloud.shared.dashboard.actions.CountPhotos;
 import fspotcloud.shared.dashboard.actions.DeleteAllPhotos;
@@ -26,11 +27,13 @@ public class GlobalActionsPresenter implements
 
 	final private GlobalActionsView globalActionsView;
 	final private DispatchAsync dispatcher;
+	final private TimerInterface timer;
 
 	@Inject
 	public GlobalActionsPresenter(GlobalActionsView globalActionsView,
-			DispatchAsync dispatcher) {
+			DispatchAsync dispatcher, TimerInterface timer) {
 		super();
+		this.timer = timer;
 		this.globalActionsView = globalActionsView;
 		globalActionsView.setPresenter(this);
 		this.dispatcher = dispatcher;
@@ -44,46 +47,31 @@ public class GlobalActionsPresenter implements
 
 					@Override
 					public void onFailure(Throwable caught) {
-						enableButton();
 						log.log(Level.SEVERE, "Action Exception ", caught);
 					}
 
 					@Override
 					public void onSuccess(VoidResult result) {
-						enableButton();
-
 					}
 
-					private void enableButton() {
-						globalActionsView.getDeleteAllPhotosButton()
-								.setEnabled(true);
-					}
 				});
 	}
 
 	@Override
 	public void deleteAllTags() {
 		globalActionsView.getDeleteAllTagsButton().setEnabled(false);
-		dispatcher.execute(new DeleteAllTags(), new AsyncCallback<VoidResult>() {
+		dispatcher.execute(new DeleteAllTags(),
+				new AsyncCallback<VoidResult>() {
 
-			@Override
-			public void onFailure(Throwable caught) {
-				enableButton();
-				log.log(Level.SEVERE, "Action Exception ", caught);
+					@Override
+					public void onFailure(Throwable caught) {
+						log.log(Level.SEVERE, "Action Exception ", caught);
+					}
 
-			}
-
-			@Override
-			public void onSuccess(VoidResult result) {
-				enableButton();
-
-			}
-
-			private void enableButton() {
-				globalActionsView.getDeleteAllTagsButton().setEnabled(true);
-			}
-		});
-
+					@Override
+					public void onSuccess(VoidResult result) {
+					}
+				});
 	}
 
 	@Override
@@ -117,19 +105,15 @@ public class GlobalActionsPresenter implements
 				new AsyncCallback<VoidResult>() {
 
 					public void onFailure(Throwable caught) {
-						enableButton();
 						log.log(Level.SEVERE, "Action Exception ", caught);
 					}
 
 					@Override
 					public void onSuccess(VoidResult result) {
 						log.info("succes update");
-						enableButton();
 					}
 
-					private void enableButton() {
-						globalActionsView.getUpdateButton().setEnabled(true);
-					}
+					
 				});
 	}
 
@@ -150,7 +134,15 @@ public class GlobalActionsPresenter implements
 
 					@Override
 					public void onFailure(Throwable caught) {
-						log.log(Level.SEVERE, "Action Exception ", caught);
+						log.log(Level.SEVERE, "Action Exception from remote: ", caught);
+						timer.setRunnable(new Runnable() {
+
+							@Override
+							public void run() {
+								getMetaData();
+							}
+						});
+						timer.schedule(6000);
 					}
 				});
 
@@ -168,10 +160,39 @@ public class GlobalActionsPresenter implements
 				String.valueOf(info.getTagCount()));
 		globalActionsView.getPendingCommandCountValue().setText(
 				String.valueOf(info.getPendingCommandCount()));
+
+		globalActionsView.getDeleteAllTagsButton().setEnabled(
+				!info.isDeleteTagsActive());
+		globalActionsView.getCountPhotosButton().setEnabled(
+				!info.isCountPhotosActive());
+		globalActionsView.getDeleteAllPhotosButton().setEnabled(
+				!info.isDeletePhotosActive());
+		globalActionsView.getLoadImagesButton().setEnabled(
+				!info.isImportImagesActive());
+		if (info.isCountPhotosActive() || info.isDeletePhotosActive()
+				|| info.isDeleteTagsActive() || info.isImportImagesActive()) {
+			timer.setRunnable(new Runnable() {
+
+				@Override
+				public void run() {
+					getMetaData();
+				}
+			});
+			timer.schedule(2000);
+		}
+		timer.setRunnable(new Runnable() {
+
+			@Override
+			public void run() {
+				getMetaData();
+			}
+		});
+		timer.schedule(6000);
 	}
 
 	@Override
 	public void countPhotos() {
+		globalActionsView.getCountPhotosButton().setEnabled(false);
 		dispatcher.execute(new CountPhotos(), new AsyncCallback<VoidResult>() {
 			@Override
 			public void onFailure(Throwable caught) {
@@ -187,6 +208,7 @@ public class GlobalActionsPresenter implements
 
 	@Override
 	public void importImageData() {
+		globalActionsView.getLoadImagesButton().setEnabled(false);
 		dispatcher.execute(new ImportImageData(),
 				new AsyncCallback<VoidResult>() {
 

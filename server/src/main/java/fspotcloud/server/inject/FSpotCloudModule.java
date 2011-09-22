@@ -1,8 +1,11 @@
 package fspotcloud.server.inject;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
@@ -14,6 +17,8 @@ import fspotcloud.server.control.SchedulerInterface;
 import fspotcloud.server.control.reciever.MetaReciever;
 import fspotcloud.server.control.reciever.PhotoReciever;
 import fspotcloud.server.control.reciever.TagReciever;
+import fspotcloud.server.mapreduce.MapReduceInfo;
+import fspotcloud.server.mapreduce.MapReduceStateUtil;
 
 public class FSpotCloudModule extends AbstractModule {
 
@@ -31,8 +36,15 @@ public class FSpotCloudModule extends AbstractModule {
 		bind(Queue.class).annotatedWith(Names.named("default")).toInstance(
 				QueueFactory.getDefaultQueue());
 		bind(SchedulerInterface.class).to(Scheduler.class);
+		bind(MapReduceInfo.class).to(MapReduceStateUtil.class);
+
 		install(new FactoryModuleBuilder()
 				.build(ImageDataImporterFactory.class));
+	}
+
+	@Provides
+	DatastoreService getDatastoreService() {
+		return DatastoreServiceFactory.getDatastoreService();
 	}
 
 }

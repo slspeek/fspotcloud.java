@@ -29,7 +29,7 @@ public class DeleteAllTagsHandler extends
 	public VoidResult execute(DeleteAllTags action, ExecutionContext context)
 			throws DispatchException {
 		try {
-			TaskOptions task = MapReduceUtil.buildStartJob("Delete All Mapper",
+			TaskOptions task = MapReduceUtil.buildStartJob("Delete All Tags Mapper",
 					"TagDO");
 			queue.add(task);
 		} catch (Exception e) {

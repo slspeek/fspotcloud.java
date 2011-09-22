@@ -47,14 +47,8 @@ public class ButtonPanelPresenterImpl implements
 		addActionGroup(allActions.get("Raster"), true);
 
 		ActionMap actions = allActions.get("Slideshow");
-		addAction(actions.get(SlideshowType.SLIDESHOW_SLOWER), false);
-		addAction(actions.get(SlideshowType.SLIDESHOW__END), false);
-		addSpacer(false);
-		Widget w = slideshowPresenter.getView().asWidget();
-		buttonPanelView.add(w, false);
-		addSpacer(false);
+		
 		addAction(actions.get(SlideshowType.SLIDESHOW_START), false);
-		addAction(actions.get(SlideshowType.SLIDESHOW_FASTER), false);
 		addSpacer(false);
 
 		addActionGroup(allActions.get("Application"), false);
