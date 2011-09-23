@@ -8,9 +8,9 @@ import fspotcloud.client.view.action.api.ActionDef;
 public enum NavigationType implements ActionDef {
 
 	HOME("home", "Home", "Go to the first image of the category", new KeyStroke(KeyCodes.KEY_HOME), null),
-	END("end", "End","Go to the last image of the category", new KeyStroke( KeyCodes.KEY_END), null),
 	BACK("back", "Back", "Previous image in this category",new KeyStroke(KeyCodes.KEY_LEFT), null),
-	NEXT("next", "Next", "Next image in this category", new KeyStroke(KeyCodes.KEY_RIGHT), null);
+	NEXT("next", "Next", "Next image in this category", new KeyStroke(KeyCodes.KEY_RIGHT), null),
+	END("end", "End","Go to the last image of the category", new KeyStroke( KeyCodes.KEY_END), null);
 
 	
 	final private KeyStroke key;

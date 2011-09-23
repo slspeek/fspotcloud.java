@@ -18,7 +18,7 @@ public class AboutEventHandler implements AboutEvent.Handler,
 	private static final Logger log = Logger
 			.getLogger(AboutEventHandler.class.getName());
 	final private LoadNewLocationActionFactory locationFactory;
-	private Runnable projectHostingAction, mavenAction, 
+	private Runnable projectHostingAction, fspotAction, mavenAction, 
 			protonAction, licenseAction, stevenAction;
 	final private EventBus eventBus;
 
@@ -35,6 +35,9 @@ public class AboutEventHandler implements AboutEvent.Handler,
 		switch ((AboutType) e.getActionDef()) {
 		case PROJECT_HOSTING:
 			projectHostingAction.run();
+			break;
+		case F_SPOT:
+			fspotAction.run();
 			break;
 		case MAVEN:
 			mavenAction.run();
@@ -61,14 +64,14 @@ public class AboutEventHandler implements AboutEvent.Handler,
 	private void initLocationActions() {
 		projectHostingAction = locationFactory
 				.get("http://code.google.com/p/fspotcloud");
+		fspotAction = locationFactory.get("http://f-spot.org/");
 		mavenAction = locationFactory
 				.get("http://slspeek.github.com/FSpotCloudSite/");
-			licenseAction = locationFactory
+		licenseAction = locationFactory
 				.get("http://slspeek.github.com/FSpotCloudSite/license.html");
 		protonAction = locationFactory.get("http://protonradio.com");
 		stevenAction = locationFactory
 				.get("http://profiles.google.com/slspeek");
-
 	}
 
 }

@@ -13,13 +13,14 @@ public enum RasterType implements ActionDef {
 			"remove-row", "Remove row", "Removes one row from the raster",
 			new KeyStroke('E'), null), SET_DEFAULT_RASTER("reset",
 			"Reset raster", "Resets raster to defaults", new KeyStroke('0'),
-			null), SET_RASTER_2x2("2x2", "2x2", "Sets the raster to 2 x 2",
+			null), TOGGLE_TABULAR_VIEW(
+			"raster", "Toggle raster", "Toggle tabular viewing", new KeyStroke(
+					'T'), new KeyStroke((int) '1')),
+			SET_RASTER_2x2("2x2", "2x2", "Sets the raster to 2 x 2",
 			new KeyStroke('2'), null), SET_RASTER_3x3("3x3", "3x3",
 			"Sets the raster to 3 x 3", new KeyStroke('3'), null), SET_RASTER_4x4(
 			"4x4", "4x4", "Sets the raster to 4 x 4", new KeyStroke('4'), null), SET_RASTER_5x5(
-			"5x5", "5x5", "Sets the raster to 5 x 5", new KeyStroke('5'), null), TOGGLE_TABULAR_VIEW(
-			"raster", "Toggle raster", "Toggle tabular viewing", new KeyStroke(
-					'T'), new KeyStroke((int) '1'));
+			"5x5", "5x5", "Sets the raster to 5 x 5", new KeyStroke('5'), null) ;
 
 	final private KeyStroke key;
 	final private KeyStroke alternateKey;
