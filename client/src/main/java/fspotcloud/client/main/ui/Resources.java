@@ -134,4 +134,7 @@ public interface Resources extends ClientBundle {
 	
 	@Source("images/ZoomIn.png")
 	ImageResource zoomInIcon();
+
+	@Source("images/F-Spot.png")
+	ImageResource fspotIcon();
 }

@@ -6,6 +6,7 @@ import fspotcloud.client.view.action.api.ActionDef;
 public enum AboutType implements ActionDef {
 	LICENSE("license", "License", "View the license",new KeyStroke('L'), null),
 	PROJECT_HOSTING("project-hosting", "Project site","Go to the site on Google Project Hosting", new KeyStroke('J'), null),
+	F_SPOT("f-spot", "F-Spot", "Go to the F-Spot site", new KeyStroke('N'), null),
 	MAVEN("maven", "Maven site","Go to the Maven generated site", new KeyStroke('M'), null),
 	PROTON("proton", "Proton radio","Go to the Proton site", new KeyStroke('P'), null),
 	STEVEN("steven", "Authors website",	"Go to the authors website", new KeyStroke('Z'), null);

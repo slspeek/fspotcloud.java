@@ -22,6 +22,7 @@ public class AboutMapBuilder extends AbstractActionMap {
 	
 	public void buildMap() {
 		put(AboutType.PROJECT_HOSTING, resources.projectSiteIcon());
+		put(AboutType.F_SPOT, resources.fspotIcon());
 		put(AboutType.MAVEN, resources.mavenIcon());
 		put(AboutType.LICENSE, resources.licenceIcon());
 		put(AboutType.PROTON, resources.protonIcon());

@@ -1,9 +1,9 @@
 package fspotcloud.client.main.event;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import com.google.gwt.resources.client.ImageResource;
 import com.google.inject.Provider;
@@ -16,7 +16,7 @@ public abstract class AbstractActionMap implements ActionMap {
 
 	final protected UserActionFactory userActionFactory;
 	
-	Map<ActionDef,UserAction> actionMap = new HashMap<ActionDef, UserAction>();
+	SortedMap<ActionDef,UserAction> actionMap = new TreeMap<ActionDef, UserAction>();
 	final private String description;
 	
 	public AbstractActionMap(UserActionFactory userActionFactory, String description) {
