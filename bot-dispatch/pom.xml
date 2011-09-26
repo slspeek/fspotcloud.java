@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>fspotcloud</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.40-6.7.9.4</version>
+	</parent>
+	<groupId>fspotcloud.bot-dispatch</groupId>
+	<artifactId>bot-dispatch</artifactId>
+	<version>0.40-6.7.9.4</version>
+	<name>Bot Dispatch</name>
+	<packaging>pom</packaging>
+	<description>GWT-Dispatch extension for bot/controllers</description>
+	<build>
+	</build>
+	<modules>
+		<module>command-api</module>
+		<module>gae-command</module>
+		<module>controller</module> 
+		<module>bot</module>
+	</modules>
+</project>
