@@ -13,6 +13,12 @@
 	<name>Command Model Interface</name>
 	<dependencies>
 		<dependency>
+			<groupId>fspotcloud.deps</groupId>
+			<artifactId>gwt-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-1.0-sdk</artifactId>
 			<version>${gae.version}</version>
