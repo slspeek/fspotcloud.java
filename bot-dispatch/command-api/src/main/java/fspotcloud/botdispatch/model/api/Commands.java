@@ -1,17 +1,18 @@
 package fspotcloud.botdispatch.model.api;
 
-import java.util.List;
+import net.customware.gwt.dispatch.shared.Action;
+import net.customware.gwt.dispatch.shared.Result;
+
+import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface Commands {
 
-	Command create();
+	Command createAndSave(Action<?> action, AsyncCallback<? extends Result> callback);
 
-	Object[] popOldestCommand();
-
-	boolean allReadyExists(String cmd, List<String> args);
-
-	void save(Command c);
-
+	Command popFirstCommand();
+	
+	void save(Command cmd);
+	
 	int getCountUnderAThousend();
 
 }

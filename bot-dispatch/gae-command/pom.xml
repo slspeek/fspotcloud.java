@@ -10,12 +10,19 @@
 	<artifactId>gae-command</artifactId>
 	<version>0.40-6.7.9.4</version>
 	<packaging>jar</packaging>
-	<name>Model AppEngine Implementation</name>
+	<name>Command AppEngine Implementation</name>
 	<dependencies>
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>command-api</artifactId>
 			<version>${project.version}</version>
+		</dependency>
+			<dependency>
+			<groupId>fspotcloud.bot-dispatch</groupId>
+			<artifactId>bot</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud.deps</groupId>

@@ -1,14 +1,15 @@
 package fspotcloud.botdispatch.model.command;
 
-import java.util.List;
-
 import javax.jdo.PersistenceManager;
 
 import junit.framework.TestSuite;
+import net.customware.gwt.dispatch.shared.Action;
+import net.customware.gwt.dispatch.shared.Result;
 
-import com.google.common.collect.ImmutableList;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Provider;
 
+import fspotcloud.botdispatch.bot.TestAction;
 import fspotcloud.botdispatch.model.DatastoreTest;
 import fspotcloud.botdispatch.model.PersistenceManagerProvider;
 import fspotcloud.botdispatch.model.api.Command;
@@ -23,53 +24,29 @@ public class CommandManagerTest extends DatastoreTest {
 	}
 
 	Commands commandManager;
-	String cmd = "format";
-	String cmd2 = "fdisk";
-	List<String> args = ImmutableList.of("a", "b", "c");
-	List<String> args2 = ImmutableList.of("aa", "-l", "d");
-
+	Action<?> action;
+	AsyncCallback<Result> callback;
+	
 	public void setUp() throws Exception {
 		super.setUp();
+		action = new TestAction("Jim");
 		commandManager = new CommandManager(pmProvider);
 	}
 
 	public void testCreate() {
-		Command cmdDO = commandManager.create();
-		assertNotNull(cmdDO);
-		cmdDO.setCmd(cmd);
-		cmdDO.setArgs(args);
-		commandManager.save(cmdDO);
+		Command cmdDO = commandManager.createAndSave(action, callback);
+		Command retieved = commandManager.popFirstCommand();
+		assertEquals(cmdDO.getAction(), retieved.getAction());
 	}
 	
-	public void testCreate2() {
-		Command cmdDO = commandManager.create();
-		assertNotNull(cmdDO);
-		cmdDO.setCmd(cmd2);
-		cmdDO.setArgs(args2);
-		commandManager.save(cmdDO);
-	}
-
-	public void testPopOldestCommand() {
-		testCreate();
-		Object[] command = commandManager.popOldestCommand();
-		assertEquals(cmd, command[0]);
-		Object[] array = (Object[]) command[1];
-		List list = ImmutableList.of(array);
-		
-		assertEquals(args, list);
-	}
-
-	public void testAllReadyExists() {
-		assertFalse(commandManager.allReadyExists(cmd, args));
-		testCreate();
-		assertTrue(commandManager.allReadyExists(cmd, args));
-		assertFalse(commandManager.allReadyExists(cmd2, args2));
-		testCreate2();
-		assertTrue(commandManager.allReadyExists(cmd2, args2));
-	}
 	
 	public void testCountZero() {
 		assertEquals(0, commandManager.getCountUnderAThousend());
 	}
 
+	public void testCountTwo() {
+		commandManager.createAndSave(action, callback);
+		commandManager.createAndSave(action, callback);
+		assertEquals(2, commandManager.getCountUnderAThousend());
+	}
 }

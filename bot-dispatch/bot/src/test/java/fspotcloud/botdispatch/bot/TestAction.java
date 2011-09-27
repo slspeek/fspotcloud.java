@@ -1,10 +1,20 @@
 package fspotcloud.botdispatch.bot;
 
+import java.io.Serializable;
+
 import net.customware.gwt.dispatch.shared.Action;
 
-public class TestAction implements Action<TestResult> {
+public class TestAction implements Action<TestResult>, Serializable {
 
-	private final String name;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 31253859248534756L;
+
+	private String name;
+
+	public TestAction() {
+	}
 
 	public TestAction(String name) {
 		super();
@@ -14,5 +24,14 @@ public class TestAction implements Action<TestResult> {
 	public String getName() {
 		return name;
 	}
-	
+
+	public boolean equals(Object other) {
+		if (other instanceof TestAction) {
+			return ((TestAction) other).getName().equals(name);
+
+		} else {
+			return false;
+		}
+	}
+
 }
