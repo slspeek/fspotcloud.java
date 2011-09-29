@@ -39,7 +39,7 @@ public class CommandWorkerImplTest extends TestCase {
 		sender = mock(ResultSender.class);
 		action = new TestAction("Richard");
 		callbackId = 1;
-		injector = Guice.createInjector(new BotModule(), new ActionsModule());
+		injector = Guice.createInjector(/* new BotModule(),*/ new ActionsModule());
 		dispatch = injector.getInstance(Dispatch.class);
 		resultCaptor = ArgumentCaptor.forClass(Object[].class);
 		remoteMethodCaptor = ArgumentCaptor.forClass(String.class);
