@@ -1,17 +1,14 @@
 package fspotcloud.botdispatch.controller.dispatch;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import junit.framework.TestCase;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import fspotcloud.botdispatch.bot.TestAction;
-import fspotcloud.botdispatch.bot.TestResult;
 import fspotcloud.botdispatch.model.api.Commands;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import fspotcloud.botdispatch.test.TestAction;
+import fspotcloud.botdispatch.test.TestResult;
 public class ControllerDispatchAsyncTest extends TestCase {
 
 	Commands commandManager;

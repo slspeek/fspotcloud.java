@@ -17,13 +17,17 @@ import org.mockito.ArgumentCaptor;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import fspotcloud.botdispatch.test.ActionsModule;
+import fspotcloud.botdispatch.test.TestAction;
+import fspotcloud.botdispatch.test.TestResult;
+
 public class CommandWorkerImplTest extends TestCase {
 
 	private ResultSender sender;
 	private Dispatch dispatch;
 
 	private Action<?> action;
-	private String callbackId;
+	private long callbackId;
 	Injector injector;
 	ArgumentCaptor<Object[]> resultCaptor;
 	ArgumentCaptor<String> remoteMethodCaptor;
@@ -34,7 +38,7 @@ public class CommandWorkerImplTest extends TestCase {
 	protected void setUp() throws Exception {
 		sender = mock(ResultSender.class);
 		action = new TestAction("Richard");
-		callbackId = "GNU";
+		callbackId = 1;
 		injector = Guice.createInjector(new BotModule(), new ActionsModule());
 		dispatch = injector.getInstance(Dispatch.class);
 		resultCaptor = ArgumentCaptor.forClass(Object[].class);

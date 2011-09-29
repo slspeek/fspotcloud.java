@@ -1,4 +1,4 @@
-package fspotcloud.botdispatch.bot;
+package fspotcloud.botdispatch.test;
 
 import java.io.Serializable;
 

@@ -1,8 +1,8 @@
-package fspotcloud.botdispatch.bot;
+package fspotcloud.botdispatch.test;
 
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
-class ActionsModule extends ActionHandlerModule {
+public class ActionsModule extends ActionHandlerModule {
 
 	@Override
 	protected void configureHandlers() {

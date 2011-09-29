@@ -4,11 +4,11 @@
 	<parent>
 		<groupId>fspotcloud.bot-dispatch</groupId>
 		<artifactId>bot-dispatch</artifactId>
-		<version>0.40-6.7.9.4</version>
+		<version>0.40-6.7.9.7</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>gae-command</artifactId>
-	<version>0.40-6.7.9.4</version>
+	<version>0.40-6.7.9.7</version>
 	<packaging>jar</packaging>
 	<name>Command AppEngine Implementation</name>
 	<dependencies>
@@ -19,9 +19,8 @@
 		</dependency>
 			<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
-			<artifactId>bot</artifactId>
+			<artifactId>test</artifactId>
 			<version>${project.version}</version>
-			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -68,13 +67,6 @@
 			<version>r07</version>
 			<type>jar</type>
 			<scope>test</scope>
-		</dependency>
-		<!-- Test scope -->
-		<dependency>
-			<groupId>fspotcloud.deps</groupId>
-			<artifactId>cloudcover-deps</artifactId>
-			<version>${project.version}</version>
-			<type>pom</type>
 		</dependency>
 	</dependencies>
 	<build>

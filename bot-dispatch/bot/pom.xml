@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>fspotcloud.bot-dispatch</groupId>
 		<artifactId>bot-dispatch</artifactId>
-		<version>0.40-6.7.9.4</version>
+		<version>0.40-6.7.9.7</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>bot</artifactId>
@@ -40,6 +40,12 @@
 			<artifactId>gwt-deps</artifactId>
 			<version>${project.version}</version>
 			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>fspotcloud.bot-dispatch</groupId>
+			<artifactId>test</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>

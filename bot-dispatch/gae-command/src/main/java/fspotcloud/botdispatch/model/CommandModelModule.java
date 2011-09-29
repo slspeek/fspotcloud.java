@@ -8,7 +8,7 @@ import com.google.inject.Singleton;
 import fspotcloud.botdispatch.model.api.Commands;
 import fspotcloud.botdispatch.model.command.CommandManager;
 
-public class ModelModule extends AbstractModule {
+public class CommandModelModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
