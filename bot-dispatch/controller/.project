@@ -9,6 +9,7 @@
     <project>gae-command</project>
     <project>guice-deps</project>
     <project>gwt-deps</project>
+    <project>test</project>
     <project>xmlrpc-server-deps</project>
   </projects>
   <buildSpec>

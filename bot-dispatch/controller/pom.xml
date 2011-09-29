@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>fspotcloud.bot-dispatch</groupId>
 		<artifactId>bot-dispatch</artifactId>
-		<version>0.40-6.7.9.4</version>
+		<version>0.40-6.7.9.7</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>controller</artifactId>
@@ -45,6 +45,11 @@
 			<type>pom</type>
 		</dependency>
 		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>test</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<scope>test</scope>
@@ -54,6 +59,28 @@
 			<artifactId>bot</artifactId>
 			<version>${project.version}</version>
 			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+			<!--
+			GAE libraries for local testing as described here:
+			http://code.google.com/appengine/docs/java/howto/unittesting.html
+		-->
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-stubs</artifactId>
+			<version>${gae.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-local-runtime</artifactId>
+			<version>${gae.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-testing</artifactId>
+			<version>${gae.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

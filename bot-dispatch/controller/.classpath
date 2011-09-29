@@ -10,6 +10,8 @@
   <classpathentry kind="var" path="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" sourcepath="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-1.0-sdk/1.5.3/appengine-api-1.0-sdk-1.5.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-labs/1.5.3/appengine-api-labs-1.5.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-stubs/1.5.3/appengine-api-stubs-1.5.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-local-runtime/1.5.3/appengine-local-runtime-1.5.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-testing/1.5.3/appengine-testing-1.5.3.jar"/>
   <classpathentry kind="src" path="/bot"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/testing/cloudcover/cloudcover/1.0.1.final-GAE1.5.3-GWT2.3.0/cloudcover-1.0.1.final-GAE1.5.3-GWT2.3.0.jar" sourcepath="M2_REPO/com/google/appengine/testing/cloudcover/cloudcover/1.0.1.final-GAE1.5.3-GWT2.3.0/cloudcover-1.0.1.final-GAE1.5.3-GWT2.3.0-sources.jar"/>
@@ -34,6 +36,7 @@
   <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar" sourcepath="M2_REPO/junit/junit/3.8.1/junit-3.8.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/mockito/mockito-core/1.9.0-rc1/mockito-core-1.9.0-rc1.jar" sourcepath="M2_REPO/org/mockito/mockito-core/1.9.0-rc1/mockito-core-1.9.0-rc1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/objenesis/objenesis/1.0/objenesis-1.0.jar" sourcepath="M2_REPO/org/objenesis/objenesis/1.0/objenesis-1.0-sources.jar"/>
+  <classpathentry kind="src" path="/test"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/ws/commons/util/ws-commons-util/1.0.2/ws-commons-util-1.0.2.jar" sourcepath="M2_REPO/org/apache/ws/commons/util/ws-commons-util/1.0.2/ws-commons-util-1.0.2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar" sourcepath="M2_REPO/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/xmlrpc/xmlrpc-client/3.0/xmlrpc-client-3.0.jar" sourcepath="M2_REPO/xmlrpc/xmlrpc-client/3.0/xmlrpc-client-3.0-sources.jar"/>

@@ -5,7 +5,6 @@ import java.util.Date;
 import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.Result;
 
-import com.google.appengine.api.datastore.Key;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import fspotcloud.botdispatch.model.api.Command;
@@ -14,8 +13,8 @@ public class NullCommand implements Command {
 
 	public static Command INSTANCE = new NullCommand();
 	@Override
-	public Key getKey() {
-		return null;
+	public Long getId() {
+		return -1L;
 	}
 
 	@Override
@@ -31,5 +30,11 @@ public class NullCommand implements Command {
 	@Override
 	public Date getCtime() {
 		return null;
+	}
+
+	@Override
+	public void setId(Long id) {
+		// TODO Auto-generated method stub
+		
 	}
 }

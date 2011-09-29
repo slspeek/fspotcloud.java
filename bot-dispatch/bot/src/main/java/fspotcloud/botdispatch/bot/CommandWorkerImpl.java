@@ -25,11 +25,11 @@ public class CommandWorkerImpl implements CommandWorker {
 	final private Dispatch dispatch;
 
 	final private Action<?> action;
-	final private String callbackId;
+	final private long callbackId;
 
 	@Inject
 	public CommandWorkerImpl(ResultSender sender, Dispatch dispatch,
-			@Assisted Action<?> action, @Assisted String callbackId) {
+			@Assisted Action<?> action, @Assisted long callbackId) {
 		super();
 		this.sender = sender;
 		this.dispatch = dispatch;

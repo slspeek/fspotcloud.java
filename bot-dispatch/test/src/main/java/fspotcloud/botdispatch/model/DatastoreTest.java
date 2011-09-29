@@ -3,7 +3,6 @@ package fspotcloud.botdispatch.model;
 import java.util.logging.Logger;
 
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import com.google.appengine.testing.cloudcover.server.KindTrackingDatastoreDelegate;
 import com.google.appengine.testing.cloudcover.util.CloudCoverLocalServiceTestHelper;

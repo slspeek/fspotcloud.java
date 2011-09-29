@@ -5,20 +5,21 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-6.7.9.4</version>
+		<version>0.40-6.7.9.7</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>bot-dispatch</artifactId>
-	<version>0.40-6.7.9.4</version>
+	<version>0.40-6.7.9.7</version>
 	<name>Bot Dispatch</name>
 	<packaging>pom</packaging>
 	<description>GWT-Dispatch extension for bot/controllers</description>
 	<build>
 	</build>
 	<modules>
+		<module>test</module>
 		<module>command-api</module>
 		<module>gae-command</module>
-		<module>controller</module> 
+		<module>controller</module>
 		<module>bot</module>
 	</modules>
 </project>

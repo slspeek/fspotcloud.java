@@ -11,6 +11,8 @@ public interface Commands {
 
 	Command popFirstCommand();
 	
+	Command getById(long callbackId);
+	
 	void save(Command cmd);
 	
 	int getCountUnderAThousend();

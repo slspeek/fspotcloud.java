@@ -1,0 +1,5 @@
+package fspotcloud.botdispatch.test;
+
+public interface HeavyReport {
+	void report(String message);
+}

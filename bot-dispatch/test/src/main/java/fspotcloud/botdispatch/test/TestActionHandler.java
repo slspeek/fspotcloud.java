@@ -1,4 +1,4 @@
-package fspotcloud.botdispatch.bot;
+package fspotcloud.botdispatch.test;
 
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;

@@ -12,7 +12,6 @@
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-stubs/1.5.3/appengine-api-stubs-1.5.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-local-runtime/1.5.3/appengine-local-runtime-1.5.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-testing/1.5.3/appengine-testing-1.5.3.jar"/>
-  <classpathentry kind="src" path="/bot"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/testing/cloudcover/cloudcover/1.0.1.final-GAE1.5.3-GWT2.3.0/cloudcover-1.0.1.final-GAE1.5.3-GWT2.3.0.jar" sourcepath="M2_REPO/com/google/appengine/testing/cloudcover/cloudcover/1.0.1.final-GAE1.5.3-GWT2.3.0/cloudcover-1.0.1.final-GAE1.5.3-GWT2.3.0-sources.jar"/>
   <classpathentry kind="src" path="/command-api"/>
   <classpathentry kind="var" path="M2_REPO/commons-codec/commons-codec/1.2/commons-codec-1.2.jar"/>
@@ -32,6 +31,7 @@
   <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-servlet/2.3.0/gwt-servlet-2.3.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-servlet/2.3.0/gwt-servlet-2.3.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar" sourcepath="M2_REPO/junit/junit/3.8.1/junit-3.8.1-sources.jar"/>
+  <classpathentry kind="src" path="/test"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/ws/commons/ws-commons-util/1.0.1/ws-commons-util-1.0.1.jar" sourcepath="M2_REPO/org/apache/ws/commons/ws-commons-util/1.0.1/ws-commons-util-1.0.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar" sourcepath="M2_REPO/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/xmlrpc/xmlrpc-client/3.0/xmlrpc-client-3.0.jar" sourcepath="M2_REPO/xmlrpc/xmlrpc-client/3.0/xmlrpc-client-3.0-sources.jar"/>

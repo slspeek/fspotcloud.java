@@ -8,7 +8,7 @@ import com.google.inject.Injector;
 
 public class ModelModuleTest extends TestCase {
 
-	ModelModule module = new ModelModule();
+	CommandModelModule module = new CommandModelModule();
 	
 	public static TestSuite suite() {
 		return new TestSuite(ModelModuleTest.class);
