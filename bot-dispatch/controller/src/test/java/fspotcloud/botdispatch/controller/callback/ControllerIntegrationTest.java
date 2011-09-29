@@ -27,6 +27,11 @@ import fspotcloud.botdispatch.test.TestAction;
 import fspotcloud.botdispatch.test.TestAsyncCallback;
 import fspotcloud.botdispatch.test.TestResult;
 public class ControllerIntegrationTest extends DatastoreTest {
+	public ControllerIntegrationTest(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 	Provider<PersistenceManager> pmProvider = new PersistenceManagerProvider();
 	Commands commandManager;
 	TestAction action = new TestAction("Your name here");
@@ -38,7 +43,7 @@ public class ControllerIntegrationTest extends DatastoreTest {
 	Controller controller;
 	ResultHandlerFactory handlerFactory;
 
-	public void setUp() throws Exception {
+	public void setUp() {
 		super.setUp();
 		report = mock(HeavyReport.class);
 		injector = Guice.createInjector(new ControllerModule(),
@@ -47,6 +52,7 @@ public class ControllerIntegrationTest extends DatastoreTest {
 		commandManager = new CommandManager(pmProvider);
 		controller = new Controller(commandManager, handlerFactory);
 		// Serialize to a byte array
+		try {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutputStream out = new ObjectOutputStream(bos);
 		out.writeObject(result);
@@ -54,6 +60,9 @@ public class ControllerIntegrationTest extends DatastoreTest {
 
 		// Get the bytes of the serialized object
 		serializedResult = bos.toByteArray();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 	}
 

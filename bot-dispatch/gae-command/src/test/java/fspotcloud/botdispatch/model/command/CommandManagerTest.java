@@ -19,6 +19,11 @@ import fspotcloud.botdispatch.test.TestAsyncCallback;
 
 public class CommandManagerTest extends DatastoreTest {
 
+	public CommandManagerTest(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 	Provider<PersistenceManager> pmProvider = new PersistenceManagerProvider();
 
 	public static TestSuite suite() {
@@ -29,7 +34,7 @@ public class CommandManagerTest extends DatastoreTest {
 	Action<?> action;
 	TestAsyncCallback callback = new TestAsyncCallback();
 	
-	public void setUp() throws Exception {
+	public void setUp()  {
 		super.setUp();
 		action = new TestAction("Jim");
 		commandManager = new CommandManager(pmProvider);
