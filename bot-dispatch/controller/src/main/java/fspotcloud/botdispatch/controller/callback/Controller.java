@@ -31,18 +31,18 @@ public class Controller {
 	@SuppressWarnings("unchecked")
 	public Object[] callback(long callbackId, byte[] serializedResult) throws IOException {
 		Object[] result;
-		if (callbackId != -1) {
+		if (callbackId != -1L) {
 			try {
-				callbackImpl(callbackId, serializedResult);
+				doCallback(callbackId, serializedResult);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
-		Command newCommand = commandManager.popFirstCommand();
+		Command newCommand = commandManager.getAndLockFirstCommand();
 		if (newCommand instanceof NullCommand) {
-			result = new Object[] { -1, null };
+			result = new Object[] { -1L, null };
 		} else {
 			Action<?> action = newCommand.getAction();
 			// Serialize to a byte array
@@ -58,7 +58,7 @@ public class Controller {
 		return result;
 	}
 
-	private void callbackImpl(long callbackId, byte[] serializedResult)
+	private void doCallback(long callbackId, byte[] serializedResult)
 			throws IOException, ClassNotFoundException {
 		Command callbackCommand = commandManager.getById(callbackId);
 		ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(

@@ -66,25 +66,19 @@ public class CommandManager implements Commands {
 	}
 
 	@Override
-	public Command popFirstCommand() {
+	public Command getAndLockFirstCommand() {
 		PersistenceManager pm = pmProvider.get();
 		try {
 			Query query = pm.newQuery(CommandDO.class);
 			query.setOrdering("ctime");
+			query.setFilter("locked == false");
 			query.setRange(0, 1);
 			List<CommandDO> cmdList = (List<CommandDO>) query.execute();
 			if (cmdList.size() > 0) {
-				Command oldest = cmdList.get(0);
-				Command result = null;
-				try {
-					result = new CommandDO(oldest.getAction(), oldest.getCallback());
-					result.setId(oldest.getId());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				pm.deletePersistent(oldest);
-				return result;
+				Command first = cmdList.get(0);
+				first.setLocked(true);
+				pm.makePersistent(first);
+				return first;
 			} else {
 				return NullCommand.INSTANCE;
 			}
@@ -109,5 +103,17 @@ public class CommandManager implements Commands {
 			pm.close();
 		}
 		return cmd;
+	}
+
+	@Override
+	public void delete(Command command) {
+		Long id = command.getId(); 
+		PersistenceManager pm = pmProvider.get();
+		CommandDO cmd = pm.getObjectById(CommandDO.class, id);
+		try {
+			pm.deletePersistent(cmd);
+		} finally {
+			pm.close();
+		}
 	}
 }

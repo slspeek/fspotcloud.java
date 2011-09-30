@@ -4,10 +4,7 @@ import javax.jdo.PersistenceManager;
 
 import junit.framework.TestSuite;
 import net.customware.gwt.dispatch.shared.Action;
-import net.customware.gwt.dispatch.shared.Result;
 
-import com.google.appengine.api.datastore.Key;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Provider;
 
 import fspotcloud.botdispatch.model.DatastoreTest;
@@ -18,11 +15,6 @@ import fspotcloud.botdispatch.test.TestAction;
 import fspotcloud.botdispatch.test.TestAsyncCallback;
 
 public class CommandManagerTest extends DatastoreTest {
-
-	public CommandManagerTest(String name) {
-		super(name);
-		// TODO Auto-generated constructor stub
-	}
 
 	Provider<PersistenceManager> pmProvider = new PersistenceManagerProvider();
 
@@ -42,23 +34,24 @@ public class CommandManagerTest extends DatastoreTest {
 
 	public void testCreate() {
 		Command cmdDO = commandManager.createAndSave(action, callback);
-		Command retrieved = commandManager.popFirstCommand();
+		Command retrieved = commandManager.getAndLockFirstCommand();
+		assertTrue(retrieved.isLocked());
 		assertEquals(cmdDO.getAction(), retrieved.getAction());
 		assertNotNull(retrieved.getCallback());
 		assertEquals(TestAsyncCallback.class, retrieved.getCallback().getClass());
 	}
 	
 	
-//	
-//	public void testCountZero() {
-//		assertEquals(0, commandManager.getCountUnderAThousend());
-//	}
-//
-//	public void testCountTwo() {
-//		commandManager.createAndSave(action, callback);
-//		commandManager.createAndSave(action, callback);
-//		assertEquals(2, commandManager.getCountUnderAThousend());
-//	}
+	
+	public void testCountZero() {
+		assertEquals(0, commandManager.getCountUnderAThousend());
+	}
+
+	public void testCountTwo() {
+		commandManager.createAndSave(action, callback);
+		commandManager.createAndSave(action, callback);
+		assertEquals(2, commandManager.getCountUnderAThousend());
+	}
 	
 	public void testGetById() {
 		Command cmd = commandManager.createAndSave(action, callback);
@@ -73,4 +66,10 @@ public class CommandManagerTest extends DatastoreTest {
 		assertEquals(TestAsyncCallback.class, retrieved.getCallback().getClass());
 		
 	}
+	
+	public void testDelete() {
+		Command cmd = commandManager.createAndSave(action, callback);
+		commandManager.delete(cmd);
+	}
+	
 }

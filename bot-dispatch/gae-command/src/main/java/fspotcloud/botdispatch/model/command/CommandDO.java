@@ -41,6 +41,9 @@ public class CommandDO implements Command {
 	@Persistent
 	private Date ctime;
 
+	@Persistent
+	private boolean locked;
+	
 	public CommandDO(Action<?> action, AsyncCallback<? extends Result> callback) throws IOException {
 		ctime = new Date();
 		this.action = action;
@@ -81,7 +84,7 @@ public class CommandDO implements Command {
 			ObjectInputStream in = null;
 			try {
 				in = new ObjectInputStream(new ByteArrayInputStream(
-						callbackBlob.getBytes()));
+						actionBlob.getBytes()));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -143,8 +146,15 @@ public class CommandDO implements Command {
 		return result;
 	}
 
-	@Override
-	public void setId(Long id) {
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+
+	public boolean isLocked() {
+		return locked;
+	}
+
+	public void setId(long id) {
 		this.id = id;
 	}
 

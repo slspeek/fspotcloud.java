@@ -33,8 +33,15 @@ public class NullCommand implements Command {
 	}
 
 	@Override
-	public void setId(Long id) {
+	public boolean isLocked() {
+		return false;
+	}
+
+	@Override
+	public void setLocked(boolean b) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 }

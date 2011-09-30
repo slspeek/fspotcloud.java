@@ -1,26 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-  <name>war</name>
-  <comment>The totality of the web application. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects>
-    <project>appengine-deps</project>
-    <project>client</project>
-    <project>cloudcover-deps</project>
-    <project>guice-deps</project>
-    <project>gwt-deps</project>
-    <project>mapreduce-deps</project>
-    <project>model</project>
-    <project>model-api</project>
-    <project>rpc</project>
-    <project>server</project>
-    <project>servlet-deps</project>
-    <project>xmlrpc-server-deps</project>
-  </projects>
-  <buildSpec>
-    <buildCommand>
-      <name>org.eclipse.jdt.core.javabuilder</name>
-    </buildCommand>
-  </buildSpec>
-  <natures>
-    <nature>org.eclipse.jdt.core.javanature</nature>
-  </natures>
+	<name>war</name>
+	<comment>The totality of the web application. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+	<projects>
+		<project>appengine-deps</project>
+		<project>client</project>
+		<project>cloudcover-deps</project>
+		<project>guice-deps</project>
+		<project>gwt-deps</project>
+		<project>mapreduce-deps</project>
+		<project>model</project>
+		<project>model-api</project>
+		<project>rpc</project>
+		<project>server</project>
+		<project>servlet-deps</project>
+		<project>xmlrpc-server-deps</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.maven.ide.eclipse.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.maven.ide.eclipse.maven2Nature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
 </projectDescription>

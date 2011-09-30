@@ -38,17 +38,20 @@ public class ControllerTest extends TestCase {
 	HeavyReport report;
 	Controller controller;
 	ResultHandlerFactory handlerFactory;
+	CommandDO command;
 
 	public void setUp() throws Exception {
 		super.setUp();
 		report = mock(HeavyReport.class);
-		injector = Guice.createInjector(new ControllerModule(),
-				new HeavyReportModule(report), new CommandModelModule());
-		handlerFactory = injector.getInstance(ResultHandlerFactory.class);
 		commandManager = mock(Commands.class);
-		CommandDO command = new CommandDO(action, callback);
+		injector = Guice.createInjector(new ControllerModule(),
+				new HeavyReportModule(report), new TestCommandModelModule(commandManager));
+		handlerFactory = injector.getInstance(ResultHandlerFactory.class);
+		
+		command = new CommandDO(action, callback);
+		command.setId(1);
 		when(commandManager.getById(1)).thenReturn(command);
-		when(commandManager.popFirstCommand()).thenReturn(new NullCommand());
+		when(commandManager.getAndLockFirstCommand()).thenReturn(new NullCommand());
 		controller = new Controller(commandManager, handlerFactory);
 		// Serialize to a byte array
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -64,10 +67,12 @@ public class ControllerTest extends TestCase {
 	public void testCallback() throws IOException {
 		assertNotNull(callback);
 		Object[] back = controller.callback(1, serializedResult);
-		assertEquals(-1, back[0]);
+		Long l = (Long) back[0];
+		assertEquals(-1, (int)l.longValue());
 		assertEquals("Hey you", ((TestAsyncCallback) callback).getResult()
 				.getMessage());
 		verify(report).report("Hey you");
+		verify(commandManager).delete(command);
 	}
 
 }

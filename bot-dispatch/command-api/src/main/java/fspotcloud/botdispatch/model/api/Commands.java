@@ -9,12 +9,14 @@ public interface Commands {
 
 	Command createAndSave(Action<?> action, AsyncCallback<? extends Result> callback);
 
-	Command popFirstCommand();
-	
 	Command getById(long callbackId);
 	
 	void save(Command cmd);
 	
 	int getCountUnderAThousend();
+
+	void delete(Command command);
+
+	Command getAndLockFirstCommand();
 
 }

@@ -15,11 +15,9 @@ import com.google.inject.name.Names;
 public class BotModule extends AbstractModule {
 
 	protected void configure() {
-		bind(BotDispatchServer.class);
+		bind(BotDispatchServer.class).to(BotDispatchServerImpl.class);
 		bind(Pauser.class).to(PauserImpl.class);
 		bind(RemoteExecutor.class).to(RemoteExecutorImpl.class);
-		bind(CommandFetcher.class).to(CommandFetcherImpl.class);
-		bind(ResultSender.class).to(ResultSenderImpl.class);
 		bind(String.class).annotatedWith(Names.named("endpoint")).toInstance(
 				"http://" + System.getProperty("endpoint") + "/xmlrpc/"
 						+ System.getProperty("bot.secret"));
