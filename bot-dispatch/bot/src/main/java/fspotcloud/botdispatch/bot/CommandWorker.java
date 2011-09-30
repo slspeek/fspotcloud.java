@@ -1,5 +1,7 @@
 package fspotcloud.botdispatch.bot;
 
-public interface CommandWorker extends Runnable {
+public interface CommandWorker {
+
+	byte[] doExecute();
 	
 }

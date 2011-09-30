@@ -21,25 +21,21 @@ public class CommandWorkerImpl implements CommandWorker {
 	final static private Logger log = Logger.getLogger(CommandWorkerImpl.class
 			.getName());
 
-	final private ResultSender sender;
 	final private Dispatch dispatch;
-
 	final private Action<?> action;
-	final private long callbackId;
 
 	@Inject
-	public CommandWorkerImpl(ResultSender sender, Dispatch dispatch,
-			@Assisted Action<?> action, @Assisted long callbackId) {
+	public CommandWorkerImpl(Dispatch dispatch,
+			@Assisted Action<?> action) {
 		super();
-		this.sender = sender;
 		this.dispatch = dispatch;
 		this.action = action;
-		this.callbackId = callbackId;
 	}
 
 	@Override
-	public void run() {
+	public byte[] doExecute() {
 		Result result;
+		byte[] data = null;
 		try {
 			result = dispatch.execute(action);
 			// Serialize to a byte array
@@ -49,11 +45,7 @@ public class CommandWorkerImpl implements CommandWorker {
 		    out.close();
 
 		    // Get the bytes of the serialized object
-		    byte[] buf = bos.toByteArray();
-			Object[] data = new Object[]{ callbackId, buf };
-			sender.sendResult("Controller.callback", data);
-		}  catch (XmlRpcException e) {
-			log.log(Level.SEVERE, "Could not call remote", e);
+		    data = bos.toByteArray();
 		} catch (DispatchException e) {
 			//todo sent the error to the controller
 			e.printStackTrace();
@@ -61,6 +53,7 @@ public class CommandWorkerImpl implements CommandWorker {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return data;
 	}
 
 }

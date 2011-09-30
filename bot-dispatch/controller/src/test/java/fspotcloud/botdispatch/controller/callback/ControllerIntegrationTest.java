@@ -27,11 +27,7 @@ import fspotcloud.botdispatch.test.TestAction;
 import fspotcloud.botdispatch.test.TestAsyncCallback;
 import fspotcloud.botdispatch.test.TestResult;
 public class ControllerIntegrationTest extends DatastoreTest {
-	public ControllerIntegrationTest(String name) {
-		super(name);
-		// TODO Auto-generated constructor stub
-	}
-
+	
 	Provider<PersistenceManager> pmProvider = new PersistenceManagerProvider();
 	Commands commandManager;
 	TestAction action = new TestAction("Your name here");
@@ -68,10 +64,16 @@ public class ControllerIntegrationTest extends DatastoreTest {
 
 	public void testCallback() throws IOException {
 		Command cmd = commandManager.createAndSave(action, callback);
-		long id = cmd.getId();
 		Object[] back = controller.callback(cmd.getId(), serializedResult);
-		assertEquals(id, back[0]);
+		assertEquals(-1L, back[0]);
 		verify(report).report("Hey you");
 	}
 
+	public void testDoubleCallback() throws IOException {
+		Command cmd1 = commandManager.createAndSave(action, callback);
+		Command cmd2 = commandManager.createAndSave(action, callback);
+		Object[] back = controller.callback(cmd1.getId(), serializedResult);
+		assertEquals(cmd2.getId(), back[0]);
+		verify(report).report("Hey you");
+	}
 }

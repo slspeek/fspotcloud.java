@@ -1,8 +1,5 @@
 package fspotcloud.botdispatch.bot;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -23,42 +20,29 @@ import fspotcloud.botdispatch.test.TestResult;
 
 public class CommandWorkerImplTest extends TestCase {
 
-	private ResultSender sender;
 	private Dispatch dispatch;
 
 	private Action<?> action;
-	private long callbackId;
 	Injector injector;
-	ArgumentCaptor<Object[]> resultCaptor;
-	ArgumentCaptor<String> remoteMethodCaptor;
 
 	CommandWorkerImpl target;
 
 	@Override
 	protected void setUp() throws Exception {
-		sender = mock(ResultSender.class);
 		action = new TestAction("Richard");
-		callbackId = 1;
-		injector = Guice.createInjector(/* new BotModule(),*/ new ActionsModule());
+		injector = Guice.createInjector(new ActionsModule());
 		dispatch = injector.getInstance(Dispatch.class);
-		resultCaptor = ArgumentCaptor.forClass(Object[].class);
-		remoteMethodCaptor = ArgumentCaptor.forClass(String.class);
-		target = new CommandWorkerImpl(sender, dispatch, action, callbackId);
+		target = new CommandWorkerImpl(dispatch, action);
 		super.setUp();
 	}
 
 	public void testRun() throws XmlRpcException, IOException,
 			ClassNotFoundException {
-		target.run();
-		verify(sender).sendResult(remoteMethodCaptor.capture(),
-				resultCaptor.capture());
-		Object[] result = resultCaptor.getValue();
-		byte[] resultInBytes = (byte[]) result[1];
+		byte[] resultInBytes = target.doExecute();
 		ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(
 				resultInBytes));
 		TestResult testResult = (TestResult) in.readObject();
 		in.close();
-
 		assertEquals("Hello to you, Richard", testResult.getMessage());
 	}
 

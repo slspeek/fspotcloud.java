@@ -8,6 +8,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import fspotcloud.botdispatch.model.api.Command;
+import fspotcloud.botdispatch.model.api.Commands;
 import fspotcloud.botdispatch.model.command.CommandDO;
 import fspotcloud.botdispatch.test.HeavyReport;
 import fspotcloud.botdispatch.test.HeavyReportModule;
@@ -24,16 +25,18 @@ public class ResultHandlerImplTest extends TestCase {
 	ResultHandlerImpl target;
 	Injector injector;
 	HeavyReport report;
+	Commands commandManager;
 
 	@Override
 	protected void setUp() throws Exception {
 		report = mock(HeavyReport.class);
+		commandManager = mock(Commands.class);
 		injector = Guice.createInjector(new HeavyReportModule(report));
 		action = new TestAction("You");
 		result = new TestResult("Hi there");
 		callback = new TestAsyncCallback();
 		cmd = new CommandDO(action, callback);
-		target = new ResultHandlerImpl(result, cmd, injector);
+		target = new ResultHandlerImpl(result, cmd, injector, commandManager);
 		super.setUp();
 	}
 
@@ -41,6 +44,7 @@ public class ResultHandlerImplTest extends TestCase {
 		target.callback();
 		assertEquals("Hi there", callback.getResult().getMessage());
 		verify(report).report("Hi there");
+		verify(commandManager).delete(cmd);
 	}
 
 }

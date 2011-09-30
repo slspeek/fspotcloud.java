@@ -8,11 +8,10 @@ import net.customware.gwt.dispatch.shared.Result;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface Command {
-
 	Long getId();
 	Action<?> getAction();
 	AsyncCallback<Result> getCallback();
 	Date getCtime();
-	void setId(Long id);
-
+	boolean isLocked();
+	void setLocked(boolean b);
 }

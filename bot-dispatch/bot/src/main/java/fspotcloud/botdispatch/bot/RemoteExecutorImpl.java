@@ -15,8 +15,9 @@ public class RemoteExecutorImpl implements RemoteExecutor {
 		this.client = client;
 	}
 	@Override
-	public Object execute(String command, Object[] args) throws XmlRpcException {
-		return client.execute(command, args);
+	public Object[] execute(long callbackId, byte[] serializedResult) throws XmlRpcException {
+		Object[] args = new Object[] { callbackId, serializedResult };
+		return (Object[]) client.execute("Controller.callback", args);
 	}
 
 }
