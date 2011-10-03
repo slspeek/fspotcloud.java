@@ -4,18 +4,14 @@
 	<parent>
 		<groupId>fspotcloud.bot-dispatch</groupId>
 		<artifactId>bot-dispatch</artifactId>
-		<version>0.40-6.7.9.8</version>
+		<version>0.40-6.7.9.9</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>integration-test</artifactId>
 	<name>Integration tests for Bot-Dispatch</name>
 	<description></description>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>fspotcloud.deps</groupId>
 			<artifactId>guice-deps</artifactId>
@@ -25,40 +21,50 @@
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>test</artifactId>
-			<version>0.40-6.7.9.8</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>fspotcloud.bot-dispatch</groupId>
-			<artifactId>bot</artifactId>
-			<version>0.40-6.7.9.8</version>
+			<version>${project.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>controller</artifactId>
-			<version>0.40-6.7.9.8</version>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium</artifactId>
+			<version>2.0b3</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium.client-drivers</groupId>
+			<artifactId>selenium-java-client-driver</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>fspotcloud.bot-dispatch</groupId>
+			<artifactId>bot</artifactId>
+			<version>0.40-6.7.9.9</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
+			<version>1.9.0-rc1</version>
 			<type>jar</type>
-			<scope>compile</scope>
+			<scope>test</scope>
 		</dependency>
-			<!--
-			GAE libraries for local testing as described here:
-			http://code.google.com/appengine/docs/java/howto/unittesting.html
-		-->
+		<!-- GAE libraries for local testing as described here: http://code.google.com/appengine/docs/java/howto/unittesting.html -->
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-stubs</artifactId>
 			<version>${gae.version}</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-local-runtime</artifactId>
@@ -71,30 +77,123 @@
 			<version>${gae.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>fspotcloud.deps</groupId>
+			<artifactId>xmlrpc-server-deps</artifactId>
+			<version>0.40-6.7.9.9</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 	<build>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+				<targetPath>../${project.build.finalName}</targetPath>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.1</version>
+				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<excludes>
+						<exclude>**/*ITest.java
+                  </exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>integration-tests</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+							<excludes>
+								<exclude>none</exclude>
+							</excludes>
+							<includes>
+								<include>**/*LocalSuite.java</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>net.kindleit</groupId>
+				<artifactId>maven-gae-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>gae-start</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>gae-stop</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<splitJars />
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.2</version>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<webXml>${basedir}/src/main/resources/WEB-INF/web.xml</webXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
 				<executions>
 					<execution>
+						<id>run-peer</id>
+						<phase>pre-integration-test</phase>
+						<configuration>
+							<target>
+								<property name="runtime_classpath" refid="maven.runtime.classpath" /><!-- 
+									<exec executable="${basedir}/src/scripts/bash/start_peer.sh"></exec> -->
+								<java
+									jar="${basedir}/../test-bot/target/test-bot-${project.version}-jar-with-dependencies.jar"
+									fork="yes" spawn="yes">
+									<sysproperty key="endpoint" value="localhost:8080" />
+									<sysproperty key="bot.secret" value="${bot.secret}" />
+									<sysproperty key="pause" value="2000" />
+								</java>
+							</target>
+						</configuration>
 						<goals>
-							<goal>test-jar</goal>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop-peer</id>
+						<phase>post-integration-test</phase>
+						<configuration>
+							<target>
+								<exec executable="telnet">
+									<arg value="localhost" />
+									<arg value="4444" />
+								</exec>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
+
 	</build>
 </project>
