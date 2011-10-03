@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.google.inject.Provider;
 
-public class TabularITest extends SeleniumITest {
+public class TabularITest extends SeleniumITestCase {
 
 	public TabularITest(Provider<WebDriver> provider, String baseURL) {
 		super(provider, baseURL);

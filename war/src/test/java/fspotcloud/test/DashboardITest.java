@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.google.inject.Provider;
 
-public class DashboardITest extends SeleniumITest {
+public class DashboardITest extends SeleniumITestCase {
 
 	public DashboardITest(Provider<WebDriver> provider, String baseURL) {
 		super(provider, baseURL);
