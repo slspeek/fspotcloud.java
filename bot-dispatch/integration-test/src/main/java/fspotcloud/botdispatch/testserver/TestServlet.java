@@ -16,19 +16,18 @@ import com.google.inject.Singleton;
 
 import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.botdispatch.model.api.Commands;
+import fspotcloud.botdispatch.test.SecondAction;
 import fspotcloud.botdispatch.test.TestAction;
 
 @SuppressWarnings("serial")
 @Singleton
 public class TestServlet extends HttpServlet {
-
-	final static private Logger log = Logger.getLogger(TestServlet.class
-			.getName());
 	@Inject
 	Commands commandManager;
 	@Inject
 	ControllerDispatchAsync dispatch;
 	
+	@SuppressWarnings("rawtypes")
 	@Inject
 	List results;
 
@@ -39,7 +38,10 @@ public class TestServlet extends HttpServlet {
 		if (name != null) {
 			dispatch.execute(new TestAction(name), new TestCallback());
 		}
-		log.info(outputHTML());
+		String second = request.getParameter("second");
+		if (second != null) {
+			dispatch.execute(new SecondAction(second), new TestCallback());
+		}
 		OutputStream out = response.getOutputStream();
 		PrintWriter p = new PrintWriter(out);
 		p.write(outputHTML());
@@ -48,9 +50,9 @@ public class TestServlet extends HttpServlet {
 	}
 
 	private String outputHTML() {
-		String result = "<html><h1>Test Servlet</h1><div>";
+		String result = "<html><h1>Bot Dispatch Test Servlet</h1><div>";
 		for (Object t : results) {
-			result += "<span>" + String.valueOf(t) + "</span>";
+			result += "<div>" + String.valueOf(t) + "</div>";
 		}
 		result += "</div></html>";
 		return result;

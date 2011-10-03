@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.google.inject.Provider;
 
-public class MapperITest extends SeleniumITest {
+public class MapperITest extends SeleniumITestCase {
 
 	public MapperITest(Provider<WebDriver> provider, String baseURL) {
 		super(provider, baseURL);

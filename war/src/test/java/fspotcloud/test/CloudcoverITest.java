@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.google.inject.Provider;
 
-public class CloudcoverITest extends SeleniumITest {
+public class CloudcoverITest extends SeleniumITestCase {
 
 	
 	public CloudcoverITest(Provider<WebDriver> provider, String baseURL) {

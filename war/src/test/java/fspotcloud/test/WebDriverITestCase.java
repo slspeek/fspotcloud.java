@@ -6,18 +6,18 @@ import org.openqa.selenium.WebDriver;
 
 import com.google.inject.Provider;
 
-public class WebDriverITest extends TestCase {
+public class WebDriverITestCase extends TestCase {
 
 	final private Provider<WebDriver> provider;
 	protected WebDriver driver;
 	final protected String baseURL;
 
-	public WebDriverITest(Provider<WebDriver> provider, String baseURL) {
+	public WebDriverITestCase(Provider<WebDriver> provider, String baseURL) {
 		this.provider = provider;
 		this.baseURL = baseURL;
 	}
 
-	public WebDriverITest() {
+	public WebDriverITestCase() {
 		this(new WebDriverProviderFactory().firefoxProvider(),
 				WebDriverSuite.local);
 	}

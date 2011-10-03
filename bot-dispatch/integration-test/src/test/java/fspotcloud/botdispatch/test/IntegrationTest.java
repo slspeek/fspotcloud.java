@@ -15,6 +15,7 @@ public class IntegrationTest extends DatastoreTest {
 	Injector injector;
 
 	TestAction action = new TestAction("Your name here");
+	SecondAction secondAction = new SecondAction("gnu");
 	TestAsyncCallback callback = new TestAsyncCallback();
 	String resultMessage = "Hello to you, Your name here";
 	HeavyReport report;
@@ -35,7 +36,10 @@ public class IntegrationTest extends DatastoreTest {
 
 	public void testOne() {
 		dispatch.execute(action, callback);
-		bot.runForever(2);
+		dispatch.execute(secondAction, callback);
+		bot.runForever(3);
 		verify(report).report(resultMessage);
+		verify(report).report("GNU");
+		
 	}
 }

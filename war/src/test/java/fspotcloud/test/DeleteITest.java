@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.google.inject.Provider;
 
-public class DeleteITest extends SeleniumITest {
+public class DeleteITest extends SeleniumITestCase {
 
 	public DeleteITest(Provider<WebDriver> provider, String baseURL) {
 		super(provider, baseURL);

@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.google.inject.Provider;
 
-public class HelpITest extends SeleniumITest {
+public class HelpITest extends SeleniumITestCase {
 
 	public HelpITest(Provider<WebDriver> provider, String baseURL) {
 		super(provider, baseURL);

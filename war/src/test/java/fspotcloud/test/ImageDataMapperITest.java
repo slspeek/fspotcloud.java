@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.google.inject.Provider;
 
-public class ImageDataMapperITest extends SeleniumITest {
+public class ImageDataMapperITest extends SeleniumITestCase {
 
 	public ImageDataMapperITest(Provider<WebDriver> provider, String baseURL) {
 		super(provider, baseURL);

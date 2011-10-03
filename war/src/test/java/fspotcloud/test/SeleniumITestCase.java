@@ -6,15 +6,15 @@ import org.openqa.selenium.WebDriverBackedSelenium;
 import com.google.inject.Provider;
 import com.thoughtworks.selenium.Selenium;
 
-public class SeleniumITest extends WebDriverITest {
+public class SeleniumITestCase extends WebDriverITestCase {
 
 	protected Selenium selenium;
 	
-	public SeleniumITest(Provider<WebDriver> provider, String baseURL) {
+	public SeleniumITestCase(Provider<WebDriver> provider, String baseURL) {
 		super(provider, baseURL);
 	}
 	
-	public SeleniumITest() {
+	public SeleniumITestCase() {
 		super();
 	}
 	
