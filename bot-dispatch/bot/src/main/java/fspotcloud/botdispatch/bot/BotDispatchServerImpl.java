@@ -3,6 +3,7 @@ package fspotcloud.botdispatch.bot;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.logging.Logger;
 
 import net.customware.gwt.dispatch.shared.Action;
 
@@ -12,6 +13,10 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
 public class BotDispatchServerImpl implements BotDispatchServer {
+
+	
+	final static private Logger log = Logger.getLogger(BotDispatchServerImpl.class
+			.getName());
 
 	final private RemoteExecutor remote;
 	final private CommandWorkerFactory factory;
@@ -39,6 +44,7 @@ public class BotDispatchServerImpl implements BotDispatchServer {
 		long callbackId = -1;
 		Action<?> currentAction;
 		for (int i = 0; i < n; i++) {
+			log.info("Posting the result for: " + callbackId);
 			Object[] result = remote.execute(callbackId, serializedResult);
 			callbackId = (Long) result[0];
 			if (callbackId != -1) {
@@ -52,6 +58,7 @@ public class BotDispatchServerImpl implements BotDispatchServer {
 			}
 
 			if (currentAction == null) {
+				log.info("No action at this time, sleeping for " + pause/1000 + "s.");
 				pauser.pause(pause);
 			} else {
 				CommandWorker worker = factory.get(currentAction);
