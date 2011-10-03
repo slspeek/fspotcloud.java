@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
 import fspotcloud.botdispatch.controller.callback.Controller;
+import fspotcloud.botdispatch.controller.callback.ErrorHandlerFactory;
 import fspotcloud.botdispatch.controller.callback.GuiceRequestProcessorFactoryFactory;
 import fspotcloud.botdispatch.controller.callback.ResultHandlerFactory;
 
@@ -16,6 +17,8 @@ public class ControllerModule extends AbstractModule {
 		bind(Controller.class).in(Singleton.class);
 		install(new FactoryModuleBuilder()
 				.build(ResultHandlerFactory.class));
+		install(new FactoryModuleBuilder()
+		.build(ErrorHandlerFactory.class));
 	}
 
 	

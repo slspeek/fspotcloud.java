@@ -3,6 +3,8 @@ package fspotcloud.botdispatch.test;
 import java.io.Serializable;
 import java.util.logging.Logger;
 
+import net.customware.gwt.dispatch.shared.DispatchException;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
@@ -16,14 +18,15 @@ public class TestAsyncCallback implements AsyncCallback<TestResult>, Serializabl
 	@Inject transient HeavyReport report;
 	
 	TestResult result;
+	private Throwable error;
 	
 	public TestAsyncCallback() {
 		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public void onFailure(Throwable caught) {
-		// TODO Auto-generated method stub
-		
+		this.error =  caught;
+		report.error(error);
 	}
 
 	@Override
@@ -34,5 +37,8 @@ public class TestAsyncCallback implements AsyncCallback<TestResult>, Serializabl
 
 	public TestResult getResult() {
 		return result;
+	}
+	public Throwable getError() {
+		return error;
 	}
 }

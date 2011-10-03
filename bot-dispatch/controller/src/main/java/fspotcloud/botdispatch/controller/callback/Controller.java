@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import net.customware.gwt.dispatch.shared.Action;
+import net.customware.gwt.dispatch.shared.DispatchException;
 import net.customware.gwt.dispatch.shared.Result;
 
 import com.google.inject.Inject;
@@ -19,17 +20,21 @@ public class Controller {
 
 	final private Commands commandManager;
 	final private ResultHandlerFactory handlerFactory;
+	final private ErrorHandlerFactory errorHandlerFactory;
 
 	@Inject
 	public Controller(Commands commandManager,
-			ResultHandlerFactory handlerFactory) {
+			ResultHandlerFactory handlerFactory,
+			ErrorHandlerFactory errorHandlerFactory) {
 		super();
 		this.commandManager = commandManager;
 		this.handlerFactory = handlerFactory;
+		this.errorHandlerFactory = errorHandlerFactory;
 	}
 
 	@SuppressWarnings("unchecked")
-	public Object[] callback(long callbackId, byte[] serializedResult) throws IOException {
+	public Object[] callback(long callbackId, byte[] serializedResult)
+			throws IOException {
 		Object[] result;
 		if (callbackId != -1L) {
 			try {
@@ -46,14 +51,14 @@ public class Controller {
 		} else {
 			Action<?> action = newCommand.getAction();
 			// Serialize to a byte array
-		    ByteArrayOutputStream bos = new ByteArrayOutputStream() ;
-		    ObjectOutputStream out = new ObjectOutputStream(bos) ;
-		    out.writeObject(action);
-		    out.close();
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			ObjectOutputStream out = new ObjectOutputStream(bos);
+			out.writeObject(action);
+			out.close();
 
-		    // Get the bytes of the serialized object
-		    byte[] actionBytes = bos.toByteArray();
-		    result = new Object[] { newCommand.getId(), actionBytes };
+			// Get the bytes of the serialized object
+			byte[] actionBytes = bos.toByteArray();
+			result = new Object[] { newCommand.getId(), actionBytes };
 		}
 		return result;
 	}
@@ -63,10 +68,18 @@ public class Controller {
 		Command callbackCommand = commandManager.getById(callbackId);
 		ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(
 				serializedResult));
-		Result result = (Result) in.readObject();
+		Object result = in.readObject();
 		in.close();
-		ResultHandlerImpl handler = handlerFactory.get(result, callbackCommand);
-		handler.callback();
+		if (result instanceof Result) {
+			ResultHandlerImpl handler = handlerFactory.get((Result) result,
+					callbackCommand);
+			handler.callback();
+		} else if (result instanceof Throwable) {
+			ErrorHandlerImpl handler = errorHandlerFactory.get(
+					(Throwable) result, callbackCommand);
+			handler.onError();
+		}
+
 	}
 
 }
