@@ -1,6 +1,10 @@
 package fspotcloud.botdispatch.test;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import net.customware.gwt.dispatch.shared.DispatchException;
+
+import org.mockito.ArgumentCaptor;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -16,14 +20,17 @@ public class IntegrationTest extends DatastoreTest {
 
 	TestAction action = new TestAction("Your name here");
 	SecondAction secondAction = new SecondAction("gnu");
-	TestAsyncCallback callback = new TestAsyncCallback();
+	ThrowingAction throwing = new ThrowingAction("Demian");
+	TestAsyncCallback callback;
 	String resultMessage = "Hello to you, Your name here";
 	HeavyReport report;
 	ControllerDispatchAsync dispatch;
 	Bot bot;
+	ArgumentCaptor<DispatchException> captor;
 
 	@Override
 	public void setUp() {
+		callback  = new TestAsyncCallback();
 		report = mock(HeavyReport.class);
 		 
 		injector = Guice.createInjector(new LocalBotModule(),
@@ -31,15 +38,18 @@ public class IntegrationTest extends DatastoreTest {
 				new ControllerModule(), new HeavyReportModule(report));
 		bot = injector.getInstance(Bot.class);
 		dispatch = injector.getInstance(ControllerDispatchAsync.class);
+		captor = ArgumentCaptor.forClass(DispatchException.class);
 		super.setUp();
 	}
 
 	public void testOne() {
 		dispatch.execute(action, callback);
 		dispatch.execute(secondAction, callback);
-		bot.runForever(3);
+		dispatch.execute(throwing, callback);
+		bot.runForever(5);
 		verify(report).report(resultMessage);
 		verify(report).report("GNU");
+		verify(report).error(captor.capture());
 		
 	}
 }

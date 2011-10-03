@@ -8,6 +8,7 @@ public class ActionsModule extends ActionHandlerModule {
 	protected void configureHandlers() {
 		bindHandler(TestAction.class, TestActionHandler.class);
 		bindHandler(SecondAction.class, SecondActionHandler.class);
+		bindHandler(ThrowingAction.class, ThrowingActionHandler.class);
 	}
 
 }

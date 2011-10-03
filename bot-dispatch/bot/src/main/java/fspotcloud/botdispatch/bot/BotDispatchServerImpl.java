@@ -14,9 +14,8 @@ import com.google.inject.name.Named;
 
 public class BotDispatchServerImpl implements BotDispatchServer {
 
-	
-	final static private Logger log = Logger.getLogger(BotDispatchServerImpl.class
-			.getName());
+	final static private Logger log = Logger
+			.getLogger(BotDispatchServerImpl.class.getName());
 
 	final private RemoteExecutor remote;
 	final private CommandWorkerFactory factory;
@@ -25,7 +24,8 @@ public class BotDispatchServerImpl implements BotDispatchServer {
 
 	@Inject
 	public BotDispatchServerImpl(RemoteExecutor remote,
-			CommandWorkerFactory factory, Pauser pauser, @Named("pause") int pause) {
+			CommandWorkerFactory factory, Pauser pauser,
+			@Named("pause") int pause) {
 		super();
 		this.factory = factory;
 		this.remote = remote;
@@ -34,12 +34,13 @@ public class BotDispatchServerImpl implements BotDispatchServer {
 	}
 
 	@Override
-	public void runForever() throws XmlRpcException, IOException, ClassNotFoundException {
+	public void runForever() throws XmlRpcException, IOException,
+			ClassNotFoundException {
 		runForever(Integer.MAX_VALUE);
 	}
-	
-	public void runForever(int n)  throws XmlRpcException, IOException,
-	ClassNotFoundException{
+
+	public void runForever(int n) throws XmlRpcException, IOException,
+			ClassNotFoundException {
 		byte[] serializedResult = null;
 		long callbackId = -1;
 		Action<?> currentAction;
@@ -58,7 +59,8 @@ public class BotDispatchServerImpl implements BotDispatchServer {
 			}
 
 			if (currentAction == null) {
-				log.info("No action at this time, sleeping for " + pause/1000 + "s.");
+				log.info("No action at this time, sleeping for " + pause / 1000
+						+ "s.");
 				pauser.pause(pause);
 			} else {
 				CommandWorker worker = factory.get(currentAction);

@@ -25,8 +25,7 @@ public class CommandWorkerImpl implements CommandWorker {
 	final private Action<?> action;
 
 	@Inject
-	public CommandWorkerImpl(Dispatch dispatch,
-			@Assisted Action<?> action) {
+	public CommandWorkerImpl(Dispatch dispatch, @Assisted Action<?> action) {
 		super();
 		this.dispatch = dispatch;
 		this.action = action;
@@ -34,24 +33,26 @@ public class CommandWorkerImpl implements CommandWorker {
 
 	@Override
 	public byte[] doExecute() {
-		Result result;
 		byte[] data = null;
 		try {
-			result = dispatch.execute(action);
-			// Serialize to a byte array
-		    ByteArrayOutputStream bos = new ByteArrayOutputStream() ;
-		    ObjectOutputStream out = new ObjectOutputStream(bos) ;
-		    out.writeObject(result);
-		    out.close();
+			Object result = dispatch.execute(action);
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			ObjectOutputStream out = new ObjectOutputStream(bos);
+			out.writeObject(result);
+			out.close();
+			data = bos.toByteArray();
+		} catch (Exception e) {
+			try {
+				ByteArrayOutputStream bos = new ByteArrayOutputStream();
+				ObjectOutputStream out = new ObjectOutputStream(bos);
+				out.writeObject(e);
+				out.close();
+				data = bos.toByteArray();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
-		    // Get the bytes of the serialized object
-		    data = bos.toByteArray();
-		} catch (DispatchException e) {
-			//todo sent the error to the controller
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return data;
 	}
