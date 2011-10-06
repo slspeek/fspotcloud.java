@@ -11,6 +11,7 @@
     <project>guice-deps</project>
     <project>gwt-deps</project>
     <project>test</project>
+    <project>test-bot</project>
     <project>xmlrpc-server-deps</project>
   </projects>
   <buildSpec>

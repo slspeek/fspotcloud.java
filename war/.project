@@ -10,6 +10,7 @@
     <project>mapreduce-deps</project>
     <project>model</project>
     <project>model-api</project>
+    <project>peer-rpc</project>
     <project>rpc</project>
     <project>server</project>
     <project>servlet-deps</project>

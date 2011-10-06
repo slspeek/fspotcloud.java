@@ -10,9 +10,9 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
-import fspotcloud.server.model.DatastoreTest;
+import fspotcloud.server.model.CloudcoverDatastoreTest;
 
-public class ImageDataMapperTest extends DatastoreTest {
+public class ImageDataMapperTest extends CloudcoverDatastoreTest {
 	public static TestSuite suite() {
 		return new TestSuite(ImageDataMapperTest.class);
 	}

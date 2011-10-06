@@ -3,6 +3,8 @@ package fspotcloud.peer;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import fspotcloud.peer.inject.BotModule;
+
 public class Main {
 	public static void main(String[] args) throws Exception {
 		Injector injector = Guice.createInjector(new BotModule());

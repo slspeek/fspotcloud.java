@@ -39,6 +39,7 @@
   <classpathentry kind="src" path="/model-api"/>
   <classpathentry kind="var" path="M2_REPO/org/xerial/thirdparty/nestedvm/1.0/nestedvm-1.0.jar"/>
   <classpathentry kind="src" path="/peer"/>
+  <classpathentry kind="src" path="/peer-rpc"/>
   <classpathentry kind="src" path="/rpc"/>
   <classpathentry kind="src" path="/server"/>
   <classpathentry kind="var" path="M2_REPO/org/xerial/sqlite-jdbc/3.6.7/sqlite-jdbc-3.6.7.jar"/>

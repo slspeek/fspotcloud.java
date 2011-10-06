@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import fspotcloud.peer.inject.BotModule;
+
 public class BotModuleTest extends TestCase {
 
 	public void testInjector() {
