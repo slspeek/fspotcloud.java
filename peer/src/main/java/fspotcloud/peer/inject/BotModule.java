@@ -1,4 +1,4 @@
-package fspotcloud.peer;
+package fspotcloud.peer.inject;
 
 import java.net.URL;
 
@@ -12,6 +12,21 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 
+import fspotcloud.peer.Bot;
+import fspotcloud.peer.CommandFetcher;
+import fspotcloud.peer.CommandFetcherImpl;
+import fspotcloud.peer.CommandWorker;
+import fspotcloud.peer.CommandWorkerFactory;
+import fspotcloud.peer.CommandWorkerImpl;
+import fspotcloud.peer.DataFetcher;
+import fspotcloud.peer.DataFetcherImpl;
+import fspotcloud.peer.DataSender;
+import fspotcloud.peer.DataSenderImpl;
+import fspotcloud.peer.ImageData;
+import fspotcloud.peer.Pauser;
+import fspotcloud.peer.PauserImpl;
+import fspotcloud.peer.RemoteExecutor;
+import fspotcloud.peer.RemoteExecutorImpl;
 import fspotcloud.peer.db.Data;
 
 public class BotModule extends AbstractModule {

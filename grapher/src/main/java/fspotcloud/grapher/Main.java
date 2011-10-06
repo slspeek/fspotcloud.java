@@ -3,7 +3,7 @@ package fspotcloud.grapher;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import fspotcloud.peer.BotModule;
+import fspotcloud.peer.inject.BotModule;
 import fspotcloud.server.control.task.TaskModule;
 import fspotcloud.server.inject.FSpotCloudModule;
 import fspotcloud.server.model.ModelModule;

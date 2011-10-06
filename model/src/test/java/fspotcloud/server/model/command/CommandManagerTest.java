@@ -9,12 +9,12 @@ import junit.framework.TestSuite;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Provider;
 
-import fspotcloud.server.model.DatastoreTest;
+import fspotcloud.server.model.CloudcoverDatastoreTest;
 import fspotcloud.server.model.PersistenceManagerProvider;
 import fspotcloud.server.model.api.Command;
 import fspotcloud.server.model.api.Commands;
 
-public class CommandManagerTest extends DatastoreTest {
+public class CommandManagerTest extends CloudcoverDatastoreTest {
 
 	Provider<PersistenceManager> pmProvider = new PersistenceManagerProvider();
 

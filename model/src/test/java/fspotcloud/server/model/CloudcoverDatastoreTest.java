@@ -11,9 +11,9 @@ import com.google.appengine.testing.cloudcover.util.ThreadLocalDelegate;
 import com.google.apphosting.api.ApiProxy;
 import com.google.apphosting.api.ApiProxy.Delegate;
 
-public abstract class DatastoreTest extends TestCase {
+public abstract class CloudcoverDatastoreTest extends TestCase {
 
-	private static final Logger log = Logger.getLogger(DatastoreTest.class
+	private static final Logger log = Logger.getLogger(CloudcoverDatastoreTest.class
 			.getName());
 
 	private CloudCoverLocalServiceTestHelper helper;
@@ -21,11 +21,11 @@ public abstract class DatastoreTest extends TestCase {
 	@SuppressWarnings("unchecked")
 	private Delegate base;
 
-	public DatastoreTest() {
+	public CloudcoverDatastoreTest() {
 		super();
 	}
 
-	public DatastoreTest(String name) {
+	public CloudcoverDatastoreTest(String name) {
 		super(name);
 	}
 
