@@ -1,27 +1,18 @@
 package fspotcloud.server.control.callback;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
-
-import org.jmock.Expectations;
-import org.jmock.Mockery;
-
-import junit.framework.TestCase;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
-import fspotcloud.server.control.reciever.MetaReciever;
-import fspotcloud.server.control.task.DataScheduler;
-import fspotcloud.server.control.task.DataSchedulerFactory;
-import fspotcloud.server.inject.FSpotCloudModule;
-import fspotcloud.server.model.api.PeerDatabases;
-import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
-import fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
+
+import junit.framework.TestCase;
+import fspotcloud.server.control.task.DataScheduler;
+import fspotcloud.server.control.task.DataSchedulerFactory;
+import fspotcloud.server.model.api.PeerDatabases;
+import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
+import fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
 @SuppressWarnings("unused")
 public class PeerMetaDataCallbackTest extends TestCase {
 

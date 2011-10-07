@@ -20,6 +20,8 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
 import fspotcloud.peer.ImageData;
+import fspotcloud.shared.peer.rpc.actions.PhotoData;
+import fspotcloud.shared.peer.rpc.actions.TagData;
 
 public class Data {
 
@@ -68,10 +70,10 @@ public class Data {
 		return new Object[] { getCount("photos"), getCount("tags") };
 	}
 
-	public Object[] getTagData(String offset, String limit) throws SQLException {
+	public List<TagData> getTagData(int offset, int limit) throws SQLException {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
-		List<Object[]> tagList = new ArrayList<Object[]>();
+		List<TagData> tagList = new ArrayList<TagData>();
 		ResultSet rs = stmt
 				.executeQuery("SELECT id, name, category_id FROM tags ORDER BY id LIMIT "
 						+ limit + " OFFSET " + offset);
@@ -79,36 +81,35 @@ public class Data {
 			String tagId = rs.getString(1);
 			String tagName = rs.getString(2);
 			String parentId = rs.getString(3);
-			String photoCount = String.valueOf(getPhotoCountForTag(Integer
-					.valueOf(tagId)));
-			tagList.add(new Object[] { tagId, tagName, parentId, photoCount });
+			int photoCount = getPhotoCountForTag(Integer.valueOf(tagId));
+			tagList.add(new TagData(tagId, tagName, parentId, photoCount ));
 		}
 		rs.close();
 		conn.close();
-
-		return tagList.toArray();
+		return tagList;
 	}
 
-	public Object[] getPhotoData(String offset, String limit)
-			throws SQLException, MalformedURLException, URISyntaxException, IOException {
+	public List<PhotoData> getPhotoData(int i, int j)
+			throws SQLException, MalformedURLException, URISyntaxException,
+			IOException {
+		List<PhotoData> result = new ArrayList<PhotoData>();
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
-		List<Object[]> photoList = new ArrayList<Object[]>();
 		ResultSet rs = stmt.executeQuery("SELECT id, description, time "
-				+ "FROM photos ORDER BY id LIMIT " + limit + " OFFSET "
-				+ offset);
+				+ "FROM photos ORDER BY id LIMIT " + j + " OFFSET "
+				+ i);
 		while (rs.next()) {
 			String id = rs.getString(1);
 			String desc = rs.getString(2);
 			long time = rs.getLong(3);
 			Date date = new Date();
 			date.setTime(time * 1000);
-			Object[] tagList = getTagsForPhoto(Integer.valueOf(id));
-			photoList.add(new Object[] { id, desc, date, tagList});
+			List<String> tagList = getTagsForPhoto(Integer.valueOf(id));
+			result.add(new PhotoData(id, desc, date, tagList));
 		}
 		rs.close();
 		conn.close();
-		return photoList.toArray();
+		return result;
 	}
 
 	public Object[] getImageData(String photoId, String width, String height,
@@ -118,8 +119,21 @@ public class Data {
 				Integer.valueOf(height));
 		byte[] imageBytes = imageData.getScaledImageData(url, size);
 		String exif = imageData.getExifData(getImageURL(photoId));
-		//log.info("Exif: " + exif);
-		Object[] params = new Object[] { photoId, exif, imageBytes, Integer.valueOf(imageType)};
+		// log.info("Exif: " + exif);
+		Object[] params = new Object[] { photoId, exif, imageBytes,
+				Integer.valueOf(imageType) };
+		return params;
+	}
+
+	public Object[] getImageData(String photoId, int width, int height, int type)
+			throws Exception {
+		URL url = getImageURL(photoId);
+		Dimension size = new Dimension(Integer.valueOf(width),
+				Integer.valueOf(height));
+		byte[] imageBytes = imageData.getScaledImageData(url, size);
+		String exif = imageData.getExifData(getImageURL(photoId));
+		// log.info("Exif: " + exif);
+		Object[] params = new Object[] { photoId, exif, imageBytes, type };
 		return params;
 	}
 
@@ -142,7 +156,7 @@ public class Data {
 						+ " AND version_id=" + version;
 				rs = stmt.executeQuery(query);
 				if (rs.next()) {
-					url = rs.getString(1) + "/" +  rs.getString(2);
+					url = rs.getString(1) + "/" + rs.getString(2);
 				}
 			}
 		}
@@ -152,11 +166,11 @@ public class Data {
 			url = url.replaceFirst(photoDirectoryOriginalPath,
 					photoDirectoryOverride);
 		}
-		//log.info("URL-String: " + url);
+		// log.info("URL-String: " + url);
 		return new URL(url);
 	}
 
-	private Object[] getTagsForPhoto(int id) throws SQLException {
+	private List<String> getTagsForPhoto(int id) throws SQLException {
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
 		List<String> tagList = new ArrayList<String>();
@@ -169,7 +183,7 @@ public class Data {
 		rs.close();
 		conn.close();
 
-		return tagList.toArray();
+		return tagList;
 	}
 
 	private int getPhotoCountForTag(int tagId) throws SQLException {

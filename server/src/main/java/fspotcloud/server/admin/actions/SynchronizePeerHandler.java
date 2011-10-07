@@ -1,34 +1,38 @@
 package fspotcloud.server.admin.actions;
 
-import java.util.Collections;
-
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
-import fspotcloud.server.control.SchedulerInterface;
+import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import fspotcloud.server.control.callback.PeerMetaDataCallback;
 import fspotcloud.shared.dashboard.actions.SynchronizePeer;
 import fspotcloud.shared.dashboard.actions.VoidResult;
+import fspotcloud.shared.peer.rpc.actions.GetPeerMetaData;
+import fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
 
 public class SynchronizePeerHandler extends
 		SimpleActionHandler<SynchronizePeer, VoidResult> {
 
-	final private SchedulerInterface scheduler;
+	final private ControllerDispatchAsync dispatch;
 
 	@Inject
-	public SynchronizePeerHandler(SchedulerInterface scheduler) {
+	public SynchronizePeerHandler(ControllerDispatchAsync dispatch) {
 		super();
-		this.scheduler = scheduler;
+		this.dispatch = dispatch;
 	}
-
+	
 	@Override
 	public VoidResult execute(SynchronizePeer action, ExecutionContext context)
 			throws DispatchException {
 		try {
-			scheduler.schedule("sendMetaData", Collections.EMPTY_LIST);
+			GetPeerMetaData metaAction = new GetPeerMetaData();
+			AsyncCallback<PeerMetaDataResult> callback = new PeerMetaDataCallback(null, null);
+			dispatch.execute(metaAction, callback);
 		} catch (Exception e) {
 			throw new ActionException(e);
 		}

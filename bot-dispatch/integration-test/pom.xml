@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>fspotcloud.bot-dispatch</groupId>
 		<artifactId>bot-dispatch</artifactId>
-		<version>0.40-6.8</version>
+		<version>0.40-6.9.0.0</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>integration-test</artifactId>
@@ -46,14 +46,14 @@
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>bot</artifactId>
-			<version>0.40-6.8</version>
+			<version>0.40-6.9.0.0</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>test-bot</artifactId>
-			<version>0.40-6.8</version>
+			<version>0.40-6.9.0.0</version>
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -87,8 +87,15 @@
 		<dependency>
 			<groupId>fspotcloud.deps</groupId>
 			<artifactId>xmlrpc-server-deps</artifactId>
-			<version>0.40-6.8</version>
+			<version>0.40-6.9.0.0</version>
 			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>fspotcloud.bot-dispatch</groupId>
+			<artifactId>gae-command</artifactId>
+			<version>0.40-6.9.0.0</version>
+			<type>test-jar</type>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>

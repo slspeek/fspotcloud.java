@@ -12,6 +12,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import fspotcloud.botdispatch.controller.inject.ControllerModule;
+import fspotcloud.botdispatch.model.MinimalCommandModelModule;
 import fspotcloud.server.control.task.TaskModule;
 import fspotcloud.server.inject.FSpotCloudModule;
 import fspotcloud.server.inject.ImageDataImporterFactory;
@@ -27,8 +29,9 @@ public class ImageDataMapper extends
 	private static final Logger log = Logger.getLogger(ImageDataMapper.class
 			.getName());
 
-	private final static Injector injector = Guice
-			.createInjector(new FSpotCloudModule(), new ModelModule(), new TaskModule());
+	private final static Injector injector = Guice.createInjector(
+			new FSpotCloudModule(), new ModelModule(), new TaskModule(),
+			new ControllerModule(), new MinimalCommandModelModule());
 
 	private ImageDataImporterFactory factory = injector
 			.getInstance(ImageDataImporterFactory.class);
@@ -56,7 +59,7 @@ public class ImageDataMapper extends
 	public void map(Key key, Entity value, Context context) {
 		Photo photo = builder.create(value);
 		photo.setId(key.getName());
-		
+
 		ImageDataImporter importer = factory.create(photo, wantedTags,
 				thumbDimension, imageDimension);
 		importer.schedule(Photo.IMAGE_TYPE_BIG);

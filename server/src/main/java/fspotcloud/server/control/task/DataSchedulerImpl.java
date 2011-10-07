@@ -1,30 +1,31 @@
 package fspotcloud.server.control.task;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.name.Named;
 
-import fspotcloud.server.control.SchedulerInterface;
+import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import fspotcloud.server.control.callback.PhotoDataCallback;
+import fspotcloud.server.control.callback.TagDataCallback;
+import fspotcloud.shared.peer.rpc.actions.GetPhotoData;
+import fspotcloud.shared.peer.rpc.actions.GetTagData;
 
 public class DataSchedulerImpl implements DataScheduler {
 
 	final private DataScheduler recursiveCall;
-	final private SchedulerInterface scheduler;
 	final private int MAX_DATA_TICKS;
 	final private String kind;
+	final private ControllerDispatchAsync dispatch;
 
 	@Inject
-	public DataSchedulerImpl(
-			SchedulerInterface scheduler, @Named("maxTicks") int maxTicks,
+	public DataSchedulerImpl(ControllerDispatchAsync dispatch,
+		@Named("maxTicks") int maxTicks,
 			@Assisted String kind, @Assisted("delayedCall") DataScheduler recursiveCall) {
 		super();
+		this.dispatch = dispatch;
 		this.kind = kind;
 		MAX_DATA_TICKS = maxTicks;
 		this.recursiveCall = recursiveCall;
-		this.scheduler = scheduler;
 	}
 
 	@Override
@@ -45,10 +46,18 @@ public class DataSchedulerImpl implements DataScheduler {
 		// Do our part of the job, scheduling the head
 		for (int i = 0; i < countWeWillDo; i++) {
 			int beginning = start + i * MAX_DATA_TICKS;
-			List<String> args = new ArrayList<String>();
-			args.add(String.valueOf(beginning));
-			args.add(String.valueOf(MAX_DATA_TICKS));
-			scheduler.schedule("send" + kind + "Data", args);
+			
+			if (kind.equals("Photo")) {
+				GetPhotoData action = new GetPhotoData(beginning, MAX_DATA_TICKS);
+				PhotoDataCallback callback = new PhotoDataCallback(null);
+				dispatch.execute(action, callback);
+				
+			} else if (kind.equals("Tag")) {
+				GetTagData action = new GetTagData(beginning, MAX_DATA_TICKS);
+				TagDataCallback callback = new TagDataCallback(null);
+				dispatch.execute(action, callback);
+			}
+			
 		}
 	}
 }

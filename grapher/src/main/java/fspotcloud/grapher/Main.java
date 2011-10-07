@@ -3,7 +3,7 @@ package fspotcloud.grapher;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import fspotcloud.peer.inject.BotModule;
+import fspotcloud.peer.inject.PeerModule;
 import fspotcloud.server.control.task.TaskModule;
 import fspotcloud.server.inject.FSpotCloudModule;
 import fspotcloud.server.model.ModelModule;
@@ -12,7 +12,7 @@ public class Main {
 	Injector serverInjector = Guice.createInjector(new FSpotCloudModule(),
 			new ModelModule(), new TaskModule());
 	Injector modelInjector = Guice.createInjector(new ModelModule());
-	Injector peerInjector = Guice.createInjector(new BotModule());
+	Injector peerInjector = Guice.createInjector(new PeerModule());
 
 	// Injector clientInjector = Guice.createInjector(new GinModuleAdapter(new
 	// FakeForGrapherAppModule()));
