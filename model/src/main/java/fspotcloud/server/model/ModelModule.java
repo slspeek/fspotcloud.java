@@ -6,11 +6,9 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 
-import fspotcloud.server.model.api.Commands;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.server.model.command.CommandManager;
 import fspotcloud.server.model.peerdatabase.PeerDatabaseManager;
 import fspotcloud.server.model.photo.PhotoManager;
 import fspotcloud.server.model.tag.TagManager;
@@ -25,11 +23,7 @@ public class ModelModule extends AbstractModule {
 		bind(PeerDatabases.class).to(PeerDatabaseManager.class).in(
 				Singleton.class);
 		bind(Tags.class).to(TagManager.class).in(Singleton.class);
-		bind(Commands.class).to(CommandManager.class).in(Singleton.class);
-		bind(PersistenceManager.class).toProvider(
-				PersistenceManagerProvider.class);
-		bind(CommandManager.class).in(Singleton.class);
-		bind(PhotoManager.class).in(Singleton.class);
-		bind(TagManager.class).in(Singleton.class);
+		// bind(Commands.class).to(CommandManager.class).in(Singleton.class);
+		bind(PersistenceManager.class).toProvider(PersistenceManagerProvider.class);
 	}
 }

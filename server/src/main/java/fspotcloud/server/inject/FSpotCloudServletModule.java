@@ -1,14 +1,11 @@
 package fspotcloud.server.inject;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import net.customware.gwt.dispatch.server.guice.GuiceStandardDispatchServlet;
 
 import com.google.inject.servlet.ServletModule;
 
-import fspotcloud.server.control.GuiceXmlRpcServlet;
 import fspotcloud.server.control.task.DataTaskServlet;
 import fspotcloud.server.cron.CronServlet;
 import fspotcloud.server.main.ImageServlet;
@@ -36,11 +33,6 @@ public class FSpotCloudServletModule extends ServletModule {
 				DeleteTagsCompletedServlet.class);
 		serve("/image").with(ImageServlet.class);
 		serve("/cron").with(CronServlet.class);
-
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("enabledForExtensions", "true");
-		String botSecret = System.getProperty("bot.secret");
-		serve("/xmlrpc/" + botSecret).with(GuiceXmlRpcServlet.class, params);
 	}
 
 }

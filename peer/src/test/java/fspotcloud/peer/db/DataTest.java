@@ -6,9 +6,12 @@ package fspotcloud.peer.db;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Logger;
 
 import junit.framework.TestCase;
+import fspotcloud.shared.peer.rpc.actions.PhotoData;
+import fspotcloud.shared.peer.rpc.actions.TagData;
 
 public class DataTest extends TestCase {
 	final static private Logger log = Logger
@@ -20,7 +23,6 @@ public class DataTest extends TestCase {
 		URL testDatabase = ClassLoader.getSystemResource("photos.db");
 		String path = testDatabase.getPath();
 		data = new Data("jdbc:sqlite:" +path);
-
 	}
 
 	protected void tearDown() throws Exception {
@@ -39,18 +41,18 @@ public class DataTest extends TestCase {
 	}
 
 	public final void testGetTagList2() throws SQLException {
-		Object[] result = data.getTagData("0", "1");
-		assertEquals(1, result.length);
+		List<TagData> result = data.getTagData(0, 1);
+		assertEquals(1, result.size());
 	}
 
 	public final void testGetTagListOverItsSize() throws SQLException {
-		Object[] result = data.getTagData("8","2");
-		assertEquals(0, result.length);
+		List<TagData> result = data.getTagData(8,2);
+		assertEquals(0, result.size());
 	}
 
 	public final void testGetPhotoList() throws Exception {
-		Object[] result = data.getPhotoData("0", "2");
-		assertEquals(2, result.length);
+		List<PhotoData> result = data.getPhotoData(0, 2);
+		assertEquals(2, result.size());
 	}
 
 	public final void testGetImageURL() throws MalformedURLException,

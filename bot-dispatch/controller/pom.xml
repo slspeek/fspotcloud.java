@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>fspotcloud.bot-dispatch</groupId>
 		<artifactId>bot-dispatch</artifactId>
-		<version>0.40-6.8</version>
+		<version>0.40-6.9.0.0</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>controller</artifactId>
@@ -30,6 +30,7 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>gae-command</artifactId>
+			<classifier>special</classifier>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -82,6 +83,13 @@
 			<artifactId>appengine-testing</artifactId>
 			<version>${gae.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>fspotcloud.bot-dispatch</groupId>
+			<artifactId>gae-command</artifactId>
+			<version>0.40-6.9.0.0</version>
+			<type>test-jar</type>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 	<build>

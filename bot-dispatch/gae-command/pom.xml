@@ -4,11 +4,11 @@
 	<parent>
 		<groupId>fspotcloud.bot-dispatch</groupId>
 		<artifactId>bot-dispatch</artifactId>
-		<version>0.40-6.8</version>
+		<version>0.40-6.9.0.0</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>gae-command</artifactId>
-	<version>0.40-6.8</version>
+	<version>0.40-6.9.0.0</version>
 	<packaging>jar</packaging>
 	<name>Command AppEngine Implementation</name>
 	<dependencies>
@@ -17,7 +17,7 @@
 			<artifactId>command-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>test</artifactId>
 			<version>${project.version}</version>
@@ -39,10 +39,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
-		<!--
-			GAE libraries for local testing as described here:
-			http://code.google.com/appengine/docs/java/howto/unittesting.html
-		-->
+		<!-- GAE libraries for local testing as described here: http://code.google.com/appengine/docs/java/howto/unittesting.html -->
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-stubs</artifactId>
@@ -71,6 +68,42 @@
 	</dependencies>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>special</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>special</classifier>
+							<excludes>
+								<exclude>META-INF/jdoconfig.xml</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>test-jar</id>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jar</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<excludes>
+								<exclude>fspotcloud/**</exclude>
+								<exclude>META-INF/jdoconfig.xml</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
@@ -109,9 +142,7 @@
 				<configuration>
 					<log4jConfiguration>${project.build.directory}/classes/log4j.properties</log4jConfiguration>
 					<verbose>true</verbose>
-					<!--
-						Make sure this path contains your persistent classes!
-					-->
+					<!-- Make sure this path contains your persistent classes! -->
 					<mappingIncludes>fspotcloud/botdispatch/model/**/*.class</mappingIncludes>
 					<verbose>true</verbose>
 					<enhancerName>ASM</enhancerName>
