@@ -1,10 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fspotcloud</groupId>
 	<artifactId>fspotcloud</artifactId>
 	<packaging>pom</packaging>
-	<version>0.40-6.9.0.0</version>
+	<version>0.40-6.9.0.1</version>
 	<name>F-Spot Cloud Java Edition</name>
 	<prerequisites>
 		<maven>3.0.0</maven>
@@ -49,7 +49,8 @@
 		<module>grapher</module>
 		<module>bot-dispatch</module>
 		<module>peer-rpc</module>
-	</modules>
+    <module>installer</module>
+  </modules>
 	<build>
 		<defaultGoal>install</defaultGoal>
 		<plugins>
@@ -62,7 +63,7 @@
 						<phase>process-test-resources</phase>
 						<configuration>
 							<target>
-								<delete dir="${basedir}/extras" includeemptydirs="true" />
+								<delete dir="${basedir}/extras" includeemptydirs="true"/>
 							</target>
 						</configuration>
 						<goals>
@@ -74,7 +75,7 @@
 						<phase>clean</phase>
 						<configuration>
 							<target>
-								<delete dir="${basedir}/extras" includeemptydirs="true" />
+								<delete dir="${basedir}/extras" includeemptydirs="true"/>
 							</target>
 						</configuration>
 						<goals>

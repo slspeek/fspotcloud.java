@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+
+<installation version="1.0">
+
+    <!-- 
+        The info section.
+        The meaning of the tags should be natural ...
+    -->
+    <info>
+        <appname>FSpotCloud</appname>
+        <appversion>@{project.version}</appversion>
+        <authors>
+            <author name="Steven L. Speek" email="slspeek@gmail.com"/>
+        </authors>
+        <url>http://code.google.com/p/fspotcloud/</url>
+    </info>
+
+    <!-- 
+        The gui preferences indication.
+        Sets the installer window to 640x480. 
+    -->
+    <guiprefs width="640" height="480" resizable="yes"/>
+
+    <!-- 
+        The locale section.
+        Asks here to include the English and French langpacks.
+    -->
+    <locale>
+    	
+        <langpack iso3="eng"/>
+        <langpack iso3="ned" />
+        <langpack iso3="deu" />
+        <langpack iso3="dan" />
+        <langpack iso3="fra"/>
+    </locale>
+
+    <!-- 
+        The resources section.
+        The ids must be these ones if you want to use the LicencePanel and/or the InfoPanel.
+    -->
+    <resources>
+        <res id="LicencePanel.licence" src="Licence.txt"/>
+    </resources>
+
+    <!-- 
+        The panels section.
+        We indicate here which panels we want to use. The order will be respected.
+    -->
+    <panels>
+    	<panel classname="HelloPanel"/>
+        <panel classname="LicencePanel"/>
+        <panel classname="TargetPanel"/>
+        <panel classname="PacksPanel"/>
+        <panel classname="InstallPanel"/>
+        <panel classname="FinishPanel"/>
+    </panels>
+
+    <jar src="dependency/plexus-utils.jar"/>
+
+    <!-- 
+        The packs section.
+        We specify here our packs.
+    -->
+    <packs>
+        <pack name="Base" required="yes">
+            <description>The base files</description>
+            <file src="Licence.txt" targetdir="$INSTALL_PATH"/>
+        </pack>
+    </packs>
+
+</installation>
