@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>fspotcloud.bot-dispatch</groupId>
 		<artifactId>bot-dispatch</artifactId>
-		<version>0.40-6.9.0.1</version>
+		<version>0.40-7.0.0.0</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>test-bot</artifactId>
@@ -16,14 +16,14 @@
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>bot</artifactId>
-			<version>0.40-6.9.0.1</version>
+			<version>0.40-7.0.0.0</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>test</artifactId>
-			<version>0.40-6.9.0.1</version>
+			<version>0.40-7.0.0.0</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>

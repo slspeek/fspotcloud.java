@@ -28,7 +28,7 @@ public class GetPeerMetaDataHandler extends SimpleActionHandler<GetPeerMetaData,
 		PeerMetaDataResult result;
 		try {
 			Object[] resultArray= data.getMetaData();
-			result = new PeerMetaDataResult((Integer)resultArray[0], (Integer)resultArray[1]);
+			result = new PeerMetaDataResult((Integer)resultArray[1], (Integer)resultArray[0]);
 		} catch (SQLException e) {
 			throw new ActionException(e);
 		}
