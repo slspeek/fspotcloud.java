@@ -65,6 +65,7 @@
         <pack name="Base" required="yes">
             <description>The base files</description>
             <file src="Licence.txt" targetdir="$INSTALL_PATH"/>
+            <file src="dependency/peer-jar-with-dependencies.jar" targetdir="$INSTALL_PATH"/>
         </pack>
     </packs>
 
