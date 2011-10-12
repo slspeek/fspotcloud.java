@@ -23,7 +23,12 @@
 			<version>${izpack-standalone.version}</version>
 			<optional>true</optional>
 		</dependency>
-
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>peer</artifactId>
+			<version>${project.version}</version>
+			<classifier>jar-with-dependencies</classifier>
+		</dependency>
 		<dependency>
 			<groupId>org.codehaus.plexus</groupId>
 			<artifactId>plexus-utils</artifactId>
