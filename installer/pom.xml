@@ -6,11 +6,11 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-7.0.0.0</version>
+		<version>0.40-7.0.0.1</version>
 	</parent>
 	<groupId>fspotcloud</groupId>
 	<artifactId>installer</artifactId>
-	<version>0.40-7.0.0.0</version>
+	<version>0.40-7.0.0.1</version>
 	<name>installer</name>
 
 	<packaging>jar</packaging>

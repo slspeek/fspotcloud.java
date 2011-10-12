@@ -23,7 +23,6 @@ public class ModelModule extends AbstractModule {
 		bind(PeerDatabases.class).to(PeerDatabaseManager.class).in(
 				Singleton.class);
 		bind(Tags.class).to(TagManager.class).in(Singleton.class);
-		// bind(Commands.class).to(CommandManager.class).in(Singleton.class);
 		bind(PersistenceManager.class).toProvider(PersistenceManagerProvider.class);
 	}
 }
