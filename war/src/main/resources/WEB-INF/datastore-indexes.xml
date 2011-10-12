@@ -18,4 +18,9 @@
         <property name="status" direction="asc"/>
         <property name="startTime" direction="asc"/>
     </datastore-index>
+     <datastore-index kind="CommandDO" ancestor="false" source="manual">
+        <property name="locked" direction="asc"/>
+        <property name="ctime" direction="asc"/>
+    </datastore-index>
+    
 </datastore-indexes>

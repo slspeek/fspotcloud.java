@@ -108,6 +108,31 @@
 							<outputDirectory>${staging.dir}/dependency</outputDirectory>
 						</configuration>
 					</execution>
+					<execution>
+						<id>appengine-sdk</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<configuration>
+							<includeGroupIds>com.google.appengine</includeGroupIds>
+							<includeArtifactIds>appengine-java-sdk</includeArtifactIds>
+							<outputDirectory>${staging.dir}/</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>war</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<configuration>
+							<stripVersion>true</stripVersion>
+							<includeGroupIds>fspotcloud</includeGroupIds>
+							<includeArtifactIds>war</includeArtifactIds>
+							<outputDirectory>${staging.dir}/war</outputDirectory>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 
