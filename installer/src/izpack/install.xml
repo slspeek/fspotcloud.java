@@ -66,6 +66,8 @@
             <description>The base files</description>
             <file src="Licence.txt" targetdir="$INSTALL_PATH"/>
             <file src="dependency/peer-jar-with-dependencies.jar" targetdir="$INSTALL_PATH"/>
+            <file src="dependency/appengine-java-sdk.zip" targetdir="$INSTALL_PATH"/>
+            <file src="dependency/war.war" targetdir="$INSTALL_PATH"/>
         </pack>
     </packs>
 
