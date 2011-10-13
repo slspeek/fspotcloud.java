@@ -45,6 +45,7 @@
 		<module>client</module>
 		<module>peer</module>
 		<module>war</module>
+		<module>war-prod</module>
 		<module>deps</module>
 		<module>grapher</module>
 		<module>bot-dispatch</module>

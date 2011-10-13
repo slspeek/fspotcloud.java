@@ -1,14 +1,14 @@
 package fspotcloud.botdispatch.bot;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 import junit.framework.TestCase;
 
+import org.apache.commons.lang.SerializationUtils;
 import org.apache.xmlrpc.XmlRpcException;
 
 import com.google.inject.Guice;
@@ -17,10 +17,6 @@ import com.google.inject.Injector;
 import fspotcloud.botdispatch.test.ActionsModule;
 import fspotcloud.botdispatch.test.TestAction;
 import fspotcloud.botdispatch.test.TestResult;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 public class BotDispatchServerTest extends TestCase {
 
 	Pauser pauser;
@@ -38,18 +34,8 @@ public class BotDispatchServerTest extends TestCase {
 		pauser = mock(Pauser.class);
 		remote = mock(RemoteExecutor.class);
 		factory = injector.getInstance(CommandWorkerFactory.class);
-		// Serialize to a byte array
-	    ByteArrayOutputStream bos = new ByteArrayOutputStream() ;
-	    ObjectOutputStream out = new ObjectOutputStream(bos) ;
-	    out.writeObject(action);
-	    out.close();
-		serializedAction = bos.toByteArray(); 
-		bos = new ByteArrayOutputStream() ;
-	    out = new ObjectOutputStream(bos) ;
-	    out.writeObject(result);
-	    out.close();
-		serializedResult = bos.toByteArray(); 
-		
+		serializedAction = SerializationUtils.serialize(action);
+		serializedResult = SerializationUtils.serialize(result); 
 		target = new BotDispatchServerImpl(remote, factory, pauser, 10000);
 		super.setUp();
 	}
@@ -67,7 +53,4 @@ public class BotDispatchServerTest extends TestCase {
 		verify(remote).execute(1000L, serializedResult);
 		verify(pauser).pause(10000);
 	}
-
-	
-
 }

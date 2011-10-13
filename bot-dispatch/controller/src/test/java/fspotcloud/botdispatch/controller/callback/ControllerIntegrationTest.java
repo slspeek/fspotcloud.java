@@ -3,16 +3,15 @@ package fspotcloud.botdispatch.controller.callback;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 import javax.jdo.PersistenceManager;
 
-import org.mockito.ArgumentCaptor;
-
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import org.apache.commons.lang.SerializationUtils;
+import org.mockito.ArgumentCaptor;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Guice;
@@ -63,27 +62,8 @@ public class ControllerIntegrationTest extends DatastoreTest {
 		commandManager = new CommandManager(pmProvider);
 		controller = new Controller(commandManager, handlerFactory,
 				errorHandlerFactory, new NullControllerHook());
-		// Serialize to a byte array
-		try {
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			ObjectOutputStream out = new ObjectOutputStream(bos);
-			out.writeObject(result);
-			out.close();
-
-			// Get the bytes of the serialized object
-			serializedResult = bos.toByteArray();
-			// Serialize to a byte array
-			bos = new ByteArrayOutputStream();
-			out = new ObjectOutputStream(bos);
-			out.writeObject(error);
-			out.close();
-
-			// Get the bytes of the serialized object
-			serializedError = bos.toByteArray();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-
+		serializedResult = SerializationUtils.serialize(result);
+		serializedError = SerializationUtils.serialize(error);
 	}
 
 	public void testCallback() throws IOException {
@@ -92,14 +72,13 @@ public class ControllerIntegrationTest extends DatastoreTest {
 		assertEquals(-1L, back[0]);
 		verify(report).report("Hey you");
 	}
-	
+
 	public void testOnError() throws IOException {
 		Command cmd = commandManager.createAndSave(throwing, callback);
 		Object[] back = controller.callback(cmd.getId(), serializedError);
-		//assertEquals(-1L, back[0]);
+		// assertEquals(-1L, back[0]);
 		verify(report).error(captor.capture());
 	}
-
 
 	public void testDoubleCallback() throws IOException {
 		Command cmd1 = commandManager.createAndSave(action, callback);

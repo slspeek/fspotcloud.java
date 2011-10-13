@@ -13,6 +13,7 @@ import com.google.inject.Singleton;
 @SuppressWarnings("serial")
 @Singleton
 public class GuiceXmlRpcServlet extends XmlRpcServlet {
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(GuiceXmlRpcServlet.class
 			.getName());
 
@@ -21,7 +22,6 @@ public class GuiceXmlRpcServlet extends XmlRpcServlet {
 
 	@Override
 	public void init(ServletConfig pConfig) throws ServletException {
-		log.info("Init called");
 		setRequestProcessorFactoryFactory(guiceFactoryFactory);
 		super.init(pConfig);
 	}

@@ -4,13 +4,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 import junit.framework.TestCase;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import org.apache.commons.lang.SerializationUtils;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Guice;
@@ -26,6 +26,7 @@ import fspotcloud.botdispatch.test.HeavyReportModule;
 import fspotcloud.botdispatch.test.TestAction;
 import fspotcloud.botdispatch.test.TestAsyncCallback;
 import fspotcloud.botdispatch.test.TestResult;
+
 public class ControllerTest extends TestCase {
 
 	Commands commandManager;
@@ -44,50 +45,35 @@ public class ControllerTest extends TestCase {
 	CommandDO command;
 	CommandDO errorCommand;
 
-
 	public void setUp() throws Exception {
 		super.setUp();
 		report = mock(HeavyReport.class);
 		commandManager = mock(Commands.class);
 		injector = Guice.createInjector(new ControllerModule(),
-				new HeavyReportModule(report), new TestCommandModelModule(commandManager));
+				new HeavyReportModule(report), new TestCommandModelModule(
+						commandManager));
 		handlerFactory = injector.getInstance(ResultHandlerFactory.class);
 		errorHandlerFactory = injector.getInstance(ErrorHandlerFactory.class);
-		
+
 		command = new CommandDO(action, callback);
 		command.setId(1);
 		errorCommand = new CommandDO(action, callback);
 		errorCommand.setId(2);
 		when(commandManager.getById(1)).thenReturn(command);
 		when(commandManager.getById(2)).thenReturn(errorCommand);
-		when(commandManager.getAndLockFirstCommand()).thenReturn(new NullCommand());
-		controller = new Controller(commandManager, handlerFactory, errorHandlerFactory, new NullControllerHook());
-		// Serialize to a byte array
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		ObjectOutputStream out = new ObjectOutputStream(bos);
-		out.writeObject(result);
-		out.close();
-
-		// Get the bytes of the serialized object
-		serializedResult = bos.toByteArray();
-		
-		// Serialize to a byte array
-		bos = new ByteArrayOutputStream();
-		out = new ObjectOutputStream(bos);
-		out.writeObject(error);
-		out.close();
-
-		// Get the bytes of the serialized object
-		serializedError = bos.toByteArray();
-
-
+		when(commandManager.getAndLockFirstCommand()).thenReturn(
+				new NullCommand());
+		controller = new Controller(commandManager, handlerFactory,
+				errorHandlerFactory, new NullControllerHook());
+		serializedResult = SerializationUtils.serialize(result);
+		serializedError = SerializationUtils.serialize(error);
 	}
 
 	public void testCallback() throws IOException {
 		assertNotNull(callback);
 		Object[] back = controller.callback(1, serializedResult);
 		Long l = (Long) back[0];
-		assertEquals(-1, (int)l.longValue());
+		assertEquals(-1, (int) l.longValue());
 		assertEquals("Hey you", ((TestAsyncCallback) callback).getResult()
 				.getMessage());
 		verify(report).report("Hey you");
@@ -98,7 +84,7 @@ public class ControllerTest extends TestCase {
 		assertNotNull(callback);
 		Object[] back = controller.callback(2, serializedError);
 		Long l = (Long) back[0];
-		assertEquals(-1, (int)l.longValue());
+		assertEquals(-1, (int) l.longValue());
 		assertNotNull(((TestAsyncCallback) callback).getError());
 	}
 }

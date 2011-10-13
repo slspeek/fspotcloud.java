@@ -1,10 +1,7 @@
 package fspotcloud.botdispatch.model.command;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -14,6 +11,8 @@ import javax.jdo.annotations.PrimaryKey;
 
 import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.Result;
+
+import org.apache.commons.lang.SerializationUtils;
 
 import com.google.appengine.api.datastore.Blob;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -49,25 +48,8 @@ public class CommandDO implements Command {
 		this.action = action;
 		this.callback = callback;
 		
-		// Serialize to a byte array
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		ObjectOutputStream out = new ObjectOutputStream(bos);
-		out.writeObject(callback);
-		out.close();
-
-		// Get the bytes of the serialized object
-		callbackBlob = new Blob(bos.toByteArray());
-
-		// Serialize to a byte array
-		bos = new ByteArrayOutputStream();
-		out = new ObjectOutputStream(bos);
-		out.writeObject(action);
-		out.close();
-
-		// Get the bytes of the serialized object
-		actionBlob = new Blob(bos.toByteArray());
-
-
+		callbackBlob = new Blob(SerializationUtils.serialize((Serializable)callback));
+		actionBlob = new Blob(SerializationUtils.serialize((Serializable)action));
 	}
 
 	public Long getId() {
@@ -81,60 +63,15 @@ public class CommandDO implements Command {
 	@Override
 	public Action<?> getAction() {
 		if (action == null) {
-			ObjectInputStream in = null;
-			try {
-				in = new ObjectInputStream(new ByteArrayInputStream(
-						actionBlob.getBytes()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				action = in.readObject();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				in.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			action = SerializationUtils.deserialize(actionBlob.getBytes());
 		}
-
 		return (Action<?>) action;
 	}
 
 	@Override
 	public AsyncCallback<Result> getCallback() {
 		if (callback == null) {
-			ObjectInputStream in = null;
-			try {
-				in = new ObjectInputStream(new ByteArrayInputStream(
-						callbackBlob.getBytes()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				callback = (AsyncCallback<Result>) in.readObject();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				in.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			callback = SerializationUtils.deserialize(callbackBlob.getBytes());
 		}
 		return (AsyncCallback<Result>) callback;
 	}

@@ -12,16 +12,18 @@ import com.google.inject.Injector;
 public class GuiceRequestProcessorFactoryFactory implements
 		RequestProcessorFactoryFactory {
 
-	private static final Logger log = Logger.getLogger(GuiceRequestProcessorFactoryFactory.class
-			.getName());
-	
+	@SuppressWarnings("unused")
+	private static final Logger log = Logger
+			.getLogger(GuiceRequestProcessorFactoryFactory.class.getName());
+
 	@Inject
 	private Injector injector;
+
 	@Inject
 	public GuiceRequestProcessorFactoryFactory(Injector injector) {
 		this.injector = injector;
 	}
-	
+
 	@Override
 	public RequestProcessorFactory getRequestProcessorFactory(final Class pClass)
 			throws XmlRpcException {
@@ -30,7 +32,6 @@ public class GuiceRequestProcessorFactoryFactory implements
 			@Override
 			public Object getRequestProcessor(XmlRpcRequest pRequest)
 					throws XmlRpcException {
-				log.info("Called for " + pClass.getName());
 				return injector.getInstance(pClass);
 			}
 		};

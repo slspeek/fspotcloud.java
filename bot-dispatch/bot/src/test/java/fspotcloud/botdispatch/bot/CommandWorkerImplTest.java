@@ -1,15 +1,13 @@
 package fspotcloud.botdispatch.bot;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 
 import junit.framework.TestCase;
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.Action;
 
+import org.apache.commons.lang.SerializationUtils;
 import org.apache.xmlrpc.XmlRpcException;
-import org.mockito.ArgumentCaptor;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -39,10 +37,7 @@ public class CommandWorkerImplTest extends TestCase {
 	public void testRun() throws XmlRpcException, IOException,
 			ClassNotFoundException {
 		byte[] resultInBytes = target.doExecute();
-		ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(
-				resultInBytes));
-		TestResult testResult = (TestResult) in.readObject();
-		in.close();
+		TestResult testResult = (TestResult) SerializationUtils.deserialize(resultInBytes);
 		assertEquals("Hello to you, Richard", testResult.getMessage());
 	}
 

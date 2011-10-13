@@ -1,13 +1,12 @@
 package fspotcloud.botdispatch.controller.callback;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.Result;
+
+import org.apache.commons.lang.SerializationUtils;
 
 import com.google.inject.Inject;
 
@@ -53,14 +52,7 @@ public class Controller {
 			result = new Object[] { -1L, null };
 		} else {
 			Action<?> action = newCommand.getAction();
-			// Serialize to a byte array
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			ObjectOutputStream out = new ObjectOutputStream(bos);
-			out.writeObject(action);
-			out.close();
-
-			// Get the bytes of the serialized object
-			byte[] actionBytes = bos.toByteArray();
+			byte[] actionBytes = SerializationUtils.serialize((Serializable) action);
 			result = new Object[] { newCommand.getId(), actionBytes };
 		}
 		return result;
@@ -69,10 +61,7 @@ public class Controller {
 	private void doCallback(long callbackId, byte[] serializedResult)
 			throws IOException, ClassNotFoundException {
 		Command callbackCommand = commandManager.getById(callbackId);
-		ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(
-				serializedResult));
-		Object result = in.readObject();
-		in.close();
+		Object result = SerializationUtils.deserialize(serializedResult);
 		if (result instanceof Result) {
 			ResultHandlerImpl handler = handlerFactory.get((Result) result,
 					callbackCommand);

@@ -31,7 +31,7 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>war</artifactId>
+			<artifactId>war-prod</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
@@ -121,7 +121,7 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>war</id>
+						<id>war-prod</id>
 						<phase>process-resources</phase>
 						<goals>
 							<goal>unpack-dependencies</goal>
@@ -129,7 +129,7 @@
 						<configuration>
 							<stripVersion>true</stripVersion>
 							<includeGroupIds>fspotcloud</includeGroupIds>
-							<includeArtifactIds>war</includeArtifactIds>
+							<includeArtifactIds>war-prod</includeArtifactIds>
 							<outputDirectory>${staging.dir}/war</outputDirectory>
 						</configuration>
 					</execution>
