@@ -1,12 +1,11 @@
 package fspotcloud.botdispatch.bot;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.logging.Logger;
 
 import net.customware.gwt.dispatch.shared.Action;
 
+import org.apache.commons.lang.SerializationUtils;
 import org.apache.xmlrpc.XmlRpcException;
 
 import com.google.inject.Inject;
@@ -50,10 +49,8 @@ public class BotDispatchServerImpl implements BotDispatchServer {
 			callbackId = (Long) result[0];
 			if (callbackId != -1) {
 				byte[] serializedAction = (byte[]) result[1];
-				ObjectInputStream in = new ObjectInputStream(
-						new ByteArrayInputStream(serializedAction));
-				currentAction = (Action<?>) in.readObject();
-				in.close();
+				currentAction = (Action<?>) SerializationUtils
+						.deserialize(serializedAction);
 			} else {
 				currentAction = null;
 			}

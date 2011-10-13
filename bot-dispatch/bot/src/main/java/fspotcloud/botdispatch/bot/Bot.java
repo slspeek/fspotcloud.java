@@ -34,9 +34,9 @@ public class Bot {
 			try {
 				server.runForever(n);
 			} catch (Exception e) {
-				log.log(Level.SEVERE,
-						"Exception in main-loop, restarting in 10s", e);
-				pauser.pause(10000);
+				log.log(Level.SEVERE, "Exception in main-loop, restarting in "
+						+ pause / 1000 + "s", e);
+				pauser.pause(pause);
 			}
 		}
 	}

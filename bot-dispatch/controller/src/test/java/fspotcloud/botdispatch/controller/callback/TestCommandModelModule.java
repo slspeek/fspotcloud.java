@@ -13,8 +13,5 @@ public class TestCommandModelModule extends AbstractModule  {
 	@Override
 	protected void configure() {
 		bind(Commands.class).toInstance(commandManager);
-				
 	}
-
-	
 }

@@ -1,23 +1,22 @@
 package fspotcloud.botdispatch.bot;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.logging.Level;
+import java.io.Serializable;
 import java.util.logging.Logger;
 
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.Action;
-import net.customware.gwt.dispatch.shared.DispatchException;
 import net.customware.gwt.dispatch.shared.Result;
 
-import org.apache.xmlrpc.XmlRpcException;
+import org.apache.commons.lang.SerializationUtils;
 
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
 public class CommandWorkerImpl implements CommandWorker {
 
+	@SuppressWarnings("unused")
 	final static private Logger log = Logger.getLogger(CommandWorkerImpl.class
 			.getName());
 
@@ -35,24 +34,14 @@ public class CommandWorkerImpl implements CommandWorker {
 	public byte[] doExecute() {
 		byte[] data = null;
 		try {
-			Object result = dispatch.execute(action);
+			Result result = dispatch.execute(action);
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			ObjectOutputStream out = new ObjectOutputStream(bos);
 			out.writeObject(result);
 			out.close();
-			data = bos.toByteArray();
+			data = SerializationUtils.serialize((Serializable) result);
 		} catch (Exception e) {
-			try {
-				ByteArrayOutputStream bos = new ByteArrayOutputStream();
-				ObjectOutputStream out = new ObjectOutputStream(bos);
-				out.writeObject(e);
-				out.close();
-				data = bos.toByteArray();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
+			data = SerializationUtils.serialize(e);
 		}
 		return data;
 	}
