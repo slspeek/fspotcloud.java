@@ -7,7 +7,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import net.customware.gwt.dispatch.shared.Action;
-import net.customware.gwt.dispatch.shared.DispatchException;
 import net.customware.gwt.dispatch.shared.Result;
 
 import com.google.inject.Inject;
@@ -21,20 +20,24 @@ public class Controller {
 	final private Commands commandManager;
 	final private ResultHandlerFactory handlerFactory;
 	final private ErrorHandlerFactory errorHandlerFactory;
+	final private ControllerHook hook;
 
 	@Inject
 	public Controller(Commands commandManager,
 			ResultHandlerFactory handlerFactory,
-			ErrorHandlerFactory errorHandlerFactory) {
+			ErrorHandlerFactory errorHandlerFactory, ControllerHook hook) {
 		super();
+		this.hook = hook;
 		this.commandManager = commandManager;
 		this.handlerFactory = handlerFactory;
 		this.errorHandlerFactory = errorHandlerFactory;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Object[] callback(long callbackId, byte[] serializedResult)
 			throws IOException {
+		if (hook != null) {
+			hook.preprocess(callbackId, serializedResult);
+		}
 		Object[] result;
 		if (callbackId != -1L) {
 			try {

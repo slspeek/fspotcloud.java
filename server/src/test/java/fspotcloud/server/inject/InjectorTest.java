@@ -9,11 +9,9 @@ import com.google.inject.Injector;
 import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.botdispatch.controller.inject.ControllerModule;
 import fspotcloud.botdispatch.controller.inject.ControllerServletModule;
-import fspotcloud.botdispatch.model.CommandModelModule;
 import fspotcloud.botdispatch.model.MinimalCommandModelModule;
 import fspotcloud.server.control.task.TaskModule;
 import fspotcloud.server.model.ModelModule;
-import fspotcloud.server.model.api.PeerDatabases;
 
 public class InjectorTest extends TestCase {
 	public static TestSuite suite() {

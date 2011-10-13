@@ -20,6 +20,7 @@ import com.google.inject.Injector;
 import com.google.inject.Provider;
 
 import fspotcloud.botdispatch.controller.inject.ControllerModule;
+import fspotcloud.botdispatch.controller.inject.NullControllerHook;
 import fspotcloud.botdispatch.model.CommandModelModule;
 import fspotcloud.botdispatch.model.DatastoreTest;
 import fspotcloud.botdispatch.model.PersistenceManagerProvider;
@@ -61,7 +62,7 @@ public class ControllerIntegrationTest extends DatastoreTest {
 		captor = ArgumentCaptor.forClass(Throwable.class);
 		commandManager = new CommandManager(pmProvider);
 		controller = new Controller(commandManager, handlerFactory,
-				errorHandlerFactory);
+				errorHandlerFactory, new NullControllerHook());
 		// Serialize to a byte array
 		try {
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
