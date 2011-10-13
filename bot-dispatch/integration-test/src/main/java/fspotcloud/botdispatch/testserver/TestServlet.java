@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsyncImpl;
 import fspotcloud.botdispatch.model.api.Commands;
 import fspotcloud.botdispatch.test.SecondAction;
 import fspotcloud.botdispatch.test.TestAction;
@@ -25,7 +24,7 @@ public class TestServlet extends HttpServlet {
 	@Inject
 	Commands commandManager;
 	@Inject
-	ControllerDispatchAsync dispatch;
+	ControllerDispatchAsyncImpl dispatch;
 	
 	@SuppressWarnings("rawtypes")
 	@Inject

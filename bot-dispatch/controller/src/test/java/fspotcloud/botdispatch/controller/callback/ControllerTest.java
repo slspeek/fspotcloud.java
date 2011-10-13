@@ -17,6 +17,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import fspotcloud.botdispatch.controller.inject.ControllerModule;
+import fspotcloud.botdispatch.controller.inject.NullControllerHook;
 import fspotcloud.botdispatch.model.api.Commands;
 import fspotcloud.botdispatch.model.command.CommandDO;
 import fspotcloud.botdispatch.model.command.NullCommand;
@@ -60,7 +61,7 @@ public class ControllerTest extends TestCase {
 		when(commandManager.getById(1)).thenReturn(command);
 		when(commandManager.getById(2)).thenReturn(errorCommand);
 		when(commandManager.getAndLockFirstCommand()).thenReturn(new NullCommand());
-		controller = new Controller(commandManager, handlerFactory, errorHandlerFactory);
+		controller = new Controller(commandManager, handlerFactory, errorHandlerFactory, new NullControllerHook());
 		// Serialize to a byte array
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutputStream out = new ObjectOutputStream(bos);
