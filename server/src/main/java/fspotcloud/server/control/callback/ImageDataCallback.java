@@ -19,9 +19,9 @@ public class ImageDataCallback implements AsyncCallback<ImageDataResult>, Serial
 	private static final long serialVersionUID = -5064880106229845372L;
 
 	@Inject
-	private  Photos photoManager;
+	private  transient Photos photoManager;
 	@Inject
-	private Tags tagManager;
+	private transient Tags tagManager;
 		
 	private int type;
 	private String photoId;
