@@ -7,7 +7,6 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
-import fspotcloud.botdispatch.controller.inject.ControllerModule;
 import fspotcloud.botdispatch.controller.inject.ControllerServletModule;
 import fspotcloud.botdispatch.model.MinimalCommandModelModule;
 import fspotcloud.server.control.task.TaskModule;
@@ -22,12 +21,13 @@ public class InjectorTest extends TestCase {
 		Injector injector = Guice.createInjector(new FSpotCloudModule(),
 				new ModelModule(), new TaskModule(),
 				new FSpotCloudServletModule(), new ControllerServletModule(),
-				new ControllerModule(), new MinimalCommandModelModule());
+				new FSCControllerModule(), new MinimalCommandModelModule());
 
 		assertNotNull(injector);
 		// PeerDatabases defaultPeer =
 		// injector.getInstance(PeerDatabases.class);
 		ControllerDispatchAsync controller = injector
 				.getInstance(ControllerDispatchAsync.class);
+		assertNotNull(controller);
 	}
 }

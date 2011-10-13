@@ -4,7 +4,6 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 
-import fspotcloud.botdispatch.controller.inject.ControllerModule;
 import fspotcloud.botdispatch.controller.inject.ControllerServletModule;
 import fspotcloud.botdispatch.model.MinimalCommandModelModule;
 import fspotcloud.server.control.task.TaskModule;
@@ -15,7 +14,7 @@ public class GuiceServletConfig extends GuiceServletContextListener {
 	protected Injector getInjector() {
 		Injector i = Guice.createInjector(new FSpotCloudServletModule(),
 				new FSpotCloudModule(), new ActionsModule(), new ModelModule(),
-				new TaskModule(), new ControllerModule(),
+				new TaskModule(), new FSCControllerModule(),
 				new ControllerServletModule(), new MinimalCommandModelModule());
 		return i;
 	}
