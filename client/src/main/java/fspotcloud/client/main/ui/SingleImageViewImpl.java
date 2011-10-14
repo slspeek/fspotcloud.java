@@ -10,6 +10,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import fspotcloud.client.main.view.api.ButtonPanelView;
 import fspotcloud.client.main.view.api.ImageRasterView;
@@ -40,7 +41,7 @@ public class SingleImageViewImpl extends ResizeComposite implements
 	
 	@Inject
 	public SingleImageViewImpl(ImageRasterView imageRasterView,
-			ButtonPanelView buttonPanelView, TimerInterface timer) {
+			@Named("Slideshow") ButtonPanelView buttonPanelView, TimerInterface timer) {
 		this.timer = timer;
 		this.buttonPanelView = buttonPanelView;
 		this.imageRasterView = imageRasterView;

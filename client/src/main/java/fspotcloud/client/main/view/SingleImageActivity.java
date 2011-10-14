@@ -8,13 +8,9 @@ import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.inject.Inject;
-import com.google.inject.assistedinject.Assisted;
 
-import fspotcloud.client.main.view.api.ImageRasterPresenterFactory;
 import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.SingleImageView;
-import fspotcloud.client.main.view.api.SlideshowControlsPresenterFactory;
 import fspotcloud.client.place.BasePlace;
 
 public class SingleImageActivity extends AbstractActivity implements
@@ -22,27 +18,22 @@ public class SingleImageActivity extends AbstractActivity implements
 	private static final Logger log = Logger.getLogger(SingleImageActivity.class
 			.getName());
 	
-	private BasePlace place;
-	private SlideshowControlsPresenterFactory slideshowControlsFactory;
-	private ImageRasterPresenterFactory imageRasterPresenterFactory;
-	private SingleImageView singleImageView;
-	private ImageRasterView.ImageRasterPresenter imageRasterPresenter;
+	final private BasePlace place;
+	final private SingleImageView singleImageView;
+	final private ImageRasterView.ImageRasterPresenter imageRasterPresenter;
 	
-	@Inject
-	public SingleImageActivity(@Assisted BasePlace place,
+	
+	public SingleImageActivity(BasePlace place,
 			SingleImageView imageView,
-			ImageRasterPresenterFactory imageRasterPresenterFactory,
-			SlideshowControlsPresenterFactory slideshowControlsFactory){
+			ImageRasterView.ImageRasterPresenter imageRasterPresenter){
 		this.singleImageView = imageView;
 		this.place = place;
-		this.imageRasterPresenterFactory = imageRasterPresenterFactory;
-		this.slideshowControlsFactory = slideshowControlsFactory;
+		this.imageRasterPresenter = imageRasterPresenter;
 	}
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
-		adjustSize();
-		init();
+		//adjustSize();
 		panel.setWidget(singleImageView);
 		Scheduler scheduler = Scheduler.get();
 		scheduler.scheduleDeferred(new ScheduledCommand() {
@@ -50,17 +41,8 @@ public class SingleImageActivity extends AbstractActivity implements
 			public void execute() {
 				imageRasterPresenter.init();
 			}
-			
 		});
 		singleImageView.hideControlsLater(3000);
-	}
-
-	@Override
-	public void init() {
-		log.info("init");
-		SlideshowControlsPresenter presenter = slideshowControlsFactory.get(singleImageView.getButtonPanelView());
-		presenter.init();
-		imageRasterPresenter = imageRasterPresenterFactory.get(place, singleImageView.getImageRasterView());
 	}
 
 	private void adjustSize() {
@@ -69,5 +51,4 @@ public class SingleImageActivity extends AbstractActivity implements
 		singleImageView.asWidget().setPixelSize(width, height);
 		log.info("set size: " + width + " , " + height);
 	}
-
 }

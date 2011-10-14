@@ -39,6 +39,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	final private ImagePresenterFactory imagePresenterFactory;
 	List<ImageView> imageViewList;
 	List<ImageView.ImagePresenter> imagePresenterList = new ArrayList<ImageView.ImagePresenter>();
+	
 	@Inject
 	public ImageRasterPresenterImpl(@Assisted BasePlace place,
 			@Assisted ImageRasterView imageRasterView, Navigator pager,

@@ -6,14 +6,14 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
-import com.google.gwt.user.client.ui.HasOneWidget;
-import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
-import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
+import fspotcloud.client.main.view.api.ButtonPanelView;
+import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.TagView;
 import fspotcloud.client.main.view.api.TreeView;
 
@@ -28,30 +28,21 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 	}
 
 	private final TreeView treeView;
+	private final ButtonPanelView buttonPanelView;
+	private final ImageRasterView imageRasterView;
+	private TagPresenter presenter;
 
 	@UiField
-	DockLayoutPanel mainPanel;
-	@UiField
-	SplitLayoutPanel horizontalSplitPanel;
+	LayoutPanel mainPanel;
 
-	@UiField
-	Label titleLabel;
-	@UiField
-	Label statusLabel;
-
-	@UiField
-	DockLayoutPanel imageViewPanel;
-	
 	@Inject
-	public TagViewImpl(TreeView treeView) {
+	public TagViewImpl(TreeView treeView, @Named("Main") ButtonPanelView buttonPanelView,
+			ImageRasterView imageRasterView) {
 		this.treeView = treeView;
+		this.buttonPanelView = buttonPanelView;
+		this.imageRasterView = imageRasterView;
 		initWidget(uiBinder.createAndBindUi(this));
-		mainPanel.addStyleName("fsc-tag");
-		horizontalSplitPanel.addStyleName("fsc-tag-split-panel");
-		titleLabel.addStyleName("fsc-tag-title-label");
-		statusLabel.addStyleName("fsc-tag-status-label");
 		treeView.asWidget().addStyleName("fsc-tag-tree-container");
-		imageViewPanel.addStyleName("fsc-tag-image-view-container");
 	}
 
 	@UiFactory
@@ -59,18 +50,18 @@ public class TagViewImpl extends ResizeComposite implements TagView {
 		return (TreeViewImpl) treeView;
 	}
 
-	@Override
-	public void setStatusText(String text) {
-		statusLabel.setText(text);
+	@UiFactory
+	public ButtonPanelViewImpl getButtonView() {
+		return (ButtonPanelViewImpl) buttonPanelView;
+	}
+
+	@UiFactory
+	public ImageRasterViewImpl getImageRasterView() {
+		return (ImageRasterViewImpl) imageRasterView;
 	}
 
 	@Override
-	public HasOneWidget getImageViewPanelContainer() {
-		return new HasOneWidgetAdapter(imageViewPanel);
-	}
-
-	@Override
-	public void setSize(int width, int height) {
-		// layout.setPixelSize(width, height);
+	public void setPresenter(TagPresenter presenter) {
+		this.presenter = presenter;
 	}
 }
