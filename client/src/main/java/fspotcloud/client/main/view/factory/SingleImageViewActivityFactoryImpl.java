@@ -33,7 +33,7 @@ public class SingleImageViewActivityFactoryImpl implements
 	public SingleImagePresenter get(BasePlace place) {
 		ImageRasterView.ImageRasterPresenter raster = imageRasterPresenterFactory.get(place,
 				singleImageView.getImageRasterView());
-		return new SingleImageActivity(place, singleImageView, raster);
+		return new SingleImageActivity(singleImageView, raster);
 	}
 
 }
