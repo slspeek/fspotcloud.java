@@ -4,14 +4,12 @@ import java.util.logging.Logger;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
-import com.google.inject.assistedinject.Assisted;
+import com.google.inject.name.Named;
 
 import fspotcloud.client.main.event.ActionFamily;
 import fspotcloud.client.main.event.ActionMap;
 import fspotcloud.client.main.event.slideshow.SlideshowType;
 import fspotcloud.client.main.view.api.ButtonPanelView;
-import fspotcloud.client.main.view.api.SlideshowPresenterFactory;
-import fspotcloud.client.main.view.api.SlideshowView;
 import fspotcloud.client.main.view.api.UserButtonPresenterFactory;
 import fspotcloud.client.main.view.api.UserButtonView;
 import fspotcloud.client.view.action.api.UserAction;
@@ -24,19 +22,15 @@ public class ButtonPanelPresenterImpl implements
 	private final ButtonPanelView buttonPanelView;
 	private final ActionFamily allActions;
 	private final UserButtonPresenterFactory buttonPresenterFactory;
-	final private SlideshowView.SlideshowPresenter slideshowPresenter;
 
 	@Inject
-	public ButtonPanelPresenterImpl(@Assisted ButtonPanelView buttonPanelView,
+	public ButtonPanelPresenterImpl(@Named("Main") ButtonPanelView buttonPanelView,
 			ActionFamily allActions,
-			UserButtonPresenterFactory buttonPresenterFactory,
-			SlideshowPresenterFactory slideshowPresenterFactory) {
+			UserButtonPresenterFactory buttonPresenterFactory) {
 		super();
 		this.buttonPanelView = buttonPanelView;
 		this.allActions = allActions;
 		this.buttonPresenterFactory = buttonPresenterFactory;
-		this.slideshowPresenter = slideshowPresenterFactory.get(buttonPanelView
-				.getSlideshowView());
 	}
 
 	@Override
@@ -47,12 +41,11 @@ public class ButtonPanelPresenterImpl implements
 		addActionGroup(allActions.get("Raster"), true);
 
 		ActionMap actions = allActions.get("Slideshow");
-		
+
 		addAction(actions.get(SlideshowType.SLIDESHOW_START), false);
 		addSpacer(false);
 
 		addActionGroup(allActions.get("Application"), false);
-		slideshowPresenter.init();
 	}
 
 	private void addActionGroup(ActionMap group, boolean north) {

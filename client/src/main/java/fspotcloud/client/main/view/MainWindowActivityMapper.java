@@ -7,8 +7,6 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 
-import fspotcloud.client.main.view.api.ImagePanelActivityFactory;
-import fspotcloud.client.main.view.api.ImageRasterActivityFactory;
 import fspotcloud.client.main.view.api.SingleViewActivityFactory;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
 import fspotcloud.client.place.BasePlace;
@@ -18,24 +16,17 @@ public class MainWindowActivityMapper implements ActivityMapper {
 	private static final Logger log = Logger
 			.getLogger(MainWindowActivityMapper.class.getName());
 
-	final private ImagePanelActivityFactory imagePanelActivityFactory;
 	final private TagPresenterFactory tagPresenterFactory;
-	final private ImageRasterActivityFactory imageRasterActivityFactory;
+	final private SingleViewActivityFactory singleViewActivityFactory;
 	final private Navigator navigator;
-
-	private SingleViewActivityFactory singleViewActivityFactory;
-
+	
 	@Inject
 	public MainWindowActivityMapper(TagPresenterFactory tagPresenterFactory,
-			ImagePanelActivityFactory imagePanelPresenterFactory,
-			ImageRasterActivityFactory imageRasterActivityFactory,
 			SingleViewActivityFactory singleViewActivityFactory,
 			Navigator navigator) {
 		super();
 		this.singleViewActivityFactory = singleViewActivityFactory;
 		this.tagPresenterFactory = tagPresenterFactory;
-		this.imagePanelActivityFactory = imagePanelPresenterFactory;
-		this.imageRasterActivityFactory = imageRasterActivityFactory;
 		this.navigator = navigator;
 	}
 
@@ -49,16 +40,8 @@ public class MainWindowActivityMapper implements ActivityMapper {
 			if (basePlace.getTagId().equals("latest")) {
 				navigator.goToLatestTag();
 			}
-			if (!basePlace.hasTreeVisible()) {
-				if (basePlace.hasButtonsVisible()) {
-					activity = imagePanelActivityFactory.get(basePlace);
-				} else {
-					if (basePlace.getColumnCount()*basePlace.getRowCount() == 1) {
-						activity = singleViewActivityFactory.get(basePlace);
-					} else {
-						activity = imageRasterActivityFactory.get(basePlace);
-					}
-				}
+			if (basePlace.getColumnCount() * basePlace.getRowCount() == 1) {
+				activity = singleViewActivityFactory.get(basePlace);
 			} else {
 				activity = tagPresenterFactory.get(basePlace);
 			}

@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
-import com.google.inject.assistedinject.Assisted;
+import com.google.inject.name.Named;
 
 import fspotcloud.client.main.event.ActionFamily;
 import fspotcloud.client.main.event.ActionMap;
@@ -27,8 +27,9 @@ public class SlideshowControlsPresenter implements ButtonPanelView.ButtonPanelPr
 	private SlideshowView.SlideshowPresenter slideshowPresenter;
 
 	private ButtonPanelView buttonPanelView;
+	
 	@Inject
-	public SlideshowControlsPresenter(@Assisted ButtonPanelView buttonPanelView,
+	public SlideshowControlsPresenter(@Named("Slideshow") ButtonPanelView buttonPanelView,
 			ActionFamily allActions,
 			UserButtonPresenterFactory buttonPresenterFactory,
 			SlideshowPresenterFactory slideshowPresenterFactory) {
@@ -43,7 +44,6 @@ public class SlideshowControlsPresenter implements ButtonPanelView.ButtonPanelPr
 
 	@Override
 	public void init() {
-		log.info("================================INIT");
 		slideshowPresenter.init();
 		ActionMap actions = allActions.get("Slideshow");
 		addAction(actions.get(SlideshowType.SLIDESHOW_SLOWER), false);
