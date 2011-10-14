@@ -18,7 +18,6 @@ import fspotcloud.client.view.action.api.UserAction;
 
 public class SlideshowControlsPresenter implements ButtonPanelView.ButtonPanelPresenter  {
 	
-	@SuppressWarnings("unused")
 	private static final Logger log = Logger
 			.getLogger(SlideshowControlsPresenter.class.getName());
 

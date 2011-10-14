@@ -61,7 +61,8 @@ public class SingleImageViewImpl extends ResizeComposite implements
 
 	@Override
 	public void hideControlsLater(int visibleDuration) {
-		
+		layout.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM, 50, Unit.PX);
+		layout.animate(500);
 		timer.setRunnable(new Runnable() {
 
 			@Override
@@ -73,5 +74,5 @@ public class SingleImageViewImpl extends ResizeComposite implements
 		});
 		timer.schedule(visibleDuration);
 	}
-	
+		
 }

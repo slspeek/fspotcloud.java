@@ -10,6 +10,8 @@ import fspotcloud.client.main.view.api.TagView;
 
 public class TagActivity extends AbstractActivity implements
 		TagView.TagPresenter {
+	
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(TagActivity.class
 			.getName());
 
@@ -17,10 +19,6 @@ public class TagActivity extends AbstractActivity implements
 
 	public TagActivity(TagView tagView) {
 		this.tagView = tagView;
-	}
-
-	public void init() {
-
 	}
 
 	@Override

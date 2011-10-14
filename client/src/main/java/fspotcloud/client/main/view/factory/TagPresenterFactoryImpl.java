@@ -49,7 +49,6 @@ public class TagPresenterFactoryImpl implements TagPresenterFactory {
 			ImageRasterView.ImageRasterPresenter rasterPresenter = rasterFactory
 					.get(place, tagView.getImageRasterView());
 			rasterPresenter.init();
-			presenter.init();
 		} catch (Exception e) {
 			log.log(Level.SEVERE, "get in init", e);
 		}
