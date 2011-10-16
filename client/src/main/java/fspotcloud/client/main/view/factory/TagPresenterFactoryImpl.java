@@ -1,6 +1,5 @@
 package fspotcloud.client.main.view.factory;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.inject.Inject;
@@ -16,6 +15,7 @@ import fspotcloud.client.main.view.api.TreeView.TreePresenter;
 import fspotcloud.client.place.BasePlace;
 
 public class TagPresenterFactoryImpl implements TagPresenterFactory {
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger
 			.getLogger(TagPresenterFactoryImpl.class.getName());
 	final private TagViewImpl tagView;
@@ -43,15 +43,10 @@ public class TagPresenterFactoryImpl implements TagPresenterFactory {
 
 	@Override
 	public TagPresenter get(BasePlace place) {
-		TagPresenter presenter = new TagActivity(tagView);
-		try {
-			treePresenter.setPlace(place);
-			ImageRasterView.ImageRasterPresenter rasterPresenter = rasterFactory
-					.get(place, tagView.getImageRasterView());
-			rasterPresenter.init();
-		} catch (Exception e) {
-			log.log(Level.SEVERE, "get in init", e);
-		}
+		final ImageRasterView.ImageRasterPresenter rasterPresenter = rasterFactory
+				.get(place, tagView.getImageRasterView());
+		TagPresenter presenter = new TagActivity(tagView, rasterPresenter);
+		treePresenter.setPlace(place);
 		return presenter;
 	}
 }
