@@ -11,8 +11,9 @@
 @def borderRadius   7px  ;
 @def foregroundColor white;
 @def ligherColor #B38481;
+@def ligherColor #153E7E;
 @def treeColor #B38481;
-
+@def treeColor #153E7E;
  .titleBlock {
 	background-color: darkColor;
 	color: foregroundColor;
