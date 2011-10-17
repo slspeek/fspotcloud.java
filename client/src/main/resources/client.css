@@ -11,9 +11,10 @@
 @def borderRadius   7px  ;
 @def foregroundColor white;
 @def ligherColor #B38481;
-@def ligherColor #153E7E;
+@def ligherColor #9ED5FF;
 @def treeColor #B38481;
-@def treeColor #153E7E;
+@def treeColor #D5FF9E;
+
  .titleBlock {
 	background-color: darkColor;
 	color: foregroundColor;
@@ -22,6 +23,11 @@
 	font-weight: bold;
 	-moz-border-radius: borderRadius;
 	border-radius: borderRadius;
+}
+
+.tagView {
+	border-style: outset;
+	background-color: treeColor;
 }
 
 .button {

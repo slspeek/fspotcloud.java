@@ -12,6 +12,8 @@ public interface Resources extends ClientBundle {
 
 		String footerBlock();
 		
+		String tagView();
+		
 		String button();
 
 		String imagePanelBlock();

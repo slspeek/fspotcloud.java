@@ -4,7 +4,8 @@ import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.event.dom.client.MouseMoveEvent;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
@@ -40,56 +41,108 @@ public class TagViewImpl extends Composite implements TagView {
 	private TagPresenter presenter;
 
 	@UiField
-	FocusPanel focusPanel;
+	FocusPanel horizontalFocusPanel;
+	@UiField
+	FocusPanel verticalFocusPanel;
+	@UiField
+	FocusPanel treeFocusPanel;
+	@UiField
+	FocusPanel buttonFocusPanel;
+	
+	
 	@UiField
 	LayoutPanel mainPanel;
 
 	@Inject
-	public TagViewImpl(TreeView treeView, @Named("Main") ButtonPanelView buttonPanelView,
+	public TagViewImpl(TreeView treeView,
+			@Named("Main") ButtonPanelView buttonPanelView,
 			ImageRasterView imageRasterView, TimerInterface timer) {
 		this.timer = timer;
 		this.treeView = treeView;
 		this.buttonPanelView = buttonPanelView;
 		this.imageRasterView = imageRasterView;
 		initWidget(uiBinder.createAndBindUi(this));
-		treeView.asWidget().addStyleName("fsc-tag-tree-container");
-		hideLabelLater(3000);
+		//hideLabelLater(3000);
 	}
 
-	@UiHandler("focusPanel")
-	public void infoHover(MouseMoveEvent event) {
-		log.info("image mouse move");
-		// presenter.imageDoubleClicked();
-		mainPanel.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM, 10, Unit.PCT);
+	@UiHandler("horizontalFocusPanel")
+	public void infoHover(MouseOverEvent event) {
+		log.info("horizontal mouse over");
+		animateControlsIn(600);
+		// hideLabelLater(3000);
+
+	}
+
+	@UiHandler("verticalFocusPanel")
+	public void verticalMousePanel(MouseOverEvent event) {
+		animateControlsIn(600);
+		log.info("vertical mouse over");
+	}
+	
+	@UiHandler("buttonFocusPanel")
+	public void outHorizontal(MouseOutEvent event) {
+		log.info("horizontal mouse over");
+		animateControlsOut(1000);
+		// hideLabelLater(3000);
+
+	}
+
+	@UiHandler("treeFocusPanel")
+	public void treeOut(MouseOutEvent event) {
+		animateControlsOut(1000);
+		log.info("vertical mouse over");
+	}
+	
+
+	public void animateControlsIn(int duration) {
+		mainPanel.setWidgetBottomHeight(buttonFocusPanel, 0, Unit.CM, 10,
+				Unit.PCT);
 		mainPanel.setWidgetTopHeight(imageRasterView, 0, Unit.CM, 90, Unit.PCT);
-		mainPanel.setWidgetRightWidth(imageRasterView, 0, Unit.CM, 78, Unit.PCT);
-		mainPanel.setWidgetLeftWidth(treeView, 0, Unit.PCT, 22, Unit.PCT);
-		// layout.setWidgetLeftRight(info, 25, Unit.PCT, 25, Unit.PCT);
-		mainPanel.animate(500);
-		hideLabelLater(3000);
+		mainPanel
+				.setWidgetRightWidth(imageRasterView, 0, Unit.CM, 78, Unit.PCT);
+		mainPanel.setWidgetLeftWidth(treeFocusPanel, 0, Unit.PCT, 22, Unit.PCT);
+		mainPanel.setWidgetTopHeight(treeFocusPanel, 0, Unit.PCT, 90, Unit.PCT);
+
+		mainPanel.setWidgetBottomHeight(horizontalFocusPanel, 0, Unit.PCT, 0,
+				Unit.PCT);
+		mainPanel.setWidgetLeftWidth(verticalFocusPanel, 0, Unit.PCT, 0,
+				Unit.PCT);
+
+		mainPanel.animate(duration);
 
 	}
 
+	public void animateControlsOut(int duration) {
+		mainPanel
+				.setWidgetBottomHeight(buttonFocusPanel, 0, Unit.CM, 0, Unit.PX);
+		mainPanel
+				.setWidgetTopHeight(imageRasterView, 0, Unit.CM, 100, Unit.PCT);
+		mainPanel.setWidgetRightWidth(imageRasterView, 0, Unit.CM, 100,
+				Unit.PCT);
+		mainPanel.setWidgetLeftWidth(treeFocusPanel, 0, Unit.PCT, 0, Unit.PCT);
+		mainPanel.setWidgetTopHeight(treeFocusPanel, 0, Unit.PCT, 100, Unit.PCT);
+
+		mainPanel.setWidgetBottomHeight(horizontalFocusPanel, 0, Unit.PCT, 10,
+				Unit.PCT);
+		mainPanel.setWidgetLeftWidth(verticalFocusPanel, 0, Unit.PCT, 10,
+				Unit.PCT);
+
+		mainPanel.animate(duration);
+
+	}
+
+	@Override
 	public void hideLabelLater(final int duration) {
 		timer.setRunnable(new Runnable() {
 
 			@Override
 			public void run() {
-				mainPanel.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM, 0, Unit.PX);
-				mainPanel.setWidgetTopHeight(imageRasterView, 0, Unit.CM, 100, Unit.PCT);
-				mainPanel.setWidgetRightWidth(imageRasterView, 0, Unit.CM, 100, Unit.PCT);
-				mainPanel.setWidgetLeftWidth(treeView, 0, Unit.PCT, 0, Unit.PCT);
-				// mainPanel.setWidgetLeftRight(info, 25, Unit.PCT, 25, Unit.PCT);
-				mainPanel.animate(500);
-
+				animateControlsOut(1000);
 			}
 		});
 		timer.schedule(duration);
 	}
-	
-	
-	
-	
+
 	@UiFactory
 	public TreeViewImpl getView() {
 		return (TreeViewImpl) treeView;

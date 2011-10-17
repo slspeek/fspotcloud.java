@@ -10,4 +10,6 @@ public interface TagView extends IsWidget {
 	}
 	
 	void setPresenter(TagPresenter presenter);
+
+	void hideLabelLater(int duration);
 }
