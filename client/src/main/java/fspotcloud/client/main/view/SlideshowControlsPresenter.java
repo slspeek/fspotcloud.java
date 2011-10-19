@@ -45,25 +45,24 @@ public class SlideshowControlsPresenter implements ButtonPanelView.ButtonPanelPr
 	public void init() {
 		slideshowPresenter.init();
 		ActionMap actions = allActions.get("Slideshow");
-		addAction(actions.get(SlideshowType.SLIDESHOW_SLOWER), false);
-		addAction(actions.get(SlideshowType.SLIDESHOW__END), false);
-		addSpacer(false);
+		buttonPanelView.setButtonCount(actions.allActions().size() + 1);
+		
+		addAction(actions.get(SlideshowType.SLIDESHOW_SLOWER));
+		addAction(actions.get(SlideshowType.SLIDESHOW__END));
+		
 		Widget w = slideshowPresenter.getView().asWidget();
-		buttonPanelView.add(w, false);
-		addSpacer(false);
-		addAction(actions.get(SlideshowType.SLIDESHOW_START), false);
-		addAction(actions.get(SlideshowType.SLIDESHOW_FASTER), false);
+		buttonPanelView.myAdd(w);
+		
+		addAction(actions.get(SlideshowType.SLIDESHOW_START));
+		addAction(actions.get(SlideshowType.SLIDESHOW_FASTER));
 	}
 
-	private void addAction(UserAction action, boolean north) {
+	private void addAction(UserAction action) {
 		UserButtonView.UserButtonPresenter buttonPresenter = buttonPresenterFactory
 				.get(action);
 		buttonPresenter.init();
-		buttonPanelView.add(buttonPresenter.getView(), north);
+		buttonPanelView.myAdd(buttonPresenter.getView());
 	}
 
-	private void addSpacer(boolean north) {
-		Widget space = buttonPanelView.getSpacer();
-		buttonPanelView.add(space, north);
-	}
+	
 }

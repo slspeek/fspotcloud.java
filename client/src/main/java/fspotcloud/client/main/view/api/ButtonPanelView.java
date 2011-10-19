@@ -9,9 +9,9 @@ public interface ButtonPanelView extends IsWidget {
 	interface ButtonPanelPresenter extends Initializable {
 	}
 
-	void add(Widget widget, boolean north);
-
-	Widget getSpacer();
+	void setButtonCount(int count);
+	
+	void myAdd(Widget widget);
 
 	SlideshowView getSlideshowView();
 }

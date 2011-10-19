@@ -15,6 +15,7 @@ import fspotcloud.client.main.TagServiceAsyncTestImpl;
 import fspotcloud.client.place.api.Navigator;
 import fspotcloud.client.place.api.PlaceGoTo;
 import fspotcloud.client.place.api.PlaceWhere;
+
 public class NavigatorImplTest extends TestCase {
 
 	DataManager dataManager = new DataManagerImpl(new TagServiceAsyncTestImpl());
@@ -29,10 +30,9 @@ public class NavigatorImplTest extends TestCase {
 	BasePlace snowie = new BasePlace("4", "11");
 	BasePlace siepie = new BasePlace("4", "12");
 	BasePlace woefje = new BasePlace("5", "21",
-			placeCalculator.getRasterWidth(),
-			placeCalculator.getRasterHeight(), true);
-	BasePlace r1_3 = new BasePlace("6", "101", 1, 3, false);
-	BasePlace r1_3_zoomed_in = new BasePlace("6", "101", 1, 1, false);
+			placeCalculator.getRasterWidth(), placeCalculator.getRasterHeight());
+	BasePlace r1_3 = new BasePlace("6", "101", 1, 3);
+	BasePlace r1_3_zoomed_in = new BasePlace("6", "101", 1, 1);
 	BasePlace r1_3next = new BasePlace("6", "103", 1, 3);
 
 	@Override
@@ -47,27 +47,6 @@ public class NavigatorImplTest extends TestCase {
 
 	public Navigator get(PlaceWhere where, PlaceGoTo goTo) {
 		return new NavigatorImpl(where, goTo, placeCalculator, dataManager);
-	}
-
-	public void testToggleButtonsVisible() {
-		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
-		final PlaceWhere where = context.mock(PlaceWhere.class);
-		final BasePlace withButtons = new BasePlace("6", "101", 1, 1, false,
-				true);
-		final BasePlace withoutButtons = new BasePlace("6", "101", 1, 1, false,
-				false);
-
-		context.checking(new Expectations() {
-			{
-				oneOf(where).where();
-				will(returnValue(withButtons));
-				oneOf(goTo).goTo(with(withoutButtons));
-			}
-		});
-		navigator = get(where, goTo);
-
-		navigator.toggleButtonsVisible();
-		context.assertIsSatisfied();
 	}
 
 	public void testGoLast() {
@@ -227,7 +206,8 @@ public class NavigatorImplTest extends TestCase {
 		final PlaceGoTo goTo = mock(PlaceGoTo.class);
 		navigator = get(goTo);
 		navigator.goToLatestTag();
-		verify(goTo).goTo(woefje);;
+		verify(goTo).goTo(woefje);
+		;
 
 	}
 

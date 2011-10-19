@@ -6,8 +6,6 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
 import fspotcloud.client.demo.DemoAction;
-import fspotcloud.client.main.ToggleButtonsAction;
-import fspotcloud.client.main.ToggleFullscreenAction;
 import fspotcloud.client.main.TreeFocusAction;
 import fspotcloud.client.main.api.Initializable;
 import fspotcloud.client.main.event.UserEvent;
@@ -28,8 +26,6 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	final private AboutAction aboutAction;
 	final private HelpAction helpAction;
 	final private TreeFocusAction treeFocusAction;
-	final private ToggleFullscreenAction toggleFullscreenAction;
-	final private ToggleButtonsAction toggleButtonsAction;
 	final private LoadNewLocationActionFactory locationFactory;
 	private Runnable dashboardAction;
 	final private EventBus eventBus;
@@ -39,18 +35,14 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	public ApplicationEventHandler(AboutAction aboutAction,
 			DemoAction demoAction, HelpAction helpAction,
 			TreeFocusAction treeFocusAction,
-			ToggleFullscreenAction toggleFullscreenAction,
-			ToggleButtonsAction toggleButtonsAction,
 			LoadNewLocationActionFactory locationFactory,
 			Navigator navigator, EventBus eventBus) {
 		super();
 		this.navigator = navigator;
 		this.locationFactory = locationFactory;
-		this.toggleButtonsAction = toggleButtonsAction;
 		this.demoAction = demoAction;
 		this.helpAction = helpAction;
 		this.treeFocusAction = treeFocusAction;
-		this.toggleFullscreenAction = toggleFullscreenAction;
 		this.aboutAction = aboutAction;
 		this.eventBus = eventBus;
 	}
@@ -67,12 +59,6 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 			break;
 		case TREE_FOCUS:
 			treeFocusAction.run();
-			break;
-		case TOGGLE_FULLSCREEN:
-			toggleFullscreenAction.run();
-			break;
-		case TOGGLE_BUTTONS_VISIBLE:
-			toggleButtonsAction.run();
 			break;
 		case DASHBOARD:
 			dashboardAction.run();

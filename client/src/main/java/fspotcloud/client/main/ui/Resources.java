@@ -33,6 +33,8 @@ public interface Resources extends ClientBundle {
 		String helpSeparator();
 		
 		String helpTitle();
+
+		String buttonPanelBlock();
 	}
 
 	@Source("version.txt")

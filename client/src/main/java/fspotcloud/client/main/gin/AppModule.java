@@ -77,9 +77,15 @@ public class AppModule extends AbstractGinModule {
 		bind(MainWindowActivityMapper.class).in(Singleton.class);
 		bind(DataManager.class).to(DataManagerImpl.class).in(Singleton.class);
 		bind(MVPSetup.class).in(Singleton.class);
-		bind(PlaceCalculator.class);
 		bind(TagCell.class);
-		bind(TagView.class).to(TagViewImpl.class);
+		bind(TagView.class).to(TagViewImpl.class).in(Singleton.class);
+		bind(TreeView.class).to(TreeViewImpl.class).in(Singleton.class);
+		bind(ImageRasterView.class).to(ImageRasterViewImpl.class);
+		bind(SingleViewActivityFactory.class).to(SingleImageViewActivityFactoryImpl.class);
+		bind(SingleImageView.class).to(SingleImageViewImpl.class);
+
+		
+		bind(PlaceCalculator.class);
 		bind(PlaceGoTo.class).to(PlaceGoToImpl.class);
 		bind(PlaceWhere.class).to(PlaceWhereImpl.class);
 		bind(PlaceController.class).toProvider(PlaceControllerProvider.class);
@@ -93,15 +99,13 @@ public class AppModule extends AbstractGinModule {
 		bind(TimerInterface.class).to(TimerImpl.class);
 		bind(Navigator.class).to(NavigatorImpl.class).in(Singleton.class);
 		bind(Slideshow.class).to(SlideshowImpl.class).in(Singleton.class);
-		
-		
 		bind(TagPresenterFactory.class).to(TagPresenterFactoryImpl.class);
 		bind(TreeView.TreePresenter.class).to(TreePresenterImpl.class).in(
 				Singleton.class);
 		bind(SelectionChangeEvent.Handler.class).to(TreeSelectionHandler.class)
 				.in(Singleton.class);
-		bind(TreeView.class).to(TreeViewImpl.class).in(Singleton.class);
-		bind(ImageRasterView.class).to(ImageRasterViewImpl.class);
+		
+		
 		
 		install(new GinFactoryModuleBuilder().implement(
 				SlideshowView.SlideshowPresenter.class,
@@ -137,9 +141,7 @@ public class AppModule extends AbstractGinModule {
 				.build(LoadNewLocationActionFactory.class));
 		bind(LoadNewLocation.class).to(LoadNewLocationImpl.class);
 
-		bind(SingleViewActivityFactory.class).to(SingleImageViewActivityFactoryImpl.class);
-		bind(SingleImageView.class).to(SingleImageViewImpl.class);
-
+		
 		bind(PopupView.class).to(HelpPopup.class);
 	}
 }

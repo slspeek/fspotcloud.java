@@ -25,8 +25,6 @@ public interface Navigator {
 
 	void toggleZoomViewAsync(String tagId, String photoId);
 	
-	void toggleShowTagTree();
-
 	void goToTag(String otherTagId, PhotoInfoStore store);
 	
 	void goToLatestTag();
@@ -41,17 +39,13 @@ public interface Navigator {
 
 	void toggleRasterView();
 	
-	void toggleButtonsVisible();
-
 	void setRasterDimension(int i, int j);
 
 	void resetRasterSize();
 	
 	void fullscreen();
 	
-	void setButtonsVisible(boolean visible);
-	
-	void setTreeVisible(boolean visible);
+	void slideshow();
 	
 	enum Zoom {
 		IN, OUT;

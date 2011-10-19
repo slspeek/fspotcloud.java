@@ -10,6 +10,7 @@ import fspotcloud.client.main.view.api.ButtonPanelView;
 import fspotcloud.client.main.view.api.ImageRasterPresenterFactory;
 import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
+import fspotcloud.client.main.view.api.TagView;
 import fspotcloud.client.main.view.api.TagView.TagPresenter;
 import fspotcloud.client.main.view.api.TreeView.TreePresenter;
 import fspotcloud.client.place.BasePlace;
@@ -24,12 +25,12 @@ public class TagPresenterFactoryImpl implements TagPresenterFactory {
 	final private ImageRasterPresenterFactory rasterFactory;
 
 	@Inject
-	public TagPresenterFactoryImpl(TagViewImpl tagView,
+	public TagPresenterFactoryImpl(TagView tagView,
 			TreePresenter treePresenter,
 			ButtonPanelView.ButtonPanelPresenter buttonPanelPresenter,
 			ImageRasterPresenterFactory rasterFactory) {
 		super();
-		this.tagView = tagView;
+		this.tagView = (TagViewImpl) tagView;
 		this.buttonPanelPresenter = buttonPanelPresenter;
 		this.treePresenter = treePresenter;
 		this.rasterFactory = rasterFactory;

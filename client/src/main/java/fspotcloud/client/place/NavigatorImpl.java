@@ -165,8 +165,12 @@ public class NavigatorImpl implements Navigator {
 
 	protected void goToPhoto(BasePlace place, String tagId, String photoId) {
 		BasePlace newPlace;
-		newPlace = new BasePlace(tagId, photoId, place.getColumnCount(),
-				place.getRowCount(), place.hasTreeVisible(), place.hasButtonsVisible());
+		if (place instanceof SlideshowPlace) {
+			newPlace = new SlideshowPlace(tagId, photoId, 0f);
+		} else {
+			newPlace = new BasePlace(tagId, photoId, place.getColumnCount(),
+				place.getRowCount());
+		}
 		log.info("About to go to: " + this + " : " + newPlace + " from: "
 				+ place);
 		placeGoTo.goTo(newPlace);
@@ -270,8 +274,7 @@ public class NavigatorImpl implements Navigator {
 	public void goToTag(String otherTagId, PhotoInfoStore store) {
 		goEnd(true,
 				new BasePlace(otherTagId, null, placeCalculator
-						.getRasterWidth(), placeCalculator.getRasterHeight(),
-						true), store);
+						.getRasterWidth(), placeCalculator.getRasterHeight()), store);
 	}
 
 	@Override
@@ -345,13 +348,7 @@ public class NavigatorImpl implements Navigator {
 		placeGoTo.goTo(destination);
 	}
 
-	@Override
-	public void toggleShowTagTree() {
-		BasePlace now = placeWhere.where();
-		BasePlace destination = placeCalculator.toggleTreeViewVisible(now);
-		placeGoTo.goTo(destination);
-	}
-
+	
 	@Override
 	public void toggleRasterView() {
 		BasePlace now = placeWhere.where();
@@ -365,13 +362,7 @@ public class NavigatorImpl implements Navigator {
 				PlaceCalculator.DEFAULT_RASTER_HEIGHT);
 	}
 
-	@Override
-	public void toggleButtonsVisible() {
-		BasePlace now = placeWhere.where();
-		BasePlace destination = placeCalculator.toggleButtonsVisible(now);
-		placeGoTo.goTo(destination);
-	}
-
+	
 	@Override
 	public void fullscreen() {
 		BasePlace now = placeWhere.where();
@@ -379,29 +370,19 @@ public class NavigatorImpl implements Navigator {
 		placeGoTo.goTo(destination);
 	}
 
-	@Override
-	public void setButtonsVisible(boolean visible) {
-		BasePlace now = placeWhere.where();
-		BasePlace destination = placeCalculator.setButtonsVisible(now, visible);
-		placeGoTo.goTo(destination);
-		
-	}
-
-	@Override
-	public void setTreeVisible(boolean visible) {
-		BasePlace now = placeWhere.where();
-		BasePlace destination = placeCalculator.setTreeVisible(now, visible);
-		placeGoTo.goTo(destination);
-		
-	}
-
-	@Override
+	
+		@Override
 	public void zoom(Zoom direction) {
 		BasePlace now = placeWhere.where();
 		BasePlace destination = placeCalculator.zoom(now, direction);
 		placeGoTo.goTo(destination);
-		
-		
 	}
+
+		@Override
+		public void slideshow() {
+			BasePlace now = placeWhere.where();
+			SlideshowPlace destination = new SlideshowPlace(now.getTagId(), now.getPhotoId(), 0f);
+			placeGoTo.goTo(destination);	
+		}
 	
 }

@@ -9,25 +9,7 @@ public class PlaceCalculatorTest extends TestCase {
 
 	PlaceCalculator placeCalculator = new PlaceCalculator();
 	
-	public void testSimpleSwap() {
-		BasePlace imageViewingPlace = new BasePlace("1", "10", 8, 9, false);
-		BasePlace newPlace = placeCalculator.toggleTreeViewVisible(imageViewingPlace);
-		assertTrue(newPlace.hasTreeVisible());
-		assertEquals("1", newPlace.getTagId());
-		assertEquals("10", newPlace.getPhotoId());
-		assertEquals(8, newPlace.getColumnCount());
-		assertEquals(9, newPlace.getRowCount());
-	}
 	
-	public void testReverse() {
-		BasePlace tagViewingPlace = new BasePlace("1", "10", 1, 1, true);
-		BasePlace newPlace = placeCalculator.toggleTreeViewVisible(tagViewingPlace);
-		assertEquals(false, newPlace.hasTreeVisible());
-		assertEquals("1", ((BasePlace)newPlace).getTagId());
-		assertEquals("10", ((BasePlace)newPlace).getPhotoId());
-		assertEquals(1, ((BasePlace)newPlace).getColumnCount());
-		assertEquals(1, ((BasePlace)newPlace).getRowCount());
-	}
 	
 	public void testToggleRasterView() {
 		BasePlace tagViewingPlace = new BasePlace("1", "10", 2, 1);
@@ -36,26 +18,6 @@ public class PlaceCalculatorTest extends TestCase {
 		assertEquals("10", ((BasePlace)newPlace).getPhotoId());
 		assertEquals(1, newPlace.getColumnCount());
 		assertEquals(1, newPlace.getRowCount());
-	}
-	
-	public void testZoomViewWithTree() {
-		BasePlace tagViewingPlace = new BasePlace("1", "10", 2, 1, true);
-		BasePlace newPlace = (BasePlace) placeCalculator.toggleZoomView(tagViewingPlace,"1", "11");
-		assertEquals("1", ((BasePlace)newPlace).getTagId());
-		assertEquals("11", ((BasePlace)newPlace).getPhotoId());
-		assertEquals(1, newPlace.getColumnCount());
-		assertEquals(1, newPlace.getRowCount());
-		assertEquals(true, newPlace.hasTreeVisible());
-	}
-	
-	public void testZoomViewWithoutTree() {
-		BasePlace tagViewingPlace = new BasePlace("1", "10", 2, 1, false);
-		BasePlace newPlace = (BasePlace) placeCalculator.toggleZoomView(tagViewingPlace,"1", "11");
-		assertEquals("1", ((BasePlace)newPlace).getTagId());
-		assertEquals("11", ((BasePlace)newPlace).getPhotoId());
-		assertEquals(1, newPlace.getColumnCount());
-		assertEquals(1, newPlace.getRowCount());
-		assertEquals(false, newPlace.hasTreeVisible());
 	}
 	
 	
@@ -75,37 +37,27 @@ public class PlaceCalculatorTest extends TestCase {
 		assertEquals("10", ((BasePlace)newPlace).getPhotoId());
 		assertEquals(1, newPlace.getColumnCount());
 		assertEquals(1, newPlace.getRowCount());
-		assertFalse(newPlace.hasButtonsVisible());
-		assertFalse(newPlace.hasTreeVisible());
 	}	
 	
 	public void testZoomIn() {
-		BasePlace tagViewingPlace = new BasePlace("1", "10", 3, 3, true, true);
+		BasePlace tagViewingPlace = new BasePlace("1", "10", 3, 3);
 		BasePlace newPlace = placeCalculator.zoom(tagViewingPlace, Zoom.IN);
 		assertEquals("1", ((BasePlace)newPlace).getTagId());
 		assertEquals("10", ((BasePlace)newPlace).getPhotoId());
-		assertTrue(newPlace.hasTreeVisible());
-		assertTrue(newPlace.hasButtonsVisible());
 		assertEquals(2, newPlace.getColumnCount());
 		assertEquals(2, newPlace.getRowCount());;
 		
 		newPlace = placeCalculator.zoom(newPlace, Zoom.IN);
 		assertEquals("1", ((BasePlace)newPlace).getTagId());
 		assertEquals("10", ((BasePlace)newPlace).getPhotoId());
-		assertTrue(newPlace.hasTreeVisible());
-		assertTrue(newPlace.hasButtonsVisible());
 		assertEquals(1, newPlace.getColumnCount());
 		assertEquals(1, newPlace.getRowCount());
 		
 		newPlace = placeCalculator.zoom(newPlace, Zoom.IN);
-		assertFalse(newPlace.hasTreeVisible());
-		assertTrue(newPlace.hasButtonsVisible());
 		assertEquals(1, newPlace.getColumnCount());
 		assertEquals(1, newPlace.getRowCount());
 		
 		newPlace = placeCalculator.zoom(newPlace, Zoom.IN);
-		assertFalse(newPlace.hasTreeVisible());
-		assertFalse(newPlace.hasButtonsVisible());
 		assertEquals(1, newPlace.getColumnCount());
 		assertEquals(1, newPlace.getRowCount());
 		
@@ -113,35 +65,17 @@ public class PlaceCalculatorTest extends TestCase {
 	}	
 	
 	public void testZoomOut() {
-		BasePlace tagViewingPlace = new BasePlace("1", "10", 2, 2, false, false);
+		BasePlace tagViewingPlace = new BasePlace("1", "10", 2, 2);
 		BasePlace newPlace = placeCalculator.zoom(tagViewingPlace, Zoom.OUT);
 		assertEquals("1", ((BasePlace)newPlace).getTagId());
 		assertEquals("10", ((BasePlace)newPlace).getPhotoId());
-		assertFalse(newPlace.hasTreeVisible());
-		assertTrue(newPlace.hasButtonsVisible());
-		assertEquals(2, newPlace.getColumnCount());
-		assertEquals(2, newPlace.getRowCount());;
+		assertEquals(3, newPlace.getColumnCount());
+		assertEquals(3, newPlace.getRowCount());;
 		newPlace = placeCalculator.zoom(newPlace, Zoom.OUT);
 		assertEquals("1", ((BasePlace)newPlace).getTagId());
 		assertEquals("10", ((BasePlace)newPlace).getPhotoId());
-		assertTrue(newPlace.hasButtonsVisible());
-		assertTrue(newPlace.hasTreeVisible());
-		assertEquals(2, newPlace.getColumnCount());
-		assertEquals(2, newPlace.getRowCount());
-		
-		newPlace = placeCalculator.zoom(newPlace, Zoom.OUT);
-		assertTrue(newPlace.hasButtonsVisible());
-		assertTrue(newPlace.hasTreeVisible());
-		assertEquals(3, newPlace.getColumnCount());
-		assertEquals(3, newPlace.getRowCount());
-		
-		newPlace = placeCalculator.zoom(newPlace, Zoom.OUT);
-		assertTrue(newPlace.hasButtonsVisible());
-		assertTrue(newPlace.hasTreeVisible());
 		assertEquals(4, newPlace.getColumnCount());
 		assertEquals(4, newPlace.getRowCount());
-		
-		
 	}	
 	
 	

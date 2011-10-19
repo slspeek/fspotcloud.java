@@ -24,7 +24,7 @@ public class MVPSetup {
 
 	private static final Logger log = Logger
 			.getLogger(MVPSetup.class.getName());
-	final private Place defaultPlace = new BasePlace("latest", "latest", 1, 1, true);
+	final private Place defaultPlace = new BasePlace("latest", "latest", 1, 1);
 	final private DockLayoutPanel appWidget = new DockLayoutPanel(Unit.PX);
 	final private EventBus eventBus;
 	final private MainWindowActivityMapper activityMapper;

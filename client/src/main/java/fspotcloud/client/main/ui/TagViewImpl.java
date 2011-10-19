@@ -46,13 +46,11 @@ public class TagViewImpl extends Composite implements TagView {
 	FocusPanel verticalFocusPanel;
 	@UiField
 	FocusPanel treeFocusPanel;
-	@UiField
-	FocusPanel buttonFocusPanel;
-	
-	
+		
 	@UiField
 	LayoutPanel mainPanel;
-
+	static int ID;
+	int id = ID++;
 	@Inject
 	public TagViewImpl(TreeView treeView,
 			@Named("Main") ButtonPanelView buttonPanelView,
@@ -62,7 +60,7 @@ public class TagViewImpl extends Composite implements TagView {
 		this.buttonPanelView = buttonPanelView;
 		this.imageRasterView = imageRasterView;
 		initWidget(uiBinder.createAndBindUi(this));
-		//hideLabelLater(3000);
+		log.info("Created " +this);
 	}
 
 	@UiHandler("horizontalFocusPanel")
@@ -79,14 +77,6 @@ public class TagViewImpl extends Composite implements TagView {
 		log.info("vertical mouse over");
 	}
 	
-	@UiHandler("buttonFocusPanel")
-	public void outHorizontal(MouseOutEvent event) {
-		log.info("horizontal mouse over");
-		animateControlsOut(1000);
-		// hideLabelLater(3000);
-
-	}
-
 	@UiHandler("treeFocusPanel")
 	public void treeOut(MouseOutEvent event) {
 		animateControlsOut(1000);
@@ -95,7 +85,7 @@ public class TagViewImpl extends Composite implements TagView {
 	
 
 	public void animateControlsIn(int duration) {
-		mainPanel.setWidgetBottomHeight(buttonFocusPanel, 0, Unit.CM, 10,
+		mainPanel.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM, 10,
 				Unit.PCT);
 		mainPanel.setWidgetTopHeight(imageRasterView, 0, Unit.CM, 90, Unit.PCT);
 		mainPanel
@@ -114,7 +104,7 @@ public class TagViewImpl extends Composite implements TagView {
 
 	public void animateControlsOut(int duration) {
 		mainPanel
-				.setWidgetBottomHeight(buttonFocusPanel, 0, Unit.CM, 0, Unit.PX);
+				.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM, 0, Unit.PX);
 		mainPanel
 				.setWidgetTopHeight(imageRasterView, 0, Unit.CM, 100, Unit.PCT);
 		mainPanel.setWidgetRightWidth(imageRasterView, 0, Unit.CM, 100,
@@ -161,5 +151,9 @@ public class TagViewImpl extends Composite implements TagView {
 	@Override
 	public void setPresenter(TagPresenter presenter) {
 		this.presenter = presenter;
+	}
+	
+	public String toString() {
+		return "TagView:"+id;
 	}
 }
