@@ -35,34 +35,36 @@ public class ButtonPanelPresenterImpl implements
 
 	@Override
 	public void init() {
-		addActionGroup(allActions.get("Navigation"), true);
-
-		addSpacer(true);
-		addActionGroup(allActions.get("Raster"), true);
-
+		int total = 0;
+		ActionMap nav = allActions.get("Navigation");
+		total += nav.allActions().size();
+		
+		ActionMap raster = allActions.get("Raster"); 
+		total += raster.allActions().size();
+		total++; //Slideshow
+		ActionMap app  = allActions.get("Application");
+		total += app.allActions().size();
+		buttonPanelView.setButtonCount(total);
+		
+		
+		addActionGroup(nav);
+		addActionGroup(raster);
 		ActionMap actions = allActions.get("Slideshow");
-
-		addAction(actions.get(SlideshowType.SLIDESHOW_START), false);
-		addSpacer(false);
-
-		addActionGroup(allActions.get("Application"), false);
+		addAction(actions.get(SlideshowType.SLIDESHOW_START));
+		addActionGroup(app);
 	}
 
-	private void addActionGroup(ActionMap group, boolean north) {
+	private void addActionGroup(ActionMap group) {
 		for (UserAction action : group.allActions()) {
-			addAction(action, north);
+			addAction(action);
 		}
 	}
 
-	private void addAction(UserAction action, boolean north) {
+	private void addAction(UserAction action) {
 		UserButtonView.UserButtonPresenter buttonPresenter = buttonPresenterFactory
 				.get(action);
 		buttonPresenter.init();
-		buttonPanelView.add(buttonPresenter.getView(), north);
+		buttonPanelView.myAdd(buttonPresenter.getView());
 	}
 
-	private void addSpacer(boolean north) {
-		Widget space = buttonPanelView.getSpacer();
-		buttonPanelView.add(space, north);
-	}
 }

@@ -52,12 +52,9 @@ public class DemoAction implements Runnable {
 		addStep(navigation.get(NavigationType.NEXT), 2500);
 		addStep(raster.get(RasterType.TOGGLE_TABULAR_VIEW), 3000);
 		ActionMap application = actions.get("Application");
-		addStep(application.get(ApplicationType.TOGGLE_FULLSCREEN), 3000);
-		addStep(application.get(ApplicationType.TOGGLE_BUTTONS_VISIBLE), 3000);
 		addStep(raster.get(RasterType.SET_DEFAULT_RASTER), 4000);
 		addStep(application.get(ApplicationType.TOGGLE_HELP), 5000);
 		addStep(application.get(ApplicationType.TOGGLE_HELP), 1000, "Again to hide the help.");
-		addStep(application.get(ApplicationType.TOGGLE_BUTTONS_VISIBLE), 3000);
 	}
 
 	private void addStep(UserAction shortcut, int pause) {

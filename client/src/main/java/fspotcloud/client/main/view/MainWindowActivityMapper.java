@@ -10,6 +10,7 @@ import com.google.inject.Inject;
 import fspotcloud.client.main.view.api.SingleViewActivityFactory;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
 import fspotcloud.client.place.BasePlace;
+import fspotcloud.client.place.SlideshowPlace;
 import fspotcloud.client.place.api.Navigator;
 
 public class MainWindowActivityMapper implements ActivityMapper {
@@ -19,7 +20,7 @@ public class MainWindowActivityMapper implements ActivityMapper {
 	final private TagPresenterFactory tagPresenterFactory;
 	final private SingleViewActivityFactory singleViewActivityFactory;
 	final private Navigator navigator;
-	
+
 	@Inject
 	public MainWindowActivityMapper(TagPresenterFactory tagPresenterFactory,
 			SingleViewActivityFactory singleViewActivityFactory,
@@ -35,16 +36,17 @@ public class MainWindowActivityMapper implements ActivityMapper {
 		log.info("getActivity : " + place);
 		storeCurrentRasterDimension(place);
 		Activity activity = null;
-		if (place instanceof BasePlace) {
+		if (place instanceof SlideshowPlace) {
+			BasePlace basePlace = (BasePlace) place;
+			activity = singleViewActivityFactory.get(basePlace);
+
+		} else if (place instanceof BasePlace) {
 			BasePlace basePlace = (BasePlace) place;
 			if (basePlace.getTagId().equals("latest")) {
 				navigator.goToLatestTag();
 			}
-			if (basePlace.getColumnCount() * basePlace.getRowCount() == 1) {
-				activity = singleViewActivityFactory.get(basePlace);
-			} else {
-				activity = tagPresenterFactory.get(basePlace);
-			}
+			activity = tagPresenterFactory.get(basePlace);
+
 		} else {
 			log.warning("getActivity will return null for:" + place);
 		}

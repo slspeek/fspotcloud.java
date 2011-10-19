@@ -14,6 +14,7 @@
 @def ligherColor #9ED5FF;
 @def treeColor #B38481;
 @def treeColor #D5FF9E;
+@def thirdColor #FF9ED5;
 
  .titleBlock {
 	background-color: darkColor;
@@ -38,6 +39,12 @@
 
 .imagePanelBlock {
 	background-color: ligherColor;
+	border-radius: borderRadius;
+	margin: auto;
+}
+
+.buttonPanelBlock {
+	background-color: thirdColor;
 	border-radius: borderRadius;
 	margin: auto;
 }

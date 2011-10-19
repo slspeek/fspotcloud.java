@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import fspotcloud.client.place.api.Navigator;
 import fspotcloud.client.place.api.Navigator.Zoom;
-import fspotcloud.client.place.api.PhotoInTag;
 /**
  * Holds the current raster size
  * @author steven
@@ -32,8 +31,6 @@ public class PlaceCalculator {
 		PlaceConverter converter = new PlaceConverter(place);
 		converter.setRowCount(1);
 		converter.setColumnCount(1);
-		converter.setButtonsVisible(false);
-		converter.setTreeVisible(false);
 		BasePlace dest = converter.getNewPlace();
 		return dest;
 	}
@@ -75,11 +72,6 @@ public class PlaceCalculator {
 		return converter.getNewPlace();
 	}
 
-	public BasePlace toggleTreeViewVisible(BasePlace place) {
-		boolean treeVisible = !place.hasTreeVisible();
-		return setTreeVisible(place, treeVisible);
-	}
-
 	public void setRasterHeight(int rasterHeight) {
 		if (rasterHeight >= MINIMUM_RASTER_HEIGHT) {
 			this.rasterHeight = rasterHeight;
@@ -107,68 +99,37 @@ public class PlaceCalculator {
 		return converter.getNewPlace();
 	}
 
-	public BasePlace toggleButtonsVisible(BasePlace place) {
-		boolean buttonsVisible = !place.hasButtonsVisible();
-		return setButtonsVisible(place, buttonsVisible);
-	}
-
-	public BasePlace setButtonsVisible(BasePlace place, boolean visible) {
-		PlaceConverter converter = new PlaceConverter(place);
-		converter.setButtonsVisible(visible);
-		return converter.getNewPlace();
-	}
-
-	public BasePlace setTreeVisible(BasePlace place, boolean visible) {
-		PlaceConverter converter = new PlaceConverter(place);
-		if (visible) {
-			converter.setButtonsVisible(true);
-			converter.setTreeVisible(true);
-		} else {
-			converter.setTreeVisible(false);
-		}
-		return converter.getNewPlace();
-	}
-
+	
+	
 	public BasePlace zoom(BasePlace now, Navigator.Zoom direction) {
 		BasePlace dest;
 		if (direction == Zoom.IN) {
 			int width = now.getColumnCount();
 			int height = now.getRowCount();
 			if (width * height == 1) {
-				if (now.hasTreeVisible()) {
-					dest = setTreeVisible(now, false);
-				} else if (now.hasButtonsVisible()) {
-					dest = setButtonsVisible(now, false);
-				} else {
 					dest = now;
-				}
+				
 			} else {
 				setRasterWidth(width - 1);
 				setRasterHeight(height - 1);
 				if (width - 1 != getRasterWidth()) {
 					// switch to 1x1
 					dest = new BasePlace(now.getTagId(), now.getPhotoId(),
-							1, 1, true, true);
+							1, 1);
 				} else {
 					dest = new BasePlace(now.getTagId(), now.getPhotoId(),
-							getRasterWidth(), getRasterHeight(), true, true);
+							getRasterWidth(), getRasterHeight());
 				}
 
 			}
 
 		} else {
-			if (!now.hasButtonsVisible()) {
-				dest = setButtonsVisible(now, true);
-			} else if (!now.hasTreeVisible()) {
-				dest = setTreeVisible(now, true);
-			} else {
 				int width = now.getColumnCount();
 				int height = now.getRowCount();
 				setRasterWidth(width + 1);
 				setRasterHeight(height + 1);
 				dest = new BasePlace(now.getTagId(), now.getPhotoId(),
-						getRasterWidth(), getRasterHeight(), true, true);
-			}
+						getRasterWidth(), getRasterHeight());
 		}
 		return dest;
 	}
