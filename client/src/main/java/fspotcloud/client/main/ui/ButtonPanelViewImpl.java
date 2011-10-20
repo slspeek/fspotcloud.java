@@ -24,9 +24,9 @@ public class ButtonPanelViewImpl extends LayoutPanel implements
 	private int currentButton = 0;
 	
 	@Override
-	public void myAdd(Widget w) {
+	public void add(Widget w) {
 		float step = 100f/buttonCount;
-		add(w);
+		super.add(w);
 		setWidgetLeftWidth(w, currentButton * step, Unit.PCT, step, Unit.PCT);
 		//forceLayout();
 		//last
@@ -42,6 +42,10 @@ public class ButtonPanelViewImpl extends LayoutPanel implements
 	@Override
 	public void setButtonCount(int count) {
 		this.buttonCount = count;
+	}
+	
+	public LayoutPanel getLayout() {
+		return this;
 	}
 
 }

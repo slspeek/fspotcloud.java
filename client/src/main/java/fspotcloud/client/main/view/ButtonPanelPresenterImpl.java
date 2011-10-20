@@ -64,7 +64,7 @@ public class ButtonPanelPresenterImpl implements
 		UserButtonView.UserButtonPresenter buttonPresenter = buttonPresenterFactory
 				.get(action);
 		buttonPresenter.init();
-		buttonPanelView.myAdd(buttonPresenter.getView());
+		buttonPanelView.add(buttonPresenter.getView());
 	}
 
 }

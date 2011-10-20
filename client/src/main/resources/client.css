@@ -8,27 +8,18 @@
 @def darkColor #66BDFF;
 @def ligherColor 	#98EFFF; 
 @def treeColor #98EFFF; 
-@def borderRadius   7px  ;
+@def borderRadius   14px  ;
 @def foregroundColor white;
 @def ligherColor #B38481;
-@def ligherColor #9ED5FF;
+@def ligherColor  #DEFFF1;
 @def treeColor #B38481;
-@def treeColor #D5FF9E;
-@def thirdColor #FF9ED5;
+@def treeColor #FFF1DE;
+@def thirdColor #F1DEFF;
 
- .titleBlock {
-	background-color: darkColor;
-	color: foregroundColor;
-	text-align: center;
-	font-size: large;
-	font-weight: bold;
-	-moz-border-radius: borderRadius;
-	border-radius: borderRadius;
-}
-
-.tagView {
-	border-style: outset;
+ .tagView {
+	border-style: solid;
 	background-color: treeColor;
+	border-color: thirdColor;
 }
 
 .button {
@@ -36,16 +27,32 @@
 	margin: auto;
 }
 	
+.slideshow {
+	background-color: black;
+}
+
+.image {
+	border-style: dashed;
+	margin: auto;
+}
+	
+.slideshowControls {
+	background-color: grey;
+	border-radius: borderRadius;
+}
 
 .imagePanelBlock {
 	background-color: ligherColor;
-	border-radius: borderRadius;
 	margin: auto;
+	border-style: solid;
+	border-color: treeColor;
 }
 
 .buttonPanelBlock {
 	background-color: thirdColor;
-	border-radius: borderRadius;
+	border-style: solid;
+	border-style: thin;
+	border-color: ligherColor;
 	margin: auto;
 }
 
@@ -57,8 +64,9 @@
 
 .treeBlock {
 	background-color: treeColor;
-	-moz-border-radius: borderRadius;
-	border-radius: borderRadius;
+	border-style:solid;
+	border-style: thin;
+	border-color: thirdColor;
 }
 
 .footerBlock {
@@ -82,11 +90,11 @@
 	font-size: 90%;
 	border-bottom: solid;
 	border-top: solid;
+	text-align: center;
 }
 
 .helpDescription {
 	font-size: 130%;
-	text-align: left;
 }
 
 .helpTitle {

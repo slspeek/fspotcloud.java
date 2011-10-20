@@ -8,9 +8,13 @@ import com.google.gwt.resources.client.TextResource;
 public interface Resources extends ClientBundle {
 
 	public interface Style extends CssResource {
-		String titleBlock();
-
+		String slideshow();
+		
+		String slideshowControls();
+		
 		String footerBlock();
+		
+		String image();
 		
 		String tagView();
 		

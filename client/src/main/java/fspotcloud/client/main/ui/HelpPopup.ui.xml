@@ -4,9 +4,7 @@
 	<ui:with type="fspotcloud.client.main.ui.Resources" field="res"></ui:with>
 	<g:FocusPanel ui:field="focusPanel">
 		<g:HTMLPanel>
-			<center>
-				<span ui:field="titleSpan" class="{res.style.helpTitle}"></span>
-			</center>
+			<div ui:field="titleSpan" class="{res.style.helpTitle}"></div>
 			<div ui:field="helpBodyDiv"></div>
 		</g:HTMLPanel>
 	</g:FocusPanel>

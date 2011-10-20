@@ -30,10 +30,10 @@ public class AboutPresenter implements PopupView.PopupPresenter {
 	}
 
 	private String initHelpText() {
-		helptext = "<table>";
+		helptext = "<table style='text-align: left'>";
 		helptext += getAboutGroup(actions);
 		
-		helptext += "<tr><td colspan=4>";
+		helptext += "<tr><td colspan=4 style='text-align: center'>";
 		String version = resources.getVersion().getText(); 
 		helptext += version.replaceAll("\n", "<br/>");
 		helptext += "</td></tr>";

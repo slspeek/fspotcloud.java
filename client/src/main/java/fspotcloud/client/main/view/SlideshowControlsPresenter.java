@@ -6,7 +6,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
-import fspotcloud.client.main.event.ActionFamily;
+import fspotcloud.client.main.event.AbstractActionMap;
 import fspotcloud.client.main.event.ActionMap;
 import fspotcloud.client.main.event.slideshow.SlideshowType;
 import fspotcloud.client.main.view.api.ButtonPanelView;
@@ -21,20 +21,20 @@ public class SlideshowControlsPresenter implements ButtonPanelView.ButtonPanelPr
 	private static final Logger log = Logger
 			.getLogger(SlideshowControlsPresenter.class.getName());
 
-	private ActionFamily allActions;
-	private UserButtonPresenterFactory buttonPresenterFactory;
-	private SlideshowView.SlideshowPresenter slideshowPresenter;
-
-	private ButtonPanelView buttonPanelView;
+	final private AbstractActionMap actions;
+	final private UserButtonPresenterFactory buttonPresenterFactory;
+	final private SlideshowView.SlideshowPresenter slideshowPresenter;
+	final private ButtonPanelView buttonPanelView;
 	
 	@Inject
 	public SlideshowControlsPresenter(@Named("Slideshow") ButtonPanelView buttonPanelView,
-			ActionFamily allActions,
+			@Named("slideshow") AbstractActionMap actions,
 			UserButtonPresenterFactory buttonPresenterFactory,
 			SlideshowPresenterFactory slideshowPresenterFactory) {
 		super();
 		this.buttonPanelView = buttonPanelView;
-		this.allActions = allActions;
+		this.actions = actions;
+		actions.buildMap();
 		this.buttonPresenterFactory = buttonPresenterFactory;
 		this.slideshowPresenter = slideshowPresenterFactory.get(buttonPanelView
 				.getSlideshowView());
@@ -44,14 +44,13 @@ public class SlideshowControlsPresenter implements ButtonPanelView.ButtonPanelPr
 	@Override
 	public void init() {
 		slideshowPresenter.init();
-		ActionMap actions = allActions.get("Slideshow");
 		buttonPanelView.setButtonCount(actions.allActions().size() + 1);
-		
+	
 		addAction(actions.get(SlideshowType.SLIDESHOW_SLOWER));
 		addAction(actions.get(SlideshowType.SLIDESHOW__END));
 		
 		Widget w = slideshowPresenter.getView().asWidget();
-		buttonPanelView.myAdd(w);
+		buttonPanelView.add(w);
 		
 		addAction(actions.get(SlideshowType.SLIDESHOW_START));
 		addAction(actions.get(SlideshowType.SLIDESHOW_FASTER));
@@ -61,7 +60,7 @@ public class SlideshowControlsPresenter implements ButtonPanelView.ButtonPanelPr
 		UserButtonView.UserButtonPresenter buttonPresenter = buttonPresenterFactory
 				.get(action);
 		buttonPresenter.init();
-		buttonPanelView.myAdd(buttonPresenter.getView());
+		buttonPanelView.add(buttonPresenter.getView());
 	}
 
 	
