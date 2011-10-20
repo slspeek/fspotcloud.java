@@ -32,7 +32,5 @@ public class ApplicationActionsITest extends SeleniumITestCase {
 		sleepShort();
 		selenium.click("//div[3]/div");
 		selenium.waitForPageToLoad("30000");
-		selenium.click("gwt-debug-fullscreen");
-		selenium.waitForPageToLoad("30000");
 	}
 }
