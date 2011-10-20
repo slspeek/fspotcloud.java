@@ -32,8 +32,6 @@ public class TabularITest extends SeleniumITestCase {
 		selenium.click("gwt-debug-back");
 		selenium.waitForPageToLoad("30000");
 		assertEquals("/image?id=6&thumb", selenium.getAttribute("//*[@id=\"gwt-debug-image-view-0x1\"]@src"));
-		selenium.click("gwt-debug-toggle-buttons");
-		selenium.waitForPageToLoad("30000");
 		sleepShort();
 	}
 }
