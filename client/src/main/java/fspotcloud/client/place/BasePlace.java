@@ -55,7 +55,7 @@ public class BasePlace extends Place implements PhotoInTag, Raster {
 
 	@Override
 	public boolean equals(Object other) {
-		if (other instanceof BasePlace) {
+		if (other.getClass().equals(BasePlace.class)) {
 			BasePlace basePlace = (BasePlace) other;
 			String tagId = basePlace.getTagId();
 			String photoId = basePlace.getPhotoId();

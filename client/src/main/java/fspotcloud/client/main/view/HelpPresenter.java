@@ -41,10 +41,10 @@ public class HelpPresenter implements PopupView.PopupPresenter {
 
 	private String getHelpGroup(ActionMap group) {
 		String title = group.getDescription();
-		String helptext = "<table>";
-		helptext += "<tr><th colspan=3 >";
+		String helptext = "<table style='text-align: left'>";
+		helptext += "<tr><th colspan=4 style='text-align: center'>";
 		helptext += title;
-		helptext += "</tr></th>";
+		helptext += "</th></tr></th>";
 		for (UserAction shortcut : group.allActions()) {
 			helptext += "<tr><td>" + generator.getHelpText(shortcut)
 					+ "</td></tr>";

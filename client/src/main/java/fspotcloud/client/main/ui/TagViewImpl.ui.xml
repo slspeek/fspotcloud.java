@@ -4,21 +4,20 @@
 	<ui:with type="fspotcloud.client.main.ui.Resources" field="res"></ui:with>
 	<g:LayoutPanel ui:field="mainPanel" styleName="{res.style.tagView}">
 		<g:layer top="0%" height="90%" right="0%" width="78%">
-			<my:ImageRasterViewImpl ui:field="imageRasterView"></my:ImageRasterViewImpl>
+			<my:ImageRasterViewImpl styleName="{res.style.imagePanelBlock}" ></my:ImageRasterViewImpl>
 		</g:layer>
 		<g:layer top="0%" height="90%" left="0%" width="22%">
-			<g:FocusPanel ui:field="treeFocusPanel">
-				<my:TreeViewImpl styleName="{res.style.treeBlock}"></my:TreeViewImpl>
-			</g:FocusPanel>
+			<my:TreeViewImpl  styleName="{res.style.treeBlock}"></my:TreeViewImpl>
 		</g:layer>
 		<g:layer bottom="0%" height="10%">
 			<my:ButtonPanelViewImpl></my:ButtonPanelViewImpl>
 		</g:layer>
 		<g:layer bottom="0%" height="0%">
-			<g:FocusPanel ui:field="horizontalFocusPanel"></g:FocusPanel>
+			<g:HTML ui:field="horizontalFocusPanel"></g:HTML>
+			
 		</g:layer>
 		<g:layer left="0%" width="0%">
-			<g:FocusPanel ui:field="verticalFocusPanel"></g:FocusPanel>
+			<g:HTML ui:field="verticalFocusPanel"></g:HTML>
 		</g:layer>
 	</g:LayoutPanel>
 </ui:UiBinder> 

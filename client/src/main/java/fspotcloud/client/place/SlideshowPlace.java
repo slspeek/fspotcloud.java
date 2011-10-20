@@ -35,5 +35,19 @@ public class SlideshowPlace extends BasePlace {
 		}
 	}
 	
+	public boolean equals(Object otherObject) {
+		if (otherObject instanceof SlideshowPlace) {
+			
+			BasePlace basePlace = (BasePlace) otherObject;
+			String tagId = basePlace.getTagId();
+			String photoId = basePlace.getPhotoId();
+			return equal(getTagId()
+					, tagId) && equal(getPhotoId(), photoId);
+		} else {
+			return false;
+		}
+		
+	}
+	
 	
 }

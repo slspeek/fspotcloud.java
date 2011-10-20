@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
-import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -31,7 +30,7 @@ public class HelpPopup extends PopupPanel implements PopupView {
 	DivElement helpBodyDiv;
 
 	@UiField
-	SpanElement titleSpan;
+	DivElement titleSpan;
 
 	@Inject
 	public HelpPopup(Resources resources) {
