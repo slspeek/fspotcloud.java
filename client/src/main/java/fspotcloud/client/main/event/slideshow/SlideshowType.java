@@ -1,12 +1,14 @@
 package fspotcloud.client.main.event.slideshow;
 
+import com.google.gwt.event.dom.client.KeyCodes;
+
 import fspotcloud.client.view.action.KeyStroke;
 import fspotcloud.client.view.action.api.ActionDef;
 
 public enum SlideshowType implements ActionDef {
 	
 	SLIDESHOW_START("play", "Play",	"Start slideshow", new KeyStroke('S'), new KeyStroke('G')),
-	SLIDESHOW__END("stop", "Stop", "Stop slideshow", new KeyStroke('Q'), null),
+	SLIDESHOW__END("stop", "Stop", "Stop slideshow", new KeyStroke('Q'), new KeyStroke(KeyCodes.KEY_ESCAPE)),
 	SLIDESHOW_SLOWER ("slower", "Slower","Makes the slideshow go slower", new KeyStroke('U'), null),
 	SLIDESHOW_FASTER ("faster", "Faster", "Makes the slideshow go faster", new KeyStroke('I'), null);
 	

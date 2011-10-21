@@ -38,7 +38,6 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	Label info;
 	@UiField
 	FitImage image;
-
 	@UiField
 	LayoutPanel layout;
 
@@ -72,34 +71,18 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 		this.presenter.imageClicked();
 	}
 
-	@UiHandler("info")
-	public void infoClicked(ClickEvent event) {
-		log.info("label clicked");
-		// presenter.imageDoubleClicked();
-		layout.setWidgetBottomHeight(info, 0, Unit.CM, 0, Unit.PCT);
-		layout.setWidgetLeftRight(info, 0, Unit.PCT, 0, Unit.PCT);
-		layout.animate(500);
-
-	}
-
 	@UiHandler("image")
 	public void infoHover(MouseMoveEvent event) {
-		log.info("image mouse move");
-		// presenter.imageDoubleClicked();
 		layout.setWidgetBottomHeight(info, 0, Unit.CM, 16, Unit.PX);
-		// layout.setWidgetLeftRight(info, 25, Unit.PCT, 25, Unit.PCT);
 		layout.animate(500);
 		hideLabelLater(3000);
-
 	}
 
 	public void hideLabelLater(final int duration) {
 		timer.setRunnable(new Runnable() {
-
 			@Override
 			public void run() {
 				layout.setWidgetBottomHeight(info, 0, Unit.CM, 0, Unit.PX);
-				// layout.setWidgetLeftRight(info, 25, Unit.PCT, 25, Unit.PCT);
 				layout.animate(500);
 
 			}
@@ -117,7 +100,6 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 		if (width > 0) {
 			this.image.setMaxWidth(width);
 		}
-
 	}
 
 	@Override

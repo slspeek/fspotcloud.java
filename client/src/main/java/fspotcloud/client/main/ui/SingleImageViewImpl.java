@@ -9,8 +9,8 @@ import com.google.gwt.event.dom.client.MouseMoveHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
-import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
@@ -19,7 +19,7 @@ import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.SingleImageView;
 import fspotcloud.client.main.view.api.TimerInterface;
 
-public class SingleImageViewImpl extends ResizeComposite implements
+public class SingleImageViewImpl extends Composite implements
 		SingleImageView, MouseMoveHandler {
 
 	private static final Logger log = Logger.getLogger(SingleImageViewImpl.class
@@ -33,13 +33,13 @@ public class SingleImageViewImpl extends ResizeComposite implements
 	}
 
 	final private ButtonPanelView buttonPanelView;
-	
+	final private ImageRasterView imageRasterView;
+	final private TimerInterface timer;
+		
 	@UiField
 	LayoutPanel layout;
 
-	private ImageRasterView imageRasterView;
-
-	private TimerInterface timer;
+	private SingleImageView.SingleImagePresenter presenter;
 	
 	@Inject
 	public SingleImageViewImpl(ImageRasterView imageRasterView,
@@ -89,6 +89,11 @@ public class SingleImageViewImpl extends ResizeComposite implements
 	public void onMouseMove(MouseMoveEvent event) {
 		showControls(600);
 		hideControlsLater(6000);
+	}
+
+	@Override
+	public void setPresenter(SingleImagePresenter singleImageActivity) {
+		this.presenter = singleImageActivity;
 	}
 		
 }

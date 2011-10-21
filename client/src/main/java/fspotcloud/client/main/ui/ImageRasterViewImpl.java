@@ -64,20 +64,12 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 		}
 		dockPanel.clear();
 		dockPanel.add(layout);
-		//layout.forceLayout();
-		log.info("At end of buildraster: size: ("
-				+ getOffsetWidth()+ ", "
-				+ getOffsetWidth() + ")");
-		log.info("At end of buildraster: simple panel size: ("
-				+ dockPanel.getOffsetWidth() + ", "
-				+ dockPanel.getOffsetHeight() + ")");
 		return result;
 	}
 	
 
 	@Override
 	public void onResize() {
-		log.info("Current size: (yes debug) " + getOffsetWidth());
 		if (presenter != null) {
 			presenter.onResize();
 		}

@@ -384,5 +384,12 @@ public class NavigatorImpl implements Navigator {
 			SlideshowPlace destination = new SlideshowPlace(now.getTagId(), now.getPhotoId(), 0f);
 			placeGoTo.goTo(destination);	
 		}
+		
+		@Override
+		public void unslideshow() {
+			BasePlace now = placeWhere.where();
+			BasePlace destination = placeCalculator.unslideshow(now);
+			placeGoTo.goTo(destination);	
+		}
 	
 }

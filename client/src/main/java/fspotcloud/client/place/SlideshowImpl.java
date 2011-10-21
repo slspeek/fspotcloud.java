@@ -82,6 +82,7 @@ public class SlideshowImpl implements Slideshow {
 		isRunning = false;
 		timer.cancel();
 		fireStatusChanged();
+		navigator.unslideshow();
 	}
 
 	@Override

@@ -52,5 +52,7 @@ public interface Navigator {
 	}
 	
 	void zoom(Zoom direction);
+
+	void unslideshow();
 	
 }
