@@ -52,4 +52,7 @@ public class KeyStroke {
 	}
 	
 
+	public String toString() {
+		return "KeyStroke: " + getKeyString() + "(" + getKeyCode() +")";
+	}
 }

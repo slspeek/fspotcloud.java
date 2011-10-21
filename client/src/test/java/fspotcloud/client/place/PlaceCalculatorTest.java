@@ -10,6 +10,21 @@ public class PlaceCalculatorTest extends TestCase {
 	PlaceCalculator placeCalculator = new PlaceCalculator();
 	
 	
+	public void testUnslideshow() {
+		BasePlace tagViewingPlace = new BasePlace("1", "10", 2, 1);
+		BasePlace newPlace = (BasePlace) placeCalculator.unslideshow(tagViewingPlace);
+		assertEquals(newPlace, tagViewingPlace);
+		
+		
+		SlideshowPlace place = new SlideshowPlace("1", "2", 0f);
+		newPlace = placeCalculator.unslideshow(place);
+		
+		assertFalse(newPlace instanceof SlideshowPlace);
+		
+	}
+	
+	
+	
 	
 	public void testToggleRasterView() {
 		BasePlace tagViewingPlace = new BasePlace("1", "10", 2, 1);

@@ -133,4 +133,14 @@ public class PlaceCalculator {
 		}
 		return dest;
 	}
+
+	public BasePlace unslideshow(BasePlace tagViewingPlace) {
+		BasePlace result;
+		if (tagViewingPlace instanceof SlideshowPlace) {
+			result = new BasePlace(tagViewingPlace.getTagId(), tagViewingPlace.getPhotoId(), 1, 1);
+		} else {
+			result = tagViewingPlace;
+		}
+		return result;
+	}
 }
