@@ -39,7 +39,6 @@ public class TagPresenterFactoryImpl implements TagPresenterFactory {
 
 	private void init() {
 		treePresenter.init();
-		buttonPanelPresenter.init();
 	}
 
 	@Override

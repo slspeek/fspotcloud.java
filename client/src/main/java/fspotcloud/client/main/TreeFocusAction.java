@@ -10,6 +10,8 @@ import fspotcloud.client.main.view.api.TreeView;
 import fspotcloud.client.place.api.Slideshow;
 
 public class TreeFocusAction implements Runnable {
+
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(TreeFocusAction.class
 			.getName());
 	final private TreeView treeView;
@@ -26,7 +28,6 @@ public class TreeFocusAction implements Runnable {
 
 	@Override
 	public void run() {
-		log.info("Run: " +tagView);
 		slideshow.stop();
 		tagView.animateControlsIn(100);
 		treeView.requestFocus();

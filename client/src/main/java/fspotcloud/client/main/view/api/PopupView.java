@@ -6,9 +6,13 @@ public interface PopupView {
 		void hide();
 
 		void show();
+		
+		boolean isShowing();
 
 	}
 
+	void setPresenter(PopupView.PopupPresenter presenter);
+	
 	void setText(String text);
 	
 	void setTitle(String text);
@@ -24,5 +28,7 @@ public interface PopupView {
 	void setPopupPosition(int i, int j);
 	
 	void focus();
+	
+	boolean isShowing();
 
 }

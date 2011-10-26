@@ -25,15 +25,15 @@ import fspotcloud.client.main.ui.SlideshowViewImpl;
 import fspotcloud.client.main.ui.TagViewImpl;
 import fspotcloud.client.main.ui.TimerImpl;
 import fspotcloud.client.main.ui.TreeViewImpl;
-import fspotcloud.client.main.view.ButtonPanelPresenterImpl;
 import fspotcloud.client.main.view.ImagePresenterImpl;
 import fspotcloud.client.main.view.ImageRasterPresenterImpl;
 import fspotcloud.client.main.view.MainWindowActivityMapper;
-import fspotcloud.client.main.view.SlideshowPresenterImpl;
+import fspotcloud.client.main.view.SlideshowControlsPresenter;
 import fspotcloud.client.main.view.TagCell;
 import fspotcloud.client.main.view.TreePresenterImpl;
 import fspotcloud.client.main.view.TreeSelectionHandler;
 import fspotcloud.client.main.view.UserButtonPresenterImpl;
+import fspotcloud.client.main.view.api.ButtonPanelPresenterProvider;
 import fspotcloud.client.main.view.api.ButtonPanelView;
 import fspotcloud.client.main.view.api.ImagePresenterFactory;
 import fspotcloud.client.main.view.api.ImageRasterPresenterFactory;
@@ -44,7 +44,6 @@ import fspotcloud.client.main.view.api.LoadNewLocation;
 import fspotcloud.client.main.view.api.PopupView;
 import fspotcloud.client.main.view.api.SingleImageView;
 import fspotcloud.client.main.view.api.SingleViewActivityFactory;
-import fspotcloud.client.main.view.api.SlideshowPresenterFactory;
 import fspotcloud.client.main.view.api.SlideshowView;
 import fspotcloud.client.main.view.api.TagPresenterFactory;
 import fspotcloud.client.main.view.api.TagView;
@@ -55,6 +54,8 @@ import fspotcloud.client.main.view.api.UserButtonPresenterFactory;
 import fspotcloud.client.main.view.api.UserButtonView;
 import fspotcloud.client.main.view.api.UserButtonViewFactory;
 import fspotcloud.client.main.view.factory.SingleImageViewActivityFactoryImpl;
+import fspotcloud.client.main.view.factory.SlideshowControlsPresenterProvider;
+import fspotcloud.client.main.view.factory.SlideshowPresenterFactoryImpl;
 import fspotcloud.client.main.view.factory.TagPresenterFactoryImpl;
 import fspotcloud.client.main.view.factory.UserButtonViewFactoryImpl;
 import fspotcloud.client.place.NavigatorImpl;
@@ -93,9 +94,7 @@ public class AppModule extends AbstractGinModule {
 		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
 		bind(KeyDispatcherProvider.class).in(Singleton.class);
 		bind(ShortcutHandler.class).toProvider(KeyDispatcherProvider.class);
-		bind(SlideshowView.class).to(SlideshowViewImpl.class);
-		bind(SlideshowView.SlideshowPresenter.class).to(
-				SlideshowPresenterImpl.class);
+		bind(SlideshowView.class).to(SlideshowViewImpl.class).in(Singleton.class);
 		bind(TimerInterface.class).to(TimerImpl.class);
 		bind(Navigator.class).to(NavigatorImpl.class).in(Singleton.class);
 		bind(Slideshow.class).to(SlideshowImpl.class).in(Singleton.class);
@@ -107,10 +106,7 @@ public class AppModule extends AbstractGinModule {
 		
 		
 		
-		install(new GinFactoryModuleBuilder().implement(
-				SlideshowView.SlideshowPresenter.class,
-				SlideshowPresenterImpl.class).build(
-				SlideshowPresenterFactory.class));
+		bind(SlideshowView.SlideshowPresenter.class).toProvider(SlideshowPresenterFactoryImpl.class);
 		install(new GinFactoryModuleBuilder().implement(
 				ImageRasterView.ImageRasterPresenter.class,
 				ImageRasterPresenterImpl.class).build(
@@ -129,8 +125,11 @@ public class AppModule extends AbstractGinModule {
 				UserButtonView.UserButtonPresenter.class,
 				UserButtonPresenterImpl.class).build(
 				UserButtonPresenterFactory.class));
-		bind(ButtonPanelView.ButtonPanelPresenter.class).to(
-				ButtonPanelPresenterImpl.class);
+		
+		bind(SlideshowControlsPresenter.class).toProvider(SlideshowControlsPresenterProvider.class);
+		
+		bind(ButtonPanelView.ButtonPanelPresenter.class).toProvider(
+				ButtonPanelPresenterProvider.class);
 		bind(ButtonPanelView.class).annotatedWith(Names.named("Main"))
 				.to(ButtonPanelViewImpl.class).in(Singleton.class);
 		bind(ButtonPanelView.class).annotatedWith(Names.named("Slideshow"))

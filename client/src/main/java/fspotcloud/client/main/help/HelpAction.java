@@ -7,8 +7,6 @@ import fspotcloud.client.main.view.HelpPresenter;
 public class HelpAction implements Runnable {
 
 	private HelpPresenter helpPresenter;
-	private boolean isShowing = false;
-
 	@Inject
 	public HelpAction(HelpPresenter helpPresenter) {
 		this.helpPresenter = helpPresenter;
@@ -16,12 +14,10 @@ public class HelpAction implements Runnable {
 
 	@Override
 	public void run() {
-		if (isShowing) {
+		if (helpPresenter.isShowing()) {
 			helpPresenter.hide();
-			isShowing = false;
 		} else {
 			helpPresenter.show();
-			isShowing = true;
 		}
 	}
 
