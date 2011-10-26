@@ -6,46 +6,34 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
 import fspotcloud.client.main.view.api.ButtonPanelView;
-import fspotcloud.client.main.view.api.SlideshowView;
 
 public class ButtonPanelViewImpl extends LayoutPanel implements
 		ButtonPanelView {
-	private final SlideshowView slideshowView;
 	
 	
-	private int buttonCount;
+	private int widgetCount;
 	@Inject 
-	public ButtonPanelViewImpl(SlideshowView slideshowView, Resources resources) {
-		this.slideshowView = slideshowView;
+	public ButtonPanelViewImpl(Resources resources) {
 		setStyleName(resources.style().buttonPanelBlock());
-		slideshowView.asWidget().setStyleName(resources.style().footerBlock());
 	}
 
-	private int currentButton = 0;
+	private int currentWidget = 0;
 	
 	@Override
 	public void add(Widget w) {
-		float step = 100f/buttonCount;
+		float step = 100f/widgetCount;
 		super.add(w);
-		setWidgetLeftWidth(w, currentButton * step, Unit.PCT, step, Unit.PCT);
+		setWidgetLeftWidth(w, currentWidget * step, Unit.PCT, step, Unit.PCT);
 		//forceLayout();
 		//last
-		currentButton++;
+		currentWidget++;
 	}
 
 
 	@Override
-	public SlideshowView getSlideshowView() {
-		return slideshowView;
+	public void setWidgetCount(int count) {
+		this.widgetCount = count;
 	}
 
-	@Override
-	public void setButtonCount(int count) {
-		this.buttonCount = count;
-	}
-	
-	public LayoutPanel getLayout() {
-		return this;
-	}
 
 }

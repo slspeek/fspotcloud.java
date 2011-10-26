@@ -22,6 +22,7 @@ public class HelpPresenter implements PopupView.PopupPresenter {
 		this.popupView = popupView;
 		popupView.setText(initHelpText());
 		popupView.setTitle("Keyboard Shortcuts");
+		popupView.setPresenter(this);
 	}
 
 	private String initHelpText() {
@@ -62,5 +63,10 @@ public class HelpPresenter implements PopupView.PopupPresenter {
 
 	public void hide() {
 		popupView.hide();
+	}
+
+	@Override
+	public boolean isShowing() {
+		return popupView.isShowing();
 	}
 }

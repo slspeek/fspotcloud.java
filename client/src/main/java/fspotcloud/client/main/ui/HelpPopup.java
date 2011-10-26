@@ -31,6 +31,8 @@ public class HelpPopup extends PopupPanel implements PopupView {
 
 	@UiField
 	DivElement titleSpan;
+	
+	private PopupView.PopupPresenter presenter;
 
 	@Inject
 	public HelpPopup(Resources resources) {
@@ -42,7 +44,7 @@ public class HelpPopup extends PopupPanel implements PopupView {
 			@Override
 			public void onKeyDown(KeyDownEvent event) {
 				log.info("Keydown in help-popup " + event);
-				hide();
+				presenter.hide();
 				
 			}
 		});
@@ -60,4 +62,9 @@ public class HelpPopup extends PopupPanel implements PopupView {
 	public void focus() {
 		focusPanel.setFocus(true);
 	}
+
+	public void setPresenter(PopupView.PopupPresenter presenter) {
+		this.presenter = presenter;
+	}
+	
 }

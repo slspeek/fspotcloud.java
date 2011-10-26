@@ -16,6 +16,8 @@ public class SingleImageViewActivityFactoryImpl implements
 
 	private final ImageRasterPresenterFactory imageRasterPresenterFactory;
 	private final SingleImageViewImpl singleImageView;
+	
+	@SuppressWarnings("unused")
 	private final SlideshowControlsPresenter controlsPresenter;
 
 	@Inject
@@ -26,7 +28,6 @@ public class SingleImageViewActivityFactoryImpl implements
 		this.controlsPresenter = controlsPresenter;
 		this.imageRasterPresenterFactory = imageRasterPresenterFactory;
 		this.singleImageView = singleImageView;
-		this.controlsPresenter.init();
 	}
 
 	@Override

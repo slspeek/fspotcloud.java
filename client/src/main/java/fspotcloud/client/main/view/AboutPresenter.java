@@ -60,4 +60,9 @@ public class AboutPresenter implements PopupView.PopupPresenter {
 	public void hide() {
 		popupView.hide();
 	}
+
+	@Override
+	public boolean isShowing() {
+		return popupView.isShowing();
+	}
 }
