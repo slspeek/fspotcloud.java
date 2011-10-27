@@ -9,6 +9,8 @@ import com.google.inject.Inject;
 import fspotcloud.client.main.shared.SlideshowStatusEvent;
 import fspotcloud.client.main.view.api.TimerInterface;
 import fspotcloud.client.place.api.Navigator;
+import fspotcloud.client.place.api.Navigator.Direction;
+import fspotcloud.client.place.api.Navigator.Unit;
 import fspotcloud.client.place.api.Slideshow;
 
 public class SlideshowImpl implements Slideshow {
@@ -35,7 +37,7 @@ public class SlideshowImpl implements Slideshow {
 		timer.setRunnable(new Runnable() {
 			@Override
 			public void run() {
-				navigator.canGoAsync(true, new AsyncCallback<Boolean>() {
+				navigator.canGoAsync(Direction.FORWARD, Unit.SINGLE, new AsyncCallback<Boolean>() {
 					@Override
 					public void onFailure(Throwable caught) {
 						log.warning(caught.getMessage());
@@ -53,7 +55,7 @@ public class SlideshowImpl implements Slideshow {
 
 	private void go(boolean canGo) {
 		if (canGo) {
-			navigator.goAsync(true);
+			navigator.goAsync(Direction.FORWARD, Unit.SINGLE);
 		} else {
 			stop();
 			log.info("Timer stopped, because the end was reached.");

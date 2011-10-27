@@ -15,7 +15,7 @@ public class GwtTestEventModule extends GWTTestCase {
 		ActionFamily family = injector.getAllActions();
 		assertNotNull(family);
 		
-		assertEquals(4, family.get("Navigation").allActions().size());
+		assertEquals(8, family.get("Navigation").allActions().size());
 		for (UserAction action: family.get("Slideshow").allActions()) {
 			assertNotNull(action.getIcon());
 		}

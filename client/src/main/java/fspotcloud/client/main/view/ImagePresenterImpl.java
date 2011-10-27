@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
 import fspotcloud.client.main.shared.ZoomViewEvent;
+import fspotcloud.client.main.ui.Resources;
 import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.shared.photo.PhotoInfo;
 
@@ -22,13 +23,15 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	final private boolean thumb;
 	final private EventBus eventBus;
 	final private PhotoInfo info;
+	final private Resources resources;
 
 	@Inject
 	public ImagePresenterImpl(@Assisted("maxWidth") int maxWidth,
 			@Assisted("maxHeight") int maxHeight, @Assisted String tagId,
 			@Assisted ImageView imageView, @Assisted boolean thumb, @Assisted PhotoInfo info,
-			EventBus eventBus) {
+			EventBus eventBus, Resources resources) {
 		this.tagId =  tagId; 
+		this.resources = resources;
 		photoId = info.getId();
 		this.imageView = imageView;
 		this.thumb = thumb;
@@ -69,10 +72,6 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	}
 
 	@Override
-	public void imageDoubleClicked() {
-	}
-
-	@Override
 	public void setMaxWidth(int width) {
 		imageView.setMaxWidth(width);
 	}
@@ -80,6 +79,11 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	@Override
 	public void setMaxHeight(int height) {
 		imageView.setMaxHeight(height);
+	}
+
+	@Override
+	public void setSelected() {
+		imageView.setSelected();
 	}
 
 }

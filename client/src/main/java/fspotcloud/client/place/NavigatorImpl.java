@@ -40,51 +40,21 @@ public class NavigatorImpl implements Navigator {
 	}
 
 	@Override
-	public void goEndAsync(boolean first) {
-		goEndAsync(first, (BasePlace) placeWhere.where());
+	public void goAsync(Direction direction, Unit step) {
+		goAsync(direction, step, placeWhere.where());
 	}
 
 	@Override
-	public void goAsync(boolean forward) {
-		goAsync(forward, (BasePlace) placeWhere.where());
-	}
-
-	private void goEndAsync(final boolean first, final BasePlace place) {
-		dataManager.getTagNode(place.getTagId(), new AsyncCallback<TagNode>() {
-
-			@Override
-			public void onFailure(Throwable caught) {
-				log.warning("getTagNode failed " + caught);
-			}
-
-			@Override
-			public void onSuccess(TagNode result) {
-				if (result != null) {
-					PhotoInfoStore store = result.getCachedPhotoList();
-					goEnd(first, place, store);
-				} 
-			}
-
-		});
-	}
-
-	private void goEnd(boolean first, BasePlace place, PhotoInfoStore store) {
-		if (!store.isEmpty()) {
-			String photoId;
-			if (first) {
-				photoId = store.get(0).getId();
-			} else {
-				photoId = store.last().getId();
-			}
-			goToPhoto(place, place.getTagId(), photoId);
-		}
+	public void canGoAsync(Direction direction, Unit step,
+			AsyncCallback<Boolean> callback) {
 	}
 
 	private int indexOf(BasePlace place, PhotoInfoStore store) {
 		return store.indexOf(place.getPhotoId());
 	}
 
-	private void goAsync(final boolean forward, final BasePlace place) {
+	private void goAsync(final Direction direction, final Unit step,
+			final BasePlace place) {
 		dataManager.getTagNode(place.getTagId(), new AsyncCallback<TagNode>() {
 
 			@Override
@@ -95,22 +65,54 @@ public class NavigatorImpl implements Navigator {
 			@Override
 			public void onSuccess(TagNode result) {
 				PhotoInfoStore store = result.getCachedPhotoList();
-				go(forward, place, store);
+				go(direction, step, place, store);
 			}
 
 		});
 
 	}
 
-	private void go(boolean forward, BasePlace place, PhotoInfoStore store) {
-		int pageSize = place.getColumnCount() * place.getRowCount();
-		int pageNumber = pageOf(place, store, pageSize);
-		if (canGo(forward, place, store)) {
-			int nextPage = pageNumber + (forward ? 1 : -1);
-			String photoId = store.get(nextPage * pageSize).getId();
-			goToPhoto(place, place.getTagId(), photoId);
-
+	private int stepSize(Unit unit, BasePlace place) {
+		int stepSize = 0;
+		switch (unit) {
+		case SINGLE:
+			stepSize = 1;
+			break;
+		case ROW:
+			stepSize = place.getColumnCount();
+			break;
+		case PAGE:
+			stepSize = place.getColumnCount() * place.getRowCount();
+			;
+			break;
 		}
+		return stepSize;
+	}
+	
+	private void go(final Direction direction, final Unit step,
+			BasePlace place, PhotoInfoStore store) {
+		if (step == Unit.BORDER) {
+			if (!store.isEmpty()) {
+				String photoId;
+				if (direction == Direction.BACKWARD) {
+					photoId = store.get(0).getId();
+				} else {
+					photoId = store.last().getId();
+				}
+				goToPhoto(place, place.getTagId(), photoId);
+			}
+		} else {
+			int position = indexOf(place, store);
+			int stepSize = stepSize(step, place);
+			if (canGo(direction, step, place, store)) {
+				int nextIndex = position + stepSize
+						* (direction == Direction.FORWARD ? 1 : -1);
+				String photoId = store.get(nextIndex).getId();
+				goToPhoto(place, place.getTagId(), photoId);
+
+			}
+		}
+
 	}
 
 	protected int pageOf(BasePlace place, PhotoInfoStore store, int pageSize) {
@@ -128,39 +130,17 @@ public class NavigatorImpl implements Navigator {
 		return result;
 	}
 
-	private boolean canGo(boolean forward, BasePlace place, PhotoInfoStore store) {
-		int pageSize = place.getColumnCount() * place.getRowCount();
-		int pageCount = pageCount(store, pageSize);
-		int pageNumber = pageOf(place, store, pageSize);
-
-		if (forward) {
-			return pageNumber >= 0 && pageNumber < pageCount - 1;
+	private boolean canGo(final Direction direction, final Unit step,
+			BasePlace place, PhotoInfoStore store) {
+		if (step == Unit.BORDER)
+			return true;
+		int position = indexOf(place, store);
+		int stepSize = stepSize(step, place);
+		if (direction == Direction.FORWARD) {
+			return position >= 0 && position + stepSize < store.size();
 		} else {
-			return pageNumber > 0;
+			return position - stepSize >= 0;
 		}
-	}
-
-	private void canGoAsync(final boolean forward, final BasePlace place,
-			final AsyncCallback<Boolean> callback) {
-		dataManager.getTagNode(place.getTagId(), new AsyncCallback<TagNode>() {
-
-			@Override
-			public void onFailure(Throwable caught) {
-				log.warning("getTagNode failed " + caught);
-			}
-
-			@Override
-			public void onSuccess(TagNode result) {
-				PhotoInfoStore store = result.getCachedPhotoList();
-				callback.onSuccess(canGo(forward, place, store));
-			}
-
-		});
-	}
-
-	public void canGoAsync(final boolean forward,
-			final AsyncCallback<Boolean> callback) {
-		canGoAsync(forward, (BasePlace) placeWhere.where(), callback);
 	}
 
 	protected void goToPhoto(BasePlace place, String tagId, String photoId) {
@@ -169,7 +149,7 @@ public class NavigatorImpl implements Navigator {
 			newPlace = new SlideshowPlace(tagId, photoId, 0f);
 		} else {
 			newPlace = new BasePlace(tagId, photoId, place.getColumnCount(),
-				place.getRowCount());
+					place.getRowCount());
 		}
 		log.info("About to go to: " + this + " : " + newPlace + " from: "
 				+ place);
@@ -272,9 +252,11 @@ public class NavigatorImpl implements Navigator {
 
 	@Override
 	public void goToTag(String otherTagId, PhotoInfoStore store) {
-		goEnd(true,
+		go(Direction.BACKWARD,
+				Unit.BORDER,
 				new BasePlace(otherTagId, null, placeCalculator
-						.getRasterWidth(), placeCalculator.getRasterHeight()), store);
+						.getRasterWidth(), placeCalculator.getRasterHeight()),
+				store);
 	}
 
 	@Override
@@ -348,7 +330,6 @@ public class NavigatorImpl implements Navigator {
 		placeGoTo.goTo(destination);
 	}
 
-	
 	@Override
 	public void toggleRasterView() {
 		BasePlace now = placeWhere.where();
@@ -362,7 +343,6 @@ public class NavigatorImpl implements Navigator {
 				PlaceCalculator.DEFAULT_RASTER_HEIGHT);
 	}
 
-	
 	@Override
 	public void fullscreen() {
 		BasePlace now = placeWhere.where();
@@ -370,26 +350,26 @@ public class NavigatorImpl implements Navigator {
 		placeGoTo.goTo(destination);
 	}
 
-	
-		@Override
+	@Override
 	public void zoom(Zoom direction) {
 		BasePlace now = placeWhere.where();
 		BasePlace destination = placeCalculator.zoom(now, direction);
 		placeGoTo.goTo(destination);
 	}
 
-		@Override
-		public void slideshow() {
-			BasePlace now = placeWhere.where();
-			SlideshowPlace destination = new SlideshowPlace(now.getTagId(), now.getPhotoId(), 0f);
-			placeGoTo.goTo(destination);	
-		}
-		
-		@Override
-		public void unslideshow() {
-			BasePlace now = placeWhere.where();
-			BasePlace destination = placeCalculator.unslideshow(now);
-			placeGoTo.goTo(destination);	
-		}
-	
+	@Override
+	public void slideshow() {
+		BasePlace now = placeWhere.where();
+		SlideshowPlace destination = new SlideshowPlace(now.getTagId(),
+				now.getPhotoId(), 0f);
+		placeGoTo.goTo(destination);
+	}
+
+	@Override
+	public void unslideshow() {
+		BasePlace now = placeWhere.where();
+		BasePlace destination = placeCalculator.unslideshow(now);
+		placeGoTo.goTo(destination);
+	}
+
 }

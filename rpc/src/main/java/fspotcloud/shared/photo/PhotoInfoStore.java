@@ -47,6 +47,7 @@ public class PhotoInfoStore implements Serializable {
 		ListIterator<PhotoInfo> it = store.listIterator();
 		while (it.hasNext()) {
 			PhotoInfo pi = it.next();
+			
 			if (id.equals(pi.getId())) {
 				index = it.previousIndex();
 				break;

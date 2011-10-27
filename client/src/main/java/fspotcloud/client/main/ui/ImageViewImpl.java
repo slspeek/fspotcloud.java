@@ -42,10 +42,12 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	LayoutPanel layout;
 
 	private ImageView.ImagePresenter presenter;
+	private final Resources resources;
 
 	@Inject
-	public ImageViewImpl(@Assisted String location, TimerInterface timer) {
+	public ImageViewImpl(@Assisted String location, TimerInterface timer, Resources resources) {
 		this.timer = timer;
+		this.resources = resources;
 		initWidget(uiBinder.createAndBindUi(this));
 		image.ensureDebugId("image-view-" + location);
 		image.setVisible(false);
@@ -112,6 +114,11 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	@Override
 	public void setDescription(String text) {
 		info.setText(text);
+	}
+
+	@Override
+	public void setSelected() {
+		setStyleName(resources.style().selectedImage());
 	}
 
 }

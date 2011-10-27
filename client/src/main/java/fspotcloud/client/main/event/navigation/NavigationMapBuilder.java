@@ -25,6 +25,10 @@ public class NavigationMapBuilder extends AbstractActionMap {
 		put(NavigationType.END, resources.endIcon());
 		put(NavigationType.BACK, resources.backIcon());
 		put(NavigationType.NEXT,resources.nextIcon());
+		put(NavigationType.PAGE_DOWN,resources.pageDownIcon());
+		put(NavigationType.PAGE_UP,resources.pageUpIcon());
+		put(NavigationType.ROW_DOWN,resources.rowDownIcon());
+		put(NavigationType.ROW_UP,resources.rowUpIcon());
 	}
 	
 	private void put(ActionDef actionDef, ImageResource icon) {

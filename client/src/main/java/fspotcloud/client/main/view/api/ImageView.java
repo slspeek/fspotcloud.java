@@ -13,9 +13,11 @@ public interface ImageView extends IsWidget {
 
 		void imageClicked();
 
-		void imageDoubleClicked();
+		void setSelected();
 	}
 
+	void setSelected();
+	
 	void setImageUrl(String url);
 
 	void setPresenter(ImagePresenter presenter);

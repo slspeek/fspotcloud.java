@@ -6,8 +6,7 @@ import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.DeferredCommand;
+import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
@@ -102,6 +101,9 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 			ImageView.ImagePresenter presenter = imagePresenterFactory.get(
 					getImageWidth(), getImageHeight(), tagId, result.get(i), imageViewList.get(i),
 					thumb);
+			if (result.get(i).getId().equals(photoId)) {
+				presenter.setSelected();
+			}
 			imagePresenterList.add(presenter);
 			presenter.init();
 		}
@@ -124,14 +126,13 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	
 	@Override
 	public void onMouseWheelNorth() {
-		navigator.goAsync(false);
+		navigator.goAsync(Navigator.Direction.BACKWARD, Navigator.Unit.SINGLE);
 		
 	}
 
 	@Override
 	public void onMouseWheelSouth() {
-		navigator.goAsync(true);
-		
+		navigator.goAsync(Navigator.Direction.FORWARD, Navigator.Unit.SINGLE);
 	}
 
 	

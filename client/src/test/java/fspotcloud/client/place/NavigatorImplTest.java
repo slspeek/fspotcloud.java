@@ -13,8 +13,10 @@ import fspotcloud.client.data.DataManager;
 import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.main.TagServiceAsyncTestImpl;
 import fspotcloud.client.place.api.Navigator;
+import fspotcloud.client.place.api.Navigator.Direction;
 import fspotcloud.client.place.api.PlaceGoTo;
 import fspotcloud.client.place.api.PlaceWhere;
+import fspotcloud.client.place.api.Navigator.Unit;
 
 public class NavigatorImplTest extends TestCase {
 
@@ -61,8 +63,7 @@ public class NavigatorImplTest extends TestCase {
 			}
 		});
 		navigator = get(where, goTo);
-		// 'false' means towards the end
-		navigator.goEndAsync(false);
+		navigator.goAsync(Direction.FORWARD, Unit.BORDER);
 		context.assertIsSatisfied();
 	}
 
@@ -77,8 +78,7 @@ public class NavigatorImplTest extends TestCase {
 			}
 		});
 		navigator = get(where, goTo);
-		// 'false' means towards the end
-		navigator.goEndAsync(false);
+		navigator.goAsync(Direction.FORWARD, Unit.BORDER);
 		context.assertIsSatisfied();
 	}
 
@@ -93,41 +93,11 @@ public class NavigatorImplTest extends TestCase {
 			}
 		});
 		navigator = get(where, goTo);
-		navigator.goEndAsync(true);
+		navigator.goAsync(Direction.BACKWARD, Unit.BORDER);
 		context.assertIsSatisfied();
 	}
 
-	public void testGoForwardInRaster() throws InterruptedException {
-		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
-		final PlaceWhere where = context.mock(PlaceWhere.class);
-		context.checking(new Expectations() {
-			{
-				oneOf(where).where();
-				will(returnValue(danielRaster));
-
-				oneOf(goTo).goTo(with(janRaster));
-			}
-		});
-		navigator = get(where, goTo);
-		navigator.goAsync(true);
-		context.assertIsSatisfied();
-	}
-
-	public void testGoForwardInRasterHarder() throws InterruptedException {
-		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
-		final PlaceWhere where = context.mock(PlaceWhere.class);
-		context.checking(new Expectations() {
-			{
-				oneOf(where).where();
-				will(returnValue(r1_3));
-				oneOf(goTo).goTo(with(r1_3next));
-			}
-		});
-		navigator = get(where, goTo);
-		navigator.goAsync(true);
-		context.assertIsSatisfied();
-	}
-
+	
 	public void testGoForward() throws InterruptedException {
 		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
 		final PlaceWhere where = context.mock(PlaceWhere.class);
@@ -139,7 +109,7 @@ public class NavigatorImplTest extends TestCase {
 			}
 		});
 		navigator = get(where, goTo);
-		navigator.goAsync(true);
+		navigator.goAsync(Direction.FORWARD, Unit.PAGE);
 		context.assertIsSatisfied();
 	}
 
@@ -154,23 +124,7 @@ public class NavigatorImplTest extends TestCase {
 			}
 		});
 		navigator = get(where, goTo);
-		navigator.goAsync(false);
-		context.assertIsSatisfied();
-	}
-
-	public void testCannotGo() {
-		final BasePlace origin = new BasePlace("5", "23");// last in its tag
-		final PlaceWhere where = context.mock(PlaceWhere.class);
-		final PlaceGoTo goTo = context.mock(PlaceGoTo.class);
-		context.checking(new Expectations() {
-			{
-				oneOf(where).where();
-				will(returnValue(origin));
-
-			}
-		});
-		navigator = get(where, goTo);
-		navigator.goAsync(true);
+		navigator.goAsync(Direction.BACKWARD, Unit.SINGLE);
 		context.assertIsSatisfied();
 	}
 
