@@ -69,7 +69,7 @@ public class AboutEventHandler implements AboutEvent.Handler,
 				.get("http://slspeek.github.com/FSpotCloudSite/");
 		licenseAction = locationFactory
 				.get("http://slspeek.github.com/FSpotCloudSite/license.html");
-		protonAction = locationFactory.get("http://protonradio.com");
+		protonAction = locationFactory.get("http://www.protonradio.com/player/live/player.php");
 		stevenAction = locationFactory
 				.get("http://profiles.google.com/slspeek");
 	}

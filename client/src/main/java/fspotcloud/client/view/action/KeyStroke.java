@@ -44,6 +44,12 @@ public class KeyStroke {
 		case KeyCodes.KEY_ESCAPE:
 			result = "Esc";
 			break;
+		case 32:
+			result = "Space";
+			break;
+		case KeyCodes.KEY_CTRL:
+			result = "Control";
+			break;
 		default:
 			result = String.valueOf((char) keyCode);
 		break;

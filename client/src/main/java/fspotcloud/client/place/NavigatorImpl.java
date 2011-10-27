@@ -45,8 +45,24 @@ public class NavigatorImpl implements Navigator {
 	}
 
 	@Override
-	public void canGoAsync(Direction direction, Unit step,
-			AsyncCallback<Boolean> callback) {
+	public void canGoAsync(final Direction direction, final Unit step,
+			final AsyncCallback<Boolean> callback) {
+		final BasePlace place = placeWhere.where();
+		dataManager.getTagNode(place.getTagId(), new AsyncCallback<TagNode>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				log.warning("getTagNode failed " + caught);
+			}
+
+			@Override
+			public void onSuccess(TagNode result) {
+				PhotoInfoStore store = result.getCachedPhotoList();
+				callback.onSuccess(canGo(direction, step, place, store));
+			}
+
+		});
+
 	}
 
 	private int indexOf(BasePlace place, PhotoInfoStore store) {
