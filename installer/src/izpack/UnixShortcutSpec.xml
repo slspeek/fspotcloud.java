@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<shortcuts>
+
+  <programGroup defaultName="F-Spot Cloud"
+  location="applications"/>
+
+    <shortcut
+     name="Peer bot"
+     programGroup="yes"
+     desktop="yes"
+     applications="no"
+     startMenu="yes"
+     startup="no"
+     target="$INSTALL_PATH/peer.sh"
+     commandLine=""
+     workingDirectory="$INSTALL_PATH"
+     description="The peer connector to the cloud"
+     iconFile="help"
+     iconIndex="0"
+     type="Application"
+     encoding="UTF-8"
+     terminal="true"
+     KdeSubstUID="false"
+     initialState="normal">
+     <createForPack name="Base"/>
+   </shortcut>
+   
+   <shortcut
+     name="Deploy to GAE"
+     programGroup="yes"
+     desktop="yes"
+     applications="no"
+     startMenu="yes"
+     startup="no"
+     target="$INSTALL_PATH/deploy.sh"
+     commandLine=""
+     workingDirectory="$INSTALL_PATH"
+     description="Deploy your F-Spot Cloud instance"
+     iconFile="help"
+     iconIndex="0"
+     type="Application"
+     encoding="UTF-8"
+     terminal="true"
+     KdeSubstUID="false"
+     initialState="normal">
+     <createForPack name="Base"/>
+   </shortcut>
+   
+   <shortcut
+     name="Rollback"
+     programGroup="yes"
+     desktop="yes"
+     applications="no"
+     startMenu="yes"
+     startup="no"
+     target="$INSTALL_PATH/rollback.sh"
+     commandLine=""
+     workingDirectory="$INSTALL_PATH"
+     description="Rollback a failed deployment"
+     iconFile="help"
+     iconIndex="0"
+     type="Application"
+     encoding="UTF-8"
+     terminal="true"
+     KdeSubstUID="false"
+     initialState="normal">
+     <createForPack name="Base"/>
+   </shortcut>
+   
+
+   <shortcut
+     name="F-Spot Cloud  Documentation"
+     programGroup="yes"
+     desktop="yes"
+     applications="no"
+     startMenu="yes"
+     startup="no"
+     workingDirectory=""
+     commandLine=""
+     initialState="noShow"
+     iconFile="help"
+     iconIndex="0"
+     url="http://code.google.com/p/fspotcloud"
+     type="Link"
+     encoding="UTF-8"
+     description="The project site">
+     <createForPack name="Base"/>
+   </shortcut>
+
+   <shortcut
+     name="Uninstaller"
+     programGroup="yes"
+     desktop="yes"
+     applications="no"
+     startMenu="no"
+     startup="no"
+     target="java"
+     commandLine="-jar
+     &quot;$INSTALL_PATH/Uninstaller/uninstaller.jar&quot;"
+     initialState="noShow"
+     iconFile="trashcan_full"
+     iconIndex="0"
+     workingDirectory=""
+     type="Application"
+     encoding="UTF-8"
+     description="F-Spot Cloud  uninstaller">
+     <createForPack name="Base" />
+   </shortcut>
+
+</shortcuts>
