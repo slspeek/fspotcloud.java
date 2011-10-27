@@ -101,7 +101,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 			ImageView.ImagePresenter presenter = imagePresenterFactory.get(
 					getImageWidth(), getImageHeight(), tagId, result.get(i), imageViewList.get(i),
 					thumb);
-			if (result.get(i).getId().equals(photoId)) {
+			if (result.get(i).getId().equals(photoId) &&  pageSize > 1) {
 				presenter.setSelected();
 			}
 			imagePresenterList.add(presenter);

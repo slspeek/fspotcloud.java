@@ -8,7 +8,8 @@ public class LoadNewLocationImpl implements LoadNewLocation{
 
 	@Override
 	public void setLocation(String url) {
-		Window.Location.replace(url);
+		//Window.Location.replace(url);
+		Window.open(url, "", "");
 	}
 
 }
