@@ -40,6 +40,7 @@
 		<res id="LicencePanel.licence" src="Licence.txt" />
 		<res id="userInputSpec.xml" src="userInputSpec.xml" />
 		<res id="ProcessPanel.Spec.xml" src="ProcessPanel.Spec.xml" />
+		<res id="Unix_shortcutSpec.xml" src="UnixShortcutSpec.xml" />
 	</resources>
 
 	<variables>
@@ -52,6 +53,7 @@
 		<panel classname="LicencePanel" />
 		<panel classname="TargetPanel" />
 		<panel classname="PacksPanel" />
+		<panel classname="ShortcutPanel" />
 		<panel classname="UserInputPanel" />
 		<panel classname="UserInputPanel" />
 		<panel classname="InstallPanel" />
