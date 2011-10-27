@@ -8,11 +8,16 @@ import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.photo.PhotoInfoStore;
 
 public interface Navigator {
-	void goEndAsync(boolean first);
+	
+	enum Unit {
+		SINGLE, ROW, PAGE, BORDER
+	}
+	enum Direction {
+		BACKWARD, FORWARD;
+	}
+	void goAsync(Direction direction, Unit step);
 
-	void goAsync(boolean forward);
-
-	void canGoAsync(boolean forward, AsyncCallback<Boolean> callback);
+	void canGoAsync(Direction direction, Unit step, AsyncCallback<Boolean> callback);
 	
 	void getPageCountAsync(String tagId, int pageSize,
 			AsyncCallback<Integer> callback);
@@ -53,6 +58,5 @@ public interface Navigator {
 	
 	void zoom(Zoom direction);
 
-	void unslideshow();
-	
+	void unslideshow();	
 }

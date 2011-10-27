@@ -11,18 +11,20 @@ import fspotcloud.client.view.action.api.ActionGroup;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class DefaultActionFamily extends AbstractActionFamily {
-	private static final Logger log = Logger.getLogger(DefaultActionFamily.class
-			.getName());
 
-	
+	@SuppressWarnings("unused")
+	private static final Logger log = Logger
+			.getLogger(DefaultActionFamily.class.getName());
+
 	List<ActionGroup> allGroups;
 	List<UserAction> allActions = new ArrayList<UserAction>();
 
 	@Inject
-	public DefaultActionFamily(@Named("application") AbstractActionMap application,
+	public DefaultActionFamily(
+			@Named("application") AbstractActionMap application,
 			@Named("navigation") AbstractActionMap navigation,
 			@Named("slideshow") AbstractActionMap slideshow,
-			@Named("raster") AbstractActionMap raster, 
+			@Named("raster") AbstractActionMap raster,
 			@Named("about") AbstractActionMap about) {
 		super("All action groups");
 		addMap(application);

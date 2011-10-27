@@ -34,6 +34,14 @@
 .image {
 	margin: auto;
 }
+
+.selectedImage {
+	margin: auto;
+	border-style: solid;
+	border-width:thin;
+	border-color: thirdColor;
+	background: thirdColor;
+}
 	
 .slideshowControls {
 	background-color: grey;

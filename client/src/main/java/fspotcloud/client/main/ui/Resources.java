@@ -39,6 +39,8 @@ public interface Resources extends ClientBundle {
 		String helpTitle();
 
 		String buttonPanelBlock();
+
+		String selectedImage();
 	}
 
 	@Source("version.txt")
@@ -145,4 +147,16 @@ public interface Resources extends ClientBundle {
 
 	@Source("images/F-Spot.png")
 	ImageResource fspotIcon();
+
+	@Source("images/PageDown.png")
+	ImageResource pageDownIcon();
+
+	@Source("images/PageUp.png")
+	ImageResource pageUpIcon();
+
+	@Source("images/RowDown.png")
+	ImageResource rowDownIcon();
+
+	@Source("images/RowUp.png")
+	ImageResource rowUpIcon();
 }

@@ -78,6 +78,7 @@
 			<parsable targetfile="$INSTALL_PATH/x-deploy.sh" />
 			<parsable targetfile="$INSTALL_PATH/deploy.sh" />
 			<parsable targetfile="$INSTALL_PATH/peer.sh" />
+			<parsable targetfile="$INSTALL_PATH/war/WEB-INF/appengine-web.xml" />
 			<executable type="bin" stage="never" targetfile="$INSTALL_PATH/peer.sh"
 				os="unix" />
 			<executable type="bin" stage="never" targetfile="$INSTALL_PATH/deploy.sh"
