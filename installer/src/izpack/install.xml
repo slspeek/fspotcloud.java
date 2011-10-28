@@ -12,6 +12,7 @@
 		<url>http://code.google.com/p/fspotcloud/</url>
 	</info>
 
+
 	<!-- The gui preferences indication. Sets the installer window to 640x480. -->
 	<guiprefs width="600" height="480" resizable="no">
 		<modifier key="useHeadingPanel" value="yes" />
@@ -64,6 +65,7 @@
 	<packs>
 		<pack name="Base" required="yes">
 			<description>The base files</description>
+			<fileset dir="icons" targetdir="$INSTALL_PATH/icons" />
 			<file src="Licence.txt" targetdir="$INSTALL_PATH" />
 			<file src="dependency/peer-jar-with-dependencies.jar" targetdir="$INSTALL_PATH" />
 			<file src="appengine-java-sdk-@{gae.version}" targetdir="$INSTALL_PATH" />
@@ -77,15 +79,23 @@
 			<file src="x-deploy.sh" targetdir="$INSTALL_PATH" />
 			<file src="deploy.sh" targetdir="$INSTALL_PATH" />
 			<file src="peer.sh" targetdir="$INSTALL_PATH" />
+			<file src="rollback.sh" targetdir="$INSTALL_PATH" />
+			<file src="instance.sh" targetdir="$INSTALL_PATH" />
 			<parsable targetfile="$INSTALL_PATH/x-deploy.sh" />
 			<parsable targetfile="$INSTALL_PATH/deploy.sh" />
 			<parsable targetfile="$INSTALL_PATH/peer.sh" />
+			<parsable targetfile="$INSTALL_PATH/rollback.sh" />
+			<parsable targetfile="$INSTALL_PATH/instance.sh" />
 			<parsable targetfile="$INSTALL_PATH/war/WEB-INF/appengine-web.xml" />
 			<executable type="bin" stage="never" targetfile="$INSTALL_PATH/peer.sh"
 				os="unix" />
 			<executable type="bin" stage="never" targetfile="$INSTALL_PATH/deploy.sh"
 				os="unix" />
 			<executable type="bin" stage="never" targetfile="$INSTALL_PATH/x-deploy.sh"
+				os="unix" />
+			<executable type="bin" stage="never" targetfile="$INSTALL_PATH/rollback.sh"
+				os="unix" />
+			<executable type="bin" stage="never" targetfile="$INSTALL_PATH/instance.sh"
 				os="unix" />
 		</pack>
 	</packs>

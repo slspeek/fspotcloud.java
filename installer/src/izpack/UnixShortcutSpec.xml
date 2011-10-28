@@ -3,7 +3,7 @@
 <shortcuts>
 
   <programGroup defaultName="F-Spot Cloud"
-  location="applications"/>
+  location="applications" iconFile="$INSTALL_PATH/icons/FSpot.png"/>
 
     <shortcut
      name="Peer bot"
@@ -16,14 +16,13 @@
      commandLine=""
      workingDirectory="$INSTALL_PATH"
      description="The peer connector to the cloud"
-     iconFile="help"
+     iconFile="$INSTALL_PATH/icons/PeerBot.png"
      iconIndex="0"
      type="Application"
      encoding="UTF-8"
      terminal="true"
      KdeSubstUID="false"
      initialState="normal">
-     <createForPack name="Base"/>
    </shortcut>
    
    <shortcut
@@ -37,14 +36,13 @@
      commandLine=""
      workingDirectory="$INSTALL_PATH"
      description="Deploy your F-Spot Cloud instance"
-     iconFile="help"
+     iconFile="$INSTALL_PATH/icons/Deploy.png"
      iconIndex="0"
      type="Application"
      encoding="UTF-8"
      terminal="true"
      KdeSubstUID="false"
      initialState="normal">
-     <createForPack name="Base"/>
    </shortcut>
    
    <shortcut
@@ -58,14 +56,13 @@
      commandLine=""
      workingDirectory="$INSTALL_PATH"
      description="Rollback a failed deployment"
-     iconFile="help"
+     iconFile="$INSTALL_PATH/icons/Rollback.png"
      iconIndex="0"
      type="Application"
      encoding="UTF-8"
      terminal="true"
      KdeSubstUID="false"
      initialState="normal">
-     <createForPack name="Base"/>
    </shortcut>
    
 
@@ -76,16 +73,56 @@
      applications="no"
      startMenu="yes"
      startup="no"
+     target="x-www-browser"
+     commandLine="http://code.google.com/p/fspotcloud"
      workingDirectory=""
-     commandLine=""
-     initialState="noShow"
-     iconFile="help"
+     initialState="normal"
+     iconFile="$INSTALL_PATH/icons/Docs.png"
      iconIndex="0"
      url="http://code.google.com/p/fspotcloud"
-     type="Link"
+     type="Application"
      encoding="UTF-8"
-     description="The project site">
-     <createForPack name="Base"/>
+     description="The project site"
+     terminal="false">
+   </shortcut>
+   
+   <shortcut
+     name="AppEngine Dashboard"
+     programGroup="yes"
+     desktop="yes"
+     applications="no"
+     startMenu="yes"
+     startup="no"
+     target="x-www-browser"
+     commandLine="http://appengine.google.com/"
+     workingDirectory=""
+     initialState="normal"
+     iconFile="$INSTALL_PATH/icons/AppEngine.png"
+     iconIndex="0"
+     url="http://code.google.com/p/fspotcloud"
+     type="Application"
+     encoding="UTF-8"
+     description="The App Engine Dashboard to view the stats of your instance"
+     terminal="false">
+   </shortcut>
+   
+     <shortcut
+     name="Your instance at Google App Engine"
+     programGroup="yes"
+     desktop="yes"
+     applications="no"
+     startMenu="yes"
+     startup="no"
+     target="$INSTALL_PATH/instance.sh"
+     commandLine="" 
+     workingDirectory=""
+     initialState="normal"
+     iconFile="$INSTALL_PATH/icons/Instance.png"
+     iconIndex="0"
+     type="Application"
+     encoding="UTF-8"
+     description="View your photo's online"
+     terminal="false">
    </shortcut>
 
    <shortcut
@@ -105,7 +142,6 @@
      type="Application"
      encoding="UTF-8"
      description="F-Spot Cloud  uninstaller">
-     <createForPack name="Base" />
    </shortcut>
 
 </shortcuts>
