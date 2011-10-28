@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>fspotcloud.bot-dispatch</groupId>
 		<artifactId>bot-dispatch</artifactId>
-		<version>0.40-7.2.0</version>
+		<version>0.40-7.2.2</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>integration-test</artifactId>
@@ -54,7 +54,7 @@
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>test-bot</artifactId>
-			<version>0.40-7.2.0</version>
+			<version>0.40-7.2.2</version>
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -88,7 +88,7 @@
 		<dependency>
 			<groupId>fspotcloud.deps</groupId>
 			<artifactId>xmlrpc-server-deps</artifactId>
-			<version>0.40-7.2.0</version>
+			<version>0.40-7.2.2</version>
 			<type>pom</type>
 			<scope>compile</scope>
 		</dependency>

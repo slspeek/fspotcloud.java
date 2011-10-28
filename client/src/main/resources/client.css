@@ -16,6 +16,11 @@
 @def treeColor #FFF1DE;
 @def thirdColor #F1DEFF;
 
+/** Dark theme */
+@def ligherColor  #172442;
+@def treeColor #695A5A;
+@def thirdColor #5A6969;
+
  .tagView {
 	border-style: solid;
 	background-color: treeColor;
