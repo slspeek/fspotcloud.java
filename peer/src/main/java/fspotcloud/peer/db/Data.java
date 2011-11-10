@@ -82,22 +82,21 @@ public class Data {
 			String tagName = rs.getString(2);
 			String parentId = rs.getString(3);
 			int photoCount = getPhotoCountForTag(Integer.valueOf(tagId));
-			tagList.add(new TagData(tagId, tagName, parentId, photoCount ));
+			tagList.add(new TagData(tagId, tagName, parentId, photoCount));
 		}
 		rs.close();
 		conn.close();
 		return tagList;
 	}
 
-	public List<PhotoData> getPhotoData(int i, int j)
-			throws SQLException, MalformedURLException, URISyntaxException,
-			IOException {
+	public List<PhotoData> getPhotoData(String tagId, int offset, int count,
+			int w, int h, int tw, int th) throws Exception {
 		List<PhotoData> result = new ArrayList<PhotoData>();
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT id, description, time "
-				+ "FROM photos ORDER BY id LIMIT " + j + " OFFSET "
-				+ i);
+				+ "FROM photos, photo_tags WHERE photos.id=photo_tags.photo_id AND photo_tags.tag_id=\"" + tagId + "\"  ORDER BY id LIMIT " + count + " OFFSET "
+				+ offset);
 		while (rs.next()) {
 			String id = rs.getString(1);
 			String desc = rs.getString(2);
@@ -105,7 +104,10 @@ public class Data {
 			Date date = new Date();
 			date.setTime(time * 1000);
 			List<String> tagList = getTagsForPhoto(Integer.valueOf(id));
-			result.add(new PhotoData(id, desc, date, tagList));
+			URL url = getImageURL(id);
+			byte[] image = imageData.getScaledImageData(url, new Dimension(w,h));
+			byte[] thumb = imageData.getScaledImageData(url, new Dimension(tw, th));
+			result.add(new PhotoData(id, desc, date, image, thumb,tagList));
 		}
 		rs.close();
 		conn.close();

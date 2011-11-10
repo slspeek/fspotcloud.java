@@ -46,7 +46,7 @@ public class DeleteITest extends SeleniumITestCase {
 			if (second >= 60) fail("timeout");
 			try { selenium.open("/Dashboard.html");
 			selenium.waitForPageToLoad("30000");
-			if ("28".equals(selenium.getText("gwt-debug-photo-count-label"))) break; } catch (Exception e) {}
+			if ("0".equals(selenium.getText("gwt-debug-photo-count-label"))) break; } catch (Exception e) {}
 			Thread.sleep(1000);
 		}
 		sleepShort();

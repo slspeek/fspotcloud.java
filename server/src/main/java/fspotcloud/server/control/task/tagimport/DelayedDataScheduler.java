@@ -1,4 +1,4 @@
-package fspotcloud.server.control.task;
+package fspotcloud.server.control.task.tagimport;
 
 import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withUrl;
 

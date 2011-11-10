@@ -6,9 +6,9 @@ import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
-import fspotcloud.server.model.api.PeerDatabase;
-import fspotcloud.server.model.api.PeerDatabases;
+import fspotcloud.server.control.task.photoimport.PhotoImportScheduler;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.dashboard.actions.ImportTag;
@@ -18,13 +18,14 @@ public class ImportTagHandler extends
 		SimpleActionHandler<ImportTag, VoidResult> {
 
 	final private Tags tagManager;
-	final private PeerDatabases defaultPeer;
+	final private PhotoImportScheduler scheduler;
 
 	@Inject
-	public ImportTagHandler(Tags tagManager, PeerDatabases defaultPeer) {
+	public ImportTagHandler(Tags tagManager,
+			@Named("default") PhotoImportScheduler scheduler) {
 		super();
 		this.tagManager = tagManager;
-		this.defaultPeer = defaultPeer;
+		this.scheduler = scheduler;
 	}
 
 	@Override
@@ -35,9 +36,7 @@ public class ImportTagHandler extends
 			Tag tag = tagManager.getById(tagId);
 			tag.setImportIssued(true);
 			tagManager.save(tag);
-			PeerDatabase pd = defaultPeer.get();
-			pd.getCachedImportedTags().add(tagId);
-			defaultPeer.save(pd);
+			scheduler.schedulePhotoImport(tagId, "", 0, tag.getCount());
 		} catch (Exception e) {
 			throw new ActionException(e);
 		}

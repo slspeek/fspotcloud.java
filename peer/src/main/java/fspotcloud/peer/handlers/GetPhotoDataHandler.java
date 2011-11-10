@@ -11,10 +11,11 @@ import fspotcloud.peer.db.Data;
 import fspotcloud.shared.peer.rpc.actions.GetPhotoData;
 import fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
 
-public class GetPhotoDataHandler extends SimpleActionHandler<GetPhotoData, PhotoDataResult> {
+public class GetPhotoDataHandler extends
+		SimpleActionHandler<GetPhotoData, PhotoDataResult> {
 
 	final private Data data;
-	
+
 	@Inject
 	public GetPhotoDataHandler(Data data) {
 		super();
@@ -26,8 +27,11 @@ public class GetPhotoDataHandler extends SimpleActionHandler<GetPhotoData, Photo
 			throws DispatchException {
 		PhotoDataResult result;
 		try {
-			result = new PhotoDataResult(data.getPhotoData(action.getOffset(), action.getCount()));
-		} catch(Exception e) {
+			result = new PhotoDataResult(data.getPhotoData(action.getTagId(),
+					action.getOffset(), action.getCount(),
+					action.getBigWidth(), action.getBigHeight(),
+					action.getThumbWidth(), action.getThumbHeigth()));
+		} catch (Exception e) {
 			throw new ActionException(e);
 		}
 		return result;
