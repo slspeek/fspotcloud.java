@@ -39,7 +39,7 @@ public class DashboardITest extends SeleniumITestCase {
 		selenium.click("gwt-debug-import-tag-button");
 		selenium.waitForPageToLoad("30000");
 		
-		selenium.click("gwt-debug-load-images-button");
+		//selenium.click("gwt-debug-load-images-button");
 		selenium.click("gwt-debug-count-photos-button");
 		sleepShort(4);
 		sleepShort();
@@ -47,7 +47,7 @@ public class DashboardITest extends SeleniumITestCase {
 			if (second >= 60) fail("timeout");
 			try { selenium.open("/Dashboard.html");
 			selenium.waitForPageToLoad("10000");
-			if ("28".equals(selenium.getText("gwt-debug-photo-count-label"))) break; } catch (Exception e) {}
+			if ("9".equals(selenium.getText("gwt-debug-photo-count-label"))) break; } catch (Exception e) {}
 			Thread.sleep(1000);
 		}
 	}

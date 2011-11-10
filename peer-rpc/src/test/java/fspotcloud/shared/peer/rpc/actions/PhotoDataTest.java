@@ -10,7 +10,8 @@ import junit.framework.TestCase;
 
 public class PhotoDataTest extends TestCase {
 
-	
+	private static final byte[] IMAGE_DATA = new byte[] { 0, 1};
+	private static final byte[] THUMB_DATA = new byte[] {0};
 	private static final String TAG = "TAG";
 	private static final Date LONG_TIME_AGO = new Date(10);
 	private static final String DESCR = "Story";
@@ -21,7 +22,7 @@ public class PhotoDataTest extends TestCase {
 	protected void setUp() throws Exception {
 		List<String> tags = new ArrayList<String>();
 		tags.add(TAG);
-		data = new PhotoData(PHOTO_ID, DESCR, LONG_TIME_AGO, tags);
+		data = new PhotoData(PHOTO_ID, DESCR, LONG_TIME_AGO, IMAGE_DATA, THUMB_DATA, tags);
 		super.setUp();
 	}
 	
@@ -36,7 +37,7 @@ public class PhotoDataTest extends TestCase {
 	}
 
 	public void testGetDesscription() {
-		assertEquals(DESCR, data.getDesscription());
+		assertEquals(DESCR, data.getDescription());
 	}
 
 	public void testGetDate() {
@@ -47,4 +48,14 @@ public class PhotoDataTest extends TestCase {
 		assertEquals(TAG, data.getTagList().get(0));
 	}
 
+	public void testGetThumbData() {
+		assertEquals(THUMB_DATA, data.getThumbData());
+	}
+
+	public void testGetImageData() {
+		assertEquals(IMAGE_DATA, data.getImageData());
+	}
+
+	
+	
 }

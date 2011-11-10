@@ -10,6 +10,8 @@ import org.jmock.Mockery;
 import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.TaskOptions;
 
+import fspotcloud.server.control.task.tagimport.DelayedDataScheduler;
+
 public class DelayedDataSchedulerTest extends TestCase {
 
 	public static TestSuite suite() {

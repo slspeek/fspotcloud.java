@@ -1,4 +1,4 @@
-package fspotcloud.server.control.task;
+package fspotcloud.server.control.task.tagimport;
 
 import com.google.inject.Inject;
 

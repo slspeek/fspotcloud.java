@@ -51,8 +51,8 @@ public class DataTest extends TestCase {
 	}
 
 	public final void testGetPhotoList() throws Exception {
-		List<PhotoData> result = data.getPhotoData(0, 2);
-		assertEquals(2, result.size());
+		List<PhotoData> result = data.getPhotoData("2", 0, 12, 1024, 768, 512, 384);
+		assertEquals(12, result.size());
 	}
 
 	public final void testGetImageURL() throws MalformedURLException,

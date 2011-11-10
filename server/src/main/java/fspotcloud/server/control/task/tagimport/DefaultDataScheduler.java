@@ -1,4 +1,4 @@
-package fspotcloud.server.control.task;
+package fspotcloud.server.control.task.tagimport;
 
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
@@ -10,7 +10,7 @@ import fspotcloud.server.control.callback.TagDataCallback;
 import fspotcloud.shared.peer.rpc.actions.GetPhotoData;
 import fspotcloud.shared.peer.rpc.actions.GetTagData;
 
-public class DataSchedulerImpl implements DataScheduler {
+public class DefaultDataScheduler implements DataScheduler {
 
 	final private DataScheduler recursiveCall;
 	final private int MAX_DATA_TICKS;
@@ -18,7 +18,7 @@ public class DataSchedulerImpl implements DataScheduler {
 	final private ControllerDispatchAsync dispatch;
 
 	@Inject
-	public DataSchedulerImpl(ControllerDispatchAsync dispatch,
+	public DefaultDataScheduler(ControllerDispatchAsync dispatch,
 		@Named("maxTicks") int maxTicks,
 			@Assisted String kind, @Assisted("delayedCall") DataScheduler recursiveCall) {
 		super();
@@ -48,9 +48,7 @@ public class DataSchedulerImpl implements DataScheduler {
 			int beginning = start + i * MAX_DATA_TICKS;
 			
 			if (kind.equals("Photo")) {
-				GetPhotoData action = new GetPhotoData(beginning, MAX_DATA_TICKS);
-				PhotoDataCallback callback = new PhotoDataCallback(null);
-				dispatch.execute(action, callback);
+				throw new IllegalStateException("Do not go here.");
 				
 			} else if (kind.equals("Tag")) {
 				GetTagData action = new GetTagData(beginning, MAX_DATA_TICKS);
