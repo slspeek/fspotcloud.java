@@ -34,9 +34,12 @@ public class ImportTagHandler extends
 		try {
 			String tagId = action.getTagId();
 			Tag tag = tagManager.getById(tagId);
-			tag.setImportIssued(true);
-			tagManager.save(tag);
-			scheduler.schedulePhotoImport(tagId, "", 0, tag.getCount());
+			if (!tag.isImportIssued()) {
+				tag.setImportIssued(true);
+				tagManager.save(tag);
+			}
+			scheduler.schedulePhotoImport(tagId, "", action.getPreviousCount(),
+					tag.getCount() - action.getPreviousCount());
 		} catch (Exception e) {
 			throw new ActionException(e);
 		}

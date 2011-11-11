@@ -1,6 +1,6 @@
 package fspotcloud.server.control.callback;
 
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -10,18 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.TestCase;
+import net.customware.gwt.dispatch.server.Dispatch;
+import net.customware.gwt.dispatch.shared.DispatchException;
 
 import org.mockito.ArgumentCaptor;
 
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.server.model.tag.TagDO;
+import fspotcloud.shared.dashboard.actions.ImportTag;
 import fspotcloud.shared.peer.rpc.actions.TagData;
 import fspotcloud.shared.peer.rpc.actions.TagDataResult;
 
 public class TagDataCallbackTest extends TestCase {
 
-
+Dispatch dispatch;
 	Tags tagManager;
 	TagDO tag;
 	TagDataCallback callback;
@@ -34,6 +37,7 @@ public class TagDataCallbackTest extends TestCase {
 
 	@Override
 	protected void setUp() throws Exception {
+		dispatch = mock(Dispatch.class);
 		tagManager = mock(Tags.class);
 		tag = new TagDO();
 		tag.setId(TAGID);
@@ -43,7 +47,7 @@ public class TagDataCallbackTest extends TestCase {
 		list.add(row);
 		incoming = new TagDataResult(list);
 		when(tagManager.getOrNew(TAGID)).thenReturn(tag);
-		callback = new TagDataCallback(tagManager);
+		callback = new TagDataCallback(tagManager, dispatch);
 		super.setUp();
 	}
 
@@ -54,7 +58,7 @@ public class TagDataCallbackTest extends TestCase {
 		out.close();
 	}
 	
-	public void testRecieveTagData() {
+	public void testRecieveTagData() throws DispatchException {
 		callback.onSuccess(incoming);
 		assertEquals(10, tag.getCount());
 		assertEquals(TAGNAME,tag.getTagName());
@@ -62,6 +66,28 @@ public class TagDataCallbackTest extends TestCase {
 		verify(tagManager).saveAll(argumentCaptor.capture());
 		List<Tag> listOfTags = argumentCaptor.getValue();
 		assertEquals(tag, listOfTags.get(0));
+		verifyNoMoreInteractions(dispatch);
+		/*ArgumentCaptor<ImportTag> actionCaptor = ArgumentCaptor.forClass(ImportTag.class);
+		verify(dispatch).execute(actionCaptor.capture());
+		ImportTag action = actionCaptor.getValue();
+		assertEquals(TAGID, action.getTagId());*/
+		
+	}
+	
+	public void testRecieveTagDataImported() throws DispatchException {
+		tag.setImportIssued(true);
+		callback.onSuccess(incoming);
+		assertEquals(10, tag.getCount());
+		assertEquals(TAGNAME,tag.getTagName());
+		assertNull(tag.getParentId());
+		verify(tagManager).saveAll(argumentCaptor.capture());
+		List<Tag> listOfTags = argumentCaptor.getValue();
+		assertEquals(tag, listOfTags.get(0));
+		ArgumentCaptor<ImportTag> actionCaptor = ArgumentCaptor.forClass(ImportTag.class);
+		verify(dispatch).execute(actionCaptor.capture());
+		ImportTag action = actionCaptor.getValue();
+		assertEquals(TAGID, action.getTagId());
+		
 	}
 
 }

@@ -52,7 +52,7 @@ public class TagDetailsActivity extends AbstractActivity implements
 	@Override
 	public void importTag() {
 
-		dispatch.execute(new ImportTag(tagPlace.getTagId()),
+		dispatch.execute(new ImportTag(tagPlace.getTagId(), 0),
 				new AsyncCallback<VoidResult>() {
 
 					@Override
@@ -93,7 +93,9 @@ public class TagDetailsActivity extends AbstractActivity implements
 				String.valueOf(tag.getCount()));
 		tagDetailsView.getTagImportIssuedValue().setText(
 				tag.isImportIssued() ? "yes" : "no");
+		tagDetailsView.getImportButton().setEnabled(!tag.isImportIssued());
 		tagDetailsView.getTagLoadedImagesCountValue().setText(
 				String.valueOf(tag.getCachedPhotoList().lastIndex() + 1));
+		
 	}
 }

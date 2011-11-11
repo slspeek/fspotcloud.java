@@ -52,7 +52,7 @@ public class DefaultDataScheduler implements DataScheduler {
 				
 			} else if (kind.equals("Tag")) {
 				GetTagData action = new GetTagData(beginning, MAX_DATA_TICKS);
-				TagDataCallback callback = new TagDataCallback(null);
+				TagDataCallback callback = new TagDataCallback(null, null);
 				dispatch.execute(action, callback);
 			}
 			

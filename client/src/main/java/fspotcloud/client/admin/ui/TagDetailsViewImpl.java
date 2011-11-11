@@ -7,6 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
@@ -80,6 +81,11 @@ public class TagDetailsViewImpl extends Composite implements TagDetailsView {
 	public void setPresenter(TagDetailsPresenter presenter) {
 		this.presenter = presenter;
 
+	}
+
+	@Override
+	public HasEnabled getImportButton() {
+		return importTagButton;
 	}
 
 }
