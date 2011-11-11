@@ -21,8 +21,7 @@ public class DefaultPhotoImportSchedulerTest extends TestCase {
 	DefaultPhotoImportScheduler scheduler;
 	ArgumentCaptor<GetPhotoData> actionCaptor1;
 	ArgumentCaptor<PhotoDataCallback> callbackCaptor1;
-	ArgumentCaptor<GetPhotoData> actionCaptor2;
-	ArgumentCaptor<PhotoDataCallback> callbackCaptor2;
+	
 
 	
 	protected void setUp() throws Exception {
@@ -33,8 +32,6 @@ public class DefaultPhotoImportSchedulerTest extends TestCase {
 				"512x384", delayed);
 		actionCaptor1 = ArgumentCaptor.forClass(GetPhotoData.class);
 		callbackCaptor1 = ArgumentCaptor.forClass(PhotoDataCallback.class);
-		actionCaptor2 = ArgumentCaptor.forClass(GetPhotoData.class);
-		callbackCaptor2 = ArgumentCaptor.forClass(PhotoDataCallback.class);
 	}
 
 	public void testWORecursingSchedulePhotoImport() {

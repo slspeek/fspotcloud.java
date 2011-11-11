@@ -15,8 +15,6 @@ import fspotcloud.shared.dashboard.actions.CountPhotos;
 import fspotcloud.shared.dashboard.actions.DeleteAllPhotos;
 import fspotcloud.shared.dashboard.actions.DeleteAllTags;
 import fspotcloud.shared.dashboard.actions.GetMetaData;
-import fspotcloud.shared.dashboard.actions.ImportImageData;
-import fspotcloud.shared.dashboard.actions.ResetSynchronizationPoint;
 import fspotcloud.shared.dashboard.actions.SynchronizePeer;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 
@@ -74,28 +72,7 @@ public class GlobalActionsPresenter implements
 				});
 	}
 
-	@Override
-	public void resetPeerPhotoCount() {
-		globalActionsView.getResetMetaDataButton().setEnabled(false);
-		dispatcher.execute(new ResetSynchronizationPoint(),
-				new AsyncCallback<VoidResult>() {
-
-					public void onFailure(Throwable caught) {
-						enableButton();
-						log.log(Level.SEVERE, "Action Exception ", caught);
-					}
-
-					public void onSuccess(VoidResult result) {
-						enableButton();
-					}
-
-					private void enableButton() {
-						globalActionsView.getResetMetaDataButton().setEnabled(
-								true);
-					}
-				});
-
-	}
+	
 
 	@Override
 	public void update() {
@@ -167,8 +144,6 @@ public class GlobalActionsPresenter implements
 				!info.isCountPhotosActive());
 		globalActionsView.getDeleteAllPhotosButton().setEnabled(
 				!info.isDeletePhotosActive());
-		globalActionsView.getLoadImagesButton().setEnabled(
-				!info.isImportImagesActive());
 		if (info.isCountPhotosActive() || info.isDeletePhotosActive()
 				|| info.isDeleteTagsActive() || info.isImportImagesActive()) {
 			timer.setRunnable(new Runnable() {
@@ -206,21 +181,4 @@ public class GlobalActionsPresenter implements
 		});
 	}
 
-	@Override
-	public void importImageData() {
-		globalActionsView.getLoadImagesButton().setEnabled(false);
-		dispatcher.execute(new ImportImageData(),
-				new AsyncCallback<VoidResult>() {
-
-					@Override
-					public void onFailure(Throwable caught) {
-						log.log(Level.SEVERE, "Action Exception ", caught);
-					}
-
-					@Override
-					public void onSuccess(VoidResult result) {
-					}
-				});
-
 	}
-}
