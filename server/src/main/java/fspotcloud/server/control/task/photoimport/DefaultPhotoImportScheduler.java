@@ -63,7 +63,7 @@ public class DefaultPhotoImportScheduler implements PhotoImportScheduler {
 			GetPhotoData action = new GetPhotoData(tagId, minKey, beginning,
 					MAX_PHOTO_TICKS, IMAGE_WIDTH, IMAGE_HEIGHT, THUMB_WIDTH,
 					THUMB_HEIGHT);
-			PhotoDataCallback callback = new PhotoDataCallback(null, null);
+			PhotoDataCallback callback = new PhotoDataCallback(null, null, null);
 			dispatch.execute(action, callback);
 		}
 	}

@@ -1,5 +1,6 @@
 package fspotcloud.server.model.peerdatabase;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,12 @@ import fspotcloud.shared.tag.TagNode;
  * 
  */
 @PersistenceCapable(detachable = "true")
-public class PeerDatabaseDO implements PeerDatabase {
+public class PeerDatabaseDO implements PeerDatabase, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4842421992073164575L;
+
 	@PrimaryKey
 	private String name;
 

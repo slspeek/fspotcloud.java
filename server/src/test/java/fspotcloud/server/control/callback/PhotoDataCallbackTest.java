@@ -16,14 +16,18 @@ import org.mockito.ArgumentCaptor;
 
 import com.google.appengine.repackaged.com.google.common.collect.ImmutableList;
 
+import fspotcloud.server.model.api.PeerDatabase;
+import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.api.Tags;
+import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
 import fspotcloud.server.model.photo.PhotoDO;
 import fspotcloud.server.model.tag.TagDO;
 import fspotcloud.shared.peer.rpc.actions.PhotoData;
 import fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
 import fspotcloud.shared.photo.PhotoInfo;
+import fspotcloud.shared.tag.TagNode;
 
 public class PhotoDataCallbackTest extends TestCase {
 	private static final byte[] IMAGE_DATA = new byte[] { 0, 1};
@@ -32,6 +36,8 @@ public class PhotoDataCallbackTest extends TestCase {
 	private static final String PHOTO_ID = "1";
 	private static final String TAG_ID = "foo";
 	Photos photoManager;
+	PeerDatabases peerDatabases;
+	PeerDatabase peer;
 	Tags tagManager;
 	Photo photo1;
 	PhotoDataResult result;
@@ -57,7 +63,10 @@ public class PhotoDataCallbackTest extends TestCase {
 		result = new PhotoDataResult(dataList);
 		when(photoManager.getOrNew(PHOTO_ID)).thenReturn(photo1);
 		when(tagManager.getById(TAG_ID)).thenReturn(tag1);
-		callback = new PhotoDataCallback(photoManager, tagManager);
+		peer = new PeerDatabaseDO();
+		peerDatabases = mock(PeerDatabases.class);
+		when(peerDatabases.get()).thenReturn(peer);
+		callback = new PhotoDataCallback(photoManager, tagManager, peerDatabases);
 		super.setUp();
 	}
 
@@ -69,6 +78,7 @@ public class PhotoDataCallbackTest extends TestCase {
 	}
 
 	public void testOnSuccess() {
+		peer.setCachedTagTree(new ArrayList<TagNode>());
 		callback.onSuccess(result);
 		assertEquals(date, photo1.getDate());
 		assertEquals(DESCRIPTION, photo1.getDescription());
@@ -80,6 +90,7 @@ public class PhotoDataCallbackTest extends TestCase {
 		assertTrue(photo1.isImageLoaded());
 		PhotoInfo info = tag1.getCachedPhotoList().first(); 
 		assertEquals(PHOTO_ID, info.getId());
+		assertNull(peer.getCachedTagTree());
 	}
 
 }
