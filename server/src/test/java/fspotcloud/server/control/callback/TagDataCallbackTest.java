@@ -63,15 +63,7 @@ Dispatch dispatch;
 		assertEquals(10, tag.getCount());
 		assertEquals(TAGNAME,tag.getTagName());
 		assertNull(tag.getParentId());
-		verify(tagManager).saveAll(argumentCaptor.capture());
-		List<Tag> listOfTags = argumentCaptor.getValue();
-		assertEquals(tag, listOfTags.get(0));
 		verifyNoMoreInteractions(dispatch);
-		/*ArgumentCaptor<ImportTag> actionCaptor = ArgumentCaptor.forClass(ImportTag.class);
-		verify(dispatch).execute(actionCaptor.capture());
-		ImportTag action = actionCaptor.getValue();
-		assertEquals(TAGID, action.getTagId());*/
-		
 	}
 	
 	public void testRecieveTagDataImported() throws DispatchException {
@@ -80,9 +72,6 @@ Dispatch dispatch;
 		assertEquals(10, tag.getCount());
 		assertEquals(TAGNAME,tag.getTagName());
 		assertNull(tag.getParentId());
-		verify(tagManager).saveAll(argumentCaptor.capture());
-		List<Tag> listOfTags = argumentCaptor.getValue();
-		assertEquals(tag, listOfTags.get(0));
 		ArgumentCaptor<ImportTag> actionCaptor = ArgumentCaptor.forClass(ImportTag.class);
 		verify(dispatch).execute(actionCaptor.capture());
 		ImportTag action = actionCaptor.getValue();

@@ -40,32 +40,30 @@ public class TagDataCallback implements AsyncCallback<TagDataResult>,
 
 	@Override
 	public void onSuccess(TagDataResult result) {
-		List<Tag> tagList = new ArrayList<Tag>();
 		for (TagData data : result.getTagDataList()) {
 			String keyName = data.getTagId();
 			Tag tag = tagManager.getOrNew(keyName);
 			int previousCount = tag.getCount();
-
-			tagList.add(tag);
-			if (tag.isImportIssued()) {
-				try {
-					dispatch.execute(new ImportTag(tag.getId(), previousCount));
-				} catch (DispatchException e) {
-
-				}
-			}
-			// must be last, very bad :(
 			recieveTag(data, tag);
+			tagManager.save(tag);
+			importNewImages(tag, previousCount);
 		}
-		tagManager.saveAll(tagList);
+	}
+
+	private void importNewImages(Tag tag, int previousCount) {
+		if (tag.isImportIssued()) {
+			try {
+				dispatch.execute(new ImportTag(tag.getId(), previousCount));
+			} catch (DispatchException e) {
+
+			}
+		}
 	}
 
 	private void recieveTag(TagData data, Tag tag) {
-
 		String tagName = data.getName();
 		String parentId = data.getParentId();
 		int count = data.getCount();
-
 		tag.setTagName(tagName);
 		tag.setParentId(parentId);
 		tag.setCount(count);
