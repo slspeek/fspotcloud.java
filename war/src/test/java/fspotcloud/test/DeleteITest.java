@@ -34,8 +34,6 @@ public class DeleteITest extends SeleniumITestCase {
 		selenium.click("gwt-debug-delete-all-tags-button");
 		sleepShort();
 		selenium.click("gwt-debug-delete-all-photos-button");
-		sleepShort();
-		selenium.click("gwt-debug-reset-meta-data-button");
 		sleepShort(4);
 		selenium.click("gwt-debug-count-photos-button");
 		sleepShort(4);

@@ -44,12 +44,6 @@ public class GlobalActionsViewImpl extends Composite implements
 	Button deleteAllPhotosButton;
 	@UiField
 	Button countPhotosButton;
-	@UiField
-	Button loadImagesButton;
-	@UiField
-	Button resetMetaDataButton;
-
-	
 
 	public GlobalActionsViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -60,26 +54,15 @@ public class GlobalActionsViewImpl extends Composite implements
 		updateButton.ensureDebugId("update-button");
 		deleteAllPhotosButton.ensureDebugId("delete-all-photos-button");
 		countPhotosButton.ensureDebugId("count-photos-button");
-		loadImagesButton.ensureDebugId("load-images-button");
-		resetMetaDataButton.ensureDebugId("reset-meta-data-button");
-		pendingCommandCountValueLabel.ensureDebugId("pending-command-count-label");
-	}
-
-	@UiHandler("resetMetaDataButton")
-	public void resetMetaDataButtonClicked(ClickEvent event) {
-		presenter.resetPeerPhotoCount();
+		pendingCommandCountValueLabel
+				.ensureDebugId("pending-command-count-label");
 	}
 
 	@UiHandler("countPhotosButton")
 	public void countButtonClicked(ClickEvent event) {
 		presenter.countPhotos();
 	}
-	
-	@UiHandler("loadImagesButton")
-	public void loadImagesButtonClicked(ClickEvent event) {
-		presenter.importImageData();
-	}
-		
+
 	@UiHandler("deleteAllPhotosButton")
 	public void onDeleteAllPhotosButtonClicked(ClickEvent event) {
 		presenter.deleteAllPhotos();
@@ -131,18 +114,8 @@ public class GlobalActionsViewImpl extends Composite implements
 	}
 
 	@Override
-	public HasEnabled getLoadImagesButton() {
-		return loadImagesButton;
-	}
-
-	@Override
 	public HasEnabled getCountPhotosButton() {
 		return countPhotosButton;
-	}
-
-	@Override
-	public HasEnabled getResetMetaDataButton() {
-		return resetMetaDataButton;
 	}
 
 	@Override
@@ -154,6 +127,5 @@ public class GlobalActionsViewImpl extends Composite implements
 	public HasText getPendingCommandCountValue() {
 		return pendingCommandCountValueLabel;
 	}
-
 
 }

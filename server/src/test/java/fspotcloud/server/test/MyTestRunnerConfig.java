@@ -11,9 +11,6 @@ import com.google.appengine.testing.cloudcover.spi.TestRun;
 import fspotcloud.server.admin.actions.CountPhotosHandlerTest;
 import fspotcloud.server.control.task.DelayedDataSchedulerTest;
 import fspotcloud.server.cron.CronTest;
-import fspotcloud.server.mapreduce.ImageDataImporterNonRelevantTest;
-import fspotcloud.server.mapreduce.ImageDataImporterRelevantTest;
-import fspotcloud.server.mapreduce.ImageDataMapperTest;
 import fspotcloud.server.model.ModelModuleTest;
 import fspotcloud.server.model.PersistenceManagerProviderTest;
 import fspotcloud.server.model.peerdatabase.PeerDatabaseManagerTest;
@@ -44,9 +41,6 @@ public class MyTestRunnerConfig extends JUnit3Config {
 			public TestSuite getTestSuite() {
 				suite.addTestSuite(DelayedDataSchedulerTest.class);
 				//suite.addTestSuite(InjectorTest.class);
-				suite.addTestSuite(ImageDataImporterNonRelevantTest.class);
-				suite.addTestSuite(ImageDataImporterRelevantTest.class);
-				suite.addTestSuite(ImageDataMapperTest.class);
 				suite.addTestSuite(CountPhotosHandlerTest.class);
 				suite.addTestSuite(CronTest.class);
 				return suite;

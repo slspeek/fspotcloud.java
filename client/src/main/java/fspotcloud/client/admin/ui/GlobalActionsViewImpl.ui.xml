@@ -32,7 +32,7 @@
 			<tbody>
 				<tr>
 					<td>
-						<g:Label styleName="{style.property-label}">Number of photo-metadata object on the server</g:Label>
+						<g:Label styleName="{style.property-label}">Number of photos on the server</g:Label>
 					</td>
 					<td>
 						<g:Label styleName="{style.property-value}"  ui:field="photoCountValueLabel"></g:Label>
@@ -89,14 +89,6 @@
 				</tr>
 				<tr>
 					<td>
-						<g:Label  styleName="{style.property-label}">Start the loading of the images</g:Label>
-					</td>
-					<td>
-						<g:Button ui:field="loadImagesButton" >Load images</g:Button>
-					</td>
-				</tr>
-				<tr>
-					<td>
 						<g:Label  styleName="{style.property-label}">Delete all labels on the server</g:Label>
 					</td>
 					<td>
@@ -109,14 +101,6 @@
 					</td>
 					<td>
 						<g:Button ui:field="deleteAllPhotosButton" >Delete all photos</g:Button>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<g:Label  styleName="{style.property-label}">Reset the synchronization point</g:Label>
-					</td>
-					<td>
-						<g:Button ui:field="resetMetaDataButton" >Reset synchronization</g:Button>
 					</td>
 				</tr>
 			</tbody>

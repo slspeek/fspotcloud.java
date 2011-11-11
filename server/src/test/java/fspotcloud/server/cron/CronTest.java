@@ -38,14 +38,6 @@ public class CronTest extends TestCase {
 		super.setUp();
 	}
 
-	public void testImportImageData() throws IOException, DispatchException {
-		when(request.getParameter("action")).thenReturn("import-image-data");
-		cron.doGet(request, response);
-		verify(dispatch).execute(captor.capture());
-		assertEquals("ImportImageData", captor.getValue().getClass()
-				.getSimpleName());
-	}
-
 	public void testCountPhotos() throws IOException, DispatchException {
 		when(request.getParameter("action")).thenReturn("count-photos");
 		cron.doGet(request, response);
