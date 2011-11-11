@@ -33,7 +33,7 @@ public class TagServiceImpl extends RemoteServiceServlet implements TagService {
 
 	public List<TagNode> loadTagTree() {
 		PeerDatabase p = defaultPeer.get();
-		if (false/* p.getCachedTagTree() != null */) {
+		if (p.getCachedTagTree() != null) {
 			log.info("Got the tree from cache HIT");
 			return p.getCachedTagTree();
 		} else {

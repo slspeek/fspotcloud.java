@@ -7,7 +7,7 @@
     <project>gwt-deps</project>
     <project>peer</project>
     <project>peer-rpc</project>
-    <project>war</project>
+    <project>war-prod</project>
   </projects>
   <buildSpec>
     <buildCommand>

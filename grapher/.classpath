@@ -8,6 +8,7 @@
   <classpathentry kind="var" path="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" sourcepath="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-1.0-sdk/1.5.3/appengine-api-1.0-sdk-1.5.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-labs/1.5.3/appengine-api-labs-1.5.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-jsr107cache/1.5.3/appengine-jsr107cache-1.5.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/tools/mapreduce/appengine-mapper/r141/appengine-mapper-r141.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-testing/1.5.3/appengine-testing-1.5.3.jar"/>
   <classpathentry kind="src" path="/bot"/>
@@ -39,6 +40,7 @@
   <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/tools/mapreduce/hadoop-core/0.20.2/hadoop-core-0.20.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/tools/mapreduce/json/UNKNOWN/json-UNKNOWN.jar"/>
+  <classpathentry kind="var" path="M2_REPO/net/sf/jsr107cache/jsr107cache/1.1/jsr107cache-1.1.jar" sourcepath="M2_REPO/net/sf/jsr107cache/jsr107cache/1.1/jsr107cache-1.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar" sourcepath="M2_REPO/junit/junit/3.8.1/junit-3.8.1-sources.jar"/>
   <classpathentry kind="src" path="/model"/>
   <classpathentry kind="src" path="/model-api"/>

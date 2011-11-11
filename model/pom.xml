@@ -4,11 +4,11 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-7.2.6</version>
+		<version>0.40-7.2.7</version>
 	</parent>
 	<groupId>fspotcloud</groupId>
 	<artifactId>model</artifactId>
-	<version>0.40-7.2.6</version>
+	<version>0.40-7.2.7</version>
 	<packaging>jar</packaging>
 	<name>Model AppEngine Implementation</name>
 	<dependencies>
@@ -48,15 +48,18 @@
 			<version>${project.version}</version>
 			<type>pom</type>
 		</dependency>
-
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
-		<!--
-			GAE libraries for local testing as described here:
-			http://code.google.com/appengine/docs/java/howto/unittesting.html
-		-->
+		<!-- GAE libraries for local testing as described here: http://code.google.com/appengine/docs/java/howto/unittesting.html -->
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-stubs</artifactId>
@@ -73,6 +76,13 @@
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-testing</artifactId>
 			<version>${gae.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.0-rc1</version>
+			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -116,9 +126,7 @@
 				<configuration>
 					<log4jConfiguration>${project.build.directory}/classes/log4j.properties</log4jConfiguration>
 					<verbose>true</verbose>
-					<!--
-						Make sure this path contains your persistent classes!
-					-->
+					<!-- Make sure this path contains your persistent classes! -->
 					<mappingIncludes>fspotcloud/server/model/**/*.class</mappingIncludes>
 					<verbose>true</verbose>
 					<enhancerName>ASM</enhancerName>
@@ -162,7 +170,7 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<!--  To include the test-jar for cloudcover -->
+			<!-- To include the test-jar for cloudcover -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>

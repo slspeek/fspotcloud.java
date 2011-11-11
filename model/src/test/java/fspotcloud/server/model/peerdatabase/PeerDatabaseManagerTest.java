@@ -1,10 +1,13 @@
 package fspotcloud.server.model.peerdatabase;
 
+import static org.mockito.Mockito.mock;
+
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
 
 import junit.framework.TestSuite;
+import net.sf.jsr107cache.Cache;
 
 import com.google.inject.Provider;
 
@@ -15,7 +18,8 @@ import fspotcloud.shared.tag.TagNode;
 
 public class PeerDatabaseManagerTest extends CloudcoverDatastoreTest {
 	private Provider<PersistenceManager> pmProvider = new PersistenceManagerProvider();
-	private PeerDatabaseManager manager = new PeerDatabaseManager(pmProvider);
+	private Cache cache;
+	private PeerDatabaseManager manager;
 	
 
 	public static TestSuite suite(){
@@ -23,6 +27,14 @@ public class PeerDatabaseManagerTest extends CloudcoverDatastoreTest {
 	}
 	
 	
+	
+	@Override
+	public void setUp() throws Exception {
+		cache = mock(Cache.class);
+		manager  = new PeerDatabaseManager(pmProvider, cache);
+		super.setUp();
+	}
+
 	public void testGet() {
 		PeerDatabase defaultPD = manager.get();
 		assertNotNull(defaultPD);

@@ -2,6 +2,8 @@ package fspotcloud.server.model;
 
 import javax.jdo.PersistenceManager;
 
+import net.sf.jsr107cache.Cache;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
@@ -24,5 +26,6 @@ public class ModelModule extends AbstractModule {
 				Singleton.class);
 		bind(Tags.class).to(TagManager.class).in(Singleton.class);
 		bind(PersistenceManager.class).toProvider(PersistenceManagerProvider.class);
+		bind(Cache.class).toProvider(MemCacheProvider.class);
 	}
 }
