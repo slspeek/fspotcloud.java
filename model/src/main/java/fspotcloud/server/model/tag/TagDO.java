@@ -3,6 +3,7 @@
  */
 package fspotcloud.server.model.tag;
 
+import java.io.Serializable;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -20,7 +21,7 @@ import fspotcloud.shared.photo.PhotoInfo;
  * 
  */
 @PersistenceCapable(detachable="true")
-public class TagDO implements Tag {
+public class TagDO implements Tag, Serializable {
 	@PrimaryKey
 	private String id;
 

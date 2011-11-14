@@ -3,6 +3,7 @@
  */
 package fspotcloud.server.model.photo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import fspotcloud.server.model.api.Photo;
  * 
  */
 @PersistenceCapable(detachable = "true")
-public class PhotoDO implements Photo {
+public class PhotoDO implements Photo, Serializable {
 	@PrimaryKey
 	private String name;
 
