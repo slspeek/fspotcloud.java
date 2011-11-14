@@ -30,6 +30,23 @@
 				</tr>
 			</theader>
 			<tbody>
+			<tr>
+					<td>
+						<g:Label  styleName="{style.property-label}">Date we last saw the peer</g:Label>
+					</td>
+					<td>
+						<g:Label  styleName="{style.property-value}" ui:field="lastSeenPeerValueLabel"></g:Label>
+					</td>
+				</tr>
+				
+			<tr>
+					<td>
+						<g:Label  styleName="{style.property-label}">Synchronize with peer</g:Label>
+					</td>
+					<td>
+						<g:Button ui:field="updateButton" >Synchronize</g:Button>
+					</td>
+				</tr>
 				<tr>
 					<td>
 						<g:Label styleName="{style.property-label}">Number of photos on the server</g:Label>
@@ -65,28 +82,13 @@
 				
 				<tr>
 					<td>
-						<g:Label  styleName="{style.property-label}">Date we last saw the peer</g:Label>
-					</td>
-					<td>
-						<g:Label  styleName="{style.property-value}" ui:field="lastSeenPeerValueLabel"></g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>
 						<g:Label  styleName="{style.property-label}">Tag count on peer</g:Label>
 					</td>
 					<td>
 						<g:Label  styleName="{style.property-value}" ui:field="tagCountOnPeerValueLabel"></g:Label>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<g:Label  styleName="{style.property-label}">Synchronize with peer</g:Label>
-					</td>
-					<td>
-						<g:Button ui:field="updateButton" >Synchronize</g:Button>
-					</td>
-				</tr>
+				
 				<tr>
 					<td>
 						<g:Label  styleName="{style.property-label}">Delete all labels on the server</g:Label>
