@@ -20,7 +20,7 @@ import fspotcloud.server.model.api.Photos;
 public class PhotoManagerTest extends CloudcoverDatastoreTest {
 
 	private Provider<PersistenceManager> pmProvider = new PersistenceManagerProvider();
-	private Photos photoManager = new PhotoManager(pmProvider, 100);
+	private Photos photoManager = new PhotoManager(pmProvider);
 
 	public static TestSuite suite() {
 		return new TestSuite(PhotoManagerTest.class);

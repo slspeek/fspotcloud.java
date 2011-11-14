@@ -15,7 +15,4 @@ public interface Tags {
 	public abstract String save(Tag tag);
 
 	public abstract boolean deleteAll();
-
-	public abstract void saveAll(List<Tag> tagList);
-
 }

@@ -40,7 +40,7 @@ public class ImportTagHandlerTest extends TestCase {
 		tag.setImportIssued(true);
 		handler.execute(action, null);
 		verify(scheduler).schedulePhotoImport(TAG_ID, "", PREVIOUS_COUNT, COUNT-PREVIOUS_COUNT);
-		//verifyNoMoreInteractions(tagManager);
+		//verifyNoMoreInteractions(manager);
 	}
 
 }
