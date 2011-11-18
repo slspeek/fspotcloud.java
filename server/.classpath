@@ -40,9 +40,11 @@
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/tools/mapreduce/hadoop-core/0.20.2/hadoop-core-0.20.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar" sourcepath="M2_REPO/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-library/1.1/hamcrest-library-1.1.jar" sourcepath="M2_REPO/org/hamcrest/hamcrest-library/1.1/hamcrest-library-1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/httpunit/httpunit/1.7/httpunit-1.7.jar" sourcepath="M2_REPO/httpunit/httpunit/1.7/httpunit-1.7-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/jmock/jmock/2.5.1/jmock-2.5.1.jar" sourcepath="M2_REPO/org/jmock/jmock/2.5.1/jmock-2.5.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/tools/mapreduce/json/UNKNOWN/json-UNKNOWN.jar"/>
   <classpathentry kind="var" path="M2_REPO/net/sf/jsr107cache/jsr107cache/1.1/jsr107cache-1.1.jar" sourcepath="M2_REPO/net/sf/jsr107cache/jsr107cache/1.1/jsr107cache-1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/jtidy/jtidy/4aug2000r7-dev/jtidy-4aug2000r7-dev.jar" sourcepath="M2_REPO/jtidy/jtidy/4aug2000r7-dev/jtidy-4aug2000r7-dev-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar" sourcepath="M2_REPO/junit/junit/3.8.1/junit-3.8.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/mockito/mockito-core/1.9.0-rc1/mockito-core-1.9.0-rc1.jar" sourcepath="M2_REPO/org/mockito/mockito-core/1.9.0-rc1/mockito-core-1.9.0-rc1-sources.jar"/>
   <classpathentry kind="src" path="/model"/>
