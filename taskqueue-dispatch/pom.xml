@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>fspotcloud</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.40-7.3.0</version>
+	</parent>
+	<groupId>fspotcloud.taskqueue-dispatch</groupId>
+	<artifactId>taskqueue-dispatch</artifactId>
+	<version>0.40-7.3.0</version>
+	<packaging>pom</packaging>
+	<name>GWT-dispatch to TaskQueue</name>
+  <modules>
+  <module>dispatch</module>
+  <module>integration</module>
+  </modules>
+</project>

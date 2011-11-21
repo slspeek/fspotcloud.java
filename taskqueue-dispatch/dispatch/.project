@@ -1,0 +1,17 @@
+<projectDescription>
+  <name>dispatch</name>
+  <comment>Makes synchronizing your photos with the web easier. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <projects>
+    <project>appengine-deps</project>
+    <project>guice-deps</project>
+    <project>gwt-deps</project>
+  </projects>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>
