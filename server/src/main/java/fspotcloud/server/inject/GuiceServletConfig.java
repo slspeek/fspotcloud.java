@@ -19,7 +19,8 @@ public class GuiceServletConfig extends GuiceServletContextListener {
 				new FSpotCloudModule(), new ActionsModule(), new ModelModule(),
 				new TaskModule(), new FSCControllerModule(),
 				new ControllerServletModule(), new MinimalCommandModelModule(),
-				new TaskQueueDispatchModule(), new TaskQueueDispatchServletModule(),new TaskActionsModule());
+				new TaskQueueDispatchModule(),
+				new TaskQueueDispatchServletModule(), new TaskActionsModule());
 		return i;
 	}
 }

@@ -15,6 +15,7 @@ import fspotcloud.client.admin.view.api.TagDetailsView;
 import fspotcloud.client.data.DataManager;
 import fspotcloud.client.place.TagPlace;
 import fspotcloud.shared.dashboard.actions.ImportTag;
+import fspotcloud.shared.dashboard.actions.UnImportTag;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.tag.TagNode;
 
@@ -25,6 +26,7 @@ public class TagDetailsActivity extends AbstractActivity implements
 			.getName());
 	final private TagDetailsView tagDetailsView;
 	final private TagPlace tagPlace;
+	private TagNode tagNode;
 	final private DataManager dataManager;
 	final private DispatchAsync dispatch;
 
@@ -51,21 +53,35 @@ public class TagDetailsActivity extends AbstractActivity implements
 
 	@Override
 	public void importTag() {
+		log.info("TagNode: " +tagNode + tagNode.isImportIssued());
+		if (tagNode != null && tagNode.isImportIssued()) {
+			dispatch.execute(new UnImportTag(tagPlace.getTagId()), new AsyncCallback<VoidResult>() {
 
-		dispatch.execute(new ImportTag(tagPlace.getTagId(), 0),
-				new AsyncCallback<VoidResult>() {
+						@Override
+						public void onFailure(Throwable caught) {
+							log.log(Level.SEVERE, "Action Exception ", caught);
+						}
 
-					@Override
-					public void onFailure(Throwable caught) {
-						log.log(Level.SEVERE, "Action Exception ", caught);
-					}
+						@Override
+						public void onSuccess(VoidResult result) {
+							Window.Location.reload();
+						}
+					});
+		} else {
+			dispatch.execute(new ImportTag(tagPlace.getTagId(), 0),
+					new AsyncCallback<VoidResult>() {
 
-					@Override
-					public void onSuccess(VoidResult result) {
-						Window.Location.reload();
-					}
-				});
+						@Override
+						public void onFailure(Throwable caught) {
+							log.log(Level.SEVERE, "Action Exception ", caught);
+						}
 
+						@Override
+						public void onSuccess(VoidResult result) {
+							Window.Location.reload();
+						}
+					});
+		}
 	}
 
 	private void populateView() {
@@ -74,13 +90,15 @@ public class TagDetailsActivity extends AbstractActivity implements
 
 			@Override
 			public void onFailure(Throwable caught) {
-				log.log(Level.SEVERE, "Trouble retrieving admin tag tree ", caught);
+				log.log(Level.SEVERE, "Trouble retrieving admin tag tree ",
+						caught);
 			}
 
 			@Override
 			public void onSuccess(TagNode result) {
+				tagNode = result;
 				populateView(result);
-
+				
 			}
 		});
 
@@ -93,9 +111,11 @@ public class TagDetailsActivity extends AbstractActivity implements
 				String.valueOf(tag.getCount()));
 		tagDetailsView.getTagImportIssuedValue().setText(
 				tag.isImportIssued() ? "yes" : "no");
-		tagDetailsView.getImportButton().setEnabled(!tag.isImportIssued());
+		// tagDetailsView.getImportButton().setEnabled(!tag.isImportIssued());
+		tagDetailsView.getImportButtonText().setText(
+				tag.isImportIssued() ? "Remove" : "Import");
 		tagDetailsView.getTagLoadedImagesCountValue().setText(
 				String.valueOf(tag.getCachedPhotoList().lastIndex() + 1));
-		
+
 	}
 }

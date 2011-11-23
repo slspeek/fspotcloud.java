@@ -6,7 +6,6 @@ import net.customware.gwt.dispatch.server.guice.GuiceStandardDispatchServlet;
 
 import com.google.inject.servlet.ServletModule;
 
-import fspotcloud.server.control.task.tagimport.DataTaskServlet;
 import fspotcloud.server.cron.CronServlet;
 import fspotcloud.server.main.ImageServlet;
 import fspotcloud.server.main.TagServiceImpl;
@@ -24,7 +23,6 @@ public class FSpotCloudServletModule extends ServletModule {
 		serve("/fspotcloud/dispatch").with(GuiceStandardDispatchServlet.class);
 		serve("/fspotcloud.dashboard/dispatch").with(
 				GuiceStandardDispatchServlet.class);
-		serve("/control/task/data").with(DataTaskServlet.class);
 		serve("/fspotcloud/tag").with(TagServiceImpl.class);
 		serve("/fspotcloud.dashboard/tag").with(TagServiceImpl.class);
 		serve("/callbacks/counter_completed").with(

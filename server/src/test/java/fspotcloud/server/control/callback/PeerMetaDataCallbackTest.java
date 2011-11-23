@@ -8,20 +8,20 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 
 import junit.framework.TestCase;
-import fspotcloud.server.control.task.tagimport.DataScheduler;
-import fspotcloud.server.control.task.tagimport.DataSchedulerFactory;
+import fspotcloud.server.control.task.actions.intern.TagImportAction;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
+import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
+import fspotcloud.taskqueuedispatch.NullCallback;
+import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
 @SuppressWarnings("unused")
 public class PeerMetaDataCallbackTest extends TestCase {
 
 	PeerDatabaseDO pd;
 	PeerDatabases peerDatabases;
-	DataSchedulerFactory factory;
-	DataScheduler tagScheduler;
-	DataScheduler photoScheduler;
+	TaskQueueDispatch dispatchAsync;
 	PeerMetaDataCallback callback;
 	PeerMetaDataResult firstResult;
 	PeerMetaDataResult secondResult;
@@ -29,11 +29,9 @@ public class PeerMetaDataCallbackTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		peerDatabases = mock(PeerDatabases.class);
-		factory = mock(DataSchedulerFactory.class);
 		pd = new PeerDatabaseDO();
-		callback = new PeerMetaDataCallback(peerDatabases, factory);
-		tagScheduler = mock(DataScheduler.class, "Tag");
-		photoScheduler = mock(DataScheduler.class, "Photo");
+		dispatchAsync = mock(TaskQueueDispatch.class);
+		callback = new PeerMetaDataCallback(peerDatabases, dispatchAsync);
 		firstResult = new PeerMetaDataResult(10, 10);
 		secondResult = new PeerMetaDataResult(10, 21);
 		super.setUp();
@@ -47,23 +45,11 @@ public class PeerMetaDataCallbackTest extends TestCase {
 	}
 
 	public void testFirstResult() {
-		when(factory.get("Tag")).thenReturn(tagScheduler);
 		when(peerDatabases.get()).thenReturn(pd);
-
 		callback.onSuccess(firstResult);
 		verify(peerDatabases).save(pd);
-		verify(tagScheduler).scheduleDataImport(0, 10);
+		verify(dispatchAsync).execute(new TagImportAction(0, 10), new NullCallback<VoidResult>());
 	}
 
-	public void testSecondResult() {
-		pd = new PeerDatabaseDO();
-		pd.setTagCount(10);
-		pd.setPeerPhotoCount(10);
-		when(factory.get("Tag")).thenReturn(tagScheduler);
-		when(peerDatabases.get()).thenReturn(pd);
-		callback.onSuccess(secondResult);
-		verify(tagScheduler).scheduleDataImport(0, 10);
-		verify(peerDatabases).save(pd);
-	}
-
+	
 }

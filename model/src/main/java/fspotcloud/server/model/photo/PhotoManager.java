@@ -1,18 +1,18 @@
 package fspotcloud.server.model.photo;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import com.google.inject.name.Named;
 
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
@@ -23,7 +23,8 @@ public class PhotoManager implements Photos {
 			.getName());
 
 	private final Provider<PersistenceManager> pmProvider;
-
+	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();	
+	
 	@Inject
 	public PhotoManager(Provider<PersistenceManager> pmProvider) {
 		this.pmProvider = pmProvider;
@@ -72,6 +73,16 @@ public class PhotoManager implements Photos {
 			pm.close();
 		}
 		return photo;
+	}
+
+	@Override
+	public void deleteAll(List<String> keys) {
+		List<Key> keyList = new ArrayList<Key>();
+		for(String keyString: keys) {
+			Key key = KeyFactory.createKey("PhotoDO", keyString);
+			keyList.add(key);
+		}
+		datastore.delete(keyList);	
 	}
 
 }

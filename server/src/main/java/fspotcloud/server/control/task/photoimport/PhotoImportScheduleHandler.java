@@ -18,7 +18,6 @@ import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
 public class PhotoImportScheduleHandler extends
 		SimpleActionHandler<PhotoImportScheduleAction, VoidResult> {
-
 	
 	final int THUMB_WIDTH;
 	final int THUMB_HEIGHT;
