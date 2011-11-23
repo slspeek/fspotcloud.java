@@ -4,9 +4,6 @@ import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
 
-import fspotcloud.server.control.task.photoimport.DefaultPhotoImportScheduler;
-import fspotcloud.server.control.task.photoimport.DelayedPhotoImportScheduler;
-import fspotcloud.server.control.task.photoimport.PhotoImportScheduler;
 import fspotcloud.server.control.task.tagimport.DataScheduler;
 import fspotcloud.server.control.task.tagimport.DataSchedulerAssistedFactory;
 import fspotcloud.server.control.task.tagimport.DataSchedulerFactory;
@@ -24,12 +21,6 @@ public class TaskModule extends AbstractModule {
 		install(new FactoryModuleBuilder()
 				.build(DelayedDataSchedulerFactory.class));
 		bind(DataSchedulerFactory.class).to(DefaultDataSchedulerFactory.class);
-		
-		bind(PhotoImportScheduler.class).annotatedWith(Names.named("default"))
-				.to(DefaultPhotoImportScheduler.class);
-		bind(PhotoImportScheduler.class).annotatedWith(
-				Names.named("delayedCall")).to(
-				DelayedPhotoImportScheduler.class);
 		
 		bind(String.class).annotatedWith(Names.named("imageDimension")).toInstance("1024x768");
 		bind(String.class).annotatedWith(Names.named("thumbDimension")).toInstance("512x384");
