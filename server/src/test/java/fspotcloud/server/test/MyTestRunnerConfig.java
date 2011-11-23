@@ -9,7 +9,6 @@ import com.google.appengine.testing.cloudcover.harness.junit3.JUnit3TestRun;
 import com.google.appengine.testing.cloudcover.spi.TestRun;
 
 import fspotcloud.server.admin.actions.CountPhotosHandlerTest;
-import fspotcloud.server.control.task.DelayedDataSchedulerTest;
 import fspotcloud.server.cron.CronTest;
 import fspotcloud.server.model.ModelModuleTest;
 import fspotcloud.server.model.PersistenceManagerProviderTest;
@@ -39,7 +38,6 @@ public class MyTestRunnerConfig extends JUnit3Config {
 		SUITE2("Server") {
 			@Override
 			public TestSuite getTestSuite() {
-				suite.addTestSuite(DelayedDataSchedulerTest.class);
 				//suite.addTestSuite(InjectorTest.class);
 				suite.addTestSuite(CountPhotosHandlerTest.class);
 				suite.addTestSuite(CronTest.class);

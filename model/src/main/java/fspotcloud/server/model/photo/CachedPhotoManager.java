@@ -82,4 +82,25 @@ public class CachedPhotoManager implements Photos {
 		}
 	}
 
+	private void removeAllFromCache(List<String> keys) {
+		for(String key: keys) {
+			remove(key);
+		}
+	}
+	
+	private void remove(String key) {
+		String id = PHOTO_PREFIX + key;
+		cache.remove(id);
+	}
+	
+	
+	
+	
+	
+	@Override
+	public void deleteAll(List<String> keys) {
+		manager.deleteAll(keys);
+		removeAllFromCache(keys);
+	}
+
 }

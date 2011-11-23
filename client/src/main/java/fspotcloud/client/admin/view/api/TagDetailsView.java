@@ -14,6 +14,8 @@ public interface TagDetailsView extends IsWidget {
 	}
 	HasEnabled getImportButton();
 	
+	HasText getImportButtonText();
+	
 	HasText getTagNameValue();
 
 	HasText getTagDescriptionValue();

@@ -88,4 +88,9 @@ public class TagDetailsViewImpl extends Composite implements TagDetailsView {
 		return importTagButton;
 	}
 
+	@Override
+	public HasText getImportButtonText() {
+		return importTagButton;
+	}
+
 }

@@ -12,4 +12,6 @@ public interface Photos {
 
 	public abstract Photo getById(String id);
 
+	public abstract void deleteAll(List<String> keys);
+
 }

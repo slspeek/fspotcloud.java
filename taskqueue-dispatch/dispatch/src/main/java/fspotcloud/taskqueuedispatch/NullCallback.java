@@ -13,7 +13,15 @@ final public class NullCallback<T> implements
 
 	@Override
 	public void onSuccess(T result) {
-		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj.getClass().equals(getClass())) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

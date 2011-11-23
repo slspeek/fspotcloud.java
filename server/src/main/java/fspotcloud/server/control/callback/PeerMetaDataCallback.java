@@ -5,11 +5,13 @@ import java.io.Serializable;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
-import fspotcloud.server.control.task.tagimport.DataScheduler;
-import fspotcloud.server.control.task.tagimport.DataSchedulerFactory;
+import fspotcloud.server.control.task.actions.intern.TagImportAction;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
+import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
+import fspotcloud.taskqueuedispatch.NullCallback;
+import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
 public class PeerMetaDataCallback implements AsyncCallback<PeerMetaDataResult>, Serializable {
 
@@ -17,13 +19,13 @@ public class PeerMetaDataCallback implements AsyncCallback<PeerMetaDataResult>, 
 	@Inject
 	transient private PeerDatabases defaultPeer;
 	@Inject
-	transient private DataSchedulerFactory dataSchedulerFactory;
-
+	transient private TaskQueueDispatch  dispatchAsync;
+	
 	public PeerMetaDataCallback(PeerDatabases defaultPeer,
-			DataSchedulerFactory dataSchedulerFactory) {
+			TaskQueueDispatch dispatchAsync) {
 		super();
 		this.defaultPeer = defaultPeer;
-		this.dataSchedulerFactory = dataSchedulerFactory;
+		this.dispatchAsync = dispatchAsync;
 	}
 
 	@Override
@@ -31,8 +33,7 @@ public class PeerMetaDataCallback implements AsyncCallback<PeerMetaDataResult>, 
 		int count = result.getPhotoCount();
 		int tagCount = result.getTagCount();
 		PeerDatabase p = defaultPeer.get();
-		DataScheduler tagScheduler = dataSchedulerFactory.get("Tag");
-		tagScheduler.scheduleDataImport(0, tagCount);
+		dispatchAsync.execute(new TagImportAction(0, tagCount), new NullCallback<VoidResult>());
 		p.setPeerPhotoCount(count);
 		p.setTagCount(tagCount);
 		defaultPeer.save(p);

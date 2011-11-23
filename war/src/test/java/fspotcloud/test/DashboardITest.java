@@ -31,7 +31,7 @@ public class DashboardITest extends SeleniumITestCase {
 		loginDevAppServer();
 		selenium.waitForPageToLoad("30000");
 		selenium.click("gwt-debug-update-button");
-		sleepShort(3);
+		sleepShort(6);
 		selenium.open("/Dashboard.html");
 		selenium.waitForPageToLoad("30000");
 		sleepShort();
@@ -39,7 +39,6 @@ public class DashboardITest extends SeleniumITestCase {
 		selenium.click("gwt-debug-import-tag-button");
 		selenium.waitForPageToLoad("30000");
 		
-		//selenium.click("gwt-debug-load-images-button");
 		selenium.click("gwt-debug-count-photos-button");
 		sleepShort(4);
 		sleepShort();
