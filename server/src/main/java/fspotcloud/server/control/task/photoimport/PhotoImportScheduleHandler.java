@@ -1,39 +1,47 @@
 package fspotcloud.server.control.task.photoimport;
 
-import com.google.inject.Inject;
-import com.google.inject.assistedinject.Assisted;
-import com.google.inject.name.Named;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import net.customware.gwt.dispatch.server.ExecutionContext;
+import net.customware.gwt.dispatch.server.SimpleActionHandler;
+import net.customware.gwt.dispatch.shared.DispatchException;
+
 
 import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.server.control.callback.PhotoDataCallback;
-import fspotcloud.server.control.callback.TagDataCallback;
+import fspotcloud.server.control.task.actions.intern.PhotoImportScheduleAction;
+import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.GetPhotoData;
-import fspotcloud.shared.peer.rpc.actions.GetTagData;
+import fspotcloud.taskqueuedispatch.NullCallback;
+import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
-public class DefaultPhotoImportScheduler implements PhotoImportScheduler {
+public class PhotoImportScheduleHandler extends
+		SimpleActionHandler<PhotoImportScheduleAction, VoidResult> {
 
+	
 	final int THUMB_WIDTH;
 	final int THUMB_HEIGHT;
 	final int IMAGE_WIDTH;
 	final int IMAGE_HEIGHT;
 	final private int MAX_DATA_TICKS;
 	final private int MAX_PHOTO_TICKS;
-	final private PhotoImportScheduler recursiveCall;
-
-	final private ControllerDispatchAsync dispatch;
-
+	
+	final private ControllerDispatchAsync controllerDispatch;
+	final private TaskQueueDispatch dispatchAsync;
+	
 	@Inject
-	public DefaultPhotoImportScheduler(ControllerDispatchAsync dispatch,
-			@Named("maxTicks") int maxTicks,
+	public PhotoImportScheduleHandler(@Named("maxTicks") int maxTicks,
 			@Named("maxPhotoTicks") int maxPhotoTicks,
 			@Named("thumbDimension") String thumbDimension,
 			@Named("imageDimension") String imageDimension,
-			@Named("delayedCall") PhotoImportScheduler recursiveCall) {
+			ControllerDispatchAsync controllerDispatch,
+			TaskQueueDispatch dispatchAsync) {
 		super();
-		this.dispatch = dispatch;
+		this.controllerDispatch = controllerDispatch;
+		this.dispatchAsync = dispatchAsync;
 		MAX_DATA_TICKS = maxTicks;
 		MAX_PHOTO_TICKS = maxPhotoTicks;
-		this.recursiveCall = recursiveCall;
 		THUMB_WIDTH = Integer.valueOf(thumbDimension.split("x")[0]);
 		THUMB_HEIGHT = Integer.valueOf(thumbDimension.split("x")[1]);
 		IMAGE_WIDTH = Integer.valueOf(imageDimension.split("x")[0]);
@@ -41,8 +49,12 @@ public class DefaultPhotoImportScheduler implements PhotoImportScheduler {
 	}
 
 	@Override
-	public void schedulePhotoImport(String tagId, String minKey, int offset,
-			int limit) {
+	public VoidResult execute(PhotoImportScheduleAction action,
+			ExecutionContext context) throws DispatchException {
+		int limit = action.getLimit();
+		int offset = action.getOffset();
+		String tagId = action.getTagId();
+		String minKey = action.getMinKey();
 		int countWeWillDo;
 		int needToScheduleCount = (int) Math.ceil((double) limit
 				/ (double) MAX_PHOTO_TICKS);
@@ -51,8 +63,8 @@ public class DefaultPhotoImportScheduler implements PhotoImportScheduler {
 			int delta = MAX_DATA_TICKS * MAX_PHOTO_TICKS;
 			int nextOffset = offset + delta;
 			int nextLimit = limit - delta;
-			recursiveCall.schedulePhotoImport(tagId, minKey, nextOffset,
-					nextLimit);
+			dispatchAsync.execute(new PhotoImportScheduleAction(tagId, minKey, nextOffset,
+					nextLimit), new NullCallback());
 			countWeWillDo = MAX_DATA_TICKS;
 		} else {
 			countWeWillDo = needToScheduleCount;
@@ -60,11 +72,15 @@ public class DefaultPhotoImportScheduler implements PhotoImportScheduler {
 		// Do our part of the job, scheduling the head
 		for (int i = 0; i < countWeWillDo; i++) {
 			int beginning = offset + i * MAX_PHOTO_TICKS;
-			GetPhotoData action = new GetPhotoData(tagId, minKey, beginning,
+			GetPhotoData botAction = new GetPhotoData(tagId, minKey, beginning,
 					MAX_PHOTO_TICKS, IMAGE_WIDTH, IMAGE_HEIGHT, THUMB_WIDTH,
 					THUMB_HEIGHT);
 			PhotoDataCallback callback = new PhotoDataCallback(null, null, null);
-			dispatch.execute(action, callback);
+			controllerDispatch.execute(botAction, callback);
 		}
+		return new VoidResult();
 	}
+
+	
+	
 }

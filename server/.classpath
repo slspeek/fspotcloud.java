@@ -26,6 +26,7 @@
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/orm/datanucleus-appengine/1.0.4.1/datanucleus-appengine-1.0.4.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/datanucleus/datanucleus-core/1.1.5/datanucleus-core-1.1.5.jar" sourcepath="M2_REPO/org/datanucleus/datanucleus-core/1.1.5/datanucleus-core-1.1.5-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/datanucleus-jpa/1.1.5/datanucleus-jpa-1.1.5.jar"/>
+  <classpathentry kind="src" path="/dispatch"/>
   <classpathentry kind="src" path="/gae-command"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/geronimo-jpa_3.0_spec/1.1.1/geronimo-jpa_3.0_spec-1.1.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/gwt/inject/gin/1.5.0/gin-1.5.0.jar" sourcepath="M2_REPO/com/google/gwt/inject/gin/1.5.0/gin-1.5.0-sources.jar"/>

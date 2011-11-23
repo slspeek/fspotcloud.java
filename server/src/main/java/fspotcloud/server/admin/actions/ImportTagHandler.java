@@ -2,32 +2,34 @@ package fspotcloud.server.admin.actions;
 
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
+import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
-import fspotcloud.server.control.task.photoimport.PhotoImportScheduler;
+import fspotcloud.server.control.task.actions.intern.PhotoImportScheduleAction;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.dashboard.actions.ImportTag;
 import fspotcloud.shared.dashboard.actions.VoidResult;
+import fspotcloud.taskqueuedispatch.NullCallback;
+import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
 public class ImportTagHandler extends
 		SimpleActionHandler<ImportTag, VoidResult> {
 
 	final private Tags tagManager;
-	final private PhotoImportScheduler scheduler;
+	final private TaskQueueDispatch dispatchAsync;
 
 	@Inject
-	public ImportTagHandler(Tags tagManager,
-			@Named("default") PhotoImportScheduler scheduler) {
+	public ImportTagHandler(Tags tagManager, TaskQueueDispatch dispatchAsync) {
 		super();
 		this.tagManager = tagManager;
-		this.scheduler = scheduler;
+		this.dispatchAsync = dispatchAsync;
 	}
-
+	
+	
 	@Override
 	public VoidResult execute(ImportTag action, ExecutionContext context)
 			throws DispatchException {
@@ -38,11 +40,14 @@ public class ImportTagHandler extends
 				tag.setImportIssued(true);
 				tagManager.save(tag);
 			}
-			scheduler.schedulePhotoImport(tagId, "", action.getPreviousCount(),
-					tag.getCount() - action.getPreviousCount());
+			Action internAction = new PhotoImportScheduleAction(tagId, "", action.getPreviousCount(), tag.getCount() - action.getPreviousCount());
+			dispatchAsync.execute(internAction, new NullCallback<VoidResult>());
+					
 		} catch (Exception e) {
 			throw new ActionException(e);
 		}
 		return new VoidResult();
 	}
+
+	
 }

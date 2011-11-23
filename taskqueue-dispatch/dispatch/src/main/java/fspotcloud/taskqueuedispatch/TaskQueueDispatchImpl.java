@@ -13,20 +13,23 @@ import com.google.inject.name.Named;
 public class TaskQueueDispatchImpl implements TaskQueueDispatch {
 
 	private final Queue queue;
-	
+
 	@Inject
 	public TaskQueueDispatchImpl(@Named("dispatch") Queue queue) {
 		super();
 		this.queue = queue;
 	}
+
 	@Override
 	public <A extends Action<R>, R extends Result> void execute(A action,
 			SerializableAsyncCallback<R> callback) {
-		AsyncCommand<A,R> command = new AsyncCommand<A,R>(callback, action);
+		AsyncCommand<A, R> command = new AsyncCommand<A, R>(callback, action);
 		byte[] payload = SerializationUtils.serialize(command);
-		TaskOptions taskOptions = TaskOptions.Builder.withUrl("/taskqueue/dispatch").payload(payload, "image/jpeg");
+		TaskOptions taskOptions = TaskOptions.Builder.withUrl(
+				"/taskqueue/dispatch").payload(payload, "image/jpeg");
 		queue.add(taskOptions);
 	}
+
 	@Override
 	public Queue getQueue() {
 		return queue;
