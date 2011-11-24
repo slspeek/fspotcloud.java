@@ -55,6 +55,7 @@ public class UnImportTagHandler extends
 			if (tag.isImportIssued()) {
 				tag.setImportIssued(false);
 				tag.setCachedPhotoList(new TreeSet<PhotoInfo>());
+				tag.setCount(0);
 				tagManager.save(tag);
 			}
 			clearTreeCache();
