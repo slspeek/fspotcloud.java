@@ -8,6 +8,8 @@ import fspotcloud.server.admin.actions.GetMetaDataHandler;
 import fspotcloud.server.admin.actions.ImportTagHandler;
 import fspotcloud.server.admin.actions.SynchronizePeerHandler;
 import fspotcloud.server.admin.actions.UnImportTagHandler;
+import fspotcloud.server.control.task.actions.intern.DeletePhotos;
+import fspotcloud.server.control.task.photodelete.DeletePhotosHandler;
 import fspotcloud.shared.dashboard.actions.CountPhotos;
 import fspotcloud.shared.dashboard.actions.DeleteAllPhotos;
 import fspotcloud.shared.dashboard.actions.DeleteAllTags;
@@ -24,6 +26,7 @@ public class ActionsModule extends ActionHandlerModule {
 		bindHandler(CountPhotos.class, CountPhotosHandler.class);
 		bindHandler(DeleteAllPhotos.class, DeleteAllPhotosHandler.class);
 		bindHandler(DeleteAllTags.class, DeleteAllTagsHandler.class);
+		bindHandler(DeletePhotos.class, DeletePhotosHandler.class);
 		bindHandler(ImportTag.class, ImportTagHandler.class);
 		bindHandler(UnImportTag.class, UnImportTagHandler.class);
 		bindHandler(SynchronizePeer.class, SynchronizePeerHandler.class);

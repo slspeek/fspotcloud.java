@@ -4,11 +4,11 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-7.4.7</version>
+		<version>0.40-7.4.7a</version>
 	</parent>
 	<groupId>fspotcloud</groupId>
 	<artifactId>model</artifactId>
-	<version>0.40-7.4.7</version>
+	<version>0.40-7.4.7a</version>
 	<packaging>jar</packaging>
 	<name>Model AppEngine Implementation</name>
 	<dependencies>
