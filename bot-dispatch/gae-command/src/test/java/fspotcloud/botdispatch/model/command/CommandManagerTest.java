@@ -29,7 +29,7 @@ public class CommandManagerTest extends DatastoreTest {
 	public void setUp()  {
 		super.setUp();
 		action = new TestAction("Jim");
-		commandManager = new CommandManager(pmProvider);
+		commandManager = new CommandManager(pmProvider, 3);
 	}
 
 	public void testCreate() {
@@ -71,5 +71,17 @@ public class CommandManagerTest extends DatastoreTest {
 		Command cmd = commandManager.createAndSave(action, callback);
 		commandManager.delete(cmd);
 	}
+	
+	public void testDeleteAll() {
+		commandManager.createAndSave(action, callback);
+		commandManager.createAndSave(action, callback);
+		commandManager.createAndSave(action, callback);
+		commandManager.createAndSave(action, callback);
+		assertEquals(4, commandManager.getCountUnderAThousend());
+		commandManager.deleteAll();
+		assertEquals(1, commandManager.getCountUnderAThousend());
+	}
+	
+	
 	
 }

@@ -8,9 +8,7 @@ public interface GlobalActionsView extends IsWidget {
 	interface GlobalActionsPresenter {
 		void init();
 
-		void countPhotos();
-
-		void deleteAllPhotos();
+		void deleteAllCommands();
 
 		void deleteAllTags();
 
@@ -21,8 +19,6 @@ public interface GlobalActionsView extends IsWidget {
 
 	HasText getTagCountValue();
 
-	HasText getPhotoCountValue();
-
 	HasText getPhotoCountOnPeerValue();
 
 	HasText getPendingCommandCountValue();
@@ -31,10 +27,8 @@ public interface GlobalActionsView extends IsWidget {
 
 	HasEnabled getDeleteAllTagsButton();
 
-	HasEnabled getDeleteAllPhotosButton();
+	HasEnabled getDeleteAllCommandsButton();
 
 	HasEnabled getUpdateButton();
-
-	HasEnabled getCountPhotosButton();
 
 }

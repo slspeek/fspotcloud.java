@@ -16,6 +16,8 @@ public interface Commands {
 	int getCountUnderAThousend();
 
 	void delete(Command command);
+	
+	void deleteAll();
 
 	Command getAndLockFirstCommand();
 

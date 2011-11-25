@@ -27,8 +27,6 @@ public class GlobalActionsViewImpl extends Composite implements
 	private GlobalActionsPresenter presenter;
 
 	@UiField
-	Label photoCountValueLabel;
-	@UiField
 	Label peerPhotoCountValueLabel;
 	@UiField
 	Label lastSeenPeerValueLabel;
@@ -41,31 +39,22 @@ public class GlobalActionsViewImpl extends Composite implements
 	@UiField
 	Button deleteAllTagsButton;
 	@UiField
-	Button deleteAllPhotosButton;
-	@UiField
-	Button countPhotosButton;
-
+	Button deleteAllCommandsButton;
+	
 	public GlobalActionsViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		deleteAllTagsButton.ensureDebugId("delete-all-tags-button");
 		tagCountOnPeerValueLabel.ensureDebugId("tag-count-on-peer-label");
-		photoCountValueLabel.ensureDebugId("photo-count-label");
 		peerPhotoCountValueLabel.ensureDebugId("peer-photo-count-label");
 		updateButton.ensureDebugId("update-button");
-		deleteAllPhotosButton.ensureDebugId("delete-all-photos-button");
-		countPhotosButton.ensureDebugId("count-photos-button");
+		deleteAllCommandsButton.ensureDebugId("delete-all-photos-button");
 		pendingCommandCountValueLabel
 				.ensureDebugId("pending-command-count-label");
 	}
 
-	@UiHandler("countPhotosButton")
-	public void countButtonClicked(ClickEvent event) {
-		presenter.countPhotos();
-	}
-
-	@UiHandler("deleteAllPhotosButton")
+	@UiHandler("deleteAllCommandsButton")
 	public void onDeleteAllPhotosButtonClicked(ClickEvent event) {
-		presenter.deleteAllPhotos();
+		presenter.deleteAllCommands();
 	}
 
 	@UiHandler("updateButton")
@@ -79,11 +68,6 @@ public class GlobalActionsViewImpl extends Composite implements
 	}
 
 	@Override
-	public HasText getPhotoCountValue() {
-		return photoCountValueLabel;
-	}
-
-	@Override
 	public HasText getPhotoCountOnPeerValue() {
 		return peerPhotoCountValueLabel;
 	}
@@ -94,8 +78,8 @@ public class GlobalActionsViewImpl extends Composite implements
 	}
 
 	@Override
-	public HasEnabled getDeleteAllPhotosButton() {
-		return deleteAllPhotosButton;
+	public HasEnabled getDeleteAllCommandsButton() {
+		return deleteAllCommandsButton;
 	}
 
 	@Override
@@ -111,11 +95,6 @@ public class GlobalActionsViewImpl extends Composite implements
 	@Override
 	public void setPresenter(GlobalActionsPresenter presenter) {
 		this.presenter = presenter;
-	}
-
-	@Override
-	public HasEnabled getCountPhotosButton() {
-		return countPhotosButton;
 	}
 
 	@Override

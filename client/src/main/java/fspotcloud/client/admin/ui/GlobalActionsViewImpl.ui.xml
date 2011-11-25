@@ -47,22 +47,7 @@
 						<g:Button ui:field="updateButton" >Synchronize</g:Button>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<g:Label styleName="{style.property-label}">Number of photos on the server</g:Label>
-					</td>
-					<td>
-						<g:Label styleName="{style.property-value}"  ui:field="photoCountValueLabel"></g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<g:Label styleName="{style.property-label}" >Count the photos on the server</g:Label>
-					</td>
-					<td>
-						<g:Button ui:field="countPhotosButton" >Count photos</g:Button>
-					</td>
-				</tr>
+				
 				<tr>
 					<td>
 						<g:Label  styleName="{style.property-label}">Number of photos on the peer</g:Label>
@@ -71,6 +56,15 @@
 						<g:Label ui:field="peerPhotoCountValueLabel"></g:Label>
 					</td>
 				</tr>
+				<tr>
+					<td>
+						<g:Label  styleName="{style.property-label}">Tag count on peer</g:Label>
+					</td>
+					<td>
+						<g:Label  styleName="{style.property-value}" ui:field="tagCountOnPeerValueLabel"></g:Label>
+					</td>
+				</tr>
+				
 					<tr>
 					<td>
 						<g:Label  styleName="{style.property-label}">Number of commands pending</g:Label>
@@ -79,13 +73,12 @@
 						<g:Label ui:field="pendingCommandCountValueLabel"></g:Label>
 					</td>
 				</tr>
-				
 				<tr>
 					<td>
-						<g:Label  styleName="{style.property-label}">Tag count on peer</g:Label>
+						<g:Label  styleName="{style.property-label}">Delete all pending commands</g:Label>
 					</td>
 					<td>
-						<g:Label  styleName="{style.property-value}" ui:field="tagCountOnPeerValueLabel"></g:Label>
+						<g:Button ui:field="deleteAllCommandsButton" >Clear queue</g:Button>
 					</td>
 				</tr>
 				
@@ -97,14 +90,7 @@
 						<g:Button ui:field="deleteAllTagsButton" >Delete all labels</g:Button>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<g:Label  styleName="{style.property-label}">Delete all photos on the server</g:Label>
-					</td>
-					<td>
-						<g:Button ui:field="deleteAllPhotosButton" >Delete all photos</g:Button>
-					</td>
-				</tr>
+				
 			</tbody>
 		</table>
 	</g:HTMLPanel>

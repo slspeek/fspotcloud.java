@@ -11,8 +11,7 @@ import com.google.inject.Inject;
 import fspotcloud.client.admin.view.api.GlobalActionsView;
 import fspotcloud.client.main.view.api.TimerInterface;
 import fspotcloud.shared.admin.GetMetaDataResult;
-import fspotcloud.shared.dashboard.actions.CountPhotos;
-import fspotcloud.shared.dashboard.actions.DeleteAllPhotos;
+import fspotcloud.shared.dashboard.actions.CommandDeleteAll;
 import fspotcloud.shared.dashboard.actions.DeleteAllTags;
 import fspotcloud.shared.dashboard.actions.GetMetaData;
 import fspotcloud.shared.dashboard.actions.SynchronizePeer;
@@ -38,18 +37,22 @@ public class GlobalActionsPresenter implements
 	}
 
 	@Override
-	public void deleteAllPhotos() {
-		globalActionsView.getDeleteAllPhotosButton().setEnabled(false);
-		dispatcher.execute(new DeleteAllPhotos(),
+	public void deleteAllCommands() {
+		globalActionsView.getDeleteAllCommandsButton().setEnabled(false);
+		dispatcher.execute(new CommandDeleteAll(),
 				new AsyncCallback<VoidResult>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
 						log.log(Level.SEVERE, "Action Exception ", caught);
+						globalActionsView.getDeleteAllCommandsButton()
+								.setEnabled(true);
 					}
 
 					@Override
 					public void onSuccess(VoidResult result) {
+						globalActionsView.getDeleteAllCommandsButton()
+								.setEnabled(true);
 					}
 
 				});
@@ -72,8 +75,6 @@ public class GlobalActionsPresenter implements
 				});
 	}
 
-	
-
 	@Override
 	public void update() {
 		log.info("update");
@@ -90,7 +91,6 @@ public class GlobalActionsPresenter implements
 						log.info("succes update");
 					}
 
-					
 				});
 	}
 
@@ -111,7 +111,8 @@ public class GlobalActionsPresenter implements
 
 					@Override
 					public void onFailure(Throwable caught) {
-						log.log(Level.SEVERE, "Action Exception from remote: ", caught);
+						log.log(Level.SEVERE, "Action Exception from remote: ",
+								caught);
 						timer.setRunnable(new Runnable() {
 
 							@Override
@@ -131,8 +132,6 @@ public class GlobalActionsPresenter implements
 				String.valueOf(info.getPeerLastSeen()));
 		globalActionsView.getPhotoCountOnPeerValue().setText(
 				String.valueOf(info.getPeerPhotoCount()));
-		globalActionsView.getPhotoCountValue().setText(
-				String.valueOf(info.getPhotoCount()));
 		globalActionsView.getTagCountValue().setText(
 				String.valueOf(info.getTagCount()));
 		globalActionsView.getPendingCommandCountValue().setText(
@@ -140,45 +139,13 @@ public class GlobalActionsPresenter implements
 
 		globalActionsView.getDeleteAllTagsButton().setEnabled(
 				!info.isDeleteTagsActive());
-		globalActionsView.getCountPhotosButton().setEnabled(
-				!info.isCountPhotosActive());
-		globalActionsView.getDeleteAllPhotosButton().setEnabled(
-				!info.isDeletePhotosActive());
-		if (info.isCountPhotosActive() || info.isDeletePhotosActive()
-				|| info.isDeleteTagsActive() || info.isImportImagesActive()) {
-			timer.setRunnable(new Runnable() {
-
-				@Override
-				public void run() {
-					getMetaData();
-				}
-			});
-			timer.schedule(2000);
-		}
 		timer.setRunnable(new Runnable() {
-
 			@Override
 			public void run() {
 				getMetaData();
 			}
 		});
-		timer.schedule(6000);
+		timer.schedule(7000);
 	}
 
-	@Override
-	public void countPhotos() {
-		globalActionsView.getCountPhotosButton().setEnabled(false);
-		dispatcher.execute(new CountPhotos(), new AsyncCallback<VoidResult>() {
-			@Override
-			public void onFailure(Throwable caught) {
-				log.log(Level.SEVERE, "Action Exception ", caught);
-			}
-
-			@Override
-			public void onSuccess(VoidResult result) {
-
-			}
-		});
-	}
-
-	}
+}

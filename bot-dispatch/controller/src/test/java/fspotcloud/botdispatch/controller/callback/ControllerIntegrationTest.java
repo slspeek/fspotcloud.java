@@ -59,7 +59,7 @@ public class ControllerIntegrationTest extends DatastoreTest {
 		handlerFactory = injector.getInstance(ResultHandlerFactory.class);
 		errorHandlerFactory = injector.getInstance(ErrorHandlerFactory.class);
 		captor = ArgumentCaptor.forClass(Throwable.class);
-		commandManager = new CommandManager(pmProvider);
+		commandManager = new CommandManager(pmProvider, 300);
 		controller = new Controller(commandManager, handlerFactory,
 				errorHandlerFactory, new NullControllerHook());
 		serializedResult = SerializationUtils.serialize(result);
