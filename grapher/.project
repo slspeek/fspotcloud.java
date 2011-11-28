@@ -5,7 +5,6 @@
     <project>appengine-deps</project>
     <project>bot</project>
     <project>client</project>
-    <project>cloudcover-deps</project>
     <project>command-api</project>
     <project>controller</project>
     <project>dispatch</project>
