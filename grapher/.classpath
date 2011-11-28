@@ -9,17 +9,14 @@
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-1.0-sdk/1.5.3/appengine-api-1.0-sdk-1.5.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-labs/1.5.3/appengine-api-labs-1.5.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-jsr107cache/1.5.3/appengine-jsr107cache-1.5.3.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/tools/mapreduce/appengine-mapper/r141/appengine-mapper-r141.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-testing/1.5.3/appengine-testing-1.5.3.jar"/>
   <classpathentry kind="src" path="/bot"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/tools/mapreduce/charts4j/1.2/charts4j-1.2.jar"/>
   <classpathentry kind="src" path="/client"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/testing/cloudcover/cloudcover/1.0.1.final-GAE1.5.3-GWT2.3.0/cloudcover-1.0.1.final-GAE1.5.3-GWT2.3.0.jar" sourcepath="M2_REPO/com/google/appengine/testing/cloudcover/cloudcover/1.0.1.final-GAE1.5.3-GWT2.3.0/cloudcover-1.0.1.final-GAE1.5.3-GWT2.3.0-sources.jar"/>
   <classpathentry kind="src" path="/command-api"/>
   <classpathentry kind="var" path="M2_REPO/commons-codec/commons-codec/1.2/commons-codec-1.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.6/commons-lang-2.6.jar" sourcepath="M2_REPO/commons-lang/commons-lang/2.6/commons-lang-2.6-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/tools/mapreduce/commons-logging/1.1.1/commons-logging-1.1.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar" sourcepath="M2_REPO/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4-sources.jar"/>
   <classpathentry kind="src" path="/controller"/>
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/orm/datanucleus-appengine/1.0.4.1/datanucleus-appengine-1.0.4.1.jar"/>
@@ -39,8 +36,6 @@
   <classpathentry kind="var" path="M2_REPO/com/reveregroup/gwt/gwt-image-loader/1.1.4/gwt-image-loader-1.1.4.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-servlet/2.3.0/gwt-servlet-2.3.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-servlet/2.3.0/gwt-servlet-2.3.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/tools/mapreduce/hadoop-core/0.20.2/hadoop-core-0.20.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/appengine/tools/mapreduce/json/UNKNOWN/json-UNKNOWN.jar"/>
   <classpathentry kind="var" path="M2_REPO/net/sf/jsr107cache/jsr107cache/1.1/jsr107cache-1.1.jar" sourcepath="M2_REPO/net/sf/jsr107cache/jsr107cache/1.1/jsr107cache-1.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar" sourcepath="M2_REPO/junit/junit/3.8.1/junit-3.8.1-sources.jar"/>
   <classpathentry kind="src" path="/model"/>

@@ -19,7 +19,6 @@ public class FirefoxLocalSuite extends WebDriverSuite {
 			suite.addTest(new DeleteITest(provider, localUrl));
 		}
 		//suite.addTest(new UnImportTagITest(provider, localUrl));
-		suite.addTest(new CloudcoverITest(provider, localUrl));
 		return suite;
 	}
 }

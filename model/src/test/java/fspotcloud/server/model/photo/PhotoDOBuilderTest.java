@@ -8,10 +8,10 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Text;
 import com.google.common.collect.ImmutableList;
 
-import fspotcloud.server.model.CloudcoverDatastoreTest;
+import fspotcloud.server.model.DatastoreTest;
 import fspotcloud.server.model.api.Photo;
 
-public class PhotoDOBuilderTest extends CloudcoverDatastoreTest {
+public class PhotoDOBuilderTest extends DatastoreTest {
 
 	public static TestSuite suite() {
 		return new TestSuite(PhotoDOBuilderTest.class);

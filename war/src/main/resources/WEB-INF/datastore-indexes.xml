@@ -13,12 +13,7 @@
      <datastore-index kind="PhotoDO" ancestor="false" source="manual">
         <property name="__key__" direction="desc"/>
     </datastore-index>
-    <datastore-index kind="MapReduceState" ancestor="false" source="manual">
-        <property name="name" direction="asc"/>
-        <property name="status" direction="asc"/>
-        <property name="startTime" direction="asc"/>
-    </datastore-index>
-     <datastore-index kind="CommandDO" ancestor="false" source="manual">
+    <datastore-index kind="CommandDO" ancestor="false" source="manual">
         <property name="locked" direction="asc"/>
         <property name="ctime" direction="asc"/>
     </datastore-index>

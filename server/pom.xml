@@ -30,24 +30,6 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>model</artifactId>
-			<version>${project.version}</version>
-			<type>test-jar</type>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}.deps</groupId>
-			<artifactId>mapreduce-deps</artifactId>
-			<version>${project.version}</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}.deps</groupId>
-			<artifactId>cloudcover-deps</artifactId>
-			<version>${project.version}</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
 			<groupId>${project.groupId}.deps</groupId>
 			<artifactId>guice-deps</artifactId>
 			<version>${project.version}</version>

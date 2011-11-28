@@ -139,8 +139,6 @@ public class GlobalActionsPresenter implements
 		globalActionsView.getPendingCommandCountValue().setText(
 				String.valueOf(info.getPendingCommandCount()));
 
-		globalActionsView.getDeleteAllTagsButton().setEnabled(
-				!info.isDeleteTagsActive());
 		timer.setRunnable(new Runnable() {
 			@Override
 			public void run() {
