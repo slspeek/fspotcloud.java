@@ -4,7 +4,6 @@
   <projects>
     <project>appengine-deps</project>
     <project>bot</project>
-    <project>cloudcover-deps</project>
     <project>command-api</project>
     <project>gae-command</project>
     <project>guice-deps</project>

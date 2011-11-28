@@ -33,20 +33,10 @@ public class DeleteITest extends SeleniumITestCase {
 		selenium.waitForPageToLoad("30000");
 		selenium.click("gwt-debug-delete-all-tags-button");
 		sleepShort();
-		selenium.click("gwt-debug-delete-all-photos-button");
-		sleepShort(4);
-		selenium.click("gwt-debug-count-photos-button");
-		sleepShort(4);
+		
 		selenium.open("/Dashboard.html");
 		selenium.waitForPageToLoad("30000");
 		sleepShort();
-		for (int second = 0;; second++) {
-			if (second >= 60) fail("timeout");
-			try { selenium.open("/Dashboard.html");
-			selenium.waitForPageToLoad("30000");
-			if ("0".equals(selenium.getText("gwt-debug-photo-count-label"))) break; } catch (Exception e) {}
-			Thread.sleep(1000);
-		}
 		sleepShort();
 	}
 }
