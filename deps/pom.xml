@@ -12,8 +12,6 @@
 	<name>Dependency management</name>
 	<modules>
 		<module>appengine-deps</module>
-		<module>cloudcover-deps</module>
-		<module>mapreduce-deps</module>
 		<module>guice-deps</module>
 		<module>gwt-deps</module>
 		<module>servlet-deps</module>

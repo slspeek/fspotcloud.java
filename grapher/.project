@@ -12,7 +12,6 @@
     <project>gae-command</project>
     <project>guice-deps</project>
     <project>gwt-deps</project>
-    <project>mapreduce-deps</project>
     <project>model</project>
     <project>model-api</project>
     <project>peer</project>

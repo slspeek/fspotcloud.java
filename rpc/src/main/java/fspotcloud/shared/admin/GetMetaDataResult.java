@@ -16,11 +16,7 @@ public class GetMetaDataResult implements IsSerializable, Result {
 	private String instanceName;
 	private long photoCount;
 	private Date photosLastCounted;
-	private boolean deletePhotosActive;
-	private boolean deleteTagsActive;
-	private boolean importImagesActive;
-	private boolean countPhotosActive;
-
+	
 	public long getPhotoCount() {
 		return photoCount;
 	}
@@ -83,37 +79,5 @@ public class GetMetaDataResult implements IsSerializable, Result {
 
 	public int getPendingCommandCount() {
 		return pendingCommandCount;
-	}
-
-	public boolean isDeletePhotosActive() {
-		return deletePhotosActive;
-	}
-
-	public void setDeletePhotosActive(boolean deletePhotosActive) {
-		this.deletePhotosActive = deletePhotosActive;
-	}
-
-	public boolean isDeleteTagsActive() {
-		return deleteTagsActive;
-	}
-
-	public void setDeleteTagsActive(boolean deleteTagsActive) {
-		this.deleteTagsActive = deleteTagsActive;
-	}
-
-	public boolean isImportImagesActive() {
-		return importImagesActive;
-	}
-
-	public void setImportImagesActive(boolean importImagesActive) {
-		this.importImagesActive = importImagesActive;
-	}
-
-	public void setCountPhotosActive(boolean countPhotosActive) {
-		this.countPhotosActive = countPhotosActive;
-	}
-
-	public boolean isCountPhotosActive() {
-		return countPhotosActive;
 	}
 }

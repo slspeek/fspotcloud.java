@@ -43,12 +43,6 @@
 		</dependency>
 		<!-- Test scope -->
 		<dependency>
-			<groupId>fspotcloud.deps</groupId>
-			<artifactId>cloudcover-deps</artifactId>
-			<version>${project.version}</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>

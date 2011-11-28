@@ -8,9 +8,6 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.name.Names;
 
-import fspotcloud.server.mapreduce.MapReduceInfo;
-import fspotcloud.server.mapreduce.MapReduceStateUtil;
-
 public class FSpotCloudModule extends AbstractModule {
 
 	@Override
@@ -19,7 +16,6 @@ public class FSpotCloudModule extends AbstractModule {
 				new Integer(100));
 		bind(Queue.class).annotatedWith(Names.named("default")).toInstance(
 				QueueFactory.getDefaultQueue());
-		bind(MapReduceInfo.class).to(MapReduceStateUtil.class);
 	}
 
 	@Provides

@@ -10,7 +10,6 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 import com.google.inject.Inject;
 
 import fspotcloud.botdispatch.model.api.Commands;
-import fspotcloud.server.mapreduce.MapReduceInfo;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.shared.admin.GetMetaDataResult;
@@ -23,13 +22,11 @@ public class GetMetaDataHandler extends
 			.getName());
 	final private Commands commandManager;
 	final private PeerDatabases defaultPeer;
-	private MapReduceInfo mapreduceInfo;
 
 	@Inject
 	public GetMetaDataHandler(Commands commandManager,
-			PeerDatabases defaultPeer, MapReduceInfo mapreduceInfo) {
+			PeerDatabases defaultPeer) {
 		super();
-		this.mapreduceInfo = mapreduceInfo;
 		this.commandManager = commandManager;
 		this.defaultPeer = defaultPeer;
 	}
@@ -46,10 +43,6 @@ public class GetMetaDataHandler extends
 			dataInfo.setPhotoCount(peerDatabase.getPhotoCount());
 			dataInfo.setTagCount(peerDatabase.getTagCount());
 			dataInfo.setPendingCommandCount(getPendingCommandCount());
-			dataInfo.setDeletePhotosActive(mapreduceInfo.activeCount("Delete All Mapper") > 0);
-			dataInfo.setCountPhotosActive(mapreduceInfo.activeCount("Entity Counter Mapper")> 0);
-			dataInfo.setDeleteTagsActive(mapreduceInfo.activeCount("Delete All Tags Mappper")>0);
-			dataInfo.setImportImagesActive(mapreduceInfo.activeCount("Image Data Import Mapper")>0);
 		} catch (Exception e) {
 			throw new ActionException(e);
 		}

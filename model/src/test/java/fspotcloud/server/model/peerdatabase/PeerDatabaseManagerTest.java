@@ -1,6 +1,6 @@
 package fspotcloud.server.model.peerdatabase;
 
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 import java.util.List;
 
@@ -11,12 +11,12 @@ import net.sf.jsr107cache.Cache;
 
 import com.google.inject.Provider;
 
-import fspotcloud.server.model.CloudcoverDatastoreTest;
+import fspotcloud.server.model.DatastoreTest;
 import fspotcloud.server.model.PersistenceManagerProvider;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.shared.tag.TagNode;
 
-public class PeerDatabaseManagerTest extends CloudcoverDatastoreTest {
+public class PeerDatabaseManagerTest extends DatastoreTest {
 	private Provider<PersistenceManager> pmProvider = new PersistenceManagerProvider();
 	private Cache cache;
 	private PeerDatabaseManager manager;
@@ -29,7 +29,7 @@ public class PeerDatabaseManagerTest extends CloudcoverDatastoreTest {
 	
 	
 	@Override
-	public void setUp() throws Exception {
+	public void setUp() {
 		cache = mock(Cache.class);
 		manager  = new PeerDatabaseManager(pmProvider, cache);
 		super.setUp();
@@ -39,11 +39,13 @@ public class PeerDatabaseManagerTest extends CloudcoverDatastoreTest {
 		PeerDatabase defaultPD = manager.get();
 		assertNotNull(defaultPD);
 		PeerDatabase secondInstance = manager.get();
+		assertNotNull(secondInstance);
 	}
 
 	public void testGetCachedTagTree() {
 		PeerDatabase defaultPD = manager.get();
 		List<TagNode> list = defaultPD.getCachedTagTree();
+		assertNull(list);
 	}
 
 	public void testDefaultsForThumbDimension() {
