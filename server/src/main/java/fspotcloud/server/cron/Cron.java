@@ -10,7 +10,6 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 import com.google.inject.Inject;
 
-import fspotcloud.shared.dashboard.actions.CountPhotos;
 import fspotcloud.shared.dashboard.actions.SynchronizePeer;
 
 public class Cron {
@@ -27,9 +26,7 @@ public class Cron {
 			throws IOException {
 		try {
 			String action = request.getParameter("action");
-			if (action.equals("count-photos")) {
-				dispatch.execute(new CountPhotos());
-			} else if (action.equals("synchronize-peer")) {
+			if (action.equals("synchronize-peer")) {
 				dispatch.execute(new SynchronizePeer());
 			}
 		} catch (DispatchException e) {

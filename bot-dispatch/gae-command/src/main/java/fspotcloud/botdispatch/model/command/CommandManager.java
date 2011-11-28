@@ -43,6 +43,7 @@ public class CommandManager implements Commands {
 		int count = -1;
 		try {
 			Query query = pm.newQuery("select id from "+ CommandDO.class.getName());
+			@SuppressWarnings("unchecked")
 			List<CommandDO> rs = (List<CommandDO>) query.execute();
 			count =  rs.size();;
 		} finally {
@@ -74,6 +75,7 @@ public class CommandManager implements Commands {
 			query.setOrdering("ctime");
 			query.setFilter("locked == false");
 			query.setRange(0, 1);
+			@SuppressWarnings("unchecked")
 			List<CommandDO> cmdList = (List<CommandDO>) query.execute();
 			if (cmdList.size() > 0) {
 				Command first = cmdList.get(0);
@@ -126,6 +128,7 @@ public class CommandManager implements Commands {
 			query.setRange(0, maxDelete);
 			query.setOrdering("ctime");
 			query.setRange(0,maxDelete);
+			@SuppressWarnings("unchecked")
 			List<CommandDO> resultList = (List<CommandDO>) query.execute();
 			pm.deletePersistentAll(resultList);
 		} finally {

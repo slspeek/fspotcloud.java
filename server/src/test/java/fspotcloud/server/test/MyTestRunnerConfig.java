@@ -8,8 +8,6 @@ import com.google.appengine.testing.cloudcover.harness.junit3.JUnit3Config;
 import com.google.appengine.testing.cloudcover.harness.junit3.JUnit3TestRun;
 import com.google.appengine.testing.cloudcover.spi.TestRun;
 
-import fspotcloud.server.admin.actions.CountPhotosHandlerTest;
-import fspotcloud.server.cron.CronTest;
 import fspotcloud.server.model.ModelModuleTest;
 import fspotcloud.server.model.PersistenceManagerProviderTest;
 import fspotcloud.server.model.peerdatabase.PeerDatabaseManagerTest;
@@ -34,25 +32,8 @@ public class MyTestRunnerConfig extends JUnit3Config {
 				suite.addTestSuite(ModelModuleTest.class);
 				return suite;
 			}
-		},
-		SUITE2("Server") {
-			@Override
-			public TestSuite getTestSuite() {
-				//suite.addTestSuite(InjectorTest.class);
-				suite.addTestSuite(CountPhotosHandlerTest.class);
-				suite.addTestSuite(CronTest.class);
-				return suite;
-			}
 		};
-
-	/*	SUITE3("Suite3") {
-			@Override
-			public TestSuite getTestSuite() {
-				suite.addTestSuite(BatchManagerTest.class);
-				return suite;
-			}
-		};*/
-
+		
 		private final String name;
 		protected final TestSuite suite = new TestSuite(
 				"F-Spot Cloud Server Model Testsuite");

@@ -65,5 +65,4 @@ public class CachedTagManagerTest extends TestCase {
 		Tag tag0fromcache = target.getOrNew(TAG_ID_0);
 		verifyNoMoreInteractions(manager);
 	}
-
 }

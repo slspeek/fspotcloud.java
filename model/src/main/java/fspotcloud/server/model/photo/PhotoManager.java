@@ -19,6 +19,7 @@ import fspotcloud.server.model.api.Photos;
 
 public class PhotoManager implements Photos {
 
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(PhotoManager.class
 			.getName());
 

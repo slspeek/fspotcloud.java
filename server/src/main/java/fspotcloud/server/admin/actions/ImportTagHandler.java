@@ -40,7 +40,7 @@ public class ImportTagHandler extends
 				tag.setImportIssued(true);
 				tagManager.save(tag);
 			}
-			Action internAction = new PhotoImportScheduleAction(tagId, "", action.getPreviousCount(), tag.getCount() - action.getPreviousCount());
+			Action<VoidResult> internAction = new PhotoImportScheduleAction(tagId, "", action.getPreviousCount(), tag.getCount() - action.getPreviousCount());
 			dispatchAsync.execute(internAction, new NullCallback<VoidResult>());
 					
 		} catch (Exception e) {
