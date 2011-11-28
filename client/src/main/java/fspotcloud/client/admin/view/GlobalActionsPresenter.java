@@ -12,9 +12,9 @@ import fspotcloud.client.admin.view.api.GlobalActionsView;
 import fspotcloud.client.main.view.api.TimerInterface;
 import fspotcloud.shared.admin.GetMetaDataResult;
 import fspotcloud.shared.dashboard.actions.CommandDeleteAll;
-import fspotcloud.shared.dashboard.actions.DeleteAllTags;
 import fspotcloud.shared.dashboard.actions.GetMetaData;
 import fspotcloud.shared.dashboard.actions.SynchronizePeer;
+import fspotcloud.shared.dashboard.actions.TagDeleteAll;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 
 public class GlobalActionsPresenter implements
@@ -61,16 +61,18 @@ public class GlobalActionsPresenter implements
 	@Override
 	public void deleteAllTags() {
 		globalActionsView.getDeleteAllTagsButton().setEnabled(false);
-		dispatcher.execute(new DeleteAllTags(),
+		dispatcher.execute(new TagDeleteAll(),
 				new AsyncCallback<VoidResult>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
 						log.log(Level.SEVERE, "Action Exception ", caught);
+						globalActionsView.getDeleteAllTagsButton().setEnabled(true);
 					}
 
 					@Override
 					public void onSuccess(VoidResult result) {
+						globalActionsView.getDeleteAllTagsButton().setEnabled(true);
 					}
 				});
 	}

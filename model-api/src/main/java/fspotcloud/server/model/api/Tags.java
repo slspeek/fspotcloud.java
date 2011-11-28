@@ -6,13 +6,19 @@ import fspotcloud.shared.tag.TagNode;
 
 public interface Tags {
 
-	public abstract List<TagNode> getTags();
+	List<TagNode> getTags();
 
-	public abstract Tag getOrNew(String id);
+	Tag getOrNew(String id);
 
-	public abstract Tag getById(String tagId);
+	Tag getById(String tagId);
 
-	public abstract String save(Tag tag);
+	String save(Tag tag);
 
-	public abstract boolean deleteAll();
+	void deleteAll(List<String> keys);
+	
+	boolean deleteAll();
+	
+	List<String> getTagKeys();
+	
+	boolean isEmpty();
 }

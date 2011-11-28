@@ -63,14 +63,22 @@ public class CachedTagManager implements Tags {
 	}
 
 	@Override
-	public boolean deleteAll() {
-		return manager.deleteAll();
+	public void deleteAll(List<String> toBoDeleted) {
+		for(String tagId: toBoDeleted) {
+			remove(tagId);
+		}
+		manager.deleteAll(toBoDeleted);
 	}
 
 	private void put(Tag tag) {
 		String id = TAG + tag.getId();
 		byte[] serializedTag = SerializationUtils.serialize((Serializable) tag);
 		cache.put(id, serializedTag);
+	}
+	
+	private void remove(String tagId) {
+		String id = TAG + tagId;
+		cache.remove(id);
 	}
 
 	private Tag get(String  tagId) {
@@ -82,5 +90,22 @@ public class CachedTagManager implements Tags {
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public boolean deleteAll() {
+		List<String> keys = getTagKeys();
+		deleteAll(keys);
+		return isEmpty();
+	}
+
+	@Override
+	public List<String> getTagKeys() {
+		return manager.getTagKeys();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return manager.isEmpty();
 	}
 }

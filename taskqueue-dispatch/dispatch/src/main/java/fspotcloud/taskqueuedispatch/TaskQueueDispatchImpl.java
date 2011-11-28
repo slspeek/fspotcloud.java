@@ -35,4 +35,9 @@ public class TaskQueueDispatchImpl implements TaskQueueDispatch {
 		return queue;
 	}
 
+	@Override
+	public <A extends Action<R>, R extends Result> void execute(A action) {
+		NullCallback<R> nullCallback = new NullCallback<R>();
+		execute(action, nullCallback);
+	}
 }
