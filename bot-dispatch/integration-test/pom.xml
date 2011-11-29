@@ -33,6 +33,13 @@
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
+			<artifactId>test-bot</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>gae-command</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
