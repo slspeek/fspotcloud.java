@@ -104,7 +104,7 @@ public class NavigatorImpl implements Navigator {
 		}
 		return stepSize;
 	}
-	
+
 	private void go(final Direction direction, final Unit step,
 			BasePlace place, PhotoInfoStore store) {
 		if (step == Unit.BORDER) {
@@ -386,6 +386,37 @@ public class NavigatorImpl implements Navigator {
 		BasePlace now = placeWhere.where();
 		BasePlace destination = placeCalculator.unslideshow(now);
 		placeGoTo.goTo(destination);
+	}
+
+	@Override
+	public void getPageRelativePositionAsync(String tagId,
+			final String photoId, final int pageSize,
+			final AsyncCallback<Integer[]> callback) {
+		dataManager.getTagNode(tagId, new AsyncCallback<TagNode>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				log.log(Level.WARNING, "getTagNode on datamanager failed",
+						caught);
+				callback.onFailure(caught);
+			}
+
+			@Override
+			public void onSuccess(TagNode result) {
+				if (result != null) {
+					int total = result.getCount();
+					int photoIndex = result.getCachedPhotoList().indexOf(
+							photoId);
+					int noOfPages = (int) Math.ceil((float) total
+							/ (float) pageSize);
+					int pageNumber = photoIndex / pageSize;
+					callback.onSuccess(new Integer[] { pageNumber, noOfPages });
+				} else {
+					callback.onFailure(new RuntimeException("label not found."));
+				}
+			}
+		});
+
 	}
 
 }
