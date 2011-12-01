@@ -45,6 +45,7 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler 
 	ImageRasterView imageRasterView;
 
 	private final TimerInterface timer;
+	@SuppressWarnings("unused")
 	private TagPresenter presenter;
 
 	static int ID;
@@ -67,8 +68,6 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler 
 	public void infoHover(MouseOverEvent event) {
 		log.info("horizontal mouse over");
 		animateControlsIn(600);
-		// hideLabelLater(3000);
-
 	}
 
 	@UiHandler("verticalFocusPanel")
@@ -78,6 +77,7 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler 
 	}
 
 	public void animateControlsIn(int duration) {
+		cancelHiding();
 		mainPanel.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM, 10,
 				Unit.PCT);
 		mainPanel.setWidgetTopHeight(imageRasterView, 0, Unit.CM, 90, Unit.PCT);
@@ -96,6 +96,7 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler 
 	}
 
 	public void animateControlsOut(int duration) {
+		cancelHiding();
 		mainPanel
 				.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM, 0, Unit.PX);
 		mainPanel
@@ -125,6 +126,8 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler 
 		});
 		timer.schedule(duration);
 	}
+	
+	
 
 	@UiFactory
 	public TreeViewImpl getView() {
@@ -153,7 +156,14 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler 
 	@Override
 	public void onMouseOver(MouseOverEvent event) {
 		log.info("On mouse over");
+		cancelHiding();
 		animateControlsOut(1000);
 		
+		
+	}
+
+	@Override
+	public void cancelHiding() {
+		timer.cancel();
 	}
 }

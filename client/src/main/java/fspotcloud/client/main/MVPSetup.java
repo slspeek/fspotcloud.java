@@ -35,7 +35,7 @@ public class MVPSetup {
 	@Inject
 	public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
 			PlaceController placeController,
-			GlobalShortcutController keyboardHandler,
+			IGlobalShortcutController keyboardHandler,
 			EventHandlersSetup eventSetup, Resources resources)
 			 {
 		this.activityMapper = activityMapper;

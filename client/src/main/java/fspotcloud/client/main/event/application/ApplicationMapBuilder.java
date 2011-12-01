@@ -20,6 +20,7 @@ public class ApplicationMapBuilder extends AbstractActionMap {
 	}
 
 	public void buildMap() {
+		put(ApplicationType.HIDE_CONTROLS, resources.hideControlsIcon());
 		put(ApplicationType.TOGGLE_HELP, resources.helpIcon());
 		put(ApplicationType.START_DEMO, resources.demoIcon());
 		put(ApplicationType.TREE_FOCUS, resources.treeFocusIcon());

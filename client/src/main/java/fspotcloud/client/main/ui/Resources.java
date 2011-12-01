@@ -52,6 +52,9 @@ public interface Resources extends ClientBundle {
 	@Source("images/Play.png")
 	ImageResource playIcon();
 
+	@Source("images/Pause.png")
+	ImageResource pauseIcon();
+
 	@Source("images/Stop.png")
 	ImageResource stopIcon();
 
@@ -159,4 +162,7 @@ public interface Resources extends ClientBundle {
 
 	@Source("images/RowUp.png")
 	ImageResource rowUpIcon();
+
+	@Source("images/HideControls.png")
+	ImageResource hideControlsIcon();
 }

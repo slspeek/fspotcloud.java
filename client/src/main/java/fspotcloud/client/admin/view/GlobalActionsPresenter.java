@@ -86,11 +86,13 @@ public class GlobalActionsPresenter implements
 
 					public void onFailure(Throwable caught) {
 						log.log(Level.SEVERE, "Action Exception ", caught);
+						globalActionsView.getUpdateButton().setEnabled(true);
 					}
 
 					@Override
 					public void onSuccess(VoidResult result) {
 						log.info("succes update");
+						globalActionsView.getUpdateButton().setEnabled(true);
 					}
 
 				});

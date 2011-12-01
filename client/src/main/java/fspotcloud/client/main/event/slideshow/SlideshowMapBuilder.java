@@ -22,6 +22,7 @@ public class SlideshowMapBuilder extends AbstractActionMap {
 	
 	public void buildMap() {
 		put(SlideshowType.SLIDESHOW_START , resources.playIcon());
+		put(SlideshowType.SLIDESHOW_PAUSE , resources.pauseIcon());
 		put(SlideshowType.SLIDESHOW__END , resources.stopIcon());
 		put(SlideshowType.SLIDESHOW_SLOWER , resources.slowerIcon());
 		put(SlideshowType.SLIDESHOW_FASTER, resources.fasterIcon());

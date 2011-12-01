@@ -47,12 +47,13 @@ public class SlideshowControlsPresenterProvider implements Provider<SlideshowCon
 	public void init() {
 		buttonPanelView.setWidgetCount(actions.allActions().size() + 1);
 		addAction(actions.get(SlideshowType.SLIDESHOW_SLOWER));
-		addAction(actions.get(SlideshowType.SLIDESHOW__END));
+		addAction(actions.get(SlideshowType.SLIDESHOW_START));
+		addAction(actions.get(SlideshowType.SLIDESHOW_PAUSE));
 	
 		Widget w = slideshowView.asWidget();
 		buttonPanelView.add(w);
 		
-		addAction(actions.get(SlideshowType.SLIDESHOW_START));
+		addAction(actions.get(SlideshowType.SLIDESHOW__END));
 		addAction(actions.get(SlideshowType.SLIDESHOW_FASTER));
 	}
 

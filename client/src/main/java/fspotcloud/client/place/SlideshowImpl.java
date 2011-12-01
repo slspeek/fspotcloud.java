@@ -88,6 +88,14 @@ public class SlideshowImpl implements Slideshow {
 	}
 
 	@Override
+	public void pause() {
+		log.info("Pause slideshow");
+		isRunning = false;
+		timer.cancel();
+		fireStatusChanged();
+	}
+
+	@Override
 	public float faster() {
 		delay /= INCREASE_FACTOR;
 		fireStatusChanged();

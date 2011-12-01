@@ -36,6 +36,6 @@ public class TagActivity extends AbstractActivity implements
 				imageRasterPresenter.init();
 			}
 		});
-		tagView.hideLabelLater(4000);
+		tagView.hideLabelLater(10000);
 	}
 }

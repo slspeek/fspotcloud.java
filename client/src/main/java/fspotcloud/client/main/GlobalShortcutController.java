@@ -1,26 +1,28 @@
 package fspotcloud.client.main;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Event.NativePreviewEvent;
 import com.google.gwt.user.client.Event.NativePreviewHandler;
-import com.google.inject.Inject;
 
 import fspotcloud.client.main.api.Initializable;
 import fspotcloud.client.view.action.api.ShortcutHandler;
 
-public class GlobalShortcutController implements Initializable {
+public class GlobalShortcutController implements Initializable,
+		IGlobalShortcutController {
 
 	@SuppressWarnings("unused")
 	private static final Logger log = Logger
 			.getLogger(GlobalShortcutController.class.getName());
 
-	private final ShortcutHandler handler;
+	private final Map<Mode, ShortcutHandler> handler;
 
-	@Inject
-	public GlobalShortcutController(ShortcutHandler handler) {
+	private Mode mode;
+
+	public GlobalShortcutController(Map<Mode, ShortcutHandler> handler) {
 		this.handler = handler;
 	}
 
@@ -35,14 +37,22 @@ public class GlobalShortcutController implements Initializable {
 				return;
 			}
 			// log.info("Event preview in keypress code: " + keycode);
-			if (handler.handle(keycode)) {
-				preview.consume();
+			if (mode != null) {
+				if (handler.get(mode).handle(keycode)) {
+					preview.consume();
+				}
 			}
 		}
 	}
 
 	public void init() {
 		Event.addNativePreviewHandler(new Preview());
+	}
+
+	@Override
+	public void setMode(Mode mode) {
+		this.mode = mode;
+		log.info("Set mode: "+mode);
 	}
 
 }
