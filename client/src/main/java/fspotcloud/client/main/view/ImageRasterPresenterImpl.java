@@ -32,16 +32,17 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	final private int columnCount;
 	final private int rowCount;
 	final private int pageSize;
+	private int pageNumber;
 	final private boolean thumb;
 	protected final ImageRasterView imageRasterView;
 	final private Navigator navigator;
 	final private ImagePresenterFactory imagePresenterFactory;
 	List<ImageView> imageViewList;
 	List<ImageView.ImagePresenter> imagePresenterList = new ArrayList<ImageView.ImagePresenter>();
-	
+
 	@Inject
 	public ImageRasterPresenterImpl(@Assisted BasePlace place,
-			@Assisted ImageRasterView imageRasterView, Navigator pager,
+			@Assisted ImageRasterView imageRasterView, Navigator navigator,
 			ImagePresenterFactory imagePresenterFactory) {
 		tagId = place.getTagId();
 		photoId = place.getPhotoId();
@@ -49,7 +50,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 		rowCount = place.getRowCount();
 		pageSize = columnCount * rowCount;
 		thumb = pageSize > 1;
-		this.navigator = pager;
+		this.navigator = navigator;
 		this.imageRasterView = imageRasterView;
 		this.imagePresenterFactory = imagePresenterFactory;
 	}
@@ -58,6 +59,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 		log.info("init");
 		imageRasterView.setPresenter(this);
 		setImages();
+		
 	}
 
 	public int getWidth() {
@@ -67,13 +69,13 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	public int getHeight() {
 		return imageRasterView.asWidget().getOffsetHeight();
 	}
-	
+
 	private int getImageWidth() {
-		return (int)((float)getWidth()/(float)columnCount) - MAGIC;
+		return (int) ((float) getWidth() / (float) columnCount) - MAGIC;
 	}
 
 	private int getImageHeight() {
-		return (int)((float)getHeight()/(float)rowCount) -  MAGIC;
+		return (int) ((float) getHeight() / (float) rowCount) - MAGIC;
 	}
 
 	public void setImages() {
@@ -82,13 +84,30 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 
 					@Override
 					public void onSuccess(List<PhotoInfo> result) {
-						imageViewList = imageRasterView.buildRaster(rowCount, columnCount);
+						imageViewList = imageRasterView.buildRaster(rowCount,
+								columnCount);
 						setImages(result);
+						log.info("Before@@@@");
+						navigator.getPageRelativePositionAsync( tagId, photoId, pageSize,
+								new AsyncCallback<Integer[]>() {
+
+									@Override
+									public void onFailure(Throwable caught) {
+										imageRasterView.setPagingText(caught.getMessage());
+
+									}
+
+									@Override
+									public void onSuccess(Integer[] result) {
+										String label = (result[0] + 1) + " of " + result[1] +".";
+										imageRasterView.setPagingText(label);
+										log.info("After@@@@");
+									}
+								});
 					}
 
 					@Override
 					public void onFailure(Throwable caught) {
-						
 
 					}
 				});
@@ -99,9 +118,9 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 		imagePresenterList.clear();
 		for (int i = 0; i < result.size(); i++) {
 			ImageView.ImagePresenter presenter = imagePresenterFactory.get(
-					getImageWidth(), getImageHeight(), tagId, result.get(i), imageViewList.get(i),
-					thumb);
-			if (result.get(i).getId().equals(photoId) &&  pageSize > 1) {
+					getImageWidth(), getImageHeight(), tagId, result.get(i),
+					imageViewList.get(i), thumb);
+			if (result.get(i).getId().equals(photoId) && pageSize > 1) {
 				presenter.setSelected();
 			}
 			imagePresenterList.add(presenter);
@@ -112,7 +131,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 
 	@Override
 	public void onResize() {
-		for (ImageView.ImagePresenter presenter: imagePresenterList) {
+		for (ImageView.ImagePresenter presenter : imagePresenterList) {
 			presenter.setMaxWidth(getImageWidth());
 			presenter.setMaxHeight(getImageHeight());
 		}
@@ -121,19 +140,18 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		panel.setWidget(imageRasterView);
-		
+
 	}
-	
+
 	@Override
 	public void onMouseWheelNorth() {
-		navigator.goAsync(Navigator.Direction.BACKWARD, Navigator.Unit.SINGLE);
-		
+		navigator.goAsync(Navigator.Direction.BACKWARD, Navigator.Unit.PAGE);
+
 	}
 
 	@Override
 	public void onMouseWheelSouth() {
-		navigator.goAsync(Navigator.Direction.FORWARD, Navigator.Unit.SINGLE);
+		navigator.goAsync(Navigator.Direction.FORWARD, Navigator.Unit.PAGE);
 	}
 
-	
 }

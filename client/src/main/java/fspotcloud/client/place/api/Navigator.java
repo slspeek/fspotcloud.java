@@ -21,12 +21,17 @@ public interface Navigator {
 	
 	void getPageCountAsync(String tagId, int pageSize,
 			AsyncCallback<Integer> callback);
+	
+	
 
 	void getPageAsync(String tagId, int pageSize, int pageNumber,
 			AsyncCallback<List<PhotoInfo>> callback);
 
 	void getPageAsync(String tagId, String photoId, int pageSize,
 			AsyncCallback<List<PhotoInfo>> callback);
+
+	void getPageRelativePositionAsync(String tagId, String photoId, int pageSize,
+			AsyncCallback<Integer[]> callback);
 
 	void toggleZoomViewAsync(String tagId, String photoId);
 	

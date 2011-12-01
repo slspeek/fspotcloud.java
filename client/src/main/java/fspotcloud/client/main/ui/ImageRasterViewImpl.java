@@ -11,6 +11,7 @@ import com.google.gwt.event.dom.client.MouseWheelHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
@@ -39,6 +40,9 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	private final ImageViewFactory imageViewFactory;
 	private ImageRasterView.ImageRasterPresenter presenter;
 	private LayoutPanel layout;
+	private Label pagingLabel;
+
+	private String pagingText = "Where am I?";
 
 	@Inject
 	public ImageRasterViewImpl(ImageViewFactory imageViewFactory) {
@@ -51,6 +55,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	@Override
 	public List<ImageView> buildRaster(int rowCount, int columnCount) {
 		layout = new LayoutPanel();
+		
 		List<ImageView> result = new ArrayList<ImageView>();
 		for (int row = 0; row < rowCount; row++) {
 			for (int column = 0; column < columnCount; column++) {
@@ -62,6 +67,10 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 				result.add(view);
 			}
 		}
+		pagingLabel = new Label(pagingText);
+		layout.add(pagingLabel);
+		layout.setWidgetBottomHeight(pagingLabel, 0, Unit.PT, 16, Unit.PT);
+		layout.setWidgetRightWidth(pagingLabel, 0, Unit.PT, 10, Unit.PCT);
 		dockPanel.clear();
 		dockPanel.add(layout);
 		return result;
@@ -93,6 +102,12 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	@Override
 	public void animate(int i) {
 		layout.animate(i);
+	}
+
+	@Override
+	public void setPagingText(String text) {
+		this.pagingText = text;
+		pagingLabel.setText(text);
 	}
 	
 }

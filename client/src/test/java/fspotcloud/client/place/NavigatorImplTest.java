@@ -164,5 +164,14 @@ public class NavigatorImplTest extends TestCase {
 		;
 
 	}
+	
+	public void testGetPagingInfo() {
+		final PlaceGoTo goTo = mock(PlaceGoTo.class);
+		navigator = get(goTo);
+		navigator.goToLatestTag();
+		verify(goTo).goTo(woefje);
+		;
+
+	}
 
 }
