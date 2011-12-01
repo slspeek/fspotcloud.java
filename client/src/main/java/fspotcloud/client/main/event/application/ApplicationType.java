@@ -19,9 +19,14 @@ public enum ApplicationType implements ActionDef {
 			"tree", "Focus tree", "Puts keyboard focus on the category tree",
 			new KeyStroke(KeyCodes.KEY_ENTER), null),
 			DASHBOARD("dashboard", "Dashboard",
-			"Go to the dashboard (admin only)", new KeyStroke('D'), null), ABOUT(
+			"Go to the dashboard (admin only)", new KeyStroke('D'), null),
+	ABOUT(
 			"about", "About", "About this open source project", new KeyStroke(
-					'A'), null);
+					'A'), null),
+	HIDE_CONTROLS (
+			"hide-controls", "Hide controls", "Hide treeview", new KeyStroke(
+					'F'), null);
+
 
 	final private KeyStroke key;
 	final private KeyStroke alternateKey;

@@ -9,6 +9,7 @@ public enum SlideshowType implements ActionDef {
 	
 	SLIDESHOW_START("play", "Play",	"Start slideshow", new KeyStroke('S'), new KeyStroke('G')),
 	SLIDESHOW__END("stop", "Stop", "Stop slideshow", new KeyStroke('Q'), new KeyStroke(KeyCodes.KEY_ESCAPE)),
+	SLIDESHOW_PAUSE("pause", "Pause", "Pause slideshow", new KeyStroke(32), new KeyStroke(19)),
 	SLIDESHOW_SLOWER ("slower", "Slower","Makes the slideshow go slower", new KeyStroke('U'), null),
 	SLIDESHOW_FASTER ("faster", "Faster", "Makes the slideshow go faster", new KeyStroke('I'), null);
 	

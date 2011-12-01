@@ -26,6 +26,12 @@ public class KeyStroke {
 		case KeyCodes.KEY_RIGHT:
 			result = "Right arrow";
 			break;
+		case KeyCodes.KEY_UP:
+			result = "Up arrow";
+			break;
+		case KeyCodes.KEY_DOWN:
+			result = "Down arrow";
+			break;
 		case KeyCodes.KEY_ENTER:
 			result = "Enter";
 			break;

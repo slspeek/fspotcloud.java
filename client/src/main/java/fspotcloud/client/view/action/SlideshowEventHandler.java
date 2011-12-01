@@ -21,13 +21,16 @@ public class SlideshowEventHandler implements SlideshowEvent.Handler, Initializa
 	}
 
 	@Override
-	public void onEvent(UserEvent e) {
+	public void onEvent(UserEvent<?> e) {
 		switch ((SlideshowType)e.getActionDef()) {
 		case SLIDESHOW_START:
 			slideshow.start();
 			break;
 		case SLIDESHOW__END:
 			slideshow.stop();
+			break;
+		case SLIDESHOW_PAUSE:
+			slideshow.pause();
 			break;
 		case SLIDESHOW_FASTER:
 			slideshow.faster();

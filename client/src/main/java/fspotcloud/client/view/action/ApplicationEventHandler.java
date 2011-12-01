@@ -6,6 +6,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
 import fspotcloud.client.demo.DemoAction;
+import fspotcloud.client.main.HideControlsAction;
 import fspotcloud.client.main.TreeFocusAction;
 import fspotcloud.client.main.api.Initializable;
 import fspotcloud.client.main.event.UserEvent;
@@ -19,7 +20,6 @@ import fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
 
 public class ApplicationEventHandler implements ApplicationEvent.Handler,
 		Initializable {
-	@SuppressWarnings("unused")
 	private static final Logger log = Logger
 			.getLogger(ApplicationEventHandler.class.getName());
 	final private DemoAction demoAction;
@@ -30,15 +30,18 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	private Runnable dashboardAction;
 	final private EventBus eventBus;
 	final private Navigator navigator;
+	final private HideControlsAction hideControlsAction;
 
 	@Inject
 	public ApplicationEventHandler(AboutAction aboutAction,
 			DemoAction demoAction, HelpAction helpAction,
 			TreeFocusAction treeFocusAction,
+			HideControlsAction hideControlsAction,
 			LoadNewLocationActionFactory locationFactory,
 			Navigator navigator, EventBus eventBus) {
 		super();
 		this.navigator = navigator;
+		this.hideControlsAction = hideControlsAction;
 		this.locationFactory = locationFactory;
 		this.demoAction = demoAction;
 		this.helpAction = helpAction;
@@ -48,11 +51,14 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	}
 
 	@Override
-	public void onEvent(UserEvent e) {
+	public void onEvent(UserEvent<?> e) {
 		log.info("On application event of type " + e.getActionDef());
 		switch ((ApplicationType) e.getActionDef()) {
 		case START_DEMO:
 			demoAction.run();
+			break;
+		case HIDE_CONTROLS:
+			hideControlsAction.run();
 			break;
 		case TOGGLE_HELP:
 			helpAction.run();

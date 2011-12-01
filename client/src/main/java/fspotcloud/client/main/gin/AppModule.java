@@ -14,6 +14,8 @@ import fspotcloud.client.data.DataManagerImpl;
 import fspotcloud.client.demo.DemoStep;
 import fspotcloud.client.demo.DemoStepFactory;
 import fspotcloud.client.demo.ShortcutDemoStep;
+import fspotcloud.client.main.GlobalShortcutControllerFactory;
+import fspotcloud.client.main.IGlobalShortcutController;
 import fspotcloud.client.main.MVPSetup;
 import fspotcloud.client.main.ui.ButtonPanelViewImpl;
 import fspotcloud.client.main.ui.HelpPopup;
@@ -82,10 +84,10 @@ public class AppModule extends AbstractGinModule {
 		bind(TagView.class).to(TagViewImpl.class).in(Singleton.class);
 		bind(TreeView.class).to(TreeViewImpl.class).in(Singleton.class);
 		bind(ImageRasterView.class).to(ImageRasterViewImpl.class);
-		bind(SingleViewActivityFactory.class).to(SingleImageViewActivityFactoryImpl.class);
+		bind(SingleViewActivityFactory.class).to(
+				SingleImageViewActivityFactoryImpl.class);
 		bind(SingleImageView.class).to(SingleImageViewImpl.class);
 
-		
 		bind(PlaceCalculator.class);
 		bind(PlaceGoTo.class).to(PlaceGoToImpl.class);
 		bind(PlaceWhere.class).to(PlaceWhereImpl.class);
@@ -94,7 +96,8 @@ public class AppModule extends AbstractGinModule {
 		bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
 		bind(KeyDispatcherProvider.class).in(Singleton.class);
 		bind(ShortcutHandler.class).toProvider(KeyDispatcherProvider.class);
-		bind(SlideshowView.class).to(SlideshowViewImpl.class).in(Singleton.class);
+		bind(SlideshowView.class).to(SlideshowViewImpl.class).in(
+				Singleton.class);
 		bind(TimerInterface.class).to(TimerImpl.class);
 		bind(Navigator.class).to(NavigatorImpl.class).in(Singleton.class);
 		bind(Slideshow.class).to(SlideshowImpl.class).in(Singleton.class);
@@ -103,10 +106,10 @@ public class AppModule extends AbstractGinModule {
 				Singleton.class);
 		bind(SelectionChangeEvent.Handler.class).to(TreeSelectionHandler.class)
 				.in(Singleton.class);
-		
-		
-		
-		bind(SlideshowView.SlideshowPresenter.class).toProvider(SlideshowPresenterFactoryImpl.class);
+		bind(IGlobalShortcutController.class).toProvider(
+				GlobalShortcutControllerFactory.class).in(Singleton.class);
+		bind(SlideshowView.SlideshowPresenter.class).toProvider(
+				SlideshowPresenterFactoryImpl.class);
 		install(new GinFactoryModuleBuilder().implement(
 				ImageRasterView.ImageRasterPresenter.class,
 				ImageRasterPresenterImpl.class).build(
@@ -125,9 +128,10 @@ public class AppModule extends AbstractGinModule {
 				UserButtonView.UserButtonPresenter.class,
 				UserButtonPresenterImpl.class).build(
 				UserButtonPresenterFactory.class));
-		
-		bind(SlideshowControlsPresenter.class).toProvider(SlideshowControlsPresenterProvider.class);
-		
+
+		bind(SlideshowControlsPresenter.class).toProvider(
+				SlideshowControlsPresenterProvider.class);
+
 		bind(ButtonPanelView.ButtonPanelPresenter.class).toProvider(
 				ButtonPanelPresenterProvider.class);
 		bind(ButtonPanelView.class).annotatedWith(Names.named("Main"))
@@ -140,7 +144,6 @@ public class AppModule extends AbstractGinModule {
 				.build(LoadNewLocationActionFactory.class));
 		bind(LoadNewLocation.class).to(LoadNewLocationImpl.class);
 
-		
 		bind(PopupView.class).to(HelpPopup.class);
 	}
 }
