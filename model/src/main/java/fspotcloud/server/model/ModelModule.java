@@ -32,6 +32,6 @@ public class ModelModule extends AbstractModule {
 		bind(PersistenceManager.class).toProvider(
 				PersistenceManagerProvider.class);
 		bind(Cache.class).toProvider(MemCacheProvider.class);
-		bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(300));
+		bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(100));
 	}
 }
