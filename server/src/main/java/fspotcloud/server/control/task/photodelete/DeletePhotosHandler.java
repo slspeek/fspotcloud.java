@@ -1,8 +1,6 @@
 package fspotcloud.server.control.task.photodelete;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -70,9 +68,7 @@ public class DeletePhotosHandler extends
 			}
 			if (!moreImports) {
 				it.remove();
-				List<String> keys = new ArrayList<String>();
-				keys.add(key);
-				photos.deleteAll(keys);
+				photos.delete(key);
 			}
 		}
 	}

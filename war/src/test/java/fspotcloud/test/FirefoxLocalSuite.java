@@ -15,6 +15,7 @@ public class FirefoxLocalSuite extends WebDriverSuite {
 		suite.addTest(new DashboardITest(provider, localUrl));
 		suite.addTest(new ApplicationActionsITest(provider, localUrl));
 		suite.addTest(new TabularITest(provider, localUrl));
+		suite.addTest(new IntersectionDeleteITest(provider, localUrl));
 		if (System.getProperty("nodelete", "false").equals("false")) {
 			suite.addTest(new DeleteITest(provider, localUrl));
 		}

@@ -4,14 +4,16 @@ import java.util.List;
 
 public interface Photos {
 
-	public abstract Photo getOrNew(String id);
+	Photo getOrNew(String id);
 
-	public abstract void save(Photo photo);
+	void save(Photo photo);
 
-	public abstract void saveAll(List<Photo> photoList);
+	void saveAll(List<Photo> photoList);
 
-	public abstract Photo getById(String id);
+	Photo getById(String id);
 
-	public abstract void deleteAll(List<String> keys);
+	void deleteAll(List<String> keys);
+	
+	void delete(String id);
 
 }

@@ -86,4 +86,9 @@ public class PhotoManager implements Photos {
 		datastore.delete(keyList);	
 	}
 
+	@Override
+	public void delete(String id) {
+		Key key = KeyFactory.createKey("PhotoDO", id);
+		datastore.delete(key);
+	}
 }
