@@ -113,6 +113,21 @@ public class PhotoManagerTest extends DatastoreTest {
 	}
 
 	public void testSaveAll() {
+		PhotoDO photo = new PhotoDO();
+		photo.setId("1");
+		photo.setDescription("Nice");
+		photoManager.save(photo);
+		photoManager.delete("1");
+		try {
+			photoManager.getById("1");
+			fail();
+		} catch (JDOObjectNotFoundException yes) {
+
+		}
+
 	}
 
+	public void testDeleteOne() {
+		
+	}
 }

@@ -68,6 +68,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 			}
 		}
 		pagingLabel = new Label(pagingText);
+		pagingLabel.ensureDebugId("paging-label");
 		layout.add(pagingLabel);
 		layout.setWidgetBottomHeight(pagingLabel, 0, Unit.PT, 16, Unit.PT);
 		layout.setWidgetRightWidth(pagingLabel, 0, Unit.PT, 10, Unit.PCT);

@@ -26,7 +26,7 @@ public class CachedPhotoManagerTest extends TestCase {
 	Photos manager;
 	CachedPhotoManager target;
 	PhotoDO original;
-	
+	Cache cache;
 	protected void setUp() throws Exception {
 		super.setUp();
 		helper.setUp();
@@ -35,9 +35,8 @@ public class CachedPhotoManagerTest extends TestCase {
 		manager = mock(Photos.class);
 		
 		MemCacheProvider provider = new MemCacheProvider();
-		Cache cache = provider.get();
+		cache = provider.get();
 		target = new CachedPhotoManager(cache, manager);
-		
 	}
 
 	public void tearDown() {
@@ -63,17 +62,27 @@ public class CachedPhotoManagerTest extends TestCase {
 		List<Photo> list = new ArrayList<Photo>();
 		list.add(original);
 		target.saveAll(list);
-		Photo cached = target.getById(PHOTO_ID_0);
+		target.getById(PHOTO_ID_0);
 		verify(manager).saveAll(list);
 		verifyNoMoreInteractions(manager);
 	}
 
 	public void testGetById() {
 		when(manager.getById(PHOTO_ID_0)).thenReturn(original);
-		Photo photo0 = target.getById(PHOTO_ID_0);
+		target.getById(PHOTO_ID_0);
 		verify(manager).getById(PHOTO_ID_0);
-		Photo photo0fromcache = target.getOrNew(PHOTO_ID_0);
+		target.getOrNew(PHOTO_ID_0);
 		verifyNoMoreInteractions(manager);
 	}
 
+	public void testDelete() {
+		when(manager.getById(PHOTO_ID_0)).thenReturn(original);
+		target.getById(PHOTO_ID_0);
+		target.delete(PHOTO_ID_0);
+		verify(manager).delete(PHOTO_ID_0);
+		when(manager.getOrNew(PHOTO_ID_0)).thenReturn(original);
+		target.getOrNew(PHOTO_ID_0);
+		verify(manager).getById(PHOTO_ID_0);
+		
+	}
 }

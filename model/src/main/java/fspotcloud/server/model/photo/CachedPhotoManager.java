@@ -103,4 +103,10 @@ public class CachedPhotoManager implements Photos {
 		removeAllFromCache(keys);
 	}
 
+	@Override
+	public void delete(String id) {
+		manager.delete(id);
+		remove(id);
+	}
+
 }
