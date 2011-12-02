@@ -4,11 +4,11 @@
    <parent>
        <artifactId>taskqueue-dispatch</artifactId>
            <groupId>fspotcloud.taskqueue-dispatch</groupId>
-               <version>0.40-7.5.2</version>
+               <version>0.40-7.5.3</version>
                  </parent> 
 	<groupId>fspotcloud.taskqueue-dispatch</groupId>
 	<artifactId>dispatch</artifactId>
-	<version>0.40-7.5.2</version>
+	<version>0.40-7.5.3</version>
 	<packaging>jar</packaging>
 	<name>GWT-dispatch to TaskQueue</name>
 	<dependencies>

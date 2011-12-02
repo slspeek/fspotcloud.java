@@ -11,7 +11,6 @@ import fspotcloud.server.control.callback.TagDataCallback;
 import fspotcloud.server.control.task.actions.intern.TagImportAction;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.GetTagData;
-import fspotcloud.taskqueuedispatch.NullCallback;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
 public class TagImportHandler extends
@@ -40,8 +39,7 @@ public class TagImportHandler extends
 			int maxTicksSquare = MAX_DATA_TICKS * MAX_DATA_TICKS;
 			int nextStart = start + maxTicksSquare;
 			int nextCount = count - maxTicksSquare;
-			recursiveCall.execute(new TagImportAction(nextStart, nextCount),
-					new NullCallback<VoidResult>());
+			recursiveCall.execute(new TagImportAction(nextStart, nextCount));
 			countWeWillDo = MAX_DATA_TICKS;
 		} else {
 			countWeWillDo = needToScheduleCount;

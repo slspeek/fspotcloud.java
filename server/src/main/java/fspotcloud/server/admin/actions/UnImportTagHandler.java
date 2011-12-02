@@ -1,9 +1,5 @@
 package fspotcloud.server.admin.actions;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import net.customware.gwt.dispatch.server.ExecutionContext;
@@ -20,8 +16,6 @@ import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.dashboard.actions.UnImportTag;
 import fspotcloud.shared.dashboard.actions.VoidResult;
-import fspotcloud.shared.photo.PhotoInfo;
-import fspotcloud.taskqueuedispatch.NullCallback;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
 public class UnImportTagHandler extends
@@ -49,15 +43,11 @@ public class UnImportTagHandler extends
 		try {
 			String tagId = action.getTagId();
 			Tag tag = tagManager.getById(tagId);
-			List<String> keys = getKeys(tag.getCachedPhotoList());
-			NullCallback<VoidResult> callback = new NullCallback<VoidResult>();
-			dispatchAsync.execute(new DeletePhotos(keys), callback);
 			if (tag.isImportIssued()) {
 				tag.setImportIssued(false);
-				tag.setCachedPhotoList(new TreeSet<PhotoInfo>());
-				tag.setCount(0);
 				tagManager.save(tag);
 			}
+			dispatchAsync.execute(new DeletePhotos(tag.getId()));
 			clearTreeCache();
 					
 		} catch (Exception e) {
@@ -66,14 +56,6 @@ public class UnImportTagHandler extends
 		return new VoidResult();
 	}
 
-	private List<String> getKeys(SortedSet<PhotoInfo> set) {
-		List<String> result = new ArrayList<String> ();
-		for (PhotoInfo info:set) {
-			result.add(info.getId());
-		}
-		return result;
-	}
-	
 	private void clearTreeCache() {
 		PeerDatabase peer = peerDatabases.get();
 		if (peer.getCachedTagTree() != null) {

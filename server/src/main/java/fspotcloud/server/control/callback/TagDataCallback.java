@@ -1,8 +1,6 @@
 package fspotcloud.server.control.callback;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
