@@ -14,7 +14,7 @@
     <project>peer-rpc</project>
     <project>rpc</project>
     <project>servlet-deps</project>
-    <project>test</project>
+    <project>test-util</project>
     <project>xmlrpc-server-deps</project>
   </projects>
   <buildSpec>

@@ -39,6 +39,7 @@
 	</developers>
 	<modules>
 		<module>rpc</module>
+		<module>test-util</module>
 		<module>taskqueue-dispatch</module>
 		<module>model-api</module>
 		<module>model</module>
