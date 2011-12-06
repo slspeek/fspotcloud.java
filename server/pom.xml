@@ -117,6 +117,12 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
+			<groupId>fspotcloud</groupId>
+			<artifactId>test-util</artifactId>
+			<version>0.40-7.5.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>httpunit</groupId>
 			<artifactId>httpunit</artifactId>
 			<version>1.7</version>
