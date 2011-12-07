@@ -26,7 +26,7 @@
    </shortcut>
    
    <shortcut
-     name="Deploy to GAE"
+     name="Deploy to Google AppEngine"
      programGroup="yes"
      desktop="yes"
      applications="no"
@@ -79,7 +79,6 @@
      initialState="normal"
      iconFile="$INSTALL_PATH/icons/Docs.png"
      iconIndex="0"
-     url="http://code.google.com/p/fspotcloud"
      type="Application"
      encoding="UTF-8"
      description="The project site"
@@ -93,13 +92,11 @@
      applications="no"
      startMenu="yes"
      startup="no"
-     target="x-www-browser"
-     commandLine="http://appengine.google.com/"
+     target="$INSTALL_PATH/gae-dashboard.sh"
      workingDirectory=""
      initialState="normal"
      iconFile="$INSTALL_PATH/icons/AppEngine.png"
      iconIndex="0"
-     url="http://code.google.com/p/fspotcloud"
      type="Application"
      encoding="UTF-8"
      description="The App Engine Dashboard to view the stats of your instance"

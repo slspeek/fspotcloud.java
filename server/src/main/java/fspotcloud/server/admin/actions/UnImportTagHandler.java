@@ -1,5 +1,7 @@
 package fspotcloud.server.admin.actions;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import net.customware.gwt.dispatch.server.ExecutionContext;
@@ -16,6 +18,7 @@ import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.dashboard.actions.UnImportTag;
 import fspotcloud.shared.dashboard.actions.VoidResult;
+import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
 public class UnImportTagHandler extends
@@ -47,7 +50,9 @@ public class UnImportTagHandler extends
 				tag.setImportIssued(false);
 				tagManager.save(tag);
 			}
-			dispatchAsync.execute(new DeletePhotos(tag.getId()));
+			List<PhotoInfo> infoList = new ArrayList<PhotoInfo>();
+			infoList.addAll(tag.getCachedPhotoList());
+			dispatchAsync.execute(new DeletePhotos(tag.getId(), infoList));
 			clearTreeCache();
 					
 		} catch (Exception e) {
