@@ -1,4 +1,4 @@
-package fspotcloud.client.main.view.api;
+package fspotcloud.client.main.view.factory;
 
 import java.util.logging.Logger;
 
@@ -8,9 +8,13 @@ import com.google.inject.name.Named;
 
 import fspotcloud.client.main.event.ActionFamily;
 import fspotcloud.client.main.event.ActionMap;
+import fspotcloud.client.main.event.application.ApplicationType;
 import fspotcloud.client.main.event.slideshow.SlideshowType;
 import fspotcloud.client.main.view.ButtonPanelPresenterImpl;
+import fspotcloud.client.main.view.api.ButtonPanelView;
 import fspotcloud.client.main.view.api.ButtonPanelView.ButtonPanelPresenter;
+import fspotcloud.client.main.view.api.UserButtonPresenterFactory;
+import fspotcloud.client.main.view.api.UserButtonView;
 import fspotcloud.client.view.action.api.UserAction;
 
 public class ButtonPanelPresenterProvider implements Provider<ButtonPanelView.ButtonPanelPresenter>{
@@ -38,20 +42,19 @@ public class ButtonPanelPresenterProvider implements Provider<ButtonPanelView.Bu
 		int total = 0;
 		ActionMap nav = allActions.get("Navigation");
 		total += nav.allActions().size();
-		
-		ActionMap raster = allActions.get("Raster"); 
-		total += raster.allActions().size();
 		total++; //Slideshow
 		ActionMap app  = allActions.get("Application");
-		total += app.allActions().size();
+		total += 3;
 		buttonPanelView.setWidgetCount(total);
 		
 		
 		addActionGroup(nav);
-		addActionGroup(raster);
 		ActionMap actions = allActions.get("Slideshow");
 		addAction(actions.get(SlideshowType.SLIDESHOW_START));
-		addActionGroup(app);
+		
+		addAction(app.get(ApplicationType.TOGGLE_HELP));
+		addAction(app.get(ApplicationType.ABOUT));
+		addAction(app.get(ApplicationType.DASHBOARD));
 	}
 
 	private void addActionGroup(ActionMap group) {

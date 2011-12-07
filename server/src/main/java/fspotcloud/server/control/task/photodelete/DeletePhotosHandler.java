@@ -1,6 +1,7 @@
 package fspotcloud.server.control.task.photodelete;
 
 import java.util.Iterator;
+import java.util.SortedSet;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,38 +40,49 @@ public class DeletePhotosHandler extends
 	public VoidResult execute(DeletePhotos action, ExecutionContext context)
 			throws DispatchException {
 		Tag tag = tagManager.getById(action.getTagId());
-		Iterator<PhotoInfo> it = tag.getCachedPhotoList().iterator();
+		Iterator<PhotoInfo> it = action.getToBoDeleted().iterator();
 		for (int i = 0; i < MAX_DELETE_TICKS && it.hasNext(); i++) {
 			String key = it.next().getId();
-			checkForDeletion(tag.getId(), key, it);
+			checkForDeletion(tag, tag.getId(), key, it);
 		}
 		tagManager.save(tag);
-		if (!tag.getCachedPhotoList().isEmpty()) {
+		if (!action.getToBoDeleted().isEmpty()) {
 			dispatchAsync.execute(action);
 		}
 		return new VoidResult();
 	}
 
-	private void checkForDeletion(String deleteTagId, String key,
+	private void checkForDeletion(Tag tag, String deleteTagId, String key,
 			Iterator<PhotoInfo> it) {
 		Photo photo = photos.getById(key);
 		if (photo != null) {
 			boolean moreImports = false;
 			for (String tagId : photo.getTagList()) {
-				Tag tag = tagManager.getById(tagId);
-				if (tag != null) {
+				Tag tagRelated = tagManager.getById(tagId);
+				if (tagRelated != null) {
 					if (!deleteTagId.equals(tagId)) {
-						if (tag.isImportIssued()) {
+						if (tagRelated.isImportIssued()) {
 							moreImports = true;
+							break;
 						}
 					}
 				}
 			}
 			if (!moreImports) {
-				it.remove();
 				photos.delete(key);
+				tag.getCachedPhotoList().remove(find(tag.getCachedPhotoList(), key));
 			}
 		}
+		it.remove();
+		
 	}
 
+	private PhotoInfo find(SortedSet<PhotoInfo> set, String id) {
+		for(PhotoInfo info: set) {
+			if (info.getId().equals(id)) {
+				return info;
+			}
+		} 
+		return null;
+	}
 }

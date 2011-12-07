@@ -1,7 +1,6 @@
 package fspotcloud.server.control.task.tagdelete;
 
-import junit.framework.TestResult;
-
+import static org.mockito.Mockito.*;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 import org.mockito.ArgumentCaptor;
@@ -12,10 +11,6 @@ import fspotcloud.server.control.task.actions.intern.DeleteTags;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 import fspotcloud.test.MockitoTestCase;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.*;
 
 public class DeleteTagsHandlerTest extends MockitoTestCase {
 
@@ -46,8 +41,4 @@ public class DeleteTagsHandlerTest extends MockitoTestCase {
 		verify(dispatchAsync).execute(newAction.capture());
 		assertNotNull(newAction.getValue());
 	}
-	
-
-	
-	
 }

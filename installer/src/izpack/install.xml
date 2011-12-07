@@ -29,10 +29,10 @@
 	<locale>
 
 		<langpack iso3="eng" />
-		<langpack iso3="ned" />
-		<langpack iso3="deu" />
-		<langpack iso3="dan" />
-		<langpack iso3="fra" />
+		<!-- <langpack iso3="ned" /> -->
+		<!-- <langpack iso3="deu" /> -->
+		<!-- <langpack iso3="dan" /> -->
+		<!-- <langpack iso3="fra" /> -->
 	</locale>
 
 	<!-- The resources section. The ids must be these ones if you want to use 
@@ -81,11 +81,13 @@
 			<file src="peer.sh" targetdir="$INSTALL_PATH" />
 			<file src="rollback.sh" targetdir="$INSTALL_PATH" />
 			<file src="instance.sh" targetdir="$INSTALL_PATH" />
+			<file src="gae-dashboard.sh" targetdir="$INSTALL_PATH" />
 			<parsable targetfile="$INSTALL_PATH/x-deploy.sh" />
 			<parsable targetfile="$INSTALL_PATH/deploy.sh" />
 			<parsable targetfile="$INSTALL_PATH/peer.sh" />
 			<parsable targetfile="$INSTALL_PATH/rollback.sh" />
 			<parsable targetfile="$INSTALL_PATH/instance.sh" />
+			<parsable targetfile="$INSTALL_PATH/gae-dashboard.sh" />
 			<parsable targetfile="$INSTALL_PATH/war/WEB-INF/appengine-web.xml" />
 			<executable type="bin" stage="never" targetfile="$INSTALL_PATH/peer.sh"
 				os="unix" />
@@ -97,6 +99,8 @@
 				os="unix" />
 			<executable type="bin" stage="never" targetfile="$INSTALL_PATH/instance.sh"
 				os="unix" />
+			<executable type="bin" stage="never"
+				targetfile="$INSTALL_PATH/gae-dashboard.sh" os="unix" />
 		</pack>
 	</packs>
 

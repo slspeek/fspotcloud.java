@@ -34,7 +34,7 @@ public class PhotoDataCallbackTest extends TestCase {
 	private static final byte[] THUMB_DATA = new byte[] {0};
 	private static final String DESCRIPTION = "description";
 	private static final String PHOTO_ID = "1";
-	private static final String TAG_ID = "foo";
+	private static final String TAG_ID = "fooMock";
 	Photos photoManager;
 	PeerDatabases peerDatabases;
 	PeerDatabase peer;
