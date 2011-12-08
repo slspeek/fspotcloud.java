@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>fspotcloud.bot-dispatch</groupId>
 		<artifactId>bot-dispatch</artifactId>
-		<version>0.40-7.5.4</version>
+		<version>0.40-7.5.5</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>controller</artifactId>
@@ -88,7 +88,7 @@
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>gae-command</artifactId>
-			<version>0.40-7.5.4</version>
+			<version>0.40-7.5.5</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

@@ -9,10 +9,10 @@ public interface ImageView extends IsWidget {
 	interface ImagePresenter extends Initializable {
 		void imageClicked();
 
-		void setSelected();
+		void setSelected(boolean selected);
 	}
 
-	void setSelected();
+	void setSelected(boolean selected);
 	
 	void setImageUrl(String url);
 

@@ -7,5 +7,5 @@
 			text-align: center;
 		}
 	</ui:style>
-	<g:DockLayoutPanel ui:field="dockPanel"></g:DockLayoutPanel>
+	<g:LayoutPanel ui:field="layoutPanel"></g:LayoutPanel>
 </ui:UiBinder> 

@@ -95,11 +95,16 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 
 	private void setImages(List<PhotoInfo> result) {
 		imagePresenterList.clear();
-		for (int i = 0; i < result.size(); i++) {
+		int i = 0;
+		for (; i < result.size(); i++) {
+			ImageView view = imageViewList.get(i);
+			view.asWidget().setVisible(true);
 			final ImageView.ImagePresenter presenter = imagePresenterFactory.get(tagId, result.get(i),
-					imageViewList.get(i), thumb);
+					view, thumb);
 			if (result.get(i).getId().equals(photoId) && pageSize > 1) {
-				presenter.setSelected();
+				presenter.setSelected(true);
+			} else {
+				presenter.setSelected(false);
 			}
 			imagePresenterList.add(presenter);
 			Scheduler.get().scheduleDeferred(new ScheduledCommand() {
@@ -110,9 +115,14 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 					presenter.init();	
 				}
 			});
-			
 		}
-		imageRasterView.animate(0);
+		for(; i < pageSize; i++) {
+			ImageView view = imageViewList.get(i); 
+			view.setImageUrl("");
+			view.setSelected(false);
+			view.setDescription("");
+			view.asWidget().setVisible(false);
+		}
 	}
 
 	@Override

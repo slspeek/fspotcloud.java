@@ -5,11 +5,11 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-7.5.4</version>
+		<version>0.40-7.5.5</version>
 	</parent>
 	<groupId>fspotcloud</groupId>
 	<artifactId>server</artifactId>
-	<version>0.40-7.5.4</version>
+	<version>0.40-7.5.5</version>
 
 	<name>F-SpotCloud Server Component</name>
 	<description>The controller and data reading</description>
@@ -106,20 +106,20 @@
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>controller</artifactId>
-			<version>0.40-7.5.4</version>
+			<version>0.40-7.5.5</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>gae-command</artifactId>
-			<version>0.40-7.5.4</version>
+			<version>0.40-7.5.5</version>
 			<classifier>special</classifier>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud</groupId>
 			<artifactId>test-util</artifactId>
-			<version>0.40-7.5.4</version>
+			<version>0.40-7.5.5</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
