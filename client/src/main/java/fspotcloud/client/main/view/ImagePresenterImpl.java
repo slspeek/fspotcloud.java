@@ -23,11 +23,11 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	final private boolean thumb;
 	final private EventBus eventBus;
 	final private PhotoInfo info;
+	@SuppressWarnings("unused")
 	final private Resources resources;
 
 	@Inject
-	public ImagePresenterImpl(@Assisted("maxWidth") int maxWidth,
-			@Assisted("maxHeight") int maxHeight, @Assisted String tagId,
+	public ImagePresenterImpl(@Assisted String tagId,
 			@Assisted ImageView imageView, @Assisted boolean thumb, @Assisted PhotoInfo info,
 			EventBus eventBus, Resources resources) {
 		this.tagId =  tagId; 
@@ -37,8 +37,6 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 		this.thumb = thumb;
 		this.eventBus = eventBus;
 		this.info = info;
-		setMaxWidth(maxWidth);
-		setMaxHeight(maxHeight);
 	}
 
 	public void init() {
@@ -60,6 +58,7 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 			String url = "/image?id=" + photoId;
 			url += thumb ? "&thumb" : "";
 			imageView.setImageUrl(url);
+			imageView.adjustSize();
 		} else {
 			log.warning("No photoId defined for tagId:  " + tagId);
 		}
@@ -69,16 +68,6 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	public void imageClicked() {
 		log.info("about to fire zoom event");
 		eventBus.fireEvent(new ZoomViewEvent(tagId, photoId));
-	}
-
-	@Override
-	public void setMaxWidth(int width) {
-		imageView.setMaxWidth(width);
-	}
-
-	@Override
-	public void setMaxHeight(int height) {
-		imageView.setMaxHeight(height);
 	}
 
 	@Override

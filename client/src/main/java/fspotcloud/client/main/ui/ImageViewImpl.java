@@ -49,6 +49,10 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 		this.timer = timer;
 		this.resources = resources;
 		initWidget(uiBinder.createAndBindUi(this));
+		init(location);
+	}
+
+	private void init(String location) {
 		image.ensureDebugId("image-view-" + location);
 		image.setVisible(false);
 		image.addFitImageLoadHandler(new FitImageLoadHandler() {
@@ -56,7 +60,7 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 			@Override
 			public void imageLoaded(FitImageLoadEvent event) {
 				image.setVisible(true);
-
+				log.info("Should be Visible");
 			}
 		});
 		layout.animate(500);
@@ -98,20 +102,6 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 	}
 
 	@Override
-	public void setMaxWidth(int width) {
-		if (width > 0) {
-			this.image.setMaxWidth(width);
-		}
-	}
-
-	@Override
-	public void setMaxHeight(int height) {
-		if (height > 0) {
-			this.image.setMaxHeight(height);
-		}
-	}
-
-	@Override
 	public void setDescription(String text) {
 		info.setText(text);
 	}
@@ -121,4 +111,17 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 		setStyleName(resources.style().selectedImage());
 	}
 
+	@Override
+	public void onResize() {
+		image.setMaxSize(getOffsetWidth(), getOffsetHeight());
+		super.onResize();
+	}
+
+	@Override
+	public void adjustSize() {
+		log.info("Called adjust size");
+		onResize();
+	}
+
+	
 }

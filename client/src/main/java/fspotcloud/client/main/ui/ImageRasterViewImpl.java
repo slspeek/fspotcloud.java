@@ -79,14 +79,6 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	
 
 	@Override
-	public void onResize() {
-		if (presenter != null) {
-			presenter.onResize();
-		}
-		super.onResize();
-	}
-
-	@Override
 	public void setPresenter(ImageRasterPresenter presenter) {
 		this.presenter = presenter;
 	}

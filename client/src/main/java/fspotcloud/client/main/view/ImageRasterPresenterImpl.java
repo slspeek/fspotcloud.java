@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
@@ -24,15 +25,11 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	private static final Logger log = Logger
 			.getLogger(ImageRasterPresenterImpl.class.getName());
 
-	private static final int MAGIC = 4;
-	private static final int LABEL_HEIGHT = 15;
-
 	final private String tagId;
 	final private String photoId;
 	final private int columnCount;
 	final private int rowCount;
 	final private int pageSize;
-	private int pageNumber;
 	final private boolean thumb;
 	protected final ImageRasterView imageRasterView;
 	final private Navigator navigator;
@@ -59,25 +56,9 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 		log.info("init");
 		imageRasterView.setPresenter(this);
 		setImages();
-		
 	}
 
-	public int getWidth() {
-		return imageRasterView.asWidget().getOffsetWidth();
-	}
-
-	public int getHeight() {
-		return imageRasterView.asWidget().getOffsetHeight();
-	}
-
-	private int getImageWidth() {
-		return (int) ((float) getWidth() / (float) columnCount) - MAGIC;
-	}
-
-	private int getImageHeight() {
-		return (int) ((float) getHeight() / (float) rowCount) - MAGIC;
-	}
-
+	
 	public void setImages() {
 		navigator.getPageAsync(tagId, photoId, pageSize,
 				new AsyncCallback<List<PhotoInfo>>() {
@@ -87,7 +68,6 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 						imageViewList = imageRasterView.buildRaster(rowCount,
 								columnCount);
 						setImages(result);
-						log.info("Before@@@@");
 						navigator.getPageRelativePositionAsync( tagId, photoId, pageSize,
 								new AsyncCallback<Integer[]>() {
 
@@ -101,7 +81,6 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 									public void onSuccess(Integer[] result) {
 										String label = (result[0] + 1) + " of " + result[1] +".";
 										imageRasterView.setPagingText(label);
-										log.info("After@@@@");
 									}
 								});
 					}
@@ -117,36 +96,33 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 	private void setImages(List<PhotoInfo> result) {
 		imagePresenterList.clear();
 		for (int i = 0; i < result.size(); i++) {
-			ImageView.ImagePresenter presenter = imagePresenterFactory.get(
-					getImageWidth(), getImageHeight(), tagId, result.get(i),
+			final ImageView.ImagePresenter presenter = imagePresenterFactory.get(tagId, result.get(i),
 					imageViewList.get(i), thumb);
 			if (result.get(i).getId().equals(photoId) && pageSize > 1) {
 				presenter.setSelected();
 			}
 			imagePresenterList.add(presenter);
-			presenter.init();
+			Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+				
+				@Override
+				public void execute() {
+					// TODO Auto-generated method stub
+					presenter.init();	
+				}
+			});
+			
 		}
 		imageRasterView.animate(0);
 	}
 
 	@Override
-	public void onResize() {
-		for (ImageView.ImagePresenter presenter : imagePresenterList) {
-			presenter.setMaxWidth(getImageWidth());
-			presenter.setMaxHeight(getImageHeight());
-		}
-	}
-
-	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		panel.setWidget(imageRasterView);
-
 	}
 
 	@Override
 	public void onMouseWheelNorth() {
 		navigator.goAsync(Navigator.Direction.BACKWARD, Navigator.Unit.PAGE);
-
 	}
 
 	@Override
