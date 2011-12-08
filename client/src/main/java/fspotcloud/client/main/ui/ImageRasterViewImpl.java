@@ -35,12 +35,15 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 			UiBinder<Widget, ImageRasterViewImpl> {
 	}
 
+	int storedColumnCount = 0;
+	int storedRowCount = 0;
+	List<ImageView> storedViews;
+
 	@UiField
 	LayoutPanel layoutPanel;
 	private final ImageViewFactory imageViewFactory;
 	private ImageRasterView.ImageRasterPresenter presenter;
 	final private Label pagingLabel = new Label();
-	private String pagingText = "Where am I?";
 
 	@Inject
 	public ImageRasterViewImpl(ImageViewFactoryImpl imageViewFactory) {
@@ -48,31 +51,43 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 		initWidget(uiBinder.createAndBindUi(this));
 		layoutPanel.ensureDebugId("image-raster-view");
 		layoutPanel.addDomHandler(this, MouseWheelEvent.getType());
+		pagingLabel.ensureDebugId("paging-label");
 	}
-	
+
 	@Override
 	public List<ImageView> buildRaster(int rowCount, int columnCount) {
-		layoutPanel.clear();
-		
-		List<ImageView> result = new ArrayList<ImageView>();
-		for (int row = 0; row < rowCount; row++) {
-			for (int column = 0; column < columnCount; column++) {
-				ImageView view = imageViewFactory.get(column + "x" + row);
-				Widget asWidget = view.asWidget();
-				layoutPanel.add(asWidget);
-				layoutPanel.setWidgetTopHeight(asWidget, row * (100/(float)rowCount), Unit.PCT, 100/rowCount, Unit.PCT);
-				layoutPanel.setWidgetLeftWidth(asWidget, column * (100/(float)columnCount) , Unit.PCT, 100/rowCount, Unit.PCT);
-				result.add(view);
+		if (rowCount == storedRowCount && columnCount == storedColumnCount) {
+			return storedViews;
+		} else {
+			layoutPanel.clear();
+
+			List<ImageView> result = new ArrayList<ImageView>();
+			for (int row = 0; row < rowCount; row++) {
+				for (int column = 0; column < columnCount; column++) {
+					ImageView view = imageViewFactory.get(column + "x" + row);
+					Widget asWidget = view.asWidget();
+					layoutPanel.add(asWidget);
+					layoutPanel.setWidgetTopHeight(asWidget, row
+							* (100 / (float) rowCount), Unit.PCT,
+							100 / rowCount, Unit.PCT);
+					layoutPanel.setWidgetLeftWidth(asWidget, column
+							* (100 / (float) columnCount), Unit.PCT,
+							100 / rowCount, Unit.PCT);
+					result.add(view);
+				}
 			}
+			layoutPanel.add(pagingLabel);
+			layoutPanel.setWidgetBottomHeight(pagingLabel, 0, Unit.PT, 16,
+					Unit.PT);
+			layoutPanel.setWidgetRightWidth(pagingLabel, 0, Unit.PT, 10,
+					Unit.PCT);
+
+			storedRowCount = rowCount;
+			storedColumnCount = columnCount;
+			storedViews = result;
+			return result;
 		}
-		pagingLabel.setText(pagingText);
-		pagingLabel.ensureDebugId("paging-label");
-		layoutPanel.add(pagingLabel);
-		layoutPanel.setWidgetBottomHeight(pagingLabel, 0, Unit.PT, 16, Unit.PT);
-		layoutPanel.setWidgetRightWidth(pagingLabel, 0, Unit.PT, 10, Unit.PCT);
-		return result;
 	}
-	
 
 	@Override
 	public void setPresenter(ImageRasterPresenter presenter) {
@@ -81,7 +96,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 
 	@Override
 	public void onMouseWheel(MouseWheelEvent event) {
-		if(event.isNorth()) {
+		if (event.isNorth()) {
 			presenter.onMouseWheelNorth();
 		} else {
 			presenter.onMouseWheelSouth();
@@ -90,8 +105,7 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 
 	@Override
 	public void setPagingText(String text) {
-		this.pagingText = text;
 		pagingLabel.setText(text);
 	}
-	
+
 }
