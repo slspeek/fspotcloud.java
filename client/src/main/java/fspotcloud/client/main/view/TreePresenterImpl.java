@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.inject.Provider;
+
+import com.google.gwt.cell.client.Cell;
 import com.google.gwt.user.cellview.client.TreeNode;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.view.client.SingleSelectionModel;
@@ -42,7 +45,15 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
 	}
 
 	private void setModel(List<TagNode> roots) {
-		TagTreeModel treeModel = new TagTreeModel(roots, selectionModel);
+		TagTreeModel treeModel = new TagTreeModel(roots, selectionModel, new Provider<Cell<TagNode>>() {
+
+			@Override
+			public Cell<TagNode> get() {
+				return new TagCell();
+			}
+			
+		});
+;
 		treeView.setTreeModel(treeModel);
 		updatePlace();
 	}
