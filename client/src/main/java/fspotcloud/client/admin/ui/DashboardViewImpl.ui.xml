@@ -34,7 +34,7 @@
 			</g:SplitLayoutPanel>
 		</g:center>
 		<g:south size='20'>
-			<g:HTML>Footer</g:HTML>
+			<g:HTML></g:HTML>
 		</g:south>
 	</g:DockLayoutPanel>
 </ui:UiBinder> 
