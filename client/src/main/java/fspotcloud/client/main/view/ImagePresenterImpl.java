@@ -71,8 +71,8 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 	}
 
 	@Override
-	public void setSelected() {
-		imageView.setSelected();
+	public void setSelected(boolean selected) {
+		imageView.setSelected(selected);
 	}
 
 }

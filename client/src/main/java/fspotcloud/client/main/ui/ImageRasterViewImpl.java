@@ -10,7 +10,6 @@ import com.google.gwt.event.dom.client.MouseWheelEvent;
 import com.google.gwt.event.dom.client.MouseWheelHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
@@ -20,6 +19,7 @@ import com.google.inject.Inject;
 import fspotcloud.client.main.view.api.ImageRasterView;
 import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.main.view.api.ImageViewFactory;
+import fspotcloud.client.main.view.factory.ImageViewFactoryImpl;
 
 public class ImageRasterViewImpl extends ResizeComposite implements
 		ImageRasterView, MouseWheelHandler {
@@ -36,44 +36,40 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	}
 
 	@UiField
-	DockLayoutPanel dockPanel;
+	LayoutPanel layoutPanel;
 	private final ImageViewFactory imageViewFactory;
 	private ImageRasterView.ImageRasterPresenter presenter;
-	private LayoutPanel layout;
-	private Label pagingLabel;
-
+	final private Label pagingLabel = new Label();
 	private String pagingText = "Where am I?";
 
 	@Inject
-	public ImageRasterViewImpl(ImageViewFactory imageViewFactory) {
+	public ImageRasterViewImpl(ImageViewFactoryImpl imageViewFactory) {
 		this.imageViewFactory = imageViewFactory;
 		initWidget(uiBinder.createAndBindUi(this));
-		dockPanel.ensureDebugId("image-raster-view");
-		dockPanel.addDomHandler(this, MouseWheelEvent.getType());
+		layoutPanel.ensureDebugId("image-raster-view");
+		layoutPanel.addDomHandler(this, MouseWheelEvent.getType());
 	}
 	
 	@Override
 	public List<ImageView> buildRaster(int rowCount, int columnCount) {
-		layout = new LayoutPanel();
+		layoutPanel.clear();
 		
 		List<ImageView> result = new ArrayList<ImageView>();
 		for (int row = 0; row < rowCount; row++) {
 			for (int column = 0; column < columnCount; column++) {
 				ImageView view = imageViewFactory.get(column + "x" + row);
 				Widget asWidget = view.asWidget();
-				layout.add(asWidget);
-				layout.setWidgetTopHeight(asWidget, row * (100/(float)rowCount), Unit.PCT, 100/rowCount, Unit.PCT);
-				layout.setWidgetLeftWidth(asWidget, column * (100/(float)columnCount) , Unit.PCT, 100/rowCount, Unit.PCT);
+				layoutPanel.add(asWidget);
+				layoutPanel.setWidgetTopHeight(asWidget, row * (100/(float)rowCount), Unit.PCT, 100/rowCount, Unit.PCT);
+				layoutPanel.setWidgetLeftWidth(asWidget, column * (100/(float)columnCount) , Unit.PCT, 100/rowCount, Unit.PCT);
 				result.add(view);
 			}
 		}
-		pagingLabel = new Label(pagingText);
+		pagingLabel.setText(pagingText);
 		pagingLabel.ensureDebugId("paging-label");
-		layout.add(pagingLabel);
-		layout.setWidgetBottomHeight(pagingLabel, 0, Unit.PT, 16, Unit.PT);
-		layout.setWidgetRightWidth(pagingLabel, 0, Unit.PT, 10, Unit.PCT);
-		dockPanel.clear();
-		dockPanel.add(layout);
+		layoutPanel.add(pagingLabel);
+		layoutPanel.setWidgetBottomHeight(pagingLabel, 0, Unit.PT, 16, Unit.PT);
+		layoutPanel.setWidgetRightWidth(pagingLabel, 0, Unit.PT, 10, Unit.PCT);
 		return result;
 	}
 	
@@ -90,11 +86,6 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 		} else {
 			presenter.onMouseWheelSouth();
 		}
-	}
-
-	@Override
-	public void animate(int i) {
-		layout.animate(i);
 	}
 
 	@Override
