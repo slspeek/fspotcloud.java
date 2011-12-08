@@ -2,6 +2,9 @@ package fspotcloud.client.main.view;
 
 import java.util.List;
 
+import javax.inject.Provider;
+
+import com.google.gwt.cell.client.Cell;
 import com.google.gwt.view.client.TreeViewModel.NodeInfo;
 
 import junit.framework.TestCase;
@@ -21,7 +24,15 @@ public class TagTreeModelTest extends TestCase {
 	}
 	protected void setUp() throws Exception {
 		super.setUp();
-		model = new TagTreeModel(data, null);
+		model = new TagTreeModel(data, null,  new Provider<Cell<TagNode>>() {
+
+			@Override
+			public Cell<TagNode> get() {
+				return new TagCell();
+			}
+			
+		});
+
 	}
 
 	protected void tearDown() throws Exception {

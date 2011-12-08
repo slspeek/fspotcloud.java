@@ -3,6 +3,9 @@ package fspotcloud.client.main.view;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.inject.Provider;
+
+import com.google.gwt.cell.client.Cell;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.SelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
@@ -16,11 +19,16 @@ public class TagTreeModel implements TreeViewModel {
 
 	List<TagNode> roots;
 	SelectionModel<TagNode> selectionModel;
+	Provider<Cell<TagNode>> cellProvider;
+
 
 	public TagTreeModel(List<TagNode> roots,
-			SelectionModel<TagNode> selectionModel) {
+			SelectionModel<TagNode> selectionModel,
+			Provider<Cell<TagNode>> cellProvider) {
+		super();
 		this.roots = roots;
 		this.selectionModel = selectionModel;
+		this.cellProvider = cellProvider;
 	}
 
 	@Override
@@ -28,14 +36,14 @@ public class TagTreeModel implements TreeViewModel {
 		if (value == null) {
 			ListDataProvider<TagNode> rootNodes = new ListDataProvider<TagNode>(
 					roots);
-			return new DefaultNodeInfo<TagNode>(rootNodes, new TagCell(),
+			return new DefaultNodeInfo<TagNode>(rootNodes, cellProvider.get(),
 					selectionModel, null);
 		} else if (value instanceof TagNode) {
 			TagNode node = (TagNode) value;
 			List<TagNode> children = node.getChildren();
 			ListDataProvider<TagNode> childNodes = new ListDataProvider<TagNode>(
 					children);
-			return new DefaultNodeInfo<TagNode>(childNodes, new TagCell(),
+			return new DefaultNodeInfo<TagNode>(childNodes, cellProvider.get(),
 					selectionModel, null);
 		} else {
 			log.warning("getNodeInfo called with non-TagNode value: " + value);

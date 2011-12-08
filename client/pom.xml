@@ -191,6 +191,7 @@
 					</compileTargets>
 					<extraJvmArgs>-Xmx512m</extraJvmArgs>
 					<runTarget>http://localhost:8080/FSpotCloud.html</runTarget>
+<!-- 					<runTarget>http://localhost:8080/Dashboard.html</runTarget> -->
 					<style>PRETTY</style>
 					<mode>htmlunit</mode>
 					<gwtVersion>${gwt.version}</gwtVersion>

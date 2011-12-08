@@ -3,6 +3,9 @@ package fspotcloud.client.admin.view;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.inject.Provider;
+
+import com.google.gwt.cell.client.Cell;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.view.client.SelectionChangeEvent;
@@ -11,6 +14,7 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 
 import fspotcloud.client.data.DataManager;
+import fspotcloud.client.main.view.TagCell;
 import fspotcloud.client.main.view.TagTreeModel;
 import fspotcloud.client.main.view.api.TreeView;
 import fspotcloud.client.place.BasePlace;
@@ -45,7 +49,14 @@ public class AdminTreePresenterImpl implements TreeView.TreePresenter, Handler {
 	}
 
 	private void setModel(List<TagNode> roots) {
-		TagTreeModel treeModel = new TagTreeModel(roots, selectionModel);
+		TagTreeModel treeModel = new TagTreeModel(roots, selectionModel, new Provider<Cell<TagNode>>() {
+
+			@Override
+			public Cell<TagNode> get() {
+				return new AdminTagCell();
+			}
+			
+		});
 		treeView.setTreeModel(treeModel);
 	}
 
