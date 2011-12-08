@@ -21,6 +21,13 @@
 @def treeColor #695A5A;
 @def thirdColor #5A6969;
 
+
+.importedTag {
+	color: green;
+	font-size: 130%;
+	background: aqua;
+}
+
  .tagView {
 	border-style: solid;
 	background-color: treeColor;
@@ -125,3 +132,4 @@
 	font-weight: bold;
 	font-size: 130%;
 }
+

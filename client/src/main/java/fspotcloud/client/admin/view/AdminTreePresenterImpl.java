@@ -14,7 +14,7 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 
 import fspotcloud.client.data.DataManager;
-import fspotcloud.client.main.view.TagCell;
+import fspotcloud.client.main.ui.Resources;
 import fspotcloud.client.main.view.TagTreeModel;
 import fspotcloud.client.main.view.api.TreeView;
 import fspotcloud.client.place.BasePlace;
@@ -31,15 +31,18 @@ public class AdminTreePresenterImpl implements TreeView.TreePresenter, Handler {
 	final private DataManager dataManager;
 	final private SingleSelectionModel<TagNode> selectionModel;
 	final private PlaceGoTo placeGoTo;
+	final private Resources resources;
 
 	@Inject
 	public AdminTreePresenterImpl(TreeView treeView, DataManager dataManager,
-			SingleSelectionModel<TagNode> selectionModel, PlaceGoTo placeGoTo) {
+			SingleSelectionModel<TagNode> selectionModel, PlaceGoTo placeGoTo,
+			Resources resources) {
 		super();
 		this.treeView = treeView;
 		this.dataManager = dataManager;
 		this.selectionModel = selectionModel;
 		this.placeGoTo = placeGoTo;
+		this.resources = resources;
 	}
 
 	public void init() {
@@ -53,7 +56,7 @@ public class AdminTreePresenterImpl implements TreeView.TreePresenter, Handler {
 
 			@Override
 			public Cell<TagNode> get() {
-				return new AdminTagCell();
+				return new AdminTagCell(resources);
 			}
 			
 		});

@@ -41,6 +41,8 @@ public interface Resources extends ClientBundle {
 		String buttonPanelBlock();
 
 		String selectedImage();
+
+		String importedTag();
 	}
 
 	@Source("version.txt")

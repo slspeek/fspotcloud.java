@@ -15,8 +15,6 @@ import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.reveregroup.gwt.imagepreloader.FitImage;
-import com.reveregroup.gwt.imagepreloader.FitImageLoadEvent;
-import com.reveregroup.gwt.imagepreloader.FitImageLoadHandler;
 
 import fspotcloud.client.main.view.api.ImageView;
 import fspotcloud.client.main.view.api.TimerInterface;
