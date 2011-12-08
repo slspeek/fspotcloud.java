@@ -6,8 +6,7 @@ import fspotcloud.shared.photo.PhotoInfo;
 
 public interface ImagePresenterFactory {
 
-	ImageView.ImagePresenter get(@Assisted("maxWidth") int maxWidth,
-			@Assisted("maxHeight") int maxHeight, @Assisted String tagId,
+	ImageView.ImagePresenter get(@Assisted String tagId,
 			@Assisted PhotoInfo info, @Assisted ImageView imageView,
 			@Assisted boolean thumb);
 }

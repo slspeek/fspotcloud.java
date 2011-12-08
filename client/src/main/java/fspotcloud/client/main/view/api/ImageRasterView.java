@@ -9,12 +9,7 @@ import fspotcloud.client.main.api.Initializable;
 
 public interface ImageRasterView extends IsWidget {
 	interface ImageRasterPresenter extends Initializable, Activity {
-		int getWidth();
-
-		int getHeight();
-
-		void onResize();
-
+		
 		public void onMouseWheelNorth();
 
 		public void onMouseWheelSouth();
