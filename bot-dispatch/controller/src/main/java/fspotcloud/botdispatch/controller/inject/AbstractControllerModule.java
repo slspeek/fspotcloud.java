@@ -9,7 +9,7 @@ import fspotcloud.botdispatch.controller.callback.ErrorHandlerFactory;
 import fspotcloud.botdispatch.controller.callback.GuiceRequestProcessorFactoryFactory;
 import fspotcloud.botdispatch.controller.callback.ResultHandlerFactory;
 import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
-import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsyncImpl;
+import fspotcloud.botdispatch.controller.dispatch.DefaultControllerDispatchAsync;
 
 public abstract class AbstractControllerModule extends AbstractModule {
 
@@ -17,7 +17,7 @@ public abstract class AbstractControllerModule extends AbstractModule {
 	protected void configure() {
 		bind(GuiceRequestProcessorFactoryFactory.class).in(Singleton.class);
 		bind(Controller.class).in(Singleton.class);
-		bind(ControllerDispatchAsync.class).to(ControllerDispatchAsyncImpl.class);
+		bind(ControllerDispatchAsync.class).to(DefaultControllerDispatchAsync.class);
 		install(new FactoryModuleBuilder()
 				.build(ResultHandlerFactory.class));
 		install(new FactoryModuleBuilder()

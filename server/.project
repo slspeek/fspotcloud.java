@@ -3,6 +3,7 @@
   <comment>The controller and data reading. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects>
     <project>appengine-deps</project>
+    <project>bot</project>
     <project>command-api</project>
     <project>controller</project>
     <project>dispatch</project>
@@ -11,6 +12,7 @@
     <project>gwt-deps</project>
     <project>model</project>
     <project>model-api</project>
+    <project>peer</project>
     <project>peer-rpc</project>
     <project>rpc</project>
     <project>servlet-deps</project>

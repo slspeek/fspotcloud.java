@@ -10,11 +10,11 @@ public abstract class DatastoreTest extends TestCase {
 	private final LocalServiceTestHelper helper =
         new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
 
-    public void setUp() {
+    public void setUp() throws Exception {
         helper.setUp();
     }
 
-    public void tearDown() {
+    public void tearDown() throws Exception {
         helper.tearDown();
     }
 

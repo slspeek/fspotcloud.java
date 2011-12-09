@@ -1,30 +1,28 @@
-package fspotcloud.taskqueuedispatch;
-
-import javax.inject.Inject;
+package fspotcloud.botdispatch.controller.dispatch;
 
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.DispatchException;
 import net.customware.gwt.dispatch.shared.Result;
 
-import com.google.appengine.api.taskqueue.Queue;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.inject.Inject;
 import com.google.inject.Injector;
 
-public class TaskQueueDispatchDirectImpl implements TaskQueueDispatch {
+public class ControllerDispatchAsyncLocalImpl implements ControllerDispatchAsync{
 
 	final private Dispatch dispatch;
 	final private Injector injector;
 
 	@Inject
-	public TaskQueueDispatchDirectImpl(Dispatch dispatch, Injector injector) {
+	public ControllerDispatchAsyncLocalImpl(Dispatch dispatch, Injector injector) {
 		super();
 		this.dispatch = dispatch;
 		this.injector = injector;
 	}
 
-	@Override
 	public <A extends Action<R>, R extends Result> void execute(A action,
-			SerializableAsyncCallback<R> callback) {
+			AsyncCallback<R> callback) {
 		injector.injectMembers(callback);
 		try {
 			R result = dispatch.execute(action);
@@ -33,16 +31,9 @@ public class TaskQueueDispatchDirectImpl implements TaskQueueDispatch {
 			callback.onFailure(e);
 		}
 	}
-
+	
 	@Override
-	public Queue getQueue() {
+	public int getPendingCommands() {
 		throw new UnsupportedOperationException();
 	}
-
-	@Override
-	public <A extends Action<R>, R extends Result> void execute(A action) {
-		NullCallback<R> nullCallback = new NullCallback<R>();
-		execute(action, nullCallback);
-	}
-
 }

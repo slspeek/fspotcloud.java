@@ -16,7 +16,7 @@ public class GuiceServletConfig extends GuiceServletContextListener {
 	@Override
 	protected Injector getInjector() {
 		Injector i = Guice.createInjector(new FSpotCloudServletModule(),
-				new FSpotCloudModule(), new ActionsModule(), new ModelModule(),
+				new FSpotCloudModule(), new AdminActionsModule(), new ModelModule(),
 				new TaskModule(), new FSCControllerModule(),
 				new ControllerServletModule(), new MinimalCommandModelModule(),
 				new TaskQueueDispatchModule(),

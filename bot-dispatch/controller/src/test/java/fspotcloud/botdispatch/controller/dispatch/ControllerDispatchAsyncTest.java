@@ -13,14 +13,14 @@ public class ControllerDispatchAsyncTest extends TestCase {
 
 	Commands commandManager;
 	TestAction action;
-	ControllerDispatchAsyncImpl target;
+	DefaultControllerDispatchAsync target;
 	AsyncCallback<TestResult> callback;
 
 	@Override
 	protected void setUp() throws Exception {
 		commandManager = mock(Commands.class);
 		action = new TestAction("Jim");
-		target = new ControllerDispatchAsyncImpl(commandManager);
+		target = new DefaultControllerDispatchAsync(commandManager);
 		callback = new AsyncCallback<TestResult> () {
 
 			@Override

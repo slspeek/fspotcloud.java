@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsyncImpl;
+import fspotcloud.botdispatch.controller.dispatch.DefaultControllerDispatchAsync;
 import fspotcloud.botdispatch.model.api.Commands;
 import fspotcloud.botdispatch.test.SecondAction;
 import fspotcloud.botdispatch.test.TestAction;
@@ -24,7 +24,7 @@ public class TestServlet extends HttpServlet {
 	@Inject
 	Commands commandManager;
 	@Inject
-	ControllerDispatchAsyncImpl dispatch;
+	DefaultControllerDispatchAsync dispatch;
 	
 	@SuppressWarnings("rawtypes")
 	@Inject
