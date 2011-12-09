@@ -1,9 +1,7 @@
 package fspotcloud.peer.db;
 
 import java.awt.Dimension;
-import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,6 +23,7 @@ import fspotcloud.shared.peer.rpc.actions.TagData;
 
 public class Data {
 
+	@SuppressWarnings("unused")
 	final static private Logger log = Logger.getLogger(Data.class.getName());
 
 	static {
@@ -94,20 +93,21 @@ public class Data {
 		List<PhotoData> result = new ArrayList<PhotoData>();
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT id, description, time "
+		ResultSet rs = stmt.executeQuery("SELECT id, description, time, default_version_id "
 				+ "FROM photos, photo_tags WHERE photos.id=photo_tags.photo_id AND photo_tags.tag_id=\"" + tagId + "\"  ORDER BY id LIMIT " + count + " OFFSET "
 				+ offset);
 		while (rs.next()) {
 			String id = rs.getString(1);
 			String desc = rs.getString(2);
 			long time = rs.getLong(3);
+			int version = rs.getInt(4);
 			Date date = new Date();
 			date.setTime(time * 1000);
 			List<String> tagList = getTagsForPhoto(Integer.valueOf(id));
 			URL url = getImageURL(id);
 			byte[] image = imageData.getScaledImageData(url, new Dimension(w,h));
 			byte[] thumb = imageData.getScaledImageData(url, new Dimension(tw, th));
-			result.add(new PhotoData(id, desc, date, image, thumb,tagList));
+			result.add(new PhotoData(id, desc, date, image, thumb,tagList, version));
 		}
 		rs.close();
 		conn.close();

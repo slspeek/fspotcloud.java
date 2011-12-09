@@ -20,7 +20,7 @@ public class PhotoDataResultTest extends TestCase {
 		List<String> tags = new ArrayList<String>();
 		tags.add("TAG");
 		PhotoData p1 = new PhotoData(PHOTO_ID, "Story", new Date(10),
-				IMAGE_DATA, THUMB_DATA, tags);
+				IMAGE_DATA, THUMB_DATA, tags, 10);
 		List<PhotoData> list = new ArrayList<PhotoData>();
 		list.add(p1);
 		result = new PhotoDataResult(list);

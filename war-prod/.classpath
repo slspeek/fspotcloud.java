@@ -1,5 +1,5 @@
 <classpath>
-  <classpathentry kind="src" path="src/main/resources" output="target/war-prod-0.40-7.5.5" excluding="**/*.java"/>
+  <classpathentry kind="src" path="src/main/resources" output="target/war-prod-0.40-7.5.6" excluding="**/*.java"/>
   <classpathentry kind="output" path="target/classes"/>
   <classpathentry kind="var" path="M2_REPO/javax/inject/javax.inject/1/javax.inject-1.jar" sourcepath="M2_REPO/javax/inject/javax.inject/1/javax.inject-1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/javax/jdo/jdo2-api/2.3-eb/jdo2-api-2.3-eb.jar" sourcepath="M2_REPO/javax/jdo/jdo2-api/2.3-eb/jdo2-api-2.3-eb-sources.jar"/>

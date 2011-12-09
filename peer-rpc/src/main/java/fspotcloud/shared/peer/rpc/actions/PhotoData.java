@@ -14,9 +14,14 @@ public class PhotoData implements Serializable {
 	private byte[] imageData;
 	private byte[] thumbData;
 	private List<String> tagList;
+	private int version;
+
+	public int getVersion() {
+		return version;
+	}
 
 	public PhotoData(String photoId, String description, Date date,
-			byte[] imageData, byte[] thumbData, List<String> tagList) {
+			byte[] imageData, byte[] thumbData, List<String> tagList, int version) {
 		super();
 		this.photoId = photoId;
 		this.description = description;
@@ -24,6 +29,7 @@ public class PhotoData implements Serializable {
 		this.imageData = imageData;
 		this.thumbData = thumbData;
 		this.tagList = tagList;
+		this.version = version;
 	}
 
 	public String getPhotoId() {

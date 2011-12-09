@@ -46,15 +46,10 @@ public class PhotoInfoTest extends TestCase {
 		assertEquals(1, man.compareTo(ape));
 	}
 	public void testEquals() throws Exception {
-		assertTrue(ape.equals(photoApe));
 		assertTrue(ape.equals(ape));
 		assertFalse(ape.equals(man));
 		assertFalse(man.equals(ape));
 		assertTrue(ape.equals(new PhotoInfo(photoApe, "", new Date())));
-	}
-
-	public void testEqualsObjectToAString() throws Exception {
-		assertTrue(man.equals(photoMan));
 	}
 
 	public void testHashCode() {
@@ -82,5 +77,10 @@ public class PhotoInfoTest extends TestCase {
 		ObjectInputStream objectIn = new ObjectInputStream(in);
 		PhotoInfo apeReadBack = (PhotoInfo) objectIn.readObject();
 		assertEquals(ape, apeReadBack);
+	}
+	
+	public void testVersion() {
+		int v = man.getVersion();
+		assertEquals(1, v);
 	}
 }

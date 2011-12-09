@@ -82,7 +82,7 @@ public class PhotoDataCallback implements AsyncCallback<PhotoDataResult>,
 			Tag tag = tagManager.getById(tagId);
 			tag.getCachedPhotoList().add(
 					new PhotoInfo(photo.getId(), photo.getDescription(), photo
-							.getDate()));
+							.getDate(), photoData.getVersion()));
 			tagManager.save(tag);
 		}
 		return photo;

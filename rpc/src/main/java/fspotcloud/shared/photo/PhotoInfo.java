@@ -11,6 +11,7 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
 	private String description;
 	private String exifData;
 	private Date date;
+	private int version;
 
 	@SuppressWarnings("unused")
 	private PhotoInfo() {
@@ -21,6 +22,12 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
 		this.id = id;
 		this.description = description;
 		this.date = date;
+		this.version = 1;
+	}
+	
+	public PhotoInfo(String id, String description, Date date, int version) {
+		this(id, description, date);
+		this.version = version;
 	}
 	
 	public PhotoInfo(String id, String description, Date date, String exifData) {
@@ -49,9 +56,7 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
 		if (o instanceof PhotoInfo) {
 			PhotoInfo photo = (PhotoInfo) o;
 			id = photo.getId();
-		} else if (o instanceof String) {
-			id = (String) o;
-		}
+		} 
 		return this.id.equals(id);
 	}
 
@@ -71,5 +76,13 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
 
 	public String getExifData() {
 		return exifData;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public int getVersion() {
+		return version;
 	}
 }
