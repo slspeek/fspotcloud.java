@@ -30,6 +30,7 @@ import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.tag.TagNode;
 
 public class PhotoDataCallbackTest extends TestCase {
+	private static final int VERSION = 15;
 	private static final byte[] IMAGE_DATA = new byte[] { 0, 1};
 	private static final byte[] THUMB_DATA = new byte[] {0};
 	private static final String DESCRIPTION = "description";
@@ -57,7 +58,7 @@ public class PhotoDataCallbackTest extends TestCase {
 		tag1 = new TagDO();
 		tag1.setId(TAG_ID);
 		photo1.setId(PHOTO_ID);
-		data = new PhotoData(PHOTO_ID, DESCRIPTION, date, IMAGE_DATA, THUMB_DATA, ImmutableList.of(TAG_ID));
+		data = new PhotoData(PHOTO_ID, DESCRIPTION, date, IMAGE_DATA, THUMB_DATA, ImmutableList.of(TAG_ID), VERSION);
 		dataList = new ArrayList<PhotoData>();
 		dataList.add(data);
 		result = new PhotoDataResult(dataList);
@@ -90,6 +91,7 @@ public class PhotoDataCallbackTest extends TestCase {
 		assertTrue(photo1.isImageLoaded());
 		PhotoInfo info = tag1.getCachedPhotoList().first(); 
 		assertEquals(PHOTO_ID, info.getId());
+		assertEquals(VERSION, info.getVersion());
 		assertNull(peer.getCachedTagTree());
 	}
 
