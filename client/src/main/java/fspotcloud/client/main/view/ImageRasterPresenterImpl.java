@@ -79,7 +79,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements
 
 									@Override
 									public void onSuccess(Integer[] result) {
-										String label = (result[0] + 1) + " of " + result[1] +".";
+										String label = (result[0] + 1) + " of " + result[1];
 										imageRasterView.setPagingText(label);
 									}
 								});

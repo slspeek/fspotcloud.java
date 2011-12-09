@@ -52,7 +52,7 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 				date = DateTimeFormat.getFormat(PredefinedFormat.DATE_MEDIUM).format(info.getDate());
 			} else {
 				date = DateTimeFormat.getFormat(PredefinedFormat.DATE_FULL).format(info.getDate()) + " " +
-				DateTimeFormat.getFormat(PredefinedFormat.TIME_MEDIUM).format(info.getDate()) ;
+				DateTimeFormat.getFormat(PredefinedFormat.TIME_MEDIUM).format(info.getDate())  + "(v"+info.getVersion()+")";
 			}
 			imageView.setDescription(date);
 			String url = "/image?id=" + photoId;
