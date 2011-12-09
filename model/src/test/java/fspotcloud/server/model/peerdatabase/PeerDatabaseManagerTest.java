@@ -29,7 +29,7 @@ public class PeerDatabaseManagerTest extends DatastoreTest {
 	
 	
 	@Override
-	public void setUp() {
+	public void setUp() throws Exception{
 		cache = mock(Cache.class);
 		manager  = new PeerDatabaseManager(pmProvider, cache);
 		super.setUp();

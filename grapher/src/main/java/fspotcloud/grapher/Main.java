@@ -5,7 +5,7 @@ import com.google.inject.Injector;
 
 import fspotcloud.botdispatch.controller.inject.ControllerServletModule;
 import fspotcloud.botdispatch.model.MinimalCommandModelModule;
-import fspotcloud.peer.inject.ActionsModule;
+import fspotcloud.peer.inject.PeerActionsModule;
 import fspotcloud.peer.inject.PeerModule;
 import fspotcloud.server.control.task.TaskModule;
 import fspotcloud.server.inject.FSCControllerModule;
@@ -14,10 +14,10 @@ import fspotcloud.server.model.ModelModule;
 
 public class Main {
 	Injector serverInjector = Guice.createInjector(new FSpotCloudModule(),
-			new ModelModule(), new fspotcloud.server.inject.ActionsModule(), new TaskModule(), new FSCControllerModule(),
+			new ModelModule(), new fspotcloud.server.inject.AdminActionsModule(), new TaskModule(), new FSCControllerModule(),
 			new ControllerServletModule(), new MinimalCommandModelModule());
 	Injector modelInjector = Guice.createInjector(new ModelModule());
-	Injector peerInjector = Guice.createInjector(new PeerModule(),  new ActionsModule());
+	Injector peerInjector = Guice.createInjector(new PeerModule(),  new PeerActionsModule());
 
 	// Injector clientInjector = Guice.createInjector(new GinModuleAdapter(new
 	// FakeForGrapherAppModule()));

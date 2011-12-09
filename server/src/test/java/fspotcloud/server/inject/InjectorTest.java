@@ -22,7 +22,7 @@ public class InjectorTest extends TestCase {
 
 	public void testInjector() {
 		Injector injector = Guice.createInjector(new FSpotCloudServletModule(),
-				new FSpotCloudModule(), new ActionsModule(), new ModelModule(),
+				new FSpotCloudModule(), new AdminActionsModule(), new ModelModule(),
 				new TaskModule(), new FSCControllerModule(),
 				new ControllerServletModule(), new MinimalCommandModelModule(),
 				new TaskQueueDispatchModule(),

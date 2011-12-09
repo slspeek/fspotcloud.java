@@ -29,7 +29,7 @@ public class TagManagerTest extends DatastoreTest {
 	}
 
 	@Override
-	public void setUp() {
+	public void setUp() throws Exception {
 		pmProviver =  new PersistenceManagerProvider();
 		tagManager  = new TagManager(pmProviver, 3);
 		super.setUp();

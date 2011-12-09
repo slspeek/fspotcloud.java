@@ -8,12 +8,12 @@ import com.google.inject.Inject;
 
 import fspotcloud.botdispatch.model.api.Commands;
 
-public class ControllerDispatchAsyncImpl implements ControllerDispatchAsync{
+public class DefaultControllerDispatchAsync implements ControllerDispatchAsync{
 
 	private final Commands commandManager;
 	
 	@Inject
-	public ControllerDispatchAsyncImpl(Commands commandManager) {
+	public DefaultControllerDispatchAsync(Commands commandManager) {
 		super();
 		this.commandManager = commandManager;
 	}

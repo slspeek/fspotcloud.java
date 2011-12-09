@@ -1,6 +1,7 @@
 package fspotcloud.server.control.callback;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
@@ -14,7 +15,7 @@ import fspotcloud.taskqueuedispatch.NullCallback;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
 public class PeerMetaDataCallback implements AsyncCallback<PeerMetaDataResult>, Serializable {
-
+final static private Logger log = Logger.getLogger(PeerMetaDataCallback.class.getName());
 	private static final long serialVersionUID = 1851403859917750767L;
 	@Inject
 	transient private PeerDatabases defaultPeer;
@@ -30,6 +31,7 @@ public class PeerMetaDataCallback implements AsyncCallback<PeerMetaDataResult>, 
 
 	@Override
 	public void onSuccess(PeerMetaDataResult result) {
+		log.info("On success: " + result);
 		int count = result.getPhotoCount();
 		int tagCount = result.getTagCount();
 		PeerDatabase p = defaultPeer.get();

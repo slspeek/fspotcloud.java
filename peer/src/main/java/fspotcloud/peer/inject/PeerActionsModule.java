@@ -10,7 +10,7 @@ import fspotcloud.shared.peer.rpc.actions.GetPeerMetaData;
 import fspotcloud.shared.peer.rpc.actions.GetPhotoData;
 import fspotcloud.shared.peer.rpc.actions.GetTagData;
 
-public class ActionsModule extends ActionHandlerModule {
+public class PeerActionsModule extends ActionHandlerModule {
 
 	@Override
 	protected void configureHandlers() {

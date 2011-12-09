@@ -14,7 +14,7 @@ import fspotcloud.shared.dashboard.actions.SynchronizePeer;
 import fspotcloud.shared.dashboard.actions.TagDeleteAll;
 import fspotcloud.shared.dashboard.actions.UnImportTag;
 
-public class ActionsModule extends ActionHandlerModule {
+public class AdminActionsModule extends ActionHandlerModule {
 
 	@Override
 	protected void configureHandlers() {
