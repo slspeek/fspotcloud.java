@@ -32,18 +32,7 @@ public class TaskQueueDispatchServlet extends HttpServlet {
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		InputStream in = request.getInputStream();
-		BufferedInputStream buff = new BufferedInputStream(in);
-		byte[] buf = new byte[4 * 1024];
-		int len; 
-		while ((len = buff.read(buf, 0, buf.length)) != -1) { 
-			out.write(buf, 0, len); 
-		} 
-		in.close();
-		buff.close();
-		out.close();
-		byte[] payload = out.toByteArray();
+		byte[] payload = getPayload(request);
 		AsyncCommand command = (AsyncCommand) SerializationUtils.deserialize(payload);
 		AsyncCallback callback = command.getCallback();
 		injector.injectMembers(callback);
@@ -57,5 +46,21 @@ public class TaskQueueDispatchServlet extends HttpServlet {
 		PrintWriter out2 = response.getWriter();
 		out2.println("TaskQueue dispatch ran.");
 		out2.close();
+	}
+
+	private byte[] getPayload(ServletRequest request)
+			throws IOException {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		InputStream in = request.getInputStream();
+		BufferedInputStream buff = new BufferedInputStream(in);
+		byte[] buf = new byte[4 * 1024];
+		int len; 
+		while ((len = buff.read(buf, 0, buf.length)) != -1) { 
+			out.write(buf, 0, len); 
+		} 
+		in.close();
+		buff.close();
+		out.close();
+		return out.toByteArray();
 	}
 }

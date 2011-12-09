@@ -1,7 +1,6 @@
 package fspotcloud.taskqueuedispatch.inject;
 
 import junit.framework.TestCase;
-import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,21 +14,21 @@ import com.google.inject.Injector;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
 
-public class TaskQueueDispatchModuleTest extends TestCase {
+public class TaskQueueDispatchDirectModuleTest extends TestCase {
 
 	private final LocalServiceTestHelper helper =
         new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
 
-	TaskQueueDispatchDirectModule module;
+	TaskQueueDispatchModule module;
 	@Before
     public void setUp() {
         helper.setUp();
-        module = new TaskQueueDispatchDirectModule();
+        module = new TaskQueueDispatchModule();
 	}
 
 	@Test
 	public void testCreateTaskQueueDispatch() {
-		Injector i = Guice.createInjector(module, new ActionsModule());
+		Injector i = Guice.createInjector(module);
 		TaskQueueDispatch queueDispatch = i.getInstance(TaskQueueDispatch.class);
 		assertNotNull(queueDispatch);
 	}
@@ -38,11 +37,5 @@ public class TaskQueueDispatchModuleTest extends TestCase {
     public void tearDown() {
         helper.tearDown();
     }
-	public class ActionsModule extends ActionHandlerModule {
-
-		@Override
-		protected void configureHandlers() {
-		}
-
-	}
+	
 }
