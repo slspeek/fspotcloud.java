@@ -4,11 +4,11 @@
 	<parent>
 		<groupId>fspotcloud.bot-dispatch</groupId>
 		<artifactId>bot-dispatch</artifactId>
-		<version>0.40-7.5.6</version>
+		<version>0.40-7.5.7</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>gae-command</artifactId>
-	<version>0.40-7.5.6</version>
+	<version>0.40-7.5.7</version>
 	<packaging>jar</packaging>
 	<name>Command AppEngine Implementation</name>
 	<dependencies>

@@ -5,11 +5,11 @@
   <parent>
     <artifactId>fspotcloud</artifactId>
     <groupId>fspotcloud</groupId>
-    <version>0.40-7.5.6</version>
+    <version>0.40-7.5.7</version>
   </parent>
   <groupId>fspotcloud</groupId>
   <artifactId>peer-rpc</artifactId>
-  <version>0.40-7.5.6</version>
+  <version>0.40-7.5.7</version>
   <name>peer-rpc</name>
   <url>http://maven.apache.org</url>
   <properties>
@@ -19,7 +19,6 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -29,5 +28,12 @@
     	<version>${project.version}</version>
     	<scope>compile</scope>
     </dependency>
+    <dependency>
+			<groupId>fspotcloud</groupId>
+			<artifactId>rpc</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
   </dependencies>
 </project>

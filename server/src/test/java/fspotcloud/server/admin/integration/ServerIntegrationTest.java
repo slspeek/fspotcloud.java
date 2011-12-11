@@ -1,6 +1,7 @@
 package fspotcloud.server.admin.integration;
 
 import java.net.URL;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.customware.gwt.dispatch.server.Dispatch;
@@ -73,7 +74,7 @@ public class ServerIntegrationTest extends DatastoreTest {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						log.info("On fail " + caught);
+						log.log(Level.SEVERE,"On fail ", caught);
 
 					}
 

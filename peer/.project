@@ -6,6 +6,7 @@
     <project>guice-deps</project>
     <project>gwt-deps</project>
     <project>peer-rpc</project>
+    <project>rpc</project>
   </projects>
   <buildSpec>
     <buildCommand>

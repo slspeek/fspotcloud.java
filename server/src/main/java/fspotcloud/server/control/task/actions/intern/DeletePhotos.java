@@ -18,12 +18,7 @@ public class DeletePhotos implements Action<VoidResult>, Serializable {
 		this.tagId = tagId;
 		this.toBoDeleted = toBoDeleted;
 	}
-
 	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public String getTagId() {
 		return tagId;
 	}
