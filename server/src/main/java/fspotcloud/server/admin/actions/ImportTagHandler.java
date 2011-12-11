@@ -8,7 +8,7 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 import com.google.inject.Inject;
 
-import fspotcloud.server.control.task.actions.intern.PhotoImportScheduleAction;
+import fspotcloud.server.control.task.actions.intern.PhotoImportAction;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.dashboard.actions.ImportTag;
@@ -28,8 +28,7 @@ public class ImportTagHandler extends
 		this.tagManager = tagManager;
 		this.dispatchAsync = dispatchAsync;
 	}
-	
-	
+
 	@Override
 	public VoidResult execute(ImportTag action, ExecutionContext context)
 			throws DispatchException {
@@ -40,14 +39,15 @@ public class ImportTagHandler extends
 				tag.setImportIssued(true);
 				tagManager.save(tag);
 			}
-			Action<VoidResult> internAction = new PhotoImportScheduleAction(tagId, "", action.getPreviousCount(), tag.getCount() - action.getPreviousCount());
+			Action<VoidResult> internAction = new PhotoImportAction(
+					tagId, tag.getCachedPhotoList(), action.getPreviousCount(),
+					tag.getCount() - action.getPreviousCount());
 			dispatchAsync.execute(internAction, new NullCallback<VoidResult>());
-					
+
 		} catch (Exception e) {
 			throw new ActionException(e);
 		}
 		return new VoidResult();
 	}
 
-	
 }

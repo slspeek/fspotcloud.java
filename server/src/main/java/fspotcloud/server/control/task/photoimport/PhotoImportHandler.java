@@ -10,14 +10,14 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.server.control.callback.PhotoDataCallback;
-import fspotcloud.server.control.task.actions.intern.PhotoImportScheduleAction;
+import fspotcloud.server.control.task.actions.intern.PhotoImportAction;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.GetPhotoData;
 import fspotcloud.taskqueuedispatch.NullCallback;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
-public class PhotoImportScheduleHandler extends
-		SimpleActionHandler<PhotoImportScheduleAction, VoidResult> {
+public class PhotoImportHandler extends
+		SimpleActionHandler<PhotoImportAction, VoidResult> {
 	
 	final int THUMB_WIDTH;
 	final int THUMB_HEIGHT;
@@ -30,7 +30,7 @@ public class PhotoImportScheduleHandler extends
 	final private TaskQueueDispatch dispatchAsync;
 	
 	@Inject
-	public PhotoImportScheduleHandler(@Named("maxTicks") int maxTicks,
+	public PhotoImportHandler(@Named("maxTicks") int maxTicks,
 			@Named("maxPhotoTicks") int maxPhotoTicks,
 			@Named("thumbDimension") String thumbDimension,
 			@Named("imageDimension") String imageDimension,
@@ -48,12 +48,11 @@ public class PhotoImportScheduleHandler extends
 	}
 
 	@Override
-	public VoidResult execute(PhotoImportScheduleAction action,
+	public VoidResult execute(PhotoImportAction action,
 			ExecutionContext context) throws DispatchException {
 		int limit = action.getLimit();
 		int offset = action.getOffset();
 		String tagId = action.getTagId();
-		String minKey = action.getMinKey();
 		int countWeWillDo;
 		int needToScheduleCount = (int) Math.ceil((double) limit
 				/ (double) MAX_PHOTO_TICKS);
@@ -62,7 +61,7 @@ public class PhotoImportScheduleHandler extends
 			int delta = MAX_DATA_TICKS * MAX_PHOTO_TICKS;
 			int nextOffset = offset + delta;
 			int nextLimit = limit - delta;
-			dispatchAsync.execute(new PhotoImportScheduleAction(tagId, minKey, nextOffset,
+			dispatchAsync.execute(new PhotoImportAction(tagId, null, nextOffset,
 					nextLimit), new NullCallback());
 			countWeWillDo = MAX_DATA_TICKS;
 		} else {
@@ -71,7 +70,7 @@ public class PhotoImportScheduleHandler extends
 		// Do our part of the job, scheduling the head
 		for (int i = 0; i < countWeWillDo; i++) {
 			int beginning = offset + i * MAX_PHOTO_TICKS;
-			GetPhotoData botAction = new GetPhotoData(tagId, minKey, beginning,
+			GetPhotoData botAction = new GetPhotoData(tagId, "", beginning,
 					MAX_PHOTO_TICKS, IMAGE_WIDTH, IMAGE_HEIGHT, THUMB_WIDTH,
 					THUMB_HEIGHT);
 			PhotoDataCallback callback = new PhotoDataCallback(null, null, null);
