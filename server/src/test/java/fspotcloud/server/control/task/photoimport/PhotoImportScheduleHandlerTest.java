@@ -9,7 +9,7 @@ import org.mockito.ArgumentCaptor;
 
 import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.server.control.callback.PhotoDataCallback;
-import fspotcloud.server.control.task.actions.intern.PhotoImportScheduleAction;
+import fspotcloud.server.control.task.actions.intern.PhotoImportAction;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.GetPhotoData;
 import fspotcloud.taskqueuedispatch.NullCallback;
@@ -23,7 +23,7 @@ public class PhotoImportScheduleHandlerTest extends TestCase {
 	TaskQueueDispatch delayed;
 	ControllerDispatchAsync dispatch;
 
-	PhotoImportScheduleHandler scheduler;
+	PhotoImportHandler scheduler;
 	ArgumentCaptor<GetPhotoData> actionCaptor1;
 	ArgumentCaptor<PhotoDataCallback> callbackCaptor1;
 	ArgumentCaptor<NullCallback> serverCallbackCaptor;
@@ -34,7 +34,7 @@ public class PhotoImportScheduleHandlerTest extends TestCase {
 		super.setUp();
 		delayed = mock(TaskQueueDispatch.class);
 		dispatch = mock(ControllerDispatchAsync.class);
-		scheduler = new PhotoImportScheduleHandler( MAX_TICKS, MAX_PHOTO_TICKS,"1024x768",
+		scheduler = new PhotoImportHandler( MAX_TICKS, MAX_PHOTO_TICKS,"1024x768",
 				"512x384",  dispatch ,delayed);
 		actionCaptor1 = ArgumentCaptor.forClass(GetPhotoData.class);
 		callbackCaptor1 = ArgumentCaptor.forClass(PhotoDataCallback.class);
@@ -42,20 +42,20 @@ public class PhotoImportScheduleHandlerTest extends TestCase {
 	}
 
 	public void testWORecursingSchedulePhotoImport() throws DispatchException {
-		scheduler.execute(new PhotoImportScheduleAction(TAG_ID, "", 0, MAX_PHOTO_TICKS), null);
+		scheduler.execute(new PhotoImportAction(TAG_ID, null, 0, MAX_PHOTO_TICKS), null);
 		verify(dispatch).execute(actionCaptor1.capture(), callbackCaptor1.capture());
 		assertEquals(MAX_PHOTO_TICKS, actionCaptor1.getValue().getCount());
 	}
 	
 	public void testSchedulePhotoImport() throws DispatchException {
-		scheduler.execute(new PhotoImportScheduleAction(TAG_ID, "", 0, 9), null);
+		scheduler.execute(new PhotoImportAction(TAG_ID, null, 0, 9), null);
 		verify(dispatch, times(MAX_TICKS)).execute(actionCaptor1.capture(), callbackCaptor1.capture());
 		assertEquals(MAX_PHOTO_TICKS, actionCaptor1.getAllValues().get(0).getCount());
 		assertEquals(MAX_PHOTO_TICKS, actionCaptor1.getAllValues().get(1).getCount());
-		ArgumentCaptor<PhotoImportScheduleAction> captor = ArgumentCaptor.forClass(PhotoImportScheduleAction.class);
+		ArgumentCaptor<PhotoImportAction> captor = ArgumentCaptor.forClass(PhotoImportAction.class);
 		
 		verify(delayed).execute(captor.capture(), serverCallbackCaptor.capture());
-		PhotoImportScheduleAction serverAction = captor.getValue();
+		PhotoImportAction serverAction = captor.getValue();
 		
 		assertEquals(TAG_ID, serverAction.getTagId());
 		assertEquals(MAX_TICKS * MAX_PHOTO_TICKS, serverAction.getOffset());

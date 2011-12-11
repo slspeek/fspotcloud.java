@@ -6,7 +6,7 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 import org.mockito.ArgumentCaptor;
 
-import fspotcloud.server.control.task.actions.intern.PhotoImportScheduleAction;
+import fspotcloud.server.control.task.actions.intern.PhotoImportAction;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.server.model.tag.TagDO;
 import fspotcloud.shared.dashboard.actions.ImportTag;
@@ -23,7 +23,7 @@ public class ImportTagHandlerTest extends TestCase {
 	ImportTagHandler handler;
 	ImportTag action = new ImportTag(TAG_ID, PREVIOUS_COUNT);
 	TagDO tag;
-	ArgumentCaptor<PhotoImportScheduleAction> actionCaptor;
+	ArgumentCaptor<PhotoImportAction> actionCaptor;
 	ArgumentCaptor<SerializableAsyncCallback> callbackCaptor;
 
 	protected void setUp() throws Exception {
@@ -35,14 +35,14 @@ public class ImportTagHandlerTest extends TestCase {
 		tag.setId(TAG_ID);
 		tag.setCount(COUNT);
 		when(tagManager.getById(TAG_ID)).thenReturn(tag);
-		actionCaptor = ArgumentCaptor.forClass(PhotoImportScheduleAction.class);
+		actionCaptor = ArgumentCaptor.forClass(PhotoImportAction.class);
 		callbackCaptor = ArgumentCaptor.forClass(SerializableAsyncCallback.class);
 	}
 
 	public void testExecute() throws DispatchException {
 		handler.execute(action, null);
 		verify(dispatch).execute(actionCaptor.capture(), callbackCaptor.capture());
-		PhotoImportScheduleAction action = actionCaptor.getValue();
+		PhotoImportAction action = actionCaptor.getValue();
 		assertEquals(TAG_ID, action.getTagId());
 		
 		verify(tagManager).save(tag);
@@ -52,7 +52,7 @@ public class ImportTagHandlerTest extends TestCase {
 		tag.setImportIssued(true);
 		handler.execute(action, null);
 		verify(dispatch).execute(actionCaptor.capture(), callbackCaptor.capture());
-		PhotoImportScheduleAction action = actionCaptor.getValue();
+		PhotoImportAction action = actionCaptor.getValue();
 		assertEquals(TAG_ID, action.getTagId());
 		//verifyNoMoreInteractions(manager);
 	}
