@@ -18,6 +18,7 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
 import fspotcloud.peer.ImageData;
+import fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import fspotcloud.shared.peer.rpc.actions.PhotoData;
 import fspotcloud.shared.peer.rpc.actions.TagData;
 
@@ -93,9 +94,14 @@ public class Data {
 		List<PhotoData> result = new ArrayList<PhotoData>();
 		Connection conn = getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT id, description, time, default_version_id "
-				+ "FROM photos, photo_tags WHERE photos.id=photo_tags.photo_id AND photo_tags.tag_id=\"" + tagId + "\"  ORDER BY id LIMIT " + count + " OFFSET "
-				+ offset);
+		ResultSet rs = stmt
+				.executeQuery("SELECT id, description, time, default_version_id "
+						+ "FROM photos, photo_tags WHERE photos.id=photo_tags.photo_id AND photo_tags.tag_id=\""
+						+ tagId
+						+ "\"  ORDER BY id LIMIT "
+						+ count
+						+ " OFFSET "
+						+ offset);
 		while (rs.next()) {
 			String id = rs.getString(1);
 			String desc = rs.getString(2);
@@ -105,9 +111,28 @@ public class Data {
 			date.setTime(time * 1000);
 			List<String> tagList = getTagsForPhoto(Integer.valueOf(id));
 			URL url = getImageURL(id);
-			byte[] image = imageData.getScaledImageData(url, new Dimension(w,h));
-			byte[] thumb = imageData.getScaledImageData(url, new Dimension(tw, th));
-			result.add(new PhotoData(id, desc, date, image, thumb,tagList, version));
+			byte[] image = imageData.getScaledImageData(url,
+					new Dimension(w, h));
+			byte[] thumb = imageData.getScaledImageData(url, new Dimension(tw,
+					th));
+			result.add(new PhotoData(id, desc, date, image, thumb, tagList,
+					version));
+		}
+		rs.close();
+		conn.close();
+		return result;
+	}
+
+	public List<String> getPhotoKeysInTag(String tagId) throws Exception {
+		List<String> result = new ArrayList<String>();
+		Connection conn = getConnection();
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt
+				.executeQuery("SELECT id FROM photos, photo_tags WHERE photos.id=photo_tags.photo_id AND photo_tags.tag_id=\""
+						+ tagId + "\"");
+		while (rs.next()) {
+			String id = rs.getString(1);
+			result.add(id);
 		}
 		rs.close();
 		conn.close();
@@ -203,6 +228,92 @@ public class Data {
 		rs.close();
 		conn.close();
 		throw new IllegalStateException();
+	}
+
+	public List<PhotoData> getPhotoData(ImageSpecs imageSpecs,
+			List<String> imageKeys) throws SQLException {
+		List<PhotoData> result = new ArrayList<PhotoData>();
+		for (String imageKey : imageKeys) {
+			Connection conn = null;
+			ResultSet rs = null;
+			try {
+				conn = getConnection();
+				Statement stmt = conn.createStatement();
+				rs = stmt
+						.executeQuery("SELECT id, description, time, default_version_id "
+								+ "FROM photos WHERE id=\"" + imageKey + "\"");
+				while (rs.next()) {
+					String id = rs.getString(1);
+					String desc = rs.getString(2);
+					long time = rs.getLong(3);
+					int version = rs.getInt(4);
+					Date date = new Date();
+					date.setTime(time * 1000);
+					List<String> tagList = getTagsForPhoto(Integer.valueOf(id));
+					URL url = getImageURL(id);
+					byte[] image = imageData.getScaledImageData(
+							url,
+							new Dimension(imageSpecs.getWidth(), imageSpecs
+									.getHeight()));
+					byte[] thumb = imageData.getScaledImageData(url,
+							new Dimension(imageSpecs.getThumbWidth(),
+									imageSpecs.getThumbHeight()));
+					result.add(new PhotoData(id, desc, date, image, thumb,
+							tagList, version));
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				rs.close();
+				conn.close();
+			}
+		}
+		return result;
+	}
+
+	public int getPhotoDefaultVersion(String photoId) throws SQLException {
+		Connection conn = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+			rs = stmt
+					.executeQuery("SELECT id, description, time, default_version_id "
+							+ "FROM photos WHERE id=\"" + photoId + "\"");
+			while (rs.next()) {
+				int version = rs.getInt(4);
+				return version;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			rs.close();
+			conn.close();
+		}
+		return -1;
+
+	}
+
+	public boolean isPhotoInTag(String tagId, String photoId)
+			throws SQLException {
+		boolean result = false;
+		Connection conn = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT photo_id, tag_id "
+					+ "FROM photo_tags WHERE photo_id=\"" + photoId
+					+ "\" AND tag_id=\"" + tagId + "\"");
+			if (rs.next()) {
+				result = true;
+			}
+		} catch (Exception e) {
+
+		}
+		return result;
 	}
 
 }

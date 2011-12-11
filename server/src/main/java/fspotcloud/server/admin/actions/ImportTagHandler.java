@@ -2,28 +2,28 @@ package fspotcloud.server.admin.actions;
 
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
-import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 import com.google.inject.Inject;
 
-import fspotcloud.server.control.task.actions.intern.PhotoImportAction;
+import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import fspotcloud.server.control.callback.TagUpdateInstructionsCallback;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.dashboard.actions.ImportTag;
 import fspotcloud.shared.dashboard.actions.VoidResult;
-import fspotcloud.taskqueuedispatch.NullCallback;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import fspotcloud.shared.peer.rpc.actions.GetTagUpdateInstructionsAction;
 
 public class ImportTagHandler extends
 		SimpleActionHandler<ImportTag, VoidResult> {
 
 	final private Tags tagManager;
-	final private TaskQueueDispatch dispatchAsync;
+	final private ControllerDispatchAsync dispatchAsync;
 
 	@Inject
-	public ImportTagHandler(Tags tagManager, TaskQueueDispatch dispatchAsync) {
+	public ImportTagHandler(Tags tagManager,
+			ControllerDispatchAsync dispatchAsync) {
 		super();
 		this.tagManager = tagManager;
 		this.dispatchAsync = dispatchAsync;
@@ -39,10 +39,10 @@ public class ImportTagHandler extends
 				tag.setImportIssued(true);
 				tagManager.save(tag);
 			}
-			Action<VoidResult> internAction = new PhotoImportAction(
-					tagId, tag.getCachedPhotoList(), action.getPreviousCount(),
-					tag.getCount() - action.getPreviousCount());
-			dispatchAsync.execute(internAction, new NullCallback<VoidResult>());
+			GetTagUpdateInstructionsAction peerAction = new GetTagUpdateInstructionsAction(
+					tagId, tag.getCachedPhotoList());
+			TagUpdateInstructionsCallback callback = new TagUpdateInstructionsCallback(tagId, null);
+			dispatchAsync.execute(peerAction, callback);
 
 		} catch (Exception e) {
 			throw new ActionException(e);

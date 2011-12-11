@@ -1,6 +1,7 @@
 package fspotcloud.shared.peer.rpc.actions;
 
 import java.io.Serializable;
+import java.util.List;
 
 import net.customware.gwt.dispatch.shared.Action;
 
@@ -8,58 +9,21 @@ public class GetPhotoData implements Action<PhotoDataResult>, Serializable {
 
 	private static final long serialVersionUID = 3730836943695700527L;
 
-	private String tagId;
-	private String minKey;
-	private int offset;
-	private int count;
-	private int bigWidth;
-	private int bigHeight;
-	private int thumbWidth;
-	private int thumbHeigth;
-
-	public GetPhotoData(String tagId, String minKey, int offset, int count,
-			int bigWidth, int bigHeight, int thumbWidth, int thumbHeigth) {
+	final private ImageSpecs imageSpecs;
+	final List<String> imageKeys;
+	
+	public GetPhotoData(ImageSpecs imageSpecs, List<String> imageKeys) {
 		super();
-		this.tagId = tagId;
-		this.minKey = minKey;
-		this.offset = offset;
-		this.count = count;
-		this.bigWidth = bigWidth;
-		this.bigHeight = bigHeight;
-		this.thumbWidth = thumbWidth;
-		this.thumbHeigth = thumbHeigth;
+		this.imageSpecs = imageSpecs;
+		this.imageKeys = imageKeys;
 	}
 
-	public String getMinKey() {
-		return minKey;
+	public ImageSpecs getImageSpecs() {
+		return imageSpecs;
 	}
 
-	public String getTagId() {
-		return tagId;
-	}
-
-	public int getOffset() {
-		return offset;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public int getBigWidth() {
-		return bigWidth;
-	}
-
-	public int getBigHeight() {
-		return bigHeight;
-	}
-
-	public int getThumbWidth() {
-		return thumbWidth;
-	}
-
-	public int getThumbHeigth() {
-		return thumbHeigth;
+	public List<String> getImageKeys() {
+		return imageKeys;
 	}
 
 }

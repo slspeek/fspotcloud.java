@@ -27,10 +27,7 @@ public class GetPhotoDataHandler extends
 			throws DispatchException {
 		PhotoDataResult result;
 		try {
-			result = new PhotoDataResult(data.getPhotoData(action.getTagId(),
-					action.getOffset(), action.getCount(),
-					action.getBigWidth(), action.getBigHeight(),
-					action.getThumbWidth(), action.getThumbHeigth()));
+			result = new PhotoDataResult(data.getPhotoData(action.getImageSpecs(), action.getImageKeys()));
 		} catch (Exception e) {
 			throw new ActionException(e);
 		}
