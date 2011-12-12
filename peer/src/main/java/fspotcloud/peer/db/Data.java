@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.inject.Inject;
@@ -24,18 +25,16 @@ import fspotcloud.shared.peer.rpc.actions.TagData;
 
 public class Data {
 
-	@SuppressWarnings("unused")
 	final static private Logger log = Logger.getLogger(Data.class.getName());
 
 	static {
 		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.SEVERE, "Driver not found", e);
 		}
 	}
-	private final String jdbcURL;
+	private String jdbcURL;
 	private final String photoDirectoryOverride;
 	private final String photoDirectoryOriginalPath;
 	private final ImageData imageData = new ImageData();
@@ -46,6 +45,11 @@ public class Data {
 		this.photoDirectoryOverride = System.getProperty("photo.dir.override");
 		this.photoDirectoryOriginalPath = System
 				.getProperty("photo.dir.original");
+	}
+
+	public void setJDBCUrl(String jdbcURL) {
+		log.info("setting: " + jdbcURL);
+		this.jdbcURL = jdbcURL;
 	}
 
 	private Connection getConnection() throws SQLException {
@@ -193,7 +197,7 @@ public class Data {
 			url = url.replaceFirst(photoDirectoryOriginalPath,
 					photoDirectoryOverride);
 		}
-		// log.info("URL-String: " + url);
+		//log.info("URL-String: " + url);
 		return new URL(url);
 	}
 

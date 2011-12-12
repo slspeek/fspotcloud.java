@@ -48,15 +48,6 @@ public class PhotoUpdateHandlerTest extends MockitoTestCase {
 		action = new PhotoUpdateAction(list);
 	}
 
-	public void testExecuteBase() throws DispatchException {
-		handler.execute(action, null);
-		verifyNoMoreInteractions(recursive);
-		verify(controllerAsync).execute(captorAction.capture(),
-				captorCallback.capture());
-		GetPhotoData request = captorAction.getValue();
-		assertEquals(1, request.getImageKeys().size());
-	}
-	
 	public void testExecuteRecursive() throws DispatchException {
 		PhotoUpdate update = new PhotoUpdate("1");
 		update = new PhotoUpdate("1");
@@ -146,6 +137,10 @@ public class PhotoUpdateHandlerTest extends MockitoTestCase {
 		List<GetPhotoData> request = captorAction.getAllValues();
 		assertEquals(MAX_PHOTO_TICKS, request.get(0).getImageKeys().size());
 		assertEquals("1", request.get(0).getImageKeys().get(0));
+		assertEquals("2", request.get(0).getImageKeys().get(1));
+		assertEquals("3", request.get(0).getImageKeys().get(2));
+		assertEquals("4", request.get(1).getImageKeys().get(0));
+		assertEquals("5", request.get(1).getImageKeys().get(1));
 		
 	}
 
