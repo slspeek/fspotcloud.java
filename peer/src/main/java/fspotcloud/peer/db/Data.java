@@ -58,14 +58,22 @@ public class Data {
 	}
 
 	public int getCount(String kind) throws SQLException {
-		Connection conn = getConnection();
-		Statement stmt = conn.createStatement();
+		Connection conn = null;
 		int result;
-		ResultSet rs = stmt.executeQuery("SELECT count(id) FROM " + kind);
-		if (rs.next()) {
-			result = rs.getInt(1);
-		} else {
-			throw new SQLException("Result for count query was empty");
+		try {
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+
+			ResultSet rs = stmt.executeQuery("SELECT count(id) FROM " + kind);
+			if (rs.next()) {
+				result = rs.getInt(1);
+			} else {
+				throw new SQLException("Result for count query was empty");
+			}
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
 		}
 		return result;
 	}
@@ -75,71 +83,93 @@ public class Data {
 	}
 
 	public List<TagData> getTagData(int offset, int limit) throws SQLException {
-		Connection conn = getConnection();
-		Statement stmt = conn.createStatement();
-		List<TagData> tagList = new ArrayList<TagData>();
-		ResultSet rs = stmt
-				.executeQuery("SELECT id, name, category_id FROM tags ORDER BY id LIMIT "
-						+ limit + " OFFSET " + offset);
-		while (rs.next()) {
-			String tagId = rs.getString(1);
-			String tagName = rs.getString(2);
-			String parentId = rs.getString(3);
-			int photoCount = getPhotoCountForTag(Integer.valueOf(tagId));
-			tagList.add(new TagData(tagId, tagName, parentId, photoCount));
+		Connection conn = null;
+		ResultSet rs = null;
+		List<TagData> tagList;
+		try {
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+			tagList = new ArrayList<TagData>();
+			rs = stmt
+					.executeQuery("SELECT id, name, category_id FROM tags ORDER BY id LIMIT "
+							+ limit + " OFFSET " + offset);
+			while (rs.next()) {
+				String tagId = rs.getString(1);
+				String tagName = rs.getString(2);
+				String parentId = rs.getString(3);
+				int photoCount = getPhotoCountForTag(Integer.valueOf(tagId));
+				tagList.add(new TagData(tagId, tagName, parentId, photoCount));
+			}
+		} finally {
+			closeAll(conn, rs);
 		}
-		rs.close();
-		conn.close();
 		return tagList;
+	}
+
+	private void closeAll(Connection conn, ResultSet rs) throws SQLException {
+		if (rs != null) {
+			rs.close();
+		}
+		if (conn != null) {
+			conn.close();
+		}
 	}
 
 	public List<PhotoData> getPhotoData(String tagId, int offset, int count,
 			int w, int h, int tw, int th) throws Exception {
 		List<PhotoData> result = new ArrayList<PhotoData>();
-		Connection conn = getConnection();
-		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt
-				.executeQuery("SELECT id, description, time, default_version_id "
-						+ "FROM photos, photo_tags WHERE photos.id=photo_tags.photo_id AND photo_tags.tag_id=\""
-						+ tagId
-						+ "\"  ORDER BY id LIMIT "
-						+ count
-						+ " OFFSET "
-						+ offset);
-		while (rs.next()) {
-			String id = rs.getString(1);
-			String desc = rs.getString(2);
-			long time = rs.getLong(3);
-			int version = rs.getInt(4);
-			Date date = new Date();
-			date.setTime(time * 1000);
-			List<String> tagList = getTagsForPhoto(Integer.valueOf(id));
-			URL url = getImageURL(id);
-			byte[] image = imageData.getScaledImageData(url,
-					new Dimension(w, h));
-			byte[] thumb = imageData.getScaledImageData(url, new Dimension(tw,
-					th));
-			result.add(new PhotoData(id, desc, date, image, thumb, tagList,
-					version));
+		Connection conn = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+			rs = stmt
+					.executeQuery("SELECT id, description, time, default_version_id "
+							+ "FROM photos, photo_tags WHERE photos.id=photo_tags.photo_id AND photo_tags.tag_id=\""
+							+ tagId
+							+ "\"  ORDER BY id LIMIT "
+							+ count
+							+ " OFFSET " + offset);
+			while (rs.next()) {
+				String id = rs.getString(1);
+				String desc = rs.getString(2);
+				long time = rs.getLong(3);
+				int version = rs.getInt(4);
+				Date date = new Date();
+				date.setTime(time * 1000);
+				List<String> tagList = getTagsForPhoto(Integer.valueOf(id));
+				URL url = getImageURL(id);
+				byte[] image = imageData.getScaledImageData(url, new Dimension(
+						w, h));
+				byte[] thumb = imageData.getScaledImageData(url, new Dimension(
+						tw, th));
+				result.add(new PhotoData(id, desc, date, image, thumb, tagList,
+						version));
+			}
+		} finally {
+			closeAll(conn, rs);
 		}
-		rs.close();
-		conn.close();
 		return result;
 	}
 
 	public List<String> getPhotoKeysInTag(String tagId) throws Exception {
 		List<String> result = new ArrayList<String>();
-		Connection conn = getConnection();
-		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt
-				.executeQuery("SELECT id FROM photos, photo_tags WHERE photos.id=photo_tags.photo_id AND photo_tags.tag_id=\""
-						+ tagId + "\"");
-		while (rs.next()) {
-			String id = rs.getString(1);
-			result.add(id);
+		Connection conn = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+
+			rs = stmt
+					.executeQuery("SELECT id FROM photos, photo_tags WHERE photos.id=photo_tags.photo_id AND photo_tags.tag_id=\""
+							+ tagId + "\"");
+			while (rs.next()) {
+				String id = rs.getString(1);
+				result.add(id);
+			}
+		} finally {
+			closeAll(conn, rs);
 		}
-		rs.close();
-		conn.close();
 		return result;
 	}
 
@@ -171,49 +201,56 @@ public class Data {
 	public URL getImageURL(String photoId) throws SQLException,
 			MalformedURLException {
 		String url = null;
-		Connection conn = getConnection();
-		Statement stmt = conn.createStatement();
-		String query = "SELECT default_version_id, base_uri, filename "
-				+ "FROM photos WHERE id = " + photoId;
-		ResultSet rs = stmt.executeQuery(query);
-		if (rs.next()) {
-			int version = rs.getInt(1);
-			if (version == 1) {
-				url = rs.getString(2) + "/" + rs.getString(3);
-			} else {
-				stmt = conn.createStatement();
-				query = "SELECT base_uri, filename "
-						+ "FROM photo_versions WHERE photo_id =" + photoId
-						+ " AND version_id=" + version;
-				rs = stmt.executeQuery(query);
-				if (rs.next()) {
-					url = rs.getString(1) + "/" + rs.getString(2);
+		Connection conn = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+			String query = "SELECT default_version_id, base_uri, filename "
+					+ "FROM photos WHERE id = " + photoId;
+			rs = stmt.executeQuery(query);
+			if (rs.next()) {
+				int version = rs.getInt(1);
+				if (version == 1) {
+					url = rs.getString(2) + "/" + rs.getString(3);
+				} else {
+					stmt = conn.createStatement();
+					query = "SELECT base_uri, filename "
+							+ "FROM photo_versions WHERE photo_id =" + photoId
+							+ " AND version_id=" + version;
+					rs = stmt.executeQuery(query);
+					if (rs.next()) {
+						url = rs.getString(1) + "/" + rs.getString(2);
+					}
 				}
 			}
+		} finally {
+			closeAll(conn, rs);
 		}
-		rs.close();
-		conn.close();
 		if (photoDirectoryOverride != null) {
 			url = url.replaceFirst(photoDirectoryOriginalPath,
 					photoDirectoryOverride);
 		}
-		//log.info("URL-String: " + url);
+		// log.info("URL-String: " + url);
 		return new URL(url);
 	}
 
 	private List<String> getTagsForPhoto(int id) throws SQLException {
-		Connection conn = getConnection();
-		Statement stmt = conn.createStatement();
+		Connection conn = null;
+		ResultSet rs = null;
 		List<String> tagList = new ArrayList<String>();
-		ResultSet rs = stmt.executeQuery("SELECT tag_id, photo_id "
-				+ "FROM photo_tags WHERE photo_id=" + String.valueOf(id));
-		while (rs.next()) {
-			String tagId = rs.getString(1);
-			tagList.add(tagId);
+		try {
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT tag_id, photo_id "
+					+ "FROM photo_tags WHERE photo_id=" + String.valueOf(id));
+			while (rs.next()) {
+				String tagId = rs.getString(1);
+				tagList.add(tagId);
+			}
+		} finally {
+			closeAll(conn, rs);
 		}
-		rs.close();
-		conn.close();
-
 		return tagList;
 	}
 
