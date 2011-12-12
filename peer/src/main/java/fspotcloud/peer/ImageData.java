@@ -45,8 +45,12 @@ public class ImageData {
 
 	private String getCommand(String path, int width, int height) {
 		String cmd = "/usr/bin/convert -auto-orient  -quality 50 -compress JPEG -geometry  "
-				+ width + "x" + height + " " + path + " -";
+				+ width + "x" + height + " " + escape(path) + " -";
 		return cmd;
+	}
+	
+	private String escape(String path) {
+		return path.replaceAll("\\(", "\\\\(").replaceAll("\\)", "\\\\)");
 	}
 	
 	public String getExifData(URL url) throws URISyntaxException, IOException {
