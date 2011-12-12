@@ -62,8 +62,8 @@ public class DataTest extends TestCase {
 
 	public final void testGetImageURL() throws MalformedURLException,
 			SQLException {
-		URL url = data.getImageURL("20");
-		assertEquals("file:/home/steven/Photos/2010/06/22/img_0859-1.jpg", String.valueOf(url));
+		String url = data.getImageURL("20");
+		assertEquals("file:///home/steven/Photos/2010/06/22/img_0859-1.jpg", String.valueOf(url));
 		
 	}
 	
