@@ -21,6 +21,7 @@ import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
 public class PhotoUpdateHandler extends
 		SimpleActionHandler<PhotoUpdateAction, VoidResult> {
+	@SuppressWarnings("unused")
 	final static private Logger log = Logger.getLogger(PhotoUpdateHandler.class
 			.getName());
 	final private int MAX_DATA_TICKS;
@@ -54,11 +55,8 @@ public class PhotoUpdateHandler extends
 				/ (double) MAX_PHOTO_TICKS);
 		if (needToScheduleCount > MAX_DATA_TICKS) {
 			countWeWillDo = MAX_DATA_TICKS;
-			List<PhotoUpdate> copy = new ArrayList<PhotoUpdate>();
-			copy.addAll(updates.subList(countWeWillDo * MAX_PHOTO_TICKS, size));
-			log.info("Next list" + copy);
-			dispatchAsync.execute(new PhotoUpdateAction(copy));
-			log.info("After scheduling");
+			dispatchAsync.execute(new PhotoUpdateAction(updates.subList(
+					countWeWillDo * MAX_PHOTO_TICKS, size)));
 		} else {
 			countWeWillDo = needToScheduleCount;
 		}
@@ -72,7 +70,7 @@ public class PhotoUpdateHandler extends
 				PhotoUpdate photoUpdate = updates.get(j);
 				imageKeys.add(photoUpdate.getPhotoId());
 			}
-			log.info("Doing our part " + imageKeys);
+			// log.info("Doing our part " + imageKeys);
 			GetPhotoData botAction = new GetPhotoData(imageSpecs, imageKeys);
 			PhotoDataCallback callback = new PhotoDataCallback(null, null, null);
 			controllerDispatch.execute(botAction, callback);

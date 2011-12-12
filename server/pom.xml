@@ -5,11 +5,11 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-7.5.7</version>
+		<version>0.40-7.5.8</version>
 	</parent>
 	<groupId>fspotcloud</groupId>
 	<artifactId>server</artifactId>
-	<version>0.40-7.5.7</version>
+	<version>0.40-7.5.8</version>
 
 	<name>F-SpotCloud Server Component</name>
 	<description>The controller and data reading</description>
@@ -122,20 +122,20 @@
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>controller</artifactId>
-			<version>0.40-7.5.7</version>
+			<version>0.40-7.5.8</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>gae-command</artifactId>
-			<version>0.40-7.5.7</version>
+			<version>0.40-7.5.8</version>
 			<classifier>special</classifier>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>fspotcloud</groupId>
 			<artifactId>test-util</artifactId>
-			<version>0.40-7.5.7</version>
+			<version>0.40-7.5.8</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -154,6 +154,12 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<!-- <resources>
+			<resource>
+				<directory>src/test/java</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources> -->
 		<plugins>
 			<!-- To include the test-jar for cloudcover -->
 			<plugin>
