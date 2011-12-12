@@ -11,7 +11,7 @@ public class FSpotCloudModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bind(Integer.class).annotatedWith(Names.named("maxTicks")).toInstance(
-				new Integer(2));
+				new Integer(100));
 	}
 
 	@Provides

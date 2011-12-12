@@ -12,7 +12,7 @@ public class TaskModule extends AbstractModule {
 		bind(ImageSpecs.class).annotatedWith(Names.named("defaultImageSpecs"))
 				.toInstance(new ImageSpecs(1024, 768, 512, 378));
 		bind(Integer.class).annotatedWith(Names.named("maxPhotoTicks"))
-				.toInstance(2);
+				.toInstance(7);
 	}
 
 }
