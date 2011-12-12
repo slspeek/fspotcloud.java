@@ -15,10 +15,12 @@ public class ImageDataTest extends TestCase {
 	private static final Logger log = Logger.getLogger(ImageDataTest.class
 			.getName());
 	private ImageData target;
+	String cwd;
 	
 	protected void setUp() throws Exception {
 		super.setUp();
 		target = new ImageData();
+		cwd = System.getProperty("user.dir");
 	}
 
 	protected void tearDown() throws Exception {
@@ -26,9 +28,11 @@ public class ImageDataTest extends TestCase {
 	}
 
 	public final void testGetScaledImageData() throws Exception {
-		URL url = ClassLoader.getSystemResource("images/img_0659.jpg");
+		String imgPath = "/src/test/resources/images/img_0659 (Gewijzigd).jpg";
+		String path = cwd + imgPath;
+		System.out.println(path);
 		Dimension size = new Dimension(200, 100);
-		byte[] data = target.getScaledImageData(url, size);
+		byte[] data = target.getScaledImageData(path, size);
 		InputStream dataStream = new ByteArrayInputStream(data);
 		BufferedImage img = ImageIO.read(dataStream);
 		int w = img.getWidth();
@@ -38,9 +42,9 @@ public class ImageDataTest extends TestCase {
 	}
 
 	public final void testGetScaledImageDataPortrait() throws Exception {
-		URL url = ClassLoader.getSystemResource("Photos/2010/06/04/Mac-classic.jpg");
+		String urlString = cwd + "/src/test/resources/Photos/2010/06/04/Mac-classic.jpg";
 		Dimension size = new Dimension(200, 100);
-		byte[] data = target.getScaledImageData(url, size);
+		byte[] data = target.getScaledImageData(urlString, size);
 		InputStream dataStream = new ByteArrayInputStream(data);
 		BufferedImage img = ImageIO.read(dataStream);
 		int w = img.getWidth();
@@ -49,10 +53,10 @@ public class ImageDataTest extends TestCase {
 		assertEquals(100, h);
 	}
 
-	public final void testExifDataPortrait() throws Exception {
-		URL url = ClassLoader.getSystemResource("Photos/2010/06/04/Mac-classic.jpg");
-		String exif = target.getExifData(url);
-		assertNotNull(exif);
-		log.info(exif);
+	public void testEscape() {
+		String subject = "( )";
+		String expected = "\\(\\ \\)";
+		assertEquals(expected, target.escape(subject));
 	}
+	
 }

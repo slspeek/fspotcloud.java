@@ -2,7 +2,6 @@ package fspotcloud.peer.db;
 
 import java.awt.Dimension;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -138,7 +137,7 @@ public class Data {
 				Date date = new Date();
 				date.setTime(time * 1000);
 				List<String> tagList = getTagsForPhoto(Integer.valueOf(id));
-				URL url = getImageURL(id);
+				String url = getImageURL(id);
 				byte[] image = imageData.getScaledImageData(url, new Dimension(
 						w, h));
 				byte[] thumb = imageData.getScaledImageData(url, new Dimension(
@@ -175,11 +174,11 @@ public class Data {
 
 	public Object[] getImageData(String photoId, String width, String height,
 			String imageType) throws Exception {
-		URL url = getImageURL(photoId);
+		String url = getImageURL(photoId);
 		Dimension size = new Dimension(Integer.valueOf(width),
 				Integer.valueOf(height));
 		byte[] imageBytes = imageData.getScaledImageData(url, size);
-		String exif = imageData.getExifData(getImageURL(photoId));
+		String exif = "";
 		// log.info("Exif: " + exif);
 		Object[] params = new Object[] { photoId, exif, imageBytes,
 				Integer.valueOf(imageType) };
@@ -188,17 +187,17 @@ public class Data {
 
 	public Object[] getImageData(String photoId, int width, int height, int type)
 			throws Exception {
-		URL url = getImageURL(photoId);
+		String url = getImageURL(photoId);
 		Dimension size = new Dimension(Integer.valueOf(width),
 				Integer.valueOf(height));
 		byte[] imageBytes = imageData.getScaledImageData(url, size);
-		String exif = imageData.getExifData(getImageURL(photoId));
+		String exif = "";
 		// log.info("Exif: " + exif);
 		Object[] params = new Object[] { photoId, exif, imageBytes, type };
 		return params;
 	}
 
-	public URL getImageURL(String photoId) throws SQLException,
+	public String getImageURL(String photoId) throws SQLException,
 			MalformedURLException {
 		String url = null;
 		Connection conn = null;
@@ -232,7 +231,7 @@ public class Data {
 					photoDirectoryOverride);
 		}
 		// log.info("URL-String: " + url);
-		return new URL(url);
+		return url;
 	}
 
 	private List<String> getTagsForPhoto(int id) throws SQLException {
@@ -291,7 +290,7 @@ public class Data {
 					Date date = new Date();
 					date.setTime(time * 1000);
 					List<String> tagList = getTagsForPhoto(Integer.valueOf(id));
-					URL url = getImageURL(id);
+					String url = getImageURL(id);
 					byte[] image = imageData.getScaledImageData(
 							url,
 							new Dimension(imageSpecs.getWidth(), imageSpecs
