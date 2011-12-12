@@ -91,7 +91,7 @@ public class ServerIntegrationTest extends DatastoreTest {
 		tags.getById("5");
 	}
 
-	public void testPeer() throws DispatchException {
+	public void testSynchronizePeer() throws DispatchException {
 		PeerMetaDataResult result = dispatch.execute(new GetPeerMetaData());
 		assertEquals(28, result.getPhotoCount());
 		assertEquals(5, result.getTagCount());
@@ -116,6 +116,34 @@ public class ServerIntegrationTest extends DatastoreTest {
 				});
 		photos.getById("3");
 
+	}
+	public void testImportFurniture() throws Exception {
+		testImportOffAllTags();
+		controller.execute(new ImportTag("1", 0),
+				new AsyncCallback<VoidResult>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						log.info("On fail " + caught);
+
+					}
+
+					@Override
+					public void onSuccess(VoidResult result) {
+						log.info("On success");
+					}
+
+				});
+		photos.getById("12");
+		photos.getById("13");
+		photos.getById("4");
+		photos.getById("5");
+		photos.getById("7");
+		
+		photos.getById("6");
+		photos.getById("15");
+		photos.getById("16");
+		photos.getById("14");
 	}
 }
 
