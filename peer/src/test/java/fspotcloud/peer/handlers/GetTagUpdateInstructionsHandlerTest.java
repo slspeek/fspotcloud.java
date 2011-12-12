@@ -51,6 +51,16 @@ public class GetTagUpdateInstructionsHandlerTest extends TestCase {
 		assertEquals(0, updates.size());
 	}
 	
+	public void testExecuteFurniture() throws DispatchException {
+		PhotoInfo info = new PhotoInfo("3","",new Date(0));
+		TreeSet<PhotoInfo> set = new TreeSet<PhotoInfo>();
+		set.add(info);
+		action = new GetTagUpdateInstructionsAction("1", set);
+		TagUpdateInstructionsResult result = handler.execute(action, null);
+		List<PhotoUpdate> updates = result.getToBoUpdated();
+		assertEquals(9, updates.size());
+	}
+	
 	public void testExecuteRemoved() throws DispatchException {
 		PhotoInfo info = new PhotoInfo("7","",new Date(0));
 		TreeSet<PhotoInfo> set = new TreeSet<PhotoInfo>();
