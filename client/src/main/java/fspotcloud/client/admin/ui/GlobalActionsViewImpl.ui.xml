@@ -25,7 +25,7 @@
 			<theader>
 				<tr>
 					<td colspan="2">
-						<g:Label  styleName="{style.header-label}" ui:field="headerLabel">Global actions</g:Label>
+						<g:Label  styleName="{style.header-label}" ui:field="headerLabel">Instance information</g:Label>
 					</td>
 				</tr>
 			</theader>
@@ -84,10 +84,10 @@
 				
 				<tr>
 					<td>
-						<g:Label  styleName="{style.property-label}">Delete all labels on the server</g:Label>
+						<g:Label  styleName="{style.property-label}">Remove all labels</g:Label>
 					</td>
 					<td>
-						<g:Button ui:field="deleteAllTagsButton" >Delete all labels</g:Button>
+						<g:Button ui:field="deleteAllTagsButton" >Remove labels</g:Button>
 					</td>
 				</tr>
 				

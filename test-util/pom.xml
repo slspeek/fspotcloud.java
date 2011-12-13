@@ -5,11 +5,11 @@
   <parent>
     <artifactId>fspotcloud</artifactId>
     <groupId>fspotcloud</groupId>
-    <version>0.40-7.5.8</version>
+    <version>0.40-7.5.9</version>
   </parent>
   <groupId>fspotcloud</groupId>
   <artifactId>test-util</artifactId>
-  <version>0.40-7.5.8</version>
+  <version>0.40-7.5.9</version>
   <name>test-util</name>
   <url>http://maven.apache.org</url>
   <properties>

@@ -1,6 +1,8 @@
 package fspotcloud.server.admin.integration;
 
 
+import java.sql.SQLException;
+
 import net.customware.gwt.dispatch.shared.DispatchException;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.shared.dashboard.actions.TagDeleteAll;
@@ -21,7 +23,7 @@ public class PeerServerIntegrationTest extends PeerServerIntegrationBase {
 		assertTagsLoaded("1","2", "3", "4", "5");
 	}
 
-	public void testGetPeerMetaData() throws DispatchException {
+	public void testGetPeerMetaData() throws DispatchException, SQLException {
 		setPeerTestDatabase("photos.db");
 		PeerMetaDataResult result = dispatch.execute(new GetPeerMetaData());
 		assertEquals(28, result.getPhotoCount());

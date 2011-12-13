@@ -52,11 +52,5 @@ public class ImageDataTest extends TestCase {
 		assertEquals(75, w);
 		assertEquals(100, h);
 	}
-
-	public void testEscape() {
-		String subject = "( )";
-		String expected = "\\(\\ \\)";
-		assertEquals(expected, target.escape(subject));
-	}
 	
 }

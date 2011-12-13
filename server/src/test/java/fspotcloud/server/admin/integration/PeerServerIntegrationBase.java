@@ -1,6 +1,7 @@
 package fspotcloud.server.admin.integration;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -69,7 +70,7 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 	public void setUp() throws Exception {
 		super.setUp();
 		String basedir = (new File(".")).getAbsolutePath();
-		System.setProperty("photo.dir.override", "file://" + basedir
+		System.setProperty("photo.dir.override", "file:/" + basedir.substring(0, basedir.length()-2)
 				+ "/../peer/src/test/resources/Photos");
 		System.setProperty("photo.dir.original", "file:///home/steven/Photos");
 		setPeerTestDatabase("photos.db");
@@ -86,7 +87,7 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 		data = injector.getInstance(Data.class);
 	}
 
-	protected void setPeerTestDatabase(String db) {
+	protected void setPeerTestDatabase(String db) throws SQLException {
 		String basedir = (new File(".")).getAbsolutePath();
 		File testDatabase = new File(basedir + "./peer/src/test/resources/"
 				+ db);

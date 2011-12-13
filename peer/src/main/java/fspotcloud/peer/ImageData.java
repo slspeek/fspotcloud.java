@@ -42,7 +42,10 @@ public class ImageData {
 			bas.close();
 		}
 
-		System.out.println("Exit value: " + convert.waitFor());
+		int returnValue = convert.waitFor();
+		if (returnValue != 0) {
+			throw new RuntimeException("convert ran on an error");
+		}
 		byte[] data = bas.toByteArray();
 		return data;
 	}
@@ -61,17 +64,4 @@ public class ImageData {
 		result[9] = "-";
 		return result;
 	}
-
-	// private String[] getCommand(String path, int width, int height) {
-	// String[] result = new String[2];
-	// result[0] = "/bin/ls";
-	// result[1] = path;
-	// return result;
-	// }
-
-	public String escape(String path) {
-		return path.replaceAll("\\(", "\\\\(").replaceAll("\\)", "\\\\)")
-				.replaceAll(" ", "\\\\ ");
-	}
-
 }

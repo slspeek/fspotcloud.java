@@ -50,12 +50,7 @@ public class DataTest extends TestCase {
 		assertEquals(0, result.size());
 	}
 
-	public final void testGetPhotoList() throws Exception {
-		List<PhotoData> result = data.getPhotoData("2", 0, 12, 1024, 768, 512, 384);
-		assertEquals(12, result.size());
-	}
-	
-	public void testGetPhotoKeysForTag() throws Exception {
+		public void testGetPhotoKeysForTag() throws Exception {
 		List<String> result = data.getPhotoKeysInTag("5");
 		assertEquals("3", result.get(0));
 	}
@@ -67,11 +62,6 @@ public class DataTest extends TestCase {
 		
 	}
 	
-	public void testImageData() throws Exception {
-		Object[] args = new Object[] { "1001", "1024", "768", "1" };
-		Object[] result = data.getImageData("20", "1024", "768", "0");
-		assertEquals("20", String.valueOf(result[0]));
-	}
 	
 	public void testIsPhotoInTag() throws Exception {
 		boolean yep = data.isPhotoInTag("5", "3");
