@@ -36,17 +36,24 @@ public class GetTagUpdateInstructionsHandler
 				new ArrayList<PhotoUpdate>(),
 				new ArrayList<PhotoRemovedFromTag>());
 		try {
-			List<String> keysOnThePeer = data.getPhotoKeysInTag(action.getTagId());
+			List<String> keysOnThePeer = data.getPhotoKeysInTag(action
+					.getTagId());
 			for (PhotoInfo photoInfo : action.getPhotosOnServer()) {
-				checkForUpdates(action.getTagId(),photoInfo, result);
+				checkForUpdates(action.getTagId(), photoInfo, result);
 				keysOnThePeer.remove(photoInfo.getId());
 			}
-			for (String key: keysOnThePeer) {
+			for (String key : keysOnThePeer) {
 				PhotoUpdate update = new PhotoUpdate(key);
 				result.getToBoUpdated().add(update);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		if (result.getToBoUpdated().size() > 1000) {
+			List<PhotoUpdate> list = new ArrayList<PhotoUpdate>();
+			list.addAll(result.getToBoUpdated().subList(0, 1000));
+			result.getToBoUpdated().clear();
+			result.getToBoUpdated().addAll(list);
 		}
 		return result;
 	}
@@ -59,9 +66,10 @@ public class GetTagUpdateInstructionsHandler
 				result.getToBoUpdated().add(new PhotoUpdate(id));
 			}
 		} else {
-			result.getToBoRemovedFromTag().add(new PhotoRemovedFromTag(id, tagId));
+			result.getToBoRemovedFromTag().add(
+					new PhotoRemovedFromTag(id, tagId));
 		}
-		
+
 	}
 
 }

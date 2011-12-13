@@ -37,6 +37,7 @@ public class Data {
 	private final String photoDirectoryOverride;
 	private final String photoDirectoryOriginalPath;
 	private final ImageData imageData = new ImageData();
+	private Connection connection;;
 
 	@Inject
 	public Data(@Named("JDBC URL") String jdbcURL) {
@@ -46,14 +47,20 @@ public class Data {
 				.getProperty("photo.dir.original");
 	}
 
-	public void setJDBCUrl(String jdbcURL) {
+	public void setJDBCUrl(String jdbcURL) throws SQLException {
 		log.info("setting: " + jdbcURL);
 		this.jdbcURL = jdbcURL;
+		if (connection != null) {
+			// connection.close();
+			connection = null;
+		}
 	}
 
 	private Connection getConnection() throws SQLException {
-		Connection conn = DriverManager.getConnection(jdbcURL);
-		return conn;
+		if (connection == null) {
+			connection = DriverManager.getConnection(jdbcURL);
+		}
+		return connection;
 	}
 
 	public int getCount(String kind) throws SQLException {
@@ -70,9 +77,7 @@ public class Data {
 				throw new SQLException("Result for count query was empty");
 			}
 		} finally {
-			if (conn != null) {
-				conn.close();
-			}
+
 		}
 		return result;
 	}
@@ -100,55 +105,9 @@ public class Data {
 				tagList.add(new TagData(tagId, tagName, parentId, photoCount));
 			}
 		} finally {
-			closeAll(conn, rs);
-		}
-		return tagList;
-	}
-
-	private void closeAll(Connection conn, ResultSet rs) throws SQLException {
-		if (rs != null) {
 			rs.close();
 		}
-		if (conn != null) {
-			conn.close();
-		}
-	}
-
-	public List<PhotoData> getPhotoData(String tagId, int offset, int count,
-			int w, int h, int tw, int th) throws Exception {
-		List<PhotoData> result = new ArrayList<PhotoData>();
-		Connection conn = null;
-		ResultSet rs = null;
-		try {
-			conn = getConnection();
-			Statement stmt = conn.createStatement();
-			rs = stmt
-					.executeQuery("SELECT id, description, time, default_version_id "
-							+ "FROM photos, photo_tags WHERE photos.id=photo_tags.photo_id AND photo_tags.tag_id=\""
-							+ tagId
-							+ "\"  ORDER BY id LIMIT "
-							+ count
-							+ " OFFSET " + offset);
-			while (rs.next()) {
-				String id = rs.getString(1);
-				String desc = rs.getString(2);
-				long time = rs.getLong(3);
-				int version = rs.getInt(4);
-				Date date = new Date();
-				date.setTime(time * 1000);
-				List<String> tagList = getTagsForPhoto(Integer.valueOf(id));
-				String url = getImageURL(id);
-				byte[] image = imageData.getScaledImageData(url, new Dimension(
-						w, h));
-				byte[] thumb = imageData.getScaledImageData(url, new Dimension(
-						tw, th));
-				result.add(new PhotoData(id, desc, date, image, thumb, tagList,
-						version));
-			}
-		} finally {
-			closeAll(conn, rs);
-		}
-		return result;
+		return tagList;
 	}
 
 	public List<String> getPhotoKeysInTag(String tagId) throws Exception {
@@ -167,34 +126,9 @@ public class Data {
 				result.add(id);
 			}
 		} finally {
-			closeAll(conn, rs);
+			rs.close();
 		}
 		return result;
-	}
-
-	public Object[] getImageData(String photoId, String width, String height,
-			String imageType) throws Exception {
-		String url = getImageURL(photoId);
-		Dimension size = new Dimension(Integer.valueOf(width),
-				Integer.valueOf(height));
-		byte[] imageBytes = imageData.getScaledImageData(url, size);
-		String exif = "";
-		// log.info("Exif: " + exif);
-		Object[] params = new Object[] { photoId, exif, imageBytes,
-				Integer.valueOf(imageType) };
-		return params;
-	}
-
-	public Object[] getImageData(String photoId, int width, int height, int type)
-			throws Exception {
-		String url = getImageURL(photoId);
-		Dimension size = new Dimension(Integer.valueOf(width),
-				Integer.valueOf(height));
-		byte[] imageBytes = imageData.getScaledImageData(url, size);
-		String exif = "";
-		// log.info("Exif: " + exif);
-		Object[] params = new Object[] { photoId, exif, imageBytes, type };
-		return params;
 	}
 
 	public String getImageURL(String photoId) throws SQLException,
@@ -224,7 +158,7 @@ public class Data {
 				}
 			}
 		} finally {
-			closeAll(conn, rs);
+			rs.close();
 		}
 		if (photoDirectoryOverride != null) {
 			url = url.replaceFirst(photoDirectoryOriginalPath,
@@ -248,7 +182,7 @@ public class Data {
 				tagList.add(tagId);
 			}
 		} finally {
-			closeAll(conn, rs);
+			rs.close();
 		}
 		return tagList;
 	}
@@ -262,11 +196,9 @@ public class Data {
 		if (rs.next()) {
 			int count = rs.getInt(1);
 			rs.close();
-			conn.close();
 			return count;
 		}
 		rs.close();
-		conn.close();
 		throw new IllegalStateException();
 	}
 
@@ -279,6 +211,7 @@ public class Data {
 			try {
 				conn = getConnection();
 				Statement stmt = conn.createStatement();
+				log.info("-->" + stmt);
 				rs = stmt
 						.executeQuery("SELECT id, description, time, default_version_id "
 								+ "FROM photos WHERE id=\"" + imageKey + "\"");
@@ -306,7 +239,6 @@ public class Data {
 				e.printStackTrace();
 			} finally {
 				rs.close();
-				conn.close();
 			}
 		}
 		return result;
@@ -330,7 +262,7 @@ public class Data {
 			e.printStackTrace();
 		} finally {
 			rs.close();
-			conn.close();
+
 		}
 		return -1;
 
@@ -352,7 +284,10 @@ public class Data {
 			}
 		} catch (Exception e) {
 
+		} finally {
+			rs.close();
 		}
+
 		return result;
 	}
 

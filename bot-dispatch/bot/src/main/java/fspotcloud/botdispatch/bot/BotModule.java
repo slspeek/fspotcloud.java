@@ -2,6 +2,8 @@ package fspotcloud.botdispatch.bot;
 
 import java.net.URL;
 
+import javax.inject.Singleton;
+
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
 import org.apache.xmlrpc.client.XmlRpcCommonsTransportFactory;
@@ -17,7 +19,7 @@ public class BotModule extends AbstractModule {
 	protected void configure() {
 		bind(BotDispatchServer.class).to(BotDispatchServerImpl.class);
 		bind(Pauser.class).to(PauserImpl.class);
-		bind(RemoteExecutor.class).to(RemoteExecutorImpl.class);
+		bind(RemoteExecutor.class).to(RemoteExecutorImpl.class).in(Singleton.class);
 		bind(String.class).annotatedWith(Names.named("endpoint")).toInstance(
 				"http://" + System.getProperty("endpoint", "localhost:8080") + "/xmlrpc/"
 						+ System.getProperty("bot.secret"));

@@ -1,9 +1,9 @@
 package fspotcloud.botdispatch.bot;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.logging.Logger;
+
+import javax.inject.Inject;
 
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.Action;
@@ -11,8 +11,8 @@ import net.customware.gwt.dispatch.shared.Result;
 
 import org.apache.commons.lang.SerializationUtils;
 
-import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
+
 
 public class CommandWorkerImpl implements CommandWorker {
 
@@ -35,10 +35,6 @@ public class CommandWorkerImpl implements CommandWorker {
 		byte[] data = null;
 		try {
 			Result result = dispatch.execute(action);
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			ObjectOutputStream out = new ObjectOutputStream(bos);
-			out.writeObject(result);
-			out.close();
 			data = SerializationUtils.serialize((Serializable) result);
 		} catch (Exception e) {
 			data = SerializationUtils.serialize(e);

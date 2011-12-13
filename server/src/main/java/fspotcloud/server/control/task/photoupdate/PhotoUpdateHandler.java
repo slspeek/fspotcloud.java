@@ -55,8 +55,10 @@ public class PhotoUpdateHandler extends
 				/ (double) MAX_PHOTO_TICKS);
 		if (needToScheduleCount > MAX_DATA_TICKS) {
 			countWeWillDo = MAX_DATA_TICKS;
-			dispatchAsync.execute(new PhotoUpdateAction(updates.subList(
-					countWeWillDo * MAX_PHOTO_TICKS, size)));
+			List<PhotoUpdate> nextList = new ArrayList<PhotoUpdate>();
+			nextList.addAll(updates.subList(
+					countWeWillDo * MAX_PHOTO_TICKS, size));
+			dispatchAsync.execute(new PhotoUpdateAction(nextList));
 		} else {
 			countWeWillDo = needToScheduleCount;
 		}
