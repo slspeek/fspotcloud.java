@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.SortedSet;
 
 import com.google.appengine.api.datastore.Blob;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -80,9 +81,12 @@ public class PhotoDataCallback implements AsyncCallback<PhotoDataResult>,
 		photo.setThumbLoaded(true);
 		for (String tagId : tags) {
 			Tag tag = tagManager.getById(tagId);
-			tag.getCachedPhotoList().add(
-					new PhotoInfo(photo.getId(), photo.getDescription(), photo
-							.getDate(), photoData.getVersion()));
+			PhotoInfo updatedInfo = new PhotoInfo(photo.getId(), photo.getDescription(), photo
+					.getDate(), photoData.getVersion());
+			SortedSet<PhotoInfo> cachedPhotoList = tag.getCachedPhotoList();
+			cachedPhotoList.remove(updatedInfo);
+			cachedPhotoList.add(
+					updatedInfo);
 			tagManager.save(tag);
 		}
 		return photo;

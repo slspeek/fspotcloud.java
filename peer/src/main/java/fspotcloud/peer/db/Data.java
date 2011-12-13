@@ -211,7 +211,6 @@ public class Data {
 			try {
 				conn = getConnection();
 				Statement stmt = conn.createStatement();
-				log.info("-->" + stmt);
 				rs = stmt
 						.executeQuery("SELECT id, description, time, default_version_id "
 								+ "FROM photos WHERE id=\"" + imageKey + "\"");
@@ -235,8 +234,7 @@ public class Data {
 							tagList, version));
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.log(Level.SEVERE, "getPhotoData: ", e);
 			} finally {
 				rs.close();
 			}
@@ -258,14 +256,12 @@ public class Data {
 				return version;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.log(Level.SEVERE, "getPhotoDefaultVersion: ", e);
 		} finally {
 			rs.close();
 
 		}
 		return -1;
-
 	}
 
 	public boolean isPhotoInTag(String tagId, String photoId)
@@ -283,11 +279,10 @@ public class Data {
 				result = true;
 			}
 		} catch (Exception e) {
-
+			log.log(Level.SEVERE, "isPhotoInTag: ", e);
 		} finally {
 			rs.close();
 		}
-
 		return result;
 	}
 
