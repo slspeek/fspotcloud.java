@@ -1,42 +1,36 @@
 package fspotcloud.test;
 
-import org.openqa.selenium.WebDriver;
+import static fspotcloud.test.Sleep.sleepShort;
 
-import com.google.inject.Provider;
+import javax.inject.Inject;
 
-public class DeleteITest extends SeleniumITestCase {
+import org.junit.Rule;
+import org.junit.Test;
 
-	public DeleteITest(Provider<WebDriver> provider, String baseURL) {
-		super(provider, baseURL);
-		setName("DashboardITest");
-	}
+import com.google.guiceberry.junit4.GuiceBerryRule;
+import com.thoughtworks.selenium.Selenium;
 
-	public DeleteITest() {
-		setName("DashboardITest");
-	}
+public class DeleteITest {
+	@Rule
+	public GuiceBerryRule guiceBerry = new GuiceBerryRule(
+			FSCGuiceberryEnv.class);
 
-	@Override
-	protected void runTest() throws Throwable {
-		testClear();
-	}
+	@Inject
+	Selenium selenium;
+	@Inject
+	LoginBot login;
 
-	public void loginDevAppServer() throws Exception {
-		selenium.open("/Dashboard.html");
-		selenium.waitForPageToLoad("30000");
-		selenium.click("isAdmin");
-		selenium.click("action");
-		selenium.waitForPageToLoad("30000");
-	}
-
+	@Test
 	public void testClear() throws Exception {
-		loginDevAppServer();
+		login.login();
 		selenium.waitForPageToLoad("30000");
 		selenium.click("gwt-debug-delete-all-tags-button");
 		sleepShort();
-		
+
 		selenium.open("/Dashboard.html");
 		selenium.waitForPageToLoad("30000");
 		sleepShort();
 		sleepShort();
 	}
+
 }

@@ -1,34 +1,31 @@
 package fspotcloud.test;
 
-import org.openqa.selenium.WebDriver;
+import static fspotcloud.test.Sleep.sleepShort;
+import static junit.framework.Assert.fail;
 
-import com.google.inject.Provider;
+import javax.inject.Inject;
 
-public class IntersectionDeleteITest extends SeleniumITestCase {
+import org.junit.After;
+import org.junit.Rule;
+import org.junit.Test;
 
-	public IntersectionDeleteITest(Provider<WebDriver> provider, String baseURL) {
-		super(provider, baseURL);
-		setName("IntersectionDeleteITest");
-	}
+import com.google.guiceberry.junit4.GuiceBerryRule;
+import com.thoughtworks.selenium.Selenium;
 
-	public IntersectionDeleteITest() {
-		setName("IntersectionDeleteITest");
-	}
+public class IntersectionDeleteITest {
+	@Rule
+	public GuiceBerryRule guiceBerry = new GuiceBerryRule(
+			FSCGuiceberryEnv.class);
 
-	@Override
-	protected void runTest() throws Throwable {
-		testImport();
-	}
+	@Inject
+	Selenium selenium;
 
-	public void loginDevAppServer() throws Exception {
-		selenium.open("/Dashboard.html");
-		selenium.waitForPageToLoad("30000");
-		selenium.click("isAdmin");
-		selenium.click("action");
-		selenium.waitForPageToLoad("30000");
-	}
+	@Inject
+	LoginBot login;
+	
+	@Test
 	public void testImport() throws Exception {
-		loginDevAppServer();
+		login.login();
 		pressButtonForComputers();
 		pressButtonForPC();
 		sleepShort(15);
@@ -38,7 +35,7 @@ public class IntersectionDeleteITest extends SeleniumITestCase {
 		selenium.waitForPageToLoad("30000");
 		sleepShort(3);
 		String page = selenium.getText("gwt-debug-paging-label");
-		if (! page.contains("1 of 14")) {
+		if (!page.contains("1 of 14")) {
 			fail();
 		}
 		pressButtonForPC();
@@ -49,10 +46,10 @@ public class IntersectionDeleteITest extends SeleniumITestCase {
 		selenium.waitForPageToLoad("30000");
 		selenium.click("gwt-debug-import-tag-button");
 	}
+
 	private void pressButtonForPC() throws InterruptedException {
 		selenium.open("/Dashboard.html#TagPlace:4");
 		selenium.waitForPageToLoad("30000");
-		//import Furniture		
 		selenium.click("gwt-debug-import-tag-button");
 	}
 }

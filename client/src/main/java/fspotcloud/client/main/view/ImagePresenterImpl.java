@@ -55,7 +55,11 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 				DateTimeFormat.getFormat(PredefinedFormat.TIME_MEDIUM).format(info.getDate())  + "(v"+info.getVersion()+")";
 			}
 			imageView.setDescription(date);
-			String url = "/image?id=" + photoId;
+			String versionSuffix = "";
+			if (info.getVersion() != 1) {
+				versionSuffix = "&version=" + info.getVersion();
+			}
+			String url = "/image?id=" + photoId + versionSuffix;
 			url += thumb ? "&thumb" : "";
 			imageView.setImageUrl(url);
 			imageView.adjustSize();

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
@@ -47,6 +48,7 @@ public class Data {
 				.getProperty("photo.dir.original");
 	}
 
+	@VisibleForTesting
 	public void setJDBCUrl(String jdbcURL) throws SQLException {
 		log.info("setting: " + jdbcURL);
 		this.jdbcURL = jdbcURL;

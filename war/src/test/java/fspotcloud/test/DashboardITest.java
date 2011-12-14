@@ -1,34 +1,27 @@
 package fspotcloud.test;
 
-import org.openqa.selenium.WebDriver;
+import javax.inject.Inject;
 
-import com.google.inject.Provider;
+import org.junit.Rule;
+import org.junit.Test;
 
-public class DashboardITest extends SeleniumITestCase {
+import com.google.guiceberry.junit4.GuiceBerryRule;
+import com.thoughtworks.selenium.Selenium;
+import static fspotcloud.test.Sleep.sleepShort;
 
-	public DashboardITest(Provider<WebDriver> provider, String baseURL) {
-		super(provider, baseURL);
-		setName("DashboardITest");
-	}
+public class DashboardITest {
 
-	public DashboardITest() {
-		setName("DashboardITest");
-	}
-
-	@Override
-	protected void runTest() throws Throwable {
-		testImport();
-	}
-
-	public void loginDevAppServer() throws Exception {
-		selenium.open("/Dashboard.html");
-		selenium.waitForPageToLoad("30000");
-		selenium.click("isAdmin");
-		selenium.click("action");
-		selenium.waitForPageToLoad("30000");
-	}
+	@Rule
+	public GuiceBerryRule guiceBerry = new GuiceBerryRule(FSCGuiceberryEnv.class);
+	
+	@Inject
+	Selenium selenium;
+	@Inject
+	LoginBot login;
+	
+	@Test
 	public void testImport() throws Exception {
-		loginDevAppServer();
+		login.login();
 		selenium.waitForPageToLoad("30000");
 		selenium.click("gwt-debug-update-button");
 		sleepShort(9);
