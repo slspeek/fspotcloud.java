@@ -1,25 +1,11 @@
 package fspotcloud.test;
 
-import junit.framework.TestSuite;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
-import org.openqa.selenium.WebDriver;
+@RunWith(Suite.class)
+@Suite.SuiteClasses({ DashboardITest.class, ApplicationActionsITest.class,
+		TabularITest.class, IntersectionDeleteITest.class, DeleteITest.class })
+public class FirefoxLocalSuite {
 
-import com.google.inject.Provider;
-
-public class FirefoxLocalSuite extends WebDriverSuite {
-
-	public static TestSuite suite() {
-		WebDriverSuite suite = new FirefoxLocalSuite();
-		String localUrl = WebDriverSuite.local;
-		Provider<WebDriver> provider = WebDriverSuite.factory.firefoxProvider();
-		suite.addTest(new DashboardITest(provider, localUrl));
-		suite.addTest(new ApplicationActionsITest(provider, localUrl));
-		suite.addTest(new TabularITest(provider, localUrl));
-		suite.addTest(new IntersectionDeleteITest(provider, localUrl));
-		if (System.getProperty("nodelete", "false").equals("false")) {
-			suite.addTest(new DeleteITest(provider, localUrl));
-		}
-		//suite.addTest(new UnImportTagITest(provider, localUrl));
-		return suite;
-	}
 }

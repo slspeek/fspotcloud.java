@@ -1,25 +1,25 @@
 package fspotcloud.test;
 
-import org.openqa.selenium.WebDriver;
+import static fspotcloud.test.Sleep.sleepShort;
 
-import com.google.inject.Provider;
+import javax.inject.Inject;
 
-public class ApplicationActionsITest extends SeleniumITestCase {
+import org.junit.Rule;
+import org.junit.Test;
 
-	public ApplicationActionsITest(Provider<WebDriver> provider, String baseURL) {
-		super(provider, baseURL);
-	}
+import com.google.guiceberry.junit4.GuiceBerryRule;
+import com.thoughtworks.selenium.Selenium;
 
-	public ApplicationActionsITest() {
-	}
+public class ApplicationActionsITest {
 
-	@Override
-	protected void runTest() throws Throwable {
-		testTabular();
-	}
-
-
-	public void testTabular() throws Exception {
+	@Rule
+	public GuiceBerryRule guiceBerry = new GuiceBerryRule(FSCGuiceberryEnv.class);
+	
+	@Inject
+	Selenium selenium;
+	
+	@Test
+	public void showPopups() throws Exception {
 		selenium.open("/");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("gwt-debug-about");

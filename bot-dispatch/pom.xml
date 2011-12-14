@@ -5,11 +5,11 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-7.5.9</version>
+		<version>0.40-7.6.0</version>
 	</parent>
 	<groupId>fspotcloud.bot-dispatch</groupId>
 	<artifactId>bot-dispatch</artifactId>
-	<version>0.40-7.5.9</version>
+	<version>0.40-7.6.0</version>
 	<name>Bot Dispatch</name>
 	<packaging>pom</packaging>
 	<description>GWT-Dispatch extension for bot/controllers</description>
