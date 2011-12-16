@@ -17,7 +17,6 @@ import fspotcloud.server.control.callback.TagDataCallback;
 import fspotcloud.server.control.task.actions.intern.TagImportAction;
 import fspotcloud.shared.peer.rpc.actions.GetTagData;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
-import fspotcloud.test.MockitoTestCase;
 
 public class TagImportHandlerTest {
 

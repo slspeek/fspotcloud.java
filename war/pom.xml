@@ -9,13 +9,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>war</artifactId>
 	<packaging>war</packaging>
-	<name>The packaging of the server code and the GWT-client code</name>
-	<description>The totality of the web application</description>
+	<name>Selenium tests for F-SpotCloud</name>
+	<description>Selenium Tests for all components</description>
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>server</artifactId>
-			<version>${project.version}</version>
 			<type>jar</type>
 			<exclusions>
 				<exclusion>
@@ -27,30 +26,18 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>client</artifactId>
-			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>peer</artifactId>
-			<version>${project.version}</version>
-			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>test-util</artifactId>
-			<version>${project.version}</version>
-			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.jmock</groupId>
-			<artifactId>jmock</artifactId>
-			<version>2.5.1</version>
-			<scope>test</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium</artifactId>
@@ -74,7 +61,6 @@
 			<artifactId>guava-testlib</artifactId>
 			<version>10.0.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -103,7 +89,7 @@
 				</configuration>
 				<executions>
 					<execution>
-						<id>integration-tests</id>
+						<id>selenium-tests</id>
 						<phase>integration-test</phase>
 						<goals>
 							<goal>test</goal>
@@ -115,7 +101,7 @@
 								<exclude>none</exclude>
 							</excludes>
 							<includes>
-								<include>**/*LocalSuite.java</include>
+								<include>**/FirefoxLocalSuite.java</include>
 							</includes>
 						</configuration>
 					</execution>
@@ -194,13 +180,6 @@
 					<webXml>${basedir}/src/main/resources/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
-			<!-- Upload application to the appspot automatically, during release:perform -->
-			<plugin>
-				<artifactId>maven-release-plugin</artifactId>
-				<configuration>
-					<goals>gae:deploy</goals>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
@@ -211,8 +190,7 @@
 						<phase>pre-integration-test</phase>
 						<configuration>
 							<target>
-								<property name="runtime_classpath" refid="maven.runtime.classpath" /><!-- 
-									<exec executable="${basedir}/src/scripts/bash/start_peer.sh"></exec> -->
+								<property name="runtime_classpath" refid="maven.runtime.classpath" />
 								<java
 									jar="${basedir}/../peer/target/peer-${project.version}-jar-with-dependencies.jar"
 									fork="yes" spawn="yes">

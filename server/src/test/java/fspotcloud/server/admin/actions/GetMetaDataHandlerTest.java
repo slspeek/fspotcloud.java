@@ -1,25 +1,22 @@
 package fspotcloud.server.admin.actions;
 
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeMethod;
-import org.testng.Assert;
-import org.testng.AssertJUnit;
-import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.when;
+import static org.testng.AssertJUnit.assertNull;
+import net.customware.gwt.dispatch.shared.DispatchException;
 
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.testng.Assert;
+import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import net.customware.gwt.dispatch.shared.DispatchException;
 import fspotcloud.botdispatch.model.api.Commands;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
 import fspotcloud.shared.admin.GetMetaDataResult;
 import fspotcloud.shared.dashboard.actions.GetMetaData;
-import fspotcloud.test.MockitoTestCase;
-import static org.testng.AssertJUnit.*;
-import static org.mockito.Mockito.*;
 public class GetMetaDataHandlerTest  {
 
 	GetMetaDataHandler handler;

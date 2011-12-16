@@ -1,20 +1,21 @@
 package fspotcloud.server.control.task.tagdelete;
 
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeMethod;
-import org.testng.AssertJUnit;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import fspotcloud.server.control.task.actions.intern.DeleteTags;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
-import fspotcloud.test.MockitoTestCase;
 
 public class DeleteTagsHandlerTest {
 

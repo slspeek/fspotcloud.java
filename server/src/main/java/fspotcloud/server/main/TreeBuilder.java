@@ -1,10 +1,11 @@
-package fspotcloud.server.model.tag;
+package fspotcloud.server.main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fspotcloud.server.model.tag.Filter;
 import fspotcloud.shared.tag.TagNode;
 
 public class TreeBuilder {

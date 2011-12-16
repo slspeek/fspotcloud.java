@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableList;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import fspotcloud.server.main.TreeBuilder;
 import fspotcloud.shared.tag.TagNode;
 
 public class TreeBuilderTest extends TestCase {

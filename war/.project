@@ -1,6 +1,6 @@
 <projectDescription>
   <name>war</name>
-  <comment>The totality of the web application. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <comment>Selenium Tests for all components. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects>
     <project>appengine-deps</project>
     <project>bot</project>
