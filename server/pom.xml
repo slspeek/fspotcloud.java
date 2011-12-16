@@ -17,53 +17,39 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>rpc</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>model-api</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>model</artifactId>
-			<version>${project.version}</version>
-
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}.deps</groupId>
 			<artifactId>guice-deps</artifactId>
-			<version>${project.version}</version>
 			<type>pom</type>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}.deps</groupId>
 			<artifactId>appengine-deps</artifactId>
-			<version>${project.version}</version>
 			<type>pom</type>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}.deps</groupId>
 			<artifactId>gwt-deps</artifactId>
-			<version>${project.version}</version>
 			<type>pom</type>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}.deps</groupId>
 			<artifactId>servlet-deps</artifactId>
-			<version>${project.version}</version>
 			<type>pom</type>
 		</dependency>
 		<!-- Test scope -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jmock</groupId>
-			<artifactId>jmock</artifactId>
-			<version>2.5.1</version>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -83,7 +69,6 @@
 			<version>${project.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
-
 		</dependency>
 
 		<!-- GAE libraries for local testing as described here: http://code.google.com/appengine/docs/java/howto/unittesting.html -->
@@ -154,14 +139,18 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<!-- <resources>
-			<resource>
-				<directory>src/test/java</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources> -->
+		<!-- <resources> <resource> <directory>src/test/java</directory> <filtering>true</filtering> 
+			</resource> </resources> -->
+
 		<plugins>
-			<!-- To include the test-jar for cloudcover -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<parallel>classes</parallel>
+					<threadCount>10</threadCount>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>

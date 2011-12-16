@@ -17,11 +17,8 @@ public class SeleniumTestWrapper implements TestWrapper {
 		tearDownAccepter.addTearDown(new TearDown() {
 
 			public void tearDown() throws Exception {
-				System.out.println("selenium handle " +selenium);
 				selenium.close();
-				System.out.println("After closing selenium ");
 			}
 		});
-		System.out.println("Ran testwrapper init");
 	}
 }

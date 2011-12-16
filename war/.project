@@ -18,6 +18,7 @@
     <project>rpc</project>
     <project>server</project>
     <project>servlet-deps</project>
+    <project>test-util</project>
     <project>xmlrpc-server-deps</project>
   </projects>
   <buildSpec>

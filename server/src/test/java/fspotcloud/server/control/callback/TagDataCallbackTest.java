@@ -1,5 +1,8 @@
 package fspotcloud.server.control.callback;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.AssertJUnit;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -9,7 +12,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
@@ -22,7 +24,7 @@ import fspotcloud.shared.dashboard.actions.ImportTag;
 import fspotcloud.shared.peer.rpc.actions.TagData;
 import fspotcloud.shared.peer.rpc.actions.TagDataResult;
 
-public class TagDataCallbackTest extends TestCase {
+public class TagDataCallbackTest {
 
 Dispatch dispatch;
 	Tags tagManager;
@@ -35,7 +37,7 @@ Dispatch dispatch;
 	ArgumentCaptor<List<Tag>> argumentCaptor = (ArgumentCaptor<List<Tag>>) (Object) ArgumentCaptor.forClass(List.class);
 
 
-	@Override
+	@BeforeMethod
 	protected void setUp() throws Exception {
 		dispatch = mock(Dispatch.class);
 		tagManager = mock(Tags.class);
@@ -48,9 +50,9 @@ Dispatch dispatch;
 		incoming = new TagDataResult(list);
 		when(tagManager.getOrNew(TAGID)).thenReturn(tag);
 		callback = new TagDataCallback(tagManager, dispatch);
-		super.setUp();
 	}
 
+	@Test
 	public void testSerialize() throws Exception {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutputStream out = new ObjectOutputStream(bos);
@@ -58,24 +60,26 @@ Dispatch dispatch;
 		out.close();
 	}
 	
+	@Test
 	public void testRecieveTagData() throws DispatchException {
 		callback.onSuccess(incoming);
-		assertEquals(10, tag.getCount());
-		assertEquals(TAGNAME,tag.getTagName());
-		assertNull(tag.getParentId());
+		AssertJUnit.assertEquals(10, tag.getCount());
+		AssertJUnit.assertEquals(TAGNAME,tag.getTagName());
+		AssertJUnit.assertNull(tag.getParentId());
 		verifyNoMoreInteractions(dispatch);
 	}
 	
+	@Test
 	public void testRecieveTagDataImported() throws DispatchException {
 		tag.setImportIssued(true);
 		callback.onSuccess(incoming);
-		assertEquals(10, tag.getCount());
-		assertEquals(TAGNAME,tag.getTagName());
-		assertNull(tag.getParentId());
+		AssertJUnit.assertEquals(10, tag.getCount());
+		AssertJUnit.assertEquals(TAGNAME,tag.getTagName());
+		AssertJUnit.assertNull(tag.getParentId());
 		ArgumentCaptor<ImportTag> actionCaptor = ArgumentCaptor.forClass(ImportTag.class);
 		verify(dispatch).execute(actionCaptor.capture());
 		ImportTag action = actionCaptor.getValue();
-		assertEquals(TAGID, action.getTagId());
+		AssertJUnit.assertEquals(TAGID, action.getTagId());
 		
 	}
 

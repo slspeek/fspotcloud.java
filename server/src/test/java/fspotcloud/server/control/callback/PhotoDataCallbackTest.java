@@ -1,5 +1,9 @@
 package fspotcloud.server.control.callback;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.Assert;
+import org.testng.AssertJUnit;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -9,8 +13,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import junit.framework.TestCase;
 
 import org.mockito.ArgumentCaptor;
 
@@ -29,7 +31,7 @@ import fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
 import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.tag.TagNode;
 
-public class PhotoDataCallbackTest extends TestCase {
+public class PhotoDataCallbackTest {
 	private static final int VERSION = 15;
 	private static final byte[] IMAGE_DATA = new byte[] { 0, 1};
 	private static final byte[] THUMB_DATA = new byte[] {0};
@@ -50,7 +52,7 @@ public class PhotoDataCallbackTest extends TestCase {
 	private ArrayList<PhotoData> dataList;
 	private TagDO tag1;
 
-	@Override
+	@BeforeMethod
 	protected void setUp() throws Exception {
 		photoManager = mock(Photos.class);
 		tagManager = mock(Tags.class);
@@ -68,9 +70,9 @@ public class PhotoDataCallbackTest extends TestCase {
 		peerDatabases = mock(PeerDatabases.class);
 		when(peerDatabases.get()).thenReturn(peer);
 		callback = new PhotoDataCallback(photoManager, tagManager, peerDatabases);
-		super.setUp();
 	}
 
+	@Test
 	public void testSerialize() throws Exception {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutputStream out = new ObjectOutputStream(bos);
@@ -78,21 +80,22 @@ public class PhotoDataCallbackTest extends TestCase {
 		out.close();
 	}
 
+	@Test
 	public void testOnSuccess() {
 		peer.setCachedTagTree(new ArrayList<TagNode>());
 		callback.onSuccess(result);
-		assertEquals(date, photo1.getDate());
-		assertEquals(DESCRIPTION, photo1.getDescription());
+		AssertJUnit.assertEquals(date, photo1.getDate());
+		AssertJUnit.assertEquals(DESCRIPTION, photo1.getDescription());
 		verify(photoManager).saveAll(argumentCaptor.capture());
-		assertEquals(photo1, argumentCaptor.getValue().get(0));
-		assertEquals(IMAGE_DATA, photo1.getImage().getBytes());
-		assertEquals(THUMB_DATA, photo1.getThumb().getBytes());
-		assertTrue(photo1.isThumbLoaded());
-		assertTrue(photo1.isImageLoaded());
+		AssertJUnit.assertEquals(photo1, argumentCaptor.getValue().get(0));
+		AssertJUnit.assertEquals(IMAGE_DATA, photo1.getImage().getBytes());
+		AssertJUnit.assertEquals(THUMB_DATA, photo1.getThumb().getBytes());
+		AssertJUnit.assertTrue(photo1.isThumbLoaded());
+		AssertJUnit.assertTrue(photo1.isImageLoaded());
 		PhotoInfo info = tag1.getCachedPhotoList().first(); 
-		assertEquals(PHOTO_ID, info.getId());
-		assertEquals(VERSION, info.getVersion());
-		assertNull(peer.getCachedTagTree());
+		AssertJUnit.assertEquals(PHOTO_ID, info.getId());
+		AssertJUnit.assertEquals(VERSION, info.getVersion());
+		AssertJUnit.assertNull(peer.getCachedTagTree());
 	}
 
 }

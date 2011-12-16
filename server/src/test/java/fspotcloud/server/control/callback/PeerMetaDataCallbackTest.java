@@ -1,5 +1,7 @@
 package fspotcloud.server.control.callback;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -7,7 +9,6 @@ import static org.mockito.Mockito.when;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 
-import junit.framework.TestCase;
 import fspotcloud.server.control.task.actions.intern.TagImportAction;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
@@ -17,7 +18,7 @@ import fspotcloud.taskqueuedispatch.NullCallback;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
 @SuppressWarnings("unused")
-public class PeerMetaDataCallbackTest extends TestCase {
+public class PeerMetaDataCallbackTest {
 
 	PeerDatabaseDO pd;
 	PeerDatabases peerDatabases;
@@ -26,7 +27,7 @@ public class PeerMetaDataCallbackTest extends TestCase {
 	PeerMetaDataResult firstResult;
 	PeerMetaDataResult secondResult;
 
-	@Override
+	@BeforeMethod
 	protected void setUp() throws Exception {
 		peerDatabases = mock(PeerDatabases.class);
 		pd = new PeerDatabaseDO();
@@ -34,9 +35,9 @@ public class PeerMetaDataCallbackTest extends TestCase {
 		callback = new PeerMetaDataCallback(peerDatabases, dispatchAsync);
 		firstResult = new PeerMetaDataResult(10, 10);
 		secondResult = new PeerMetaDataResult(10, 21);
-		super.setUp();
 	}
 
+	@Test
 	public void testSerialize() throws Exception {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutputStream out = new ObjectOutputStream(bos);
@@ -44,6 +45,7 @@ public class PeerMetaDataCallbackTest extends TestCase {
 		out.close();
 	}
 
+	@Test
 	public void testFirstResult() {
 		when(peerDatabases.get()).thenReturn(pd);
 		callback.onSuccess(firstResult);

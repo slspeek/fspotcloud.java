@@ -1,6 +1,7 @@
 syntax: glob
 grapher/src/site/resources/*.png
 extras/*
+test-output/*
 target/*
 */target/*
 */bin/*

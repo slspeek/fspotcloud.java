@@ -1,6 +1,8 @@
 package fspotcloud.server.admin.integration;
 
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.sql.SQLException;
 
 import net.customware.gwt.dispatch.shared.DispatchException;
@@ -11,6 +13,7 @@ import fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
 
 public class PeerServerIntegrationTest extends PeerServerIntegrationBase {
 
+	@Test
 	public void testImportAllTags() throws Exception {
 		setPeerTestDatabase("photos.db");
 		PeerDatabase peer = peers.get();
@@ -23,13 +26,15 @@ public class PeerServerIntegrationTest extends PeerServerIntegrationBase {
 		assertTagsLoaded("1","2", "3", "4", "5");
 	}
 
+	@Test
 	public void testGetPeerMetaData() throws DispatchException, SQLException {
 		setPeerTestDatabase("photos.db");
 		PeerMetaDataResult result = dispatch.execute(new GetPeerMetaData());
-		assertEquals(28, result.getPhotoCount());
-		assertEquals(5, result.getTagCount());
+		AssertJUnit.assertEquals(28, result.getPhotoCount());
+		AssertJUnit.assertEquals(5, result.getTagCount());
 	}
 
+	@Test
 	public void testImportGlass() throws Exception {
 		setPeerTestDatabase("photos.db");
 		testImportAllTags();
@@ -37,12 +42,14 @@ public class PeerServerIntegrationTest extends PeerServerIntegrationBase {
 		photos.getById("3");
 	}
 
+	@Test
 	public void testImportFurniture() throws Exception {
 		testImportAllTags();
 		importTag("1");
 		verfiyFurnitureIsLoaded();
 	}
 
+	@Test
 	public void testImportFurnitureInTwoPhases() throws Exception {
 		testImportAllTags();
 		setPeerTestDatabase("photos_smaller.db");
@@ -53,6 +60,7 @@ public class PeerServerIntegrationTest extends PeerServerIntegrationBase {
 		verfiyFurnitureIsLoaded();
 	}
 	
+	@Test
 	public void testUImportFurniture() throws Exception {
 		testImportAllTags();
 		setPeerTestDatabase("photos_smaller.db");
@@ -67,6 +75,7 @@ public class PeerServerIntegrationTest extends PeerServerIntegrationBase {
 	}
 
 
+	@Test
 	public void testImportFurnitureInThreePhases() throws Exception {
 		testImportAllTags();
 		setPeerTestDatabase("photos_smaller.db");
@@ -86,6 +95,7 @@ public class PeerServerIntegrationTest extends PeerServerIntegrationBase {
 		assertPhotosRemoved("7","6", "16", "14");
 	}
 
+	@Test
 	public void testRemovingOfTags() throws Exception {
 		testImportAllTags();
 		dispatch.execute(new TagDeleteAll());
@@ -101,6 +111,7 @@ public class PeerServerIntegrationTest extends PeerServerIntegrationBase {
 		assertPhotosLoaded("7","6", "16", "14");
 	}
 	
+	@Test
 	public void testOverlapWithTagRemoval() throws Exception {
 		testImportAllTags();
 		importTag("2");
