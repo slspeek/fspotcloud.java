@@ -346,12 +346,6 @@
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}.deps</groupId>
-				<artifactId>guice-deps</artifactId>
-				<version>${project.version}</version>
-				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}.deps</groupId>
 				<artifactId>appengine-deps</artifactId>
 				<version>${project.version}</version>
 				<type>pom</type>
@@ -359,6 +353,12 @@
 			<dependency>
 				<groupId>${project.groupId}.deps</groupId>
 				<artifactId>gwt-deps</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}.deps</groupId>
+				<artifactId>guice-deps</artifactId>
 				<version>${project.version}</version>
 				<type>pom</type>
 			</dependency>
@@ -376,16 +376,23 @@
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
-				<groupId>fspotcloud.bot-dispatch</groupId>
+				<groupId>${project.groupId}.bot-dispatch</groupId>
 				<artifactId>controller</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>fspotcloud.bot-dispatch</groupId>
+				<groupId>${project.groupId}.bot-dispatch</groupId>
 				<artifactId>gae-command</artifactId>
 				<version>${project.version}</version>
 				<classifier>special</classifier>
 				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}.bot-dispatch</groupId>
+				<artifactId>test</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
@@ -394,10 +401,16 @@
 				<scope>test</scope>
 			</dependency>
 			<dependency>
-				<groupId>fspotcloud.taskqueue-dispatch</groupId>
+				<groupId>${project.groupId}.taskqueue-dispatch</groupId>
 				<artifactId>dispatch</artifactId>
 				<version>${project.version}</version>
 				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.6</version>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
@@ -423,6 +436,12 @@
 				<groupId>org.testng</groupId>
 				<artifactId>testng</artifactId>
 				<version>6.1.1</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jmock</groupId>
+				<artifactId>jmock</artifactId>
+				<version>2.5.1</version>
 				<scope>test</scope>
 			</dependency>
 		</dependencies>

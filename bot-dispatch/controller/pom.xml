@@ -28,10 +28,10 @@
 			<type>pom</type>
 		</dependency>
 		<dependency>
-        <groupId>org.apache.xmlrpc</groupId>
-        <artifactId>xmlrpc-common</artifactId>
-        <version>${org.apache.xmlrpc.version}</version>
-      </dependency>
+			<groupId>org.apache.xmlrpc</groupId>
+			<artifactId>xmlrpc-common</artifactId>
+			<version>${org.apache.xmlrpc.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>gae-command</artifactId>
@@ -68,10 +68,7 @@
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
-			<!--
-			GAE libraries for local testing as described here:
-			http://code.google.com/appengine/docs/java/howto/unittesting.html
-		-->
+		<!-- GAE libraries for local testing as described here: http://code.google.com/appengine/docs/java/howto/unittesting.html -->
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-stubs</artifactId>
@@ -90,6 +87,7 @@
 			<version>${gae.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- only for testing -->
 		<dependency>
 			<groupId>fspotcloud.bot-dispatch</groupId>
 			<artifactId>gae-command</artifactId>
