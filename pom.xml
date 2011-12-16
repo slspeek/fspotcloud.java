@@ -271,42 +271,42 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>fspotcloud</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>server</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>fspotcloud</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>rpc</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>fspotcloud</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>client</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>fspotcloud</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>peer</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>fspotcloud</groupId>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>peer-rpc</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>model-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>fspotcloud</groupId>
-				<artifactId>model</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>fspotcloud</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>war</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>fspotcloud</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>deps</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -323,44 +323,90 @@
 				<type>pom</type>
 			</dependency>
 			<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>rpc</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>model-api</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>model</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}.deps</groupId>
-			<artifactId>guice-deps</artifactId>
-			<version>${project.version}</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}.deps</groupId>
-			<artifactId>appengine-deps</artifactId>
-			<version>${project.version}</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}.deps</groupId>
-			<artifactId>gwt-deps</artifactId>
-			<version>${project.version}</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}.deps</groupId>
-			<artifactId>servlet-deps</artifactId>
-			<version>${project.version}</version>
-			<type>pom</type>
-		</dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>rpc</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>model-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>model</artifactId>
+				<version>${project.version}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}.deps</groupId>
+				<artifactId>guice-deps</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}.deps</groupId>
+				<artifactId>appengine-deps</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}.deps</groupId>
+				<artifactId>gwt-deps</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}.deps</groupId>
+				<artifactId>servlet-deps</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>peer-rpc</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>fspotcloud.bot-dispatch</groupId>
+				<artifactId>controller</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fspotcloud.bot-dispatch</groupId>
+				<artifactId>gae-command</artifactId>
+				<version>${project.version}</version>
+				<classifier>special</classifier>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>test-util</artifactId>
+				<version>${project.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>fspotcloud.taskqueue-dispatch</groupId>
+				<artifactId>dispatch</artifactId>
+				<version>${project.version}</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>httpunit</groupId>
+				<artifactId>httpunit</artifactId>
+				<version>1.7</version>
+				<type>jar</type>
+				<scope>test</scope>
+			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>

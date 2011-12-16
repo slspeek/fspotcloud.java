@@ -13,7 +13,6 @@ import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.server.model.tag.TreeBuilder;
 import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.tag.TagNode;
 
