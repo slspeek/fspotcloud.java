@@ -1,8 +1,7 @@
 package fspotcloud.server.inject;
 
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -15,11 +14,8 @@ import fspotcloud.server.model.ModelModule;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchModule;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchServletModule;
 
-public class InjectorTest extends TestCase {
-	public static TestSuite suite() {
-		return new TestSuite(InjectorTest.class);
-	}
-
+public class InjectorTest {
+	@Test
 	public void testInjector() {
 		Injector injector = Guice.createInjector(new FSpotCloudServletModule(),
 				new FSpotCloudModule(), new AdminActionsModule(), new ModelModule(),
@@ -27,11 +23,11 @@ public class InjectorTest extends TestCase {
 				new ControllerServletModule(), new MinimalCommandModelModule(),
 				new TaskQueueDispatchModule(),
 				new TaskQueueDispatchServletModule(), new TaskActionsModule());
-		assertNotNull(injector);
+		AssertJUnit.assertNotNull(injector);
 		// PeerDatabases defaultPeer =
 		// injector.getInstance(PeerDatabases.class);
 		ControllerDispatchAsync controller = injector
 				.getInstance(ControllerDispatchAsync.class);
-		assertNotNull(controller);
+		AssertJUnit.assertNotNull(controller);
 	}
 }

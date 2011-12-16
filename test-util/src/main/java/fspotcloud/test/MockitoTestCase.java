@@ -1,15 +1,15 @@
 package fspotcloud.test;
 
-import junit.framework.TestCase;
 
 import org.mockito.MockitoAnnotations;
+import org.testng.annotations.BeforeTest;
 
-public class MockitoTestCase extends TestCase {
+public class MockitoTestCase{
 
-	@Override
-	protected void setUp() throws Exception {
+	@BeforeTest
+	protected void initMocks() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		super.setUp();
+		System.out.println("InitMocks ran");
 	}
 
 }

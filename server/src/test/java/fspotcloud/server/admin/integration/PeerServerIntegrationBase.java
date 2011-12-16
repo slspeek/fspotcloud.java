@@ -1,5 +1,7 @@
 package fspotcloud.server.admin.integration;
 
+import org.testng.annotations.BeforeMethod;
+import org.testng.Assert;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -67,6 +69,7 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 		super();
 	}
 
+	@BeforeMethod
 	public void setUp() throws Exception {
 		super.setUp();
 		String basedir = (new File(".")).getAbsolutePath();
@@ -102,7 +105,7 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 	protected void verifyPhotoRemoved(String id) {
 		try {
 			photos.getById(id);
-			fail();
+			Assert.fail();
 		} catch (JDOObjectNotFoundException e) {
 		}
 	}
@@ -111,7 +114,7 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 		try {
 			photos.getById(id);
 		} catch (JDOObjectNotFoundException e) {
-			fail();
+			Assert.fail();
 		}
 	}
 	
@@ -119,7 +122,7 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 		try {
 			tags.getById(id);
 		} catch (JDOObjectNotFoundException e) {
-			fail();
+			Assert.fail();
 		}
 	}
 
@@ -152,7 +155,7 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 	protected void verifyTagRemoved(String id) {
 		try {
 			tags.getById(id);
-			fail();
+			Assert.fail();
 		} catch (JDOObjectNotFoundException e) {
 		}
 	}

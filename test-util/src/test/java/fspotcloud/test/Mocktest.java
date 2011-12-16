@@ -1,32 +1,33 @@
 package fspotcloud.test;
 
-import junit.framework.TestCase;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.*;
-public class Mocktest extends TestCase {
 
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.testng.annotations.Test;
+public class Mocktest  extends MockitoTestCase {
+
+	@Mock
 	Foo fooMock;
-	Foo foo;
+	Foo foo = new Foo();
+	@Spy
 	Foo fooSpy;
-	
-	protected void setUp() throws Exception {
-		super.setUp();
-		fooMock = mock(Foo.class);
-		foo = new Foo();
-		fooSpy = spy(new Foo());
-		
-	}
 
+	@Test
 	public void testne() {
 		fooMock.climb();
 		verify(fooMock).climb();
 	}
 	
+	@Test
 	public void testOne() {
 		foo.climb();
 	}
+	
+	@Test
 	public void testSpy() {
 		fooSpy.climb();
 		verify(fooSpy).climb();

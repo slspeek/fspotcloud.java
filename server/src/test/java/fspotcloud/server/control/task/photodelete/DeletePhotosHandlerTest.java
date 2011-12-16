@@ -1,6 +1,8 @@
 package fspotcloud.server.control.task.photodelete;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +15,10 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import com.google.appengine.repackaged.com.google.common.collect.ImmutableList;
 
@@ -25,8 +31,7 @@ import fspotcloud.server.model.photo.PhotoDO;
 import fspotcloud.server.model.tag.TagDO;
 import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
-import fspotcloud.test.MockitoTestCase;
-public class DeletePhotosHandlerTest extends MockitoTestCase {
+public class DeletePhotosHandlerTest {
 
 	private static final String ID_B = "B";
 	private static final String ID_A = "A";
@@ -52,8 +57,9 @@ public class DeletePhotosHandlerTest extends MockitoTestCase {
 	
 
 	DeletePhotosHandler handler;
+	@BeforeMethod
 	protected void setUp() throws Exception {
-		super.setUp();
+		MockitoAnnotations.initMocks(this);
 		handler = new DeletePhotosHandler(MAX_DELETE_TICKS, dispatchAsync, photos, tagManager);
 		tag3 = new TagDO();
 		tag3.setId("3");
@@ -77,7 +83,6 @@ public class DeletePhotosHandlerTest extends MockitoTestCase {
 		when(tagManager.getById("3")).thenReturn(tag3);
 		when(photos.getById(ID_A)).thenReturn(photoA);
 		when(photos.getById(ID_B)).thenReturn(photoB);
-		
 	}
 
 	/**
@@ -85,18 +90,19 @@ public class DeletePhotosHandlerTest extends MockitoTestCase {
 	 *  The max_delete = 1 so this takes 'recursion' over asyncDispatch.
 	 * @throws DispatchException
 	 */
+	@Test
 	public void testExecute() throws DispatchException {
 		handler.execute(new DeletePhotos(TAG_ID, infoList), null);
-		assertEquals(1, tag.getCachedPhotoList().size());
+		AssertJUnit.assertEquals(1, tag.getCachedPhotoList().size());
 		verify(photos).delete(ID_A);
 		verify(photos).getById(ID_A);
 		verifyNoMoreInteractions(photos);
 		verify(dispatchAsync).execute(nextCallCaptor.capture());
-		assertEquals(TAG_ID, nextCallCaptor.getValue().getTagId());
+		AssertJUnit.assertEquals(TAG_ID, nextCallCaptor.getValue().getTagId());
 		handler.execute(new DeletePhotos(TAG_ID, infoList), null);
 		verifyNoMoreInteractions(dispatchAsync);
 		verify(photos).getById(ID_B);
 		verifyNoMoreInteractions(photos);
-		assertEquals(1, tag.getCachedPhotoList().size());
+		AssertJUnit.assertEquals(1, tag.getCachedPhotoList().size());
 	}
 }

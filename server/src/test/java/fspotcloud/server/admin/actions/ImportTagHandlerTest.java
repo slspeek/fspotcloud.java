@@ -1,5 +1,7 @@
 package fspotcloud.server.admin.actions;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
 import static org.mockito.Mockito.*;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
@@ -30,8 +32,8 @@ public class ImportTagHandlerTest extends MockitoTestCase {
 	ArgumentCaptor<PhotoUpdateAction> actionCaptor;
 	ArgumentCaptor<SerializableAsyncCallback> callbackCaptor;
 
+	@BeforeMethod
 	protected void setUp() throws Exception {
-		super.setUp();
 		handler = new ImportTagHandler(tagManager, dispatch);
 		tag = new TagDO();
 		tag.setId(TAG_ID);
@@ -39,10 +41,12 @@ public class ImportTagHandlerTest extends MockitoTestCase {
 		when(tagManager.getById(TAG_ID)).thenReturn(tag);
 	}
 
+	@Test
 	public void testExecute() throws DispatchException {
 		
 	}
 	
+	@Test
 	public void testExecuteAllreadyImported() throws DispatchException {
 		
 	}

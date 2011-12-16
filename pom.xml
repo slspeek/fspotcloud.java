@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fspotcloud</groupId>
 	<artifactId>fspotcloud</artifactId>
 	<packaging>pom</packaging>
-	<version>0.40-7.6.0</version>
+	<version>0.40-7.6.1</version>
 	<name>F-Spot Cloud Java Edition</name>
 	<prerequisites>
 		<maven>3.0.0</maven>
@@ -52,8 +53,8 @@
 		<module>grapher</module>
 		<module>bot-dispatch</module>
 		<module>peer-rpc</module>
-    <module>installer</module>
-  </modules>
+		<module>installer</module>
+	</modules>
 	<build>
 		<defaultGoal>install</defaultGoal>
 		<plugins>
@@ -66,7 +67,7 @@
 						<phase>process-test-resources</phase>
 						<configuration>
 							<target>
-								<delete dir="${basedir}/extras" includeemptydirs="true"/>
+								<delete dir="${basedir}/extras" includeemptydirs="true" />
 							</target>
 						</configuration>
 						<goals>
@@ -78,7 +79,7 @@
 						<phase>clean</phase>
 						<configuration>
 							<target>
-								<delete dir="${basedir}/extras" includeemptydirs="true"/>
+								<delete dir="${basedir}/extras" includeemptydirs="true" />
 							</target>
 						</configuration>
 						<goals>
@@ -322,6 +323,45 @@
 				<type>pom</type>
 			</dependency>
 			<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>rpc</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>model-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>model</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>guice-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>appengine-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>gwt-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}.deps</groupId>
+			<artifactId>servlet-deps</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
+		</dependency>
+			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>3.8.1</version>
@@ -331,6 +371,12 @@
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-core</artifactId>
 				<version>1.9.0-rc1</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.testng</groupId>
+				<artifactId>testng</artifactId>
+				<version>6.1.1</version>
 				<scope>test</scope>
 			</dependency>
 		</dependencies>
