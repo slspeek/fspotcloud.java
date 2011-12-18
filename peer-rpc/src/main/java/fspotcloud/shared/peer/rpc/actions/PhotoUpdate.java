@@ -16,4 +16,8 @@ public class PhotoUpdate implements Serializable {
 	public String getPhotoId() {
 		return photoId;
 	}
+	
+	public String toString() {
+		return "PhotoUpdate(" + getPhotoId() +")";
+	}
 }

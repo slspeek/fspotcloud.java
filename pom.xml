@@ -5,7 +5,7 @@
 	<groupId>fspotcloud</groupId>
 	<artifactId>fspotcloud</artifactId>
 	<packaging>pom</packaging>
-	<version>0.40-7.6.1</version>
+	<version>0.40-7.6.3</version>
 	<name>F-Spot Cloud Java Edition</name>
 	<prerequisites>
 		<maven>3.0.0</maven>
@@ -372,8 +372,6 @@
 				<groupId>${project.groupId}</groupId>
 				<artifactId>peer-rpc</artifactId>
 				<version>${project.version}</version>
-				<type>jar</type>
-				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}.bot-dispatch</groupId>
@@ -385,13 +383,11 @@
 				<artifactId>gae-command</artifactId>
 				<version>${project.version}</version>
 				<classifier>special</classifier>
-				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}.bot-dispatch</groupId>
 				<artifactId>test</artifactId>
 				<version>${project.version}</version>
-				<type>jar</type>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -404,20 +400,27 @@
 				<groupId>${project.groupId}.taskqueue-dispatch</groupId>
 				<artifactId>dispatch</artifactId>
 				<version>${project.version}</version>
-				<type>jar</type>
-				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>r09</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava-testlib</artifactId>
+				<version>10.0.1</version>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>commons-lang</groupId>
 				<artifactId>commons-lang</artifactId>
 				<version>2.6</version>
-				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>httpunit</groupId>
 				<artifactId>httpunit</artifactId>
 				<version>1.7</version>
-				<type>jar</type>
 				<scope>test</scope>
 			</dependency>
 			<dependency>

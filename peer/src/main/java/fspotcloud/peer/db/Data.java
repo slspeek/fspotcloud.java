@@ -50,7 +50,7 @@ public class Data {
 
 	@VisibleForTesting
 	public void setJDBCUrl(String jdbcURL) throws SQLException {
-		log.info("setting: " + jdbcURL);
+		//log.info("setting: " + jdbcURL);
 		this.jdbcURL = jdbcURL;
 		if (connection != null) {
 			// connection.close();
@@ -60,6 +60,7 @@ public class Data {
 
 	private Connection getConnection() throws SQLException {
 		if (connection == null) {
+			log.info("Opening new connection: " + jdbcURL);
 			connection = DriverManager.getConnection(jdbcURL);
 		}
 		return connection;

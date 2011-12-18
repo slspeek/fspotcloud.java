@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-7.6.1</version>
+		<version>0.40-7.6.3</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>war-prod</artifactId>
@@ -15,25 +15,14 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>rpc</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>server</artifactId>
-			<version>${project.version}</version>
-			<type>jar</type>
-			<exclusions>
-				<exclusion>
-					<groupId>com.google.appengine</groupId>
-					<artifactId>appengine-local-runtime</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>client</artifactId>
-			<version>${project.version}</version>
-			<type>jar</type>
 		</dependency>
 	</dependencies>
 	<build>
@@ -120,8 +109,5 @@
 			<url>http://repo1.maven.org/maven2</url>
 		</repository>
 	</repositories>
-	<properties>
-		<bot.secret>${bot.secret.userinput}</bot.secret>
-	</properties>
 </project>
 

@@ -21,4 +21,9 @@ public class PhotoRemovedFromTag implements Serializable {
 	public String getTagId() {
 		return tagId;
 	}
+
+	public String toString() {
+		return "PhotoRemovedFromTag(photo=" + getPhotoId() + ", tag="
+				+ getTagId() + ")";
+	}
 }

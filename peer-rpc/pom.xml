@@ -5,11 +5,11 @@
   <parent>
     <artifactId>fspotcloud</artifactId>
     <groupId>fspotcloud</groupId>
-    <version>0.40-7.6.1</version>
+    <version>0.40-7.6.3</version>
   </parent>
   <groupId>fspotcloud</groupId>
   <artifactId>peer-rpc</artifactId>
-  <version>0.40-7.6.1</version>
+  <version>0.40-7.6.3</version>
   <name>peer-rpc</name>
   <url>http://maven.apache.org</url>
   <properties>

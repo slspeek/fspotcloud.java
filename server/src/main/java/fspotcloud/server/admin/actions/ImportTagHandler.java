@@ -1,5 +1,7 @@
 package fspotcloud.server.admin.actions;
 
+import java.util.logging.Logger;
+
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
@@ -17,7 +19,8 @@ import fspotcloud.shared.peer.rpc.actions.GetTagUpdateInstructionsAction;
 
 public class ImportTagHandler extends
 		SimpleActionHandler<ImportTag, VoidResult> {
-
+	protected static final Logger log = Logger.getLogger(ImportTagHandler.class
+			.getName());
 	final private Tags tagManager;
 	final private ControllerDispatchAsync dispatchAsync;
 
@@ -39,9 +42,12 @@ public class ImportTagHandler extends
 				tag.setImportIssued(true);
 				tagManager.save(tag);
 			}
+
 			GetTagUpdateInstructionsAction peerAction = new GetTagUpdateInstructionsAction(
 					tagId, tag.getCachedPhotoList());
-			TagUpdateInstructionsCallback callback = new TagUpdateInstructionsCallback(tagId, null);
+			TagUpdateInstructionsCallback callback = new TagUpdateInstructionsCallback(
+					tagId, null);
+			log.info("before execute for tag: " + action.getTagId());
 			dispatchAsync.execute(peerAction, callback);
 
 		} catch (Exception e) {

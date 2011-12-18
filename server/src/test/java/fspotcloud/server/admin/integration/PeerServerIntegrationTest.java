@@ -69,6 +69,17 @@ public class PeerServerIntegrationTest extends PeerServerIntegrationBase {
 		unImportTag("1");
 		verifiyFurnitureFirstPhaseWasRemoved();
 	}
+	
+	@Test
+	public void shouldRemoveSomeFurniture() throws Exception {
+		testImportAllTags();
+		importTag("1");
+		verfiyFurnitureIsLoaded();
+		setPeerTestDatabase("photos_smaller.db");
+		synchronizePeer();
+		verfiyFurnitureFirstPhaseIsLoaded();
+		verifyImagesWereRemoved();
+	}
 
 	private void verifiyFurnitureFirstPhaseWasRemoved() {
 		assertPhotosRemoved("12","13", "4", "5", "15");
@@ -86,7 +97,8 @@ public class PeerServerIntegrationTest extends PeerServerIntegrationBase {
 		verfiyFurnitureIsLoaded();
 		setPeerTestDatabase("photos_smaller.db");
 		synchronizePeer();
-		verifyImagesWereRemoved();
+		//verifyImagesWereRemoved();
+		assertPhotosRemoved("6");
 		verfiyFurnitureFirstPhaseIsLoaded();
 	}
 	

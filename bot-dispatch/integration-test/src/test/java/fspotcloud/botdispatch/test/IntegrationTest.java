@@ -42,11 +42,11 @@ public class IntegrationTest extends DatastoreTest {
 		super.setUp();
 	}
 
-	public void testOne() {
+	public void testOne() throws InterruptedException {
 		dispatch.execute(action, callback);
 		dispatch.execute(secondAction, callback);
 		dispatch.execute(throwing, callback);
-		bot.runForever(5);
+		bot.runForever(4);
 		verify(report).report(resultMessage);
 		verify(report).report("GNU");
 		verify(report).error(captor.capture());

@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>fspotcloud</groupId>
 		<artifactId>fspotcloud</artifactId>
-		<version>0.40-7.6.1</version>
+		<version>0.40-7.6.3</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>rpc</artifactId>
@@ -12,21 +12,15 @@
 		<dependency>
 			<groupId>fspotcloud.deps</groupId>
 			<artifactId>gwt-deps</artifactId>
-			<version>${project.version}</version>
 			<type>pom</type>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>r09</version>
-			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<type>jar</type>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>

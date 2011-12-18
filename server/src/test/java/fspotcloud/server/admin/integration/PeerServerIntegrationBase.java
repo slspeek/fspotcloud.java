@@ -26,6 +26,8 @@ import com.google.inject.name.Names;
 
 import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.botdispatch.controller.inject.LocalControllerModule;
+import fspotcloud.peer.CopyDatabase;
+import fspotcloud.peer.ImageData;
 import fspotcloud.peer.db.Data;
 import fspotcloud.peer.inject.PeerActionsModule;
 import fspotcloud.peer.inject.PeerModule;
@@ -81,7 +83,7 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 				new MyAdminActionsModule(), new MyModelModule(),
 				new MyTaskModule(), new LocalControllerModule(),
 				new TaskQueueDispatchDirectModule(), new TaskActionsModule(),
-				new PeerModule(), new PeerActionsModule());
+				new MyPeerModule(), new PeerActionsModule());
 		photos = injector.getInstance(Photos.class);
 		tags = injector.getInstance(Tags.class);
 		controller = injector.getInstance(ControllerDispatchAsync.class);
@@ -95,7 +97,6 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 		File testDatabase = new File(basedir + "./peer/src/test/resources/"
 				+ db);
 		String path = testDatabase.getPath();
-		System.setProperty("db", path);
 		log.info("DBPath " + path);
 		if (data != null) {
 			data.setJDBCUrl("jdbc:sqlite:" + path);
@@ -105,7 +106,7 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 	protected void verifyPhotoRemoved(String id) {
 		try {
 			photos.getById(id);
-			Assert.fail();
+			Assert.fail("Photo with id: " + id + " was present");
 		} catch (JDOObjectNotFoundException e) {
 		}
 	}
@@ -114,7 +115,7 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 		try {
 			photos.getById(id);
 		} catch (JDOObjectNotFoundException e) {
-			Assert.fail();
+			Assert.fail("Photo with id: " + id + " was absent");
 		}
 	}
 	
@@ -269,5 +270,25 @@ class MyModelModule extends AbstractModule {
 				PersistenceManagerProvider.class);
 		bind(Cache.class).toProvider(MemCacheProvider.class);
 		bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(1));
+	}
+}
+class MyPeerModule extends AbstractModule {
+
+	protected void configure() {
+		bind(Data.class).in(Singleton.class);
+		bind(ImageData.class);
+		bind(String.class).annotatedWith(Names.named("JDBC URL"))
+				.toProvider(CopyDatabase.class).in(Singleton.class);
+		bind(String.class)
+				.annotatedWith(Names.named("DatabasePath"))
+				.toInstance(
+						System.getProperty(
+								"db",
+								System.getProperty("user.home")
+										+ "/fspotcloud/peer/src/test/resources/photos.db"));
+		bind(String.class).annotatedWith(Names.named("WorkDir")).toInstance(
+				System.getProperty("user.dir"));
+		bind(Integer.class).annotatedWith(Names.named("stop port")).toInstance(
+				Integer.valueOf(System.getProperty("stop.port", "4444")));
 	}
 }

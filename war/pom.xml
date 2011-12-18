@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-7.6.1</version>
+		<version>0.40-7.6.3</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>war</artifactId>
@@ -26,12 +26,6 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>client</artifactId>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>peer</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
@@ -43,6 +37,11 @@
 			<artifactId>selenium</artifactId>
 			<version>2.0b3</version>
 			<type>pom</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>peer</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -59,7 +58,6 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava-testlib</artifactId>
-			<version>10.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -198,7 +196,7 @@
 										value="${basedir}/../peer/src/test/resources/photos.db" />
 									<sysproperty key="endpoint" value="localhost:8080" />
 									<sysproperty key="bot.secret" value="${bot.secret}" />
-									<sysproperty key="pause" value="2000" />
+									<sysproperty key="pause" value="2" />
 									<sysproperty key="photo.dir.original" value="file:///home/steven/Photos" />
 									<sysproperty key="photo.dir.override"
 										value="file://${basedir}/../peer/src/test/resources/Photos" />
