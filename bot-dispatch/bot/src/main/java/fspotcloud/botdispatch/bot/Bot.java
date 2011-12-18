@@ -24,19 +24,19 @@ public class Bot {
 		this.pauser = pauser;
 	}
 
-	public void runForever() {
+	public void runForever() throws InterruptedException {
 		runForever(Integer.MAX_VALUE);
 	}
 
-	public void runForever(int n) {
+	public void runForever(int n) throws InterruptedException {
 		for (int i = 0; i < n; i++) {
 			BotDispatchServer server = serverProvider.get();
 			try {
 				server.runForever(n);
 			} catch (Exception e) {
 				log.log(Level.SEVERE, "Exception in main-loop, restarting in "
-						+ pause / 1000 + "s", e);
-				pauser.pause(pause);
+						+ pause + "s", e);
+				Thread.sleep(pause * 1000);
 			}
 		}
 	}

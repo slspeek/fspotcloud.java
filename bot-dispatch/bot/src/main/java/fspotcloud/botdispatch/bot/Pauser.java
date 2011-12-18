@@ -1,5 +1,12 @@
 package fspotcloud.botdispatch.bot;
 
 public interface Pauser {
-	void pause(long millis);
+	
+	int pause();
+	
+	void resetIdleCount();
+	
+	void increaseIdleCount();
+
+	int getPauseSeconds();
 }

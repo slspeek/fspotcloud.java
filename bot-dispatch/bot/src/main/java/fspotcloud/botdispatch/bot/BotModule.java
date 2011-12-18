@@ -24,7 +24,7 @@ public class BotModule extends AbstractModule {
 				"http://" + System.getProperty("endpoint", "localhost:8080") + "/xmlrpc/"
 						+ System.getProperty("bot.secret"));
 		bind(Integer.class).annotatedWith(Names.named("pause")).toInstance(
-				Integer.valueOf(System.getProperty("pause", "10000")));
+				Integer.valueOf(System.getProperty("pause", "10")));
 		install(new FactoryModuleBuilder().implement(CommandWorker.class,
 				CommandWorkerImpl.class).build(CommandWorkerFactory.class));
 	}

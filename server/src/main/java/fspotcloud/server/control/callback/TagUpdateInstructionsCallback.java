@@ -1,6 +1,8 @@
 package fspotcloud.server.control.callback;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
@@ -12,6 +14,8 @@ import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 
 public class TagUpdateInstructionsCallback implements
 		AsyncCallback<TagUpdateInstructionsResult>, Serializable {
+	
+	protected static final Logger log = Logger.getLogger(TagUpdateInstructionsCallback.class.getName());
 	private static final long serialVersionUID = -6213572441944313878L;
 	@Inject
 	transient private TaskQueueDispatch dispatchAsync;
@@ -26,8 +30,7 @@ public class TagUpdateInstructionsCallback implements
 
 	@Override
 	public void onFailure(Throwable caught) {
-		// TODO Auto-generated method stub
-
+		log.log(Level.SEVERE, "Caught: ", caught);
 	}
 
 	@Override
@@ -35,7 +38,9 @@ public class TagUpdateInstructionsCallback implements
 		PhotoUpdateAction photoUpdate = new PhotoUpdateAction(
 				result.getToBoUpdated());
 		RemovePhotosFromTagAction photoRemove = new RemovePhotosFromTagAction(tagId, result.getToBoRemovedFromTag());
+		log.info("Before " + photoRemove);
 		dispatchAsync.execute(photoRemove);
+		log.info("2 Before " + photoUpdate);
 		dispatchAsync.execute(photoUpdate);
 	}
 

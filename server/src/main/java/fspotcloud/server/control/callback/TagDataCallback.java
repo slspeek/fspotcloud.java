@@ -1,6 +1,8 @@
 package fspotcloud.server.control.callback;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
@@ -17,6 +19,7 @@ import fspotcloud.shared.peer.rpc.actions.TagDataResult;
 public class TagDataCallback implements AsyncCallback<TagDataResult>,
 		Serializable {
 
+	protected static final Logger log = Logger.getLogger(TagDataCallback.class.getName());
 	private static final long serialVersionUID = 5342287706825285919L;
 
 	@Inject
@@ -32,7 +35,7 @@ public class TagDataCallback implements AsyncCallback<TagDataResult>,
 
 	@Override
 	public void onFailure(Throwable caught) {
-		// TODO Auto-generated method stub
+		log.log(Level.SEVERE, "TagDataCallbask", caught);
 
 	}
 
@@ -53,7 +56,7 @@ public class TagDataCallback implements AsyncCallback<TagDataResult>,
 			try {
 				dispatch.execute(new ImportTag(tag.getId(), previousCount));
 			} catch (DispatchException e) {
-
+				log.log(Level.SEVERE, "Caught: ", e);
 			}
 		}
 	}

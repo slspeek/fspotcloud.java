@@ -43,7 +43,7 @@ public class BotDispatchServerTest extends TestCase {
 	public void testEmptyStart() throws XmlRpcException, IOException, ClassNotFoundException {
 		when(remote.execute(-1L,null)).thenReturn(new Object[] { -1L, null});
 		target.runForever(1);
-		verify(pauser).pause(10000);
+		verify(pauser).pause();
 	}
 	
 	public void testStart() throws XmlRpcException, IOException, ClassNotFoundException {
@@ -51,6 +51,6 @@ public class BotDispatchServerTest extends TestCase {
 		when(remote.execute(1000L,serializedResult)).thenReturn(new Object[] { -1L, null});
 		target.runForever(2);
 		verify(remote).execute(1000L, serializedResult);
-		verify(pauser).pause(10000);
+		verify(pauser).pause();
 	}
 }

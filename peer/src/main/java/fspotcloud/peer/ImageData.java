@@ -17,7 +17,6 @@ public class ImageData {
 			throws Exception {
 		int width = (int) size.width;
 		int height = (int) size.height;
-		System.out.println("URL from db " + url);
 		if(url.startsWith("file://")){
 			url = url.substring(6);
 		}

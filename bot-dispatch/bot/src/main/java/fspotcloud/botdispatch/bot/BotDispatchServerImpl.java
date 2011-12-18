@@ -48,6 +48,7 @@ public class BotDispatchServerImpl implements BotDispatchServer {
 			Object[] result = remote.execute(callbackId, serializedResult);
 			callbackId = (Long) result[0];
 			if (callbackId != -1) {
+				pauser.resetIdleCount();
 				byte[] serializedAction = (byte[]) result[1];
 				currentAction = (Action<?>) SerializationUtils
 						.deserialize(serializedAction);
@@ -56,9 +57,11 @@ public class BotDispatchServerImpl implements BotDispatchServer {
 			}
 
 			if (currentAction == null) {
-				log.info("No action at this time, sleeping for " + pause / 1000
+				pauser.increaseIdleCount();
+				log.info("No action at this time, sleeping for " + pauser.getPauseSeconds()
 						+ "s.");
-				pauser.pause(pause);
+				pauser.pause();
+				;
 			} else {
 				CommandWorker worker = factory.get(currentAction);
 				serializedResult = worker.doExecute();

@@ -10,12 +10,13 @@ import fspotcloud.peer.inject.PeerModule;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
-		Injector injector = Guice.createInjector(new PeerModule(), new PeerActionsModule(), new BotModule());
+		Injector injector = Guice.createInjector(new PeerModule(),
+				new PeerActionsModule(), new BotModule());
 
 		StopListener stopListener = injector.getInstance(StopListener.class);
-	    stopListener.start();
-		
-	    Bot bot = injector.getInstance(Bot.class); 
-	    bot.runForever();
+		stopListener.start();
+
+		Bot bot = injector.getInstance(Bot.class);
+		bot.runForever();
 	}
 }

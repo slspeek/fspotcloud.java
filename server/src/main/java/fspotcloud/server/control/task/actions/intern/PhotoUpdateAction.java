@@ -21,4 +21,7 @@ public class PhotoUpdateAction implements Action<VoidResult>, Serializable {
 		return updates;
 	}
 
+	public String toString() {
+		return updates.toString();
+	}
 }

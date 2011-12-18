@@ -28,4 +28,7 @@ public class RemovePhotosFromTagAction implements Action<VoidResult>, Serializab
 		return tagId;
 	}
 	
+	public String toString() {
+		return toBoDeleted.toString();
+	}
 }
