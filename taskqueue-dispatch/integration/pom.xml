@@ -4,11 +4,11 @@
 	<parent>
 		<artifactId>taskqueue-dispatch</artifactId>
 		<groupId>fspotcloud.taskqueue-dispatch</groupId>
-		<version>0.40-7.6.3</version>
+		<version>0.40-7.6.4</version>
 	</parent>
 	<groupId>fspotcloud.taskqueue-dispatch</groupId>
 	<artifactId>integration</artifactId>
-	<version>0.40-7.6.3</version>
+	<version>0.40-7.6.4</version>
 	<packaging>war</packaging>
 	<name>Selenium test for TaskQueueDispatch</name>
 	<dependencies>
