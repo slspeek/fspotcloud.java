@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -23,7 +25,7 @@ import fspotcloud.client.main.view.api.TagView;
 import fspotcloud.client.main.view.api.TimerInterface;
 import fspotcloud.client.main.view.api.TreeView;
 
-public class TagViewImpl extends Composite implements TagView, MouseOverHandler {
+public class TagViewImpl extends Composite implements TagView, MouseOverHandler, MouseOutHandler {
 
 	private static final Logger log = Logger.getLogger(TagViewImpl.class
 			.getName());
@@ -59,6 +61,7 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler 
 		this.treeView = treeView;
 		this.buttonPanelView = buttonPanelView;
 		imageRasterView.asWidget().addDomHandler(this, MouseOverEvent.getType());
+		imageRasterView.asWidget().addDomHandler(this, MouseOutEvent.getType());
 		this.imageRasterView = imageRasterView;
 		initWidget(uiBinder.createAndBindUi(this));
 		log.info("Created " + this);
@@ -67,11 +70,13 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler 
 	@UiHandler("horizontalFocusPanel")
 	public void infoHover(MouseOverEvent event) {
 		log.info("horizontal mouse over");
+		cancelHiding();
 		animateControlsIn(600);
 	}
 
 	@UiHandler("verticalFocusPanel")
 	public void verticalMousePanel(MouseOverEvent event) {
+		cancelHiding();
 		animateControlsIn(600);
 		log.info("vertical mouse over");
 	}
@@ -157,13 +162,16 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler 
 	public void onMouseOver(MouseOverEvent event) {
 		log.info("On mouse over");
 		cancelHiding();
-		animateControlsOut(1000);
-		
-		
+		hideLabelLater(1000);
 	}
 
 	@Override
 	public void cancelHiding() {
 		timer.cancel();
+	}
+
+	@Override
+	public void onMouseOut(MouseOutEvent event) {
+		cancelHiding();
 	}
 }
