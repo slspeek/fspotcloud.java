@@ -44,14 +44,17 @@ public class ImageRasterViewImpl extends ResizeComposite implements
 	private final ImageViewFactory imageViewFactory;
 	private ImageRasterView.ImageRasterPresenter presenter;
 	final private Label pagingLabel = new Label();
+	final private Resources resources;
 
 	@Inject
-	public ImageRasterViewImpl(ImageViewFactoryImpl imageViewFactory) {
+	public ImageRasterViewImpl(ImageViewFactoryImpl imageViewFactory, Resources resources) {
 		this.imageViewFactory = imageViewFactory;
+		this.resources = resources;
 		initWidget(uiBinder.createAndBindUi(this));
 		layoutPanel.ensureDebugId("image-raster-view");
 		layoutPanel.addDomHandler(this, MouseWheelEvent.getType());
 		pagingLabel.ensureDebugId("paging-label");
+		pagingLabel.setStyleName(resources.style().pagerLabel());
 	}
 
 	@Override
