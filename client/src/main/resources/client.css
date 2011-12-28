@@ -17,9 +17,9 @@
 @def thirdColor #F1DEFF;
 
 /** Dark theme */
-@def ligherColor  #172442;
-@def treeColor #695A5A;
-@def thirdColor #5A6969;
+@def ligherColor  #495674;
+@def treeColor #9B8C8C;
+@def thirdColor #8C9C8C;
 
 
 .importedTag {
@@ -53,6 +53,7 @@
 	padding: 4px;
 	margin: auto;
 	border-style: solid;
+	border-color: thirdColor;
 }
 	
 .slideshowControls {
@@ -79,8 +80,15 @@
 	font-size: 12px;
 }
 
+.pagerLabel {
+	text-align: center;
+	color: foregroundColor;
+	font-size: 12px;
+}
+
 .treeBlock {
 	background-color: treeColor;
+	color: foregroundColor;
 }
 
 .footerBlock {

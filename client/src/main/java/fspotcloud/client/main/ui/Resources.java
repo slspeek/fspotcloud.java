@@ -37,6 +37,8 @@ public interface Resources extends ClientBundle {
 		String helpSeparator();
 		
 		String helpTitle();
+		
+		String pagerLabel();
 
 		String buttonPanelBlock();
 
