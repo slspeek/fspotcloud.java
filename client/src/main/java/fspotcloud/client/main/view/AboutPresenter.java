@@ -1,8 +1,11 @@
 package fspotcloud.client.main.view;
 
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
+import javax.inject.Named;
 
+import com.google.inject.Inject;
+
+import fspotcloud.client.main.IGlobalShortcutController;
+import fspotcloud.client.main.IGlobalShortcutController.Mode;
 import fspotcloud.client.main.event.AbstractActionMap;
 import fspotcloud.client.main.event.ActionMap;
 import fspotcloud.client.main.help.HelpContentGenerator;
@@ -17,11 +20,13 @@ public class AboutPresenter implements PopupView.PopupPresenter {
 	private String helptext;
 	private final ActionMap actions;
 	private Resources resources;
+	private final IGlobalShortcutController globalShortcutController;
 
 	@Inject
-	public AboutPresenter(@Named("about") AbstractActionMap actions, HelpContentGenerator generator, PopupView popupView, Resources resources) {
+	public AboutPresenter(IGlobalShortcutController globalShortcutController, @Named("about") AbstractActionMap actions, HelpContentGenerator generator, PopupView popupView, Resources resources) {
 		this.actions = actions;
 		actions.buildMap();
+		this.globalShortcutController = globalShortcutController;
 		this.resources = resources;
 		this.generator = generator;
 		this.popupView = popupView;
@@ -55,10 +60,12 @@ public class AboutPresenter implements PopupView.PopupPresenter {
 		popupView.center();
 		popupView.show();
 		popupView.focus();
+		globalShortcutController.setMode(Mode.ABOUT);
 	}
 
 	public void hide() {
 		popupView.hide();
+		globalShortcutController.setMode(Mode.TAG_VIEW);
 	}
 
 	@Override

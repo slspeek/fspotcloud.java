@@ -10,9 +10,9 @@ public enum ApplicationType implements ActionDef {
 	TOGGLE_HELP("help", "Help", "Display a popup with the keyboard shortcuts",
 			new KeyStroke('H'), null),
 	ZOOM_IN("zoom-in", "Zoom in", "Zoom into the current image",
-					new KeyStroke(187), null),
+					new KeyStroke(107), null),
 					ZOOM_OUT("zoom-out", "Zoom out", "Zoom out of the current image",
-							new KeyStroke(189), null),
+							new KeyStroke(109), null),
 					
 	START_DEMO(
 			"demo", "Demo", "Play a demo", new KeyStroke('7'), null), TREE_FOCUS(

@@ -17,7 +17,7 @@ public enum RasterType implements ActionDef {
 			"Reset raster", "Resets raster to defaults", new KeyStroke('0'),
 			null), TOGGLE_TABULAR_VIEW(
 			"raster", "Toggle raster", "Toggle tabular viewing", new KeyStroke(
-					KeyCodes.KEY_CTRL), new KeyStroke((int) '1')),
+					KeyCodes.KEY_SHIFT), new KeyStroke((int) '1')),
 			SET_RASTER_2x2("2x2", "2x2", "Sets the raster to 2 x 2",
 			new KeyStroke('2'), null), SET_RASTER_3x3("3x3", "3x3",
 			"Sets the raster to 3 x 3", new KeyStroke('3'), null), SET_RASTER_4x4(

@@ -30,11 +30,11 @@ public class HelpPresenter implements PopupView.PopupPresenter {
 		helptext += "<tr><td>";
 		helptext += getHelpGroup(actions.get("Navigation"));
 		helptext += "</td><td>";
-		helptext += getHelpGroup(actions.get("Slideshow"));
-		helptext += "</td></tr><tr><td>";
 		helptext += getHelpGroup(actions.get("Raster"));
-		helptext += "</td><td>";
+		helptext += "</td></tr><tr><td>";
 		helptext += getHelpGroup(actions.get("Application"));
+		helptext += "</td><td>";
+		helptext += getHelpGroup(actions.get("Slideshow"));
 		helptext += "</td></tr>";
 		helptext += "</table>";
 		return helptext;

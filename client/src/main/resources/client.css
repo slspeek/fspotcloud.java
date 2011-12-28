@@ -30,8 +30,9 @@
 
  .tagView {
 	border-style: solid;
+	border-width: thick;
 	background-color: treeColor;
-	border-color: thirdColor;
+	border-color: grey;
 }
 
 .button {
@@ -44,15 +45,14 @@
 }
 
 .image {
+	padding: 4px;
 	margin: auto;
 }
 
 .selectedImage {
+	padding: 4px;
 	margin: auto;
 	border-style: solid;
-	border-width:thin;
-	border-color: thirdColor;
-	background: thirdColor;
 }
 	
 .slideshowControls {
@@ -61,18 +61,16 @@
 }
 
 .imagePanelBlock {
+	padding: 2px;
 	background-color: ligherColor;
 	margin: auto;
-	border-style: solid;
-	border-color: treeColor;
 }
 
 .buttonPanelBlock {
 	background-color: thirdColor;
-	border-style: solid;
-	border-style: thin;
-	border-color: ligherColor;
 	margin: auto;
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 
 .photoInfoLabel {
@@ -83,9 +81,6 @@
 
 .treeBlock {
 	background-color: treeColor;
-	border-style:solid;
-	border-style: thin;
-	border-color: thirdColor;
 }
 
 .footerBlock {
@@ -102,18 +97,17 @@
 	border-radius: 15px;
 	background-color: rgba(0, 0, 0, 0.7);
 	color: white;
-	font-size: 180%;
 }
 
 .helpCategory {
-	font-size: 90%;
+	font-size: 110%;
 	border-bottom: solid;
 	border-top: solid;
 	text-align: center;
 }
 
 .helpDescription {
-	font-size: 130%;
+	font-size: 110%;
 }
 
 .helpTitle {
@@ -124,12 +118,12 @@
 
 .helpSeparator {
 	font-weight: bold;
-	font-size: 130%;
+	font-size: 110%;
 }
 
 .helpKey {
 	color: yellow;
 	font-weight: bold;
-	font-size: 130%;
+	font-size: 110%;
 }
 

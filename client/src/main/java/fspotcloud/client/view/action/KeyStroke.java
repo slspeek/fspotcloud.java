@@ -50,8 +50,20 @@ public class KeyStroke {
 		case KeyCodes.KEY_ESCAPE:
 			result = "Esc";
 			break;
+		case KeyCodes.KEY_SHIFT:
+			result = "Shift";
+			break;
 		case 32:
 			result = "Space";
+			break;
+		case 19:
+			result = "Pause";
+			break;
+		case 108:
+			result = "Numpad -";
+			break;
+		case 107:
+			result = "Numpad +";
 			break;
 		case KeyCodes.KEY_CTRL:
 			result = "Control";
