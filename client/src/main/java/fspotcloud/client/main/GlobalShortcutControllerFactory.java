@@ -36,8 +36,10 @@ public class GlobalShortcutControllerFactory implements
 		
 		putAll("Slideshow", slideshowDispatcher);
 		putAll("Application", slideshowDispatcher);
+		putAll("About", slideshowDispatcher);
 		
 		putAll("About", aboutDispatcher);
+		putAll("Application", aboutDispatcher);
 		
 		putAll("Application", treeFocusDispatcher);
 		putAll("Raster", treeFocusDispatcher);
@@ -45,6 +47,7 @@ public class GlobalShortcutControllerFactory implements
 
 		putAll("Navigation", tagViewDispatcher);
 		putAll("Raster", tagViewDispatcher);
+		putAll("About", tagViewDispatcher);
 		putAll("Application", tagViewDispatcher);
 		putAll("Slideshow", tagViewDispatcher);
 		controller = new GlobalShortcutController(map);

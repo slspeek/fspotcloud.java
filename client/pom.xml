@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.40-7.6.4</version>
+		<version>0.1-beta</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>client</artifactId>
@@ -183,8 +183,8 @@
 						<value>fspotcloud.dashboard</value>
 					</compileTargets>
 					<extraJvmArgs>-Xmx512m</extraJvmArgs>
-					<runTarget>http://localhost:8080/FSpotCloud.html</runTarget>
 					<runTarget>http://localhost:8080/Dashboard.html</runTarget>
+					<runTarget>http://localhost:8080/FSpotCloud.html</runTarget>
 					<style>PRETTY</style>
 					<mode>htmlunit</mode>
 					<gwtVersion>${gwt.version}</gwtVersion>

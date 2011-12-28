@@ -25,8 +25,14 @@ import fspotcloud.client.main.view.api.TagView;
 import fspotcloud.client.main.view.api.TimerInterface;
 import fspotcloud.client.main.view.api.TreeView;
 
-public class TagViewImpl extends Composite implements TagView, MouseOverHandler, MouseOutHandler {
+public class TagViewImpl extends Composite implements TagView,
+		MouseOverHandler, MouseOutHandler {
 
+	private static final int TREE_VIEW_WIDTH_PCT = 22;
+	private static final int IMAGE_PANEL_WIDTH_PCT = 100 - TREE_VIEW_WIDTH_PCT;
+	private static final int BUTTON_PANEL_HEIGHT_PCT = 6;
+	private static final int IMAGEPANEL_HEIGHT_PCT = 100 - BUTTON_PANEL_HEIGHT_PCT;
+	
 	private static final Logger log = Logger.getLogger(TagViewImpl.class
 			.getName());
 	private static TagViewImplUiBinder uiBinder = GWT
@@ -41,7 +47,7 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler,
 	HTML verticalFocusPanel;
 	@UiField
 	LayoutPanel mainPanel;
-	
+
 	TreeView treeView;
 	ButtonPanelView buttonPanelView;
 	ImageRasterView imageRasterView;
@@ -60,7 +66,8 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler,
 		this.timer = timer;
 		this.treeView = treeView;
 		this.buttonPanelView = buttonPanelView;
-		imageRasterView.asWidget().addDomHandler(this, MouseOverEvent.getType());
+		imageRasterView.asWidget()
+				.addDomHandler(this, MouseOverEvent.getType());
 		imageRasterView.asWidget().addDomHandler(this, MouseOutEvent.getType());
 		this.imageRasterView = imageRasterView;
 		initWidget(uiBinder.createAndBindUi(this));
@@ -83,13 +90,16 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler,
 
 	public void animateControlsIn(int duration) {
 		cancelHiding();
-		mainPanel.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM, 10,
-				Unit.PCT);
-		mainPanel.setWidgetTopHeight(imageRasterView, 0, Unit.CM, 90, Unit.PCT);
-		mainPanel
-				.setWidgetRightWidth(imageRasterView, 0, Unit.CM, 78, Unit.PCT);
-		mainPanel.setWidgetLeftWidth(treeView, 0, Unit.PCT, 22, Unit.PCT);
-		mainPanel.setWidgetTopHeight(treeView, 0, Unit.PCT, 90, Unit.PCT);
+		mainPanel.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM,
+				BUTTON_PANEL_HEIGHT_PCT, Unit.PCT);
+		mainPanel.setWidgetTopHeight(imageRasterView, 0, Unit.CM,
+				IMAGEPANEL_HEIGHT_PCT, Unit.PCT);
+		mainPanel.setWidgetRightWidth(imageRasterView, 0, Unit.CM,
+				IMAGE_PANEL_WIDTH_PCT, Unit.PCT);
+		mainPanel.setWidgetLeftWidth(treeView, 0, Unit.PCT,
+				TREE_VIEW_WIDTH_PCT, Unit.PCT);
+		mainPanel.setWidgetTopHeight(treeView, 0, Unit.PCT,
+				IMAGEPANEL_HEIGHT_PCT, Unit.PCT);
 
 		mainPanel.setWidgetBottomHeight(horizontalFocusPanel, 0, Unit.PCT, 0,
 				Unit.PCT);
@@ -131,8 +141,6 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler,
 		});
 		timer.schedule(duration);
 	}
-	
-	
 
 	@UiFactory
 	public TreeViewImpl getView() {
