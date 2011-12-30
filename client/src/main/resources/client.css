@@ -21,6 +21,11 @@
 @def treeColor #9B8C8C;
 @def thirdColor #8C9C8C;
 
+@def ligherColor  #080808;
+@def treeColor #000000;
+@def thirdColor #000000;
+
+@def borderColor #303030;
 
 .importedTag {
 	color: green;
@@ -32,7 +37,9 @@
 	border-style: solid;
 	border-width: thick;
 	background-color: treeColor;
-	border-color: grey;
+	border-color: borderColor;
+  border-collapse: collapse;
+  border-width: 1px;
 }
 
 .button {
@@ -53,7 +60,8 @@
 	padding: 4px;
 	margin: auto;
 	border-style: solid;
-	border-color: thirdColor;
+	border-color: borderColor;
+  border-width: 1px;
 }
 	
 .slideshowControls {
@@ -65,6 +73,10 @@
 	padding: 2px;
 	background-color: ligherColor;
 	margin: auto;
+  border-style: solid;
+  border-color: borderColor;
+  border-collapse: collapse;
+  border-width: 1px;
 }
 
 .buttonPanelBlock {
@@ -72,6 +84,11 @@
 	margin: auto;
 	padding-top: 2px;
 	padding-bottom: 2px;
+  border-style: solid;
+  border-color: borderColor;
+  border-collapse: collapse;
+  border-width: 1px;
+
 }
 
 .photoInfoLabel {
@@ -89,6 +106,10 @@
 .treeBlock {
 	background-color: treeColor;
 	color: foregroundColor;
+  border-style: solid;
+  border-color: borderColor;
+  border-collapse: collapse;
+  border-width: 1px;
 }
 
 .footerBlock {
