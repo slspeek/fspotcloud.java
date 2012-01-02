@@ -41,7 +41,6 @@
 	<modules>
 		<module>rpc</module>
 		<module>test-util</module>
-		<module>taskqueue-dispatch</module>
 		<module>model-api</module>
 		<module>model</module>
 		<module>server</module>
@@ -51,7 +50,6 @@
 		<module>war-prod</module>
 		<module>deps</module>
 		<module>grapher</module>
-		<module>bot-dispatch</module>
 		<module>peer-rpc</module>
 		<module>installer</module>
 	</modules>
