@@ -3,8 +3,6 @@ package fspotcloud.server.model.api;
 import java.util.Date;
 import java.util.List;
 
-import com.google.appengine.api.datastore.Blob;
-
 public interface Photo {
 
 	final int IMAGE_TYPE_THUMB = 0;
@@ -30,13 +28,13 @@ public interface Photo {
 
 	Date getDate();
 
-	void setThumb(Blob thumb);
+	void setThumb(byte[] thumb);
 
-	Blob getThumb();
+	byte[] getThumb();
 
-	void setImage(Blob image);
+	void setImage(byte[] image);
 
-	Blob getImage();
+	byte[] getImage();
 
 	void setImageLoaded(Boolean imageLoaded);
 

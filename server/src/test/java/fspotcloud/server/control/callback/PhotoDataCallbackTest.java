@@ -88,8 +88,8 @@ public class PhotoDataCallbackTest {
 		AssertJUnit.assertEquals(DESCRIPTION, photo1.getDescription());
 		verify(photoManager).saveAll(argumentCaptor.capture());
 		AssertJUnit.assertEquals(photo1, argumentCaptor.getValue().get(0));
-		AssertJUnit.assertEquals(IMAGE_DATA, photo1.getImage().getBytes());
-		AssertJUnit.assertEquals(THUMB_DATA, photo1.getThumb().getBytes());
+		AssertJUnit.assertEquals(IMAGE_DATA, photo1.getImage());
+		AssertJUnit.assertEquals(THUMB_DATA, photo1.getThumb());
 		AssertJUnit.assertTrue(photo1.isThumbLoaded());
 		AssertJUnit.assertTrue(photo1.isImageLoaded());
 		PhotoInfo info = tag1.getCachedPhotoList().first(); 

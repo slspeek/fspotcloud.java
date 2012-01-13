@@ -84,20 +84,28 @@ public class PhotoDO implements Photo, Serializable {
 		return date;
 	}
 
-	public void setThumb(Blob thumb) {
-		this.thumb = thumb;
+	public void setThumb(byte[] thumb) {
+		this.thumb = new Blob(thumb);
 	}
 
-	public Blob getThumb() {
-		return thumb;
+	public byte[] getThumb() {
+            if (thumb != null) {
+		return thumb.getBytes();
+            } else {
+                return null;
+            }
 	}
 
-	public void setImage(Blob image) {
-		this.image = image;
+	public void setImage(byte[] image) {
+		this.image = new Blob(image);
 	}
 
-	public Blob getImage() {
-		return image;
+	public byte[] getImage() {
+            if (image != null) {
+		return image.getBytes();
+            } else {
+                return null;
+            }
 	}
 
 	public void setImageLoaded(Boolean imageLoaded) {

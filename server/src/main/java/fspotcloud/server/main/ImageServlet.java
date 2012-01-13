@@ -37,11 +37,11 @@ public class ImageServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		boolean thumb = (request.getParameter("thumb") != null);
 		Photo photo = photoManager.getById(id);
-		Blob imageData = thumb ? photo.getThumb() : photo.getImage();
+		byte[] imageData = thumb ? photo.getThumb() : photo.getImage();
 		response.setContentType("image/jpeg");
 		setCacheExpireDate(response, 3600 * 24 * 365);
 		OutputStream out = response.getOutputStream();
-		out.write(imageData.getBytes());
+		out.write(imageData);
 		out.close();
 	}
 
