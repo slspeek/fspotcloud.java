@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.SortedSet;
 
-import com.google.appengine.api.datastore.Blob;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
@@ -75,8 +74,8 @@ public class PhotoDataCallback implements AsyncCallback<PhotoDataResult>,
 		photo.setDescription(desc);
 		photo.setDate(date);
 		photo.setTagList(tags);
-		photo.setImage(new Blob(imageData));
-		photo.setThumb(new Blob(thumbData));
+		photo.setImage(imageData);
+		photo.setThumb(thumbData);
 		photo.setImageLoaded(true);
 		photo.setThumbLoaded(true);
 		for (String tagId : tags) {
