@@ -1,10 +1,7 @@
 package fspotcloud.server.model.api;
 
-import java.util.SortedSet;
-
-import com.google.appengine.api.datastore.Key;
-
 import fspotcloud.shared.photo.PhotoInfo;
+import java.util.SortedSet;
 
 public interface Tag {
 
@@ -23,12 +20,12 @@ public interface Tag {
 	 * @param parent
 	 *            the parent to set
 	 */
-	public abstract void setParent(Key parent);
+	public abstract void setParent(String parent);
 
 	/**
 	 * @return the parent
 	 */
-	public abstract Key getParent();
+	public abstract String getParent();
 
 	/**
 	 * @param count

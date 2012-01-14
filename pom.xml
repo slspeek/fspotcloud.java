@@ -43,6 +43,7 @@
         <module>test-util</module>
         <module>model-api</module>
         <module>model</module>
+<!--        <module>model-jpa</module>-->
         <module>server</module>
         <module>client</module>
         <module>peer</module>
@@ -341,10 +342,60 @@
                 <type>pom</type>
             </dependency>
             <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-servlet</artifactId>
+                <version>${gwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-user</artifactId>
+                <version>${gwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.customware.gwt.dispatch</groupId>
+                <artifactId>gwt-dispatch</artifactId>
+                <version>1.2.0</version>
+            </dependency>
+            <dependency>
                 <groupId>${project.groupId}.deps</groupId>
                 <artifactId>guice-deps</artifactId>
                 <version>${project.version}</version>
                 <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-assistedinject</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-servlet</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-persist</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guiceberry</groupId>
+                <artifactId>guiceberry</artifactId>
+                <version>3.0.4</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.jdo</groupId>
+                <artifactId>jdo-api</artifactId>
+                <version>3.0</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}.deps</groupId>
