@@ -15,11 +15,16 @@
 		<dependency>
 			<groupId>fspotcloud</groupId>
 			<artifactId>rpc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-api-1.0-sdk</artifactId>
-			<version>${gae.version}</version>
+		 <exclusions>
+		  <exclusion>
+		   <artifactId>gwt-user</artifactId>
+		   <groupId>com.google.gwt</groupId>
+		  </exclusion>
+		  <exclusion>
+		   <artifactId>gwt-deps</artifactId>
+		   <groupId>fspotcloud.deps</groupId>
+		  </exclusion>
+		 </exclusions>
 		</dependency>
 	</dependencies>
 </project>

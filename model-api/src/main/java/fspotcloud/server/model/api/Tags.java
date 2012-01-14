@@ -1,8 +1,7 @@
 package fspotcloud.server.model.api;
 
-import java.util.List;
-
 import fspotcloud.shared.tag.TagNode;
+import java.util.List;
 
 public interface Tags {
 
