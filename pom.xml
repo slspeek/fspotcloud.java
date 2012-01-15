@@ -43,7 +43,7 @@
         <module>test-util</module>
         <module>model-api</module>
         <module>model</module>
-<!--        <module>model-jpa</module>-->
+        <module>model-jpa</module>
         <module>server</module>
         <module>client</module>
         <module>peer</module>
@@ -55,6 +55,8 @@
         <module>installer</module>
     </modules>
     <properties>
+        <hibernate.version>4.0.0.Final</hibernate.version>
+        <derby.version>10.2.2.0</derby.version>
         <guice.version>3.0</guice.version>
         <gin.version>1.5.0</gin.version>
         <gwt.version>2.4.0</gwt.version>
@@ -482,7 +484,51 @@
                 <version>2.5.1</version>
                 <scope>test</scope>
             </dependency>
+              <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
+
+        
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency><!-- Hibernate gives you a choice of bytecode providers between cglib and javassist -->
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.12.0.GA</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+            
+            
+            
+              <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>${derby.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>${derby.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbynet</artifactId>
+            <version>${derby.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbytools</artifactId>
+            <version>${derby.version}</version>
+        </dependency>
+            
         </dependencies>
+        
     </dependencyManagement>
     <distributionManagement>
         <site>

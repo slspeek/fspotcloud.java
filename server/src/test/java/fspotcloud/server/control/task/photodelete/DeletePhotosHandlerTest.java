@@ -75,7 +75,7 @@ public class DeletePhotosHandlerTest {
 		infoList = new ArrayList<PhotoInfo>();
 		infoList.add(photoInfoA);
 		infoList.add(photoInfoB);
-		SortedSet<PhotoInfo> cached = new TreeSet<PhotoInfo>();
+		TreeSet<PhotoInfo> cached = new TreeSet<PhotoInfo>();
 		cached.add(photoInfoA);
 		cached.add(photoInfoB);
 		tag.setCachedPhotoList(cached);

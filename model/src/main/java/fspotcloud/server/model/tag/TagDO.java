@@ -34,57 +34,69 @@ public class TagDO implements Tag, Serializable {
     @Persistent
     private boolean importIssued = false;
     @Persistent(serialized = "true")
-    private SortedSet<PhotoInfo> cachedPhotoList = new TreeSet<PhotoInfo>();
+    private TreeSet<PhotoInfo> cachedPhotoList = new TreeSet<PhotoInfo>();
 
     @Override
     public void setId(String id) {
         this.id = id;
     }
 
+    @Override
     public void setParent(String parent) {
         this.parent = parent;
     }
 
+    @Override
     public String getParent() {
         return parent;
     }
 
+    @Override
     public void setCount(int count) {
         this.count = count;
     }
 
+    @Override
     public int getCount() {
         return count;
     }
 
+    @Override
     public void setTagName(String tagName) {
         this.tagName = tagName;
     }
 
+    @Override
     public String getTagName() {
         return tagName;
     }
 
+    @Override
     public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 
+    @Override
     public String getParentId() {
         return parentId;
     }
 
-    public void setCachedPhotoList(SortedSet<PhotoInfo> cachedPhotoList) {
+    @Override
+    public void setCachedPhotoList(TreeSet<PhotoInfo> cachedPhotoList) {
         this.cachedPhotoList = cachedPhotoList;
     }
 
-    public SortedSet<PhotoInfo> getCachedPhotoList() {
+    @Override
+    public TreeSet<PhotoInfo> getCachedPhotoList() {
         return cachedPhotoList;
     }
 
+    @Override
     public void setImportIssued(boolean importIssued) {
         this.importIssued = importIssued;
     }
 
+    @Override
     public boolean isImportIssued() {
         return importIssued;
     }

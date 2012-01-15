@@ -19,9 +19,6 @@ import org.hibernate.annotations.GenericGenerator;
 public class TagEntity implements Tag, Serializable {
 
     @Id
-//    @GeneratedValue(generator = "increment")
-//    @GenericGenerator(name = "increment", strategy = "increment")
-//    private Long key;
     private String id;
     @Basic
     private String tagName;
@@ -33,8 +30,8 @@ public class TagEntity implements Tag, Serializable {
     private int count;
     @Basic
     private boolean importIssued = false;
-    //@Column(columnDefinition = "BLOB")
-    transient private SortedSet<PhotoInfo> cachedPhotoList = new TreeSet<PhotoInfo>();
+    @Column(columnDefinition = "BLOB")
+    private TreeSet<PhotoInfo> cachedPhotoList = new TreeSet<PhotoInfo>();
 
     public TagEntity() {}
     @Override
@@ -83,12 +80,12 @@ public class TagEntity implements Tag, Serializable {
     }
 
     @Override
-    public void setCachedPhotoList(SortedSet<PhotoInfo> cachedPhotoList) {
+    public void setCachedPhotoList(TreeSet<PhotoInfo> cachedPhotoList) {
         this.cachedPhotoList = cachedPhotoList;
     }
 
     @Override
-    public SortedSet<PhotoInfo> getCachedPhotoList() {
+    public TreeSet<PhotoInfo> getCachedPhotoList() {
         return cachedPhotoList;
     }
 
