@@ -10,11 +10,11 @@ import fspotcloud.server.cron.CronServlet;
 import fspotcloud.server.main.ImageServlet;
 import fspotcloud.server.main.TagServiceImpl;
 
-public class FSpotCloudServletModule extends ServletModule {
+public class ServerServletModule extends ServletModule {
 
 	@SuppressWarnings("unused")
 	private static final Logger log = Logger
-			.getLogger(FSpotCloudServletModule.class.getName());
+			.getLogger(ServerServletModule.class.getName());
 
 	@Override
 	protected void configureServlets() {

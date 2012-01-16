@@ -4,7 +4,7 @@ import fspotcloud.botdispatch.controller.callback.ControllerHook;
 import fspotcloud.botdispatch.controller.inject.AbstractControllerModule;
 import fspotcloud.server.control.hook.TimeLoggingControllerHook;
 
-public class FSCControllerModule extends AbstractControllerModule {
+public class ServerControllerModule extends AbstractControllerModule {
 
 	public void configure() {
 		super.configure();
