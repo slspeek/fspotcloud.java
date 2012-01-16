@@ -122,6 +122,11 @@
             <version>1.4</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>fspotcloud.bot-dispatch</groupId>
+            <artifactId>command-jpa</artifactId>
+            <version>0.2-botdispatch</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

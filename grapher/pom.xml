@@ -45,6 +45,12 @@
 			<artifactId>guice-grapher</artifactId>
 			<version>${guice.version}</version>
 		</dependency>
+	 <dependency>
+	  <groupId>fspotcloud.bot-dispatch</groupId>
+	  <artifactId>gae-command</artifactId>
+	  <version>0.2-botdispatch</version>
+	  <classifier>special</classifier>
+	 </dependency>
 	</dependencies>
 	<build>
 		<plugins>

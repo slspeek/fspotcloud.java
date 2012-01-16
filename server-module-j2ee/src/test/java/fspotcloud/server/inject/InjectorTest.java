@@ -11,9 +11,9 @@ import fspotcloud.server.model.api.PeerDatabases;
 public class InjectorTest {
 	@Test
 	public void testInjector() {
-		Injector injector = Guice.createInjector(new GaeTotalModule());
+		Injector injector = Guice.createInjector(new J2eeTotalModule());
 		AssertJUnit.assertNotNull(injector);
-		 PeerDatabases defaultPeer =
+		PeerDatabases defaultPeer =
 		 injector.getInstance(PeerDatabases.class);
 		ControllerDispatchAsync controller = injector
 				.getInstance(ControllerDispatchAsync.class);
