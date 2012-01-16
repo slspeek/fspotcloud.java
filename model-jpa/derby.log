@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-2012-01-16 17:17:55.503 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.2.2.0 - (485682): instance c013800d-0134-e786-735f-00000566c1a8
+2012-01-16 17:51:05.811 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.2.2.0 - (485682): instance c013800d-0134-e7a4-d21c-000006d4d4a0
 on database directory /home/steven/fspotcloud/model-jpa/MODELJPA  
 
 Database Class Loader started - derby.database.classpath=''
