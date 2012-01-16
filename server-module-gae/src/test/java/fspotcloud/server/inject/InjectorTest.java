@@ -1,9 +1,11 @@
 package fspotcloud.server.inject;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.google.inject.servlet.GuiceServletContextListener;
 
+import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.botdispatch.controller.inject.ControllerServletModule;
 import fspotcloud.botdispatch.model.MinimalCommandModelModule;
 import fspotcloud.server.control.task.TaskActionsModule;
@@ -12,15 +14,20 @@ import fspotcloud.server.model.ModelModule;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchModule;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchServletModule;
 
-public class GuiceServletConfig extends GuiceServletContextListener {
-	@Override
-	protected Injector getInjector() {
-		Injector i = Guice.createInjector(new FSpotCloudServletModule(),
-				new FSpotCloudModule(), new AdminActionsModule(), new ModelModule(),
-				new TaskModule(), new FSCControllerModule(),
+public class InjectorTest {
+	@Test
+	public void testInjector() {
+		Injector injector = Guice.createInjector(new ServerServletModule(),
+				new ServerModule(), new AdminActionsModule(), new ModelModule(),
+				new TaskModule(), new ServerControllerModule(),
 				new ControllerServletModule(), new MinimalCommandModelModule(),
 				new TaskQueueDispatchModule(),
 				new TaskQueueDispatchServletModule(), new TaskActionsModule());
-		return i;
+		AssertJUnit.assertNotNull(injector);
+		// PeerDatabases defaultPeer =
+		// injector.getInstance(PeerDatabases.class);
+		ControllerDispatchAsync controller = injector
+				.getInstance(ControllerDispatchAsync.class);
+		AssertJUnit.assertNotNull(controller);
 	}
 }
