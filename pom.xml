@@ -332,6 +332,11 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>server-module-gae</artifactId>
                 <version>${project.version}</version>
+            </dependency> 
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>server-module-j2ee</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
