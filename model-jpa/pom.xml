@@ -14,6 +14,12 @@
     <name>Model JPA Implementation</name>
     <dependencies>
         <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-servlet_2.5_spec</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>fspotcloud</groupId>
             <artifactId>rpc</artifactId>
         </dependency>
@@ -126,6 +132,12 @@
             <groupId>fspotcloud.bot-dispatch</groupId>
             <artifactId>command-jpa</artifactId>
             <version>0.2-botdispatch</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+            <version>3.0</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <build>
