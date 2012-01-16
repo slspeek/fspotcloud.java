@@ -23,6 +23,7 @@ public class CopyDatabase implements Provider<String> {
 
 
 	public String copyDatabase() throws IOException {
+            System.out.println("src: " +srcPath);
 		File srcFile = new File(srcPath);
 		File targetDir = new File(pwd + "/runtime");
 		if (!targetDir.exists()) {
@@ -38,7 +39,9 @@ public class CopyDatabase implements Provider<String> {
 		}
 		in.close();
 		out.close();
-		return "jdbc:sqlite:" + targetFile.getAbsolutePath();
+                String url = "jdbc:sqlite:" + targetFile.getAbsolutePath();
+                System.out.println("url: " + url);
+		return url;
 	}
 
 	@Override

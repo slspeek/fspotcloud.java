@@ -46,6 +46,7 @@
         <module>model-jpa</module>
         <module>server</module>
         <module>server-module-gae</module>
+        <module>server-module-j2ee</module>
         <module>client</module>
         <module>peer</module>
         <module>war</module>
@@ -56,6 +57,8 @@
         <module>installer</module>
     </modules>
     <properties>
+        <botdispatch.version>0.2-botdispatch</botdispatch.version>
+        <taskqueuedispatch>0.1-beta-01</taskqueuedispatch>
         <hibernate.version>4.0.0.Final</hibernate.version>
         <derby.version>10.2.2.0</derby.version>
         <guice.version>3.0</guice.version>
@@ -338,6 +341,11 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>model-jpa</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>${project.groupId}.deps</groupId>
                 <artifactId>appengine-deps</artifactId>
                 <version>${project.version}</version>
@@ -416,22 +424,33 @@
                 <artifactId>peer-rpc</artifactId>
                 <version>${project.version}</version>
             </dependency>
+<!--            bot dispatch-->
             <dependency>
                 <groupId>${project.groupId}.bot-dispatch</groupId>
                 <artifactId>controller</artifactId>
-                <version>${project.version}</version>
+                <version>${botdispatch.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}.bot-dispatch</groupId>
                 <artifactId>gae-command</artifactId>
-                <version>${project.version}</version>
+                <version>${botdispatch.version}</version>
                 <classifier>special</classifier>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}.bot-dispatch</groupId>
+                <artifactId>command-jpa</artifactId>
+                <version>${botdispatch.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}.bot-dispatch</groupId>
                 <artifactId>test</artifactId>
-                <version>${project.version}</version>
+                <version>${botdispatch.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>fspotcloud.bot-dispatch</groupId>
+                <artifactId>bot</artifactId>
+                <version>${botdispatch.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
@@ -464,7 +483,6 @@
                 <groupId>httpunit</groupId>
                 <artifactId>httpunit</artifactId>
                 <version>1.7</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>

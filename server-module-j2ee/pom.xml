@@ -8,30 +8,38 @@
         <version>0.1-beta-01</version>
     </parent>
     <groupId>fspotcloud</groupId>
-    <artifactId>server</artifactId>
+    <artifactId>server-module-j2ee</artifactId>
     <version>0.1-beta-01</version>
-    <name>F-SpotCloud Server Component</name>
-    <description>The controller and data reading</description>
+    <name>F-SpotCloud Server J2EE Configuration</name>
+    <description>Guice configuration for deployment on J2EE</description>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>rpc</artifactId>
+            <artifactId>server</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>gwt-user</artifactId>
+                    <groupId>com.google.gwt</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-servlet_2.5_spec</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+        
+        <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>model-api</artifactId>
+            <artifactId>model-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}.deps</groupId>
             <artifactId>guice-deps</artifactId>
             <type>pom</type>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}.deps</groupId>
-            <artifactId>servlet-deps</artifactId>
-            <type>pom</type>
-        </dependency>
-		<!-- Test scope -->
+       	<!-- Test scope -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -41,28 +49,37 @@
             <artifactId>mockito-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.taskqueue-dispatch</groupId>
-            <artifactId>dispatch</artifactId>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}.bot-dispatch</groupId>
-            <artifactId>controller</artifactId>
+            <artifactId>command-jpa</artifactId>
+            <version>${botdispatch.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>peer-rpc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>model</artifactId>
-            <type>test-jar</type>
+            <artifactId>peer</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>gwt-user</artifactId>
+                    <groupId>com.google.gwt</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>model</artifactId>
+            <groupId>fspotcloud</groupId>
+            <artifactId>test-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava-testlib</artifactId>
+            <version>10.0.1</version>
+            <scope>test</scope>
             <type>jar</type>
-            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>fspotcloud.bot-dispatch</groupId>
+            <artifactId>command-jpa</artifactId>
+            <version>0.2-botdispatch</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <build>

@@ -8,7 +8,7 @@ import com.google.inject.servlet.GuiceServletContextListener;
 public class GuiceServletConfig extends GuiceServletContextListener {
 	@Override
 	protected Injector getInjector() {
-		Injector i = Guice.createInjector(new GaeTotalModule());
+		Injector i = Guice.createInjector(new J2eeTotalModule());
 		return i;
 	}
 }
