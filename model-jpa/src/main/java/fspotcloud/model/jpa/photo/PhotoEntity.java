@@ -3,18 +3,15 @@
  */
 package fspotcloud.model.jpa.photo;
 
-import fspotcloud.server.model.api.Blob;
 import fspotcloud.server.model.api.Photo;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.persistence.*;
-import org.apache.commons.codec.binary.Base64;
-import org.hibernate.annotations.Type;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Temporal;
 
 /**
  * @author slspeek@gmail.com
@@ -33,8 +30,9 @@ public class PhotoEntity implements Photo, Serializable {
     private Boolean thumbLoaded = false;
     private Boolean fullsizeLoaded = false;
     @Lob
-    byte[] image;
-    transient private Blob thumb;// = new Blob(new byte[0]);
+    private byte[] image;
+    @Lob
+    private byte[] thumb;
 
     @Override
     public void setId(String name) {
@@ -78,15 +76,12 @@ public class PhotoEntity implements Photo, Serializable {
 
     @Override
     public void setThumb(byte[] thumb) {
-        this.thumb = new Blob(thumb);
+        this.thumb = thumb;
     }
 
     @Override
     public byte[] getThumb() {
-        if (thumb == null) {
-            return new byte[0];
-        }
-        return thumb.getBytes();
+        return thumb;
     }
 
     @Override
@@ -96,10 +91,6 @@ public class PhotoEntity implements Photo, Serializable {
 
     @Override
     public byte[] getImage() {
-        if (image == null) {
-            System.out.println("NULL AGAIN");
-            return new byte[0];
-        }
         return image;
     }
 

@@ -19,10 +19,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>model-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>model</artifactId>
         </dependency>
         <dependency>
@@ -30,22 +26,7 @@
             <artifactId>guice-deps</artifactId>
             <type>pom</type>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}.deps</groupId>
-            <artifactId>appengine-deps</artifactId>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}.deps</groupId>
-            <artifactId>gwt-deps</artifactId>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}.deps</groupId>
-            <artifactId>servlet-deps</artifactId>
-            <type>pom</type>
-        </dependency>
-		<!-- Test scope -->
+       	<!-- Test scope -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -93,17 +74,7 @@
             <groupId>fspotcloud</groupId>
             <artifactId>test-util</artifactId>
         </dependency>
-        <dependency>
-            <groupId>httpunit</groupId>
-            <artifactId>httpunit</artifactId>
-            <version>1.7</version>
-            <type>jar</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>server</artifactId>
-        </dependency>
+      
     </dependencies>
     <build>
         <plugins>
