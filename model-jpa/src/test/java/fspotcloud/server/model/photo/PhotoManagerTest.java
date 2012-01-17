@@ -127,8 +127,17 @@ public class PhotoManagerTest {
         assertEquals(abc, photo.getTagList());
     }
     
-    @Test public void saveAndLoadMediumImage() {
-        byte[] image = new byte[100]; //100butes
+    @Test public void saveAndLoad2kImage() {
+        byte[] image = new byte[2000]; 
+        testSavingAndLoading(image);
+    }
+    
+    @Test public void saveAndLoad10kImage() {
+        byte[] image = new byte[10000]; 
+        testSavingAndLoading(image);
+    }
+
+    private void testSavingAndLoading(byte[] image) {
         (new Random()).nextBytes(image);
         Photo photo = new PhotoEntity();
         photo.setId(TEST_ID);
@@ -141,18 +150,14 @@ public class PhotoManagerTest {
         photoManager.delete(TEST_ID);
     }
     
-     @Test public void saveAndLoadSmallImage() {
-        byte[] image = new byte[400000]; //400k
-        (new Random()).nextBytes(image);
-        Photo photo = new PhotoEntity();
-        photo.setId(TEST_ID);
-        photo.setImage(image);
-        photoManager.save(photo);
-        photo = null;
-        
-        photo = photoManager.getById(TEST_ID);
-        assertTrue(Arrays.equals(image, photo.getImage()));
-        photoManager.delete(TEST_ID);
+     @Test public void saveAndLoad400kImage() {
+        byte[] image = new byte[400000];
+        testSavingAndLoading(image);
+    }
+     
+     @Test public void saveAndLoad2MImage() {
+        byte[] image = new byte[2000000];
+        testSavingAndLoading(image);
     }
         
     

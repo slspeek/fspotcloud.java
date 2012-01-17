@@ -51,6 +51,7 @@
         <module>peer</module>
         <module>war</module>
         <module>war-prod</module>
+        <module>tomcat-war</module>
         <module>deps</module>
         <module>grapher</module>
         <module>peer-rpc</module>
@@ -59,7 +60,8 @@
     <properties>
         <botdispatch.version>0.2-botdispatch</botdispatch.version>
         <taskqueuedispatch>0.1-beta-01</taskqueuedispatch>
-        <hibernate.version>4.0.0.Final</hibernate.version>
+        <hibernate.version>3.6.9.Final</hibernate.version>
+<!--        <hibernate.version>4.0.0.Final</hibernate.version>-->
         <derby.version>10.2.2.0</derby.version>
         <guice.version>3.0</guice.version>
         <gin.version>1.5.0</gin.version>

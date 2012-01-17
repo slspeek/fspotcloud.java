@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
+import org.apache.commons.lang.SerializationUtils;
 
 /**
  * Represents a whole F-Spot instance and stores application state
@@ -28,14 +29,17 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable {
     private int tagCount;
     @Basic
     private long photoCount;
-    @Column(columnDefinition = "BLOB")
-    private ArrayList<TagNode> cachedTagTree = new ArrayList<TagNode>();
+    @Lob
+    byte[] cachedTagTreeData;
+    transient private ArrayList<TagNode> cachedTagTree = null;
     @Basic
     private String thumbDimension = "512x384";
     @Basic
     private String imageDimension = "1024x768";
 
-    public PeerDatabaseEntity(){}
+    public PeerDatabaseEntity() {
+    }
+
     @Override
     public String getThumbDimension() {
         return thumbDimension;
@@ -93,11 +97,19 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable {
 
     @Override
     public void setCachedTagTree(List<TagNode> cachedTagTree) {
-        this.cachedTagTree = new ArrayList<TagNode>(cachedTagTree);
+        if (cachedTagTree == null) {
+            this.cachedTagTree = null;
+        } else {
+            this.cachedTagTree = new ArrayList<TagNode>(cachedTagTree);
+            this.cachedTagTreeData = SerializationUtils.serialize(this.cachedTagTree);
+        }
     }
 
     @Override
     public List<TagNode> getCachedTagTree() {
+        if (cachedTagTree == null && cachedTagTreeData != null) {
+            cachedTagTree = (ArrayList<TagNode>) SerializationUtils.deserialize(cachedTagTreeData);
+        }
         return cachedTagTree;
     }
 
