@@ -18,17 +18,17 @@
             <artifactId>server</artifactId>
             <exclusions>
                 <exclusion>
-                    <artifactId>gwt-user</artifactId>
                     <groupId>com.google.gwt</groupId>
+                    <artifactId>gwt-user</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-servlet_2.5_spec</artifactId>
-			<version>1.2</version>
-			<scope>provided</scope>
-		</dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-servlet_2.5_spec</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
         
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -71,15 +71,11 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava-testlib</artifactId>
-            <version>10.0.1</version>
             <scope>test</scope>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>fspotcloud.bot-dispatch</groupId>
             <artifactId>command-jpa</artifactId>
-            <version>0.2-botdispatch</version>
-            <type>jar</type>
         </dependency>
     </dependencies>
     <build>

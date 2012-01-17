@@ -8,10 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Temporal;
+import javax.persistence.*;
 
 /**
  * @author slspeek@gmail.com
@@ -29,9 +26,9 @@ public class PhotoEntity implements Photo, Serializable {
     private Boolean imageLoaded = false;
     private Boolean thumbLoaded = false;
     private Boolean fullsizeLoaded = false;
-    @Lob
+    @Lob//@Column(columnDefinition = "BLOB")
     private byte[] image;
-    @Lob
+    @Lob//@Column(columnDefinition = "BLOB")
     private byte[] thumb;
 
     @Override
