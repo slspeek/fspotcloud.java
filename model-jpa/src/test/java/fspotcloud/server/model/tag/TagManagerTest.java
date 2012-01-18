@@ -42,6 +42,7 @@ public class TagManagerTest {
         createSaveTag("20");
         createSaveTag("21");
         createSaveTag("22");
+        assertEquals(3, tagManager.getTagKeys().size());
         List<String> list = ImmutableList.of("20", "21", "22");
         tagManager.deleteAll(list);
         log.info("keys:" + tagManager.getTagKeys());
