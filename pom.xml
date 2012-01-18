@@ -51,15 +51,15 @@
         <module>peer</module>
         <module>war</module>
         <module>war-prod</module>
-        <module>tomcat-war</module>
+<!--        <module>tomcat-war</module>-->
         <module>deps</module>
         <module>grapher</module>
         <module>peer-rpc</module>
         <module>installer</module>
     </modules>
     <properties>
-        <botdispatch.version>0.2-botdispatch</botdispatch.version>
-        <taskqueuedispatch>0.1-beta-01</taskqueuedispatch>
+        <botdispatch.version>0.3-bd</botdispatch.version>
+        <taskqueuedispatch>0.2-tqd</taskqueuedispatch>
         <hibernate.version>3.6.9.Final</hibernate.version>
 <!--        <hibernate.version>4.0.0.Final</hibernate.version>-->
         <derby.version>10.2.2.0</derby.version>
@@ -567,6 +567,13 @@
     </distributionManagement>
     <repositories>
         <repository>
+            <id>Apache</id>
+            <url>http://people.apache.org/repo/m2-snapshot-repository/org/apache/tomcat/</url>
+            <snapshots>
+                <enabled></enabled>
+            </snapshots>
+        </repository>
+        <repository>
             <id>fspotcloud-maven</id>
             <url>http://maven.fspotcloud.googlecode.com/hg/repo</url>
         </repository>
@@ -620,5 +627,27 @@
                 <module>peer</module>
             </modules>
         </profile>
+        <profile>
+            <id>release</id>
+            <modules>
+                <module>rpc</module>
+                <module>test-util</module>
+                <module>model-api</module>
+                <module>model</module>
+                <module>model-jpa</module>
+                <module>server</module>
+                <module>server-module-gae</module>
+                <module>server-module-j2ee</module>
+                <module>client</module>
+                <module>peer</module>
+                <module>war</module>
+                <module>war-prod</module>
+                <module>tomcat-war</module>
+                <module>deps</module>
+                <module>grapher</module>
+                <module>peer-rpc</module>
+                <module>installer</module>
+            </modules>
+        </profile>     
     </profiles>
 </project>
