@@ -51,7 +51,7 @@
         <module>peer</module>
         <module>war</module>
         <module>war-prod</module>
-<!--        <module>tomcat-war</module>-->
+        <module>tomcat-war</module>
         <module>deps</module>
         <module>grapher</module>
         <module>peer-rpc</module>
