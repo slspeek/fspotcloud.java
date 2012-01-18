@@ -59,7 +59,7 @@
     </modules>
     <properties>
         <botdispatch.version>0.3-bd</botdispatch.version>
-        <taskqueuedispatch>0.2-tqd</taskqueuedispatch>
+        <taskqueuedispatch.version>0.2-tqd</taskqueuedispatch.version>
         <hibernate.version>3.6.9.Final</hibernate.version>
 <!--        <hibernate.version>4.0.0.Final</hibernate.version>-->
         <derby.version>10.2.2.0</derby.version>
@@ -448,12 +448,12 @@
                 <artifactId>command-jpa</artifactId>
                 <version>${botdispatch.version}</version>
             </dependency>
-            <dependency>
+<!--            <dependency>
                 <groupId>${project.groupId}.bot-dispatch</groupId>
                 <artifactId>test</artifactId>
                 <version>${botdispatch.version}</version>
                 <scope>test</scope>
-            </dependency>
+            </dependency>-->
             <dependency>
                 <groupId>fspotcloud.bot-dispatch</groupId>
                 <artifactId>bot</artifactId>
@@ -468,7 +468,7 @@
             <dependency>
                 <groupId>${project.groupId}.taskqueue-dispatch</groupId>
                 <artifactId>dispatch</artifactId>
-                <version>${project.version}</version>
+                <version>${taskqueuedispatch.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
