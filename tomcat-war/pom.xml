@@ -94,7 +94,7 @@
                         </exclude>
                     </excludes>
                 </configuration>
-<!--                <executions>
+                <executions>
                     <execution>
                         <id>selenium-tests</id>
                         <phase>integration-test</phase>
@@ -112,7 +112,7 @@
                             </includes>
                         </configuration>
                     </execution>
-                </executions>-->
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -157,6 +157,37 @@
                     </execution>
                 </executions>-->
             </plugin>
+            
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.10</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <stopKey>foo</stopKey>
+                    <stopPort>9999</stopPort>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run-war</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -192,7 +223,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.6</version>
-<!--                <executions>
+                <executions>
                     <execution>
                         <id>run-peer</id>
                         <phase>pre-integration-test</phase>
@@ -233,14 +264,14 @@
                             <goal>run</goal>
                         </goals>
                     </execution>
-                </executions>-->
+                </executions>
             </plugin>
         </plugins>
     </build>
     <pluginRepositories>
     </pluginRepositories>
     <repositories>
-          <repository>
+        <repository>
             <id>Apache</id>
             <url>http://people.apache.org/repo/m2-snapshot-repository</url>
             <snapshots>

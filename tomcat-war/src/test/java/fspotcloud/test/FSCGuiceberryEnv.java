@@ -16,7 +16,7 @@ public class FSCGuiceberryEnv extends GuiceBerryModule {
 	@TestScoped
 	Selenium getSelenium() {
 		WebDriver driver = new FirefoxDriver();
-		return new WebDriverBackedSelenium(driver, "http://localhost:8080");
+		return new WebDriverBackedSelenium(driver, "http://localhost:8080/tomcat-war/");
 	}
 
 	@Override
