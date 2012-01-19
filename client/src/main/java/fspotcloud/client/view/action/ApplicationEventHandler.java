@@ -89,7 +89,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 	}
 
 	private void initLocationActions() {
-		dashboardAction = locationFactory.get("/Dashboard.html");
+		dashboardAction = locationFactory.get("Dashboard.html");
 	}
 
 }

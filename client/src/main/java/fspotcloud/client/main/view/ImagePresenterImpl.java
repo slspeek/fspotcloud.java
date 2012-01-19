@@ -59,7 +59,7 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 			if (info.getVersion() != 1) {
 				versionSuffix = "&version=" + info.getVersion();
 			}
-			String url = "/image?id=" + photoId + versionSuffix;
+			String url = "image?id=" + photoId + versionSuffix;
 			url += thumb ? "&thumb" : "";
 			imageView.setImageUrl(url);
 			imageView.adjustSize();
