@@ -12,9 +12,9 @@ public class LoginBot {
 	public void login() throws Exception {
 		selenium.open("/Dashboard.html");
 		selenium.waitForPageToLoad("30000");
-		selenium.click("isAdmin");
-		selenium.click("action");
-		selenium.waitForPageToLoad("30000");
+//		selenium.click("isAdmin");
+//		selenium.click("action");
+//		selenium.waitForPageToLoad("30000");
 	}
 
 }
