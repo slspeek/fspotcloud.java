@@ -99,6 +99,7 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable {
     public void setCachedTagTree(List<TagNode> cachedTagTree) {
         if (cachedTagTree == null) {
             this.cachedTagTree = null;
+            this.cachedTagTreeData = null;
         } else {
             this.cachedTagTree = new ArrayList<TagNode>(cachedTagTree);
             this.cachedTagTreeData = SerializationUtils.serialize(this.cachedTagTree);

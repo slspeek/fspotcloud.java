@@ -5,6 +5,7 @@ import fspotcloud.server.model.GaeModelGuiceberryEnv;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.shared.tag.TagNode;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import static org.junit.Assert.*;
@@ -23,6 +24,27 @@ public class PeerDatabaseManagerTest {
     public void setUp() throws Exception {
     }
 
+    @Test public void resetCachedTagTree() {
+        PeerDatabase defaultPD = manager.get();
+        List<TagNode> list = defaultPD.getCachedTagTree();
+        assertNull(list);
+        list = new ArrayList<TagNode>();
+        defaultPD.setCachedTagTree(list);
+        manager.save(defaultPD);
+        defaultPD = null;
+        defaultPD = manager.get();
+        list = defaultPD.getCachedTagTree();
+        assertNotNull(list);
+        defaultPD.setCachedTagTree(null);
+        list = defaultPD.getCachedTagTree();
+        assertNull(list);
+        manager.save(defaultPD);
+        defaultPD = null;
+        defaultPD = manager.get();
+        list = defaultPD.getCachedTagTree();
+        assertNull(list);
+        
+    }
     @Test
     public void testGet() {
         PeerDatabase defaultPD = manager.get();

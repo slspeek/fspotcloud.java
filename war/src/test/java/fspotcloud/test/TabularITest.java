@@ -31,7 +31,7 @@ public class TabularITest {
 		selenium.waitForPageToLoad("30000");
 		selenium.click("gwt-debug-back");
 		selenium.waitForPageToLoad("30000");
-		Assert.assertEquals("/image?id=6&thumb", selenium
+		Assert.assertEquals("image?id=6&thumb", selenium
 				.getAttribute("//*[@id=\"gwt-debug-image-view-0x1\"]@src"));
 	}
 }
