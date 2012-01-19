@@ -39,6 +39,7 @@
         </developer>
     </developers>
     <modules>
+        <module>peer-rpc</module>
         <module>rpc</module>
         <module>test-util</module>
         <module>model-api</module>
@@ -51,11 +52,10 @@
         <module>peer</module>
         <module>war</module>
         <module>war-prod</module>
-        <module>tomcat-war</module>
+        <module>installer</module>
         <module>deps</module>
         <module>grapher</module>
-        <module>peer-rpc</module>
-        <module>installer</module>
+        <module>tomcat-war</module>
     </modules>
     <properties>
         <botdispatch.version>0.3-bd</botdispatch.version>
