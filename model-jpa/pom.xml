@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-01</version>
+        <version>0.11-dev-02</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>model-jpa</artifactId>
-    <version>0.11-dev-01</version>
+    <version>0.11-dev-02</version>
     <packaging>jar</packaging>
     <name>Model JPA Implementation</name>
     <dependencies>
@@ -109,7 +109,6 @@
         <dependency>
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-persist</artifactId>
-            <version>3.0</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -131,12 +130,10 @@
         <dependency>
             <groupId>fspotcloud.bot-dispatch</groupId>
             <artifactId>command-jpa</artifactId>
-            <version>0.2-botdispatch</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-servlet</artifactId>
-            <version>3.0</version>
             <type>jar</type>
         </dependency>
     </dependencies>
