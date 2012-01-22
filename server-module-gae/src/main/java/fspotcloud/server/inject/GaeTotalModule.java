@@ -18,6 +18,7 @@ public class GaeTotalModule extends AbstractModule {
 
     @Override
     protected void configure() {
+        (new PropertiesLoader()).loadProperties();
         install(new ServerTotalModule());
         install(new ModelModule());
         install(new MinimalCommandModelModule());

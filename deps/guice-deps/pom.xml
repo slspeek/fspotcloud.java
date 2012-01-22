@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>deps</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.11-dev-02</version>
+		<version>0.11-dev-03</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>guice-deps</artifactId>

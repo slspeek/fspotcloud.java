@@ -36,6 +36,7 @@ import fspotcloud.server.admin.actions.SynchronizePeerHandler;
 import fspotcloud.server.admin.actions.TagDeleteAllHandler;
 import fspotcloud.server.admin.actions.UnImportTagHandler;
 import fspotcloud.server.control.task.TaskActionsModule;
+import fspotcloud.server.inject.PropertiesLoader;
 import fspotcloud.server.model.DatastoreTest;
 import fspotcloud.server.model.MemCacheProvider;
 import fspotcloud.server.model.PersistenceManagerProvider;
@@ -54,6 +55,7 @@ import fspotcloud.shared.dashboard.actions.UnImportTag;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
+import org.testng.annotations.BeforeClass;
 
 public abstract class PeerServerIntegrationBase extends DatastoreTest {
 
@@ -71,6 +73,10 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 		super();
 	}
 
+        @BeforeClass
+        public void load() {
+            (new PropertiesLoader()).loadProperties();
+        }
 	@BeforeMethod
 	public void setUp() throws Exception {
 		super.setUp();
