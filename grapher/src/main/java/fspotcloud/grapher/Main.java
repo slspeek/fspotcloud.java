@@ -8,16 +8,16 @@ import fspotcloud.botdispatch.model.MinimalCommandModelModule;
 import fspotcloud.peer.inject.PeerActionsModule;
 import fspotcloud.peer.inject.PeerModule;
 import fspotcloud.server.control.task.TaskModule;
+import fspotcloud.server.inject.GaeTotalModule;
+import fspotcloud.server.inject.J2eeTotalModule;
 import fspotcloud.server.inject.ServerControllerModule;
 import fspotcloud.server.inject.ServerModule;
 import fspotcloud.server.model.ModelModule;
 
 public class Main {
 
-    Injector serverInjector = Guice.createInjector(new ServerModule(),
-            new ModelModule(), new fspotcloud.server.inject.AdminActionsModule(),
-            new TaskModule(), new ServerControllerModule(),
-            new ControllerServletModule(), new MinimalCommandModelModule());
+    //Injector serverGaeInjector = Guice.createInjector(new GaeTotalModule());
+    Injector serverJ2eeInjector = Guice.createInjector(new J2eeTotalModule());
     Injector modelInjector = Guice.createInjector(new ModelModule());
     Injector peerInjector = Guice.createInjector(new PeerModule(), new PeerActionsModule());
 
@@ -31,7 +31,8 @@ public class Main {
 
     private void plotAll() throws Exception {
         plot(modelInjector, "model");
-        plot(serverInjector, "server");
+        //plot(serverGaeInjector, "server-gae");
+        plot(serverJ2eeInjector, "server-j2ee");
         plot(peerInjector, "peer");
     }
 
