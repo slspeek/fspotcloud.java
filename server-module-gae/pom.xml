@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-02</version>
+        <version>0.11-dev-03</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>server-module-gae</artifactId>
-    <version>0.11-dev-02</version>
+    <version>0.11-dev-03</version>
     <name>F-SpotCloud Server GAE Configuration</name>
     <description>Guice configuration for deployment on GAE</description>
     <dependencies>

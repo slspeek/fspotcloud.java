@@ -4,24 +4,24 @@
     "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
-	<filter>
-		<filter-name>guiceFilter</filter-name>
-		<filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
-	</filter>
+    <filter>
+        <filter-name>guiceFilter</filter-name>
+        <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+    </filter>
 
-	<filter-mapping>
-		<filter-name>guiceFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	<listener>
-		<listener-class>fspotcloud.server.inject.GuiceServletConfig</listener-class>
-	</listener>
+    <filter-mapping>
+        <filter-name>guiceFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <listener>
+        <listener-class>fspotcloud.server.inject.GuiceServletConfig</listener-class>
+    </listener>
 	<!-- Servlets -->
 	
 	<!-- Default page to serve -->
-	<welcome-file-list>
-		<welcome-file>FSpotCloud.html</welcome-file>
-	</welcome-file-list>
+    <welcome-file-list>
+        <welcome-file>FSpotCloud.html</welcome-file>
+    </welcome-file-list>
 	
 <!--	<security-constraint>
 		<web-resource-collection>
@@ -42,5 +42,9 @@
 			<role-name>admin</role-name>
 		</auth-constraint>
 	</security-constraint>-->
-
+    <env-entry>
+        <env-entry-name>bot.secret.env</env-entry-name>
+        <env-entry-value>GEHEIM</env-entry-value>
+        <env-entry-type>String</env-entry-type>
+    </env-entry>
 </web-app>
