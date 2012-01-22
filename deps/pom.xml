@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>fspotcloud</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.11-dev-02</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>deps</artifactId>
+	<packaging>pom</packaging>
+	<name>Dependency management</name>
+	<modules>
+		<module>appengine-deps</module>
+		<module>guice-deps</module>
+		<module>gwt-deps</module>
+		<module>servlet-deps</module>
+		<module>xmlrpc-client-deps</module>
+		<module>xmlrpc-server-deps</module>
+	</modules>
+</project>
+

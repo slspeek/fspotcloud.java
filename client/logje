@@ -1,0 +1,1155 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building GWT User interface and client logic 0.40-6.5.3
+[INFO] ------------------------------------------------------------------------
+Downloading: http://maven-google-plugin.googlecode.com/svn/maven2/org/apache/maven/plugins/maven-eclipse-plugin/maven-metadata.xml
+[WARNING] Could not transfer metadata org.apache.maven.plugins:maven-eclipse-plugin/maven-metadata.xml from/to maven-google-plugin-repository (http://maven-google-plugin.googlecode.com/svn/maven2): Access denied to: http://maven-google-plugin.googlecode.com/svn/maven2/org/apache/maven/plugins/maven-eclipse-plugin/maven-metadata.xml
+[INFO] 
+[INFO] --- maven-resources-plugin:2.4.3:resources (default-resources) @ client ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 33 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.3.2:compile (default-compile) @ client ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.4.3:testResources (default-testResources) @ client ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/steven/fspotcloud/client/src/test/resources
+[INFO] 
+[INFO] --- maven-antrun-plugin:1.6:run (pre-test) @ client ---
+[INFO] Executing tasks
+
+main:
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- maven-antrun-plugin:1.6:run (preprocess-icons) @ client ---
+[INFO] Executing tasks
+
+main:
+     [echo] 48x48
+
+convert-all:
+     [echo] Convert all
+
+convert:
+     [echo] Fullscreen
+     [echo] 		
+
+convert:
+     [echo] Fullscreen
+     [echo] 		
+
+convert:
+     [echo] Play
+     [echo] 		
+
+convert:
+     [echo] Stop
+     [echo] 		
+
+convert:
+     [echo] Dashboard
+     [echo] 		
+
+convert:
+     [echo] Slower
+     [echo] 		
+
+convert:
+     [echo] Faster
+     [echo] 		
+
+convert:
+     [echo] Next
+     [echo] 		
+
+convert:
+     [echo] Back
+     [echo] 		
+
+convert:
+     [echo] Demo
+     [echo] 		
+
+convert:
+     [echo] License
+     [echo] 		
+
+convert:
+     [echo] Author
+     [echo] 		
+
+convert:
+     [echo] 2x2
+     [echo] 		
+
+convert:
+     [echo] 3x3
+     [echo] 		
+
+convert:
+     [echo] 4x4
+     [echo] 		
+
+convert:
+     [echo] 5x5
+     [echo] 		
+
+convert:
+     [echo] ToggleTabular
+     [echo] 		
+
+convert:
+     [echo] Help
+     [echo] 		
+
+convert:
+     [echo] ProjectSite
+     [echo] 		
+
+convert:
+     [echo] Maven
+     [echo] 		
+
+convert:
+     [echo] Proton
+     [echo] 		
+
+convert:
+     [echo] Home
+     [echo] 		
+
+convert:
+     [echo] End
+     [echo] 		
+
+convert:
+     [echo] AddColumn
+     [echo] 		
+
+convert:
+     [echo] RemoveColumn
+     [echo] 		
+
+convert:
+     [echo] AddRow
+     [echo] 		
+
+convert:
+     [echo] RemoveRow
+     [echo] 		
+
+convert:
+     [echo] Reset
+     [echo] 		
+
+convert:
+     [echo] TreeFocus
+     [echo] 		
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.3.2:testCompile (default-testCompile) @ client ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.8.1:test (default-test) @ client ---
+[INFO] Surefire report directory: /home/steven/fspotcloud/client/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running fspotcloud.client.main.help.HelpContentGeneratorTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 sec
+Running fspotcloud.client.main.ToggleFullscreenTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 sec
+Running fspotcloud.client.main.ui.ResourcesTest
+1-aug-2011 19:19:28 fspotcloud.client.main.ui.ResourcesTest testOne
+INFO: 
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 sec
+Running fspotcloud.client.main.data.DataManagerImplTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 sec
+Running fspotcloud.client.main.view.TreeSelectionHandlerTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 sec
+Running fspotcloud.client.main.view.TagTreeModelTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 sec
+Running fspotcloud.client.main.view.AppActivityMapperTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running fspotcloud.client.main.view.UserButtonPresenterImplTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 sec
+Running fspotcloud.client.main.view.LoadNewLocationActionTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 sec
+Running fspotcloud.client.main.view.TreePresenterImplTest
+1-aug-2011 19:19:28 fspotcloud.client.main.view.TreePresenterImpl updatePlace
+WARNING: place is null
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 sec
+Running fspotcloud.client.main.view.ImageActivityTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 sec
+Running fspotcloud.client.main.shared.NavigationEventTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running fspotcloud.client.main.shared.SlideshowEventTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running fspotcloud.client.main.TreeFocusActionTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running fspotcloud.client.view.action.NavigationEventHandlerTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
+Running fspotcloud.client.view.action.ShortcutTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
+Running fspotcloud.client.view.action.RasterEventHandlerTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 sec
+Running fspotcloud.client.place.PlaceCalculatorTest
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running fspotcloud.client.place.BasePlaceTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running fspotcloud.client.place.TokenizerTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
+Running fspotcloud.client.place.NavigatorImplTest
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.PlaceCalculator <init>
+INFO: Created
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl goToPhoto
+INFO: About to go to: fspotcloud.client.place.NavigatorImpl@76497934 : <<Place tagId: 1 photoId: 3(1x1)  false>> from: <<Place tagId: 1 photoId: 1(1x1)  false>>
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl goToPhoto
+INFO: About to go to: fspotcloud.client.place.NavigatorImpl@21a80a69 : <<Place tagId: 1 photoId: 3(1x1)  false>> from: <<Place tagId: 1 photoId: 1(1x1)  false>>
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl goToPhoto
+INFO: About to go to: fspotcloud.client.place.NavigatorImpl@9c0ec97 : <<Place tagId: 1 photoId: 1(1x1)  false>> from: <<Place tagId: 1 photoId: 3(1x1)  false>>
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl goToPhoto
+INFO: About to go to: fspotcloud.client.place.NavigatorImpl@2acdb06e : <<Place tagId: 1 photoId: 3(1x2)  false>> from: <<Place tagId: 1 photoId: 1(1x2)  false>>
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl goToPhoto
+INFO: About to go to: fspotcloud.client.place.NavigatorImpl@47315d34 : <<Place tagId: 6 photoId: 103(1x3)  false>> from: <<Place tagId: 6 photoId: 101(1x3)  false>>
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl goToPhoto
+INFO: About to go to: fspotcloud.client.place.NavigatorImpl@676bd8ea : <<Place tagId: 4 photoId: 12(1x1)  false>> from: <<Place tagId: 4 photoId: 11(1x1)  false>>
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl goToPhoto
+INFO: About to go to: fspotcloud.client.place.NavigatorImpl@4ce2cb55 : <<Place tagId: 4 photoId: 11(1x1)  false>> from: <<Place tagId: 4 photoId: 12(1x1)  false>>
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl getPage
+INFO: Store: [PhotoInfo(1, Thu Jan 01 01:00:00 CET 1970), PhotoInfo(2, Thu Jan 01 01:00:00 CET 1970), PhotoInfo(3, Thu Jan 01 01:00:00 CET 1970)]
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl getPage
+INFO: Store: [PhotoInfo(1, Thu Jan 01 01:00:00 CET 1970), PhotoInfo(2, Thu Jan 01 01:00:00 CET 1970), PhotoInfo(3, Thu Jan 01 01:00:00 CET 1970)]
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl getPage
+INFO: Store: [PhotoInfo(1, Thu Jan 01 01:00:00 CET 1970), PhotoInfo(2, Thu Jan 01 01:00:00 CET 1970), PhotoInfo(3, Thu Jan 01 01:00:00 CET 1970)]
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl getPage
+INFO: Store: [PhotoInfo(1, Thu Jan 01 01:00:00 CET 1970), PhotoInfo(2, Thu Jan 01 01:00:00 CET 1970), PhotoInfo(3, Thu Jan 01 01:00:00 CET 1970)]
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl getPage
+INFO: Store: [PhotoInfo(1, Thu Jan 01 01:00:00 CET 1970), PhotoInfo(2, Thu Jan 01 01:00:00 CET 1970), PhotoInfo(3, Thu Jan 01 01:00:00 CET 1970)]
+1-aug-2011 19:19:28 fspotcloud.client.place.NavigatorImpl goToPhoto
+INFO: About to go to: fspotcloud.client.place.NavigatorImpl@49ff0dde : <<Place tagId: 5 photoId: 23(5x4)  true>> from: <<Place tagId: 5 photoId: null(5x4)  true>>
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 sec
+
+Results :
+
+Tests run: 75, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- gwt-maven-plugin:2.3.0:compile (compile) @ client ---
+[INFO] auto discovered modules [fspotcloud.FSpotCloud, fspotcloud.dashboard]
+[INFO] fspotcloud.FSpotCloud is up to date. GWT compilation skipped
+[INFO] fspotcloud.dashboard is up to date. GWT compilation skipped
+[INFO] 
+[INFO] --- gwt-maven-plugin:2.3.0:test (compile) @ client ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running fspotcloud.client.main.ui.GwtTestImageViewImpl
+[INFO] Validating newly compiled units
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/EditorDriver.java'
+[INFO]       [ERROR] Line 20: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 97: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/impl/AbstractSimpleBeanEditorDriver.java'
+[INFO]       [ERROR] Line 28: Name clash: The method setConstraintViolations(Iterable<ConstraintViolation<?>>) of type BaseEditorDriver<T,E> has the same erasure as setConstraintViolations(Iterable<ConstraintViolation<?>>) of type EditorDriver<T> but does not override it
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/impl/BaseEditorDriver.java'
+[INFO]       [ERROR] Line 31: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 67: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/impl/SimpleViolation.java'
+[INFO]       [ERROR] Line 25: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 40: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 43: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 44: Missing code implementation in the compiler
+[INFO]       [ERROR] Line 49: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 49: Missing code implementation in the compiler
+[INFO]       [ERROR] Line 70: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 72: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 73: ConstraintViolation<?> cannot be resolved to a type
+[INFO]       [ERROR] Line 77: ConstraintViolation<capture#2-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 81: ConstraintViolation<capture#3-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 89: ConstraintViolation<capture#4-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 93: ConstraintViolation<capture#5-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 98: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/testing/MockSimpleBeanEditorDriver.java'
+[INFO]       [ERROR] Line 26: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 35: The type MockSimpleBeanEditorDriver<T,E> must implement the inherited abstract method EditorDriver<T>.setConstraintViolations(Iterable<ConstraintViolation<?>>)
+[INFO]       [ERROR] Line 107: Name clash: The method setConstraintViolations(Iterable<ConstraintViolation<?>>) of type MockSimpleBeanEditorDriver<T,E> has the same erasure as setConstraintViolations(Iterable<ConstraintViolation<?>>) of type EditorDriver<T> but does not override it
+[INFO]       [ERROR] Line 108: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/gin/TagDetailsActivityFactoryImpl.java'
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.rpc.AdminServiceAsync; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/view/AdminTreePresenterImpl.java'
+[INFO]       [ERROR] Line 28: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/view/GlobalActionsPresenter.java'
+[INFO]       [ERROR] Line 18: No source code is available for type fspotcloud.rpc.AdminServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 126: No source code is available for type fspotcloud.shared.admin.MetaDataInfo; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/view/TagDetailsActivity.java'
+[INFO]       [ERROR] Line 25: No source code is available for type fspotcloud.rpc.AdminServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 69: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/data/DataManager.java'
+[INFO]       [ERROR] Line 11: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/data/DataManagerImpl.java'
+[INFO]       [ERROR] Line 19: No source code is available for type fspotcloud.rpc.TagServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 24: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/data/IndexingUtil.java'
+[INFO]       [ERROR] Line 16: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/TagServiceAsyncTestImpl.java'
+[INFO]       [ERROR] Line 15: No source code is available for type fspotcloud.rpc.TagServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 33: No source code is available for type fspotcloud.shared.photo.PhotoInfo; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 36: No source code is available for type com.google.common.collect.ImmutableSortedSet<E>; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 37: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 86: No source code is available for type com.google.common.collect.ImmutableList<E>; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/ToggleFullscreenTest.java'
+[INFO]       [ERROR] Line 12: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 25: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/TreeFocusActionTest.java'
+[INFO]       [ERROR] Line 12: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 25: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/data/DataManagerImplTest.java'
+[INFO]       [ERROR] Line 29: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 57: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/ui/ResourcesTest.java'
+[INFO]       [ERROR] Line 17: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 19: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/AppActivityMapperTest.java'
+[INFO]       [ERROR] Line 13: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/CustomCellTree.java'
+[INFO]       [ERROR] Line 10: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/ImageActivityTest.java'
+[INFO]       [ERROR] Line 17: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 36: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/LoadNewLocationActionTest.java'
+[INFO]       [ERROR] Line 12: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 24: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TagCell.java'
+[INFO]       [ERROR] Line 8: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TagTreeModel.java'
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/TagTreeModelTest.java'
+[INFO]       [ERROR] Line 14: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TreePresenterImpl.java'
+[INFO]       [ERROR] Line 24: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/TreePresenterImplTest.java'
+[INFO]       [ERROR] Line 21: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 27: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 44: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TreeSelectionHandler.java'
+[INFO]       [ERROR] Line 18: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 42: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/TreeSelectionHandlerTest.java'
+[INFO]       [ERROR] Line 15: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/UserButtonPresenterImplTest.java'
+[INFO]       [ERROR] Line 16: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 42: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/api/TreeSelectionHandlerInterface.java'
+[INFO]       [ERROR] Line 9: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/place/NavigatorImpl.java'
+[INFO]       [ERROR] Line 53: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 63: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 298: No source code is available for type fspotcloud.shared.photo.PhotoInfo; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/place/NavigatorImplTest.java'
+[INFO]       [ERROR] Line 31: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 62: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 107: No source code is available for type java.lang.InterruptedException; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 200: No source code is available for type com.google.common.collect.ImmutableList<E>; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/place/api/Navigator.java'
+[INFO]       [ERROR] Line 30: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/view/action/NavigationEventHandlerTest.java'
+[INFO]       [ERROR] Line 16: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 34: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/view/action/RasterEventHandlerTest.java'
+[INFO]       [ERROR] Line 17: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 36: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/Configuration.java'
+[INFO]       [ERROR] Line 93: TraversableResolver cannot be resolved to a type
+[INFO]       [ERROR] Line 105: ConstraintValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 182: TraversableResolver cannot be resolved to a type
+[INFO]       [ERROR] Line 182: No source code is available for type TraversableResolver; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 194: ConstraintValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 194: No source code is available for type ConstraintValidatorFactory; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 202: ValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 202: No source code is available for type ValidatorFactory; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/ConstraintViolationException_CustomFieldSerializer.java'
+[INFO]       [ERROR] Line 30: ConstraintViolationException cannot be resolved to a type
+[INFO]       [ERROR] Line 34: ConstraintViolationException cannot be resolved to a type
+[INFO]       [ERROR] Line 34: No source code is available for type ConstraintViolationException; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 39: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 39: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 40: ConstraintViolationException cannot be resolved to a type
+[INFO]       [ERROR] Line 44: ConstraintViolationException cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/MessageInterpolator.java'
+[INFO]       [ERROR] Line 21: The import javax.validation.metadata cannot be resolved
+[INFO]       [ERROR] Line 66: ConstraintDescriptor cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/constraints/Pattern.java'
+[INFO]       [ERROR] Line 30: The import javax.validation.Constraint cannot be resolved
+[INFO]       [ERROR] Line 31: The import javax.validation.Payload cannot be resolved
+[INFO]       [ERROR] Line 49: Constraint cannot be resolved to a type
+[INFO]       [ERROR] Line 49: The attribute validatedBy is undefined for the annotation type Constraint
+[INFO]       [ERROR] Line 75: Payload cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/spi/ConfigurationState.java'
+[INFO]       [ERROR] Line 22: The import javax.validation.ConstraintValidatorFactory cannot be resolved
+[INFO]       [ERROR] Line 24: The import javax.validation.TraversableResolver cannot be resolved
+[INFO]       [ERROR] Line 93: ConstraintValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 107: TraversableResolver cannot be resolved to a type
+[INFO] logging for HtmlUnit thread
+[INFO]    [WARN] Expected content type of 'application/javascript' or 'application/ecmascript' for remotely loaded JavaScript element at 'http://127.0.0.1:45243/fspotcloud.FSpotCloud.JUnit/fspotcloud.FSpotCloud.JUnit.nocache.js', but got 'application/x-javascript'.
+[INFO] Validating newly compiled units
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/EditorDriver.java'
+[INFO]       [ERROR] Line 20: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 97: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/impl/AbstractSimpleBeanEditorDriver.java'
+[INFO]       [ERROR] Line 28: Name clash: The method setConstraintViolations(Iterable<ConstraintViolation<?>>) of type BaseEditorDriver<T,E> has the same erasure as setConstraintViolations(Iterable<ConstraintViolation<?>>) of type EditorDriver<T> but does not override it
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/impl/BaseEditorDriver.java'
+[INFO]       [ERROR] Line 31: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 67: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/impl/SimpleViolation.java'
+[INFO]       [ERROR] Line 25: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 40: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 43: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 44: Missing code implementation in the compiler
+[INFO]       [ERROR] Line 49: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 49: Missing code implementation in the compiler
+[INFO]       [ERROR] Line 70: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 72: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 73: ConstraintViolation<?> cannot be resolved to a type
+[INFO]       [ERROR] Line 77: ConstraintViolation<capture#2-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 81: ConstraintViolation<capture#3-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 89: ConstraintViolation<capture#4-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 93: ConstraintViolation<capture#5-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 98: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/testing/MockSimpleBeanEditorDriver.java'
+[INFO]       [ERROR] Line 26: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 35: The type MockSimpleBeanEditorDriver<T,E> must implement the inherited abstract method EditorDriver<T>.setConstraintViolations(Iterable<ConstraintViolation<?>>)
+[INFO]       [ERROR] Line 107: Name clash: The method setConstraintViolations(Iterable<ConstraintViolation<?>>) of type MockSimpleBeanEditorDriver<T,E> has the same erasure as setConstraintViolations(Iterable<ConstraintViolation<?>>) of type EditorDriver<T> but does not override it
+[INFO]       [ERROR] Line 108: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/gin/TagDetailsActivityFactoryImpl.java'
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.rpc.AdminServiceAsync; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/view/AdminTreePresenterImpl.java'
+[INFO]       [ERROR] Line 28: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/view/GlobalActionsPresenter.java'
+[INFO]       [ERROR] Line 18: No source code is available for type fspotcloud.rpc.AdminServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 126: No source code is available for type fspotcloud.shared.admin.MetaDataInfo; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/view/TagDetailsActivity.java'
+[INFO]       [ERROR] Line 25: No source code is available for type fspotcloud.rpc.AdminServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 69: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/data/DataManager.java'
+[INFO]       [ERROR] Line 11: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/data/DataManagerImpl.java'
+[INFO]       [ERROR] Line 19: No source code is available for type fspotcloud.rpc.TagServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 24: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/data/IndexingUtil.java'
+[INFO]       [ERROR] Line 16: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/TagServiceAsyncTestImpl.java'
+[INFO]       [ERROR] Line 15: No source code is available for type fspotcloud.rpc.TagServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 33: No source code is available for type fspotcloud.shared.photo.PhotoInfo; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 36: No source code is available for type com.google.common.collect.ImmutableSortedSet<E>; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 37: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 86: No source code is available for type com.google.common.collect.ImmutableList<E>; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/ToggleFullscreenTest.java'
+[INFO]       [ERROR] Line 12: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 25: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/TreeFocusActionTest.java'
+[INFO]       [ERROR] Line 12: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 25: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/data/DataManagerImplTest.java'
+[INFO]       [ERROR] Line 29: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 57: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/ui/ResourcesTest.java'
+[INFO]       [ERROR] Line 17: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 19: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/AppActivityMapperTest.java'
+[INFO]       [ERROR] Line 13: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/CustomCellTree.java'
+[INFO]       [ERROR] Line 10: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/ImageActivityTest.java'
+[INFO]       [ERROR] Line 17: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 36: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/LoadNewLocationActionTest.java'
+[INFO]       [ERROR] Line 12: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 24: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TagCell.java'
+[INFO]       [ERROR] Line 8: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TagTreeModel.java'
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/TagTreeModelTest.java'
+[INFO]       [ERROR] Line 14: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TreePresenterImpl.java'
+[INFO]       [ERROR] Line 24: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/TreePresenterImplTest.java'
+[INFO]       [ERROR] Line 21: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 27: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 44: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TreeSelectionHandler.java'
+[INFO]       [ERROR] Line 18: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 42: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/TreeSelectionHandlerTest.java'
+[INFO]       [ERROR] Line 15: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/UserButtonPresenterImplTest.java'
+[INFO]       [ERROR] Line 16: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 42: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/api/TreeSelectionHandlerInterface.java'
+[INFO]       [ERROR] Line 9: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/place/NavigatorImpl.java'
+[INFO]       [ERROR] Line 53: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 63: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 298: No source code is available for type fspotcloud.shared.photo.PhotoInfo; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/place/NavigatorImplTest.java'
+[INFO]       [ERROR] Line 31: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 62: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 107: No source code is available for type java.lang.InterruptedException; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 200: No source code is available for type com.google.common.collect.ImmutableList<E>; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/place/api/Navigator.java'
+[INFO]       [ERROR] Line 30: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/view/action/NavigationEventHandlerTest.java'
+[INFO]       [ERROR] Line 16: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 34: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/view/action/RasterEventHandlerTest.java'
+[INFO]       [ERROR] Line 17: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 36: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/Configuration.java'
+[INFO]       [ERROR] Line 93: TraversableResolver cannot be resolved to a type
+[INFO]       [ERROR] Line 105: ConstraintValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 182: TraversableResolver cannot be resolved to a type
+[INFO]       [ERROR] Line 182: No source code is available for type TraversableResolver; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 194: ConstraintValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 194: No source code is available for type ConstraintValidatorFactory; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 202: ValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 202: No source code is available for type ValidatorFactory; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/ConstraintViolationException_CustomFieldSerializer.java'
+[INFO]       [ERROR] Line 30: ConstraintViolationException cannot be resolved to a type
+[INFO]       [ERROR] Line 34: ConstraintViolationException cannot be resolved to a type
+[INFO]       [ERROR] Line 34: No source code is available for type ConstraintViolationException; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 39: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 39: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 40: ConstraintViolationException cannot be resolved to a type
+[INFO]       [ERROR] Line 44: ConstraintViolationException cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/MessageInterpolator.java'
+[INFO]       [ERROR] Line 21: The import javax.validation.metadata cannot be resolved
+[INFO]       [ERROR] Line 66: ConstraintDescriptor cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/constraints/Pattern.java'
+[INFO]       [ERROR] Line 30: The import javax.validation.Constraint cannot be resolved
+[INFO]       [ERROR] Line 31: The import javax.validation.Payload cannot be resolved
+[INFO]       [ERROR] Line 49: Constraint cannot be resolved to a type
+[INFO]       [ERROR] Line 49: The attribute validatedBy is undefined for the annotation type Constraint
+[INFO]       [ERROR] Line 75: Payload cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/spi/ConfigurationState.java'
+[INFO]       [ERROR] Line 22: The import javax.validation.ConstraintValidatorFactory cannot be resolved
+[INFO]       [ERROR] Line 24: The import javax.validation.TraversableResolver cannot be resolved
+[INFO]       [ERROR] Line 93: ConstraintValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 107: TraversableResolver cannot be resolved to a type
+[INFO] Rebinding com.google.gwt.core.client.impl.SchedulerImpl
+[INFO]    Checking rule <generate-with class='com.google.gwt.editor.rebind.SimpleBeanEditorDriverGenerator'/>
+[INFO]       [WARN] Detected warnings related to 'com.google.gwt.editor.client.SimpleBeanEditorDriver'.   Are validation-api-<version>.jar and validation-api-<version>-sources.jar on the classpath?
+[INFO]       [WARN] Unknown type 'com.google.gwt.editor.client.SimpleBeanEditorDriver' specified in deferred binding rule
+[INFO] Rebinding fspotcloud.client.main.ui.ImageViewImpl.ImageViewImplUiBinder
+[INFO]    Invoking generator com.google.gwt.uibinder.rebind.UiBinderGenerator
+[INFO]       [WARN] Configuration property UiBinder.useSafeHtmlTemplates is false! UiBinder SafeHtml integration is off, leaving your users more vulnerable to cross-site scripting attacks. This property will default to true in future releases of GWT.
+[INFO] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 11.763 sec <<< FAILURE!
+[INFO] testOne(fspotcloud.client.main.ui.GwtTestImageViewImpl)  Time elapsed: 11.752 sec  <<< ERROR!
+[INFO] java.lang.RuntimeException: Remote test failed at 127.0.0.1 / Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.19) Gecko/2010031422 Firefox/3.0.19
+[INFO] 	at com.google.gwt.junit.JUnitShell.processTestResult(JUnitShell.java:1288)
+[INFO] 	at com.google.gwt.junit.JUnitShell.runTestImpl(JUnitShell.java:1408)
+[INFO] 	at com.google.gwt.junit.JUnitShell.runTestImpl(JUnitShell.java:1309)
+[INFO] 	at com.google.gwt.junit.JUnitShell.runTest(JUnitShell.java:650)
+[INFO] 	at com.google.gwt.junit.client.GWTTestCase.runTest(GWTTestCase.java:441)
+[INFO] 	at junit.framework.TestCase.runBare(TestCase.java:127)
+[INFO] 	at junit.framework.TestResult$1.protect(TestResult.java:106)
+[INFO] 	at junit.framework.TestResult.runProtected(TestResult.java:124)
+[INFO] 	at junit.framework.TestResult.run(TestResult.java:109)
+[INFO] 	at junit.framework.TestCase.run(TestCase.java:118)
+[INFO] 	at com.google.gwt.junit.client.GWTTestCase.run(GWTTestCase.java:296)
+[INFO] 	at junit.framework.TestSuite.runTest(TestSuite.java:208)
+[INFO] 	at junit.framework.TestSuite.run(TestSuite.java:203)
+[INFO] 	at org.codehaus.mojo.gwt.test.MavenTestRunner.doRun(MavenTestRunner.java:105)
+[INFO] 	at junit.textui.TestRunner.start(TestRunner.java:172)
+[INFO] 	at org.codehaus.mojo.gwt.test.MavenTestRunner.main(MavenTestRunner.java:63)
+[INFO] Caused by: java.lang.AssertionError: LayoutComposite requires that its wrapped widget implement RequiresResize
+[INFO] 	at com.google.gwt.user.client.ui.ResizeComposite.initWidget(ResizeComposite.java:29)
+[INFO] 	at fspotcloud.client.main.ui.ImageViewImpl.<init>(ImageViewImpl.java:36)
+[INFO] 	at fspotcloud.client.main.ui.GwtTestImageViewImpl.testOne(GwtTestImageViewImpl.java:15)
+[INFO] 	at fspotcloud.client.main.ui.__GwtTestImageViewImpl_unitTestImpl.doRunTest(__GwtTestImageViewImpl_unitTestImpl.java:7)
+[INFO] 	at junit.framework.TestCase.runTest(TestCase.java:62)
+[INFO] 	at com.google.gwt.junit.client.GWTTestCase.runBare(GWTTestCase.java:188)
+[INFO] 	at com.google.gwt.junit.client.GWTTestCase.__doRunTest(GWTTestCase.java:129)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner.runTest(GWTRunner.java:389)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner.doRunTest(GWTRunner.java:318)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner.access$9(GWTRunner.java:312)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner$TestBlockListener.onSuccess(GWTRunner.java:107)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner$InitialResponseListener.onSuccess(GWTRunner.java:63)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner$InitialResponseListener.onSuccess(GWTRunner.java:1)
+[INFO] 	at com.google.gwt.user.client.rpc.impl.RequestCallbackAdapter.onResponseReceived(RequestCallbackAdapter.java:232)
+[INFO] 	at com.google.gwt.http.client.Request.fireOnResponseReceived(Request.java:287)
+[INFO] 	at com.google.gwt.http.client.RequestBuilder$1.onReadyStateChange(RequestBuilder.java:395)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+[INFO] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+[INFO] 	at java.lang.reflect.Method.invoke(Method.java:597)
+[INFO] 	at com.google.gwt.dev.shell.MethodAdaptor.invoke(MethodAdaptor.java:103)
+[INFO] 	at com.google.gwt.dev.shell.MethodDispatch.invoke(MethodDispatch.java:71)
+[INFO] 	at com.google.gwt.dev.shell.OophmSessionHandler.invoke(OophmSessionHandler.java:167)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.reactToMessagesWhileWaitingForReturn(BrowserChannelServer.java:326)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.invokeJavascript(BrowserChannelServer.java:207)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpaceOOPHM.doInvoke(ModuleSpaceOOPHM.java:132)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpace.invokeNative(ModuleSpace.java:561)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpace.invokeNativeObject(ModuleSpace.java:269)
+[INFO] 	at com.google.gwt.dev.shell.JavaScriptHost.invokeNativeObject(JavaScriptHost.java:91)
+[INFO] 	at com.google.gwt.core.client.impl.Impl.apply(Impl.java)
+[INFO] 	at com.google.gwt.core.client.impl.Impl.entry0(Impl.java:221)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+[INFO] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+[INFO] 	at java.lang.reflect.Method.invoke(Method.java:597)
+[INFO] 	at com.google.gwt.dev.shell.MethodAdaptor.invoke(MethodAdaptor.java:103)
+[INFO] 	at com.google.gwt.dev.shell.MethodDispatch.invoke(MethodDispatch.java:71)
+[INFO] 	at com.google.gwt.dev.shell.OophmSessionHandler.invoke(OophmSessionHandler.java:167)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.reactToMessages(BrowserChannelServer.java:281)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:531)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:352)
+[INFO] 	at java.lang.Thread.run(Thread.java:662)
+[INFO] Caused by: java.lang.AssertionError: LayoutComposite requires that its wrapped widget implement RequiresResize
+[INFO] 	at com.google.gwt.user.client.ui.ResizeComposite.initWidget(ResizeComposite.java:29)
+[INFO] 	at fspotcloud.client.main.ui.ImageViewImpl.<init>(ImageViewImpl.java:36)
+[INFO] 	at fspotcloud.client.main.ui.GwtTestImageViewImpl.testOne(GwtTestImageViewImpl.java:15)
+[INFO] 	at fspotcloud.client.main.ui.__GwtTestImageViewImpl_unitTestImpl.doRunTest(__GwtTestImageViewImpl_unitTestImpl.java:7)
+[INFO] 	at junit.framework.TestCase.runTest(TestCase.java:62)
+[INFO] 	at com.google.gwt.junit.client.GWTTestCase.runBare(GWTTestCase.java:188)
+[INFO] 	at com.google.gwt.junit.client.GWTTestCase.__doRunTest(GWTTestCase.java:129)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner.runTest(GWTRunner.java:389)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner.doRunTest(GWTRunner.java:318)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner.access$9(GWTRunner.java:312)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner$TestBlockListener.onSuccess(GWTRunner.java:107)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner$InitialResponseListener.onSuccess(GWTRunner.java:63)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner$InitialResponseListener.onSuccess(GWTRunner.java:1)
+[INFO] 	at com.google.gwt.user.client.rpc.impl.RequestCallbackAdapter.onResponseReceived(RequestCallbackAdapter.java:232)
+[INFO] 	at com.google.gwt.http.client.Request.fireOnResponseReceived(Request.java:287)
+[INFO] 	at com.google.gwt.http.client.RequestBuilder$1.onReadyStateChange(RequestBuilder.java:395)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+[INFO] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+[INFO] 	at java.lang.reflect.Method.invoke(Method.java:597)
+[INFO] 	at com.google.gwt.dev.shell.MethodAdaptor.invoke(MethodAdaptor.java:103)
+[INFO] 	at com.google.gwt.dev.shell.MethodDispatch.invoke(MethodDispatch.java:71)
+[INFO] 	at com.google.gwt.dev.shell.OophmSessionHandler.invoke(OophmSessionHandler.java:167)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.reactToMessagesWhileWaitingForReturn(BrowserChannelServer.java:326)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.invokeJavascript(BrowserChannelServer.java:207)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpaceOOPHM.doInvoke(ModuleSpaceOOPHM.java:132)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpace.invokeNative(ModuleSpace.java:561)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpace.invokeNativeObject(ModuleSpace.java:269)
+[INFO] 	at com.google.gwt.dev.shell.JavaScriptHost.invokeNativeObject(JavaScriptHost.java:91)
+[INFO] 	at com.google.gwt.core.client.impl.Impl.apply(Impl.java)
+[INFO] 	at com.google.gwt.core.client.impl.Impl.entry0(Impl.java:221)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+[INFO] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+[INFO] 	at java.lang.reflect.Method.invoke(Method.java:597)
+[INFO] 	at com.google.gwt.dev.shell.MethodAdaptor.invoke(MethodAdaptor.java:103)
+[INFO] 	at com.google.gwt.dev.shell.MethodDispatch.invoke(MethodDispatch.java:71)
+[INFO] 	at com.google.gwt.dev.shell.OophmSessionHandler.invoke(OophmSessionHandler.java:167)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.reactToMessages(BrowserChannelServer.java:281)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:531)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:352)
+[INFO] 	at java.lang.Thread.run(Thread.java:662)
+[INFO] 
+[INFO] 
+[INFO] Results :
+[INFO] 
+[INFO] Tests in error: 
+[INFO]   testOne(fspotcloud.client.main.ui.GwtTestImageViewImpl)
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running fspotcloud.client.main.gin.GwtTestAppGinjector
+[INFO] Validating newly compiled units
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/EditorDriver.java'
+[INFO]       [ERROR] Line 20: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 97: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/impl/AbstractSimpleBeanEditorDriver.java'
+[INFO]       [ERROR] Line 28: Name clash: The method setConstraintViolations(Iterable<ConstraintViolation<?>>) of type BaseEditorDriver<T,E> has the same erasure as setConstraintViolations(Iterable<ConstraintViolation<?>>) of type EditorDriver<T> but does not override it
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/impl/BaseEditorDriver.java'
+[INFO]       [ERROR] Line 31: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 67: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/impl/SimpleViolation.java'
+[INFO]       [ERROR] Line 25: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 40: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 43: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 44: Missing code implementation in the compiler
+[INFO]       [ERROR] Line 49: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 49: Missing code implementation in the compiler
+[INFO]       [ERROR] Line 70: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 72: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 73: ConstraintViolation<?> cannot be resolved to a type
+[INFO]       [ERROR] Line 77: ConstraintViolation<capture#2-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 81: ConstraintViolation<capture#3-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 89: ConstraintViolation<capture#4-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 93: ConstraintViolation<capture#5-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 98: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/testing/MockSimpleBeanEditorDriver.java'
+[INFO]       [ERROR] Line 26: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 35: The type MockSimpleBeanEditorDriver<T,E> must implement the inherited abstract method EditorDriver<T>.setConstraintViolations(Iterable<ConstraintViolation<?>>)
+[INFO]       [ERROR] Line 107: Name clash: The method setConstraintViolations(Iterable<ConstraintViolation<?>>) of type MockSimpleBeanEditorDriver<T,E> has the same erasure as setConstraintViolations(Iterable<ConstraintViolation<?>>) of type EditorDriver<T> but does not override it
+[INFO]       [ERROR] Line 108: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/gin/TagDetailsActivityFactoryImpl.java'
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.rpc.AdminServiceAsync; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/view/AdminTreePresenterImpl.java'
+[INFO]       [ERROR] Line 28: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/view/GlobalActionsPresenter.java'
+[INFO]       [ERROR] Line 18: No source code is available for type fspotcloud.rpc.AdminServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 126: No source code is available for type fspotcloud.shared.admin.MetaDataInfo; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/view/TagDetailsActivity.java'
+[INFO]       [ERROR] Line 25: No source code is available for type fspotcloud.rpc.AdminServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 69: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/data/DataManager.java'
+[INFO]       [ERROR] Line 11: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/data/DataManagerImpl.java'
+[INFO]       [ERROR] Line 19: No source code is available for type fspotcloud.rpc.TagServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 24: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/data/IndexingUtil.java'
+[INFO]       [ERROR] Line 16: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/TagServiceAsyncTestImpl.java'
+[INFO]       [ERROR] Line 15: No source code is available for type fspotcloud.rpc.TagServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 33: No source code is available for type fspotcloud.shared.photo.PhotoInfo; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 36: No source code is available for type com.google.common.collect.ImmutableSortedSet<E>; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 37: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 86: No source code is available for type com.google.common.collect.ImmutableList<E>; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/ToggleFullscreenTest.java'
+[INFO]       [ERROR] Line 12: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 25: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/TreeFocusActionTest.java'
+[INFO]       [ERROR] Line 12: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 25: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/data/DataManagerImplTest.java'
+[INFO]       [ERROR] Line 29: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 57: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/ui/ResourcesTest.java'
+[INFO]       [ERROR] Line 17: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 19: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/AppActivityMapperTest.java'
+[INFO]       [ERROR] Line 13: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/CustomCellTree.java'
+[INFO]       [ERROR] Line 10: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/ImageActivityTest.java'
+[INFO]       [ERROR] Line 17: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 36: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/LoadNewLocationActionTest.java'
+[INFO]       [ERROR] Line 12: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 24: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TagCell.java'
+[INFO]       [ERROR] Line 8: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TagTreeModel.java'
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/TagTreeModelTest.java'
+[INFO]       [ERROR] Line 14: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TreePresenterImpl.java'
+[INFO]       [ERROR] Line 24: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/TreePresenterImplTest.java'
+[INFO]       [ERROR] Line 21: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 27: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 44: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TreeSelectionHandler.java'
+[INFO]       [ERROR] Line 18: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 42: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/TreeSelectionHandlerTest.java'
+[INFO]       [ERROR] Line 15: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/UserButtonPresenterImplTest.java'
+[INFO]       [ERROR] Line 16: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 42: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/api/TreeSelectionHandlerInterface.java'
+[INFO]       [ERROR] Line 9: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/place/NavigatorImpl.java'
+[INFO]       [ERROR] Line 53: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 63: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 298: No source code is available for type fspotcloud.shared.photo.PhotoInfo; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/place/NavigatorImplTest.java'
+[INFO]       [ERROR] Line 31: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 62: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 107: No source code is available for type java.lang.InterruptedException; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 200: No source code is available for type com.google.common.collect.ImmutableList<E>; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/place/api/Navigator.java'
+[INFO]       [ERROR] Line 30: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/view/action/NavigationEventHandlerTest.java'
+[INFO]       [ERROR] Line 16: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 34: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/view/action/RasterEventHandlerTest.java'
+[INFO]       [ERROR] Line 17: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 36: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/Configuration.java'
+[INFO]       [ERROR] Line 93: TraversableResolver cannot be resolved to a type
+[INFO]       [ERROR] Line 105: ConstraintValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 182: TraversableResolver cannot be resolved to a type
+[INFO]       [ERROR] Line 182: No source code is available for type TraversableResolver; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 194: ConstraintValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 194: No source code is available for type ConstraintValidatorFactory; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 202: ValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 202: No source code is available for type ValidatorFactory; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/ConstraintViolationException_CustomFieldSerializer.java'
+[INFO]       [ERROR] Line 30: ConstraintViolationException cannot be resolved to a type
+[INFO]       [ERROR] Line 34: ConstraintViolationException cannot be resolved to a type
+[INFO]       [ERROR] Line 34: No source code is available for type ConstraintViolationException; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 39: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 39: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 40: ConstraintViolationException cannot be resolved to a type
+[INFO]       [ERROR] Line 44: ConstraintViolationException cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/MessageInterpolator.java'
+[INFO]       [ERROR] Line 21: The import javax.validation.metadata cannot be resolved
+[INFO]       [ERROR] Line 66: ConstraintDescriptor cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/constraints/Pattern.java'
+[INFO]       [ERROR] Line 30: The import javax.validation.Constraint cannot be resolved
+[INFO]       [ERROR] Line 31: The import javax.validation.Payload cannot be resolved
+[INFO]       [ERROR] Line 49: Constraint cannot be resolved to a type
+[INFO]       [ERROR] Line 49: The attribute validatedBy is undefined for the annotation type Constraint
+[INFO]       [ERROR] Line 75: Payload cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/spi/ConfigurationState.java'
+[INFO]       [ERROR] Line 22: The import javax.validation.ConstraintValidatorFactory cannot be resolved
+[INFO]       [ERROR] Line 24: The import javax.validation.TraversableResolver cannot be resolved
+[INFO]       [ERROR] Line 93: ConstraintValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 107: TraversableResolver cannot be resolved to a type
+[INFO] logging for HtmlUnit thread
+[INFO]    [WARN] Expected content type of 'application/javascript' or 'application/ecmascript' for remotely loaded JavaScript element at 'http://127.0.0.1:45094/fspotcloud.FSpotCloud.JUnit/fspotcloud.FSpotCloud.JUnit.nocache.js', but got 'application/x-javascript'.
+[INFO] Validating newly compiled units
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/EditorDriver.java'
+[INFO]       [ERROR] Line 20: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 97: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/impl/AbstractSimpleBeanEditorDriver.java'
+[INFO]       [ERROR] Line 28: Name clash: The method setConstraintViolations(Iterable<ConstraintViolation<?>>) of type BaseEditorDriver<T,E> has the same erasure as setConstraintViolations(Iterable<ConstraintViolation<?>>) of type EditorDriver<T> but does not override it
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/impl/BaseEditorDriver.java'
+[INFO]       [ERROR] Line 31: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 67: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/impl/SimpleViolation.java'
+[INFO]       [ERROR] Line 25: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 40: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 43: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 44: Missing code implementation in the compiler
+[INFO]       [ERROR] Line 49: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 49: Missing code implementation in the compiler
+[INFO]       [ERROR] Line 70: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 72: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 73: ConstraintViolation<?> cannot be resolved to a type
+[INFO]       [ERROR] Line 77: ConstraintViolation<capture#2-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 81: ConstraintViolation<capture#3-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 89: ConstraintViolation<capture#4-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 93: ConstraintViolation<capture#5-of ?> cannot be resolved to a type
+[INFO]       [ERROR] Line 98: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/com/google/gwt/editor/client/testing/MockSimpleBeanEditorDriver.java'
+[INFO]       [ERROR] Line 26: The import javax.validation.ConstraintViolation cannot be resolved
+[INFO]       [ERROR] Line 35: The type MockSimpleBeanEditorDriver<T,E> must implement the inherited abstract method EditorDriver<T>.setConstraintViolations(Iterable<ConstraintViolation<?>>)
+[INFO]       [ERROR] Line 107: Name clash: The method setConstraintViolations(Iterable<ConstraintViolation<?>>) of type MockSimpleBeanEditorDriver<T,E> has the same erasure as setConstraintViolations(Iterable<ConstraintViolation<?>>) of type EditorDriver<T> but does not override it
+[INFO]       [ERROR] Line 108: ConstraintViolation cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/gin/TagDetailsActivityFactoryImpl.java'
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.rpc.AdminServiceAsync; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/view/AdminTreePresenterImpl.java'
+[INFO]       [ERROR] Line 28: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/view/GlobalActionsPresenter.java'
+[INFO]       [ERROR] Line 18: No source code is available for type fspotcloud.rpc.AdminServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 126: No source code is available for type fspotcloud.shared.admin.MetaDataInfo; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/admin/view/TagDetailsActivity.java'
+[INFO]       [ERROR] Line 25: No source code is available for type fspotcloud.rpc.AdminServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 69: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/data/DataManager.java'
+[INFO]       [ERROR] Line 11: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/data/DataManagerImpl.java'
+[INFO]       [ERROR] Line 19: No source code is available for type fspotcloud.rpc.TagServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 24: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/data/IndexingUtil.java'
+[INFO]       [ERROR] Line 16: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/TagServiceAsyncTestImpl.java'
+[INFO]       [ERROR] Line 15: No source code is available for type fspotcloud.rpc.TagServiceAsync; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 33: No source code is available for type fspotcloud.shared.photo.PhotoInfo; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 36: No source code is available for type com.google.common.collect.ImmutableSortedSet<E>; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 37: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 86: No source code is available for type com.google.common.collect.ImmutableList<E>; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/ToggleFullscreenTest.java'
+[INFO]       [ERROR] Line 12: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 25: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/TreeFocusActionTest.java'
+[INFO]       [ERROR] Line 12: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 25: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/data/DataManagerImplTest.java'
+[INFO]       [ERROR] Line 29: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 57: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/ui/ResourcesTest.java'
+[INFO]       [ERROR] Line 17: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 19: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/AppActivityMapperTest.java'
+[INFO]       [ERROR] Line 13: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/CustomCellTree.java'
+[INFO]       [ERROR] Line 10: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/ImageActivityTest.java'
+[INFO]       [ERROR] Line 17: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 36: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/LoadNewLocationActionTest.java'
+[INFO]       [ERROR] Line 12: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 24: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TagCell.java'
+[INFO]       [ERROR] Line 8: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TagTreeModel.java'
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/TagTreeModelTest.java'
+[INFO]       [ERROR] Line 14: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TreePresenterImpl.java'
+[INFO]       [ERROR] Line 24: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/TreePresenterImplTest.java'
+[INFO]       [ERROR] Line 21: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 27: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 44: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/TreeSelectionHandler.java'
+[INFO]       [ERROR] Line 18: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 42: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/TreeSelectionHandlerTest.java'
+[INFO]       [ERROR] Line 15: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 17: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/main/view/UserButtonPresenterImplTest.java'
+[INFO]       [ERROR] Line 16: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 42: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/main/view/api/TreeSelectionHandlerInterface.java'
+[INFO]       [ERROR] Line 9: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/place/NavigatorImpl.java'
+[INFO]       [ERROR] Line 53: No source code is available for type fspotcloud.shared.tag.TagNode; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 63: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 298: No source code is available for type fspotcloud.shared.photo.PhotoInfo; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/place/NavigatorImplTest.java'
+[INFO]       [ERROR] Line 31: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 62: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 107: No source code is available for type java.lang.InterruptedException; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 200: No source code is available for type com.google.common.collect.ImmutableList<E>; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/main/java/fspotcloud/client/place/api/Navigator.java'
+[INFO]       [ERROR] Line 30: No source code is available for type fspotcloud.shared.photo.PhotoInfoStore; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/view/action/NavigationEventHandlerTest.java'
+[INFO]       [ERROR] Line 16: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 34: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'file:/home/steven/fspotcloud/client/src/test/java/fspotcloud/client/view/action/RasterEventHandlerTest.java'
+[INFO]       [ERROR] Line 17: No source code is available for type org.jmock.Mockery; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 36: No source code is available for type org.jmock.Expectations; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/Configuration.java'
+[INFO]       [ERROR] Line 93: TraversableResolver cannot be resolved to a type
+[INFO]       [ERROR] Line 105: ConstraintValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 182: TraversableResolver cannot be resolved to a type
+[INFO]       [ERROR] Line 182: No source code is available for type TraversableResolver; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 194: ConstraintValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 194: No source code is available for type ConstraintValidatorFactory; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 202: ValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 202: No source code is available for type ValidatorFactory; did you forget to inherit a required module?
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/ConstraintViolationException_CustomFieldSerializer.java'
+[INFO]       [ERROR] Line 30: ConstraintViolationException cannot be resolved to a type
+[INFO]       [ERROR] Line 34: ConstraintViolationException cannot be resolved to a type
+[INFO]       [ERROR] Line 34: No source code is available for type ConstraintViolationException; did you forget to inherit a required module?
+[INFO]       [ERROR] Line 39: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 39: ConstraintViolation cannot be resolved to a type
+[INFO]       [ERROR] Line 40: ConstraintViolationException cannot be resolved to a type
+[INFO]       [ERROR] Line 44: ConstraintViolationException cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/MessageInterpolator.java'
+[INFO]       [ERROR] Line 21: The import javax.validation.metadata cannot be resolved
+[INFO]       [ERROR] Line 66: ConstraintDescriptor cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/constraints/Pattern.java'
+[INFO]       [ERROR] Line 30: The import javax.validation.Constraint cannot be resolved
+[INFO]       [ERROR] Line 31: The import javax.validation.Payload cannot be resolved
+[INFO]       [ERROR] Line 49: Constraint cannot be resolved to a type
+[INFO]       [ERROR] Line 49: The attribute validatedBy is undefined for the annotation type Constraint
+[INFO]       [ERROR] Line 75: Payload cannot be resolved to a type
+[INFO]    [ERROR] Errors in 'jar:file:/home/steven/.m2/repository/com/google/gwt/gwt-user/2.3.0/gwt-user-2.3.0.jar!/javax/validation/super/javax/validation/spi/ConfigurationState.java'
+[INFO]       [ERROR] Line 22: The import javax.validation.ConstraintValidatorFactory cannot be resolved
+[INFO]       [ERROR] Line 24: The import javax.validation.TraversableResolver cannot be resolved
+[INFO]       [ERROR] Line 93: ConstraintValidatorFactory cannot be resolved to a type
+[INFO]       [ERROR] Line 107: TraversableResolver cannot be resolved to a type
+[INFO] Rebinding com.google.gwt.core.client.impl.SchedulerImpl
+[INFO]    Checking rule <generate-with class='com.google.gwt.editor.rebind.SimpleBeanEditorDriverGenerator'/>
+[INFO]       [WARN] Detected warnings related to 'com.google.gwt.editor.client.SimpleBeanEditorDriver'.   Are validation-api-<version>.jar and validation-api-<version>-sources.jar on the classpath?
+[INFO]       [WARN] Unknown type 'com.google.gwt.editor.client.SimpleBeanEditorDriver' specified in deferred binding rule
+[INFO] Rebinding fspotcloud.client.main.gin.AppGinjector
+[INFO]    Checking rule <generate-with class='com.google.gwt.place.rebind.PlaceHistoryMapperGenerator'/>
+[INFO]       [ERROR] Unable to find type 'fspotcloud.client.main.gin.AppGinjector'
+[INFO]          [ERROR] Hint: Previous compiler errors may have made this type unavailable
+[INFO]          [ERROR] Hint: Check the inheritance chain from your module; it may not be inheriting a required module or a module may not be adding its source path entries properly
+[INFO] [ERROR] Deferred binding failed for 'fspotcloud.client.main.gin.AppGinjector'; expect subsequent failures
+[INFO] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 39.056 sec <<< FAILURE!
+[INFO] testInstantiation(fspotcloud.client.main.gin.GwtTestAppGinjector)  Time elapsed: 39.048 sec  <<< ERROR!
+[INFO] java.lang.RuntimeException: Remote test failed at 127.0.0.1 / Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.19) Gecko/2010031422 Firefox/3.0.19
+[INFO] 	at com.google.gwt.junit.JUnitShell.processTestResult(JUnitShell.java:1288)
+[INFO] 	at com.google.gwt.junit.JUnitShell.runTestImpl(JUnitShell.java:1408)
+[INFO] 	at com.google.gwt.junit.JUnitShell.runTestImpl(JUnitShell.java:1309)
+[INFO] 	at com.google.gwt.junit.JUnitShell.runTest(JUnitShell.java:650)
+[INFO] 	at com.google.gwt.junit.client.GWTTestCase.runTest(GWTTestCase.java:441)
+[INFO] 	at junit.framework.TestCase.runBare(TestCase.java:127)
+[INFO] 	at junit.framework.TestResult$1.protect(TestResult.java:106)
+[INFO] 	at junit.framework.TestResult.runProtected(TestResult.java:124)
+[INFO] 	at junit.framework.TestResult.run(TestResult.java:109)
+[INFO] 	at junit.framework.TestCase.run(TestCase.java:118)
+[INFO] 	at com.google.gwt.junit.client.GWTTestCase.run(GWTTestCase.java:296)
+[INFO] 	at junit.framework.TestSuite.runTest(TestSuite.java:208)
+[INFO] 	at junit.framework.TestSuite.run(TestSuite.java:203)
+[INFO] 	at org.codehaus.mojo.gwt.test.MavenTestRunner.doRun(MavenTestRunner.java:105)
+[INFO] 	at junit.textui.TestRunner.start(TestRunner.java:172)
+[INFO] 	at org.codehaus.mojo.gwt.test.MavenTestRunner.main(MavenTestRunner.java:63)
+[INFO] Caused by: java.lang.RuntimeException: Deferred binding failed for 'fspotcloud.client.main.gin.AppGinjector' (did you forget to inherit a required module?)
+[INFO] 	at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:53)
+[INFO] 	at com.google.gwt.core.client.GWT.create(GWT.java:98)
+[INFO] 	at fspotcloud.client.main.gin.GwtTestAppGinjector.testInstantiation(GwtTestAppGinjector.java:15)
+[INFO] 	at fspotcloud.client.main.gin.__GwtTestAppGinjector_unitTestImpl.doRunTest(__GwtTestAppGinjector_unitTestImpl.java:7)
+[INFO] 	at junit.framework.TestCase.runTest(TestCase.java:62)
+[INFO] 	at com.google.gwt.junit.client.GWTTestCase.runBare(GWTTestCase.java:188)
+[INFO] 	at com.google.gwt.junit.client.GWTTestCase.__doRunTest(GWTTestCase.java:129)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner.runTest(GWTRunner.java:389)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner.doRunTest(GWTRunner.java:318)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner.access$9(GWTRunner.java:312)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner$TestBlockListener.onSuccess(GWTRunner.java:107)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner$InitialResponseListener.onSuccess(GWTRunner.java:63)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner$InitialResponseListener.onSuccess(GWTRunner.java:1)
+[INFO] 	at com.google.gwt.user.client.rpc.impl.RequestCallbackAdapter.onResponseReceived(RequestCallbackAdapter.java:232)
+[INFO] 	at com.google.gwt.http.client.Request.fireOnResponseReceived(Request.java:287)
+[INFO] 	at com.google.gwt.http.client.RequestBuilder$1.onReadyStateChange(RequestBuilder.java:395)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+[INFO] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+[INFO] 	at java.lang.reflect.Method.invoke(Method.java:597)
+[INFO] 	at com.google.gwt.dev.shell.MethodAdaptor.invoke(MethodAdaptor.java:103)
+[INFO] 	at com.google.gwt.dev.shell.MethodDispatch.invoke(MethodDispatch.java:71)
+[INFO] 	at com.google.gwt.dev.shell.OophmSessionHandler.invoke(OophmSessionHandler.java:167)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.reactToMessagesWhileWaitingForReturn(BrowserChannelServer.java:326)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.invokeJavascript(BrowserChannelServer.java:207)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpaceOOPHM.doInvoke(ModuleSpaceOOPHM.java:132)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpace.invokeNative(ModuleSpace.java:561)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpace.invokeNativeObject(ModuleSpace.java:269)
+[INFO] 	at com.google.gwt.dev.shell.JavaScriptHost.invokeNativeObject(JavaScriptHost.java:91)
+[INFO] 	at com.google.gwt.core.client.impl.Impl.apply(Impl.java)
+[INFO] 	at com.google.gwt.core.client.impl.Impl.entry0(Impl.java:221)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+[INFO] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+[INFO] 	at java.lang.reflect.Method.invoke(Method.java:597)
+[INFO] 	at com.google.gwt.dev.shell.MethodAdaptor.invoke(MethodAdaptor.java:103)
+[INFO] 	at com.google.gwt.dev.shell.MethodDispatch.invoke(MethodDispatch.java:71)
+[INFO] 	at com.google.gwt.dev.shell.OophmSessionHandler.invoke(OophmSessionHandler.java:167)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.reactToMessages(BrowserChannelServer.java:281)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:531)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:352)
+[INFO] 	at java.lang.Thread.run(Thread.java:662)
+[INFO] Caused by: java.lang.Exception: com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpace.rebind(ModuleSpace.java:595)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpace.rebindAndCreate(ModuleSpace.java:455)
+[INFO] 	at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:49)
+[INFO] 	... 41 more
+[INFO] Caused by: java.lang.RuntimeException: Deferred binding failed for 'fspotcloud.client.main.gin.AppGinjector' (did you forget to inherit a required module?)
+[INFO] 	at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:53)
+[INFO] 	at com.google.gwt.core.client.GWT.create(GWT.java:98)
+[INFO] 	at fspotcloud.client.main.gin.GwtTestAppGinjector.testInstantiation(GwtTestAppGinjector.java:15)
+[INFO] 	at fspotcloud.client.main.gin.__GwtTestAppGinjector_unitTestImpl.doRunTest(__GwtTestAppGinjector_unitTestImpl.java:7)
+[INFO] 	at junit.framework.TestCase.runTest(TestCase.java:62)
+[INFO] 	at com.google.gwt.junit.client.GWTTestCase.runBare(GWTTestCase.java:188)
+[INFO] 	at com.google.gwt.junit.client.GWTTestCase.__doRunTest(GWTTestCase.java:129)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner.runTest(GWTRunner.java:389)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner.doRunTest(GWTRunner.java:318)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner.access$9(GWTRunner.java:312)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner$TestBlockListener.onSuccess(GWTRunner.java:107)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner$InitialResponseListener.onSuccess(GWTRunner.java:63)
+[INFO] 	at com.google.gwt.junit.client.impl.GWTRunner$InitialResponseListener.onSuccess(GWTRunner.java:1)
+[INFO] 	at com.google.gwt.user.client.rpc.impl.RequestCallbackAdapter.onResponseReceived(RequestCallbackAdapter.java:232)
+[INFO] 	at com.google.gwt.http.client.Request.fireOnResponseReceived(Request.java:287)
+[INFO] 	at com.google.gwt.http.client.RequestBuilder$1.onReadyStateChange(RequestBuilder.java:395)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+[INFO] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+[INFO] 	at java.lang.reflect.Method.invoke(Method.java:597)
+[INFO] 	at com.google.gwt.dev.shell.MethodAdaptor.invoke(MethodAdaptor.java:103)
+[INFO] 	at com.google.gwt.dev.shell.MethodDispatch.invoke(MethodDispatch.java:71)
+[INFO] 	at com.google.gwt.dev.shell.OophmSessionHandler.invoke(OophmSessionHandler.java:167)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.reactToMessagesWhileWaitingForReturn(BrowserChannelServer.java:326)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.invokeJavascript(BrowserChannelServer.java:207)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpaceOOPHM.doInvoke(ModuleSpaceOOPHM.java:132)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpace.invokeNative(ModuleSpace.java:561)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpace.invokeNativeObject(ModuleSpace.java:269)
+[INFO] 	at com.google.gwt.dev.shell.JavaScriptHost.invokeNativeObject(JavaScriptHost.java:91)
+[INFO] 	at com.google.gwt.core.client.impl.Impl.apply(Impl.java)
+[INFO] 	at com.google.gwt.core.client.impl.Impl.entry0(Impl.java:221)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[INFO] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+[INFO] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+[INFO] 	at java.lang.reflect.Method.invoke(Method.java:597)
+[INFO] 	at com.google.gwt.dev.shell.MethodAdaptor.invoke(MethodAdaptor.java:103)
+[INFO] 	at com.google.gwt.dev.shell.MethodDispatch.invoke(MethodDispatch.java:71)
+[INFO] 	at com.google.gwt.dev.shell.OophmSessionHandler.invoke(OophmSessionHandler.java:167)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.reactToMessages(BrowserChannelServer.java:281)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:531)
+[INFO] 	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:352)
+[INFO] 	at java.lang.Thread.run(Thread.java:662)
+[INFO] Caused by: java.lang.Exception: com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpace.rebind(ModuleSpace.java:595)
+[INFO] 	at com.google.gwt.dev.shell.ModuleSpace.rebindAndCreate(ModuleSpace.java:455)
+[INFO] 	at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:49)
+[INFO] 	... 41 more
+[INFO] 
+[INFO] 
+[INFO] Results :
+[INFO] 
+[INFO] Tests in error: 
+[INFO]   testInstantiation(fspotcloud.client.main.gin.GwtTestAppGinjector)
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1:06.943s
+[INFO] Finished at: Mon Aug 01 19:20:20 CEST 2011
+[INFO] Final Memory: 9M/104M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.codehaus.mojo:gwt-maven-plugin:2.3.0:test (compile) on project client: There was test failures. -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

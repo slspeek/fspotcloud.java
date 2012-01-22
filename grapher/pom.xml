@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<parent>
+		<artifactId>fspotcloud</artifactId>
+		<groupId>fspotcloud</groupId>
+		<version>0.11-dev-02</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>grapher</artifactId>
+	<packaging>jar</packaging>
+	<name>Guice Grapher for the F-Spot Cloud Project</name>
+	<description>Visualization of the Guice Object Graph</description>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>peer</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>model</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>server-module-j2ee</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+                <dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>server-module-gae</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>client</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-grapher</artifactId>
+			<version>${guice.version}</version>
+		</dependency>
+	 <dependency>
+	  <groupId>fspotcloud.bot-dispatch</groupId>
+	  <artifactId>gae-command</artifactId>
+	  <classifier>special</classifier>
+	 </dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution>
+						<id>graph</id>
+						<phase>install</phase>
+						<configuration>
+							<tasks>
+								<exec executable="java">
+									<arg value="-jar" />
+									<arg
+										value="${project.build.directory}/${project.artifactId}-${project.version}-jar-with-dependencies.jar" />
+								</exec>
+								<copy todir="${basedir}/src/site/resources/">
+									<fileset dir="${project.build.directory}">
+										<include name="*.png" />
+									</fileset>
+								</copy>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- NOTE: We don't need a groupId specification because the group is 
+					org.apache.maven.plugins ...which is assumed by default. -->
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>fspotcloud.grapher.Main</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id><!-- this is used for inheritance merges -->
+						<phase>package</phase><!-- append to the packaging phase. -->
+						<goals>
+							<goal>attached</goal><!-- goals == mojos -->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>fspotcloud-maven</id>
+			<url>http://maven.fspotcloud.googlecode.com/hg/repo</url>
+		</repository>
+	</repositories>
+</project>
+
