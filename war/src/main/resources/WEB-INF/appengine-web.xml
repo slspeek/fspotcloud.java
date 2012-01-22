@@ -10,9 +10,6 @@
 		<exclude path="**.gwt.rpc" />
 	</static-files>
 	<system-properties>
-		<property name="java.util.logging.config.file" value="WEB-INF/logging.properties" />
-		<property name="log4j.configuration" value="log4j.properties" />
-		<property name="fspotcloud.max.data.ticks" value="100" />
-		<property name="bot.secret" value="${bot.secret}" />
+		
 	</system-properties>
 </appengine-web-app>
