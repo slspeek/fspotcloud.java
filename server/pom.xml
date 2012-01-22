@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-03</version>
+        <version>0.11-dev-04</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>server</artifactId>
-    <version>0.11-dev-03</version>
+    <version>0.11-dev-04</version>
     <name>F-SpotCloud Server Component</name>
     <description>The controller and data reading</description>
     <dependencies>
@@ -27,6 +27,18 @@
             <type>pom</type>
         </dependency>
         <dependency>
+            <groupId>fspotcloud.taskqueue-dispatch</groupId>
+            <artifactId>dispatch</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}.bot-dispatch</groupId>
+            <artifactId>controller</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>peer-rpc</artifactId>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}.deps</groupId>
             <artifactId>servlet-deps</artifactId>
             <type>pom</type>
@@ -39,18 +51,6 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>fspotcloud.taskqueue-dispatch</groupId>
-            <artifactId>dispatch</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}.bot-dispatch</groupId>
-            <artifactId>controller</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>peer-rpc</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
