@@ -1,6 +1,10 @@
 syntax: glob
+derby.log
+*/derby.log
 grapher/src/site/resources/*.png
 extras/*
+*/MODELJPA/*
+MODELJPA/*
 test-output/*
 runtime/*
 target/*

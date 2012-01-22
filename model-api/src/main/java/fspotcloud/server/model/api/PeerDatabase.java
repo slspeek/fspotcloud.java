@@ -37,10 +37,6 @@ public interface PeerDatabase {
 
 	void touchPeerContact();
 
-	List<String> getCachedImportedTags();
-
-	void setCachedImportedTags(List<String> importedTags);
-	
 	String getThumbDimension();
 	
 	void setThumbDimension(String dim);

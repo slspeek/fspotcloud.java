@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package fspotcloud.server.model.tag;
 
@@ -11,92 +11,98 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import com.google.appengine.api.datastore.Key;
-
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.shared.photo.PhotoInfo;
 
 /**
  * Represents a Label in F-Spot
- * 
+ *
  */
-@PersistenceCapable(detachable="true")
+@PersistenceCapable(detachable = "true")
 public class TagDO implements Tag, Serializable {
-	@PrimaryKey
-	private String id;
 
-	@Persistent
-	private String tagName;
+    @PrimaryKey
+    private String id;
+    @Persistent
+    private String tagName;
+    @Persistent
+    private String parentId;
+    @Persistent
+    private String parent;
+    @Persistent
+    private int count;
+    @Persistent
+    private boolean importIssued = false;
+    @Persistent(serialized = "true")
+    private TreeSet<PhotoInfo> cachedPhotoList = new TreeSet<PhotoInfo>();
 
-	@Persistent
-	private String parentId;
+    @Override
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	@Persistent
-	private Key parent;
+    @Override
+    public void setParent(String parent) {
+        this.parent = parent;
+    }
 
-	@Persistent
-	private int count;
+    @Override
+    public String getParent() {
+        return parent;
+    }
 
-	@Persistent
-	private boolean importIssued = false;
-	
-	@Persistent(serialized = "true")
-	private SortedSet<PhotoInfo> cachedPhotoList = new TreeSet<PhotoInfo>();
-	
-	public void setId(String id) {
-		this.id = id;
-	}
+    @Override
+    public void setCount(int count) {
+        this.count = count;
+    }
 
-	public void setParent(Key parent) {
-		this.parent = parent;
-	}
+    @Override
+    public int getCount() {
+        return count;
+    }
 
-	public Key getParent() {
-		return parent;
-	}
+    @Override
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
+    }
 
-	public void setCount(int count) {
-		this.count = count;
-	}
+    @Override
+    public String getTagName() {
+        return tagName;
+    }
 
-	public int getCount() {
-		return count;
-	}
+    @Override
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
 
-	public void setTagName(String tagName) {
-		this.tagName = tagName;
-	}
+    @Override
+    public String getParentId() {
+        return parentId;
+    }
 
-	public String getTagName() {
-		return tagName;
-	}
+    @Override
+    public void setCachedPhotoList(TreeSet<PhotoInfo> cachedPhotoList) {
+        this.cachedPhotoList = cachedPhotoList;
+    }
 
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
-	}
+    @Override
+    public TreeSet<PhotoInfo> getCachedPhotoList() {
+        return cachedPhotoList;
+    }
 
-	public String getParentId() {
-		return parentId;
-	}
+    @Override
+    public void setImportIssued(boolean importIssued) {
+        this.importIssued = importIssued;
+    }
 
-	public void setCachedPhotoList(SortedSet<PhotoInfo> cachedPhotoList) {
-		this.cachedPhotoList = cachedPhotoList;
-	}
-	
-	public SortedSet<PhotoInfo> getCachedPhotoList() {
-		return cachedPhotoList;
-	}
+    @Override
+    public boolean isImportIssued() {
+        return importIssued;
+    }
 
-	public void setImportIssued(boolean importIssued) {
-		this.importIssued = importIssued;
-	}
-
-	public boolean isImportIssued() {
-		return importIssued;
-	}
-
-	@Override
-	public String getId() {
-		return id;
-	}
+    @Override
+    public String getId() {
+        return id;
+    }
 }

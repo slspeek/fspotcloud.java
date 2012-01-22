@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>deps</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.1-beta-01</version>
+		<version>0.11-dev-02</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fspotcloud.deps</groupId>

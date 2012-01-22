@@ -5,7 +5,7 @@
     <groupId>fspotcloud</groupId>
     <artifactId>fspotcloud</artifactId>
     <packaging>pom</packaging>
-    <version>0.1-beta-01</version>
+    <version>0.11-dev-02</version>
     <name>F-Spot Cloud Java Edition</name>
     <prerequisites>
         <maven>3.0.0</maven>
@@ -39,21 +39,30 @@
         </developer>
     </developers>
     <modules>
+        <module>peer-rpc</module>
         <module>rpc</module>
         <module>test-util</module>
         <module>model-api</module>
         <module>model</module>
+        <module>model-jpa</module>
         <module>server</module>
+        <module>server-module-gae</module>
+        <module>server-module-j2ee</module>
         <module>client</module>
         <module>peer</module>
         <module>war</module>
         <module>war-prod</module>
+        <module>installer</module>
         <module>deps</module>
         <module>grapher</module>
-        <module>peer-rpc</module>
-        <module>installer</module>
+        <module>tomcat-war</module>
     </modules>
     <properties>
+        <botdispatch.version>0.3-bd</botdispatch.version>
+        <taskqueuedispatch.version>0.2-tqd</taskqueuedispatch.version>
+        <hibernate.version>3.6.9.Final</hibernate.version>
+<!--        <hibernate.version>4.0.0.Final</hibernate.version>-->
+        <derby.version>10.2.2.0</derby.version>
         <guice.version>3.0</guice.version>
         <gin.version>1.5.0</gin.version>
         <gwt.version>2.4.0</gwt.version>
@@ -323,10 +332,25 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>server-module-gae</artifactId>
+                <version>${project.version}</version>
+            </dependency> 
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>server-module-j2ee</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>model</artifactId>
                 <version>${project.version}</version>
                 <type>test-jar</type>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>model-jpa</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}.deps</groupId>
@@ -341,10 +365,60 @@
                 <type>pom</type>
             </dependency>
             <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-servlet</artifactId>
+                <version>${gwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-user</artifactId>
+                <version>${gwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.customware.gwt.dispatch</groupId>
+                <artifactId>gwt-dispatch</artifactId>
+                <version>1.2.0</version>
+            </dependency>
+            <dependency>
                 <groupId>${project.groupId}.deps</groupId>
                 <artifactId>guice-deps</artifactId>
                 <version>${project.version}</version>
                 <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-assistedinject</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-servlet</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-persist</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guiceberry</groupId>
+                <artifactId>guiceberry</artifactId>
+                <version>3.0.4</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.jdo</groupId>
+                <artifactId>jdo-api</artifactId>
+                <version>3.0</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}.deps</groupId>
@@ -357,22 +431,33 @@
                 <artifactId>peer-rpc</artifactId>
                 <version>${project.version}</version>
             </dependency>
+<!--            bot dispatch-->
             <dependency>
                 <groupId>${project.groupId}.bot-dispatch</groupId>
                 <artifactId>controller</artifactId>
-                <version>${project.version}</version>
+                <version>${botdispatch.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}.bot-dispatch</groupId>
                 <artifactId>gae-command</artifactId>
-                <version>${project.version}</version>
+                <version>${botdispatch.version}</version>
                 <classifier>special</classifier>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}.bot-dispatch</groupId>
+                <artifactId>command-jpa</artifactId>
+                <version>${botdispatch.version}</version>
+            </dependency>
+<!--            <dependency>
+                <groupId>${project.groupId}.bot-dispatch</groupId>
                 <artifactId>test</artifactId>
-                <version>${project.version}</version>
+                <version>${botdispatch.version}</version>
                 <scope>test</scope>
+            </dependency>-->
+            <dependency>
+                <groupId>fspotcloud.bot-dispatch</groupId>
+                <artifactId>bot</artifactId>
+                <version>${botdispatch.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
@@ -383,7 +468,7 @@
             <dependency>
                 <groupId>${project.groupId}.taskqueue-dispatch</groupId>
                 <artifactId>dispatch</artifactId>
-                <version>${project.version}</version>
+                <version>${taskqueuedispatch.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -405,7 +490,6 @@
                 <groupId>httpunit</groupId>
                 <artifactId>httpunit</artifactId>
                 <version>1.7</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
@@ -431,7 +515,49 @@
                 <version>2.5.1</version>
                 <scope>test</scope>
             </dependency>
+              <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
+
+        
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency><!-- Hibernate gives you a choice of bytecode providers between cglib and javassist -->
+            <dependency>
+                <groupId>javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>3.12.0.GA</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derby</artifactId>
+                <version>${derby.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derbyclient</artifactId>
+                <version>${derby.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derbynet</artifactId>
+                <version>${derby.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derbytools</artifactId>
+                <version>${derby.version}</version>
+            </dependency>
+            
         </dependencies>
+        
     </dependencyManagement>
     <distributionManagement>
         <site>
@@ -440,6 +566,13 @@
         </site>
     </distributionManagement>
     <repositories>
+        <repository>
+            <id>Apache</id>
+            <url>http://people.apache.org/repo/m2-snapshot-repository</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
         <repository>
             <id>fspotcloud-maven</id>
             <url>http://maven.fspotcloud.googlecode.com/hg/repo</url>
@@ -494,5 +627,27 @@
                 <module>peer</module>
             </modules>
         </profile>
+        <profile>
+            <id>release</id>
+            <modules>
+                <module>rpc</module>
+                <module>test-util</module>
+                <module>model-api</module>
+                <module>model</module>
+                <module>model-jpa</module>
+                <module>server</module>
+                <module>server-module-gae</module>
+                <module>server-module-j2ee</module>
+                <module>client</module>
+                <module>peer</module>
+                <module>war</module>
+                <module>war-prod</module>
+                <module>tomcat-war</module>
+                <module>deps</module>
+                <module>grapher</module>
+                <module>peer-rpc</module>
+                <module>installer</module>
+            </modules>
+        </profile>     
     </profiles>
 </project>
