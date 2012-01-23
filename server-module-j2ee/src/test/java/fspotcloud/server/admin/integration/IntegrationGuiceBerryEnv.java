@@ -2,8 +2,6 @@ package fspotcloud.server.admin.integration;
 
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.guiceberry.GuiceBerryEnvMain;
 import com.google.guiceberry.GuiceBerryModule;
 import com.google.inject.AbstractModule;

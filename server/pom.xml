@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-04</version>
+        <version>0.11-dev-05</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>server</artifactId>
-    <version>0.11-dev-04</version>
+    <version>0.11-dev-05</version>
     <name>F-SpotCloud Server Component</name>
     <description>The controller and data reading</description>
     <dependencies>
@@ -27,10 +27,6 @@
             <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.taskqueue-dispatch</groupId>
-            <artifactId>dispatch</artifactId>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}.bot-dispatch</groupId>
             <artifactId>controller</artifactId>
         </dependency>
@@ -43,6 +39,8 @@
             <artifactId>servlet-deps</artifactId>
             <type>pom</type>
         </dependency>
+        
+
 		<!-- Test scope -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -63,6 +61,10 @@
             <artifactId>model</artifactId>
             <type>jar</type>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>fspotcloud.taskqueue-dispatch</groupId>
+            <artifactId>dispatch-api</artifactId>
         </dependency>
     </dependencies>
     <build>

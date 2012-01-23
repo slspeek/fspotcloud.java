@@ -5,7 +5,7 @@
     <groupId>fspotcloud</groupId>
     <artifactId>fspotcloud</artifactId>
     <packaging>pom</packaging>
-    <version>0.11-dev-04</version>
+    <version>0.11-dev-05</version>
     <name>F-Spot Cloud Java Edition</name>
     <prerequisites>
         <maven>3.0.0</maven>
@@ -59,7 +59,7 @@
     </modules>
     <properties>
         <botdispatch.version>0.3-bd</botdispatch.version>
-        <taskqueuedispatch.version>0.2-tqd</taskqueuedispatch.version>
+        <taskqueuedispatch.version>0.3-tqd</taskqueuedispatch.version>
         <hibernate.version>3.6.9.Final</hibernate.version>
 <!--        <hibernate.version>4.0.0.Final</hibernate.version>-->
         <derby.version>10.2.2.0</derby.version>
@@ -431,6 +431,17 @@
                 <artifactId>peer-rpc</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.openid4java</groupId>
+                <artifactId>openid4java-consumer</artifactId>
+        <!--artifactId>openid4java-server</artifactId-->
+        <!--artifactId>openid4java-infocard</artifactId-->
+        <!--artifactId>openid4java-xri</artifactId-->
+        <!--artifactId>openid4java</artifactId-->
+        <!--artifactId>openid4java-full</artifactId-->
+                <version>0.9.6</version>
+                <type>pom</type>
+            </dependency>
 <!--            bot dispatch-->
             <dependency>
                 <groupId>${project.groupId}.bot-dispatch</groupId>
@@ -468,6 +479,16 @@
             <dependency>
                 <groupId>${project.groupId}.taskqueue-dispatch</groupId>
                 <artifactId>dispatch</artifactId>
+                <version>${taskqueuedispatch.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}.taskqueue-dispatch</groupId>
+                <artifactId>dispatch-api</artifactId>
+                <version>${taskqueuedispatch.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}.taskqueue-dispatch</groupId>
+                <artifactId>direct</artifactId>
                 <version>${taskqueuedispatch.version}</version>
             </dependency>
             <dependency>
