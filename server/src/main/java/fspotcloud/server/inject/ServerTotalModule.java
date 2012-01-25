@@ -24,6 +24,6 @@ public class ServerTotalModule extends AbstractModule {
         install(new ServerControllerModule());
         install(new TaskActionsModule());
         install(new TaskModule());
-        install(new TaskActionsModule());
+        //install(new UserActionModule());
     }
 }

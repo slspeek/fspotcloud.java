@@ -22,47 +22,47 @@ import fspotcloud.client.place.MainPlaceHistoryMapper;
 
 public class MVPSetup {
 
-	private static final Logger log = Logger
-			.getLogger(MVPSetup.class.getName());
-	final private Place defaultPlace = new BasePlace("latest", "latest", 1, 1);
-	final private DockLayoutPanel appWidget = new DockLayoutPanel(Unit.PX);
-	final private EventBus eventBus;
-	final private MainWindowActivityMapper activityMapper;
-	final private PlaceController placeController;
-	final private Initializable keyboardHandler;
-	final private EventHandlersSetup eventSetup;
-	
-	@Inject
-	public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
-			PlaceController placeController,
-			IGlobalShortcutController keyboardHandler,
-			EventHandlersSetup eventSetup, Resources resources)
-			 {
-		this.activityMapper = activityMapper;
-		this.eventBus = eventBus;
-		this.placeController = placeController;
-		this.keyboardHandler = keyboardHandler;
-		this.eventSetup = eventSetup;
-		resources.style().ensureInjected();
-	}
+    private static final Logger log = Logger.getLogger(MVPSetup.class.getName());
+    final private Place defaultPlace = new BasePlace("latest", "latest", 1, 1);
+    final private DockLayoutPanel appWidget = new DockLayoutPanel(Unit.PX);
+    final private EventBus eventBus;
+    final private MainWindowActivityMapper activityMapper;
+    final private PlaceController placeController;
+    final private Initializable keyboardHandler;
+    final private EventHandlersSetup eventSetup;
+    private final UserInformation userInformation;
 
-	public void setup() {
-		keyboardHandler.init();
-		log.info("Starting MVP setup");
-		eventSetup.setUp();
-		ActivityManager activityManager = new ActivityManager(activityMapper,
-				eventBus);
-		activityManager.setDisplay(new HasOneWidgetAdapter(appWidget));
+    @Inject
+    public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
+            PlaceController placeController,
+            IGlobalShortcutController keyboardHandler,
+            EventHandlersSetup eventSetup, Resources resources, UserInformation userInformation) {
+        this.activityMapper = activityMapper;
+        this.eventBus = eventBus;
+        this.placeController = placeController;
+        this.keyboardHandler = keyboardHandler;
+        this.eventSetup = eventSetup;
+        this.userInformation = userInformation;
+        resources.style().ensureInjected();
+    }
 
-		MainPlaceHistoryMapper historyMapper = GWT
-				.create(MainPlaceHistoryMapper.class);
-		PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(
-				historyMapper);
-		historyHandler.register(placeController, eventBus, defaultPlace);
-		
-		log.info("Just before handleCurrentHistory()");
-		RootLayoutPanel.get().add(appWidget);
-		historyHandler.handleCurrentHistory();
-		log.info("Setup finished");
-	}
+    public void setup() {
+        keyboardHandler.init();
+        log.info("Starting MVP setup");
+        eventSetup.setUp();
+        ActivityManager activityManager = new ActivityManager(activityMapper,
+                eventBus);
+        activityManager.setDisplay(new HasOneWidgetAdapter(appWidget));
+
+        MainPlaceHistoryMapper historyMapper = GWT.create(MainPlaceHistoryMapper.class);
+        PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(
+                historyMapper);
+        historyHandler.register(placeController, eventBus, defaultPlace);
+
+        log.info("Just before handleCurrentHistory()");
+        RootLayoutPanel.get().add(appWidget);
+        historyHandler.handleCurrentHistory();
+        log.info("Setup finished");
+        userInformation.getAsync();
+    }
 }

@@ -1,0 +1,22 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>fspotcloud</groupId>
+        <artifactId>fspotcloud</artifactId>
+        <version>0.11-dev-06</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>user-service-api</artifactId>
+    <name>User service api</name>
+    <dependencies></dependencies>
+  
+    <repositories>
+        <repository>
+            <id>gwt-maven</id>
+            <url>
+                http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/
+            </url>
+        </repository>
+    </repositories>
+</project>

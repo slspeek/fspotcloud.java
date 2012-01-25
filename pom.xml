@@ -5,7 +5,7 @@
     <groupId>fspotcloud</groupId>
     <artifactId>fspotcloud</artifactId>
     <packaging>pom</packaging>
-    <version>0.11-dev-05</version>
+    <version>0.11-dev-06</version>
     <name>F-Spot Cloud Java Edition</name>
     <prerequisites>
         <maven>3.0.0</maven>
@@ -41,6 +41,8 @@
     <modules>
         <module>peer-rpc</module>
         <module>rpc</module>
+        <module>user-service-api</module>
+        <module>user-service-gae</module>
         <module>test-util</module>
         <module>model-api</module>
         <module>model</module>
@@ -282,6 +284,16 @@
                 <artifactId>server</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>user-service-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>user-service-gae</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 			
             <dependency>
                 <groupId>${project.groupId}</groupId>
@@ -459,12 +471,6 @@
                 <artifactId>command-jpa</artifactId>
                 <version>${botdispatch.version}</version>
             </dependency>
-<!--            <dependency>
-                <groupId>${project.groupId}.bot-dispatch</groupId>
-                <artifactId>test</artifactId>
-                <version>${botdispatch.version}</version>
-                <scope>test</scope>
-            </dependency>-->
             <dependency>
                 <groupId>fspotcloud.bot-dispatch</groupId>
                 <artifactId>bot</artifactId>
@@ -534,6 +540,12 @@
                 <groupId>org.jmock</groupId>
                 <artifactId>jmock</artifactId>
                 <version>2.5.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jukito</groupId>
+                <artifactId>jukito</artifactId>
+                <version>1.1</version>
                 <scope>test</scope>
             </dependency>
               <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->

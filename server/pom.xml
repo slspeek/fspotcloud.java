@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-05</version>
+        <version>0.11-dev-06</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>server</artifactId>
-    <version>0.11-dev-05</version>
+    <version>0.11-dev-06</version>
     <name>F-SpotCloud Server Component</name>
     <description>The controller and data reading</description>
     <dependencies>
@@ -65,6 +65,12 @@
         <dependency>
             <groupId>fspotcloud.taskqueue-dispatch</groupId>
             <artifactId>dispatch-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>fspotcloud</groupId>
+            <artifactId>user-service-api</artifactId>
+            <version>0.11-dev-05</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <build>
