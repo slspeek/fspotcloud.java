@@ -12,6 +12,7 @@ import fspotcloud.botdispatch.model.command.CommandManager;
 import fspotcloud.model.jpa.ModelModule;
 import fspotcloud.model.jpa.ModelServletModule;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
+import fspotcloud.user.openid.OpenIdUserModule;
 
 /**
  *
@@ -26,7 +27,9 @@ public class J2eeTotalModule extends AbstractModule {
         install(new ModelServletModule());
         install(new ModelModule());
         install(new TaskQueueDispatchDirectModule());
+        install(new OpenIdUserModule());
         bind(Commands.class).to(CommandManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxCommandDelete")).toInstance(new Integer(300));
+       
     }
 }

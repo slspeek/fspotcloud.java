@@ -7,16 +7,10 @@ import com.google.inject.Injector;
 
 import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.server.model.api.PeerDatabases;
-import org.testng.annotations.BeforeClass;
 
 public class InjectorTest {
 
-    @BeforeClass
-    public void load() {
-        (new PropertiesLoader()).loadProperties();
-    }
-
-    @Test
+     @Test
     public void testInjector() {
         Injector injector = Guice.createInjector(new J2eeTotalModule());
         AssertJUnit.assertNotNull(injector);
