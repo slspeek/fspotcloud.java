@@ -107,7 +107,7 @@ public class TagManager implements Tags {
 
     @Override
     public void deleteAll(List<String> toBoDeleted) {
-        for(String key : toBoDeleted) {
+        for (String key : toBoDeleted) {
             delete(key);
         }
     }
@@ -124,7 +124,9 @@ public class TagManager implements Tags {
 
     @Override
     public boolean deleteAll() {
-        throw new UnsupportedOperationException();
+        List<String> keys = getTagKeys();
+        deleteAll(keys);
+        return isEmpty();
     }
 
     @Override
