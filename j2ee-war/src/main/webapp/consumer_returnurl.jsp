@@ -48,7 +48,8 @@ try
                             session.setAttribute("email", fetchResp.getAttributeValues("email"));
                         }
                 }
-                response.sendRedirect(".");  // success
+                String destUrl = (String) session.getAttribute("openid-redirect-dest");
+                response.sendRedirect(destUrl);  // success
             }
             else
             {

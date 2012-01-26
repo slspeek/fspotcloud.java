@@ -6,11 +6,13 @@
             {
                 session.removeAttribute("openid");
                 session.removeAttribute("openid-claimed");
+                session.removeAttribute("email");
         %>
         Logged out!<p>
             <%
                 }
                     if (session.getAttribute("openid")==null) {
+                        session.setAttribute("openid-redirect-dest", request.getParameter("dest"));
             %>
         <form method="POST" action="consumer_redirect.jsp">
             <strong>OpenID:</strong>
