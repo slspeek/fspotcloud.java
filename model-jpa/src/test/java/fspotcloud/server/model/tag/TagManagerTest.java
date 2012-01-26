@@ -10,6 +10,7 @@ import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.tag.TagNode;
 import java.util.List;
 import java.util.logging.Logger;
+import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Rule;
@@ -23,7 +24,7 @@ public class TagManagerTest {
     private Tags tagManager;
     private static final Logger log = Logger.getLogger(TagManagerTest.class.getName());
 
-    @Before
+    @After
     public void setUp() throws Exception {
         tagManager.deleteAll(tagManager.getTagKeys());
     }
@@ -49,7 +50,22 @@ public class TagManagerTest {
         assertTrue(tagManager.isEmpty());
         if(tagManager.getById("21") != null)
             fail();
+        
+    }
 
+    @Test
+    public void testDeleteAllTags2() {
+        createSaveTag("20");
+        createSaveTag("21");
+        createSaveTag("22");
+        assertEquals(3, tagManager.getTagKeys().size());
+        List<String> list = ImmutableList.of("20", "21", "22");
+        tagManager.deleteAll();
+        log.info("keys after deleteAll:" + tagManager.getTagKeys());
+        assertTrue(tagManager.isEmpty());
+        if(tagManager.getById("21") != null)
+            fail();
+        
     }
 
     private Tag createSaveTag(String id) {

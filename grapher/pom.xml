@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.11-dev-06</version>
+		<version>0.11-dev-07</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>grapher</artifactId>

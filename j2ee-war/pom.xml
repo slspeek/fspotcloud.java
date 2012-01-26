@@ -4,13 +4,13 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-06</version>
+        <version>0.11-dev-07</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>tomcat-war</artifactId>
+    <artifactId>j2ee-war</artifactId>
     <packaging>war</packaging>
-    <name>Tomcat war with Derby</name>
-    <description>Tomcat war with Derby</description>
+    <name>j2ee war with Derby</name>
+    <description>j2ee war with Derby</description>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -245,7 +245,7 @@
                                     fork="yes" spawn="yes">
                                     <sysproperty key="db"
                                                  value="${basedir}/../peer/src/test/resources/photos.db" />
-                                    <sysproperty key="endpoint" value="localhost:8080/tomcat-war" />
+                                    <sysproperty key="endpoint" value="localhost:8080/j2ee-war" />
                                     <sysproperty key="bot.secret" value="${bot.secret}" />
                                     <sysproperty key="pause" value="2" />
                                     <sysproperty key="photo.dir.original" value="file:///home/steven/Photos" />

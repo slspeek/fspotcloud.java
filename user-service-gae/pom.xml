@@ -4,7 +4,7 @@
     <parent>
         <groupId>fspotcloud</groupId>
         <artifactId>fspotcloud</artifactId>
-        <version>0.11-dev-06</version>
+        <version>0.11-dev-07</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>user-service-gae</artifactId>
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>fspotcloud.deps</groupId>
             <artifactId>appengine-deps</artifactId>
-            <version>0.11-dev-06</version>
+            <version>0.11-dev-07</version>
             <type>pom</type>
         </dependency>
         <dependency>
