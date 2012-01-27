@@ -12,30 +12,35 @@ import com.google.inject.Inject;
 import fspotcloud.botdispatch.model.api.Commands;
 import fspotcloud.shared.dashboard.actions.CommandDeleteAll;
 import fspotcloud.shared.dashboard.actions.VoidResult;
+import fspotcloud.user.UserService;
+import javax.inject.Provider;
 
-public class CommandDeleteAllHandler extends
-		SimpleActionHandler<CommandDeleteAll, VoidResult> {
-	@SuppressWarnings("unused")
-	private static final Logger log = Logger.getLogger(CommandDeleteAllHandler.class
-			.getName());
-	final private Commands commandManager;
+public class CommandDeleteAllHandler extends SimpleActionHandler<CommandDeleteAll, VoidResult> {
 
-	@Inject
-	public CommandDeleteAllHandler(Commands commandManager
-			) {
-		super();
-		this.commandManager = commandManager;
-	}
+    @SuppressWarnings("unused")
+    private static final Logger log = Logger.getLogger(CommandDeleteAllHandler.class.getName());
+    final private Commands commandManager;
+    private final Provider<UserService> userServiceProvider;
 
-	@Override
-	public VoidResult execute(CommandDeleteAll action, ExecutionContext context)
-			throws DispatchException {
-		try {
-			commandManager.deleteAll();
-		} catch (Exception e) {
-			throw new ActionException(e);
-		}
-		return new VoidResult();
-	}
+    @Inject
+    public CommandDeleteAllHandler(Commands commandManager, Provider<UserService> userServiceProvider) {
+        super();
+        this.commandManager = commandManager;
+        this.userServiceProvider = userServiceProvider;
+    }
 
+    @Override
+    public VoidResult execute(CommandDeleteAll action, ExecutionContext context)
+            throws DispatchException {
+        UserService userService = userServiceProvider.get();
+        if (!userService.isUserAdmin()) {
+            throw new SecurityException("Not admin");
+        }
+        try {
+            commandManager.deleteAll();
+        } catch (Exception e) {
+            throw new ActionException(e);
+        }
+        return new VoidResult();
+    }
 }
