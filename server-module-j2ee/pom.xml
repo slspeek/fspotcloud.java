@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-07</version>
+        <version>0.11-dev-08</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>server-module-j2ee</artifactId>
-    <version>0.11-dev-07</version>
+    <version>0.11-dev-08</version>
     <name>F-SpotCloud Server J2EE Configuration</name>
     <description>Guice configuration for deployment on J2EE</description>
     <dependencies>
@@ -86,6 +86,13 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>user-service-openid</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>user-service-api</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+            <type>test-jar</type>
         </dependency>
     </dependencies>
     <build>

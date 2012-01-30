@@ -14,29 +14,31 @@ import fspotcloud.shared.dashboard.actions.SynchronizePeer;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.GetPeerMetaData;
 import fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
+import fspotcloud.user.AdminPermission;
 
-public class SynchronizePeerHandler extends
-		SimpleActionHandler<SynchronizePeer, VoidResult> {
+public class SynchronizePeerHandler extends SimpleActionHandler<SynchronizePeer, VoidResult> {
 
-	final private ControllerDispatchAsync dispatch;
+    final private ControllerDispatchAsync dispatch;
+    private final AdminPermission adminPermission;
 
-	@Inject
-	public SynchronizePeerHandler(ControllerDispatchAsync dispatch) {
-		super();
-		this.dispatch = dispatch;
-	}
-	
-	@Override
-	public VoidResult execute(SynchronizePeer action, ExecutionContext context)
-			throws DispatchException {
-		try {
-			GetPeerMetaData metaAction = new GetPeerMetaData();
-			AsyncCallback<PeerMetaDataResult> callback = new PeerMetaDataCallback(null, null);
-			dispatch.execute(metaAction, callback);
-		} catch (Exception e) {
-			throw new ActionException(e);
-		}
-		return new VoidResult();
-	}
+    @Inject
+    public SynchronizePeerHandler(ControllerDispatchAsync dispatch, AdminPermission adminPermission) {
+        super();
+        this.dispatch = dispatch;
+        this.adminPermission = adminPermission;
+    }
 
+    @Override
+    public VoidResult execute(SynchronizePeer action, ExecutionContext context)
+            throws DispatchException {
+        adminPermission.chechAdminPermission();
+        try {
+            GetPeerMetaData metaAction = new GetPeerMetaData();
+            AsyncCallback<PeerMetaDataResult> callback = new PeerMetaDataCallback(null, null);
+            dispatch.execute(metaAction, callback);
+        } catch (Exception e) {
+            throw new ActionException(e);
+        }
+        return new VoidResult();
+    }
 }

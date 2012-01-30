@@ -14,44 +14,46 @@ import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.shared.admin.GetMetaDataResult;
 import fspotcloud.shared.dashboard.actions.GetMetaData;
+import fspotcloud.user.AdminPermission;
 
-public class GetMetaDataHandler extends
-		SimpleActionHandler<GetMetaData, GetMetaDataResult> {
-	@SuppressWarnings("unused")
-	private static final Logger log = Logger.getLogger(GetMetaDataHandler.class
-			.getName());
-	final private Commands commandManager;
-	final private PeerDatabases defaultPeer;
+public class GetMetaDataHandler extends SimpleActionHandler<GetMetaData, GetMetaDataResult> {
 
-	@Inject
-	public GetMetaDataHandler(Commands commandManager,
-			PeerDatabases defaultPeer) {
-		super();
-		this.commandManager = commandManager;
-		this.defaultPeer = defaultPeer;
-	}
+    @SuppressWarnings("unused")
+    private static final Logger log = Logger.getLogger(GetMetaDataHandler.class.getName());
+    final private Commands commandManager;
+    final private PeerDatabases defaultPeer;
+    final private AdminPermission adminPermission;
 
-	@Override
-	public GetMetaDataResult execute(GetMetaData action,
-			ExecutionContext context) throws DispatchException {
-		GetMetaDataResult dataInfo = new GetMetaDataResult();
-		try {
-			PeerDatabase peerDatabase = defaultPeer.get();
-			dataInfo.setInstanceName(peerDatabase.getPeerName());
-			dataInfo.setPeerLastSeen(peerDatabase.getPeerLastContact());
-			dataInfo.setPeerPhotoCount(peerDatabase.getPeerPhotoCount());
-			dataInfo.setPhotoCount(peerDatabase.getPhotoCount());
-			dataInfo.setTagCount(peerDatabase.getTagCount());
-			dataInfo.setPendingCommandCount(getPendingCommandCount());
-		} catch (Exception e) {
-			throw new ActionException(e);
-		}
-		return dataInfo;
-	}
+    @Inject
+    public GetMetaDataHandler(Commands commandManager,
+            PeerDatabases defaultPeer, AdminPermission adminPermission) {
+        super();
+        this.commandManager = commandManager;
+        this.defaultPeer = defaultPeer;
+        this.adminPermission = adminPermission;
+    }
 
-	private int getPendingCommandCount() {
-		int result = commandManager.getCountUnderAThousend();
-		return result;
-	}
+    @Override
+    public GetMetaDataResult execute(GetMetaData action,
+            ExecutionContext context) throws DispatchException {
+        adminPermission.chechAdminPermission();
+        GetMetaDataResult dataInfo = new GetMetaDataResult();
+        try {
+            PeerDatabase peerDatabase = defaultPeer.get();
+            dataInfo.setInstanceName(peerDatabase.getPeerName());
+            dataInfo.setPeerLastSeen(peerDatabase.getPeerLastContact());
+            dataInfo.setPeerPhotoCount(peerDatabase.getPeerPhotoCount());
+            dataInfo.setPhotoCount(peerDatabase.getPhotoCount());
+            dataInfo.setTagCount(peerDatabase.getTagCount());
+            dataInfo.setPendingCommandCount(getPendingCommandCount());
+        } catch (Exception e) {
+            throw new ActionException(e);
+        }
+        return dataInfo;
+    }
 
+    private int getPendingCommandCount() {
+        int result = commandManager.getCountUnderAThousend();
+        return result;
+    }
 }

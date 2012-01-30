@@ -25,7 +25,9 @@ public enum ApplicationType implements ActionDef {
 					'A'), null),
 	HIDE_CONTROLS (
 			"hide-controls", "Hide controls", "Hide treeview", new KeyStroke(
-					'F'), null);
+					'F'), null),
+        LOGIN ("login", "Login", "Login to see more", new KeyStroke('N'), null),
+        LOGOUT("logout", "Logout", "Logout", new KeyStroke('M'), null);
 
 
 	final private KeyStroke key;

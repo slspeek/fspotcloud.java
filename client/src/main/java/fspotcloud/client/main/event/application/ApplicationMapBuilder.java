@@ -28,6 +28,8 @@ public class ApplicationMapBuilder extends AbstractActionMap {
 		put(ApplicationType.ZOOM_OUT, resources.zoomOutIcon());
 		put(ApplicationType.DASHBOARD, resources.dashboardIcon());
 		put(ApplicationType.ABOUT, resources.aboutIcon());
+                put(ApplicationType.LOGIN, resources.loginIcon());
+                put(ApplicationType.LOGOUT, resources.logoutIcon());
 	}
 
 	private void put(ActionDef actionDef, ImageResource icon) {

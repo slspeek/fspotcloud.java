@@ -20,52 +20,55 @@ import fspotcloud.shared.dashboard.actions.UnImportTag;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import fspotcloud.user.AdminPermission;
 
-public class UnImportTagHandler extends
-		SimpleActionHandler<UnImportTag, VoidResult> {
+public class UnImportTagHandler extends SimpleActionHandler<UnImportTag, VoidResult> {
 
-	
-	private static final Logger log = Logger
-	.getLogger(UnImportTagHandler.class.getName());
-	final private Tags tagManager;
-	final private TaskQueueDispatch dispatchAsync;
-	final private PeerDatabases peerDatabases;
+    private static final Logger log = Logger.getLogger(UnImportTagHandler.class.getName());
+    final private Tags tagManager;
+    final private TaskQueueDispatch dispatchAsync;
+    final private PeerDatabases peerDatabases;
+    private final AdminPermission adminPermission;
 
-	@Inject
-	public UnImportTagHandler(Tags tagManager, TaskQueueDispatch dispatchAsync, PeerDatabases peerDatabases) {
-		super();
-		this.tagManager = tagManager;
-		this.dispatchAsync = dispatchAsync;
-		this.peerDatabases = peerDatabases;
-	}
-	
-	@Override
-	public VoidResult execute(UnImportTag action, ExecutionContext context)
-			throws DispatchException {
-		log.info("Executing: " + action.getTagId());
-		try {
-			String tagId = action.getTagId();
-			Tag tag = tagManager.getById(tagId);
-			if (tag.isImportIssued()) {
-				tag.setImportIssued(false);
-				tagManager.save(tag);
-			}
-			List<PhotoInfo> infoList = new ArrayList<PhotoInfo>();
-			infoList.addAll(tag.getCachedPhotoList());
-			dispatchAsync.execute(new DeletePhotos(tag.getId(), infoList));
-			clearTreeCache();
-					
-		} catch (Exception e) {
-			throw new ActionException(e);
-		}
-		return new VoidResult();
-	}
+    @Inject
+    public UnImportTagHandler(Tags tagManager, TaskQueueDispatch dispatchAsync,
+            PeerDatabases peerDatabases, AdminPermission adminPermission) {
+        super();
+        this.tagManager = tagManager;
+        this.dispatchAsync = dispatchAsync;
+        this.peerDatabases = peerDatabases;
+        this.adminPermission = adminPermission;
 
-	private void clearTreeCache() {
-		PeerDatabase peer = peerDatabases.get();
-		if (peer.getCachedTagTree() != null) {
-			peer.setCachedTagTree(null);
-			peerDatabases.save(peer);
-		}
-	}
+    }
+
+    @Override
+    public VoidResult execute(UnImportTag action, ExecutionContext context)
+            throws DispatchException {
+        log.info("Executing: " + action.getTagId());
+        adminPermission.chechAdminPermission();
+        try {
+            String tagId = action.getTagId();
+            Tag tag = tagManager.getById(tagId);
+            if (tag.isImportIssued()) {
+                tag.setImportIssued(false);
+                tagManager.save(tag);
+            }
+            List<PhotoInfo> infoList = new ArrayList<PhotoInfo>();
+            infoList.addAll(tag.getCachedPhotoList());
+            dispatchAsync.execute(new DeletePhotos(tag.getId(), infoList));
+            clearTreeCache();
+
+        } catch (Exception e) {
+            throw new ActionException(e);
+        }
+        return new VoidResult();
+    }
+
+    private void clearTreeCache() {
+        PeerDatabase peer = peerDatabases.get();
+        if (peer.getCachedTagTree() != null) {
+            peer.setCachedTagTree(null);
+            peerDatabases.save(peer);
+        }
+    }
 }

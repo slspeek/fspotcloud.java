@@ -7,166 +7,173 @@ import com.google.gwt.resources.client.TextResource;
 
 public interface Resources extends ClientBundle {
 
-	public interface Style extends CssResource {
-		String slideshow();
-		
-		String slideshowControls();
-		
-		String footerBlock();
-		
-		String image();
-		
-		String tagView();
-		
-		String button();
+    public interface Style extends CssResource {
 
-		String imagePanelBlock();
-		
-		String photoInfoLabel();
+        String slideshow();
 
-		String treeBlock();
+        String slideshowControls();
 
-		String helpCategory();
+        String footerBlock();
 
-		String helpDescription();
+        String image();
 
-		String helpKey();
+        String tagView();
 
-		String helpPopup();
+        String button();
 
-		String helpSeparator();
-		
-		String helpTitle();
-		
-		String pagerLabel();
+        String imagePanelBlock();
 
-		String buttonPanelBlock();
+        String photoInfoLabel();
 
-		String selectedImage();
+        String treeBlock();
 
-		String importedTag();
-	}
+        String helpCategory();
 
-	@Source("version.txt")
-	TextResource getVersion();
-	
-	@Source("client.css")
-	Style style();
+        String helpDescription();
 
-	@Source("images/Play.png")
-	ImageResource playIcon();
+        String helpKey();
 
-	@Source("images/Pause.png")
-	ImageResource pauseIcon();
+        String helpPopup();
 
-	@Source("images/Stop.png")
-	ImageResource stopIcon();
+        String helpSeparator();
 
-	@Source("images/Dashboard.png")
-	ImageResource dashboardIcon();
+        String helpTitle();
 
-	@Source("images/Fullscreen.png")
-	ImageResource fullscreenIcon();
+        String pagerLabel();
 
-	@Source("images/Slower.png")
-	ImageResource slowerIcon();
+        String buttonPanelBlock();
 
-	@Source("images/Faster.png")
-	ImageResource fasterIcon();
+        String selectedImage();
 
-	@Source("images/Demo.png")
-	ImageResource demoIcon();
+        String importedTag();
+    }
 
-	@Source("images/Next.png")
-	ImageResource nextIcon();
+    @Source("version.txt")
+    TextResource getVersion();
 
-	@Source("images/Back.png")
-	ImageResource backIcon();
+    @Source("client.css")
+    Style style();
 
-	@Source("images/License.png")
-	ImageResource licenceIcon();
+    @Source("images/Play.png")
+    ImageResource playIcon();
 
-	@Source("images/Author.png")
-	ImageResource authorIcon();
+    @Source("images/Pause.png")
+    ImageResource pauseIcon();
 
-	@Source("images/2x2.png")
-	ImageResource icon2x2();
+    @Source("images/Stop.png")
+    ImageResource stopIcon();
 
-	@Source("images/3x3.png")
-	ImageResource icon3x3();
+    @Source("images/Dashboard.png")
+    ImageResource dashboardIcon();
 
-	@Source("images/4x4.png")
-	ImageResource icon4x4();
+    @Source("images/Fullscreen.png")
+    ImageResource fullscreenIcon();
 
-	@Source("images/5x5.png")
-	ImageResource icon5x5();
+    @Source("images/Slower.png")
+    ImageResource slowerIcon();
 
-	@Source("images/ToggleTabular.png")
-	ImageResource tabularIcon();
+    @Source("images/Faster.png")
+    ImageResource fasterIcon();
 
-	@Source("images/Help.png")
-	ImageResource helpIcon();
+    @Source("images/Demo.png")
+    ImageResource demoIcon();
 
-	@Source("images/ProjectSite.png")
-	ImageResource projectSiteIcon();
+    @Source("images/Next.png")
+    ImageResource nextIcon();
 
-	@Source("images/Maven.png")
-	ImageResource mavenIcon();
+    @Source("images/Back.png")
+    ImageResource backIcon();
 
-	@Source("images/Proton.png")
-	ImageResource protonIcon();
+    @Source("images/License.png")
+    ImageResource licenceIcon();
 
-	@Source("images/Home.png")
-	ImageResource homeIcon();
+    @Source("images/Author.png")
+    ImageResource authorIcon();
 
-	@Source("images/End.png")
-	ImageResource endIcon();
+    @Source("images/2x2.png")
+    ImageResource icon2x2();
 
-	@Source("images/AddColumn.png")
-	ImageResource addColumnIcon();
+    @Source("images/3x3.png")
+    ImageResource icon3x3();
 
-	@Source("images/RemoveColumn.png")
-	ImageResource removeColumnIcon();
+    @Source("images/4x4.png")
+    ImageResource icon4x4();
 
-	@Source("images/AddRow.png")
-	ImageResource addRowIcon();
+    @Source("images/5x5.png")
+    ImageResource icon5x5();
 
-	@Source("images/RemoveRow.png")
-	ImageResource removeRowIcon();
+    @Source("images/ToggleTabular.png")
+    ImageResource tabularIcon();
 
-	@Source("images/Reset.png")
-	ImageResource resetIcon();
+    @Source("images/Help.png")
+    ImageResource helpIcon();
 
-	@Source("images/TreeFocus.png")
-	ImageResource treeFocusIcon();
+    @Source("images/ProjectSite.png")
+    ImageResource projectSiteIcon();
 
-	@Source("images/ToggleButtons.png")
-	ImageResource toggleButtonsIcon();
+    @Source("images/Maven.png")
+    ImageResource mavenIcon();
 
-	@Source("images/About.png")
-	ImageResource aboutIcon();
-	
-	@Source("images/ZoomOut.png")
-	ImageResource zoomOutIcon();
-	
-	@Source("images/ZoomIn.png")
-	ImageResource zoomInIcon();
+    @Source("images/Proton.png")
+    ImageResource protonIcon();
 
-	@Source("images/F-Spot.png")
-	ImageResource fspotIcon();
+    @Source("images/Home.png")
+    ImageResource homeIcon();
 
-	@Source("images/PageDown.png")
-	ImageResource pageDownIcon();
+    @Source("images/End.png")
+    ImageResource endIcon();
 
-	@Source("images/PageUp.png")
-	ImageResource pageUpIcon();
+    @Source("images/AddColumn.png")
+    ImageResource addColumnIcon();
 
-	@Source("images/RowDown.png")
-	ImageResource rowDownIcon();
+    @Source("images/RemoveColumn.png")
+    ImageResource removeColumnIcon();
 
-	@Source("images/RowUp.png")
-	ImageResource rowUpIcon();
+    @Source("images/AddRow.png")
+    ImageResource addRowIcon();
 
-	@Source("images/HideControls.png")
-	ImageResource hideControlsIcon();
+    @Source("images/RemoveRow.png")
+    ImageResource removeRowIcon();
+
+    @Source("images/Reset.png")
+    ImageResource resetIcon();
+
+    @Source("images/TreeFocus.png")
+    ImageResource treeFocusIcon();
+
+    @Source("images/ToggleButtons.png")
+    ImageResource toggleButtonsIcon();
+
+    @Source("images/About.png")
+    ImageResource aboutIcon();
+
+    @Source("images/ZoomOut.png")
+    ImageResource zoomOutIcon();
+
+    @Source("images/ZoomIn.png")
+    ImageResource zoomInIcon();
+
+    @Source("images/F-Spot.png")
+    ImageResource fspotIcon();
+
+    @Source("images/PageDown.png")
+    ImageResource pageDownIcon();
+
+    @Source("images/PageUp.png")
+    ImageResource pageUpIcon();
+
+    @Source("images/RowDown.png")
+    ImageResource rowDownIcon();
+
+    @Source("images/RowUp.png")
+    ImageResource rowUpIcon();
+
+    @Source("images/HideControls.png")
+    ImageResource hideControlsIcon();
+
+    @Source("images/Login.png")
+    ImageResource loginIcon();
+
+    @Source("images/Logout.png")
+    ImageResource logoutIcon();
 }

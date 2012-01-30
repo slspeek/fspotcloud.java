@@ -16,44 +16,44 @@ import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.dashboard.actions.ImportTag;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.GetTagUpdateInstructionsAction;
+import fspotcloud.user.AdminPermission;
 
-public class ImportTagHandler extends
-		SimpleActionHandler<ImportTag, VoidResult> {
-	protected static final Logger log = Logger.getLogger(ImportTagHandler.class
-			.getName());
-	final private Tags tagManager;
-	final private ControllerDispatchAsync dispatchAsync;
+public class ImportTagHandler extends SimpleActionHandler<ImportTag, VoidResult> {
 
-	@Inject
-	public ImportTagHandler(Tags tagManager,
-			ControllerDispatchAsync dispatchAsync) {
-		super();
-		this.tagManager = tagManager;
-		this.dispatchAsync = dispatchAsync;
-	}
+    protected static final Logger log = Logger.getLogger(ImportTagHandler.class.getName());
+    final private Tags tagManager;
+    final private ControllerDispatchAsync dispatchAsync;
+    private final AdminPermission adminPermission;
 
-	@Override
-	public VoidResult execute(ImportTag action, ExecutionContext context)
-			throws DispatchException {
-		try {
-			String tagId = action.getTagId();
-			Tag tag = tagManager.getById(tagId);
-			if (!tag.isImportIssued()) {
-				tag.setImportIssued(true);
-				tagManager.save(tag);
-			}
+    @Inject
+    public ImportTagHandler(Tags tagManager, ControllerDispatchAsync dispatchAsync, AdminPermission adminPermission) {
+        this.tagManager = tagManager;
+        this.dispatchAsync = dispatchAsync;
+        this.adminPermission = adminPermission;
+    }
 
-			GetTagUpdateInstructionsAction peerAction = new GetTagUpdateInstructionsAction(
-					tagId, tag.getCachedPhotoList());
-			TagUpdateInstructionsCallback callback = new TagUpdateInstructionsCallback(
-					tagId, null);
-			log.info("before execute for tag: " + action.getTagId());
-			dispatchAsync.execute(peerAction, callback);
+    @Override
+    public VoidResult execute(ImportTag action, ExecutionContext context)
+            throws DispatchException {
+        adminPermission.chechAdminPermission();
+        try {
+            String tagId = action.getTagId();
+            Tag tag = tagManager.getById(tagId);
+            if (!tag.isImportIssued()) {
+                tag.setImportIssued(true);
+                tagManager.save(tag);
+            }
 
-		} catch (Exception e) {
-			throw new ActionException(e);
-		}
-		return new VoidResult();
-	}
+            GetTagUpdateInstructionsAction peerAction = new GetTagUpdateInstructionsAction(
+                    tagId, tag.getCachedPhotoList());
+            TagUpdateInstructionsCallback callback = new TagUpdateInstructionsCallback(
+                    tagId, null);
+            log.info("before execute for tag: " + action.getTagId());
+            dispatchAsync.execute(peerAction, callback);
 
+        } catch (Exception e) {
+            throw new ActionException(e);
+        }
+        return new VoidResult();
+    }
 }
