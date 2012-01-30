@@ -34,6 +34,8 @@ import fspotcloud.shared.dashboard.actions.TagDeleteAll;
 import fspotcloud.shared.dashboard.actions.UnImportTag;
 import fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
+import fspotcloud.user.LenientUserService;
+import fspotcloud.user.UserService;
 import javax.inject.Inject;
 
 public class IntegrationGuiceBerryEnv extends GuiceBerryModule {
@@ -50,6 +52,7 @@ public class IntegrationGuiceBerryEnv extends GuiceBerryModule {
         install(new TaskActionsModule());
         install(new PeerActionsModule());
         install(new MyPeerModule());
+        install(new MyUserModule());
         bind(GuiceBerryEnvMain.class).to(PersistServiceInitMain.class);
     }
      static class PersistServiceInitMain implements GuiceBerryEnvMain {
@@ -125,5 +128,11 @@ class MyPeerModule extends AbstractModule {
                 System.getProperty("user.dir"));
         bind(Integer.class).annotatedWith(Names.named("stop port")).toInstance(
                 Integer.valueOf(System.getProperty("stop.port", "4444")));
+    }
+}
+
+class MyUserModule extends AbstractModule {
+    protected void configure() {
+        bind(UserService.class).to(LenientUserService.class);
     }
 }

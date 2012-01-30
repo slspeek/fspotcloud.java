@@ -1,6 +1,6 @@
 package fspotcloud.server.admin.actions;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.testng.AssertJUnit.assertNull;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
@@ -17,6 +17,7 @@ import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
 import fspotcloud.shared.admin.GetMetaDataResult;
 import fspotcloud.shared.dashboard.actions.GetMetaData;
+import fspotcloud.user.AdminPermission;
 public class GetMetaDataHandlerTest  {
 
 	GetMetaDataHandler handler;
@@ -25,13 +26,15 @@ public class GetMetaDataHandlerTest  {
 	Commands commandManager;
 	@Mock
 	PeerDatabases defaultPeer;
+        @Mock 
+        AdminPermission adminPermission;
 	PeerDatabase pd;
 
 	@BeforeMethod
 	protected void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		pd = new PeerDatabaseDO();
-		handler = new GetMetaDataHandler(commandManager, defaultPeer);
+		handler = new GetMetaDataHandler(commandManager, defaultPeer, adminPermission);
 	}
 
 	@Test
@@ -55,4 +58,10 @@ public class GetMetaDataHandlerTest  {
 		} catch (DispatchException e) {
 		}
 	}
+        
+        @Test(expectedExceptions=SecurityException.class) void forbidden() throws DispatchException {
+            doThrow(new SecurityException()).when(adminPermission).chechAdminPermission();
+            GetMetaDataResult result = handler.execute(action, null);
+            
+        }
 }

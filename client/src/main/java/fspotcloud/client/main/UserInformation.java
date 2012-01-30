@@ -28,18 +28,22 @@ public class UserInformation {
     }
     
     public void getAsync() {
-        dispatch.execute(new GetUserInfo(), new AsyncCallback<UserInfo>() {
+        getUserInfoAsync(new AsyncCallback<UserInfo>() {
 
             @Override
             public void onFailure(Throwable caught) {
-                log.log(Level.SEVERE, "User infor failure ", caught);
+                log.log(Level.SEVERE, "User info failure ", caught);
             }
 
             @Override
             public void onSuccess(UserInfo result) {
-                log.info("User is " + result.isIsLoggedId() + " with email: " +result.getEmail());
+                log.info("User is " + result.isLoggedIn() + " with email: " +result.getEmail());
             }
         });
+    }
+    
+    public void getUserInfoAsync(AsyncCallback<UserInfo> callback) {
+        dispatch.execute(new GetUserInfo(), callback);
     }
     
 }

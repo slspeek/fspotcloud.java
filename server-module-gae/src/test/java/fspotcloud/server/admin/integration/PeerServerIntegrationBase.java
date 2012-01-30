@@ -1,5 +1,6 @@
 package fspotcloud.server.admin.integration;
 
+import fspotcloud.user.LenientUserService;
 import org.testng.annotations.BeforeMethod;
 import org.testng.Assert;
 import java.io.File;
@@ -55,6 +56,7 @@ import fspotcloud.shared.dashboard.actions.UnImportTag;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
+import fspotcloud.user.UserService;
 import org.testng.annotations.BeforeClass;
 
 public abstract class PeerServerIntegrationBase extends DatastoreTest {
@@ -89,7 +91,7 @@ public abstract class PeerServerIntegrationBase extends DatastoreTest {
 				new MyAdminActionsModule(), new MyModelModule(),
 				new MyTaskModule(), new LocalControllerModule(),
 				new TaskQueueDispatchDirectModule(), new TaskActionsModule(),
-				new MyPeerModule(), new PeerActionsModule());
+				new MyPeerModule(), new PeerActionsModule(), new MyUserModule());
 		photos = injector.getInstance(Photos.class);
 		tags = injector.getInstance(Tags.class);
 		controller = injector.getInstance(ControllerDispatchAsync.class);
@@ -297,4 +299,10 @@ class MyPeerModule extends AbstractModule {
 		bind(Integer.class).annotatedWith(Names.named("stop port")).toInstance(
 				Integer.valueOf(System.getProperty("stop.port", "4444")));
 	}
+}
+
+class MyUserModule extends AbstractModule {
+    protected void configure() {
+        bind(UserService.class).to(LenientUserService.class);
+    }
 }

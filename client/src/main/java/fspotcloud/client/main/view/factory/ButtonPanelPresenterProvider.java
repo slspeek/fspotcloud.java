@@ -44,7 +44,7 @@ public class ButtonPanelPresenterProvider implements Provider<ButtonPanelView.Bu
 		total += nav.allActions().size();
 		total++; //Slideshow
 		ActionMap app  = allActions.get("Application");
-		total += 3;
+		total += 5;
 		buttonPanelView.setWidgetCount(total);
 		
 		
@@ -55,6 +55,8 @@ public class ButtonPanelPresenterProvider implements Provider<ButtonPanelView.Bu
 		addAction(app.get(ApplicationType.TOGGLE_HELP));
 		addAction(app.get(ApplicationType.ABOUT));
 		addAction(app.get(ApplicationType.DASHBOARD));
+                addAction(app.get(ApplicationType.LOGIN));
+                addAction(app.get(ApplicationType.LOGOUT));
 	}
 
 	private void addActionGroup(ActionMap group) {

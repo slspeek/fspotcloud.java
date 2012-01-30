@@ -36,7 +36,7 @@ public class GetUserInfoHandlerTest {
        
        UserInfo info = handler.execute(new GetUserInfo(), null);
        Assert.assertEquals("foo@bar.com", info.getEmail());
-       Assert.assertTrue(info.isIsLoggedId());
+       Assert.assertTrue(info.isLoggedIn());
    }
    
     @Test public void execute2() throws DispatchException {
@@ -46,7 +46,7 @@ public class GetUserInfoHandlerTest {
        when(service.createLogoutURL("later")).thenReturn("logout_url");
        when(service.getEmail()).thenReturn(null);
        UserInfo info = handler.execute(new GetUserInfo(), null);
-       Assert.assertFalse(info.isIsLoggedId());
+       Assert.assertFalse(info.isLoggedIn());
    }
    
 }

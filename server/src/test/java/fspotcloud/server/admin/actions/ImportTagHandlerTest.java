@@ -15,6 +15,7 @@ import fspotcloud.server.model.api.Tags;
 import fspotcloud.server.model.tag.TagDO;
 import fspotcloud.shared.dashboard.actions.ImportTag;
 import fspotcloud.taskqueuedispatch.SerializableAsyncCallback;
+import fspotcloud.user.AdminPermission;
 
 public class ImportTagHandlerTest {
 
@@ -25,6 +26,8 @@ public class ImportTagHandlerTest {
 	private Tags tagManager;
 	@Mock
 	private ControllerDispatchAsync dispatch;
+        @Mock
+        AdminPermission adminPermission;
 	ImportTagHandler handler;
 	ImportTag action = new ImportTag(TAG_ID, PREVIOUS_COUNT);
 	TagDO tag;
@@ -35,7 +38,7 @@ public class ImportTagHandlerTest {
 	@BeforeMethod
 	protected void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		handler = new ImportTagHandler(tagManager, dispatch);
+		handler = new ImportTagHandler(tagManager, dispatch, adminPermission);
 		tag = new TagDO();
 		tag.setId(TAG_ID);
 		tag.setCount(COUNT);
