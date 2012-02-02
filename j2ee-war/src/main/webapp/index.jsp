@@ -7,8 +7,9 @@
                 session.removeAttribute("openid");
                 session.removeAttribute("openid-claimed");
                 session.removeAttribute("email");
+                response.sendRedirect(request.getParameter("dest"));
         %>
-        Logged out!<p>
+        
             <%
                 }
                     if (session.getAttribute("openid")==null) {

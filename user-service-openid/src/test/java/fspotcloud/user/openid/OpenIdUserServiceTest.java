@@ -10,6 +10,7 @@ import com.google.inject.internal.ImmutableList;
 import com.google.inject.servlet.ServletModule;
 import com.google.inject.servlet.ServletScopes;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import net.jcip.annotations.Immutable;
 import org.jukito.JukitoModule;
@@ -40,9 +41,13 @@ public class OpenIdUserServiceTest {
     OpenIdUserService instance;
 
     @Before
-    public void setUp(HttpSession session) {
+    public void setUp(HttpSession session, HttpServletRequest request) {
         List<String> emails = ImmutableList.of("foo@bar.com");
         when(session.getAttribute("email")).thenReturn(emails);
+        when(request.getScheme()).thenReturn("http");
+        when(request.getContextPath()).thenReturn("/context");
+        when(request.getServerPort()).thenReturn(8080);
+        when(request.getServerName()).thenReturn("localhost");
     }
 
     @After
@@ -55,7 +60,7 @@ public class OpenIdUserServiceTest {
     @Test
     public void testCreateLoginURL() {
         String destinationURL = "dest";
-        String expResult = "index.jsp&dest=dest";
+        String expResult = "index.jsp?dest=http://localhost:8080/context/dest";
         String result = instance.createLoginURL(destinationURL);
         assertEquals(expResult, result);
     }
@@ -66,7 +71,7 @@ public class OpenIdUserServiceTest {
     @Test
     public void testCreateLogoutURL() {
         String destinationURL = "dest";
-        String expResult = "logout&dest=dest";
+        String expResult = "index.jsp?logout=true&dest=http://localhost:8080/context/dest";
         String result = instance.createLogoutURL(destinationURL);
         assertEquals(expResult, result);
     }

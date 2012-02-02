@@ -95,7 +95,9 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 
                     @Override
                     public void onSuccess(UserInfo result) {
-                        Window.Location.replace(result.createLoginUrl());
+                        final String createLoginUrl = result.createLoginUrl();
+                        log.info("login url:" + createLoginUrl);
+                        Window.Location.replace(createLoginUrl);
                     }
                 });
                 break;

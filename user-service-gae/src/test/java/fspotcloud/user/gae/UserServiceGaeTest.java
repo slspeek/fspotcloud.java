@@ -5,9 +5,14 @@
 package fspotcloud.user.gae;
 
 import com.google.appengine.api.users.User;
+import com.google.inject.internal.ImmutableList;
+import java.util.List;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.jukito.JukitoRunner;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.when;
@@ -22,6 +27,14 @@ public class UserServiceGaeTest {
     @Inject
     UserServiceGae userService;
 
+    @Before
+    public void setUp(HttpSession session, HttpServletRequest request) {
+        when(request.getScheme()).thenReturn("http");
+        when(request.getContextPath()).thenReturn("/context");
+        when(request.getServerPort()).thenReturn(8080);
+        when(request.getServerName()).thenReturn("localhost");
+    }
+
     @Test
     public void isUserLoggedIn(com.google.appengine.api.users.UserService delegate) {
         when(delegate.isUserLoggedIn()).thenReturn(Boolean.TRUE);
@@ -30,14 +43,14 @@ public class UserServiceGaeTest {
 
     @Test
     public void createLoginURL(com.google.appengine.api.users.UserService delegate) {
-        when(delegate.createLoginURL("later")).thenReturn("url");
-        Assert.assertEquals(userService.createLoginURL("later"), "url");
+        when(delegate.createLoginURL("http://localhost:8080/context/later")).thenReturn("url");
+        Assert.assertEquals("url", userService.createLoginURL("later"));
     }
 
     @Test
     public void createLogoutURL(com.google.appengine.api.users.UserService delegate) {
-        when(delegate.createLogoutURL("later")).thenReturn("url");
-        Assert.assertEquals(userService.createLogoutURL("later"), "url");
+        when(delegate.createLogoutURL("http://localhost:8080/context/later")).thenReturn("url");
+        Assert.assertEquals("url", userService.createLogoutURL("later"));
     }
 
     @Test
@@ -55,7 +68,7 @@ public class UserServiceGaeTest {
 
         Assert.assertEquals(userService.getEmail(), "foo@bar.com");
     }
-    
+
     @Test
     public void emailReturnsNull(com.google.appengine.api.users.UserService delegate) {
         when(delegate.isUserLoggedIn()).thenReturn(Boolean.FALSE);

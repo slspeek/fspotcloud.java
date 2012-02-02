@@ -10,6 +10,7 @@ import com.google.inject.servlet.RequestScoped;
 import com.google.inject.servlet.SessionScoped;
 import fspotcloud.user.UserService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -23,15 +24,27 @@ public class OpenIdUserService implements UserService {
     @Inject
     @AdminEmail
     String adminEmail;
+    @Inject
+    Provider<HttpServletRequest> requestProvider;
 
     @Override
     public String createLoginURL(String destinationURL) {
-        return "index.jsp&dest=" + destinationURL;
+        destinationURL = toAbsoluteURL(destinationURL);
+        return "index.jsp?dest=" + destinationURL;
     }
 
     @Override
     public String createLogoutURL(String destinationURL) {
-        return "logout&dest=" + destinationURL;
+        destinationURL = toAbsoluteURL(destinationURL);
+        return "index.jsp?logout=true&dest=" + destinationURL;
+    }
+
+    private String toAbsoluteURL(String url) {
+        HttpServletRequest request = requestProvider.get();
+        String result = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+                + request.getContextPath() + "/" + url;
+        return result;
+
     }
 
     @Override
