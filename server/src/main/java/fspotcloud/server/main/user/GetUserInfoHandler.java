@@ -22,7 +22,8 @@ public class GetUserInfoHandler extends SimpleActionHandler<GetUserInfo, UserInf
     public UserInfo execute(GetUserInfo action, ExecutionContext context) throws DispatchException {
         UserInfo info = new UserInfo(userService.getEmail(),
                 userService.isUserAdmin(), userService.isUserLoggedIn(),
-                userService.createLoginURL("FSpotCloud.html"), userService.createLogoutURL("FSpotCloud.html"));
+                userService.createLoginURL(action.getDestinationUrl()),
+                userService.createLogoutURL(action.getDestinationUrl()));
         return info;
     }
 }

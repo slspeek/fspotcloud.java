@@ -28,7 +28,7 @@ public class UserInformation {
     }
     
     public void getAsync() {
-        getUserInfoAsync(new AsyncCallback<UserInfo>() {
+        getUserInfoAsync(new GetUserInfo(""), new AsyncCallback<UserInfo>() {
 
             @Override
             public void onFailure(Throwable caught) {
@@ -42,8 +42,8 @@ public class UserInformation {
         });
     }
     
-    public void getUserInfoAsync(AsyncCallback<UserInfo> callback) {
-        dispatch.execute(new GetUserInfo(), callback);
+    public void getUserInfoAsync(GetUserInfo info, AsyncCallback<UserInfo> callback) {
+        dispatch.execute(info, callback);
     }
     
 }

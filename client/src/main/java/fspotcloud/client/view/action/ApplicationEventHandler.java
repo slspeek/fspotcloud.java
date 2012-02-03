@@ -20,6 +20,7 @@ import fspotcloud.client.main.help.HelpAction;
 import fspotcloud.client.place.api.Navigator;
 import fspotcloud.client.place.api.Navigator.Zoom;
 import fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
+import fspotcloud.shared.main.actions.GetUserInfo;
 import fspotcloud.shared.main.actions.UserInfo;
 import java.util.logging.Level;
 
@@ -86,34 +87,36 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
                 navigator.zoom(Zoom.OUT);
                 break;
             case LOGIN:
-                userInformation.getUserInfoAsync(new AsyncCallback<UserInfo>() {
+                userInformation.getUserInfoAsync(new GetUserInfo("FSpotCloud.html"),
+                        new AsyncCallback<UserInfo>() {
 
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        log.log(Level.SEVERE, "No user info ", caught);
-                    }
+                            @Override
+                            public void onFailure(Throwable caught) {
+                                log.log(Level.SEVERE, "No user info ", caught);
+                            }
 
-                    @Override
-                    public void onSuccess(UserInfo result) {
-                        final String createLoginUrl = result.createLoginUrl();
-                        log.info("login url:" + createLoginUrl);
-                        Window.Location.replace(createLoginUrl);
-                    }
-                });
+                            @Override
+                            public void onSuccess(UserInfo result) {
+                                final String createLoginUrl = result.createLoginUrl();
+                                log.info("login url:" + createLoginUrl);
+                                Window.Location.replace(createLoginUrl);
+                            }
+                        });
                 break;
             case LOGOUT:
-                userInformation.getUserInfoAsync(new AsyncCallback<UserInfo>() {
+                userInformation.getUserInfoAsync(new GetUserInfo("FSpotCloud.html"),
+                        new AsyncCallback<UserInfo>() {
 
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        log.log(Level.SEVERE, "No user info ", caught);
-                    }
+                            @Override
+                            public void onFailure(Throwable caught) {
+                                log.log(Level.SEVERE, "No user info ", caught);
+                            }
 
-                    @Override
-                    public void onSuccess(UserInfo result) {
-                        Window.Location.replace(result.createLogoutUrl());
-                    }
-                });
+                            @Override
+                            public void onSuccess(UserInfo result) {
+                                Window.Location.replace(result.createLogoutUrl());
+                            }
+                        });
                 break;
             default:
                 break;
