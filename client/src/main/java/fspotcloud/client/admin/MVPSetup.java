@@ -7,46 +7,64 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 
 import fspotcloud.client.admin.view.DashboardPresenter;
+import fspotcloud.client.main.UserInformation;
 import fspotcloud.client.place.AdminPlaceHistoryMapper;
 import fspotcloud.client.place.TagPlace;
+import fspotcloud.shared.main.actions.GetUserInfo;
+import fspotcloud.shared.main.actions.UserInfo;
 
 public class MVPSetup {
 
-	private static final Logger log = Logger
-			.getLogger(MVPSetup.class.getName());
-	final private Place defaultPlace = new TagPlace("1");
-	final private EventBus eventBus;
-	final private PlaceController placeController;
-	final private DashboardPresenter dashboard;
-	
-	@Inject
-	public MVPSetup(EventBus eventBus, PlaceController placeController,
-			DashboardPresenter dashboard) {
-		super();
-		this.eventBus = eventBus;
-		this.placeController = placeController;
-		this.dashboard = dashboard;
-	}
+    private static final Logger log = Logger.getLogger(MVPSetup.class.getName());
+    final private Place defaultPlace = new TagPlace("1");
+    final private EventBus eventBus;
+    final private PlaceController placeController;
+    final private DashboardPresenter dashboard;
+    private final UserInformation userInformation;
 
-	public void setup() {
-		log.info("Admin setup");
-		AdminPlaceHistoryMapper historyMapper = GWT
-				.create(AdminPlaceHistoryMapper.class);
-		PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(
-				historyMapper);
-		historyHandler.register(placeController, eventBus, defaultPlace);
+    @Inject
+    public MVPSetup(EventBus eventBus, PlaceController placeController,
+            DashboardPresenter dashboard, UserInformation userInformation) {
+        super();
+        this.eventBus = eventBus;
+        this.placeController = placeController;
+        this.dashboard = dashboard;
+        this.userInformation = userInformation;
+    }
 
-		log.info("Just before handleCurrentHistory()");
-		historyHandler.handleCurrentHistory();
+    public void setup() {
+        log.info("Admin setup");
+        AdminPlaceHistoryMapper historyMapper = GWT.create(AdminPlaceHistoryMapper.class);
+        PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(
+                historyMapper);
+        historyHandler.register(placeController, eventBus, defaultPlace);
 
-		dashboard.init();
-		Widget w = dashboard.getView().asWidget();
-		RootLayoutPanel.get().add(w);
-		log.info("Setup finished");
-	}
+        log.info("Just before handleCurrentHistory()");
+        historyHandler.handleCurrentHistory();
+
+        dashboard.init();
+        Widget w = dashboard.getView().asWidget();
+        RootLayoutPanel.get().add(w);
+        log.info("Setup finished");
+        userInformation.getUserInfoAsync(new GetUserInfo("Dashboard.html"), new AsyncCallback<UserInfo>() {
+
+            @Override
+            public void onFailure(Throwable caught) {
+            }
+
+            @Override
+            public void onSuccess(UserInfo result) {
+                if (!result.isAdmin()) {
+                    Window.Location.replace(result.createLoginUrl());
+                }
+            }
+        });
+    }
 }

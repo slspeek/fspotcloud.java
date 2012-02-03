@@ -34,7 +34,7 @@ public class GetUserInfoHandlerTest {
        when(service.createLogoutURL("later")).thenReturn("logout_url");
        when(service.getEmail()).thenReturn("foo@bar.com");
        
-       UserInfo info = handler.execute(new GetUserInfo(), null);
+       UserInfo info = handler.execute(new GetUserInfo(""), null);
        Assert.assertEquals("foo@bar.com", info.getEmail());
        Assert.assertTrue(info.isLoggedIn());
    }
@@ -45,7 +45,7 @@ public class GetUserInfoHandlerTest {
        when(service.createLoginURL("later")).thenReturn("login_url");
        when(service.createLogoutURL("later")).thenReturn("logout_url");
        when(service.getEmail()).thenReturn(null);
-       UserInfo info = handler.execute(new GetUserInfo(), null);
+       UserInfo info = handler.execute(new GetUserInfo(""), null);
        Assert.assertFalse(info.isLoggedIn());
    }
    
