@@ -53,18 +53,18 @@ public class MVPSetup {
         Widget w = dashboard.getView().asWidget();
         RootLayoutPanel.get().add(w);
         log.info("Setup finished");
-        userInformation.getUserInfoAsync(new GetUserInfo("Dashboard.html"), new AsyncCallback<UserInfo>() {
-
-            @Override
-            public void onFailure(Throwable caught) {
-            }
-
-            @Override
-            public void onSuccess(UserInfo result) {
-                if (!result.isAdmin()) {
-                    Window.Location.replace(result.createLoginUrl());
-                }
-            }
-        });
+//        userInformation.getUserInfoAsync(new GetUserInfo("Dashboard.html"), new AsyncCallback<UserInfo>() {
+//
+//            @Override
+//            public void onFailure(Throwable caught) {
+//            }
+//
+//            @Override
+//            public void onSuccess(UserInfo result) {
+//                if (!result.isAdmin()) {
+//                    Window.Location.replace(result.createLoginUrl());
+//                }
+//            }
+//        });
     }
 }
