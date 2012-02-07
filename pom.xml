@@ -5,7 +5,7 @@
     <groupId>fspotcloud</groupId>
     <artifactId>fspotcloud</artifactId>
     <packaging>pom</packaging>
-    <version>0.11-dev-10</version>
+    <version>0.11-dev-11</version>
     <name>F-Spot Cloud Java Edition</name>
     <prerequisites>
         <maven>3.0.0</maven>
@@ -48,7 +48,9 @@
         <module>model-api</module>
         <module>model</module>
         <module>model-jpa</module>
+        <module>model-jpa-j2ee</module>
         <module>server</module>
+        <module>peer-server-integration</module>
         <module>server-module-gae</module>
         <module>server-module-j2ee</module>
         <module>client</module>
@@ -341,6 +343,23 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>model-api</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>model-api</artifactId>
+                <type>test-jar</type>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>model-jpa-j2ee</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>peer-server-integration</artifactId>
+                <version>${project.version}</version>
+                <type>test-jar</type>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>

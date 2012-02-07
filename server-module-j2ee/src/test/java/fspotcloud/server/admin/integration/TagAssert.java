@@ -6,7 +6,6 @@ package fspotcloud.server.admin.integration;
 
 import com.google.inject.Inject;
 import fspotcloud.server.model.api.Tags;
-import javax.jdo.JDOObjectNotFoundException;
 import org.testng.Assert;
 
 /**
@@ -19,11 +18,7 @@ public class TagAssert {
     Tags tags;
 
     public void assertTagLoaded(String id) {
-        try {
-            tags.getById(id);
-        } catch (JDOObjectNotFoundException e) {
-            Assert.fail();  
-        }
+        Assert.assertNotNull(tags.getById(id));
     }
 
     public void assertTagsLoaded(String... allIds) {
@@ -40,10 +35,6 @@ public class TagAssert {
     }
 
     public void verifyTagRemoved(String id) {
-        try {
-            tags.getById(id);
-            Assert.fail();
-        } catch (JDOObjectNotFoundException e) {
-        }
+        Assert.assertNull(tags.getById(id));
     }
 }

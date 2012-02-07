@@ -6,7 +6,6 @@ package fspotcloud.server.admin.integration;
 
 import com.google.inject.Inject;
 import fspotcloud.server.model.api.Photos;
-import javax.jdo.JDOObjectNotFoundException;
 import org.testng.Assert;
 
 /**
@@ -19,26 +18,17 @@ public class PhotoAssert {
     Photos photos;
 
     public void verifyPhotoRemoved(String id) {
-        try {
-            photos.getById(id);
-            Assert.fail("Photo with id: " + id + " was present");
-        } catch (JDOObjectNotFoundException e) {
-        }
+        Assert.assertNull(photos.getById(id));
     }
 
     public void assertPhotoLoaded(String id) {
-        try {
-            photos.getById(id);
-        } catch (JDOObjectNotFoundException e) {
-            Assert.fail("Photo with id: " + id + " was absent");
-        }
+        Assert.assertNotNull(photos.getById(id));
     }
 
     public void assertPhotosRemoved(String... allIds) {
         for (String id : allIds) {
             verifyPhotoRemoved(id);
         }
-
     }
 
     public void assertPhotosLoaded(String... allIds) {
