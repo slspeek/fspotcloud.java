@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-10</version>
+        <version>0.11-dev-11</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>server-module-j2ee</artifactId>
-    <version>0.11-dev-10</version>
+    <version>0.11-dev-11</version>
     <name>F-SpotCloud Server J2EE Configuration</name>
     <description>Guice configuration for deployment on J2EE</description>
     <dependencies>
@@ -28,11 +28,6 @@
             <artifactId>geronimo-servlet_2.5_spec</artifactId>
             <version>1.2</version>
             <scope>provided</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>model-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}.deps</groupId>
@@ -93,6 +88,11 @@
             <version>${project.version}</version>
             <scope>test</scope>
             <type>test-jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>model-jpa-j2ee</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <build>

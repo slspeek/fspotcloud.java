@@ -5,8 +5,6 @@ import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 import com.google.guiceberry.GuiceBerryEnvMain;
 import com.google.guiceberry.GuiceBerryModule;
 import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
-import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.google.inject.persist.PersistService;
