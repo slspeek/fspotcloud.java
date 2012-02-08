@@ -127,10 +127,6 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.bot-dispatch</groupId>
-            <artifactId>command-jpa</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-servlet</artifactId>
             <type>jar</type>
@@ -146,6 +142,11 @@
             <version>${project.version}</version>
             <scope>test</scope>
             <type>test-jar</type>
+        </dependency>
+        <dependency>
+            <groupId>fspotcloud.bot-dispatch</groupId>
+            <artifactId>command-jpa-j2ee</artifactId>
+            <version>${botdispatch.version}</version>
         </dependency>
     </dependencies>
     <build>

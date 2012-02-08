@@ -119,7 +119,9 @@ public class PeerServerIntegrationTest {
         verfiyFurnitureIsLoaded();
     }
 
-    //@Test
+    
+    
+    @Test
     public void testUImportFurniture() throws Exception {
         testImportAllTags();
         setPeerTestDatabase("photos_smaller.db");
@@ -129,7 +131,7 @@ public class PeerServerIntegrationTest {
         verifiyFurnitureFirstPhaseWasRemoved();
     }
 
-    //@Test
+    @Test
     public void shouldRemoveSomeFurniture() throws Exception {
         testImportAllTags();
         importTag("1");
@@ -144,7 +146,7 @@ public class PeerServerIntegrationTest {
         photoInfo.assertPhotosRemoved("12", "13", "4", "5", "15");
     }
 
-    //@Test
+    @Test
     public void testImportFurnitureInThreePhases() throws Exception {
         testImportAllTags();
         setPeerTestDatabase("photos_smaller.db");
@@ -164,7 +166,7 @@ public class PeerServerIntegrationTest {
         photoInfo.assertPhotosRemoved("7", "6", "16", "14");
     }
 
-    //@Test
+    @Test
     public void testRemovingOfTags() throws Exception {
         testImportAllTags();
         dispatch.execute(new TagDeleteAll());
@@ -180,7 +182,7 @@ public class PeerServerIntegrationTest {
         photoInfo.assertPhotosLoaded("7", "6", "16", "14");
     }
 
-    //@Test
+    @Test
     public void testOverlapWithTagRemoval() throws Exception {
         testImportAllTags();
         importTag("2");
