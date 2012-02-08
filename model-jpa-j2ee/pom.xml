@@ -58,7 +58,6 @@
         <dependency>
             <groupId>com.google.guiceberry</groupId>
             <artifactId>guiceberry</artifactId>
-            <version>3.0.4</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -218,7 +217,6 @@
                                     <groupId>${project.groupId}</groupId>
                                     <artifactId>model-api</artifactId>
                                     <type>test-jar</type>
-<!--                                    <version>${project.version}</version>-->
                                     <outputDirectory>${project.build.directory}/additionaltests/</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
