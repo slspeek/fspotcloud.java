@@ -49,6 +49,7 @@
         <module>model</module>
         <module>model-jpa</module>
         <module>model-jpa-j2ee</module>
+        <module>model-jpa-gae</module>
         <module>server</module>
         <module>peer-server-integration</module>
         <module>server-module-gae</module>
@@ -63,7 +64,7 @@
         <module>j2ee-war</module>
     </modules>
     <properties>
-        <botdispatch.version>0.3-bd</botdispatch.version>
+        <botdispatch.version>0.31-bd</botdispatch.version>
         <taskqueuedispatch.version>0.3-tqd</taskqueuedispatch.version>
         <hibernate.version>3.6.9.Final</hibernate.version>
 <!--        <hibernate.version>4.0.0.Final</hibernate.version>-->
