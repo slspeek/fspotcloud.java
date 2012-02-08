@@ -1,7 +1,5 @@
 package fspotcloud.server.admin.integration;
 
-import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
-
 import com.google.guiceberry.GuiceBerryEnvMain;
 import com.google.guiceberry.GuiceBerryModule;
 import com.google.inject.AbstractModule;
@@ -9,7 +7,6 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.google.inject.persist.PersistService;
 import com.google.inject.persist.jpa.JpaPersistModule;
-
 import fspotcloud.botdispatch.controller.inject.LocalControllerModule;
 import fspotcloud.model.jpa.peerdatabase.PeerDatabaseManager;
 import fspotcloud.model.jpa.photo.PhotoManager;
@@ -35,15 +32,16 @@ import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
 import fspotcloud.user.LenientUserService;
 import fspotcloud.user.UserService;
 import javax.inject.Inject;
+import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
 public class IntegrationGuiceBerryEnv extends GuiceBerryModule {
-    
+
     @Override
     public void configure() {
         super.configure();
         install(new MyFSpotCloudModule());
         install(new MyAdminActionsModule());
-        install( new MyModelModule());
+        install(new MyModelModule());
         install(new MyTaskModule());
         install(new LocalControllerModule());
         install(new TaskQueueDispatchDirectModule());
@@ -53,7 +51,8 @@ public class IntegrationGuiceBerryEnv extends GuiceBerryModule {
         install(new MyUserModule());
         bind(GuiceBerryEnvMain.class).to(PersistServiceInitMain.class);
     }
-     static class PersistServiceInitMain implements GuiceBerryEnvMain {
+
+    static class PersistServiceInitMain implements GuiceBerryEnvMain {
 
         @Inject
         PersistService service;
@@ -65,8 +64,7 @@ public class IntegrationGuiceBerryEnv extends GuiceBerryModule {
             System.out.println("Persistency Started! ");
         }
     }
-
- }
+}
 
 class MyAdminActionsModule extends ActionHandlerModule {
 
@@ -130,6 +128,7 @@ class MyPeerModule extends AbstractModule {
 }
 
 class MyUserModule extends AbstractModule {
+
     protected void configure() {
         bind(UserService.class).to(LenientUserService.class);
     }
