@@ -75,11 +75,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>user-service-openid</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>user-service-api</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
@@ -95,6 +90,12 @@
             <artifactId>peer-server-integration</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
+            <type>test-jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>user-service-api</artifactId>
+            <version>${project.version}</version>
             <type>test-jar</type>
         </dependency>
     </dependencies>
