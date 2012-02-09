@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-11</version>
+        <version>0.11-dev-12</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>server-module-j2ee</artifactId>
-    <version>0.11-dev-11</version>
+    <version>0.11-dev-12</version>
     <name>F-SpotCloud Server J2EE Configuration</name>
     <description>Guice configuration for deployment on J2EE</description>
     <dependencies>
@@ -45,7 +45,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}.bot-dispatch</groupId>
-            <artifactId>command-jpa-j2ee</artifactId>
+            <artifactId>command-jpa</artifactId>
             <version>${botdispatch.version}</version>
         </dependency>
         <dependency>
@@ -71,18 +71,12 @@
         <dependency>
             <groupId>fspotcloud.taskqueue-dispatch</groupId>
             <artifactId>direct</artifactId>
-            <version>0.3-tqd</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>user-service-openid</artifactId>
-            <version>${project.version}</version>
+            <version>${taskqueuedispatch.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>user-service-api</artifactId>
             <version>${project.version}</version>
-            <scope>test</scope>
             <type>test-jar</type>
         </dependency>
         <dependency>
@@ -96,6 +90,18 @@
             <version>${project.version}</version>
             <scope>test</scope>
             <type>test-jar</type>
+        </dependency>
+        <dependency>
+            <artifactId>command-jpa</artifactId>
+            <groupId>fspotcloud.bot-dispatch</groupId>
+            <type>jar</type>
+            <version>0.31-bd</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>geronimo-jpa_3.0_spec</artifactId>
+                    <groupId>com.google.appengine</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
     <build>
