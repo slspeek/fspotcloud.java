@@ -45,7 +45,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}.bot-dispatch</groupId>
-            <artifactId>command-jpa-j2ee</artifactId>
+            <artifactId>command-jpa</artifactId>
             <version>${botdispatch.version}</version>
         </dependency>
         <dependency>
