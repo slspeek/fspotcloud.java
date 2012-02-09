@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-12</version>
+        <version>0.11-dev-13</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>model-jpa-gae</artifactId>
-    <version>0.11-dev-12</version>
+    <version>0.11-dev-13</version>
     <packaging>jar</packaging>
     <name>Model JPA GAE Implementation</name>
     <dependencies>
@@ -116,7 +116,7 @@
         <dependency>
             <groupId>fspotcloud.deps</groupId>
             <artifactId>appengine-deps</artifactId>
-            <version>0.11-dev-12</version>
+            <version>0.11-dev-13</version>
             <type>pom</type>
         </dependency>
     </dependencies>
