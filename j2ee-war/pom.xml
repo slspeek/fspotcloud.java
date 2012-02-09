@@ -4,7 +4,7 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-11</version>
+        <version>0.11-dev-12</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>j2ee-war</artifactId>
@@ -112,7 +112,7 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <skip>true</skip>
+<!--                            <skip>true</skip>-->
                             XXX: excludes-element really needed 
                             <excludes>
                                 <exclude>none</exclude>
@@ -268,6 +268,20 @@
                                     <arg value="localhost" />
                                     <arg value="4444" />
                                 </exec>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                     <execution>
+                        <id>remove-database-files</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <target>
+                                <delete dir="${project.basedir}/MODELJPA" />
+                                <delete file="${project.basedir}/derby.log" />
+                                <delete dir="${project.basedir}/runtime" />
                             </target>
                         </configuration>
                         <goals>
