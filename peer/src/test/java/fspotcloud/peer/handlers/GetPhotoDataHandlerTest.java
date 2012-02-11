@@ -22,6 +22,8 @@ public class GetPhotoDataHandlerTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
+                System.setProperty("photo.dir.original","//home/steven/Photos");
+                System.setProperty("photo.dir.override","" + System.getProperty("user.dir") + "/src/test/resources/Photos");
 		URL testDatabase = ClassLoader.getSystemResource("photos.db");
 		String path = testDatabase.getPath();
 		data = new Data("jdbc:sqlite:" +path);
