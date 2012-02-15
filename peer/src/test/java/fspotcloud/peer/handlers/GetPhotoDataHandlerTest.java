@@ -17,8 +17,8 @@ public class GetPhotoDataHandlerTest extends TestCase {
 
 	
 	private Data data;
-	GetPhotoDataHandler handler;
-	GetPhotoData action;
+	private GetPhotoDataHandler handler;
+	private GetPhotoData action;
 
 	protected void setUp() throws Exception {
 		super.setUp();
