@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-13</version>
+        <version>0.11-dev-14</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>model-jpa-j2ee</artifactId>
-    <version>0.11-dev-13</version>
+    <version>0.11-dev-14</version>
     <packaging>jar</packaging>
     <name>Model JPA J2EE Implementation</name>
     <dependencies>
@@ -244,6 +244,36 @@
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
                             </additionalClasspathElements>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>pre-test</id>
+                        <phase>process-test-resources</phase>
+                        <configuration>
+                            <target>
+                                <delete dir="${basedir}/MODELJPA" includeemptydirs="true" />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>clear</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <target>
+                                <delete dir="${basedir}/MODELJPA" includeemptydirs="true" />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

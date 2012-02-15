@@ -45,6 +45,25 @@ public class PhotoInfoTest extends TestCase {
 	public void testCompareToLarger() throws Exception {
 		assertEquals(1, man.compareTo(ape));
 	}
+        
+	public void testEqualDates() throws Exception {
+                PhotoInfo info1 = new PhotoInfo("1", "", new Date(0));
+                PhotoInfo info2 = new PhotoInfo("2", "", new Date(0));
+            
+		assertEquals(-1, info1.compareTo(info2));
+	}
+        
+	public void testEqualDatesEqualIds() throws Exception {
+                PhotoInfo info1 = new PhotoInfo("1", "", new Date(0));
+                PhotoInfo info2 = new PhotoInfo("1", "", new Date(0));
+            
+		assertEquals(0, info1.compareTo(info2));
+	}
+        
+        
+        
+        
+        
 	public void testEquals() throws Exception {
 		assertTrue(ape.equals(ape));
 		assertFalse(ape.equals(man));
