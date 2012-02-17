@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-14</version>
+        <version>0.11-dev-15</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>server-module-gae</artifactId>
-    <version>0.11-dev-14</version>
+    <version>0.11-dev-15</version>
     <name>F-SpotCloud Server GAE Configuration</name>
     <description>Guice configuration for deployment on GAE</description>
     <dependencies>
@@ -64,8 +64,6 @@
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-local-runtime</artifactId>
-            <version>${gae.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.google.appengine</groupId>

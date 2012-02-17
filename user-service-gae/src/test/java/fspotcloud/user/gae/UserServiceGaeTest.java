@@ -5,7 +5,6 @@
 package fspotcloud.user.gae;
 
 import com.google.appengine.api.users.User;
-import com.google.inject.internal.ImmutableList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;

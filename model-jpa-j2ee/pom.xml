@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-14</version>
+        <version>0.11-dev-15</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>model-jpa-j2ee</artifactId>
-    <version>0.11-dev-14</version>
+    <version>0.11-dev-15</version>
     <packaging>jar</packaging>
     <name>Model JPA J2EE Implementation</name>
     <dependencies>
