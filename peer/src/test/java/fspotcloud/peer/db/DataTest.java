@@ -21,8 +21,8 @@ public class DataTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         URL testDatabase = ClassLoader.getSystemResource("photos.db");
-        System.setProperty("photo.dir.original", null);
-        System.setProperty("photo.dir.override", null);
+        System.clearProperty("photo.dir.original");
+        System.clearProperty("photo.dir.override");
         String path = testDatabase.getPath();
         data = new Data("jdbc:sqlite:" + path);
     }
