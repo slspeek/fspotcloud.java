@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import junit.framework.TestCase;
 
@@ -102,4 +104,14 @@ public class PhotoInfoTest extends TestCase {
 		int v = man.getVersion();
 		assertEquals(1, v);
 	}
+        
+        
+        public void toInSortedSet() {
+            SortedSet<PhotoInfo> set = new TreeSet<PhotoInfo>();
+            set.add(man);
+            set.add(ape);
+            set.remove(man);
+            set.remove(ape);
+            assertEquals(0, set.size());
+        }
 }

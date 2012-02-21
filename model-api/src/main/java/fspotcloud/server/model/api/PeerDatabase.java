@@ -4,13 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import fspotcloud.shared.tag.TagNode;
+import fspotcloud.simplejpadao.HasSetId;
 
-public interface PeerDatabase {
+public interface PeerDatabase extends HasSetId {
 
-	String getName();
-
-	void setName(String name);
-	
 	void setPhotoCount(long photoCount);
 
 	long getPhotoCount();

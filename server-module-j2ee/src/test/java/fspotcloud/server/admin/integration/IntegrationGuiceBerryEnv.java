@@ -1,12 +1,9 @@
 package fspotcloud.server.admin.integration;
 
-import com.google.guiceberry.GuiceBerryEnvMain;
 import com.google.guiceberry.GuiceBerryModule;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
-import com.google.inject.persist.PersistService;
-import com.google.inject.persist.jpa.JpaPersistModule;
 import fspotcloud.botdispatch.controller.inject.LocalControllerModule;
 import fspotcloud.model.jpa.peerdatabase.PeerDatabaseManager;
 import fspotcloud.model.jpa.photo.PhotoManager;
@@ -28,10 +25,11 @@ import fspotcloud.shared.dashboard.actions.SynchronizePeer;
 import fspotcloud.shared.dashboard.actions.TagDeleteAll;
 import fspotcloud.shared.dashboard.actions.UnImportTag;
 import fspotcloud.shared.peer.rpc.actions.ImageSpecs;
+import fspotcloud.simplejpadao.EMProvider;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
 import fspotcloud.user.LenientUserService;
 import fspotcloud.user.UserService;
-import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
 public class IntegrationGuiceBerryEnv extends GuiceBerryModule {
@@ -49,20 +47,6 @@ public class IntegrationGuiceBerryEnv extends GuiceBerryModule {
         install(new PeerActionsModule());
         install(new MyPeerModule());
         install(new MyUserModule());
-        bind(GuiceBerryEnvMain.class).to(PersistServiceInitMain.class);
-    }
-
-    static class PersistServiceInitMain implements GuiceBerryEnvMain {
-
-        @Inject
-        PersistService service;
-
-        @Override
-        public void run() {
-            System.setProperty("appengine.orm.duplicate.emf.exception", "true");
-            service.start();
-            System.out.println("Persistency Started! ");
-        }
     }
 }
 
@@ -90,7 +74,7 @@ class MyTaskModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(ImageSpecs.class).annotatedWith(Names.named("defaultImageSpecs")).toInstance(new ImageSpecs(1, 1, 1, 1));
+        bind(ImageSpecs.class).annotatedWith(Names.named("defaultImageSpecs")).toInstance(new ImageSpecs(1024, 768, 512, 378));
         bind(Integer.class).annotatedWith(Names.named("maxPhotoTicks")).toInstance(2);
     }
 }
@@ -104,7 +88,8 @@ class MyModelModule extends AbstractModule {
                 Singleton.class);
         bind(Tags.class).to(TagManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(100));
-        install(new JpaPersistModule("derby"));
+        bind(EntityManager.class).toProvider(EMProvider.class);
+        bind(String.class).annotatedWith(Names.named("persistence-unit")).toInstance("derby");
         System.out.println("ModelModule configured.");
     }
 }

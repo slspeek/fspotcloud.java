@@ -10,9 +10,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import fspotcloud.model.jpa.tag.TagEntity;
 import fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
+import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.server.model.tag.TagDO;
 import fspotcloud.shared.dashboard.actions.ImportTag;
 import fspotcloud.taskqueuedispatch.SerializableAsyncCallback;
 import fspotcloud.user.AdminPermission;
@@ -30,7 +31,7 @@ public class ImportTagHandlerTest {
         AdminPermission adminPermission;
 	ImportTagHandler handler;
 	ImportTag action = new ImportTag(TAG_ID, PREVIOUS_COUNT);
-	TagDO tag;
+	Tag tag;
 
 	ArgumentCaptor<PhotoUpdateAction> actionCaptor;
 	ArgumentCaptor<SerializableAsyncCallback> callbackCaptor;
@@ -39,7 +40,7 @@ public class ImportTagHandlerTest {
 	protected void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		handler = new ImportTagHandler(tagManager, dispatch, adminPermission);
-		tag = new TagDO();
+		tag = new TagEntity();
 		tag.setId(TAG_ID);
 		tag.setCount(COUNT);
 		when(tagManager.getById(TAG_ID)).thenReturn(tag);

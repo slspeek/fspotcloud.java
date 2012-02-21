@@ -1,39 +1,43 @@
 package fspotcloud.model.jpa.peerdatabase;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
+import fspotcloud.simplejpadao.HasSetId;
+import fspotcloud.simplejpadao.SimpleDAONamedIdImpl;
 import java.util.Date;
 import java.util.logging.Logger;
+import javax.inject.Inject;
+import javax.inject.Provider;
 import javax.persistence.EntityManager;
 
-public abstract class PeerDatabaseManagerBase implements PeerDatabases {
+public abstract class PeerDatabaseManagerBase<T extends PeerDatabase, U extends T>
+        extends SimpleDAONamedIdImpl<PeerDatabase, U> implements PeerDatabases {
 
     private static final String DEFAULT_PEER_ID = "1";
     private static final Logger log = Logger.getLogger(PeerDatabaseManagerBase.class.getName());
     final private Provider<EntityManager> entityManagerProvider;
 
     @Inject
-    public PeerDatabaseManagerBase(Provider<EntityManager> entityManagerProvider) {
+    public PeerDatabaseManagerBase(Class<U> entityType, Provider<EntityManager> entityManagerProvider) {
+        super(entityType, entityManagerProvider);
         this.entityManagerProvider = entityManagerProvider;
     }
 
-    @Override
-    public PeerDatabase get() {
-        PeerDatabase peer;
+    public T get() {
+        T peer;
         peer = getInstance();
         return peer;
     }
 
-    private PeerDatabase getInstance() {
+    private T getInstance() {
         EntityManager pm = entityManagerProvider.get();
-        PeerDatabase peerDatabase;
-        peerDatabase = pm.find(getEntityClass(), DEFAULT_PEER_ID);
+        pm.getTransaction().begin();
+        T peerDatabase;
+        peerDatabase = (T) pm.find(getEntityClass(), DEFAULT_PEER_ID);
         if (peerDatabase == null) {
             log.info("Default peer not found, creating one.");
-            peerDatabase = newPhoto();
-            peerDatabase.setName(DEFAULT_PEER_ID);
+            peerDatabase = newInstance();
+            peerDatabase.setId(DEFAULT_PEER_ID);
             peerDatabase.setPeerPhotoCount(0);
             peerDatabase.setPhotoCount(0);
             peerDatabase.setTagCount(0);
@@ -41,23 +45,17 @@ public abstract class PeerDatabaseManagerBase implements PeerDatabases {
             peerDatabase.setPeerLastContact(new Date(0));
             pm.persist(peerDatabase);
         }
+        pm.getTransaction().commit();
         return peerDatabase;
     }
 
-    public void save(PeerDatabase pd) {
-        EntityManager pm = entityManagerProvider.get();
-        pm.getTransaction().begin();
-        pm.persist(pd);
-        pm.getTransaction().commit();
-    }
-
     public void touchPeerContact() {
-        PeerDatabase dp = get();
+        T dp = get();
         dp.setPeerLastContact(new Date());
         save(dp);
     }
 
-    protected abstract PeerDatabase newPhoto();
+    protected abstract T newInstance();
 
     protected abstract Class<? extends PeerDatabase> getEntityClass();
 }

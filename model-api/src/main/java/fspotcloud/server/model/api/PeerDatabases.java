@@ -1,9 +1,9 @@
 package fspotcloud.server.model.api;
 
-public interface PeerDatabases {
+import fspotcloud.simplejpadao.SimpleDAONamedId;
+
+public interface PeerDatabases extends SimpleDAONamedId<PeerDatabase> {
 
 	PeerDatabase get();
-
-	void save(PeerDatabase pd);
 
 }

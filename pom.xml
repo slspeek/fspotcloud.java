@@ -5,7 +5,7 @@
     <groupId>fspotcloud</groupId>
     <artifactId>fspotcloud</artifactId>
     <packaging>pom</packaging>
-    <version>0.11-dev-15</version>
+    <version>0.11-dev-16</version>
     <name>F-Spot Cloud Java Edition</name>
     <prerequisites>
         <maven>3.0.0</maven>
@@ -46,7 +46,6 @@
         <module>user-service-openid</module>
         <module>test-util</module>
         <module>model-api</module>
-        <module>model</module>
         <module>model-jpa</module>
         <module>model-jpa-j2ee</module>
         <module>model-jpa-gae</module>
@@ -64,10 +63,10 @@
         <module>j2ee-war</module>
     </modules>
     <properties>
-        <botdispatch.version>0.33-bd</botdispatch.version>
+        <botdispatch.version>0.37-bd</botdispatch.version>
         <taskqueuedispatch.version>0.3-tqd</taskqueuedispatch.version>
-        <hibernate.version>3.6.9.Final</hibernate.version>
-<!--        <hibernate.version>4.0.0.Final</hibernate.version>-->
+<!--        <hibernate.version>3.6.9.Final</hibernate.version>-->
+        <hibernate.version>4.0.0.Final</hibernate.version>
         <derby.version>10.2.2.0</derby.version>
         <guice.version>3.0</guice.version>
         <gin.version>1.5.0</gin.version>
@@ -192,7 +191,7 @@
                 <artifactId>wagon-gitsite</artifactId>
                 <version>0.3.1</version>
             </extension>
-             <extension>
+            <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-webdav</artifactId>
                 <version>1.0-beta-2</version>
@@ -359,6 +358,11 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>model-jpa-gae</artifactId>
+                <version>${project.version}</version>
+            </dependency>            
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>peer-server-integration</artifactId>
                 <version>${project.version}</version>
                 <type>test-jar</type>
@@ -385,13 +389,7 @@
                 <type>test-jar</type>
             </dependency>
 
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>model</artifactId>
-                <version>${project.version}</version>
-                <type>test-jar</type>
-                <scope>test</scope>
-            </dependency>
+            
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>model-jpa</artifactId>
@@ -403,7 +401,7 @@
                 <version>${project.version}</version>
                 <type>pom</type>
             </dependency>
-             <dependency>
+            <dependency>
                 <groupId>com.google.appengine</groupId>
                 <artifactId>appengine-local-runtime</artifactId>
                 <version>${gae.version}</version>
@@ -502,10 +500,10 @@
                 <version>${botdispatch.version}</version>
             </dependency>
             <dependency>
-                <groupId>${project.groupId}.bot-dispatch</groupId>
-                <artifactId>gae-command</artifactId>
+                <groupId>fspotcloud.bot-dispatch</groupId>
+                <artifactId>command-jpa-gae</artifactId>
+                <type>jar</type>
                 <version>${botdispatch.version}</version>
-                <classifier>special</classifier>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}.bot-dispatch</groupId>
@@ -645,7 +643,7 @@
         </repository>
     </distributionManagement>
     <repositories>
-         <repository>
+        <repository>
             <id>fspotcloud-maven</id>
             <name>fspotcloud-maven</name>
             <url>http://fspotcloud-maven.googlecode.com/svn/maven/repository</url>

@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-15</version>
+        <version>0.11-dev-16</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>server-module-j2ee</artifactId>
-    <version>0.11-dev-15</version>
+    <version>0.11-dev-16</version>
     <name>F-SpotCloud Server J2EE Configuration</name>
     <description>Guice configuration for deployment on J2EE</description>
     <dependencies>
@@ -36,17 +36,8 @@
         </dependency>
        	<!-- Test scope -->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}.bot-dispatch</groupId>
-            <artifactId>command-jpa</artifactId>
-            <version>${botdispatch.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -95,13 +86,27 @@
             <artifactId>command-jpa</artifactId>
             <groupId>fspotcloud.bot-dispatch</groupId>
             <type>jar</type>
-            <version>0.31-bd</version>
+            <version>${botdispatch.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>geronimo-jpa_3.0_spec</artifactId>
                     <groupId>com.google.appengine</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.1.1</version>
+            <scope>test</scope>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <build>

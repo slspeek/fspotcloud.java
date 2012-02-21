@@ -18,6 +18,7 @@ import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.peer.rpc.actions.PhotoData;
 import fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
 import fspotcloud.shared.photo.PhotoInfo;
+import java.util.*;
 
 public class PhotoDataCallback implements AsyncCallback<PhotoDataResult>,
 		Serializable {
@@ -82,10 +83,11 @@ public class PhotoDataCallback implements AsyncCallback<PhotoDataResult>,
 			Tag tag = tagManager.getById(tagId);
 			PhotoInfo updatedInfo = new PhotoInfo(photo.getId(), photo.getDescription(), photo
 					.getDate(), photoData.getVersion());
-			SortedSet<PhotoInfo> cachedPhotoList = tag.getCachedPhotoList();
+			TreeSet<PhotoInfo> cachedPhotoList = tag.getCachedPhotoList();
 			cachedPhotoList.remove(updatedInfo);
 			cachedPhotoList.add(
 					updatedInfo);
+                        tag.setCachedPhotoList(cachedPhotoList);
 			tagManager.save(tag);
 		}
 		return photo;

@@ -7,6 +7,7 @@ import fspotcloud.model.api.test.EmptyGuiceBerryEnv;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.tag.TagNode;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -24,7 +25,7 @@ public class TagManagerTest {
 
     @After
     public void setUp() throws Exception {
-        tagManager.deleteAll(tagManager.getTagKeys());
+        tagManager.deleteBulk(100);
     }
 
     @Test
@@ -40,10 +41,10 @@ public class TagManagerTest {
         createSaveTag("20");
         createSaveTag("21");
         createSaveTag("22");
-        assertEquals(3, tagManager.getTagKeys().size());
+        assertEquals(3, tagManager.findAllKeys(3).size());
         List<String> list = ImmutableList.of("20", "21", "22");
-        tagManager.deleteAll(list);
-        log.info("keys:" + tagManager.getTagKeys());
+        tagManager.deleteBulk(100);
+        log.info("keys:" + tagManager.findAllKeys(1));
         assertTrue(tagManager.isEmpty());
         if (tagManager.getById("21") != null) {
             fail();
@@ -56,10 +57,9 @@ public class TagManagerTest {
         createSaveTag("20");
         createSaveTag("21");
         createSaveTag("22");
-        assertEquals(3, tagManager.getTagKeys().size());
+        assertEquals(3, tagManager.count(3));
         List<String> list = ImmutableList.of("20", "21", "22");
-        tagManager.deleteAll();
-        log.info("keys after deleteAll:" + tagManager.getTagKeys());
+        tagManager.deleteBulk(100);
         assertTrue(tagManager.isEmpty());
         if (tagManager.getById("21") != null) {
             fail();
@@ -85,9 +85,5 @@ public class TagManagerTest {
         assertFalse(tagManager.isEmpty());
     }
 
-    @Test
-    public void testGetKeys() {
-        createSaveTag("0");
-        assertEquals("0", tagManager.getTagKeys().get(0));
-    }
+    
 }

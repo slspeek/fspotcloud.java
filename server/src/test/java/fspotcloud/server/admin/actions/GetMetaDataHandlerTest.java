@@ -12,9 +12,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import fspotcloud.botdispatch.model.api.Commands;
+import fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
-import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
 import fspotcloud.shared.admin.GetMetaDataResult;
 import fspotcloud.shared.dashboard.actions.GetMetaData;
 import fspotcloud.user.AdminPermission;
@@ -33,7 +33,7 @@ public class GetMetaDataHandlerTest  {
 	@BeforeMethod
 	protected void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		pd = new PeerDatabaseDO();
+		pd = new PeerDatabaseEntity();
 		handler = new GetMetaDataHandler(commandManager, defaultPeer, adminPermission);
 	}
 

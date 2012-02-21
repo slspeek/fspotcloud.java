@@ -1,84 +1,32 @@
 package fspotcloud.server.model.api;
 
 import fspotcloud.shared.photo.PhotoInfo;
-import java.util.SortedSet;
+import fspotcloud.simplejpadao.HasSetId;
 import java.util.TreeSet;
 
-public interface Tag {
+public interface Tag extends HasSetId {
 
-	/**
-	 * @param name
-	 *            the id to set
-	 */
-	public abstract void setId(String id);
+    void setParent(String parent);
 
-	/**
-	 * @return the id
-	 */
-	public abstract String getId();
+    String getParent();
 
-	/**
-	 * @param parent
-	 *            the parent to set
-	 */
-	public abstract void setParent(String parent);
+    void setCount(int count);
 
-	/**
-	 * @return the parent
-	 */
-	public abstract String getParent();
+    int getCount();
 
-	/**
-	 * @param count
-	 *            the count to set
-	 */
-	public abstract void setCount(int count);
+    void setTagName(String tagName);
 
-	/**
-	 * @return the count
-	 */
-	public abstract int getCount();
+    String getTagName();
 
-	/**
-	 * @param tagName
-	 *            the tagName to set
-	 */
-	public abstract void setTagName(String tagName);
+    void setParentId(String parentId);
 
-	/**
-	 * @return the tagName
-	 */
-	public abstract String getTagName();
+    String getParentId();
 
-	/**
-	 * @param parentId
-	 *            the parentId to set
-	 */
-	public abstract void setParentId(String parentId);
+    void setCachedPhotoList(TreeSet<PhotoInfo> cachedPhotoList);
 
-	/**
-	 * @return the parentId
-	 */
-	public abstract String getParentId();
+    TreeSet<PhotoInfo> getCachedPhotoList();
 
-	/**
-	 * @param cachedPhotoList the cachedPhotoList to set
-	 */
-	public abstract void setCachedPhotoList(TreeSet<PhotoInfo> cachedPhotoList);
+    void setImportIssued(boolean importIssued);
 
-	/**
-	 * @return the cachedPhotoList
-	 */
-	public abstract TreeSet<PhotoInfo> getCachedPhotoList();
-
-	/**
-	 * @param importIssued the importIssued to set
-	 */
-	public abstract void setImportIssued(boolean importIssued);
-
-	/**
-	 * @return the importIssued
-	 */
-	public abstract boolean isImportIssued();
-
+    boolean isImportIssued();
 }

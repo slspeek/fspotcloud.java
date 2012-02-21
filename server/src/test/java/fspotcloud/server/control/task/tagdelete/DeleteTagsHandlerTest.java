@@ -37,14 +37,14 @@ public class DeleteTagsHandlerTest {
 
 	@Test
 	public void testRecursionStop() throws DispatchException {
-		when(tagManager.deleteAll()).thenReturn(true);
+		when(tagManager.isEmpty()).thenReturn(true);
 		target.execute(new DeleteTags(), null);
 		verifyNoMoreInteractions(dispatchAsync);
 	}
 	
 	@Test
 	public void testRecursion() throws DispatchException {
-		when(tagManager.deleteAll()).thenReturn(false);
+		when(tagManager.isEmpty()).thenReturn(false);
 		target.execute(new DeleteTags(), null);
 		verify(dispatchAsync).execute(newAction.capture());
 		AssertJUnit.assertNotNull(newAction.getValue());
