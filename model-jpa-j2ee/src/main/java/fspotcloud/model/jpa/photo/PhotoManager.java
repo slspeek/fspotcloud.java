@@ -6,14 +6,14 @@ import fspotcloud.server.model.api.Photo;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 
-public class PhotoManager extends PhotoManagerBase {
+public class PhotoManager extends PhotoManagerBase<Photo, PhotoEntity> {
 
     @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(PhotoManagerBase.class.getName());
 
     @Inject
     public PhotoManager(Provider<EntityManager> pmProvider) {
-        super(pmProvider);
+        super(PhotoEntity.class, pmProvider);
     }
 
     @Override

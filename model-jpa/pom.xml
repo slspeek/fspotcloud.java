@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-15</version>
+        <version>0.11-dev-16</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>model-jpa</artifactId>
-    <version>0.11-dev-15</version>
+    <version>0.11-dev-16</version>
     <packaging>jar</packaging>
     <name>Model JPA Base</name>
     <dependencies>
@@ -107,10 +107,6 @@
             <artifactId>gwt-dispatch</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-persist</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.6.4</version>
@@ -131,6 +127,11 @@
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-servlet</artifactId>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>fspotcloud.simple-jpa-dao</groupId>
+            <artifactId>dao-impl</artifactId>
+            <version>0.11-sjd</version>
         </dependency>
     </dependencies>
     <build>

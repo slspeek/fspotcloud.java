@@ -9,18 +9,18 @@ import java.util.Date;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 
-public class PeerDatabaseManager extends PeerDatabaseManagerBase {
+public class PeerDatabaseManager extends PeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity> implements PeerDatabases {
 
     private static final String DEFAULT_PEER_ID = "1";
     private static final Logger log = Logger.getLogger(PeerDatabaseManagerBase.class.getName());
 
     @Inject
     public PeerDatabaseManager(Provider<EntityManager> entityManagerProvider) {
-        super(entityManagerProvider);
+        super(PeerDatabaseEntity.class, entityManagerProvider);
     }
 
     @Override
-    protected PeerDatabase newPhoto() {
+    protected PeerDatabase newInstance() {
         return new PeerDatabaseEntity();
     }
 

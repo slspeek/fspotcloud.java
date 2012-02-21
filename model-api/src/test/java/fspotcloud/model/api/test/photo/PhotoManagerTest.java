@@ -28,6 +28,7 @@ public class PhotoManagerTest {
     
     @After
     public void cleanUp() {
+        photoManager.deleteBulk(100);
     }
 
     public Date getDate(int year, int month, int date) {
@@ -47,7 +48,7 @@ public class PhotoManagerTest {
             fail();
         }
         photoManager.save(photo);
-        photoManager.delete(TEST_ID);
+        //photoManager.delete(TEST_ID);
         
     }
     
@@ -62,7 +63,7 @@ public class PhotoManagerTest {
         photo = null;
        photo = photoManager.getOrNew(TEST_ID);
        assertEquals("Test desc", photo.getDescription());
-        photoManager.delete(TEST_ID);
+        //photoManager.delete(TEST_ID);
         
     }
     @Test
@@ -89,7 +90,7 @@ public class PhotoManagerTest {
         photoManager.save(retrieved);
         retrieved = photoManager.getOrNew(TEST_ID);
         assertEquals("Nice", retrieved.getDescription());
-        photoManager.delete(TEST_ID);
+        //photoManager.delete(TEST_ID);
     }
 
     @Test
@@ -99,7 +100,7 @@ public class PhotoManagerTest {
         photoManager.save(photo);
         Photo retrieved = photoManager.getOrNew(TEST_ID);
         assertEquals("Nice", retrieved.getDescription());
-        photoManager.delete(TEST_ID);
+        //photoManager.delete(TEST_ID);
     }
 
     @Test
@@ -107,7 +108,7 @@ public class PhotoManagerTest {
         Photo photo = photoManager.getOrNew(TEST_ID);
         photo.setDescription("Nice");
         photoManager.save(photo);
-        photoManager.delete(TEST_ID);
+        //photoManager.delete(TEST_ID);
     }
     
     @Test public void tagListPersists() {
@@ -141,7 +142,7 @@ public class PhotoManagerTest {
         
         photo = photoManager.getById(TEST_ID);
         assertTrue(Arrays.equals(image, photo.getImage()));
-        photoManager.delete(TEST_ID);
+        //photoManager.delete(TEST_ID);
     }
     
      @Test public void saveAndLoad400kImage() {
@@ -149,7 +150,7 @@ public class PhotoManagerTest {
         testSavingAndLoading(image);
     }
      
-     @Test public void saveAndLoad2MImage() {
+     public void saveAndLoad2MImage() {
         byte[] image = new byte[2000000];
         testSavingAndLoading(image);
     }

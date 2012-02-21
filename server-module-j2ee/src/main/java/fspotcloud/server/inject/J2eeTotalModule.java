@@ -10,7 +10,6 @@ import com.google.inject.name.Names;
 import fspotcloud.botdispatch.model.api.Commands;
 import fspotcloud.botdispatch.model.command.CommandManager;
 import fspotcloud.model.jpa.ModelModule;
-import fspotcloud.model.jpa.ModelServletModule;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
 import fspotcloud.user.LenientUserService;
 import fspotcloud.user.UserService;
@@ -25,7 +24,6 @@ public class J2eeTotalModule extends AbstractModule {
     protected void configure() {
         (new PropertiesLoader()).loadProperties();
         install(new ServerTotalModule());
-        install(new ModelServletModule());
         install(new ModelModule());
         install(new TaskQueueDispatchDirectModule());
         install(new LenientUserServiceModule());

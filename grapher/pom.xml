@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>fspotcloud</groupId>
-		<version>0.11-dev-15</version>
+		<version>0.11-dev-16</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>grapher</artifactId>
@@ -16,11 +16,6 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>peer</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>model</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -45,11 +40,6 @@
 			<artifactId>guice-grapher</artifactId>
 			<version>${guice.version}</version>
 		</dependency>
-	 <dependency>
-	  <groupId>fspotcloud.bot-dispatch</groupId>
-	  <artifactId>gae-command</artifactId>
-	  <classifier>special</classifier>
-	 </dependency>
 	</dependencies>
 	<build>
 		<plugins>

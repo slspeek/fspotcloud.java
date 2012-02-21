@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-15</version>
+        <version>0.11-dev-16</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>model-jpa-gae</artifactId>
-    <version>0.11-dev-15</version>
+    <version>0.11-dev-16</version>
     <packaging>jar</packaging>
     <name>Model JPA GAE Implementation</name>
     <dependencies>
@@ -70,10 +70,6 @@
             <artifactId>gwt-dispatch</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-persist</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.6.4</version>
@@ -110,14 +106,36 @@
         <dependency>
             <groupId>com.google.guiceberry</groupId>
             <artifactId>guiceberry</artifactId>
-            <version>3.0.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>fspotcloud.deps</groupId>
             <artifactId>appengine-deps</artifactId>
-            <version>0.11-dev-15</version>
             <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-local-runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-testing</artifactId>
+            <version>1.6.0</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-api-stubs</artifactId>
+            <version>1.6.0</version>
+            <scope>test</scope>
+        </dependency> 
+        <dependency>
+            <groupId>fspotcloud.simple-jpa-dao</groupId>
+            <artifactId>dao-namedid-test</artifactId>
+            <version>0.11-sjd</version>
+            <scope>test</scope>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <build>
@@ -189,7 +207,13 @@
                                     <groupId>${project.groupId}</groupId>
                                     <artifactId>model-api</artifactId>
                                     <type>test-jar</type>
-                                    <outputDirectory>${project.build.directory}/additionaltests/</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/additionaltests/model</outputDirectory>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>fspotcloud.simple-jpa-dao</groupId>
+                                    <artifactId>dao-namedid-test</artifactId>
+                                    <type>jar</type>
+                                    <outputDirectory>${project.build.directory}/additionaltests/dao</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -207,15 +231,66 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <testClassesDirectory>${project.build.directory}/additionaltests/</testClassesDirectory>
+                            <testClassesDirectory>${project.build.directory}/additionaltests/model</testClassesDirectory>
                             <systemPropertyVariables>
                                 <GuiceBerryEnvSelectorOverride_fspotcloud.model.api.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.GaeModelGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.model.api.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
-                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <skip>true</skip>
+                            <skip>false</skip>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>tag-simpledao-tests</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
+                            <systemPropertyVariables>
+                                <GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.gae.TagGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>
+                            </systemPropertyVariables>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <reportsDirectory>${project.build.directory}/surefire-reports/tag</reportsDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>photo-simpledao-tests</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
+                            <systemPropertyVariables>
+                                <GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.gae.PhotoGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>
+                            </systemPropertyVariables>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <reportsDirectory>${project.build.directory}/surefire-reports/photo</reportsDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>peerdatabase-simpledao-tests</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
+                            <systemPropertyVariables>
+                                <GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.gae.PeerDatabaseGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>
+                            </systemPropertyVariables>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <reportsDirectory>${project.build.directory}/surefire-reports/peerdatabase</reportsDirectory>
                         </configuration>
                     </execution>
                 </executions>

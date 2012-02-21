@@ -21,14 +21,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.google.appengine.repackaged.com.google.common.collect.ImmutableList;
+import fspotcloud.model.jpa.photo.PhotoEntity;
+import fspotcloud.model.jpa.tag.TagEntity;
 
 import fspotcloud.server.control.task.actions.intern.DeletePhotos;
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.server.model.photo.PhotoDO;
-import fspotcloud.server.model.tag.TagDO;
 import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
 public class DeletePhotosHandlerTest {
@@ -61,14 +61,14 @@ public class DeletePhotosHandlerTest {
 	protected void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		handler = new DeletePhotosHandler(MAX_DELETE_TICKS, dispatchAsync, photos, tagManager);
-		tag3 = new TagDO();
+		tag3 = new TagEntity();
 		tag3.setId("3");
 		tag3.setImportIssued(true);
-		tag = new TagDO();
+		tag = new TagEntity();
 		tag.setId(TAG_ID);
-		photoA = new PhotoDO();
+		photoA = new PhotoEntity();
 		photoA.setTagList(tagIdListA);
-		photoB = new PhotoDO();
+		photoB = new PhotoEntity();
 		photoB.setTagList(tagIdListB);
 		photoInfoA = new PhotoInfo(ID_A, "", new Date(10));
 		photoInfoB = new PhotoInfo(ID_B, "", new Date(100000));
@@ -92,10 +92,11 @@ public class DeletePhotosHandlerTest {
 	 */
 	@Test
 	public void testExecute() throws DispatchException {
+		AssertJUnit.assertEquals(2, tag.getCachedPhotoList().size());
 		handler.execute(new DeletePhotos(TAG_ID, infoList), null);
-		AssertJUnit.assertEquals(1, tag.getCachedPhotoList().size());
-		verify(photos).delete(ID_A);
+		verify(photos).delete(photoA);
 		verify(photos).getById(ID_A);
+		AssertJUnit.assertEquals(1, tag.getCachedPhotoList().size());
 		verifyNoMoreInteractions(photos);
 		verify(dispatchAsync).execute(nextCallCaptor.capture());
 		AssertJUnit.assertEquals(TAG_ID, nextCallCaptor.getValue().getTagId());

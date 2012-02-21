@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-15</version>
+        <version>0.11-dev-16</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>server</artifactId>
-    <version>0.11-dev-15</version>
+    <version>0.11-dev-16</version>
     <name>F-SpotCloud Server Component</name>
     <description>The controller and data reading</description>
     <dependencies>
@@ -51,31 +51,25 @@
             <artifactId>mockito-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>model</artifactId>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>model</artifactId>
-            <type>jar</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>fspotcloud.taskqueue-dispatch</groupId>
             <artifactId>dispatch-api</artifactId>
         </dependency>
         <dependency>
             <groupId>fspotcloud</groupId>
             <artifactId>user-service-api</artifactId>
-            <version>0.11-dev-15</version>
+            <version>0.11-dev-16</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.apache.geronimo.specs</groupId>
             <artifactId>geronimo-servlet_2.5_spec</artifactId>
             <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>fspotcloud</groupId>
+            <artifactId>model-jpa-j2ee</artifactId>
+            <scope>test</scope>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <build>

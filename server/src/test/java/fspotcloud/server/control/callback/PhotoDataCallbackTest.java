@@ -17,15 +17,11 @@ import java.util.List;
 import org.mockito.ArgumentCaptor;
 
 import com.google.appengine.repackaged.com.google.common.collect.ImmutableList;
+import fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
+import fspotcloud.model.jpa.photo.PhotoEntity;
+import fspotcloud.model.jpa.tag.TagEntity;
 
-import fspotcloud.server.model.api.PeerDatabase;
-import fspotcloud.server.model.api.PeerDatabases;
-import fspotcloud.server.model.api.Photo;
-import fspotcloud.server.model.api.Photos;
-import fspotcloud.server.model.api.Tags;
-import fspotcloud.server.model.peerdatabase.PeerDatabaseDO;
-import fspotcloud.server.model.photo.PhotoDO;
-import fspotcloud.server.model.tag.TagDO;
+import fspotcloud.server.model.api.*;
 import fspotcloud.shared.peer.rpc.actions.PhotoData;
 import fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
 import fspotcloud.shared.photo.PhotoInfo;
@@ -50,14 +46,14 @@ public class PhotoDataCallbackTest {
 	ArgumentCaptor<List<Photo>> argumentCaptor = (ArgumentCaptor<List<Photo>>) (Object) ArgumentCaptor
 			.forClass(List.class);
 	private ArrayList<PhotoData> dataList;
-	private TagDO tag1;
+	private Tag tag1;
 
 	@BeforeMethod
 	protected void setUp() throws Exception {
 		photoManager = mock(Photos.class);
 		tagManager = mock(Tags.class);
-		photo1 = new PhotoDO();
-		tag1 = new TagDO();
+		photo1 = new PhotoEntity();
+		tag1 = new TagEntity();
 		tag1.setId(TAG_ID);
 		photo1.setId(PHOTO_ID);
 		data = new PhotoData(PHOTO_ID, DESCRIPTION, date, IMAGE_DATA, THUMB_DATA, ImmutableList.of(TAG_ID), VERSION);
@@ -66,7 +62,7 @@ public class PhotoDataCallbackTest {
 		result = new PhotoDataResult(dataList);
 		when(photoManager.getOrNew(PHOTO_ID)).thenReturn(photo1);
 		when(tagManager.getById(TAG_ID)).thenReturn(tag1);
-		peer = new PeerDatabaseDO();
+		peer = new PeerDatabaseEntity();
 		peerDatabases = mock(PeerDatabases.class);
 		when(peerDatabases.get()).thenReturn(peer);
 		callback = new PhotoDataCallback(photoManager, tagManager, peerDatabases);

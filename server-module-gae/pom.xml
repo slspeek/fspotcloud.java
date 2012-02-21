@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-15</version>
+        <version>0.11-dev-16</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>server-module-gae</artifactId>
-    <version>0.11-dev-15</version>
+    <version>0.11-dev-16</version>
     <name>F-SpotCloud Server GAE Configuration</name>
     <description>Guice configuration for deployment on GAE</description>
     <dependencies>
@@ -25,7 +25,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>model</artifactId>
+            <artifactId>model-jpa-gae</artifactId>
         </dependency>
         <dependency>
             <groupId>${project.groupId}.deps</groupId>
@@ -33,16 +33,6 @@
             <type>pom</type>
         </dependency>
        	<!-- Test scope -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>model</artifactId>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>peer</artifactId>
@@ -86,7 +76,7 @@
             </exclusions>
         </dependency>
         <dependency>
-            <artifactId>gae-command</artifactId>
+            <artifactId>command-jpa-gae</artifactId>
             <groupId>fspotcloud.bot-dispatch</groupId>
             <type>jar</type>
             <exclusions>
@@ -95,7 +85,7 @@
                     <groupId>com.google.gwt</groupId>
                 </exclusion>
             </exclusions>
-            <classifier>special</classifier>
+            <version>${botdispatch.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.geronimo.specs</groupId>
@@ -121,17 +111,24 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-persist</artifactId>
-            <version>3.0</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava-testlib</artifactId>
             <version>10.0.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.1.1</version>
+            <scope>test</scope>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <build>
@@ -152,7 +149,7 @@
                                     <groupId>${project.groupId}</groupId>
                                     <artifactId>peer-server-integration</artifactId>
                                     <type>test-jar</type>
-                                    <outputDirectory>${project.build.directory}/additionaltests/</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/additionaltests</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -170,20 +167,17 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <testClassesDirectory>${project.build.directory}/additionaltests/</testClassesDirectory>
+                            <testClassesDirectory>${project.build.directory}/additionaltests</testClassesDirectory>
                             <systemPropertyVariables>
                                 <GuiceBerryEnvSelectorOverride_fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>fspotcloud.server.admin.integration.GaeIntegrationGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
-                                </systemPropertyVariables>
+                            </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <skip>true</skip>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-  
-            
         </plugins>
     </build>
     <repositories>

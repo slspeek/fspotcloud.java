@@ -29,7 +29,8 @@ public class DeleteTagsHandler extends SimpleActionHandler<DeleteTags, VoidResul
     public VoidResult execute(DeleteTags action, ExecutionContext context)
             throws DispatchException {
         log.info("Delete tags entered");
-        if (!tagManager.deleteAll()) {
+        tagManager.deleteBulk(30);
+        if (!tagManager.isEmpty()) {
             dispatchAsync.execute(new DeleteTags());
         }
         return new VoidResult();

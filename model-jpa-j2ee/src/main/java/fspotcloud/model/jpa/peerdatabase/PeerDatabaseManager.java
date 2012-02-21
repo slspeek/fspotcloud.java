@@ -3,23 +3,22 @@ package fspotcloud.model.jpa.peerdatabase;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import fspotcloud.server.model.api.PeerDatabase;
-import fspotcloud.server.model.api.PeerDatabases;
-import java.util.Date;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 
-public class PeerDatabaseManager extends PeerDatabaseManagerBase {
+public class PeerDatabaseManager 
+extends PeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity> {
 
     private static final String DEFAULT_PEER_ID = "1";
     private static final Logger log = Logger.getLogger(PeerDatabaseManagerBase.class.getName());
 
     @Inject
     public PeerDatabaseManager(Provider<EntityManager> entityManagerProvider) {
-        super(entityManagerProvider);
+        super(PeerDatabaseEntity.class, entityManagerProvider);
     }
 
     @Override
-    protected PeerDatabase newPhoto() {
+    protected PeerDatabase newInstance() {
         return new PeerDatabaseEntity();
     }
 
@@ -27,4 +26,6 @@ public class PeerDatabaseManager extends PeerDatabaseManagerBase {
     protected Class<? extends PeerDatabase> getEntityClass() {
         return PeerDatabaseEntity.class;
     }
+
+    
 }

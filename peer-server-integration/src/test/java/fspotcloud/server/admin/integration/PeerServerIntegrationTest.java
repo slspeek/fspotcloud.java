@@ -58,7 +58,7 @@ public class PeerServerIntegrationTest {
 
     @AfterMethod
     public void tearDown() throws Exception {
-        tags.deleteAll(tags.getTagKeys());
+        tags.deleteBulk(1000);
         // Make this the call to TestNgGuiceBerry.tearDown as late as possible
         toTearDown.tearDown();
     }

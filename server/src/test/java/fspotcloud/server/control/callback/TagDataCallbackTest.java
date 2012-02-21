@@ -1,5 +1,6 @@
 package fspotcloud.server.control.callback;
 
+import fspotcloud.model.jpa.tag.TagEntity;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.AssertJUnit;
@@ -19,7 +20,6 @@ import org.mockito.ArgumentCaptor;
 
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.server.model.tag.TagDO;
 import fspotcloud.shared.dashboard.actions.ImportTag;
 import fspotcloud.shared.peer.rpc.actions.TagData;
 import fspotcloud.shared.peer.rpc.actions.TagDataResult;
@@ -28,7 +28,7 @@ public class TagDataCallbackTest {
 
 Dispatch dispatch;
 	Tags tagManager;
-	TagDO tag;
+	Tag tag;
 	TagDataCallback callback;
 	final String TAGNAME = "Foo";
 	final String TAGID = "FooID";
@@ -41,7 +41,7 @@ Dispatch dispatch;
 	protected void setUp() throws Exception {
 		dispatch = mock(Dispatch.class);
 		tagManager = mock(Tags.class);
-		tag = new TagDO();
+		tag = new TagEntity();
 		tag.setId(TAGID);
 		row = new TagData(TAGID, TAGNAME, null, 10);
 		
