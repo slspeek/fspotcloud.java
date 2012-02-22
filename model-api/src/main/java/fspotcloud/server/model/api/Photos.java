@@ -1,10 +1,8 @@
 package fspotcloud.server.model.api;
 
-import fspotcloud.simplejpadao.HasSetId;
 import fspotcloud.simplejpadao.SimpleDAONamedId;
-import java.util.List;
 
-public interface Photos extends SimpleDAONamedId<Photo> {
+public interface Photos extends SimpleDAONamedId<Photo, String> {
 
 	Photo getOrNew(String id);
 

@@ -2,7 +2,6 @@ package fspotcloud.model.jpa.peerdatabase;
 
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
-import fspotcloud.simplejpadao.HasSetId;
 import fspotcloud.simplejpadao.SimpleDAONamedIdImpl;
 import java.util.Date;
 import java.util.logging.Logger;
@@ -11,7 +10,7 @@ import javax.inject.Provider;
 import javax.persistence.EntityManager;
 
 public abstract class PeerDatabaseManagerBase<T extends PeerDatabase, U extends T>
-        extends SimpleDAONamedIdImpl<PeerDatabase, U> implements PeerDatabases {
+        extends SimpleDAONamedIdImpl<PeerDatabase, U, String> implements PeerDatabases {
 
     private static final String DEFAULT_PEER_ID = "1";
     private static final Logger log = Logger.getLogger(PeerDatabaseManagerBase.class.getName());

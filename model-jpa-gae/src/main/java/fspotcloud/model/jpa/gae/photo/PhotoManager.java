@@ -27,7 +27,7 @@ public class PhotoManager extends PhotoManagerBase<Photo, PhotoEntity> implement
     }
 
     @Override
-    public Photo find(Object key) {
+    public Photo find(String key) {
         EntityManager em = entityManagerProvider.get();
         em.getTransaction().begin();
         Photo attachted = em.find(getEntityClass(), key);

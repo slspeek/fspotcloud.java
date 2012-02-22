@@ -1,10 +1,10 @@
 package fspotcloud.server.model.api;
 
 import fspotcloud.shared.photo.PhotoInfo;
-import fspotcloud.simplejpadao.HasSetId;
+import fspotcloud.simplejpadao.HasSetKey;
 import java.util.TreeSet;
 
-public interface Tag extends HasSetId {
+public interface Tag extends HasSetKey<String> {
 
     void setParent(String parent);
 
