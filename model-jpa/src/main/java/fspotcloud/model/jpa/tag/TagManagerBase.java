@@ -5,7 +5,6 @@ import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;
-import fspotcloud.simplejpadao.HasSetId;
 import fspotcloud.simplejpadao.SimpleDAONamedIdImpl;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +14,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 public abstract class TagManagerBase<T extends Tag,U extends T>
-extends SimpleDAONamedIdImpl<Tag, U> implements Tags {
+extends SimpleDAONamedIdImpl<Tag, U, String> implements Tags {
 
     private static final Logger log = Logger.getLogger(TagManagerBase.class.getName());
     private final Provider<EntityManager> emProvider;

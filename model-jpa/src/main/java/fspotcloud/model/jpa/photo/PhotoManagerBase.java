@@ -12,7 +12,7 @@ import fspotcloud.simplejpadao.SimpleDAONamedIdImpl;
 import javax.persistence.EntityManager;
 
 public abstract class PhotoManagerBase<T extends Photo, U extends T>
-extends SimpleDAONamedIdImpl<Photo, U> implements Photos {
+extends SimpleDAONamedIdImpl<Photo, U, String> implements Photos {
 
     @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(PhotoManagerBase.class.getName());
