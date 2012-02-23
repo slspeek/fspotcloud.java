@@ -35,7 +35,7 @@ public class ImageServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
 		boolean thumb = (request.getParameter("thumb") != null);
-		Photo photo = photoManager.getById(id);
+		Photo photo = photoManager.find(id);
 		byte[] imageData = thumb ? photo.getThumb() : photo.getImage();
 		response.setContentType("image/jpeg");
 		setCacheExpireDate(response, 3600 * 24 * 365);

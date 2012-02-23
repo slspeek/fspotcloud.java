@@ -20,11 +20,11 @@ public class PhotoAssert {
     Photos photos;
 
     public void verifyPhotoRemoved(String id) {
-        Assert.assertNull(photos.getById(id));
+        Assert.assertNull(photos.find(id));
     }
 
     public void assertPhotoLoaded(String id) {
-        Assert.assertNotNull(photos.getById(id));
+        Assert.assertNotNull(photos.find(id));
     }
 
     public void assertPhotosRemoved(String... allIds) {

@@ -98,7 +98,7 @@ public class PeerServerIntegrationTest {
         setPeerTestDatabase("photos.db");
         testImportAllTags();
         importTag("5");
-        photos.getById("3");
+        photos.find("3");
     }
 
     @Test

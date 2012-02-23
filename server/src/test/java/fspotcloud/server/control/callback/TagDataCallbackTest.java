@@ -48,7 +48,7 @@ Dispatch dispatch;
 		List<TagData> list = new ArrayList<TagData>();
 		list.add(row);
 		incoming = new TagDataResult(list);
-		when(tagManager.getOrNew(TAGID)).thenReturn(tag);
+		when(tagManager.findOrNew(TAGID)).thenReturn(tag);
 		callback = new TagDataCallback(tagManager, dispatch);
 	}
 

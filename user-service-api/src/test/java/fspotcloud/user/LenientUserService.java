@@ -4,8 +4,6 @@
  */
 package fspotcloud.user;
 
-import fspotcloud.user.UserService;
-
 /**
  *
  * @author steven

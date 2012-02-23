@@ -17,6 +17,7 @@ import javax.persistence.*;
 @Entity
 public class PhotoEntity implements Photo, Serializable {
 
+    
     @Id
     private String name;
     private String description;

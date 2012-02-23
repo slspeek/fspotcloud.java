@@ -7,7 +7,6 @@ import fspotcloud.model.api.test.EmptyGuiceBerryEnv;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.tag.TagNode;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -44,9 +43,8 @@ public class TagManagerTest {
         assertEquals(3, tagManager.findAllKeys(3).size());
         List<String> list = ImmutableList.of("20", "21", "22");
         tagManager.deleteBulk(100);
-        log.info("keys:" + tagManager.findAllKeys(1));
         assertTrue(tagManager.isEmpty());
-        if (tagManager.getById("21") != null) {
+        if (tagManager.find("21") != null) {
             fail();
         }
 
@@ -61,14 +59,14 @@ public class TagManagerTest {
         List<String> list = ImmutableList.of("20", "21", "22");
         tagManager.deleteBulk(100);
         assertTrue(tagManager.isEmpty());
-        if (tagManager.getById("21") != null) {
+        if (tagManager.find("21") != null) {
             fail();
         }
 
     }
 
     private Tag createSaveTag(String id) {
-        Tag tag = tagManager.getOrNew(id);
+        Tag tag = tagManager.findOrNew(id);
         tag.setId(id);
         tagManager.save(tag);
         return tag;
@@ -84,6 +82,4 @@ public class TagManagerTest {
         createSaveTag("0");
         assertFalse(tagManager.isEmpty());
     }
-
-    
 }

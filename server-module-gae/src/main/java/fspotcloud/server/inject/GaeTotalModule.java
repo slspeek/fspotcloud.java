@@ -9,8 +9,7 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import fspotcloud.botdispatch.model.api.Commands;
 import fspotcloud.botdispatch.model.jpa.gae.command.CommandManager;
-import fspotcloud.botdispatch.model.jpa.gae.command.CommandModelModule;
-import fspotcloud.model.jpa.ModelModule;
+import fspotcloud.model.jpa.CachedModelModule;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchModule;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchServletModule;
 import fspotcloud.user.gae.UserModuleGae;
@@ -25,7 +24,7 @@ public class GaeTotalModule extends AbstractModule {
     protected void configure() {
         (new PropertiesLoader()).loadProperties();
         install(new ServerTotalSpecialModule());
-        install(new ModelModule());
+        install(new CachedModelModule());
         install(new TaskQueueDispatchModule());
         install(new TaskQueueDispatchServletModule());
         install(new UserModuleGae());
