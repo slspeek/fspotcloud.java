@@ -43,7 +43,7 @@ public class ImportTagHandlerTest {
 		tag = new TagEntity();
 		tag.setId(TAG_ID);
 		tag.setCount(COUNT);
-		when(tagManager.getById(TAG_ID)).thenReturn(tag);
+		when(tagManager.find(TAG_ID)).thenReturn(tag);
 	}
 
 	@Test

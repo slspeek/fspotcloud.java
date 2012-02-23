@@ -60,8 +60,8 @@ public class PhotoDataCallbackTest {
 		dataList = new ArrayList<PhotoData>();
 		dataList.add(data);
 		result = new PhotoDataResult(dataList);
-		when(photoManager.getOrNew(PHOTO_ID)).thenReturn(photo1);
-		when(tagManager.getById(TAG_ID)).thenReturn(tag1);
+		when(photoManager.findOrNew(PHOTO_ID)).thenReturn(photo1);
+		when(tagManager.find(TAG_ID)).thenReturn(tag1);
 		peer = new PeerDatabaseEntity();
 		peerDatabases = mock(PeerDatabases.class);
 		when(peerDatabases.get()).thenReturn(peer);

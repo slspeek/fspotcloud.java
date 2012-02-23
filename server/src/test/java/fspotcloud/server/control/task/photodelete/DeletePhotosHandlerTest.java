@@ -79,10 +79,10 @@ public class DeletePhotosHandlerTest {
 		cached.add(photoInfoA);
 		cached.add(photoInfoB);
 		tag.setCachedPhotoList(cached);
-		when(tagManager.getById(TAG_ID)).thenReturn(tag);
-		when(tagManager.getById("3")).thenReturn(tag3);
-		when(photos.getById(ID_A)).thenReturn(photoA);
-		when(photos.getById(ID_B)).thenReturn(photoB);
+		when(tagManager.find(TAG_ID)).thenReturn(tag);
+		when(tagManager.find("3")).thenReturn(tag3);
+		when(photos.find(ID_A)).thenReturn(photoA);
+		when(photos.find(ID_B)).thenReturn(photoB);
 	}
 
 	/**
@@ -95,14 +95,14 @@ public class DeletePhotosHandlerTest {
 		AssertJUnit.assertEquals(2, tag.getCachedPhotoList().size());
 		handler.execute(new DeletePhotos(TAG_ID, infoList), null);
 		verify(photos).delete(photoA);
-		verify(photos).getById(ID_A);
+		verify(photos).find(ID_A);
 		AssertJUnit.assertEquals(1, tag.getCachedPhotoList().size());
 		verifyNoMoreInteractions(photos);
 		verify(dispatchAsync).execute(nextCallCaptor.capture());
 		AssertJUnit.assertEquals(TAG_ID, nextCallCaptor.getValue().getTagId());
 		handler.execute(new DeletePhotos(TAG_ID, infoList), null);
 		verifyNoMoreInteractions(dispatchAsync);
-		verify(photos).getById(ID_B);
+		verify(photos).find(ID_B);
 		verifyNoMoreInteractions(photos);
 		AssertJUnit.assertEquals(1, tag.getCachedPhotoList().size());
 	}

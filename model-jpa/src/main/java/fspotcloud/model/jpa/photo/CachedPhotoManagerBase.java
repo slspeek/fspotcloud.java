@@ -9,21 +9,23 @@ import com.google.inject.Provider;
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
 import fspotcloud.simplejpadao.SimpleDAONamedIdImpl;
+import fspotcloud.simplejpadao.cacheddao.CachedSimpleDAONamedIdImpl;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import net.sf.jsr107cache.Cache;
 
-public abstract class PhotoManagerBase<T extends Photo, U extends T>
-        extends SimpleDAONamedIdImpl<Photo, U, String> implements Photos {
+public abstract class CachedPhotoManagerBase<T extends Photo, U extends T>
+        extends CachedSimpleDAONamedIdImpl<Photo, U, String> implements Photos {
 
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(PhotoManagerBase.class.getName());
+    private static final Logger log = Logger.getLogger(CachedPhotoManagerBase.class.getName());
     protected final Provider<EntityManager> entityManagerProvider;
 
     @Inject
-    public PhotoManagerBase(Class<U> entityType, Provider<EntityManager> emProvider) {
-        super(entityType, emProvider);
+    public CachedPhotoManagerBase(Class<U> entityType, Cache cache, Provider<EntityManager> emProvider) {
+        super(entityType, cache, new SimpleDAONamedIdImpl<Photo, U, String>(entityType, emProvider));
         this.entityManagerProvider = emProvider;
     }
 

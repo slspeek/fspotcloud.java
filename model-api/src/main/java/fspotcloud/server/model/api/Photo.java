@@ -1,10 +1,11 @@
 package fspotcloud.server.model.api;
 
 import fspotcloud.simplejpadao.HasSetKey;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public interface Photo extends HasSetKey<String> {
+public interface Photo extends HasSetKey<String>, Serializable {
 
 	final int IMAGE_TYPE_THUMB = 0;
 	final int IMAGE_TYPE_BIG = 1;

@@ -71,7 +71,7 @@ public class PhotoDataCallback implements AsyncCallback<PhotoDataResult>,
 		byte[] imageData = photoData.getImageData();
 		byte[] thumbData = photoData.getThumbData();
 
-		Photo photo = photoManager.getOrNew(keyName);
+		Photo photo = photoManager.findOrNew(keyName);
 		photo.setDescription(desc);
 		photo.setDate(date);
 		photo.setTagList(tags);
@@ -80,7 +80,7 @@ public class PhotoDataCallback implements AsyncCallback<PhotoDataResult>,
 		photo.setImageLoaded(true);
 		photo.setThumbLoaded(true);
 		for (String tagId : tags) {
-			Tag tag = tagManager.getById(tagId);
+			Tag tag = tagManager.find(tagId);
 			PhotoInfo updatedInfo = new PhotoInfo(photo.getId(), photo.getDescription(), photo
 					.getDate(), photoData.getVersion());
 			TreeSet<PhotoInfo> cachedPhotoList = tag.getCachedPhotoList();

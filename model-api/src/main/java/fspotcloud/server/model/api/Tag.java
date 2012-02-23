@@ -2,9 +2,10 @@ package fspotcloud.server.model.api;
 
 import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.simplejpadao.HasSetKey;
+import java.io.Serializable;
 import java.util.TreeSet;
 
-public interface Tag extends HasSetKey<String> {
+public interface Tag extends HasSetKey<String>, Serializable {
 
     void setParent(String parent);
 

@@ -20,7 +20,7 @@ public class TagAssert {
     Tags tags;
 
     public void assertTagLoaded(String id) {
-        Assert.assertNotNull(tags.getById(id));
+        Assert.assertNotNull(tags.find(id));
     }
 
     public void assertTagsLoaded(String... allIds) {
@@ -37,6 +37,6 @@ public class TagAssert {
     }
 
     public void verifyTagRemoved(String id) {
-        Assert.assertNull(tags.getById(id));
+        Assert.assertNull(tags.find(id));
     }
 }

@@ -40,7 +40,7 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
     public VoidResult execute(RemovePhotosFromTagAction action,
             ExecutionContext context) throws DispatchException {
 
-        Tag tag = tagManager.getById(action.getTagId());
+        Tag tag = tagManager.find(action.getTagId());
         Iterator<PhotoRemovedFromTag> it = action.getToBoDeleted().iterator();
         for (int i = 0; i < MAX_DELETE_TICKS && it.hasNext(); i++) {
             PhotoRemovedFromTag operation = it.next();
@@ -56,11 +56,11 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
 
     private void checkForDeletion(Tag tag, String deleteTagId, String key,
             Iterator<PhotoRemovedFromTag> it) {
-        Photo photo = photos.getById(key);
+        Photo photo = photos.find(key);
         if (photo != null) {
             boolean moreImports = false;
             for (String tagId : photo.getTagList()) {
-                Tag tagRelated = tagManager.getById(tagId);
+                Tag tagRelated = tagManager.find(tagId);
                 if (tagRelated != null) {
                     if (!deleteTagId.equals(tagId)) {
                         if (tagRelated.isImportIssued()) {

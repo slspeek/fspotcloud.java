@@ -48,7 +48,7 @@ public class UnImportTagHandler extends SimpleActionHandler<UnImportTag, VoidRes
         adminPermission.chechAdminPermission();
         try {
             String tagId = action.getTagId();
-            Tag tag = tagManager.getById(tagId);
+            Tag tag = tagManager.find(tagId);
             if (tag.isImportIssued()) {
                 tag.setImportIssued(false);
                 tagManager.save(tag);

@@ -43,7 +43,7 @@ public class TagDataCallback implements AsyncCallback<TagDataResult>,
 	public void onSuccess(TagDataResult result) {
 		for (TagData data : result.getTagDataList()) {
 			String keyName = data.getTagId();
-			Tag tag = tagManager.getOrNew(keyName);
+			Tag tag = tagManager.findOrNew(keyName);
 			int previousCount = tag.getCount();
 			recieveTag(data, tag);
 			tagManager.save(tag);

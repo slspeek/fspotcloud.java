@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import junit.framework.TestCase;
-import fspotcloud.shared.peer.rpc.actions.PhotoData;
 import fspotcloud.shared.peer.rpc.actions.TagData;
 
 public class DataTest extends TestCase {

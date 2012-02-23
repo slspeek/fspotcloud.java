@@ -43,8 +43,8 @@ public class PhotoManagerTest {
     
     @Test
     public void simple() {
-        Photo photo = photoManager.getOrNew(TEST_ID);
-        if (photoManager.getById(TEST_ID) != null) {
+        Photo photo = photoManager.findOrNew(TEST_ID);
+        if (photoManager.find(TEST_ID) != null) {
             fail();
         }
         photoManager.save(photo);
@@ -54,26 +54,26 @@ public class PhotoManagerTest {
     
     @Test
     public void simpleDescr() {
-        Photo photo = photoManager.getOrNew(TEST_ID);
+        Photo photo = photoManager.findOrNew(TEST_ID);
         photo.setDescription("Test desc");
-        if (photoManager.getById(TEST_ID) != null) {
+        if (photoManager.find(TEST_ID) != null) {
             fail();
         }
         photoManager.save(photo);
         photo = null;
-       photo = photoManager.getOrNew(TEST_ID);
+       photo = photoManager.findOrNew(TEST_ID);
        assertEquals("Test desc", photo.getDescription());
         //photoManager.delete(TEST_ID);
         
     }
     @Test
     public void testGetOrNew() {
-        Photo photo = photoManager.getOrNew(TEST_ID);
+        Photo photo = photoManager.findOrNew(TEST_ID);
         assertEquals(Boolean.FALSE, photo.isFullsizeLoaded());
         assertEquals(Boolean.FALSE, photo.isImageLoaded());
         assertEquals(Boolean.FALSE, photo.isThumbLoaded());
         assertNotNull(photo.getTagList());
-        if (photoManager.getById(TEST_ID) != null) {
+        if (photoManager.find(TEST_ID) != null) {
             fail();
         }
         
@@ -82,30 +82,30 @@ public class PhotoManagerTest {
     @Test
     public void testCreateLoadModify() {
         Photo photo, retrieved;
-        photo = photoManager.getOrNew(TEST_ID);
+        photo = photoManager.findOrNew(TEST_ID);
         photo.setId(TEST_ID);
         photoManager.save(photo);
-        retrieved = photoManager.getOrNew(TEST_ID);
+        retrieved = photoManager.findOrNew(TEST_ID);
         retrieved.setDescription("Nice");
         photoManager.save(retrieved);
-        retrieved = photoManager.getOrNew(TEST_ID);
+        retrieved = photoManager.findOrNew(TEST_ID);
         assertEquals("Nice", retrieved.getDescription());
         //photoManager.delete(TEST_ID);
     }
 
     @Test
     public void testSave() {
-        Photo photo = photoManager.getOrNew(TEST_ID);
+        Photo photo = photoManager.findOrNew(TEST_ID);
         photo.setDescription("Nice");
         photoManager.save(photo);
-        Photo retrieved = photoManager.getOrNew(TEST_ID);
+        Photo retrieved = photoManager.findOrNew(TEST_ID);
         assertEquals("Nice", retrieved.getDescription());
         //photoManager.delete(TEST_ID);
     }
 
     @Test
     public void testDelete() {
-        Photo photo = photoManager.getOrNew(TEST_ID);
+        Photo photo = photoManager.findOrNew(TEST_ID);
         photo.setDescription("Nice");
         photoManager.save(photo);
         //photoManager.delete(TEST_ID);
@@ -113,12 +113,12 @@ public class PhotoManagerTest {
     
     @Test public void tagListPersists() {
         List abc = ImmutableList.of("a", "b", "c");
-        Photo photo = photoManager.getOrNew(TEST_ID);
+        Photo photo = photoManager.findOrNew(TEST_ID);
         photo.setTagList(abc);
         photoManager.save(photo);
         photo = null;
         
-        photo = photoManager.getById(TEST_ID);
+        photo = photoManager.find(TEST_ID);
         assertEquals(abc, photo.getTagList());
     }
     
@@ -134,13 +134,13 @@ public class PhotoManagerTest {
 
     private void testSavingAndLoading(byte[] image) {
         (new Random()).nextBytes(image);
-        Photo photo = photoManager.getOrNew(TEST_ID);
+        Photo photo = photoManager.findOrNew(TEST_ID);
         photo.setId(TEST_ID);
         photo.setImage(image);
         photoManager.save(photo);
         photo = null;
         
-        photo = photoManager.getById(TEST_ID);
+        photo = photoManager.find(TEST_ID);
         assertTrue(Arrays.equals(image, photo.getImage()));
         //photoManager.delete(TEST_ID);
     }

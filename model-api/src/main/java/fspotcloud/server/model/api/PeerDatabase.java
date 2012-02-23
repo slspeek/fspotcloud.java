@@ -5,8 +5,9 @@ import java.util.List;
 
 import fspotcloud.shared.tag.TagNode;
 import fspotcloud.simplejpadao.HasSetKey;
+import java.io.Serializable;
 
-public interface PeerDatabase extends HasSetKey<String> {
+public interface PeerDatabase extends HasSetKey<String>, Serializable {
 
 	void setPhotoCount(long photoCount);
 
