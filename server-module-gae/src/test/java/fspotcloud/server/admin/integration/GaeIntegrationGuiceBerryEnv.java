@@ -48,6 +48,8 @@ public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
     @Override
     public void configure() {
         super.configure();
+        System.setProperty("photo.dir.original", "//home/steven/Photos");
+        System.setProperty("photo.dir.override", "" + System.getProperty("user.dir") + "/../peer/src/test/resources/Photos");
         install(new MyFSpotCloudModule());
         install(new MyAdminActionsModule());
         install(new MyModelModule());

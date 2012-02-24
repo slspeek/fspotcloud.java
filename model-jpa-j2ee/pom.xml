@@ -153,7 +153,7 @@
         <dependency>
             <groupId>fspotcloud.simple-jpa-dao</groupId>
             <artifactId>dao-namedid-test</artifactId>
-            <version>0.13-sjd</version>
+            <version>0.14-sjd</version>
             <scope>test</scope>
             <type>jar</type>
         </dependency>

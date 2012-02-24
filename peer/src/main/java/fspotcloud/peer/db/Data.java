@@ -167,7 +167,7 @@ public class Data {
 			url = url.replaceFirst(photoDirectoryOriginalPath,
 					photoDirectoryOverride);
 		}
-		// log.info("URL-String: " + url);
+		log.info("URL-String: " + url + " override: " + photoDirectoryOverride);
 		return url;
 	}
 
