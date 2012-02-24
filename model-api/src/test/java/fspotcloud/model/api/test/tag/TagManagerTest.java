@@ -6,8 +6,11 @@ import com.google.inject.Inject;
 import fspotcloud.model.api.test.EmptyGuiceBerryEnv;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
+import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.tag.TagNode;
+import java.util.Date;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.logging.Logger;
 import org.junit.After;
 import static org.junit.Assert.*;
@@ -35,51 +38,21 @@ public class TagManagerTest {
         assertEquals("21", node.getId());
     }
 
-    @Test
-    public void testDeleteAllTags() {
-        createSaveTag("20");
-        createSaveTag("21");
-        createSaveTag("22");
-        assertEquals(3, tagManager.findAllKeys(3).size());
-        List<String> list = ImmutableList.of("20", "21", "22");
-        tagManager.deleteBulk(100);
-        assertTrue(tagManager.isEmpty());
-        if (tagManager.find("21") != null) {
-            fail();
-        }
-
-    }
-
-    @Test
-    public void testDeleteAllTags2() {
-        createSaveTag("20");
-        createSaveTag("21");
-        createSaveTag("22");
-        assertEquals(3, tagManager.count(3));
-        List<String> list = ImmutableList.of("20", "21", "22");
-        tagManager.deleteBulk(100);
-        assertTrue(tagManager.isEmpty());
-        if (tagManager.find("21") != null) {
-            fail();
-        }
-
-    }
-
     private Tag createSaveTag(String id) {
         Tag tag = tagManager.findOrNew(id);
         tag.setId(id);
         tagManager.save(tag);
         return tag;
     }
-
-    @Test
-    public void testIsEmpty() {
-        assertTrue(tagManager.isEmpty());
+    
+    @Test 
+    public void modifyPhotoList() {
+        Tag subject = createSaveTag("9");
+        TreeSet<PhotoInfo> list = subject.getCachedPhotoList();
+        list.add(new PhotoInfo("1", "desc", new Date(10000)));
+        subject.setCachedPhotoList(list);
+        tagManager.save(subject);
+        assertEquals("desc", tagManager.find("9").getCachedPhotoList().first().getDescription());
     }
-
-    @Test
-    public void testIsNotEmpty() {
-        createSaveTag("0");
-        assertFalse(tagManager.isEmpty());
-    }
+    
 }

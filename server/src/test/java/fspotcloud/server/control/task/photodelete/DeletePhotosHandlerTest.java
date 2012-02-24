@@ -1,5 +1,6 @@
 package fspotcloud.server.control.task.photodelete;
 
+import com.google.common.collect.ImmutableList;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -20,7 +21,6 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.google.appengine.repackaged.com.google.common.collect.ImmutableList;
 import fspotcloud.model.jpa.photo.PhotoEntity;
 import fspotcloud.model.jpa.tag.TagEntity;
 
