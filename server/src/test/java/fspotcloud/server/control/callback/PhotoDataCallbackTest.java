@@ -1,8 +1,8 @@
 package fspotcloud.server.control.callback;
 
+import com.google.common.collect.ImmutableList;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
-import org.testng.Assert;
 import org.testng.AssertJUnit;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.mockito.ArgumentCaptor;
 
-import com.google.appengine.repackaged.com.google.common.collect.ImmutableList;
 import fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import fspotcloud.model.jpa.photo.PhotoEntity;
 import fspotcloud.model.jpa.tag.TagEntity;

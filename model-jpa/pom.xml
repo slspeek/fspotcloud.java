@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.11-dev-18</version>
+        <version>0.12-alpha-01</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>model-jpa</artifactId>
-    <version>0.11-dev-18</version>
+    <version>0.12-alpha-01</version>
     <packaging>jar</packaging>
     <name>Model JPA Base</name>
     <dependencies>
@@ -131,12 +131,12 @@
         <dependency>
             <groupId>fspotcloud.simple-jpa-dao</groupId>
             <artifactId>dao-impl</artifactId>
-            <version>0.14-sjd</version>
+            <version>0.15-sjd</version>
         </dependency>
         <dependency>
             <groupId>fspotcloud.simple-jpa-dao</groupId>
             <artifactId>cached-dao</artifactId>
-            <version>0.14-sjd</version>
+            <version>0.15-sjd</version>
             <type>jar</type>
         </dependency>
     </dependencies>

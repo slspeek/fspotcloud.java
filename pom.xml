@@ -5,7 +5,7 @@
     <groupId>fspotcloud</groupId>
     <artifactId>fspotcloud</artifactId>
     <packaging>pom</packaging>
-    <version>0.11-dev-18</version>
+    <version>0.12-alpha-01</version>
     <name>F-Spot Cloud Java Edition</name>
     <prerequisites>
         <maven>3.0.0</maven>
@@ -63,10 +63,10 @@
         <module>j2ee-war</module>
     </modules>
     <properties>
-        <botdispatch.version>0.41-bd</botdispatch.version>
+        <botdispatch.version>0.42-bd</botdispatch.version>
         <taskqueuedispatch.version>0.3-tqd</taskqueuedispatch.version>
 <!--        <hibernate.version>3.6.9.Final</hibernate.version>-->
-        <hibernate.version>4.0.0.Final</hibernate.version>
+        <hibernate.version>3.6.9.Final</hibernate.version>
         <derby.version>10.2.2.0</derby.version>
         <guice.version>3.0</guice.version>
         <gin.version>1.5.0</gin.version>
@@ -83,7 +83,41 @@
     <build>
         <defaultGoal>install</defaultGoal>
         <plugins>
-            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>clean-database-files-for-test</id>
+                        <phase>process-test-resources</phase>
+                        <configuration>
+                            <target>
+                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true" />
+                                <delete dir="${project.basedir}/runtime" includeemptydirs="true" />
+                                <delete file="${project.basedir}/derby.log" />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>clean-database-files</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <target>
+                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true" />
+                                <delete dir="${project.basedir}/runtime" includeemptydirs="true" />
+                                <delete file="${project.basedir}/derby.log" />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>

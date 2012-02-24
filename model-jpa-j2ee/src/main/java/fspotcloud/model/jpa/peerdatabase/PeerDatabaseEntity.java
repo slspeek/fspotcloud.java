@@ -1,5 +1,6 @@
 package fspotcloud.model.jpa.peerdatabase;
 
+import com.google.common.base.Objects;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.shared.tag.TagNode;
 import java.io.Serializable;
@@ -14,9 +15,9 @@ import org.apache.commons.lang.SerializationUtils;
  *
  */
 @Entity
-public class PeerDatabaseEntity implements PeerDatabase, Serializable
-{
+public class PeerDatabaseEntity implements PeerDatabase, Serializable {
 
+    public static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
     transient private static final long serialVersionUID = -4842421992073164575L;
     @Id
     private String name;
@@ -34,8 +35,7 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable
     private String thumbDimension = "512x384";
     @Basic
     private String imageDimension = "1024x768";
-    
-   
+
     @Override
     public String getThumbDimension() {
         return thumbDimension;
@@ -118,9 +118,10 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable
     public long getPhotoCount() {
         return photoCount;
     }
-    
     @Lob
-    byte[] cachedTagTreeData;
+    byte[] cachedTagTreeData = EMPTY_BYTE_ARRAY;
+    @Basic
+    private boolean cachedTagTreeNull = true;
     transient private ArrayList<TagNode> cachedTagTree = null;
 
     public PeerDatabaseEntity() {
@@ -130,8 +131,10 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable
     public void setCachedTagTree(List<TagNode> cachedTagTree) {
         if (cachedTagTree == null) {
             this.cachedTagTree = null;
-            this.cachedTagTreeData = null;
+            this.cachedTagTreeNull = true;
+            this.cachedTagTreeData = EMPTY_BYTE_ARRAY;
         } else {
+            this.cachedTagTreeNull = false;
             this.cachedTagTree = new ArrayList<TagNode>(cachedTagTree);
             this.cachedTagTreeData = SerializationUtils.serialize(this.cachedTagTree);
         }
@@ -139,7 +142,9 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable
 
     @Override
     public List<TagNode> getCachedTagTree() {
-        if (cachedTagTree == null && cachedTagTreeData != null) {
+        if (cachedTagTreeNull) {
+            return null;
+        } else {
             cachedTagTree = (ArrayList<TagNode>) SerializationUtils.deserialize(cachedTagTreeData);
         }
         return cachedTagTree;

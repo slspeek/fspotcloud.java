@@ -3,7 +3,6 @@
  */
 package fspotcloud.model.jpa.tag;
 
-import com.google.appengine.api.datastore.Blob;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.shared.photo.PhotoInfo;
 import java.io.Serializable;
@@ -30,8 +29,8 @@ public class TagEntity implements Serializable, Tag {
     private int count;
     @Basic
     private boolean importIssued = false;
-    @Basic//@Column(columnDefinition = "BLOB")
-    private Blob cachedPhotoList = new Blob(SerializationUtils.serialize(new TreeSet<PhotoInfo>()));
+    @Lob//@Column(columnDefinition = "BLOB")
+    private byte[] photoListData = SerializationUtils.serialize(new TreeSet<PhotoInfo>());
 
     public TagEntity() {
     }
@@ -97,11 +96,11 @@ public class TagEntity implements Serializable, Tag {
 
     @Override
     public void setCachedPhotoList(TreeSet<PhotoInfo> cachedPhotoList) {
-        this.cachedPhotoList = new Blob(SerializationUtils.serialize(cachedPhotoList));
+        this.photoListData = SerializationUtils.serialize(cachedPhotoList);
     }
 
     @Override
     public TreeSet<PhotoInfo> getCachedPhotoList() {
-        return (TreeSet<PhotoInfo>) SerializationUtils.deserialize(cachedPhotoList.getBytes());
+        return (TreeSet<PhotoInfo>) SerializationUtils.deserialize(photoListData);
     }
 }
