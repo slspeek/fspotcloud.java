@@ -229,7 +229,7 @@
                                     <type>test-jar</type>
                                     <outputDirectory>${project.build.directory}/additionaltests/model</outputDirectory>
                                 </artifactItem>
-                                 <artifactItem>
+                                <artifactItem>
                                     <groupId>fspotcloud.simple-jpa-dao</groupId>
                                     <artifactId>dao-namedid-test</artifactId>
                                     <type>jar</type>
@@ -274,7 +274,7 @@
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
                             </additionalClasspathElements>
-                             <reportsDirectory>${project.build.directory}/surefire-reports/tag</reportsDirectory>
+                            <reportsDirectory>${project.build.directory}/surefire-reports/tag</reportsDirectory>
                         </configuration>
                     </execution>
                     <execution>
@@ -291,7 +291,7 @@
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
                             </additionalClasspathElements>
-                             <reportsDirectory>${project.build.directory}/surefire-reports/photo</reportsDirectory>
+                            <reportsDirectory>${project.build.directory}/surefire-reports/photo</reportsDirectory>
                         </configuration>
                     </execution>
                     <execution>
@@ -308,21 +308,23 @@
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
                             </additionalClasspathElements>
-                             <reportsDirectory>${project.build.directory}/surefire-reports/peerdatabase</reportsDirectory>
+                            <reportsDirectory>${project.build.directory}/surefire-reports/peerdatabase</reportsDirectory>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-             <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
                 <executions>
                     <execution>
-                        <id>pre-test</id>
+                        <id>clean-database-files-for-test</id>
                         <phase>process-test-resources</phase>
                         <configuration>
                             <target>
-                                <delete dir="${basedir}/MODELJPA" includeemptydirs="true" />
+                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true" />
+                                <delete file="${project.basedir}/derby.log" />
                             </target>
                         </configuration>
                         <goals>
@@ -330,17 +332,19 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>clear</id>
+                        <id>clean-database-files</id>
                         <phase>clean</phase>
                         <configuration>
                             <target>
-                                <delete dir="${basedir}/MODELJPA" includeemptydirs="true" />
+                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true" />
+                                <delete file="${project.basedir}/derby.log" />
                             </target>
                         </configuration>
                         <goals>
                             <goal>run</goal>
                         </goals>
                     </execution>
+
                 </executions>
             </plugin>
         </plugins>

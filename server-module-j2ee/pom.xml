@@ -117,7 +117,42 @@
     </dependencies>
     <build>
         <plugins>
-              <plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>clean-database-files-for-test</id>
+                        <phase>process-test-resources</phase>
+                        <configuration>
+                            <target>
+                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true" />
+                                <delete dir="${project.basedir}/runtime" includeemptydirs="true" />
+                                <delete file="${project.basedir}/derby.log" />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>clean-database-files</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <target>
+                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true" />
+                                <delete dir="${project.basedir}/runtime" includeemptydirs="true" />
+                                <delete file="${project.basedir}/derby.log" />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
@@ -154,7 +189,7 @@
                             <testClassesDirectory>${project.build.directory}/additionaltests/</testClassesDirectory>
                             <systemPropertyVariables>
                                 <GuiceBerryEnvSelectorOverride_fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>fspotcloud.server.admin.integration.IntegrationGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
-                                </systemPropertyVariables>
+                            </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
                             </additionalClasspathElements>
@@ -162,7 +197,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
     <repositories>
