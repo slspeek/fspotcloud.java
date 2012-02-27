@@ -1,20 +1,22 @@
 package fspotcloud.test;
 
+import javax.inject.Inject;
+
+import org.junit.Rule;
+import org.junit.Test;
+
 import com.google.guiceberry.junit4.GuiceBerryRule;
 import com.thoughtworks.selenium.Selenium;
 import static fspotcloud.test.Sleep.sleepShort;
-import javax.inject.Inject;
-import org.junit.Rule;
-import org.junit.Test;
 
 public class DashboardITest {
 
     @Rule
-    public GuiceBerryRule guiceBerry = new GuiceBerryRule(FSCGuiceberryEnv.class);
+    public GuiceBerryRule guiceBerry = new GuiceBerryRule(SeleniumGuiceBerryEnv.class);
     @Inject
     Selenium selenium;
     @Inject
-    LoginBot login;
+    ILogin login;
 
     @Test
     public void testImport() throws Exception {
