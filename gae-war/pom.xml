@@ -4,13 +4,13 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.12-alpha-01</version>
+        <version>0.12-alpha-02</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>gae-war</artifactId>
     <packaging>war</packaging>
-    <name>Selenium tests for F-SpotCloud</name>
-    <description>Selenium Tests for all components</description>
+    <name>Gae war</name>
+    <description>GAE war</description>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -75,9 +75,15 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>e2e-test</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+            <type>test-jar</type>
+        </dependency>
     </dependencies>
     <build>
-        <defaultGoal>prepare-package war:exploded</defaultGoal>
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
@@ -109,8 +115,16 @@
                                 <exclude>none</exclude>
                             </excludes>
                             <includes>
-                                <include>**/FirefoxLocalSuite.java</include>
+                                <include>**/LocalSuite.java</include>
                             </includes>
+                            <testClassesDirectory>${project.build.directory}/e2e-tests</testClassesDirectory>
+                            <systemPropertyVariables>
+                                <GuiceBerryEnvSelectorOverride_fspotcloud.test.SeleniumGuiceBerryEnv>fspotcloud.test.GaeWarGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.test.SeleniumGuiceBerryEnv>
+                            </systemPropertyVariables>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
                     </execution>
                 </executions>
@@ -120,8 +134,8 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>unpack</id>
-                        <phase>compile</phase> <!-- strange hack, to have it done earlier in the lifecycle -->
+                        <id>unpack-e2e-test</id>
+                        <phase>process-test-resources</phase> 
                         <goals>
                             <goal>unpack</goal>
                         </goals>
@@ -130,6 +144,13 @@
                                 <artifactItem>
                                     <groupId>fspotcloud</groupId>
                                     <artifactId>client</artifactId>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>e2e-test</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>test-jar</type>
+                                    <outputDirectory>${project.build.directory}/e2e-tests</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -203,13 +224,13 @@
                                     jar="${basedir}/../peer/target/peer-${project.version}-jar-with-dependencies.jar"
                                     fork="yes" spawn="yes">
                                     <sysproperty key="db"
-                                                                                     value="${basedir}/../peer/src/test/resources/photos.db" />
+                                                 value="${basedir}/../peer/src/test/resources/photos.db" />
                                     <sysproperty key="endpoint" value="localhost:8080" />
                                     <sysproperty key="bot.secret" value="${bot.secret}" />
                                     <sysproperty key="pause" value="2" />
                                     <sysproperty key="photo.dir.original" value="file:///home/steven/Photos" />
                                     <sysproperty key="photo.dir.override"
-                                                                                     value="file://${basedir}/../peer/src/test/resources/Photos" />
+                                                 value="file://${basedir}/../peer/src/test/resources/Photos" />
                                 </java>
                             </target>
                         </configuration>

@@ -9,16 +9,17 @@ import com.thoughtworks.selenium.Selenium;
 
 public class SeleniumTestWrapper implements TestWrapper {
 
-	@Inject
-	Selenium selenium;
-	@Inject TearDownAccepter tearDownAccepter;
-	
-	public void toRunBeforeTest() {
-		tearDownAccepter.addTearDown(new TearDown() {
+    @Inject
+    Selenium selenium;
+    @Inject
+    TearDownAccepter tearDownAccepter;
 
-			public void tearDown() throws Exception {
-				selenium.close();
-			}
-		});
-	}
+    public void toRunBeforeTest() {
+        tearDownAccepter.addTearDown(new TearDown() {
+
+            public void tearDown() throws Exception {
+                selenium.close();
+            }
+        });
+    }
 }

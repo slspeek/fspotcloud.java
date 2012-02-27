@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import com.thoughtworks.selenium.Selenium;
 
-public class LoginBot {
+public class GaeLoginBot implements ILogin {
 
     @Inject
     Selenium selenium;

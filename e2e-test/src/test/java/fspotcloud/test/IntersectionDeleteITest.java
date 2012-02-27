@@ -15,13 +15,13 @@ import com.thoughtworks.selenium.Selenium;
 public class IntersectionDeleteITest {
 	@Rule
 	public GuiceBerryRule guiceBerry = new GuiceBerryRule(
-			FSCGuiceberryEnv.class);
+			SeleniumGuiceBerryEnv.class);
 
 	@Inject
 	Selenium selenium;
 
 	@Inject
-	LoginBot login;
+	ILogin login;
 	
 	@Test
 	public void testImport() throws Exception {

@@ -1,16 +1,19 @@
 package fspotcloud.test;
 
-import com.google.guiceberry.junit4.GuiceBerryRule;
-import com.thoughtworks.selenium.Selenium;
 import static fspotcloud.test.Sleep.sleepShort;
+
 import javax.inject.Inject;
+
 import org.junit.Rule;
 import org.junit.Test;
+
+import com.google.guiceberry.junit4.GuiceBerryRule;
+import com.thoughtworks.selenium.Selenium;
 
 public class ApplicationActionsITest {
 
     @Rule
-    public GuiceBerryRule guiceBerry = new GuiceBerryRule(FSCGuiceberryEnv.class);
+    public GuiceBerryRule guiceBerry = new GuiceBerryRule(SeleniumGuiceBerryEnv.class);
     @Inject
     Selenium selenium;
 

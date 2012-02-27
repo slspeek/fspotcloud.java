@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.12-alpha-01</version>
+        <version>0.12-alpha-02</version>
     </parent>
     <groupId>fspotcloud</groupId>
     <artifactId>server-module-j2ee</artifactId>
-    <version>0.12-alpha-01</version>
+    <version>0.12-alpha-02</version>
     <name>F-SpotCloud Server J2EE Configuration</name>
     <description>Guice configuration for deployment on J2EE</description>
     <dependencies>

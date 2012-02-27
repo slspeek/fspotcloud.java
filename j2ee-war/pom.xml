@@ -4,12 +4,12 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>fspotcloud</groupId>
-        <version>0.12-alpha-01</version>
+        <version>0.12-alpha-02</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>j2ee-war</artifactId>
     <packaging>war</packaging>
-    <name>j2ee war with Derby</name>
+    <name>J2ee war</name>
     <description>j2ee war with Derby</description>
     <dependencies>
         <dependency>
@@ -84,6 +84,13 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>e2e-test</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+            <type>test-jar</type>
+        </dependency>
     </dependencies>
     <build>
         <defaultGoal>prepare-package war:exploded</defaultGoal>
@@ -112,14 +119,21 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-<!--                            <skip>true</skip>-->
-                            XXX: excludes-element really needed 
+<!--                            XXX: excludes-element really needed -->
                             <excludes>
                                 <exclude>none</exclude>
                             </excludes>
                             <includes>
-                                <include>**/FirefoxLocalSuite.java</include>
+                                <include>**/LocalSuite.java</include>
                             </includes>
+                            <testClassesDirectory>${project.build.directory}/e2e-tests</testClassesDirectory>
+                            <systemPropertyVariables>
+                                <GuiceBerryEnvSelectorOverride_fspotcloud.test.SeleniumGuiceBerryEnv>fspotcloud.test.J2eeWarGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.test.SeleniumGuiceBerryEnv>
+                            </systemPropertyVariables>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
                     </execution>
                 </executions>
@@ -130,7 +144,7 @@
                 <executions>
                     <execution>
                         <id>unpack</id>
-                        <phase>compile</phase> <!-- strange hack, to have it done earlier in the lifecycle -->
+                        <phase>process-test-resources</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
@@ -140,34 +154,18 @@
                                     <groupId>fspotcloud</groupId>
                                     <artifactId>client</artifactId>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>e2e-test</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>test-jar</type>
+                                    <outputDirectory>${project.build.directory}/e2e-tests</outputDirectory>
+                                </artifactItem>
                             </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-        
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat6-maven-plugin</artifactId>
-                <version>2.0-SNAPSHOT</version>
-<!--                <executions>
-                    <execution>
-                        <id>integration</id>
-                        <goals>
-                            <goal>run-war</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                    </execution>
-                    <execution>
-                        <id>stop</id>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                        <phase>post-integration-test</phase>
-                    </execution>
-                </executions>-->
-            </plugin>
-            
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
@@ -295,13 +293,6 @@
     <pluginRepositories>
     </pluginRepositories>
     <repositories>
-        <repository>
-            <id>Apache</id>
-            <url>http://people.apache.org/repo/m2-snapshot-repository</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
         <repository>
             <snapshots>
                 <enabled>false</enabled>
