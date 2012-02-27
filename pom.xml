@@ -23,6 +23,10 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+    <ciManagement>
+        <system>jenkins</system>
+        <url>http://188.200.115.153:9000/</url>
+    </ciManagement>
     <developers>
         <developer>
             <id>slspeek</id>
