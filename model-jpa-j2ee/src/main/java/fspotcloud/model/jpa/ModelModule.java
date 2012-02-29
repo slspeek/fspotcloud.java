@@ -13,9 +13,13 @@ import fspotcloud.simplejpadao.EMProvider;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class ModelModule extends AbstractModule {
 
+    private static final Logger log = Logger.getLogger(ModelModule.class.getName());
+            
     @Override
     protected void configure() {
         bind(Photos.class).to(PhotoManager.class).in(Singleton.class);
@@ -24,10 +28,14 @@ public class ModelModule extends AbstractModule {
         bind(Tags.class).to(TagManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(100));
         bind(EntityManager.class).toProvider(EMProvider.class);
-       EntityManagerFactory factory = Persistence.createEntityManagerFactory("derby");
-        System.out.println("EMF " + factory);
-        bind(EntityManagerFactory.class).toInstance(factory);
-        
+        try {
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory("derby");
+            System.out.println("EMF " + factory);
+            bind(EntityManagerFactory.class).toInstance(factory);
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Exception caught in model - module", e);
+        }
+
         System.out.println("ModelModule configured.");
     }
 }
