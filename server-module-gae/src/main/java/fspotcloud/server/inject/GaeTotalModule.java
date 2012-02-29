@@ -23,7 +23,7 @@ public class GaeTotalModule extends AbstractModule {
     @Override
     protected void configure() {
         (new PropertiesLoader()).loadProperties();
-        install(new ServerTotalSpecialModule());
+        install(new ServerTotalModule());
         install(new CachedModelModule());
         install(new TaskQueueDispatchModule());
         install(new TaskQueueDispatchServletModule());
