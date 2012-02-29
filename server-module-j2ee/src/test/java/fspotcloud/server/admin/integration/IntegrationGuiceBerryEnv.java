@@ -26,6 +26,7 @@ import fspotcloud.shared.dashboard.actions.TagDeleteAll;
 import fspotcloud.shared.dashboard.actions.UnImportTag;
 import fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import fspotcloud.simplejpadao.EMProvider;
+import fspotcloud.simplejpadao.EntityModule;
 import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
 import fspotcloud.user.LenientUserService;
 import fspotcloud.user.UserService;
@@ -92,10 +93,7 @@ class MyModelModule extends AbstractModule {
                 Singleton.class);
         bind(Tags.class).to(TagManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(100));
-        bind(EntityManager.class).toProvider(EMProvider.class);
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("derby");
-        System.out.println("EMF " + factory);
-        bind(EntityManagerFactory.class).toInstance(factory);
+       install(new EntityModule("derby"));
 
         System.out.println("ModelModule configured.");
     }

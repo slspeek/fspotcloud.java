@@ -5,6 +5,7 @@
 package fspotcloud.server.inject;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.name.Names;
 import fspotcloud.botdispatch.controller.inject.ControllerServletModule;
 import fspotcloud.server.control.task.TaskActionsModule;
 import fspotcloud.server.control.task.TaskModule;
@@ -15,10 +16,17 @@ import fspotcloud.server.control.task.TaskModule;
  */
 public class ServerTotalModule extends AbstractModule {
 
+    private final int maxTicks;
+
+    public ServerTotalModule(int maxTicks) {
+        this.maxTicks = maxTicks;
+    }
+
     @Override
     protected void configure() {
         install(new AdminActionsModule());
-        install(new ServerModule());
+        bind(Integer.class).annotatedWith(Names.named("maxTicks")).toInstance(
+                new Integer(maxTicks));
         install(new ServerServletModule());
         install(new ControllerServletModule());
         install(new ServerControllerModule());

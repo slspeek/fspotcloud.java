@@ -1,19 +1,17 @@
 package fspotcloud.server.inject;
 
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-
 import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.server.model.api.PeerDatabases;
+import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class InjectorTest {
 
     @BeforeClass
     public void load() {
-        (new PropertiesLoader()).loadProperties();
     }
 
     @Test

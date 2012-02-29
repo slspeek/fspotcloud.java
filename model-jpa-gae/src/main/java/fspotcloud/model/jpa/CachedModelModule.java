@@ -11,14 +11,11 @@ import fspotcloud.model.jpa.gae.tag.TagManager;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.simplejpadao.EMProvider;
+import fspotcloud.simplejpadao.EntityModule;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import net.sf.jsr107cache.Cache;
 import net.sf.jsr107cache.CacheException;
 import net.sf.jsr107cache.CacheFactory;
@@ -33,10 +30,7 @@ public class CachedModelModule extends AbstractModule {
                 Singleton.class);
         bind(Tags.class).to(TagManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(100));
-        bind(EntityManager.class).toProvider(EMProvider.class);
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("gae");
-        System.out.println("EMF " + factory);
-        bind(EntityManagerFactory.class).toInstance(factory);
+        install(new EntityModule("gae"));
         System.out.println("CachedModelModule configured.");
     }
 

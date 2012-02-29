@@ -62,9 +62,9 @@
         <module>e2e-test</module>
         <module>gae-war</module>
         <module>war-prod</module>
-        <module>installer</module>
+<!--        <module>installer</module>-->
         <module>deps</module>
-        <module>grapher</module>
+<!--        <module>grapher</module>-->
         <module>j2ee-war</module>
     </modules>
     <properties>

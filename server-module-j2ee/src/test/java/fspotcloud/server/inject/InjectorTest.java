@@ -6,6 +6,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
 
 public class InjectorTest {
@@ -16,6 +17,7 @@ public class InjectorTest {
         AssertJUnit.assertNotNull(injector);
         PeerDatabases defaultPeer =
                 injector.getInstance(PeerDatabases.class);
+        PeerDatabase pd = defaultPeer.get();
         ControllerDispatchAsync controller = injector.getInstance(ControllerDispatchAsync.class);
         AssertJUnit.assertNotNull(controller);
     }
