@@ -6,6 +6,8 @@ import fspotcloud.model.jpa.tag.TagManager;
 import fspotcloud.simplejpadao.EMProvider;
 import fspotcloud.simplejpadao.SimpleDAONamedId;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class TagGuiceBerryEnv extends GuiceBerryModule {
 
@@ -14,7 +16,9 @@ public class TagGuiceBerryEnv extends GuiceBerryModule {
         super.configure();
         bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(100));
         bind(EntityManager.class).toProvider(EMProvider.class);
-        bind(String.class).annotatedWith(Names.named("persistence-unit")).toInstance("derby");
+         EntityManagerFactory factory = Persistence.createEntityManagerFactory("derby");
+        System.out.println("EMF " + factory);
+        bind(EntityManagerFactory.class).toInstance(factory);
         bind(SimpleDAONamedId.class).to(TagManager.class);
     }
 }
