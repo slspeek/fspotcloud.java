@@ -32,6 +32,7 @@ public class ModelModule extends AbstractModule {
             EntityManagerFactory factory = Persistence.createEntityManagerFactory("derby");
             System.out.println("EMF " + factory);
             bind(EntityManagerFactory.class).toInstance(factory);
+            Thread.sleep(6000);
         } catch (Exception e) {
             log.log(Level.SEVERE, "Exception caught in model - module", e);
         }
