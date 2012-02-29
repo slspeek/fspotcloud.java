@@ -23,7 +23,7 @@ public class J2eeTotalModule extends AbstractModule {
     @Override
     protected void configure() {
         (new PropertiesLoader()).loadProperties();
-        install(new ServerTotalModule());
+        install(new ServerTotalModule(100));
         install(new ModelModule());
         install(new TaskQueueDispatchDirectModule());
         install(new LenientUserServiceModule());

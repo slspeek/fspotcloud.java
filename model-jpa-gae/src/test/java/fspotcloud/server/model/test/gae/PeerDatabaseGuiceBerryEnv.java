@@ -7,15 +7,12 @@ import com.google.inject.Provides;
 import com.google.inject.name.Names;
 import fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
 import fspotcloud.server.model.test.GaeLocalDatastoreTestWrapper;
-import fspotcloud.simplejpadao.EMProvider;
+import fspotcloud.simplejpadao.EntityModule;
 import fspotcloud.simplejpadao.SimpleDAONamedId;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import net.sf.jsr107cache.Cache;
 import net.sf.jsr107cache.CacheException;
 import net.sf.jsr107cache.CacheFactory;
@@ -28,22 +25,19 @@ public class PeerDatabaseGuiceBerryEnv extends GuiceBerryModule {
         super.configure();
         bind(TestWrapper.class).to(GaeLocalDatastoreTestWrapper.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(100));
-        bind(EntityManager.class).toProvider(EMProvider.class);
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("gae");
-        System.out.println("EMF " + factory);
-        bind(EntityManagerFactory.class).toInstance(factory);
+        install(new EntityModule("gae"));
         bind(SimpleDAONamedId.class).to(PeerDatabaseManager.class);
     }
-    
-     @Provides
+
+    @Provides
     public Cache get() {
         try {
             Cache cache;
-             Map props = new HashMap();
+            Map props = new HashMap();
             props.put(GCacheFactory.EXPIRATION_DELTA, 3600);
-                CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
-                cache = cacheFactory.createCache(props);
-                return cache;
+            CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
+            cache = cacheFactory.createCache(props);
+            return cache;
         } catch (CacheException ex) {
             Logger.getLogger(TagGuiceBerryEnv.class.getName()).log(Level.SEVERE, null, ex);
         }
