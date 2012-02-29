@@ -11,6 +11,8 @@ import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.simplejpadao.EMProvider;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class ModelModule extends AbstractModule {
 
@@ -22,7 +24,10 @@ public class ModelModule extends AbstractModule {
         bind(Tags.class).to(TagManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(100));
         bind(EntityManager.class).toProvider(EMProvider.class);
-        bind(String.class).annotatedWith(Names.named("persistence-unit")).toInstance("derby");
+       EntityManagerFactory factory = Persistence.createEntityManagerFactory("derby");
+        System.out.println("EMF " + factory);
+        bind(EntityManagerFactory.class).toInstance(factory);
+        
         System.out.println("ModelModule configured.");
     }
 }

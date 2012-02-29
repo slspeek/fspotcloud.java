@@ -19,6 +19,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import net.sf.jsr107cache.Cache;
 import net.sf.jsr107cache.CacheException;
 import net.sf.jsr107cache.CacheFactory;
@@ -45,7 +47,9 @@ class ModelModule extends AbstractModule {
         bind(Tags.class).to(TagManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(100));
         bind(EntityManager.class).toProvider(EMProvider.class);
-        bind(String.class).annotatedWith(Names.named("persistence-unit")).toInstance("gae");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("gae");
+        System.out.println("EMF " + factory);
+        bind(EntityManagerFactory.class).toInstance(factory);
         System.out.println("Test ModelModule configured.");
     }
     

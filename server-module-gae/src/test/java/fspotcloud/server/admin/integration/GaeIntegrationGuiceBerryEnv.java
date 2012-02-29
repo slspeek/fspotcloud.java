@@ -37,6 +37,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 import net.sf.jsr107cache.Cache;
 import net.sf.jsr107cache.CacheException;
@@ -119,7 +121,10 @@ class MyModelModule extends AbstractModule {
 
         bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(1));
         bind(EntityManager.class).toProvider(EMProvider.class);
-        bind(String.class).annotatedWith(Names.named("persistence-unit")).toInstance("gae");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("gae");
+        System.out.println("EMF " + factory);
+        bind(EntityManagerFactory.class).toInstance(factory);
+        
     }
 }
 
