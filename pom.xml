@@ -504,23 +504,23 @@
             </dependency>
 <!--            bot dispatch-->
             <dependency>
-                <groupId>${project.groupId}.bot-dispatch</groupId>
+                <groupId>com.googlecode.bot-dispatch</groupId>
                 <artifactId>controller</artifactId>
                 <version>${botdispatch.version}</version>
             </dependency>
             <dependency>
-                <groupId>fspotcloud.bot-dispatch</groupId>
+                <groupId>com.googlecode.bot-dispatch</groupId>
                 <artifactId>command-jpa-gae</artifactId>
                 <type>jar</type>
                 <version>${botdispatch.version}</version>
             </dependency>
             <dependency>
-                <groupId>${project.groupId}.bot-dispatch</groupId>
+                <groupId>com.googlecode.bot-dispatch</groupId>
                 <artifactId>command-jpa</artifactId>
                 <version>${botdispatch.version}</version>
             </dependency>
             <dependency>
-                <groupId>fspotcloud.bot-dispatch</groupId>
+                <groupId>com.googlecode.bot-dispatch</groupId>
                 <artifactId>bot</artifactId>
                 <version>${botdispatch.version}</version>
             </dependency>

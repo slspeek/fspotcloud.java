@@ -9,7 +9,7 @@ import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.model.jpa.tag.TagEntity;
 import fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
 import fspotcloud.server.model.api.Tag;

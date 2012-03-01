@@ -140,7 +140,7 @@
             <type>test-jar</type>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.bot-dispatch</groupId>
+            <groupId>com.googlecode.bot-dispatch</groupId>
             <artifactId>command-jpa-j2ee</artifactId>
             <version>${botdispatch.version}</version>
         </dependency>

@@ -4,7 +4,7 @@
         <provider>org.datanucleus.store.appengine.jpa.DatastorePersistenceProvider</provider>
 <!--        <provider>org.datanucleus.api.jpa.PersistenceProviderImpl</provider>-->
         <class>fspotcloud.model.jpa.gae.photo.PhotoEntity</class>
-        <class>fspotcloud.botdispatch.model.jpa.gae.command.CommandEntity</class>
+        <class>com.googlecode.botdispatch.model.jpa.gae.command.CommandEntity</class>
         <class>fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseEntity</class>
         <class>fspotcloud.model.jpa.gae.tag.TagEntity</class>
         <properties>

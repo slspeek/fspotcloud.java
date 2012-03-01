@@ -77,7 +77,7 @@
         </dependency>
         <dependency>
             <artifactId>command-jpa-gae</artifactId>
-            <groupId>fspotcloud.bot-dispatch</groupId>
+            <groupId>com.googlecode.bot-dispatch</groupId>
             <type>jar</type>
             <exclusions>
                 <exclusion>

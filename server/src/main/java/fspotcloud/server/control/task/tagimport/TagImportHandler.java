@@ -6,7 +6,7 @@ import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
-import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.server.control.callback.TagDataCallback;
 import fspotcloud.server.control.task.actions.intern.TagImportAction;
 import fspotcloud.shared.dashboard.actions.VoidResult;

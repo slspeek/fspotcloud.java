@@ -5,7 +5,7 @@ package fspotcloud.server.admin.integration;
 import com.google.common.testing.TearDown;
 import com.google.guiceberry.testng.TestNgGuiceBerry;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.peer.db.Data;
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;

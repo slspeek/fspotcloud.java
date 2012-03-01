@@ -11,7 +11,7 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import fspotcloud.botdispatch.model.api.Commands;
+import com.googlecode.botdispatch.model.api.Commands;
 import fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;

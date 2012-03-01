@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
 import fspotcloud.shared.peer.rpc.actions.GetPhotoData;
 import fspotcloud.shared.peer.rpc.actions.ImageSpecs;

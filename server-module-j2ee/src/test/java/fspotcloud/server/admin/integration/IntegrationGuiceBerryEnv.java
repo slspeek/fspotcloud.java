@@ -4,7 +4,7 @@ import com.google.guiceberry.GuiceBerryModule;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
-import fspotcloud.botdispatch.controller.inject.LocalControllerModule;
+import com.googlecode.botdispatch.controller.inject.LocalControllerModule;
 import fspotcloud.model.jpa.peerdatabase.PeerDatabaseManager;
 import fspotcloud.model.jpa.photo.PhotoManager;
 import fspotcloud.model.jpa.tag.TagManager;

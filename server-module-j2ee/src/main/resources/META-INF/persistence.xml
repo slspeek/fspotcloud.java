@@ -5,7 +5,7 @@
     <class>fspotcloud.model.jpa.photo.PhotoEntity</class>
     <class>fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity</class>
     <class>fspotcloud.model.jpa.tag.TagEntity</class>
-    <class>fspotcloud.botdispatch.model.command.jpa.CommandEntity</class>
+    <class>com.googlecode.botdispatch.model.command.jpa.CommandEntity</class>
     <properties>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.connection.username" value="model"/>

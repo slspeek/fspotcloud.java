@@ -10,7 +10,7 @@ import javax.inject.Named;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
-import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.server.control.callback.PhotoDataCallback;
 import fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
 import fspotcloud.shared.dashboard.actions.VoidResult;

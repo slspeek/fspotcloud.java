@@ -3,8 +3,8 @@ package fspotcloud.peer;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import fspotcloud.botdispatch.bot.Bot;
-import fspotcloud.botdispatch.bot.BotModule;
+import com.googlecode.botdispatch.bot.Bot;
+import com.googlecode.botdispatch.bot.BotModule;
 import fspotcloud.peer.inject.PeerActionsModule;
 import fspotcloud.peer.inject.PeerModule;
 
