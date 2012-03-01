@@ -8,7 +8,7 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
-import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.server.control.callback.PeerMetaDataCallback;
 import fspotcloud.shared.dashboard.actions.SynchronizePeer;
 import fspotcloud.shared.dashboard.actions.VoidResult;

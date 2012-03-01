@@ -4,7 +4,7 @@
  */
 package fspotcloud.server.admin.actions;
 
-import fspotcloud.botdispatch.model.api.Commands;
+import com.googlecode.botdispatch.model.api.Commands;
 import fspotcloud.shared.dashboard.actions.CommandDeleteAll;
 import fspotcloud.user.UserService;
 import javax.inject.Provider;

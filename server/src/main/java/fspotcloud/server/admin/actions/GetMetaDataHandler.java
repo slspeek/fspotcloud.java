@@ -9,7 +9,7 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 import com.google.inject.Inject;
 
-import fspotcloud.botdispatch.model.api.Commands;
+import com.googlecode.botdispatch.model.api.Commands;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.shared.admin.GetMetaDataResult;

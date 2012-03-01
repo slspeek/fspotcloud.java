@@ -52,7 +52,7 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.bot-dispatch</groupId>
+            <groupId>com.googlecode.bot-dispatch</groupId>
             <artifactId>bot</artifactId>
         </dependency>
         <dependency>

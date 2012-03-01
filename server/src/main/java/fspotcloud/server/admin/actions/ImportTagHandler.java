@@ -9,7 +9,7 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 import com.google.inject.Inject;
 
-import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.server.control.callback.TagUpdateInstructionsCallback;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;

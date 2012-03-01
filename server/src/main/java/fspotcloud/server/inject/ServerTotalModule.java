@@ -6,7 +6,7 @@ package fspotcloud.server.inject;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
-import fspotcloud.botdispatch.controller.inject.ControllerServletModule;
+import com.googlecode.botdispatch.controller.inject.ControllerServletModule;
 import fspotcloud.server.control.task.TaskActionsModule;
 import fspotcloud.server.control.task.TaskModule;
 

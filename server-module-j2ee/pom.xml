@@ -90,7 +90,7 @@
         </dependency>
         <dependency>
             <artifactId>command-jpa</artifactId>
-            <groupId>fspotcloud.bot-dispatch</groupId>
+            <groupId>com.googlecode.bot-dispatch</groupId>
             <type>jar</type>
             <version>${botdispatch.version}</version>
             <exclusions>

@@ -2,7 +2,7 @@ package fspotcloud.server.control.hook;
 
 import com.google.inject.Inject;
 
-import fspotcloud.botdispatch.controller.callback.ControllerHook;
+import com.googlecode.botdispatch.controller.callback.ControllerHook;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
 

@@ -5,7 +5,7 @@ import org.testng.AssertJUnit;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import fspotcloud.botdispatch.controller.dispatch.ControllerDispatchAsync;
+import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
 
