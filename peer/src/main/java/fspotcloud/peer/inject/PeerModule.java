@@ -21,8 +21,8 @@ public class PeerModule extends AbstractModule {
 				.toInstance(
 						System.getProperty(
 								"db",
-								System.getProperty("user.home")
-										+ "/fspotcloud/peer/src/test/resources/photos.db"));
+								System.getProperty("user.dir")
+										+ "/src/test/resources/photos.db"));
 		bind(String.class).annotatedWith(Names.named("WorkDir")).toInstance(
 				System.getProperty("user.dir"));
 		bind(Integer.class).annotatedWith(Names.named("stop port")).toInstance(
