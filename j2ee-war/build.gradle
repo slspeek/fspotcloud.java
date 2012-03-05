@@ -1,0 +1,20 @@
+
+
+description = 'J2ee war'
+
+apply plugin: 'war'
+dependencies {
+compile project(':server-module-j2ee')
+compile project(':client')
+compile("org.openid4java:openid4java-consumer:0.9.6") {
+exclude(module: 'guice')
+}
+testCompile project(':test-util')
+testCompile "org.seleniumhq.selenium:selenium:2.0b3"
+testCompile project(':peer')
+testCompile "org.seleniumhq.selenium.client-drivers:selenium-java-client-driver:1.0.2"
+testCompile "com.google.guiceberry:guiceberry:3.0.4"
+testCompile "com.google.guava:guava-testlib:10.0.1"
+testCompile "junit:junit:4.10"
+testCompile project(':e2e-test')
+}

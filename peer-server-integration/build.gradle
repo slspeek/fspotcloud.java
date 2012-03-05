@@ -1,0 +1,22 @@
+
+
+description = 'Peer server integration tests'
+
+dependencies {
+compile project(':server')
+compile project(':model-api')
+compile project(':deps:guice-deps')
+testCompile "org.testng:testng:6.1.1"
+testCompile "org.mockito:mockito-core:1.9.0-rc1"
+testCompile project(':peer')
+testCompile project(':test-util')
+testCompile "com.google.guava:guava-testlib:10.0.1"
+testCompile "com.google.guiceberry:guiceberry:3.0.4"
+}
+test.useTestNG()
+
+task packageTests(type: Jar) {
+  from sourceSets.test.classes
+  classifier = 'tests'
+}
+artifacts.archives packageTests

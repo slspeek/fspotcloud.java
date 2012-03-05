@@ -38,7 +38,7 @@ public class Data {
 	private final String photoDirectoryOverride;
 	private final String photoDirectoryOriginalPath;
 	private final ImageData imageData = new ImageData();
-	private Connection connection;;
+	private Connection connection;
 
 	@Inject
 	public Data(@Named("JDBC URL") String jdbcURL) {
@@ -254,7 +254,7 @@ public class Data {
 			rs = stmt
 					.executeQuery("SELECT id, description, time, default_version_id "
 							+ "FROM photos WHERE id=\"" + photoId + "\"");
-			while (rs.next()) {
+			if (rs.next()) {
 				int version = rs.getInt(4);
 				return version;
 			}

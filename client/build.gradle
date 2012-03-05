@@ -1,0 +1,16 @@
+description = 'GWT client'
+
+dependencies {
+    compile project(':rpc')
+    compile project(':deps:gwt-deps')
+    compile project(':deps:guice-deps')
+    compile "com.google.inject:guice:3.0"
+    compile "javax.inject:javax.inject:1"
+    compile "com.google.guava:guava:r09"
+    testCompile "com.google.gwt:gwt-dev:2.4.0"
+    testCompile "junit:junit:3.8.1"
+    testCompile "org.jmock:jmock:2.5.1"
+    testCompile "org.mockito:mockito-core:1.9.0-rc1"
+    testCompile "org.seleniumhq.selenium.client-drivers:selenium-java-client-driver:1.0.2"
+    testCompile "org.seleniumhq.selenium:selenium:2.0b3"
+}

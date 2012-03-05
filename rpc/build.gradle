@@ -1,0 +1,10 @@
+
+
+description = 'Client Server API'
+
+dependencies {
+compile "com.google.gwt:gwt-servlet:2.4.0"
+compile "com.google.guava:guava:r09"
+compile "net.customware.gwt.dispatch:gwt-dispatch:1.2.0"
+testCompile "junit:junit:3.8.1"
+}
