@@ -1,0 +1,25 @@
+
+
+description = 'F-SpotCloud Server Component'
+
+dependencies {
+compile project(':rpc')
+compile project(':model-api')
+compile project(':deps:guice-deps')
+compile "com.googlecode.bot-dispatch:controller:0.42-bd"
+compile project(':peer-rpc')
+compile project(':deps:servlet-deps')
+compile "fspotcloud.taskqueue-dispatch:dispatch-api:0.3-tqd"
+compile project(':user-service-api')
+compile "org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2"
+testCompile "org.testng:testng:6.1.1"
+testCompile "org.mockito:mockito-core:1.9.0-rc1"
+testCompile project(':model-jpa-j2ee')
+}
+test.useTestNG()
+
+task packageTests(type: Jar) {
+  from sourceSets.test.classes
+  classifier = 'tests'
+}
+artifacts.archives packageTests

@@ -1,0 +1,26 @@
+allprojects {
+    apply plugin: 'maven'
+    defaultTasks 'build'
+    group = 'fspotcloud'
+    version = '0.12-alpha-02'
+}
+
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.5
+    targetCompatibility = 1.5
+
+    repositories {
+        mavenRepo urls: ["file:${System.properties['user.home']}/.m2/repository/"]
+
+        mavenRepo urls: ["http://repo2.maven.org/maven2"]
+        mavenRepo urls: ["http://fspotcloud-maven.googlecode.com/svn/maven/repository"]
+        mavenRepo urls: ["http://people.apache.org/repo/m2-snapshot-repository"]
+        mavenRepo urls: ["http://maven.fspotcloud.googlecode.com/hg/repo"]
+        mavenRepo urls: ["http://maven-gae-plugin.googlecode.com/svn/repository"]
+        mavenRepo urls: ["http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/"]
+        mavenRepo urls: ["http://www.datanucleus.org/downloads/maven2"]
+    }
+}
+
+dependsOnChildren()

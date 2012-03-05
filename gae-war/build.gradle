@@ -1,0 +1,17 @@
+
+
+description = 'Gae war'
+
+apply plugin: 'war'
+dependencies {
+compile project(':server-module-gae')
+compile project(':client')
+testCompile project(':test-util')
+testCompile "org.seleniumhq.selenium:selenium:2.0b3"
+testCompile project(':peer')
+testCompile "org.seleniumhq.selenium.client-drivers:selenium-java-client-driver:1.0.2"
+testCompile "com.google.guiceberry:guiceberry:3.0.4"
+testCompile "com.google.guava:guava-testlib:10.0.1"
+testCompile "junit:junit:4.10"
+testCompile project(':e2e-test')
+}

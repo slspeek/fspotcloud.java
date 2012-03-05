@@ -1,0 +1,27 @@
+rootProject.name = 'fspotcloud'
+ include ':rpc', ':peer-rpc', ':user-service-api', ':deps', ':deps:appengine-deps', ':user-service-gae', ':user-service-openid', ':test-util', ':deps:guice-deps', ':model-api', ':model-jpa', ':model-jpa-j2ee', ':model-jpa-gae', ':deps:servlet-deps', ':server', ':deps:gwt-deps', ':peer', ':peer-server-integration', ':server-module-gae', ':server-module-j2ee', ':client', ':e2e-test', ':gae-war', ':war-prod', ':j2ee-war'
+project(':rpc').projectDir = "$rootDir/rpc/" as File
+project(':peer-rpc').projectDir = "$rootDir/peer-rpc/" as File
+project(':user-service-api').projectDir = "$rootDir/user-service-api/" as File
+project(':deps').projectDir = "$rootDir/deps/" as File
+project(':deps:appengine-deps').projectDir = "$rootDir/deps/appengine-deps/" as File
+project(':user-service-gae').projectDir = "$rootDir/user-service-gae/" as File
+project(':user-service-openid').projectDir = "$rootDir/user-service-openid/" as File
+project(':test-util').projectDir = "$rootDir/test-util/" as File
+project(':deps:guice-deps').projectDir = "$rootDir/deps/guice-deps/" as File
+project(':model-api').projectDir = "$rootDir/model-api/" as File
+project(':model-jpa').projectDir = "$rootDir/model-jpa/" as File
+project(':model-jpa-j2ee').projectDir = "$rootDir/model-jpa-j2ee/" as File
+project(':model-jpa-gae').projectDir = "$rootDir/model-jpa-gae/" as File
+project(':deps:servlet-deps').projectDir = "$rootDir/deps/servlet-deps/" as File
+project(':server').projectDir = "$rootDir/server/" as File
+project(':deps:gwt-deps').projectDir = "$rootDir/deps/gwt-deps/" as File
+project(':peer').projectDir = "$rootDir/peer/" as File
+project(':peer-server-integration').projectDir = "$rootDir/peer-server-integration/" as File
+project(':server-module-gae').projectDir = "$rootDir/server-module-gae/" as File
+project(':server-module-j2ee').projectDir = "$rootDir/server-module-j2ee/" as File
+project(':client').projectDir = "$rootDir/client/" as File
+project(':e2e-test').projectDir = "$rootDir/e2e-test/" as File
+project(':gae-war').projectDir = "$rootDir/gae-war/" as File
+project(':war-prod').projectDir = "$rootDir/war-prod/" as File
+project(':j2ee-war').projectDir = "$rootDir/j2ee-war/" as File

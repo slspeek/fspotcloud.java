@@ -1,0 +1,28 @@
+
+
+description = 'F-SpotCloud Server GAE Configuration'
+
+dependencies {
+compile project(':server')
+compile project(':model-jpa-gae')
+compile project(':deps:guice-deps')
+compile "com.google.appengine:appengine-local-runtime:1.6.2"
+compile("fspotcloud.taskqueue-dispatch:dispatch:0.3-tqd") {
+exclude(module: 'gwt-user')
+}
+compile("com.googlecode.bot-dispatch:command-jpa-gae:0.42-bd") {
+exclude(module: 'gwt-user')
+}
+compile "org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2"
+compile project(':user-service-gae')
+testCompile project(':peer')
+testCompile "com.google.appengine:appengine-api-stubs:1.6.2"
+testCompile "com.google.appengine:appengine-testing:1.6.2"
+testCompile project(':test-util')
+testCompile project(':user-service-api')
+testCompile "com.google.guiceberry:guiceberry:3.0.4"
+testCompile "com.google.guava:guava-testlib:10.0.1"
+testCompile "junit:junit:4.10"
+testCompile "org.testng:testng:6.1.1"
+}
+test.useTestNG()

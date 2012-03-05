@@ -1,0 +1,9 @@
+
+
+description = 'peer-rpc'
+
+dependencies {
+compile "com.google.gwt:gwt-servlet:2.4.0"
+compile project(':rpc')
+testCompile "junit:junit:3.8.1"
+}

@@ -1,0 +1,32 @@
+
+
+description = 'Model JPA GAE Implementation'
+
+dependencies {
+compile project(':rpc')
+compile project(':model-api')
+compile "com.google.guava:guava:r09"
+compile "commons-lang:commons-lang:2.6"
+compile "javax.inject:javax.inject:1"
+compile "com.google.inject:guice:3.0"
+compile "javax.transaction:jta:1.1"
+compile "net.customware.gwt.dispatch:gwt-dispatch:1.2.0"
+compile "javax.jdo:jdo-api:3.0"
+compile "commons-codec:commons-codec:1.4"
+compile "com.google.inject.extensions:guice-servlet:3.0"
+compile project(':model-jpa')
+compile project(':deps:appengine-deps')
+compile "com.google.appengine:appengine-local-runtime:1.6.2"
+testCompile "junit:junit:4.10"
+testCompile "org.mockito:mockito-core:1.9.0-rc1"
+testCompile "com.google.guava:guava-testlib:10.0.1"
+testCompile "org.slf4j:slf4j-log4j12:1.6.4"
+testCompile project(':model-api')
+testCompile "com.google.guiceberry:guiceberry:3.0.4"
+testCompile "com.google.appengine:appengine-testing:1.6.0"
+testCompile "com.google.appengine:appengine-api-stubs:1.6.0"
+testCompile "fspotcloud.simple-jpa-dao:dao-namedid-test:0.15-sjd"
+compile("org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2") {
+provided : true
+}
+}

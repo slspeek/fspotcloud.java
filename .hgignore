@@ -1,4 +1,7 @@
 syntax: glob
+.gradle/*
+*/build/*
+build/*
 derby.log
 */derby.log
 */hibernate.log

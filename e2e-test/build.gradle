@@ -1,0 +1,18 @@
+description = 'Selenium tests'
+
+dependencies {
+    testCompile project(':test-util')
+    testCompile "org.seleniumhq.selenium:selenium:2.0b3"
+    testCompile "org.seleniumhq.selenium.client-drivers:selenium-java-client-driver:1.0.2"
+    testCompile "com.google.guiceberry:guiceberry:3.0.4"
+    testCompile "com.google.guava:guava-testlib:10.0.1"
+    testCompile "junit:junit:4.10"
+    testCompile "javax.inject:javax.inject:1"
+    testCompile "com.google.inject:guice:3.0"
+}
+
+task packageTests(type: Jar) {
+    from sourceSets.test.classes
+    classifier = 'tests'
+}
+artifacts.archives packageTests
