@@ -299,8 +299,13 @@
     </build>
     <repositories>
         <repository>
-            <id>fspotcloud-maven</id>
+            <id>fspotcloud-maven-legacy</id>
             <url>http://maven.fspotcloud.googlecode.com/hg/repo</url>
+        </repository>
+         <repository>
+            <id>fspotcloud-maven</id>
+            <name>fspotcloud-maven</name>
+            <url>http://fspotcloud-maven.googlecode.com/svn/maven/repository</url>
         </repository>
     </repositories>
 </project>
