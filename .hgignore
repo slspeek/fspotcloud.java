@@ -1,4 +1,5 @@
 syntax: glob
+te-report/*
 */te-report/*
 .gradle/*
 */build/*
