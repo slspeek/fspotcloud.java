@@ -58,7 +58,6 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
         return this.id.equals(id);
     }
 
-    @Override
     public int compareTo(PhotoInfo o) {
         Date otherDate = o.getDate();
         final int dateComparison = this.date.compareTo(otherDate);
