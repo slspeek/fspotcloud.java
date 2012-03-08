@@ -11,7 +11,7 @@ import fspotcloud.server.control.callback.TagDataCallback;
 import fspotcloud.server.control.task.actions.intern.TagImportAction;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.GetTagData;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
 public class TagImportHandler extends
 		SimpleActionHandler<TagImportAction, VoidResult> {

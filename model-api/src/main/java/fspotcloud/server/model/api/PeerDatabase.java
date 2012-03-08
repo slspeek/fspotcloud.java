@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import fspotcloud.shared.tag.TagNode;
-import fspotcloud.simplejpadao.HasSetKey;
+import com.googlecode.simplejpadao.HasSetKey;
 import java.io.Serializable;
 
 public interface PeerDatabase extends HasSetKey<String>, Serializable {

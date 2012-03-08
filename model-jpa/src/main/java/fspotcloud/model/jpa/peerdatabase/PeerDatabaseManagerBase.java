@@ -2,7 +2,7 @@ package fspotcloud.model.jpa.peerdatabase;
 
 import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
-import fspotcloud.simplejpadao.SimpleDAONamedIdImpl;
+import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import java.util.Date;
 import java.util.logging.Logger;
 import javax.inject.Inject;

@@ -129,14 +129,14 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.simple-jpa-dao</groupId>
+            <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-impl</artifactId>
-            <version>0.15-sjd</version>
+            <version>0.16-sjd</version>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.simple-jpa-dao</groupId>
+            <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>cached-dao</artifactId>
-            <version>0.15-sjd</version>
+            <version>0.16-sjd</version>
             <type>jar</type>
         </dependency>
     </dependencies>

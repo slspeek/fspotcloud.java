@@ -16,7 +16,7 @@ import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import fspotcloud.server.control.callback.TagDataCallback;
 import fspotcloud.server.control.task.actions.intern.TagImportAction;
 import fspotcloud.shared.peer.rpc.actions.GetTagData;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
 public class TagImportHandlerTest {
 

@@ -1,7 +1,7 @@
 package fspotcloud.server.model.api;
 
 import fspotcloud.shared.photo.PhotoInfo;
-import fspotcloud.simplejpadao.HasSetKey;
+import com.googlecode.simplejpadao.HasSetKey;
 import java.io.Serializable;
 import java.util.TreeSet;
 

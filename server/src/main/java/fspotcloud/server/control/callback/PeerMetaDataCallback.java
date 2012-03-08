@@ -11,8 +11,8 @@ import fspotcloud.server.model.api.PeerDatabase;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
-import fspotcloud.taskqueuedispatch.NullCallback;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import com.googlecode.taskqueuedispatch.NullCallback;
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
 public class PeerMetaDataCallback implements AsyncCallback<PeerMetaDataResult>, Serializable {
 final static private Logger log = Logger.getLogger(PeerMetaDataCallback.class.getName());

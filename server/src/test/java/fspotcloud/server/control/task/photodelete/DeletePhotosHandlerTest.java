@@ -30,7 +30,7 @@ import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.photo.PhotoInfo;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 public class DeletePhotosHandlerTest {
 
 	private static final String ID_B = "B";

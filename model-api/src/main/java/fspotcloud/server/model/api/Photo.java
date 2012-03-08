@@ -1,6 +1,6 @@
 package fspotcloud.server.model.api;
 
-import fspotcloud.simplejpadao.HasSetKey;
+import com.googlecode.simplejpadao.HasSetKey;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

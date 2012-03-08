@@ -17,7 +17,7 @@ import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.GetPhotoData;
 import fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import fspotcloud.shared.peer.rpc.actions.PhotoUpdate;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
 public class PhotoUpdateHandler extends
 		SimpleActionHandler<PhotoUpdateAction, VoidResult> {

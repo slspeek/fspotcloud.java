@@ -15,7 +15,7 @@ import fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
 import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.dashboard.actions.ImportTag;
-import fspotcloud.taskqueuedispatch.SerializableAsyncCallback;
+import com.googlecode.taskqueuedispatch.SerializableAsyncCallback;
 import fspotcloud.user.AdminPermission;
 
 public class ImportTagHandlerTest {
