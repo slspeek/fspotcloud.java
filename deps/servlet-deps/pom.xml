@@ -2,11 +2,11 @@
 <project>
 	<parent>
 		<artifactId>deps</artifactId>
-		<groupId>fspotcloud</groupId>
-		<version>0.12-alpha-02</version>
+		<groupId>com.googlecode.fspotcloud</groupId>
+		<version>0.12-beta</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>fspotcloud.deps</groupId>
+	<groupId>com.googlecode.fspotcloud.deps</groupId>
 	<artifactId>servlet-deps</artifactId>
 	<packaging>pom</packaging>
 	<name>Dependencies for Servlets</name>

@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>fspotcloud</artifactId>
-        <groupId>fspotcloud</groupId>
-        <version>0.12-alpha-02</version>
+        <groupId>com.googlecode.fspotcloud</groupId>
+        <version>0.12-beta</version>
     </parent>
-    <groupId>fspotcloud</groupId>
+    <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>peer-server-integration</artifactId>
-    <version>0.12-alpha-02</version>
+    <version>0.12-beta</version>
     <name>Peer server integration tests</name>
     <dependencies>
         <dependency>
@@ -52,7 +52,7 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>fspotcloud</groupId>
+            <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>test-util</artifactId>
         </dependency>
          <dependency>

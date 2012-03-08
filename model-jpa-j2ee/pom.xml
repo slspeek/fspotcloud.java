@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>fspotcloud</artifactId>
-        <groupId>fspotcloud</groupId>
-        <version>0.12-alpha-02</version>
+        <groupId>com.googlecode.fspotcloud</groupId>
+        <version>0.12-beta</version>
     </parent>
-    <groupId>fspotcloud</groupId>
+    <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>model-jpa-j2ee</artifactId>
-    <version>0.12-alpha-02</version>
+    <version>0.12-beta</version>
     <packaging>jar</packaging>
     <name>Model JPA J2EE Implementation</name>
     <dependencies>
@@ -20,11 +20,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>fspotcloud</groupId>
+            <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>rpc</artifactId>
         </dependency>
         <dependency>
-            <groupId>fspotcloud</groupId>
+            <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>model-api</artifactId>
         </dependency>
         <dependency>
@@ -247,7 +247,7 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/model</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_fspotcloud.model.api.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.J2eeModelGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.model.api.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.model.test.J2eeModelGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
@@ -263,7 +263,7 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.TagGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.model.test.TagGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
@@ -280,7 +280,7 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.PhotoGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.model.test.PhotoGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
@@ -297,7 +297,7 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.PeerDatabaseGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.model.test.PeerDatabaseGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>

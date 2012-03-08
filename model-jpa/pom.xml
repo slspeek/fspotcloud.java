@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>fspotcloud</artifactId>
-        <groupId>fspotcloud</groupId>
-        <version>0.12-alpha-02</version>
+        <groupId>com.googlecode.fspotcloud</groupId>
+        <version>0.12-beta</version>
     </parent>
-    <groupId>fspotcloud</groupId>
+    <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>model-jpa</artifactId>
-    <version>0.12-alpha-02</version>
+    <version>0.12-beta</version>
     <packaging>jar</packaging>
     <name>Model JPA Base</name>
     <dependencies>
@@ -20,11 +20,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>fspotcloud</groupId>
+            <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>rpc</artifactId>
         </dependency>
         <dependency>
-            <groupId>fspotcloud</groupId>
+            <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>model-api</artifactId>
         </dependency>
         <dependency>

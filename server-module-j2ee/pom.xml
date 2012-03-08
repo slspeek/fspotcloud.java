@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>fspotcloud</artifactId>
-        <groupId>fspotcloud</groupId>
-        <version>0.12-alpha-02</version>
+        <groupId>com.googlecode.fspotcloud</groupId>
+        <version>0.12-beta</version>
     </parent>
-    <groupId>fspotcloud</groupId>
+    <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>server-module-j2ee</artifactId>
-    <version>0.12-alpha-02</version>
+    <version>0.12-beta</version>
     <name>F-SpotCloud Server J2EE Configuration</name>
     <description>Guice configuration for deployment on J2EE</description>
     <dependencies>
@@ -51,7 +51,7 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>fspotcloud</groupId>
+            <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>test-util</artifactId>
         </dependency>
         <dependency>
@@ -188,7 +188,7 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>fspotcloud.server.admin.integration.IntegrationGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.admin.integration.IntegrationGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>

@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>fspotcloud</artifactId>
-        <groupId>fspotcloud</groupId>
-        <version>0.12-alpha-02</version>
+        <groupId>com.googlecode.fspotcloud</groupId>
+        <version>0.12-beta</version>
     </parent>
-    <groupId>fspotcloud</groupId>
+    <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>server</artifactId>
-    <version>0.12-alpha-02</version>
+    <version>0.12-beta</version>
     <name>F-SpotCloud Server Component</name>
     <description>The controller and data reading</description>
     <dependencies>
@@ -55,9 +55,9 @@
             <artifactId>dispatch-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>fspotcloud</groupId>
+            <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>user-service-api</artifactId>
-            <version>0.12-alpha-02</version>
+            <version>0.12-beta</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -66,7 +66,7 @@
             <version>1.2</version>
         </dependency>
         <dependency>
-            <groupId>fspotcloud</groupId>
+            <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>model-jpa-j2ee</artifactId>
             <scope>test</scope>
             <type>jar</type>
