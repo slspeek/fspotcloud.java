@@ -1,0 +1,25 @@
+package com.googlecode.fspotcloud.server.control.hook;
+
+import com.google.inject.Inject;
+
+import com.googlecode.botdispatch.controller.callback.ControllerHook;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+
+public class TimeLoggingControllerHook implements ControllerHook {
+
+	final private PeerDatabases defaultPeer;
+	
+	@Inject
+	public TimeLoggingControllerHook(PeerDatabases defaultPeer) {
+		super();
+		this.defaultPeer = defaultPeer;
+	}
+	@Override
+	public void preprocess(long id, byte[] result) {
+		PeerDatabase peer = defaultPeer.get();
+		peer.touchPeerContact();
+		defaultPeer.save(peer);
+	}
+
+}

@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>fspotcloud</artifactId>
-        <groupId>fspotcloud</groupId>
-        <version>0.12-alpha-02</version>
+        <groupId>com.googlecode.fspotcloud</groupId>
+        <version>0.12-beta</version>
     </parent>
-    <groupId>fspotcloud</groupId>
+    <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>peer-rpc</artifactId>
-    <version>0.12-alpha-02</version>
+    <version>0.12-beta</version>
     <name>peer-rpc</name>
     <url>http://maven.apache.org</url>
     <properties>
@@ -26,7 +26,7 @@
             <artifactId>gwt-servlet</artifactId>
         </dependency>
         <dependency>
-            <groupId>fspotcloud</groupId>
+            <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>rpc</artifactId>
             <version>${project.version}</version>
             <type>jar</type>

@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
 		<artifactId>deps</artifactId>
-		<groupId>fspotcloud</groupId>
-		<version>0.12-alpha-02</version>
+		<groupId>com.googlecode.fspotcloud</groupId>
+		<version>0.12-beta</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>appengine-deps</artifactId>
-	<groupId>fspotcloud.deps</groupId>
+	<groupId>com.googlecode.fspotcloud.deps</groupId>
 	<packaging>pom</packaging>
 	<name>Dependencies for AppEngine</name>
 	<dependencies>

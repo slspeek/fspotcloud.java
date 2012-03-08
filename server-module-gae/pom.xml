@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>fspotcloud</artifactId>
-        <groupId>fspotcloud</groupId>
-        <version>0.12-alpha-02</version>
+        <groupId>com.googlecode.fspotcloud</groupId>
+        <version>0.12-beta</version>
     </parent>
-    <groupId>fspotcloud</groupId>
+    <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>server-module-gae</artifactId>
-    <version>0.12-alpha-02</version>
+    <version>0.12-beta</version>
     <name>F-SpotCloud Server GAE Configuration</name>
     <description>Guice configuration for deployment on GAE</description>
     <dependencies>
@@ -62,7 +62,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>fspotcloud</groupId>
+            <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>test-util</artifactId>
         </dependency>
         <dependency>
@@ -169,7 +169,7 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>fspotcloud.server.admin.integration.GaeIntegrationGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.admin.integration.GaeIntegrationGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>

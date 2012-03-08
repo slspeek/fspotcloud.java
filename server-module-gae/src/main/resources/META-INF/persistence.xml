@@ -3,10 +3,10 @@
     <persistence-unit name="gae" transaction-type="RESOURCE_LOCAL">
         <provider>org.datanucleus.store.appengine.jpa.DatastorePersistenceProvider</provider>
 <!--        <provider>org.datanucleus.api.jpa.PersistenceProviderImpl</provider>-->
-        <class>fspotcloud.model.jpa.gae.photo.PhotoEntity</class>
+        <class>com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoEntity</class>
         <class>com.googlecode.botdispatch.model.jpa.gae.command.CommandEntity</class>
-        <class>fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseEntity</class>
-        <class>fspotcloud.model.jpa.gae.tag.TagEntity</class>
+        <class>com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseEntity</class>
+        <class>com.googlecode.fspotcloud.model.jpa.gae.tag.TagEntity</class>
         <properties>
             <property name="datanucleus.NontransactionalRead" value="true"/>
             <property name="datanucleus.NontransactionalWrite" value="true"/>

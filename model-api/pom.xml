@@ -4,17 +4,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>fspotcloud</artifactId>
-        <groupId>fspotcloud</groupId>
-        <version>0.12-alpha-02</version>
+        <groupId>com.googlecode.fspotcloud</groupId>
+        <version>0.12-beta</version>
     </parent>
-    <groupId>fspotcloud</groupId>
+    <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>model-api</artifactId>
-    <version>0.12-alpha-02</version>
+    <version>0.12-beta</version>
     <packaging>jar</packaging>
     <name>Model API</name>
     <dependencies>
         <dependency>
-            <groupId>fspotcloud</groupId>
+            <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>rpc</artifactId>
             <exclusions>
                 <exclusion>
@@ -23,7 +23,7 @@
                 </exclusion>
                 <exclusion>
                     <artifactId>gwt-deps</artifactId>
-                    <groupId>fspotcloud.deps</groupId>
+                    <groupId>com.googlecode.fspotcloud.deps</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -49,9 +49,9 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.deps</groupId>
+            <groupId>com.googlecode.fspotcloud.deps</groupId>
             <artifactId>guice-deps</artifactId>
-            <version>0.12-alpha-02</version>
+            <version>0.12-beta</version>
             <type>pom</type>
         </dependency>
         <dependency>

@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>fspotcloud</artifactId>
-        <groupId>fspotcloud</groupId>
-        <version>0.12-alpha-02</version>
+        <groupId>com.googlecode.fspotcloud</groupId>
+        <version>0.12-beta</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>j2ee-war</artifactId>
@@ -134,7 +134,7 @@
                             </includes>
                             <testClassesDirectory>${project.build.directory}/e2e-tests</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_fspotcloud.test.SeleniumGuiceBerryEnv>fspotcloud.test.J2eeWarGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.test.SeleniumGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.SeleniumGuiceBerryEnv>com.googlecode.fspotcloud.test.J2eeWarGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.SeleniumGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
@@ -157,7 +157,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>fspotcloud</groupId>
+                                    <groupId>com.googlecode.fspotcloud</groupId>
                                     <artifactId>client</artifactId>
                                 </artifactItem>
                                 <artifactItem>

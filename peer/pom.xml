@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>fspotcloud</groupId>
+        <groupId>com.googlecode.fspotcloud</groupId>
         <artifactId>fspotcloud</artifactId>
-        <version>0.12-alpha-02</version>
+        <version>0.12-beta</version>
     </parent>
-    <groupId>fspotcloud</groupId>
+    <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>peer</artifactId>
     <name>The Peer Bot</name>
     <description>The bot that sends the requested photo data to the server.</description>
@@ -37,7 +37,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>fspotcloud</groupId>
+            <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>peer-rpc</artifactId>
             <version>${project.version}</version>
             <type>jar</type>
@@ -45,7 +45,7 @@
         </dependency>
 		
         <dependency>
-            <groupId>fspotcloud.deps</groupId>
+            <groupId>com.googlecode.fspotcloud.deps</groupId>
             <artifactId>gwt-deps</artifactId>
             <version>${project.version}</version>
             <type>pom</type>
@@ -93,7 +93,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>fspotcloud.peer.Main</mainClass>
+                            <mainClass>com.googlecode.fspotcloud.peer.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
