@@ -5,7 +5,7 @@ import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.photo.PhotoInfo;
 import fspotcloud.shared.photo.PhotoInfoStore;
 import fspotcloud.shared.tag.TagNode;
-import fspotcloud.simplejpadao.SimpleDAONamedIdImpl;
+import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedSet;

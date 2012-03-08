@@ -145,9 +145,9 @@
             <version>${botdispatch.version}</version>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.simple-jpa-dao</groupId>
+            <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-namedid-test</artifactId>
-            <version>0.15-sjd</version>
+            <version>0.16-sjd</version>
             <scope>test</scope>
             <type>jar</type>
         </dependency>
@@ -224,7 +224,7 @@
                                     <outputDirectory>${project.build.directory}/additionaltests/model</outputDirectory>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>fspotcloud.simple-jpa-dao</groupId>
+                                    <groupId>com.googlecode.simple-jpa-dao</groupId>
                                     <artifactId>dao-namedid-test</artifactId>
                                     <type>jar</type>
                                     <outputDirectory>${project.build.directory}/additionaltests/dao</outputDirectory>
@@ -263,7 +263,7 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.TagGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.TagGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
@@ -280,7 +280,7 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.PhotoGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.PhotoGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
@@ -297,7 +297,7 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.PeerDatabaseGuiceBerryEnv</GuiceBerryEnvSelectorOverride_fspotcloud.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>fspotcloud.server.model.test.PeerDatabaseGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>

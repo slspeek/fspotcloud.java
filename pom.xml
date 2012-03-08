@@ -68,8 +68,8 @@
         <module>j2ee-war</module>
     </modules>
     <properties>
-        <botdispatch.version>0.42-bd</botdispatch.version>
-        <taskqueuedispatch.version>0.3-tqd</taskqueuedispatch.version>
+        <botdispatch.version>0.43-bd</botdispatch.version>
+        <taskqueuedispatch.version>0.4-tqd</taskqueuedispatch.version>
         <hibernate.version>4.0.0.Final</hibernate.version>
         <derby.version>10.6.2.1</derby.version>
         <guice.version>3.0</guice.version>
@@ -551,17 +551,17 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>${project.groupId}.taskqueue-dispatch</groupId>
+                <groupId>com.googlecode.taskqueue-dispatch</groupId>
                 <artifactId>dispatch</artifactId>
                 <version>${taskqueuedispatch.version}</version>
             </dependency>
             <dependency>
-                <groupId>${project.groupId}.taskqueue-dispatch</groupId>
+                <groupId>com.googlecode.taskqueue-dispatch</groupId>
                 <artifactId>dispatch-api</artifactId>
                 <version>${taskqueuedispatch.version}</version>
             </dependency>
             <dependency>
-                <groupId>${project.groupId}.taskqueue-dispatch</groupId>
+                <groupId>com.googlecode.taskqueue-dispatch</groupId>
                 <artifactId>direct</artifactId>
                 <version>${taskqueuedispatch.version}</version>
             </dependency>

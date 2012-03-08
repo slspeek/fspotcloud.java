@@ -10,8 +10,8 @@ import com.google.inject.name.Names;
 import com.googlecode.botdispatch.model.api.Commands;
 import com.googlecode.botdispatch.model.jpa.gae.command.CommandManager;
 import fspotcloud.model.jpa.CachedModelModule;
-import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchModule;
-import fspotcloud.taskqueuedispatch.inject.TaskQueueDispatchServletModule;
+import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchModule;
+import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchServletModule;
 import fspotcloud.user.gae.UserModuleGae;
 
 /**

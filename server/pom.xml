@@ -51,7 +51,7 @@
             <artifactId>mockito-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.taskqueue-dispatch</groupId>
+            <groupId>com.googlecode.taskqueue-dispatch</groupId>
             <artifactId>dispatch-api</artifactId>
         </dependency>
         <dependency>

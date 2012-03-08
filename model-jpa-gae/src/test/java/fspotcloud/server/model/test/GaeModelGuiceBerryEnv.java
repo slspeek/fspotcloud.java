@@ -13,7 +13,7 @@ import fspotcloud.model.jpa.gae.tag.TagManager;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.simplejpadao.EntityModule;
+import com.googlecode.simplejpadao.EntityModule;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;

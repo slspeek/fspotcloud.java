@@ -8,8 +8,8 @@ import com.google.inject.Provider;
 
 import fspotcloud.server.model.api.Photo;
 import fspotcloud.server.model.api.Photos;
-import fspotcloud.simplejpadao.SimpleDAONamedIdImpl;
-import fspotcloud.simplejpadao.cacheddao.CachedSimpleDAONamedIdImpl;
+import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
+import com.googlecode.simplejpadao.cacheddao.CachedSimpleDAONamedIdImpl;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;

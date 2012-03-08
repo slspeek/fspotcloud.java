@@ -10,7 +10,7 @@ import com.google.inject.Inject;
 import fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
 import fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import fspotcloud.shared.peer.rpc.actions.TagUpdateInstructionsResult;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
 public class TagUpdateInstructionsCallback implements
 		AsyncCallback<TagUpdateInstructionsResult>, Serializable {

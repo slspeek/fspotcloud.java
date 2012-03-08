@@ -25,7 +25,7 @@ import fspotcloud.shared.peer.rpc.actions.GetPhotoData;
 import fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
 import fspotcloud.shared.peer.rpc.actions.PhotoUpdate;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
 public class PhotoUpdateHandlerTest {
 

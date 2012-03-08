@@ -19,7 +19,7 @@ import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.dashboard.actions.UnImportTag;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.photo.PhotoInfo;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import fspotcloud.user.AdminPermission;
 
 public class UnImportTagHandler extends SimpleActionHandler<UnImportTag, VoidResult> {

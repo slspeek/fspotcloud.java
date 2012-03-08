@@ -8,7 +8,7 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 import fspotcloud.server.control.task.actions.intern.DeleteTags;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.dashboard.actions.VoidResult;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.logging.Logger;
 
 public class DeleteTagsHandler extends SimpleActionHandler<DeleteTags, VoidResult> {

@@ -9,7 +9,7 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 import fspotcloud.server.control.task.actions.intern.DeleteTags;
 import fspotcloud.shared.dashboard.actions.TagDeleteAll;
 import fspotcloud.shared.dashboard.actions.VoidResult;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import fspotcloud.user.AdminPermission;
 
 public class TagDeleteAllHandler extends SimpleActionHandler<TagDeleteAll, VoidResult> {

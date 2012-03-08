@@ -16,7 +16,7 @@ import fspotcloud.server.model.api.Tag;
 import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.photo.PhotoInfo;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.TreeSet;
 
 public class DeletePhotosHandler extends SimpleActionHandler<DeletePhotos, VoidResult> {

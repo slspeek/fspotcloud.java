@@ -55,9 +55,9 @@
             <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>fspotcloud.simple-jpa-dao</groupId>
+            <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-api</artifactId>
-            <version>0.15-sjd</version>
+            <version>0.16-sjd</version>
         </dependency>
     </dependencies>
     <build>

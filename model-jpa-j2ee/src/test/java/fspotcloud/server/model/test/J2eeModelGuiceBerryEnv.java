@@ -10,7 +10,7 @@ import fspotcloud.model.jpa.tag.TagManager;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.simplejpadao.EntityModule;
+import com.googlecode.simplejpadao.EntityModule;
 
 
 public class J2eeModelGuiceBerryEnv extends GuiceBerryModule {

@@ -17,7 +17,7 @@ import fspotcloud.server.model.api.Tags;
 import fspotcloud.shared.dashboard.actions.VoidResult;
 import fspotcloud.shared.peer.rpc.actions.PhotoRemovedFromTag;
 import fspotcloud.shared.photo.PhotoInfo;
-import fspotcloud.taskqueuedispatch.TaskQueueDispatch;
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
 public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotosFromTagAction, VoidResult> {
 

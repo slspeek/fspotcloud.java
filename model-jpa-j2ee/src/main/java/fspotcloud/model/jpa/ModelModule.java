@@ -9,7 +9,7 @@ import fspotcloud.model.jpa.tag.TagManager;
 import fspotcloud.server.model.api.PeerDatabases;
 import fspotcloud.server.model.api.Photos;
 import fspotcloud.server.model.api.Tags;
-import fspotcloud.simplejpadao.EntityModule;
+import com.googlecode.simplejpadao.EntityModule;
 import java.util.logging.Logger;
 
 public class ModelModule extends AbstractModule {
