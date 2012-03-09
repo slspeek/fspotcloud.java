@@ -1,10 +1,9 @@
-
-
 description = 'Production war'
 
 apply plugin: 'war'
+
 dependencies {
-compile project(':rpc')
-compile project(':server-module-j2ee')
-compile project(':client')
+    compile project(':rpc')
+    compile project(':server-module-j2ee')
+    compile project(':client')
 }

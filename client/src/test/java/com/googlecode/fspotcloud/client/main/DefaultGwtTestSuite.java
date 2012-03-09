@@ -1,13 +1,12 @@
 package com.googlecode.fspotcloud.client.main;
 
+import com.googlecode.fspotcloud.client.gwttest.GwtTestImageViewImpl;
 import junit.framework.Test;
 import junit.framework.TestCase;
 
 import com.google.gwt.junit.tools.GWTTestSuite;
 
 import com.googlecode.fspotcloud.client.main.event.GwtTestEventModule;
-import com.googlecode.fspotcloud.client.main.ui.GwtTestImageViewImpl;
-import com.googlecode.fspotcloud.client.main.view.api.GwtTestButtonPanelPresenterProvider;
 
 public class DefaultGwtTestSuite extends TestCase {
 	public static Test suite() {

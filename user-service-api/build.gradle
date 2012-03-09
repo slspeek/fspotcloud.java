@@ -1,15 +1,13 @@
-
-
 description = 'User service api'
 
 dependencies {
-compile "javax.inject:javax.inject:1"
-testCompile "junit:junit:4.10"
-testCompile "org.jukito:jukito:1.1"
+    compile "javax.inject:javax.inject:1"
+    testCompile "junit:junit:4.10"
+    testCompile "org.jukito:jukito:1.1"
 }
 
 task packageTests(type: Jar) {
-  from sourceSets.test.classes
-  classifier = 'tests'
+    from sourceSets.test.classes
+    classifier = 'tests'
 }
 artifacts.archives packageTests
