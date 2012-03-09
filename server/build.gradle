@@ -9,7 +9,7 @@ compile project(':deps:guice-deps')
 compile "com.googlecode.bot-dispatch:controller:0.42-bd"
 compile project(':peer-rpc')
 compile project(':deps:servlet-deps')
-compile "fspotcloud.taskqueue-dispatch:dispatch-api:0.3-tqd"
+compile "com.googlecode.taskqueue-dispatch:dispatch-api:0.4-tqd"
 compile project(':user-service-api')
 compile "org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2"
 testCompile "org.testng:testng:6.1.1"

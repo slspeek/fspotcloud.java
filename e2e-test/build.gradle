@@ -11,6 +11,9 @@ dependencies {
     testCompile "com.google.inject:guice:3.0"
 }
 
+test {
+    exclude "*"
+}
 task packageTests(type: Jar) {
     from sourceSets.test.classes
     classifier = 'tests'

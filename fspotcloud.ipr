@@ -219,6 +219,8 @@
       <setting name="params" value="clean build" />
       <setting name="workDir" value="$PROJECT_DIR$/client" />
       <setting name="debug" value="false" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
       <method>
         <option name="Make" enabled="false" />
       </method>

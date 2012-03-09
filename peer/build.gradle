@@ -4,9 +4,7 @@ description = 'The Peer Bot'
 
 dependencies {
 compile "org.xerial:sqlite-jdbc:3.6.7"
-compile project(':deps:guice-deps')
 compile project(':peer-rpc')
-compile project(':deps:gwt-deps')
 compile "com.googlecode.bot-dispatch:bot:0.42-bd"
 compile "httpunit:httpunit:1.7"
 compile "com.google.inject:guice:3.0"

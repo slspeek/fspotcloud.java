@@ -1,13 +1,12 @@
-
-
 description = 'User service App Engine'
 
 dependencies {
-compile project(':user-service-api')
-compile project(':deps:appengine-deps')
-compile "javax.inject:javax.inject:1"
-compile "com.google.inject:guice:3.0"
-compile "org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2"
-testCompile "org.jukito:jukito:1.1"
-testCompile "junit:junit:4.10"
+    compile project(':user-service-api')
+    compile project(':deps:appengine-deps')
+    compile "javax.inject:javax.inject:1"
+    compile "com.google.inject:guice:3.0"
+    compile "org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2"
+    compile "com.google.appengine:appengine-api-1.0-sdk:1.6.2"
+    testCompile "org.jukito:jukito:1.1"
+    testCompile "junit:junit:4.10"
 }

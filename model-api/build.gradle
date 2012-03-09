@@ -1,18 +1,16 @@
-
-
 description = 'Model API'
 
 dependencies {
-compile project(':rpc')
-compile project(':deps:guice-deps')
-compile "fspotcloud.simple-jpa-dao:dao-api:0.15-sjd"
-testCompile "com.google.guiceberry:guiceberry:3.0.4"
-testCompile "javax.inject:javax.inject:1"
-testCompile "junit:junit:4.10"
+    compile project(':rpc')
+    compile project(':deps:guice-deps')
+    compile "com.googlecode.simple-jpa-dao:dao-api:0.16-sjd"
+    testCompile "com.google.guiceberry:guiceberry:3.0.4"
+    testCompile "javax.inject:javax.inject:1"
+    testCompile "junit:junit:4.10"
 }
 
 task packageTests(type: Jar) {
-  from sourceSets.test.classes
-  classifier = 'tests'
+    from sourceSets.test.classes
+    classifier = 'tests'
 }
 artifacts.archives packageTests
