@@ -83,19 +83,3 @@ task modelTest(type: Test, dependsOn: [classes, unpackTest]) {
 }
 
 check.dependsOn photoDaoTest, tagDaoTest, peerDatabaseDaoTest, modelTest
-
-task jdoEnhance << {
-    ant.taskdef(name: 'enhancer', classname: 'org.datanucleus.enhancer.tools.EnhancerTask', classpath: configurations.jdo.asPath)
-    ant.enhancer(dir: sourceSets.main.output.classesDir.canonicalPath.toURI().toString(), verbose: 'true') {
-        classpath {
-            pathelement(location: sourceSets.main.output.classesDir.canonicalPath.toURI().toString())
-            pathelement(path: configurations.jdo.asPath)
-            pathelement(path: sourceSets.main.runtimeClasspath.asPath)
-        }
-        fileset(dir: sourceSets.main.output.classesDir.canonicalPath.toURI().toString()) {
-            include(name: '**/*.class')
-        }
-    }
-}
-
-classes.dependsOn jdoEnhance

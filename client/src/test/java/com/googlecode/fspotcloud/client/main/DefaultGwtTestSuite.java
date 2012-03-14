@@ -1,6 +1,6 @@
 package com.googlecode.fspotcloud.client.main;
 
-import com.googlecode.fspotcloud.client.gwttest.GwtTestImageViewImpl;
+import com.googlecode.fspotcloud.client.main.ui.GwtTestImageViewImpl;
 import junit.framework.Test;
 import junit.framework.TestCase;
 

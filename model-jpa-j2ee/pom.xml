@@ -1,4 +1,3 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -63,14 +62,15 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava-testlib</artifactId>
         </dependency>
-        
+
         <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
 
-        
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-        </dependency><!-- Hibernate gives you a choice of bytecode providers between cglib and javassist -->
+        </dependency>
+        <!-- Hibernate gives you a choice of bytecode providers between cglib and javassist -->
         <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
@@ -155,57 +155,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.datanucleus</groupId>
-                <artifactId>maven-datanucleus-plugin</artifactId>
-                <version>1.1.4</version>
-                <configuration>
-                    <log4jConfiguration>${project.build.directory}/classes/log4j.properties</log4jConfiguration>
-                    <verbose>true</verbose>
-					<!-- Make sure this path contains your persistent classes! -->
-                    <mappingIncludes>fspotcloud/model/**/*.class</mappingIncludes>
-                    <verbose>true</verbose>
-                    <enhancerName>ASM</enhancerName>
-                    <api>JDO</api>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>enhance</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>javax.jdo</groupId>
-                        <artifactId>jdo2-api</artifactId>
-                        <version>2.3-ec</version>
-                        <scope>runtime</scope>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.datanucleus</groupId>
-                        <artifactId>datanucleus-core</artifactId>
-                        <version>1.1.5</version>
-                        <exclusions>
-                            <exclusion>
-                                <groupId>javax.transaction</groupId>
-                                <artifactId>transaction-api</artifactId>
-                            </exclusion>
-                        </exclusions>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.datanucleus</groupId>
-                        <artifactId>datanucleus-rdbms</artifactId>
-                        <version>1.1.5</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.datanucleus</groupId>
-                        <artifactId>datanucleus-enhancer</artifactId>
-                        <version>1.1.4</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
@@ -245,12 +194,16 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <testClassesDirectory>${project.build.directory}/additionaltests/model</testClassesDirectory>
+                            <testClassesDirectory>${project.build.directory}/additionaltests/model
+                            </testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.model.test.J2eeModelGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv>
+                                    com.googlecode.fspotcloud.server.model.test.J2eeModelGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
                         </configuration>
                     </execution>
@@ -263,10 +216,13 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.model.test.TagGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                    com.googlecode.fspotcloud.server.model.test.TagGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
                             <reportsDirectory>${project.build.directory}/surefire-reports/tag</reportsDirectory>
                         </configuration>
@@ -280,10 +236,13 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.model.test.PhotoGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                    com.googlecode.fspotcloud.server.model.test.PhotoGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
                             <reportsDirectory>${project.build.directory}/surefire-reports/photo</reportsDirectory>
                         </configuration>
@@ -297,12 +256,16 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.model.test.PeerDatabaseGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                    com.googlecode.fspotcloud.server.model.test.PeerDatabaseGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
-                            <reportsDirectory>${project.build.directory}/surefire-reports/peerdatabase</reportsDirectory>
+                            <reportsDirectory>${project.build.directory}/surefire-reports/peerdatabase
+                            </reportsDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -317,8 +280,8 @@
                         <phase>process-test-resources</phase>
                         <configuration>
                             <target>
-                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true" />
-                                <delete file="${project.basedir}/derby.log" />
+                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true"/>
+                                <delete file="${project.basedir}/derby.log"/>
                             </target>
                         </configuration>
                         <goals>
@@ -330,8 +293,8 @@
                         <phase>clean</phase>
                         <configuration>
                             <target>
-                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true" />
-                                <delete file="${project.basedir}/derby.log" />
+                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true"/>
+                                <delete file="${project.basedir}/derby.log"/>
                             </target>
                         </configuration>
                         <goals>
