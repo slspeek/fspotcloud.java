@@ -4,6 +4,7 @@ dependencies {
     compile project(':rpc')
     compile project(':deps:guice-deps')
     compile "com.googlecode.simple-jpa-dao:dao-api:0.16-sjd"
+    testCompile "com.google.inject:guice:3.0"
     testCompile "com.google.guiceberry:guiceberry:3.0.4"
     testCompile "javax.inject:javax.inject:1"
     testCompile "junit:junit:4.10"
@@ -13,4 +14,9 @@ task packageTests(type: Jar) {
     from sourceSets.test.classes
     classifier = 'tests'
 }
+
+test {
+    exclude '*'
+}
+
 artifacts.archives packageTests
