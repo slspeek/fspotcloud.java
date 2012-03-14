@@ -9,7 +9,8 @@ configurations {
 dependencies {
     compile project(':rpc')
     compile project(':model-api')
-    compile 'org.datanucleus:datanucleus-core:1.1.5',
+    compile project(':model-jpa')
+    jdo 'org.datanucleus:datanucleus-core:1.1.5',
             'javax.jdo:jdo2-api:2.3-eb'
     jdo 'org.datanucleus:datanucleus-enhancer:1.1.4'
     compile "com.google.appengine:appengine-api-1.0-sdk:1.6.2"
@@ -23,7 +24,6 @@ dependencies {
     compile "javax.jdo:jdo-api:3.0"
     compile "commons-codec:commons-codec:1.4"
     compile "com.google.inject.extensions:guice-servlet:3.0"
-    compile project(':model-jpa')
     compile "com.google.appengine:appengine-local-runtime:1.6.2"
     testCompile "junit:junit:4.10"
     testCompile "org.mockito:mockito-core:1.9.0-rc1"
@@ -33,9 +33,6 @@ dependencies {
     testCompile "com.google.appengine:appengine-testing:1.6.0"
     testCompile "com.google.appengine:appengine-api-stubs:1.6.0"
     importedTests "com.googlecode.simple-jpa-dao:dao-namedid-test:0.16-sjd"
-    compile("org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2") {
-        provided: true
-    }
 }
 
 task unpackTest << {
@@ -52,7 +49,7 @@ task integrationTest(type: Test, dependsOn: [classes, unpackTest]) {
     testClassesDir = file("$buildDir/dao-test")
     classpath = sourceSets.test.runtimeClasspath
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv'] =
-        'com.googlecode.fspotcloud.server.model.test.gae.TagGuiceBerryEnv'
+        'com.googlecode.fspotcloud.server.model.test.gae.PhotoGuiceBerryEnv'
 }
 
 check.dependsOn integrationTest

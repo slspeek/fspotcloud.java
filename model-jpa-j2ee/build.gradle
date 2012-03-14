@@ -1,36 +1,101 @@
-
-
 description = 'Model JPA J2EE Implementation'
 
+configurations {
+    daoTests
+    modelTests
+    jdo
+    testCompile.extendsFrom(daoTests, modelTests)
+    testRuntime
+}
+
 dependencies {
-compile project(':rpc')
-compile project(':model-api')
-compile "com.google.guava:guava:r09"
-compile "commons-lang:commons-lang:2.6"
-compile "javax.inject:javax.inject:1"
-compile "com.google.inject:guice:3.0"
-compile "com.google.guiceberry:guiceberry:3.0.4"
-compile "org.hibernate:hibernate-core:4.0.0.Final"
-compile "javassist:javassist:3.12.0.GA"
-compile "org.hibernate:hibernate-entitymanager:4.0.0.Final"
-compile "org.apache.derby:derby:10.6.2.1"
-compile "org.apache.derby:derbyclient:10.6.2.1"
-compile "org.apache.derby:derbynet:10.6.2.1"
-compile "org.apache.derby:derbytools:10.6.2.1"
-compile "javax.transaction:jta:1.1"
-compile "net.customware.gwt.dispatch:gwt-dispatch:1.2.0"
-compile "javax.jdo:jdo-api:3.0"
-compile "commons-codec:commons-codec:1.4"
-compile "com.google.inject.extensions:guice-servlet:3.0"
-compile project(':model-jpa')
-compile "com.googlecode.bot-dispatch:command-jpa-j2ee:0.42-bd"
-testCompile "junit:junit:4.10"
-testCompile "org.mockito:mockito-core:1.9.0-rc1"
-testCompile "com.google.guava:guava-testlib:10.0.1"
-testCompile "org.slf4j:slf4j-log4j12:1.6.4"
-testCompile project(':model-api')
-testCompile "fspotcloud.simple-jpa-dao:dao-namedid-test:0.15-sjd"
-compile("org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2") {
-provided : true
+    jdo 'org.datanucleus:datanucleus-core:1.1.5',
+            'javax.jdo:jdo2-api:2.3-eb'
+    jdo 'org.datanucleus:datanucleus-enhancer:1.1.4'
+    compile project(':rpc')
+    compile project(':model-api')
+    compile project(':model-jpa')
+    compile "com.google.guava:guava:r09"
+    compile "commons-lang:commons-lang:2.6"
+    compile "javax.inject:javax.inject:1"
+    compile "com.google.inject:guice:3.0"
+    compile "org.hibernate:hibernate-core:4.0.0.Final"
+    compile "javassist:javassist:3.12.0.GA"
+    compile "org.hibernate:hibernate-entitymanager:4.0.0.Final"
+    compile "org.apache.derby:derby:10.6.2.1"
+    compile "org.apache.derby:derbyclient:10.6.2.1"
+    compile "org.apache.derby:derbynet:10.6.2.1"
+    compile "org.apache.derby:derbytools:10.6.2.1"
+    compile "javax.transaction:jta:1.1"
+    compile "net.customware.gwt.dispatch:gwt-dispatch:1.2.0"
+    compile "javax.jdo:jdo-api:3.0"
+    compile "commons-codec:commons-codec:1.4"
+    compile "com.google.inject.extensions:guice-servlet:3.0"
+    testCompile "com.google.guiceberry:guiceberry:3.0.4"
+    testCompile "junit:junit:4.10"
+    testCompile "org.mockito:mockito-core:1.9.0-rc1"
+    testCompile "com.google.guava:guava-testlib:10.0.1"
+    testCompile "org.slf4j:slf4j-log4j12:1.6.4"
+    daoTests "com.googlecode.simple-jpa-dao:dao-namedid-test:0.16-sjd"
+    modelTests  project(path: ':model-api', configuration: 'testCompile')
 }
+
+task unpackTest << {
+    mkdir "$buildDir/dao-test"
+    myTests = configurations.daoTests.files.iterator().next()
+    ant.unjar(dest: "$buildDir/dao-test", src: myTests)
+    mkdir "$buildDir/model-test"
+    myTests = configurations.modelTests.files.iterator().next()
+    ant.unjar(dest: "$buildDir/model-test", src: myTests)
 }
+
+task photoDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
+
+    testClassesDir = file("$buildDir/dao-test")
+    classpath = sourceSets.test.runtimeClasspath
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv'] =
+        'com.googlecode.fspotcloud.server.model.test.PhotoGuiceBerryEnv'
+    testResultsDir file("${project.testResultsDir}/photo")
+}
+
+task tagDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
+    testClassesDir = file("$buildDir/dao-test")
+    classpath = sourceSets.test.runtimeClasspath
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv'] =
+        'com.googlecode.fspotcloud.server.model.test.TagGuiceBerryEnv'
+    testResultsDir file("${project.testResultsDir}/tag")
+}
+
+task peerDatabaseDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
+    testClassesDir = file("$buildDir/dao-test")
+    classpath = sourceSets.test.runtimeClasspath
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv'] =
+        'com.googlecode.fspotcloud.server.model.test.PeerDatabaseGuiceBerryEnv'
+    testResultsDir file("${project.testResultsDir}/peerdatabase")
+}
+
+task modelTest(type: Test, dependsOn: [classes, unpackTest]) {
+    testClassesDir = file("$buildDir/model-test")
+    classpath = sourceSets.test.runtimeClasspath
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv'] =
+        'com.googlecode.fspotcloud.server.model.test.J2eeModelGuiceBerryEnv'
+    testResultsDir file("${project.testResultsDir}/model")
+}
+
+check.dependsOn photoDaoTest, tagDaoTest, peerDatabaseDaoTest, modelTest
+
+task jdoEnhance << {
+    ant.taskdef(name: 'enhancer', classname: 'org.datanucleus.enhancer.tools.EnhancerTask', classpath: configurations.jdo.asPath)
+    ant.enhancer(dir: sourceSets.main.output.classesDir.canonicalPath.toURI().toString(), verbose: 'true') {
+        classpath {
+            pathelement(location: sourceSets.main.output.classesDir.canonicalPath.toURI().toString())
+            pathelement(path: configurations.jdo.asPath)
+            pathelement(path: sourceSets.main.runtimeClasspath.asPath)
+        }
+        fileset(dir: sourceSets.main.output.classesDir.canonicalPath.toURI().toString()) {
+            include(name: '**/*.class')
+        }
+    }
+}
+
+classes.dependsOn jdoEnhance
