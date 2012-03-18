@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>model</name>
+	<name>model-jpa</name>
 	<comment>Makes synchronizing your photos with the web easier. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
 	<projects>
-		<project>appengine-deps</project>
-		<project>guice-deps</project>
-		<project>gwt-deps</project>
-		<project>model-api</project>
 		<project>rpc</project>
+		<project>model-api</project>
+		<project>guice-deps</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

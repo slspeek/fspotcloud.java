@@ -1,10 +1,12 @@
 description = 'Model JPA GAE Implementation'
 
 configurations {
-    importedTests
+    daoTests
+    modelTests
+    testCompile.extendsFrom(daoTests, modelTests)
     jdo
-    testCompile.extendsFrom(importedTests)
     testRuntime
+    runtime
 }
 dependencies {
     compile project(':rpc')
@@ -25,6 +27,15 @@ dependencies {
     compile "commons-codec:commons-codec:1.4"
     compile "com.google.inject.extensions:guice-servlet:3.0"
     compile "com.google.appengine:appengine-local-runtime:1.6.2"
+    compile('javax.jdo:jdo2-api:2.3-eb') {
+        exclude group: "javax.transaction"
+    }
+    compile('org.datanucleus:datanucleus-core:1.1.5') {
+        exclude group: "javax.transaction"
+    }
+    runtime 'com.google.appengine:datanucleus-jpa:1.1.5'
+    runtime 'com.google.appengine:geronimo-jpa_3.0_spec:1.1.1'
+    compile "com.google.appengine.orm:datanucleus-appengine:1.0.4.1"
     testCompile "junit:junit:4.10"
     testCompile "org.mockito:mockito-core:1.9.0-rc1"
     testCompile "com.google.guava:guava-testlib:10.0.1"
@@ -32,27 +43,53 @@ dependencies {
     testCompile "com.google.guiceberry:guiceberry:3.0.4"
     testCompile "com.google.appengine:appengine-testing:1.6.0"
     testCompile "com.google.appengine:appengine-api-stubs:1.6.0"
-    importedTests "com.googlecode.simple-jpa-dao:dao-namedid-test:0.16-sjd"
+    daoTests "com.googlecode.simple-jpa-dao:dao-namedid-test:0.16-sjd"
+    modelTests files("../model-api/build/libs/model-api-${version}-tests.jar")
 }
 
 task unpackTest << {
     mkdir "$buildDir/dao-test"
-    myTests = configurations.importedTests.files.iterator().next()
+    myTests = configurations.daoTests.files.iterator().next()
     ant.unjar(dest: "$buildDir/dao-test", src: myTests)
+    mkdir "$buildDir/model-test"
+    myTests = configurations.modelTests.files.iterator().next()
+    ant.unjar(dest: "$buildDir/model-test", src: myTests)
 }
 
-task integrationTest(type: Test, dependsOn: [classes, unpackTest]) {
+task photoDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
 
-     doFirst {
-         println                classpath.asPath
-     }
     testClassesDir = file("$buildDir/dao-test")
     classpath = sourceSets.test.runtimeClasspath
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.server.model.test.gae.PhotoGuiceBerryEnv'
+    testResultsDir file("${project.testResultsDir}/photo")
 }
 
-check.dependsOn integrationTest
+task tagDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
+    testClassesDir = file("$buildDir/dao-test")
+    classpath = sourceSets.test.runtimeClasspath
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv'] =
+        'com.googlecode.fspotcloud.server.model.test.gae.TagGuiceBerryEnv'
+    testResultsDir file("${project.testResultsDir}/tag")
+}
+
+task peerDatabaseDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
+    testClassesDir = file("$buildDir/dao-test")
+    classpath = sourceSets.test.runtimeClasspath
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv'] =
+        'com.googlecode.fspotcloud.server.model.test.gae.PeerDatabaseGuiceBerryEnv'
+    testResultsDir file("${project.testResultsDir}/peerdatabase")
+}
+
+task modelTest(type: Test, dependsOn: [classes, unpackTest]) {
+    testClassesDir = file("$buildDir/model-test")
+    classpath = sourceSets.test.runtimeClasspath
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv'] =
+        'com.googlecode.fspotcloud.server.model.test.GaeModelGuiceBerryEnv'
+    testResultsDir file("${project.testResultsDir}/model")
+}
+
+check.dependsOn photoDaoTest, tagDaoTest, peerDatabaseDaoTest, modelTest
 
 task jdoEnhance << {
     ant.taskdef(name: 'enhancer', classname: 'org.datanucleus.enhancer.tools.EnhancerTask', classpath: configurations.jdo.asPath)
