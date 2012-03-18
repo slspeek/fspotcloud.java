@@ -3,11 +3,10 @@
 	<name>peer</name>
 	<comment>The bot that sends the requested photo data to the server. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
 	<projects>
-		<project>bot</project>
 		<project>guice-deps</project>
-		<project>gwt-deps</project>
 		<project>peer-rpc</project>
 		<project>rpc</project>
+		<project>gwt-deps</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

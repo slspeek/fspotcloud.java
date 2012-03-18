@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>rpc</name>
+	<name>user-service-gae</name>
 	<comment>Makes synchronizing your photos with the web easier. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
 	<projects>
-		<project>gwt-deps</project>
+		<project>user-service-api</project>
+		<project>appengine-deps</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -3,7 +3,6 @@
 	<name>peer-rpc</name>
 	<comment>Makes synchronizing your photos with the web easier. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
 	<projects>
-		<project>gwt-deps</project>
 		<project>rpc</project>
 	</projects>
 	<buildSpec>

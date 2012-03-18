@@ -1,26 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>war</name>
-	<comment>Selenium Tests for all components. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+	<name>e2e-test</name>
+	<comment>Selenium tests for F-Spot Cloud. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
 	<projects>
-		<project>appengine-deps</project>
-		<project>bot</project>
-		<project>client</project>
-		<project>command-api</project>
-		<project>controller</project>
-		<project>dispatch</project>
-		<project>gae-command</project>
-		<project>guice-deps</project>
-		<project>gwt-deps</project>
-		<project>model</project>
-		<project>model-api</project>
-		<project>peer</project>
-		<project>peer-rpc</project>
-		<project>rpc</project>
-		<project>server</project>
-		<project>servlet-deps</project>
 		<project>test-util</project>
-		<project>xmlrpc-server-deps</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
