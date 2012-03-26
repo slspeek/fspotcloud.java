@@ -98,7 +98,7 @@
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-jsr107cache</artifactId>
-			<version>1.5.3</version>
+			<version>${gae.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>

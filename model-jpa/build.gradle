@@ -3,30 +3,22 @@ description = 'Model JPA Base'
 dependencies {
     compile project(':rpc')
     compile project(':model-api')
-    compile "com.google.guava:guava:r09"
-    compile "commons-lang:commons-lang:2.6"
-    compile "javax.inject:javax.inject:1"
-    compile "com.google.inject:guice:3.0"
-    compile "com.google.guiceberry:guiceberry:3.0.4"
-    compile "org.hibernate:hibernate-core:4.0.0.Final"
-    compile "javassist:javassist:3.12.0.GA"
-    compile "org.hibernate:hibernate-entitymanager:4.0.0.Final"
-    compile "org.apache.derby:derby:10.6.2.1"
-    compile "org.apache.derby:derbyclient:10.6.2.1"
-    compile "org.apache.derby:derbynet:10.6.2.1"
-    compile "org.apache.derby:derbytools:10.6.2.1"
-    compile "javax.transaction:jta:1.1"
-    compile "net.customware.gwt.dispatch:gwt-dispatch:1.2.0"
-    compile "javax.jdo:jdo-api:3.0"
-    compile "commons-codec:commons-codec:1.4"
-    compile "com.google.inject.extensions:guice-servlet:3.0"
-    compile "com.googlecode.simple-jpa-dao:dao-impl:0.16-sjd"
-    compile "com.googlecode.simple-jpa-dao:cached-dao:0.16-sjd"
-    testCompile "junit:junit:4.10"
-    testCompile "org.mockito:mockito-core:1.9.0-rc1"
-    testCompile "com.google.guava:guava-testlib:10.0.1"
+    compile libs.commons_lang
+    compile libs.inject
+    compile libs.guice
+    compile libs.guiceberry
+    compile libs.hibernate_all
+    compile libs.jta
+    compile libs.gwt_dispatch
+    compile libs.jdo_api
+    compile libs.guice_servlet
+    compile libs.simple_jpa_dao_impl
+    compile libs.simple_jpa_dao_cached_dao
+    testCompile libs.junit
+    testCompile libs.mockito
+    testCompile libs.guava_testlib
     testCompile "org.slf4j:slf4j-log4j12:1.6.4"
-    compile("org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2") {
+    compile(libs.servlet_spec) {
         provided: true
     }
 }

@@ -2,12 +2,12 @@ description = 'Model API'
 
 dependencies {
     compile project(':rpc')
-    compile project(':deps:guice-deps')
-    compile "com.googlecode.simple-jpa-dao:dao-api:0.16-sjd"
-    testCompile "com.google.inject:guice:3.0"
-    testCompile "com.google.guiceberry:guiceberry:3.0.4"
-    testCompile "javax.inject:javax.inject:1"
-    testCompile "junit:junit:4.10"
+    compile libs.simple_jpa_dao_api
+    testCompile libs.guice
+    testCompile libs.guiceberry
+    testCompile libs.inject
+    testCompile libs.junit
+    testCompile libs.guava
 }
 
 task packageTests(type: Jar) {
@@ -19,4 +19,6 @@ test {
     exclude '*'
 }
 
-artifacts.archives packageTests
+artifacts {
+    testCompile packageTests
+}

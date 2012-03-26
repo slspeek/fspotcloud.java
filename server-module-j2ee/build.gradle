@@ -1,25 +1,23 @@
-
-
 description = 'F-SpotCloud Server J2EE Configuration'
 
 dependencies {
-compile project(':server')
-compile project(':deps:guice-deps')
-compile "fspotcloud.taskqueue-dispatch:direct:0.3-tqd"
-compile project(':user-service-api')
-compile project(':model-jpa-j2ee')
-compile("com.googlecode.bot-dispatch:command-jpa:0.42-bd") {
-exclude(module: 'geronimo-jpa_3.0_spec')
-}
-testCompile "org.mockito:mockito-core:1.9.0-rc1"
-testCompile project(':peer')
-testCompile project(':test-util')
-testCompile "com.google.guava:guava-testlib:10.0.1"
-testCompile project(':peer-server-integration')
-testCompile "junit:junit:4.10"
-testCompile "org.testng:testng:6.1.1"
-compile("org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2") {
-provided : true
-}
+    compile project(':server')
+    compile project(':deps:guice-deps')
+    compile "fspotcloud.taskqueue-dispatch:direct:${taskqueue_dispatch_version}"
+    compile project(':user-service-api')
+    compile project(':model-jpa-j2ee')
+    compile("com.googlecode.bot-dispatch:command-jpa:${bot_dispatch_version}") {
+        exclude(module: 'geronimo-jpa_3.0_spec')
+    }
+    testCompile libs.mockito
+    testCompile project(':peer')
+    testCompile project(':test-util')
+    testCompile libs.guava_testlib
+    testCompile project(':peer-server-integration')
+    testCompile libs.junit
+    testCompile libs.test_ng
+    compile(libs.servlet_spec) {
+        provided: true
+    }
 }
 test.useTestNG()

@@ -1,13 +1,22 @@
 description = 'User service api'
 
-dependencies {
-    compile "javax.inject:javax.inject:1"
-    testCompile "junit:junit:4.10"
-    testCompile "org.jukito:jukito:1.1"
+configurations {
+    testFixtures {
+        extendsFrom testRuntime
+    }
 }
 
-task packageTests(type: Jar) {
-    from sourceSets.test.classes
-    classifier = 'tests'
+dependencies {
+    compile libs.inject
+    testCompile libs.junit
+    testCompile libs.jukito
 }
-artifacts.archives packageTests
+
+task testJar(type: Jar) {
+    from sourceSets.test.classes
+    classifier = 'test'
+}
+
+artifacts {
+    testFixtures testJar
+}
