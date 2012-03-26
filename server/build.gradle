@@ -1,25 +1,20 @@
-
-
 description = 'F-SpotCloud Server Component'
 
 dependencies {
-compile project(':rpc')
-compile project(':model-api')
-compile project(':deps:guice-deps')
-compile "com.googlecode.bot-dispatch:controller:0.42-bd"
-compile project(':peer-rpc')
-compile project(':deps:servlet-deps')
-compile "com.googlecode.taskqueue-dispatch:dispatch-api:0.4-tqd"
-compile project(':user-service-api')
-compile "org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2"
-testCompile "org.testng:testng:6.1.1"
-testCompile "org.mockito:mockito-core:1.9.0-rc1"
-testCompile project(':model-jpa-j2ee')
-}
-test.useTestNG()
+    compile project(':rpc')
+    compile project(':model-api')
+    compile project(':deps:guice-deps')
+    compile project(':user-service-api')
+    compile project(':peer-rpc')
+    compile project(':deps:servlet-deps')
+    compile libs.bot_dispatch_controller
+    compile libs.task_dispatch_dispatch_api
+    compile libs.servlet_spec
 
-task packageTests(type: Jar) {
-  from sourceSets.test.classes
-  classifier = 'tests'
+    testCompile project(':model-jpa-j2ee')
+    testCompile libs.test_ng
+    testCompile libs.mockito
+    testCompile libs.guava
 }
-artifacts.archives packageTests
+
+test.useTestNG()

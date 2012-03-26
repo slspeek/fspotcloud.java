@@ -9,12 +9,12 @@ test {
 dependencies {
     compile project(':server')
     compile project(':model-api')
-    testCompile "org.testng:testng:6.1.1"
-    testCompile "org.mockito:mockito-core:1.9.0-rc1"
+    testCompile libs.test_ng
+    testCompile libs.mockito
     testCompile project(':peer')
     testCompile project(':test-util')
-    testCompile "com.google.guava:guava-testlib:10.0.1"
-    testCompile "com.google.guiceberry:guiceberry:3.0.4"
+    testCompile libs.guava_testlib
+    testCompile libs.guiceberry
 }
 
 test.useTestNG()

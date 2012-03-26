@@ -1,12 +1,13 @@
 description = 'OpenId User service'
 
 dependencies {
-    compile "org.openid4java:openid4java-consumer:0.9.6"
     compile project(':user-service-api')
-    compile "com.google.inject.extensions:guice-servlet:3.0"
-    compile "com.google.inject:guice:3.0"
-    compile "javax.inject:javax.inject:1"
-    compile "org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2"
-    testCompile "junit:junit:4.10"
-    testCompile "org.jukito:jukito:1.1"
+    compile "org.openid4java:openid4java-consumer:0.9.6"
+    compile libs.guice_servlet
+    compile libs.guice
+    compile libs.inject
+    compile libs.servlet_spec
+
+    testCompile libs.junit
+    testCompile libs.jukito
 }

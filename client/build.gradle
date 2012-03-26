@@ -2,19 +2,18 @@ description = 'GWT client'
 
 dependencies {
     compile project(':rpc')
-    compile "com.google.inject.extensions:guice-assistedinject:3.0"
+    compile "com.google.inject.extensions:guice-assistedinject:${guice_version}"
     compile "com.google.gwt.inject:gin:1.5.0"
-    compile "com.google.inject:guice:3.0"
-    compile "javax.inject:javax.inject:1"
-    compile "com.google.guava:guava:r09"
+    compile libs.guice
+    compile libs.inject
+    compile libs.guava
     compile "com.google.gwt:gwt-user:2.4.0"
     compile "com.reveregroup.gwt:gwt-image-loader:1.1.4"
-    testCompile "com.google.gwt:gwt-dev:2.4.0"
+    testCompile "com.google.gwt:gwt-dev:${gwt_version}"
     testCompile "junit:junit:3.8.1"
     testCompile "org.jmock:jmock:2.5.1"
-    testCompile "org.mockito:mockito-core:1.9.0-rc1"
-    testCompile "org.seleniumhq.selenium.client-drivers:selenium-java-client-driver:1.0.2"
-    testCompile "org.seleniumhq.selenium:selenium:2.0b3"
+    testCompile libs.mockito
+
 }
 
 test {
