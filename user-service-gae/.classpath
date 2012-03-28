@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/classes" path="src/main/java"/>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources"/>
-	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
-	<classpathentry kind="output" path="target/classes"/>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry kind="src" path="/user-service-api" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/com/google/appengine/appengine-api-1.0-sdk/1.6.2/appengine-api-1.0-sdk-1.6.2.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/javax/inject/javax.inject/1/javax.inject-1-sources.jar" kind="lib" path="/home/steven/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/inject/guice/3.0/guice-3.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/inject/guice/3.0/guice-3.0.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/apache/geronimo/specs/geronimo-servlet_2.5_spec/1.2/geronimo-servlet_2.5_spec-1.2-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/apache/geronimo/specs/geronimo-servlet_2.5_spec/1.2/geronimo-servlet_2.5_spec-1.2.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/jukito/jukito/1.1/jukito-1.1-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/jukito/jukito/1.1/jukito-1.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/junit/junit/4.10/junit-4.10-sources.jar" kind="lib" path="/home/steven/.m2/repository/junit/junit/4.10/junit-4.10.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/asm/asm/3.1/asm-3.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.gradle/caches/artifacts-4/org.sonatype.sisu.inject/cglib/c46b76f8183c2182777fb8177bd87f9b/sources/cglib-2.2.1-v20090111-sources.jar" kind="lib" path="/home/steven/.gradle/caches/artifacts-4/org.sonatype.sisu.inject/cglib/c46b76f8183c2182777fb8177bd87f9b/jars/cglib-2.2.1-v20090111.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/objenesis/objenesis/1.0/objenesis-1.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/objenesis/objenesis/1.0/objenesis-1.0.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.gradle/caches/artifacts-4/org.mockito/mockito-core/c46b76f8183c2182777fb8177bd87f9b/sources/mockito-core-1.8.5-sources.jar" kind="lib" path="/home/steven/.gradle/caches/artifacts-4/org.mockito/mockito-core/c46b76f8183c2182777fb8177bd87f9b/jars/mockito-core-1.8.5.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/inject/extensions/guice-assistedinject/3.0/guice-assistedinject-3.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/inject/extensions/guice-assistedinject/3.0/guice-assistedinject-3.0.jar" exported="true"/>
 </classpath>

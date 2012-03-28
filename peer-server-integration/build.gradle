@@ -1,18 +1,12 @@
 description = 'Peer server integration tests'
 
-//skip the tests here, they are used in other projects
-
-test {
-    exclude "*"
-}
-
 dependencies {
     compile project(':server')
-    compile project(':model-api')
-    testCompile libs.test_ng
-    testCompile libs.mockito
+    testCompile project(':model-api')
     testCompile project(':peer')
     testCompile project(':test-util')
+    testCompile libs.test_ng
+    testCompile libs.mockito
     testCompile libs.guava_testlib
     testCompile libs.guiceberry
 }
@@ -23,4 +17,11 @@ task packageTests(type: Jar) {
     from sourceSets.test.classes
     classifier = 'tests'
 }
-artifacts.archives packageTests
+
+test {
+    exclude '*'
+}
+
+artifacts {
+    testCompile packageTests
+}

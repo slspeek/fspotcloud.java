@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/classes" path="src/main/java"/>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources"/>
-	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
-	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
-	<classpathentry kind="output" path="target/classes"/>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry kind="src" path="/peer-rpc" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/org/xerial/sqlite-jdbc/3.6.7/sqlite-jdbc-3.6.7.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/httpunit/httpunit/1.7/httpunit-1.7-sources.jar" kind="lib" path="/home/steven/.m2/repository/httpunit/httpunit/1.7/httpunit-1.7.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/com/googlecode/bot-dispatch/bot/0.43-bd/bot-0.43-bd.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/inject/guice/3.0/guice-3.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/inject/guice/3.0/guice-3.0.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/guava/guava/r09/guava-r09-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/guava/guava/r09/guava-r09.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/junit/junit/3.8.1/junit-3.8.1-sources.jar" kind="lib" path="/home/steven/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/jmock/jmock/2.5.1/jmock-2.5.1-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/jmock/jmock/2.5.1/jmock-2.5.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/org/xerial/thirdparty/nestedvm/1.0/nestedvm-1.0.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/javax/servlet/servlet-api/2.3/servlet-api-2.3-sources.jar" kind="lib" path="/home/steven/.m2/repository/javax/servlet/servlet-api/2.3/servlet-api-2.3.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/jtidy/jtidy/4aug2000r7-dev/jtidy-4aug2000r7-dev-sources.jar" kind="lib" path="/home/steven/.m2/repository/jtidy/jtidy/4aug2000r7-dev/jtidy-4aug2000r7-dev.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/javax/inject/javax.inject/1/javax.inject-1-sources.jar" kind="lib" path="/home/steven/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/asm/asm/3.1/asm-3.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.gradle/caches/artifacts-4/org.sonatype.sisu.inject/cglib/c46b76f8183c2182777fb8177bd87f9b/sources/cglib-2.2.1-v20090111-sources.jar" kind="lib" path="/home/steven/.gradle/caches/artifacts-4/org.sonatype.sisu.inject/cglib/c46b76f8183c2182777fb8177bd87f9b/jars/cglib-2.2.1-v20090111.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/inject/extensions/guice-assistedinject/3.0/guice-assistedinject-3.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/inject/extensions/guice-assistedinject/3.0/guice-assistedinject-3.0.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-sources.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-sources.jar" kind="lib" path="/home/steven/.m2/repository/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/gwt/gwt-user/2.4.0/gwt-user-2.4.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/gwt/gwt-user/2.4.0/gwt-user-2.4.0.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/net/customware/gwt/dispatch/gwt-dispatch/1.2.0/gwt-dispatch-1.2.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/net/customware/gwt/dispatch/gwt-dispatch/1.2.0/gwt-dispatch-1.2.0.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6-sources.jar" kind="lib" path="/home/steven/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/hamcrest/hamcrest-library/1.1/hamcrest-library-1.1-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/hamcrest/hamcrest-library/1.1/hamcrest-library-1.1.jar" exported="true"/>
 </classpath>

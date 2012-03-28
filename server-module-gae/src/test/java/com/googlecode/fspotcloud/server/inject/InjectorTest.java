@@ -16,11 +16,13 @@ public class InjectorTest {
 
     @Test
     public void testInjector() {
+        System.setProperty("appengine.orm.disable.duplicate.emf.exception", "true");
         Injector injector = Guice.createInjector(new GaeTotalModule());
         AssertJUnit.assertNotNull(injector);
         PeerDatabases defaultPeer =
                 injector.getInstance(PeerDatabases.class);
         ControllerDispatchAsync controller = injector.getInstance(ControllerDispatchAsync.class);
         AssertJUnit.assertNotNull(controller);
+        System.clearProperty("appengine.orm.disable.duplicate.emf.exception");
     }
 }

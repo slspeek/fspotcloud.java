@@ -16,12 +16,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>server</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>gwt-user</artifactId>
-                    <groupId>com.google.gwt</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

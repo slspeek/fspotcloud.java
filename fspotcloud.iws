@@ -192,64 +192,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="gradle.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gradle.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="17" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test-util/build.gradle">
+        <entry file="file://$PROJECT_DIR$/server-module-j2ee/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="15" column="32" selection-start="547" selection-end="547" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/user-service-openid/build.gradle">
+      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server-module-j2ee/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="4" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/war-prod/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="63" selection-start="134" selection-end="150" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="libraries.gradle" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libraries.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="67" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.gradle" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/settings.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="87" column="102" selection-start="3394" selection-end="3394" vertical-scroll-proportion="1.1896334">
               <folding />
             </state>
           </provider>
@@ -275,22 +230,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/gae-war/build.gradle" />
-        <option value="$PROJECT_DIR$/server-module-gae/build.gradle" />
-        <option value="$PROJECT_DIR$/j2ee-war/build.gradle" />
-        <option value="$PROJECT_DIR$/model-jpa/build.gradle" />
-        <option value="$PROJECT_DIR$/user-service-openid/build.gradle" />
-        <option value="$PROJECT_DIR$/model-jpa-gae/build.gradle" />
-        <option value="$PROJECT_DIR$/server-module-j2ee/build.gradle" />
-        <option value="$PROJECT_DIR$/rpc/build.gradle" />
-        <option value="$PROJECT_DIR$/model-api/build.gradle" />
-        <option value="$PROJECT_DIR$/server/build.gradle" />
         <option value="$PROJECT_DIR$/peer-rpc/build.gradle" />
         <option value="$PROJECT_DIR$/peer/build.gradle" />
         <option value="$PROJECT_DIR$/user-service-gae/build.gradle" />
         <option value="$PROJECT_DIR$/gradle.properties" />
         <option value="$PROJECT_DIR$/client/build.gradle" />
         <option value="$PROJECT_DIR$/libraries.gradle" />
+        <option value="$PROJECT_DIR$/settings.gradle" />
+        <option value="$PROJECT_DIR$/model-jpa-j2ee/build.gradle" />
+        <option value="$PROJECT_DIR$/server-module-j2ee/pom.xml" />
+        <option value="$PROJECT_DIR$/server-module-gae/pom.xml" />
+        <option value="$PROJECT_DIR$/server-module-gae/src/test/java/com/googlecode/fspotcloud/server/inject/InjectorTest.java" />
+        <option value="$PROJECT_DIR$/server-module-j2ee/src/test/java/com/googlecode/fspotcloud/server/inject/InjectorTest.java" />
+        <option value="$PROJECT_DIR$/server-module-gae/build.gradle" />
+        <option value="$PROJECT_DIR$/peer-server-integration/build.gradle" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/server-module-j2ee/build.gradle" />
       </list>
     </option>
   </component>
@@ -379,26 +334,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fspotcloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fspotcloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fspotcloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -419,6 +354,16 @@
             <PATH_ELEMENT USER_OBJECT="user-service-gae">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -485,33 +430,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Groovy Script.build">
-    <configuration default="false" name="build.peerDatabaseDaoTest" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
-      <module name="model-jpa-j2ee" />
-      <setting name="path" value="$PROJECT_DIR$/model-jpa-j2ee/build.gradle" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="peerDatabaseDaoTest" />
-      <setting name="workDir" value="$PROJECT_DIR$/model-jpa-j2ee" />
-      <setting name="debug" value="false" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method>
-        <option name="Make" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="false" name="build.tagDaoTest" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
-      <module name="model-jpa-j2ee" />
-      <setting name="path" value="$PROJECT_DIR$/model-jpa-j2ee/build.gradle" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="tagDaoTest" />
-      <setting name="workDir" value="$PROJECT_DIR$/model-jpa-j2ee" />
-      <setting name="debug" value="false" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method>
-        <option name="Make" enabled="false" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="TestNG.InjectorTest">
     <configuration default="false" name="build.photoDaoTest" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
       <module name="model-jpa-gae" />
       <setting name="path" value="$PROJECT_DIR$/model-jpa-gae/build.gradle" />
@@ -526,11 +445,24 @@
       </method>
     </configuration>
     <configuration default="false" name="build.unpackTest" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
-      <module name="model-jpa-gae" />
-      <setting name="path" value="$PROJECT_DIR$/model-jpa-gae/build.gradle" />
+      <module name="server-module-j2ee" />
+      <setting name="path" value="$PROJECT_DIR$/server-module-j2ee/build.gradle" />
       <setting name="vmparams" value="" />
       <setting name="params" value="unpackTest" />
-      <setting name="workDir" value="$PROJECT_DIR$/model-jpa-gae" />
+      <setting name="workDir" value="$PROJECT_DIR$/server-module-j2ee" />
+      <setting name="debug" value="false" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="false" name="build.integrationTest" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
+      <module name="server-module-j2ee" />
+      <setting name="path" value="$PROJECT_DIR$/server-module-j2ee/build.gradle" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="integrationTest" />
+      <setting name="workDir" value="$PROJECT_DIR$/server-module-j2ee" />
       <setting name="debug" value="false" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
@@ -539,17 +471,46 @@
       </method>
     </configuration>
     <configuration default="false" name="build" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
-      <module name="rpc" />
-      <setting name="path" value="$PROJECT_DIR$/rpc/build.gradle" />
+      <module name="model-api" />
+      <setting name="path" value="$PROJECT_DIR$/model-api/build.gradle" />
       <setting name="vmparams" value="" />
       <setting name="params" value="" />
-      <setting name="workDir" value="$PROJECT_DIR$/rpc" />
+      <setting name="workDir" value="$PROJECT_DIR$/model-api" />
       <setting name="debug" value="false" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method>
         <option name="Make" enabled="false" />
       </method>
+    </configuration>
+    <configuration default="false" name="InjectorTest" type="TestNG" factoryName="TestNG" temporary="true">
+      <module name="server-module-j2ee" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" value="com.googlecode.fspotcloud.server.inject" />
+      <option name="MAIN_CLASS_NAME" value="com.googlecode.fspotcloud.server.inject.InjectorTest" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
@@ -684,14 +645,13 @@
         <option name="Make" enabled="false" />
       </method>
     </configuration>
-    <list size="7">
-      <item index="0" class="java.lang.String" itemvalue="Groovy Script.build2" />
-      <item index="1" class="java.lang.String" itemvalue="Groovy Script.build23" />
-      <item index="2" class="java.lang.String" itemvalue="Groovy Script.build.peerDatabaseDaoTest" />
-      <item index="3" class="java.lang.String" itemvalue="Groovy Script.build.tagDaoTest" />
-      <item index="4" class="java.lang.String" itemvalue="Groovy Script.build.photoDaoTest" />
-      <item index="5" class="java.lang.String" itemvalue="Groovy Script.build.unpackTest" />
-      <item index="6" class="java.lang.String" itemvalue="Groovy Script.build" />
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Groovy Script.build.photoDaoTest" />
+      <item index="1" class="java.lang.String" itemvalue="Groovy Script.build.unpackTest" />
+      <item index="2" class="java.lang.String" itemvalue="Groovy Script.build.integrationTest" />
+      <item index="3" class="java.lang.String" itemvalue="Groovy Script.build" />
+      <item index="4" class="java.lang.String" itemvalue="TestNG.InjectorTest" />
+      <item index="5" class="java.lang.String" itemvalue="Groovy Script.build2" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -748,7 +708,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1280" height="976" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -761,13 +721,13 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.67469877" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.6706587" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39935064" sideWeight="0.6706587" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27941176" sideWeight="0.67469877" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3253012" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924837" sideWeight="0.0" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253012" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32891566" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -884,114 +844,86 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/server-module-gae/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="12" selection-start="1391" selection-end="1391" vertical-scroll-proportion="-3.4625719" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model-jpa-gae/src/test/java/com/googlecode/fspotcloud/server/model/test/GaeModelGuiceBerryEnv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="13" selection-start="1081" selection-end="1081" vertical-scroll-proportion="-0.23391813" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model-jpa-gae/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="93" column="16" selection-start="3547" selection-end="3563" vertical-scroll-proportion="2.29" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/build.gradle">
+    <entry file="file://$PROJECT_DIR$/model-jpa-gae/src/test/java/com/googlecode/fspotcloud/server/model/test/GaeLocalDatastoreTestWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="26" selection-start="522" selection-end="522" vertical-scroll-proportion="0.46783626">
-          <folding />
-        </state>
+        <state line="10" column="13" selection-start="398" selection-end="398" vertical-scroll-proportion="0.116959065" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/peer-rpc/build.gradle">
+    <entry file="file://$PROJECT_DIR$/server-module-gae/src/test/java/com/googlecode/fspotcloud/server/inject/InjectorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="4" selection-start="98" selection-end="98" vertical-scroll-proportion="0.14619882">
-          <folding />
-        </state>
+        <state line="25" column="78" selection-start="1013" selection-end="1013" vertical-scroll-proportion="0.53370786" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/peer/build.gradle">
+    <entry file="file://$PROJECT_DIR$/server-module-gae/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="4" selection-start="161" selection-end="161" vertical-scroll-proportion="0.16853933">
-          <folding />
-        </state>
+        <state line="32" column="20" selection-start="1062" selection-end="1062" vertical-scroll-proportion="0.9213052" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model-api/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="26" selection-start="246" selection-end="246" vertical-scroll-proportion="0.252809">
-          <folding />
-        </state>
+        <state line="12" column="44" selection-start="280" selection-end="280" vertical-scroll-proportion="0.33707866" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rpc/build.gradle">
+    <entry file="file://$PROJECT_DIR$/peer-server-integration/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="45" selection-start="78" selection-end="78" vertical-scroll-proportion="0.084269665">
-          <folding />
-        </state>
+        <state line="13" column="0" selection-start="330" selection-end="330" vertical-scroll-proportion="0.36516854" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server-module-j2ee/src/test/java/com/googlecode/fspotcloud/server/inject/InjectorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="407" selection-end="407" vertical-scroll-proportion="0.20522387" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server-module-j2ee/src/test/java/com/googlecode/fspotcloud/server/admin/integration/J2eeIntegrationGuiceBerryEnv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="13" selection-start="1933" selection-end="1933" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server-module-j2ee/src/test/resources/testng.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server-module-j2ee/src/test/resources/properies.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model-api/src/main/java/com/googlecode/fspotcloud/server/model/api/Tag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="34" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="26" selection-start="464" selection-end="464" vertical-scroll-proportion="0.33582088" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server-module-j2ee/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="75" selection-start="377" selection-end="377" vertical-scroll-proportion="0.2247191">
+        <state line="15" column="32" selection-start="547" selection-end="547" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/user-service-gae/build.gradle">
+    <entry file="file://$PROJECT_DIR$/server-module-j2ee/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="4" selection-start="246" selection-end="246" vertical-scroll-proportion="0.2247191">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user-service-api/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test-util/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user-service-openid/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="4" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/war-prod/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradle.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="17" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="63" selection-start="134" selection-end="150" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="67" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="87" column="102" selection-start="3394" selection-end="3394" vertical-scroll-proportion="1.1896334">
           <folding />
         </state>
       </provider>

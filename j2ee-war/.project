@@ -1,38 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>j2ee-war</name>
-	<comment>j2ee war with Derby. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-	<projects>
-		<project>server-module-j2ee</project>
-		<project>server</project>
-		<project>rpc</project>
-		<project>model-api</project>
-		<project>guice-deps</project>
-		<project>peer-rpc</project>
-		<project>servlet-deps</project>
-		<project>user-service-api</project>
-		<project>model-jpa-j2ee</project>
-		<project>model-jpa</project>
-		<project>client</project>
-		<project>gwt-deps</project>
-		<project>test-util</project>
-		<project>peer</project>
-		<project>e2e-test</project>
-	</projects>
+	<comment>J2ee war</comment>
+	<projects/>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>org.maven.ide.eclipse.maven2Builder</name>
-			<arguments>
-			</arguments>
+			<arguments/>
 		</buildCommand>
 	</buildSpec>
-	<natures>
-		<nature>org.maven.ide.eclipse.maven2Nature</nature>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
+	<linkedResources/>
 </projectDescription>

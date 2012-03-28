@@ -44,28 +44,18 @@
     </developers>
     <modules>
         <module>peer-rpc</module>
-        <module>rpc</module>
         <module>user-service-api</module>
         <module>user-service-gae</module>
         <module>user-service-openid</module>
-        <module>test-util</module>
-        <module>model-api</module>
         <module>model-jpa</module>
-        <module>model-jpa-j2ee</module>
         <module>model-jpa-gae</module>
         <module>server</module>
         <module>peer-server-integration</module>
         <module>server-module-gae</module>
-        <module>server-module-j2ee</module>
-        <module>client</module>
-        <module>peer</module>
         <module>e2e-test</module>
         <module>gae-war</module>
-        <module>war-prod</module>
-        <module>installer</module>
         <module>deps</module>
         <module>grapher</module>
-        <module>j2ee-war</module>
     </modules>
     <properties>
         <botdispatch.version>0.43-bd</botdispatch.version>

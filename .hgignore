@@ -1,6 +1,8 @@
 syntax: glob
 te-report/*
 */te-report/*
+*/.idea/*
+.idea/*
 .gradle/*
 */build/*
 build/*

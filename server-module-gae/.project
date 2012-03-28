@@ -1,37 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>server-module-gae</name>
-	<comment>Guice configuration for deployment on GAE. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-	<projects>
-		<project>server</project>
-		<project>rpc</project>
-		<project>model-api</project>
-		<project>guice-deps</project>
-		<project>peer-rpc</project>
-		<project>servlet-deps</project>
-		<project>user-service-api</project>
-		<project>model-jpa-gae</project>
-		<project>model-jpa</project>
-		<project>appengine-deps</project>
-		<project>peer</project>
-		<project>gwt-deps</project>
-		<project>test-util</project>
-		<project>user-service-gae</project>
-	</projects>
+	<comment>F-SpotCloud Server GAE Configuration</comment>
+	<projects/>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>org.maven.ide.eclipse.maven2Builder</name>
-			<arguments>
-			</arguments>
+			<arguments/>
 		</buildCommand>
 	</buildSpec>
-	<natures>
-		<nature>org.maven.ide.eclipse.maven2Nature</nature>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
+	<linkedResources/>
 </projectDescription>
