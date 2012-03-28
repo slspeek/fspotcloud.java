@@ -30,6 +30,7 @@ subprojects {
     repositories {
         mavenRepo urls: ["file:${System.properties['user.home']}/.m2/repository/"]
 
+        mavenRepo urls: ["http://localhost:9090/nexus/content/groups/public/"]
         mavenRepo urls: ["http://repo2.maven.org/maven2"]
         mavenRepo urls: ["http://fspotcloud-maven.googlecode.com/svn/maven/repository"]
         mavenRepo urls: ["http://people.apache.org/repo/m2-snapshot-repository"]
