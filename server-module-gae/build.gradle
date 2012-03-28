@@ -24,6 +24,9 @@ dependencies {
     testCompile project(':test-util')
     testCompile project(path: ':user-service-api', configuration: 'testFixtures')
     testCompile project(path: ':peer-server-integration', configution: 'testCompile')
+    testCompile("com.googlecode.taskqueue-dispatch:direct:${taskqueue_dispatch_version}") {
+        exclude(module: 'gwt-user')
+    }
     testCompile libs.guiceberry
     testCompile libs.guava_testlib
     testCompile libs.gae_testing
