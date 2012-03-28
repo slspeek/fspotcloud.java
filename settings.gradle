@@ -1,5 +1,10 @@
 rootProject.name = 'fspotcloud'
- include ':rpc', ':peer-rpc', ':user-service-api', ':deps', ':deps:appengine-deps', ':user-service-gae', ':user-service-openid', ':test-util', ':deps:guice-deps', ':model-api', ':model-jpa', ':model-jpa-j2ee', ':model-jpa-gae', ':deps:servlet-deps', ':server', ':deps:gwt-deps', ':peer', ':peer-server-integration', ':server-module-gae', ':server-module-j2ee', ':client', ':e2e-test', ':gae-war', ':war-prod', ':j2ee-war'
+include ':rpc', ':peer-rpc', ':user-service-api', ':deps', ':deps:appengine-deps',
+        ':user-service-gae', ':user-service-openid', ':test-util', ':deps:guice-deps',
+        ':model-api', ':model-jpa', ':model-jpa-j2ee', ':model-jpa-gae', 
+        ':deps:servlet-deps', ':server', ':deps:gwt-deps', ':peer',
+        ':peer-server-integration', ':server-module-gae', ':server-module-j2ee',
+        ':client', ':e2e-test', ':gae-war', ':war-prod', ':j2ee-war'
 project(':rpc').projectDir = "$rootDir/rpc/" as File
 project(':peer-rpc').projectDir = "$rootDir/peer-rpc/" as File
 project(':user-service-api').projectDir = "$rootDir/user-service-api/" as File

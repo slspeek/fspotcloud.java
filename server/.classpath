@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/classes" path="src/main/java"/>
-	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources"/>
-	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
-	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
-	<classpathentry kind="output" path="target/classes"/>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry kind="src" path="/model-jpa-j2ee" exported="true"/>
+	<classpathentry kind="src" path="/rpc" exported="true"/>
+	<classpathentry kind="src" path="/model-api" exported="true"/>
+	<classpathentry kind="src" path="/guice-deps" exported="true"/>
+	<classpathentry kind="src" path="/user-service-api" exported="true"/>
+	<classpathentry kind="src" path="/peer-rpc" exported="true"/>
+	<classpathentry kind="src" path="/servlet-deps" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/com/googlecode/bot-dispatch/controller/0.43-bd/controller-0.43-bd.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/com/googlecode/taskqueue-dispatch/dispatch-api/0.4-tqd/dispatch-api-0.4-tqd.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/apache/geronimo/specs/geronimo-servlet_2.5_spec/1.2/geronimo-servlet_2.5_spec-1.2-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/apache/geronimo/specs/geronimo-servlet_2.5_spec/1.2/geronimo-servlet_2.5_spec-1.2.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/testng/testng/6.1.1/testng-6.1.1-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/testng/testng/6.1.1/testng-6.1.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/mockito/mockito-core/1.9.0-rc1/mockito-core-1.9.0-rc1-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/mockito/mockito-core/1.9.0-rc1/mockito-core-1.9.0-rc1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/guava/guava/r09/guava-r09-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/guava/guava/r09/guava-r09.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/gwt/gwt-servlet/2.4.0/gwt-servlet-2.4.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/gwt/gwt-servlet/2.4.0/gwt-servlet-2.4.0.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/net/customware/gwt/dispatch/gwt-dispatch/1.2.0/gwt-dispatch-1.2.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/net/customware/gwt/dispatch/gwt-dispatch/1.2.0/gwt-dispatch-1.2.0.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/javax/inject/javax.inject/1/javax.inject-1-sources.jar" kind="lib" path="/home/steven/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/com/googlecode/simple-jpa-dao/dao-api/0.16-sjd/dao-api-0.16-sjd.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/com/googlecode/bot-dispatch/command-api/0.43-bd/command-api-0.43-bd.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/asm/asm/3.1/asm-3.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.gradle/caches/artifacts-4/org.sonatype.sisu.inject/cglib/c46b76f8183c2182777fb8177bd87f9b/sources/cglib-2.2.1-v20090111-sources.jar" kind="lib" path="/home/steven/.gradle/caches/artifacts-4/org.sonatype.sisu.inject/cglib/c46b76f8183c2182777fb8177bd87f9b/jars/cglib-2.2.1-v20090111.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/inject/guice/3.0/guice-3.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/inject/guice/3.0/guice-3.0.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/inject/extensions/guice-assistedinject/3.0/guice-assistedinject-3.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/inject/extensions/guice-assistedinject/3.0/guice-assistedinject-3.0.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/inject/extensions/guice-servlet/3.0/guice-servlet-3.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/inject/extensions/guice-servlet/3.0/guice-servlet-3.0.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6-sources.jar" kind="lib" path="/home/steven/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/junit/junit/3.8.1/junit-3.8.1-sources.jar" kind="lib" path="/home/steven/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar" exported="true"/>
+	<classpathentry kind="lib" path="/home/steven/.m2/repository/org/beanshell/bsh/2.0b4/bsh-2.0b4.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/com/beust/jcommander/1.12/jcommander-1.12-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/beust/jcommander/1.12/jcommander-1.12.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/yaml/snakeyaml/1.6/snakeyaml-1.6-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/yaml/snakeyaml/1.6/snakeyaml-1.6.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.m2/repository/org/objenesis/objenesis/1.0/objenesis-1.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/org/objenesis/objenesis/1.0/objenesis-1.0.jar" exported="true"/>
 </classpath>

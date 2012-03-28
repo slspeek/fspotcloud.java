@@ -11,7 +11,7 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 
 public class InjectorTest {
 
-     @Test
+    @Test
     public void testInjector() {
         Injector injector = Guice.createInjector(new J2eeTotalModule());
         AssertJUnit.assertNotNull(injector);

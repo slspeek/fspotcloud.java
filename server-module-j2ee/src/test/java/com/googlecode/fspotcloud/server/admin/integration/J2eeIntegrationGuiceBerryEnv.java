@@ -31,7 +31,7 @@ import com.googlecode.simplejpadao.EntityModule;
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
-public class IntegrationGuiceBerryEnv extends GuiceBerryModule {
+public class J2eeIntegrationGuiceBerryEnv extends GuiceBerryModule {
 
     @Override
     public void configure() {
