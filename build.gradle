@@ -6,10 +6,14 @@ buildscript {
             name = 'GitHub'
             addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
         }
+        mavenRepo urls: ["file:${System.properties['user.home']}/.m2/repository/"]
+        mavenRepo urls: ["http://repo2.maven.org/maven2"]
+        mavenRepo urls: ["http://fspotcloud-maven.googlecode.com/svn/maven/repository"]
     }
 
     dependencies {
         classpath 'bmuschko:gradle-gae-plugin:0.5.4'
+        classpath 'com.markuskobler.gradle:gwt-gradle-plugin:0.1-SNAPSHOT'
     }
 }
 
