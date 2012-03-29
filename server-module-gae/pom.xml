@@ -124,6 +124,13 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>com.googlecode.taskqueue-dispatch</groupId>
+            <artifactId>direct</artifactId>
+            <version>${taskqueuedispatch.version}</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
