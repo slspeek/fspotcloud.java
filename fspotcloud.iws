@@ -192,19 +192,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="build.gradle" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="85" selection-start="452" selection-end="511" vertical-scroll-proportion="0.0">
+            <state line="47" column="8" selection-start="1214" selection-end="1214" vertical-scroll-proportion="0.5499368">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="670" column="81" selection-start="27768" selection-end="27832" vertical-scroll-proportion="0.39570165">
+            <state line="670" column="81" selection-start="27768" selection-end="27832" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -912,11 +912,6 @@
         <state line="3" column="34" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server-module-gae/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="57" selection-start="942" selection-end="942" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/peer/src/main/java/com/googlecode/fspotcloud/peer/CopyDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="13" selection-start="345" selection-end="345" vertical-scroll-proportion="0.0" />
@@ -950,16 +945,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="85" selection-start="452" selection-end="511" vertical-scroll-proportion="0.0">
+        <state line="670" column="81" selection-start="27768" selection-end="27832" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/server-module-gae/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="670" column="81" selection-start="27768" selection-end="27832" vertical-scroll-proportion="0.39570165">
+        <state line="26" column="57" selection-start="942" selection-end="942" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="8" selection-start="1214" selection-end="1214" vertical-scroll-proportion="0.5499368">
           <folding />
         </state>
       </provider>

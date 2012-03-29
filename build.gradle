@@ -2,18 +2,26 @@ apply from: 'libraries.gradle'
 
 buildscript {
     repositories {
+        mavenCentral()
         add(new org.apache.ivy.plugins.resolver.URLResolver()) {
             name = 'GitHub'
             addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
         }
-        mavenRepo urls: ["file:${System.properties['user.home']}/.m2/repository/"]
-        mavenRepo urls: ["http://repo2.maven.org/maven2"]
-        mavenRepo urls: ["http://fspotcloud-maven.googlecode.com/svn/maven/repository"]
+        maven {
+            url "file:${System.properties['user.home']}/.m2/repository/"
+        }
+        maven {
+            url "http://fspotcloud-maven.googlecode.com/svn/maven/repository"
+
+        }
+        maven {
+            url "http://localhost:9090/nexus/content/groups/public/"
+        }
     }
 
     dependencies {
         classpath 'bmuschko:gradle-gae-plugin:0.5.4'
-        classpath 'com.markuskobler.gradle:gwt-gradle-plugin:0.1-SNAPSHOT'
+        classpath 'com.markuskobler.gradle:gwt-gradle-plugin:0.1'
     }
 }
 
@@ -32,16 +40,28 @@ subprojects {
     targetCompatibility = 1.6
 
     repositories {
-        mavenRepo urls: ["file:${System.properties['user.home']}/.m2/repository/"]
+        maven {
+            url "http://localhost:9090/nexus/content/groups/public/"
+        }
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url "http://fspotcloud-maven.googlecode.com/svn/maven/repository"
+        }
+        maven {url "http://fspotcloud-maven.googlecode.com/svn/maven/repository" }
+        maven { url "http://people.apache.org/repo/m2-snapshot-repository" }
+        maven { url "http://maven-gae-plugin.googlecode.com/svn/repository"}
 
-        mavenRepo urls: ["http://localhost:9090/nexus/content/groups/public/"]
-        mavenRepo urls: ["http://repo2.maven.org/maven2"]
-        mavenRepo urls: ["http://fspotcloud-maven.googlecode.com/svn/maven/repository"]
-        mavenRepo urls: ["http://people.apache.org/repo/m2-snapshot-repository"]
-        mavenRepo urls: ["http://maven-gae-plugin.googlecode.com/svn/repository"]
-        mavenRepo urls: ["http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/"]
-        mavenRepo urls: ["http://www.datanucleus.org/downloads/maven2"]
+        maven {
+            url "http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/"
+        }
+
+        maven {
+            url "http://www.datanucleus.org/downloads/maven2"
+        }
     }
+
 }
+
 
 dependsOnChildren()
