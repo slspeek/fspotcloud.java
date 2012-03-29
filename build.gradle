@@ -8,14 +8,8 @@ buildscript {
             addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
         }
         maven {
-            url "file:${System.properties['user.home']}/.m2/repository/"
-        }
-        maven {
             url "http://fspotcloud-maven.googlecode.com/svn/maven/repository"
 
-        }
-        maven {
-            url "http://localhost:9090/nexus/content/groups/public/"
         }
     }
 

@@ -1,22 +1,55 @@
 description = 'GWT client'
 
+apply plugin: 'gwt2'
+
+gwtVersion = "${gwt_version}"
+
 dependencies {
     compile project(':rpc')
+    compile files("../rpc/build/libs/rpc-${version}-sources.jar")
     compile "com.google.inject.extensions:guice-assistedinject:${guice_version}"
     compile "com.google.gwt.inject:gin:1.5.0"
     compile libs.guice
     compile libs.inject
     compile libs.guava
-    compile "com.google.gwt:gwt-user:2.4.0"
+    compile "com.google.gwt:gwt-user:${gwt_version}"
     compile "com.reveregroup.gwt:gwt-image-loader:1.1.4"
-    testCompile "com.google.gwt:gwt-dev:${gwt_version}"
+    compile "com.google.gwt:gwt-dev:${gwt_version}"
     testCompile "junit:junit:3.8.1"
     testCompile "org.jmock:jmock:2.5.1"
     testCompile libs.mockito
 
+
 }
+
+task convertIcons(type:Exec, dependsOn: classes)  {
+    commandLine  "./convert_gradle.sh", "${icon_size}"
+}
+
+task writeVersion(type:Exec, dependsOn: classes)  {
+    commandLine  "./write_version_gradle.sh", "${version}"
+}
+
+compileGwt.dependsOn convertIcons, writeVersion
 
 test {
     exclude '**/*GwtTest*'
     //testLogging.showStandardStreams = true
+}
+
+test {
+    ignoreFailures = true // TODO check if this is still needed (think to enable hudson integration...)
+    jvmArgs '-Xmx256m', '-XX:+HeapDumpOnOutOfMemoryError'
+}
+
+gwtModules     = ['com.googlecode.fspotcloud.FSpotCloud', 'com.googlecode.fspotcloud.dashboard']
+
+
+compileGwt {
+    style = 'DETAILED' // Script output style: OBF[USCATED], PRETTY, or DETAILED (defaults to OBF)
+    compileReport = true
+}
+
+gwtDevMode {
+    startupUrls = ['/']
 }
