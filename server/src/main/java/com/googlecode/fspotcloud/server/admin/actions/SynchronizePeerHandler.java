@@ -5,8 +5,8 @@ import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
+import com.googlecode.botdispatch.SerializableAsyncCallback;
 
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.callback.PeerMetaDataCallback;
@@ -34,7 +34,7 @@ public class SynchronizePeerHandler extends SimpleActionHandler<SynchronizePeer,
         adminPermission.chechAdminPermission();
         try {
             GetPeerMetaData metaAction = new GetPeerMetaData();
-            AsyncCallback<PeerMetaDataResult> callback = new PeerMetaDataCallback(null, null);
+            SerializableAsyncCallback<PeerMetaDataResult> callback = new PeerMetaDataCallback(null, null);
             dispatch.execute(metaAction, callback);
         } catch (Exception e) {
             throw new ActionException(e);

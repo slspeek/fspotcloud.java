@@ -1,10 +1,9 @@
 package com.googlecode.fspotcloud.server.control.callback;
 
-import java.io.Serializable;
 import java.util.logging.Logger;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
+import com.googlecode.botdispatch.SerializableAsyncCallback;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.TagImportAction;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
@@ -14,7 +13,7 @@ import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
 import com.googlecode.taskqueuedispatch.NullCallback;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
-public class PeerMetaDataCallback implements AsyncCallback<PeerMetaDataResult>, Serializable {
+public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaDataResult> {
 final static private Logger log = Logger.getLogger(PeerMetaDataCallback.class.getName());
 	private static final long serialVersionUID = 1851403859917750767L;
 	@Inject

@@ -18,6 +18,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.googlecode.botdispatch.SerializableAsyncCallback;
 
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
@@ -39,7 +40,7 @@ public class PhotoUpdateHandlerTest {
 	@Captor
 	ArgumentCaptor<GetPhotoData> captorAction;
 	@Captor
-	ArgumentCaptor<AsyncCallback<PhotoDataResult>> captorCallback;
+	ArgumentCaptor<SerializableAsyncCallback<PhotoDataResult>> captorCallback;
 	@Captor
 	ArgumentCaptor<PhotoUpdateAction> recursiveActionCaptor;
 

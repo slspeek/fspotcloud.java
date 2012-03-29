@@ -5,6 +5,7 @@ package com.googlecode.fspotcloud.server.admin.integration;
 import com.google.common.testing.TearDown;
 import com.google.guiceberry.testng.TestNgGuiceBerry;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.peer.db.Data;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
@@ -214,7 +215,7 @@ public class PeerServerIntegrationTest {
 
     protected void synchronizePeer() {
         controller.execute(new SynchronizePeer(),
-                new AsyncCallback<VoidResult>() {
+                new SerializableAsyncCallback<VoidResult>() {
 
                     @Override
                     public void onFailure(Throwable caught) {
@@ -231,7 +232,7 @@ public class PeerServerIntegrationTest {
 
     protected void importTag(String tagId) {
         controller.execute(new ImportTag(tagId, 0),
-                new AsyncCallback<VoidResult>() {
+                new SerializableAsyncCallback<VoidResult>() {
 
                     @Override
                     public void onFailure(Throwable caught) {
@@ -248,7 +249,7 @@ public class PeerServerIntegrationTest {
 
     protected void unImportTag(String tagId) {
         controller.execute(new UnImportTag(tagId),
-                new AsyncCallback<VoidResult>() {
+                new SerializableAsyncCallback<VoidResult>() {
 
                     @Override
                     public void onFailure(Throwable caught) {

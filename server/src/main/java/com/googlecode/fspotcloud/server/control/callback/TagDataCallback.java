@@ -1,14 +1,13 @@
 package com.googlecode.fspotcloud.server.control.callback;
 
-import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
+import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.ImportTag;
@@ -16,8 +15,7 @@ import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagDataResult;
 
 
-public class TagDataCallback implements AsyncCallback<TagDataResult>,
-		Serializable {
+public class TagDataCallback implements SerializableAsyncCallback<TagDataResult> {
 
 	protected static final Logger log = Logger.getLogger(TagDataCallback.class.getName());
 	private static final long serialVersionUID = 5342287706825285919L;
