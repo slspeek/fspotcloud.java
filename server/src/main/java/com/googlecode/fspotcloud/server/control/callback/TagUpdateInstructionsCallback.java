@@ -1,11 +1,10 @@
 package com.googlecode.fspotcloud.server.control.callback;
 
-import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
+import com.googlecode.botdispatch.SerializableAsyncCallback;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
@@ -13,7 +12,7 @@ import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagUpdateInstructionsRe
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
 public class TagUpdateInstructionsCallback implements
-		AsyncCallback<TagUpdateInstructionsResult>, Serializable {
+		SerializableAsyncCallback<TagUpdateInstructionsResult> {
 	
 	protected static final Logger log = Logger.getLogger(TagUpdateInstructionsCallback.class.getName());
 	private static final long serialVersionUID = -6213572441944313878L;

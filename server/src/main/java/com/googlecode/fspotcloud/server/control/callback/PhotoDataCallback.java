@@ -1,12 +1,11 @@
 package com.googlecode.fspotcloud.server.control.callback;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
+import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoData;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
@@ -14,8 +13,7 @@ import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
 
 import java.util.*;
 
-public class PhotoDataCallback implements AsyncCallback<PhotoDataResult>,
-		Serializable {
+public class PhotoDataCallback implements SerializableAsyncCallback<PhotoDataResult> {
 
 	private static final long serialVersionUID = 246810426240427570L;
 

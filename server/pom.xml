@@ -51,10 +51,6 @@
             <artifactId>mockito-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.taskqueue-dispatch</groupId>
-            <artifactId>dispatch-api</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>user-service-api</artifactId>
             <version>0.12-beta</version>
@@ -69,6 +65,12 @@
             <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>model-jpa-j2ee</artifactId>
             <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.taskqueue-dispatch</groupId>
+            <artifactId>dispatch-api</artifactId>
+            <version>0.4-tqd</version>
             <type>jar</type>
         </dependency>
     </dependencies>
