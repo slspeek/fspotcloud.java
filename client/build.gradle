@@ -6,7 +6,7 @@ gwtVersion = "${gwt_version}"
 
 dependencies {
     compile project(':rpc')
-    compile files("../rpc/build/libs/rpc-${version}-sources.jar")
+    compile project(path: ':rpc', configuration: 'sources')
     compile "com.google.inject.extensions:guice-assistedinject:${guice_version}"
     compile "com.google.gwt.inject:gin:1.5.0"
     compile libs.guice
@@ -15,11 +15,10 @@ dependencies {
     compile "com.google.gwt:gwt-user:${gwt_version}"
     compile "com.reveregroup.gwt:gwt-image-loader:1.1.4"
     compile "com.google.gwt:gwt-dev:${gwt_version}"
+
     testCompile "junit:junit:3.8.1"
     testCompile "org.jmock:jmock:2.5.1"
     testCompile libs.mockito
-
-
 }
 
 task convertIcons(type:Exec, dependsOn: classes)  {
@@ -30,11 +29,16 @@ task writeVersion(type:Exec, dependsOn: classes)  {
     commandLine  "./write_version_gradle.sh", "${version}"
 }
 
+task javascriptJar(type: Jar, dependsOn: compileGwt) {
+    classifier = 'javascript'
+    from "${buildDir}/gwt/out"
+}
+
 compileGwt.dependsOn convertIcons, writeVersion
 
 test {
     exclude '**/*GwtTest*'
-    //testLogging.showStandardStreams = true
+    testLogging.showStandardStreams = true
 }
 
 test {
@@ -52,4 +56,9 @@ compileGwt {
 
 gwtDevMode {
     startupUrls = ['/']
+}
+
+artifacts {
+    archives javascriptJar
+
 }
