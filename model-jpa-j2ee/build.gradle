@@ -32,6 +32,9 @@ dependencies {
     daoTests libs.simple_jpa_dao_namedid_test
     modelTests files("../model-api/build/libs/model-api-${version}-tests.jar")
 }
+task deleteDB(type: Delete) {
+    delete 'MODELJPA', 'runtime', 'derby.log'
+}
 
 task unpackTest << {
     mkdir "$buildDir/dao-test"
@@ -76,3 +79,4 @@ task modelTest(type: Test, dependsOn: [classes, unpackTest]) {
 }
 
 check.dependsOn photoDaoTest, tagDaoTest, peerDatabaseDaoTest, modelTest
+clean.dependsOn deleteDB
