@@ -1,5 +1,9 @@
 description = 'Selenium tests'
 
+configurations {
+    testCompile
+}
+
 dependencies {
     testCompile project(':test-util')
     testCompile "org.seleniumhq.selenium:selenium:2.0b3"
@@ -14,8 +18,12 @@ dependencies {
 test {
     exclude "*"
 }
+
 task packageTests(type: Jar) {
     from sourceSets.test.classes
     classifier = 'tests'
 }
-artifacts.archives packageTests
+
+artifacts {
+    testCompile packageTests
+}
