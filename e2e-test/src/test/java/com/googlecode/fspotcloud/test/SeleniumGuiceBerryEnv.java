@@ -17,7 +17,7 @@ public class SeleniumGuiceBerryEnv extends GuiceBerryModule {
     @TestScoped
     Selenium getSelenium(@Named("baseUrl") String baseUrl) {
         WebDriver driver;
-        String userChoice = System.getProperty("fspotcloud.test.webdriver");
+        String userChoice = "fire";//System.getProperty("fspotcloud.test.webdriver");
         if (userChoice != null) {
             driver = new FirefoxDriver();
         } else {

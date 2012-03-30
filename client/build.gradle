@@ -4,6 +4,10 @@ apply plugin: 'gwt2'
 
 gwtVersion = "${gwt_version}"
 
+configurations {
+    javascript
+}
+
 dependencies {
     compile project(':rpc')
     compile project(path: ':rpc', configuration: 'sources')
@@ -31,7 +35,9 @@ task writeVersion(type:Exec, dependsOn: classes)  {
 
 task javascriptJar(type: Jar, dependsOn: compileGwt) {
     classifier = 'javascript'
-    from "${buildDir}/gwt/out"
+    from "${buildDir}/gwt/out",
+            "${rootDir}/client/src/main/webapp",
+            "${rootDir}/client/src/main/resources"
 }
 
 compileGwt.dependsOn convertIcons, writeVersion
@@ -59,6 +65,5 @@ gwtDevMode {
 }
 
 artifacts {
-    archives javascriptJar
-
+    javascript javascriptJar
 }
