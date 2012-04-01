@@ -14,7 +14,7 @@ public class DeleteITest {
 
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(
-            SeleniumGuiceBerryEnv.class);
+            EmptyGuiceBerryEnv.class);
     @Inject
     Selenium selenium;
     @Inject

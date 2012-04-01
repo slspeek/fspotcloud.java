@@ -13,7 +13,7 @@ import com.thoughtworks.selenium.Selenium;
 public class ApplicationActionsITest {
 
     @Rule
-    public GuiceBerryRule guiceBerry = new GuiceBerryRule(SeleniumGuiceBerryEnv.class);
+    public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
     Selenium selenium;
 

@@ -86,9 +86,9 @@
     <build>
         <resources>
             <resource>
-                <directory>${basedir}/src/main/resources</directory>
+                <directory>${basedir}/src/main/webapp</directory>
                 <filtering>true</filtering>
-                <targetPath>../${project.build.finalName}</targetPath>
+                <targetPath>../filtered</targetPath>
             </resource>
         </resources>
         <plugins>
@@ -110,7 +110,7 @@
                         </goals>
                         <configuration>
                             <skip>false</skip>
-							<!-- XXX: excludes-element really needed -->
+                            <!-- XXX: excludes-element really needed -->
                             <excludes>
                                 <exclude>none</exclude>
                             </excludes>
@@ -119,12 +119,15 @@
                             </includes>
                             <testClassesDirectory>${project.build.directory}/e2e-tests</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.SeleniumGuiceBerryEnv>com.googlecode.fspotcloud.test.GaeWarGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.SeleniumGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>
+                                    com.googlecode.fspotcloud.test.GaeWarGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
-                            <testFailureIgnore>true</testFailureIgnore>
+                            <!--<testFailureIgnore>true</testFailureIgnore>-->
                         </configuration>
                     </execution>
                 </executions>
@@ -135,7 +138,7 @@
                 <executions>
                     <execution>
                         <id>unpack-e2e-test</id>
-                        <phase>process-test-resources</phase> 
+                        <phase>process-test-resources</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
@@ -175,7 +178,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <splitJars />
+                    <splitJars/>
                 </configuration>
             </plugin>
             <plugin>
@@ -186,10 +189,10 @@
                     <webResources>
                         <resource>
                             <directory>${project.build.directory}/filtered</directory>
-                            <includes></includes>
+                            <includes>
+                                <include>**</include>
+                            </includes>
                         </resource>
-                    </webResources>
-                    <webResources>
                         <resource>
                             <directory>${project.build.directory}/dependency/classes</directory>
                             <includes>
@@ -207,6 +210,9 @@
                         </resource>
                     </webResources>
                     <webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
+                    <warSourceDirectory>
+                        ${basedir}/src/main/resources
+                    </warSourceDirectory>
                 </configuration>
             </plugin>
             <plugin>
@@ -219,18 +225,18 @@
                         <phase>pre-integration-test</phase>
                         <configuration>
                             <target>
-                                <property name="runtime_classpath" refid="maven.runtime.classpath" />
+                                <property name="runtime_classpath" refid="maven.runtime.classpath"/>
                                 <java
-                                    jar="${basedir}/../peer/target/peer-${project.version}-jar-with-dependencies.jar"
-                                    fork="yes" spawn="yes">
+                                        jar="${basedir}/../peer/target/peer-${project.version}-jar-with-dependencies.jar"
+                                        fork="yes" spawn="yes">
                                     <sysproperty key="db"
-                                                 value="${basedir}/../peer/src/test/resources/photos.db" />
-                                    <sysproperty key="endpoint" value="localhost:8080" />
-                                    <sysproperty key="bot.secret" value="${bot.secret}" />
-                                    <sysproperty key="pause" value="2" />
-                                    <sysproperty key="photo.dir.original" value="file:///home/steven/Photos" />
+                                                 value="${basedir}/../peer/src/test/resources/photos.db"/>
+                                    <sysproperty key="endpoint" value="localhost:8080"/>
+                                    <sysproperty key="bot.secret" value="${bot.secret}"/>
+                                    <sysproperty key="pause" value="2"/>
+                                    <sysproperty key="photo.dir.original" value="file:///home/steven/Photos"/>
                                     <sysproperty key="photo.dir.override"
-                                                 value="file://${basedir}/../peer/src/test/resources/Photos" />
+                                                 value="file://${basedir}/../peer/src/test/resources/Photos"/>
                                 </java>
                             </target>
                         </configuration>
@@ -243,10 +249,10 @@
                         <phase>post-integration-test</phase>
                         <configuration>
                             <target>
-                                <property name="runtime_classpath" refid="maven.runtime.classpath" />
+                                <property name="runtime_classpath" refid="maven.runtime.classpath"/>
                                 <exec executable="telnet">
-                                    <arg value="localhost" />
-                                    <arg value="4444" />
+                                    <arg value="localhost"/>
+                                    <arg value="4444"/>
                                 </exec>
                             </target>
                         </configuration>
