@@ -4,7 +4,7 @@ apply plugin: 'war'
 
 apply plugin: 'gae'
 System.properties['appengine.sdk.root'] = System.properties['user.home'] + "/appengine-java-sdk-1.6.0"
-System.properties[ 'GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.SeleniumGuiceBerryEnv'] =
+System.properties[ 'GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.test.GaeWarGuiceBerryEnv'
 gae {
     stopKey = 'STOP'
@@ -41,13 +41,15 @@ task unpackTest << {
 
 
 task integrationTest(type: Test, dependsOn: gaeRun) {
-    systemProperty 'GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.SeleniumGuiceBerryEnv' ,
+    systemProperty 'GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv' ,
             'com.googlecode.fspotcloud.test.GaeWarGuiceBerryEnv'
     testClassesDir = sourceSets.test.output.classesDir
     classpath = sourceSets.test.runtimeClasspath
     //tuning the included/excluded tests
     include "**/LocalSuite.java"
     testLogging.showStandardStreams = true
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
+              'com.googlecode.fspotcloud.test.GaeWarGuiceBerryEnv'
 }
 
 tasks.gaeStop << {

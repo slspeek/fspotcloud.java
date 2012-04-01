@@ -134,12 +134,12 @@
                             </includes>
                             <testClassesDirectory>${project.build.directory}/e2e-tests</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.SeleniumGuiceBerryEnv>com.googlecode.fspotcloud.test.J2eeWarGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.SeleniumGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.test.J2eeWarGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <testFailureIgnore>true</testFailureIgnore>
+                            <!--<testFailureIgnore>true</testFailureIgnore>-->
                         </configuration>
                     </execution>
                 </executions>

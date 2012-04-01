@@ -12,7 +12,7 @@ import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 public class DashboardITest {
 
     @Rule
-    public GuiceBerryRule guiceBerry = new GuiceBerryRule(SeleniumGuiceBerryEnv.class);
+    public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
     Selenium selenium;
     @Inject

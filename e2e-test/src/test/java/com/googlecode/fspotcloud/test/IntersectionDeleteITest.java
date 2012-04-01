@@ -5,7 +5,6 @@ import static junit.framework.Assert.fail;
 
 import javax.inject.Inject;
 
-import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -15,7 +14,7 @@ import com.thoughtworks.selenium.Selenium;
 public class IntersectionDeleteITest {
 	@Rule
 	public GuiceBerryRule guiceBerry = new GuiceBerryRule(
-			SeleniumGuiceBerryEnv.class);
+			EmptyGuiceBerryEnv.class);
 
 	@Inject
 	Selenium selenium;
