@@ -201,10 +201,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gae-war/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="47" selection-start="4161" selection-end="4161" vertical-scroll-proportion="0.7089552">
+            <state line="216" column="39" selection-start="8872" selection-end="9139" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/j2ee-war/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="154" column="55" selection-start="5950" selection-end="5950" vertical-scroll-proportion="0.50695324">
               <folding />
             </state>
           </provider>
@@ -239,13 +248,13 @@
         <option value="$PROJECT_DIR$/client/build.gradle" />
         <option value="$PROJECT_DIR$/e2e-test/src/test/java/com/googlecode/fspotcloud/test/SeleniumGuiceBerryEnv.java" />
         <option value="$PROJECT_DIR$/e2e-test/src/test/java/com/googlecode/fspotcloud/test/EmptyGuiceBerryEnv.java" />
-        <option value="$PROJECT_DIR$/j2ee-war/pom.xml" />
         <option value="$PROJECT_DIR$/gae-war/src/test/java/com/googlecode/fspotcloud/test/GaeWarGuiceBerryEnv.java" />
         <option value="$PROJECT_DIR$/j2ee-war/src/test/java/com/googlecode/fspotcloud/test/J2eeWarGuiceBerryEnv.java" />
         <option value="$PROJECT_DIR$/gradle.properties" />
         <option value="$PROJECT_DIR$/peer/build.gradle" />
         <option value="$PROJECT_DIR$/gae-war/build.gradle" />
         <option value="$PROJECT_DIR$/gae-war/pom.xml" />
+        <option value="$PROJECT_DIR$/j2ee-war/pom.xml" />
       </list>
     </option>
   </component>
@@ -416,7 +425,103 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gae-war" />
+              <option name="myItemId" value="j2ee-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="j2ee-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="j2ee-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="j2ee-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="j2ee-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -676,9 +781,9 @@
       <item index="0" class="java.lang.String" itemvalue="Groovy Script.build.unpackTest" />
       <item index="1" class="java.lang.String" itemvalue="Groovy Script.build.integrationTest" />
       <item index="2" class="java.lang.String" itemvalue="TestNG.InjectorTest" />
-      <item index="3" class="java.lang.String" itemvalue="Groovy Script.build" />
-      <item index="4" class="java.lang.String" itemvalue="Groovy Script.build.peerRun" />
-      <item index="5" class="java.lang.String" itemvalue="Groovy Script.build2" />
+      <item index="3" class="java.lang.String" itemvalue="Groovy Script.build2" />
+      <item index="4" class="java.lang.String" itemvalue="Groovy Script.build" />
+      <item index="5" class="java.lang.String" itemvalue="Groovy Script.build.peerRun" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -896,11 +1001,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/j2ee-war/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="75" selection-start="5852" selection-end="5900" vertical-scroll-proportion="2.7467532" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/peer/src/main/java/com/googlecode/fspotcloud/peer/inject/PeerModule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="13" selection-start="321" selection-end="321" vertical-scroll-proportion="0.07662835" />
@@ -954,7 +1054,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gae-war/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="47" selection-start="4161" selection-end="4161" vertical-scroll-proportion="0.7089552">
+        <state line="216" column="39" selection-start="8872" selection-end="9139" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/j2ee-war/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="154" column="55" selection-start="5950" selection-end="5950" vertical-scroll-proportion="0.50695324">
           <folding />
         </state>
       </provider>
