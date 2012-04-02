@@ -15,6 +15,7 @@ buildscript {
 
     dependencies {
         classpath 'bmuschko:gradle-gae-plugin:0.5.4'
+        classpath 'bmuschko:gradle-tomcat-plugin:0.9.1'
         classpath 'com.markuskobler.gradle:gwt-gradle-plugin:0.1'
     }
 }

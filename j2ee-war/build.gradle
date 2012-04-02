@@ -1,18 +1,94 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 description = 'J2ee war'
 
 apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'tomcat'
+
 dependencies {
     compile project(':server-module-j2ee')
-    compile project(':client')
+    compile project(path: ':client', configuration: 'javascript')
     compile("org.openid4java:openid4java-consumer:0.9.6") {
         exclude(module: 'guice')
     }
+    tomcat "org.apache.tomcat:catalina:${tomcatVersion}",
+            "org.apache.tomcat:coyote:${tomcatVersion}",
+            "org.apache.tomcat:jasper:${tomcatVersion}"
     testCompile project(':test-util')
     testCompile project(':peer')
+    testCompile project(path: ':e2e-test', configuration: 'testCompile')
     testCompile "org.seleniumhq.selenium:selenium:2.0b3"
     testCompile "org.seleniumhq.selenium.client-drivers:selenium-java-client-driver:1.0.2"
     testCompile libs.guiceberry
     testCompile libs.guava_testlib
     testCompile libs.junit
-    testCompile project(':e2e-test')
 }
+
+task initconfig(type: Copy) {
+    from('src/main/config') {
+        include '**/properties.properties'
+        filter(ReplaceTokens, tokens: [BOT_SECRET: "${bot_secret}".toString()])
+    }
+    from('src/main/config') {
+        exclude '**/properties.properties'
+    }
+    into 'build/target/config'
+}
+
+task unpackJavascript << {
+    myTests = file("../client/build/libs/client-${version}-javascript.jar")
+    ant.unjar(dest: "$buildDir/javascript/", src: myTests)
+}
+
+task unpackTest << {
+    myTests = file("../e2e-test/build/libs/e2e-test-${version}-tests.jar")
+    ant.unjar(dest: "$buildDir/classes/test", src: myTests)
+}
+
+task peerStop(type: Exec) {
+    commandLine "telnet", "localhost", "4444"
+    ignoreExitValue = true
+}
+
+task peerRun(type: Exec) {
+    commandLine "screen", "-d","-m", "../gae-war/peer_run.sh", "${version}", "${bot_secret}"
+    ignoreExitValue = true
+}
+
+//test.dependsOn jettyRunWar, peerRun
+test.dependsOn tomcatRunWar, peerRun
+
+[jettyRun, jettyRunWar, jettyStop]*.stopPort = 8090
+[jettyRun, jettyRunWar, jettyStop]*.stopKey = 'STOP'
+[jettyRun, jettyRunWar, jettyStop]*.daemon = true
+
+[tomcatRun, tomcatRunWar, tomcatStop]*.stopPort = 8090
+[tomcatRun, tomcatRunWar, tomcatStop]*.stopKey = 'STOP'
+[tomcatRun, tomcatRunWar, tomcatStop]*.daemon = true
+test {
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
+        'com.googlecode.fspotcloud.test.J2eeWarGuiceBerryEnv'
+    include "com/googlecode/fspotcloud/test/LocalSuite.class"
+    testLogging.showStandardStreams = true
+}
+
+war {
+    from "build/target/config"
+    from "build/javascript"
+}
+
+war.dependsOn initconfig, unpackJavascript, unpackTest
+
+test << {
+    println "Stopping jetty-server"
+    //jettyStop.execute()
+    tomcatStop.execute()
+    println "Stopping peer"
+    peerStop.execute()
+}
+
+task deleteDB(type: Delete) {
+    delete 'MODELJPA', 'runtime', 'derby.log'
+}
+clean.dependsOn deleteDB
