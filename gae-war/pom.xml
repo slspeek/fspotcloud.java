@@ -86,12 +86,34 @@
     <build>
         <resources>
             <resource>
-                <directory>${basedir}/src/main/webapp</directory>
+                <directory>${basedir}/src/main/config</directory>
                 <filtering>true</filtering>
                 <targetPath>../filtered</targetPath>
             </resource>
         </resources>
         <plugins>
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.0</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <file>target/filtered/WEB-INF/classes/properties.properties</file>
+                    <replacements>
+                        <replacement>
+                            <token>@BOT_SECRET@</token>
+                            <value>${bot.secret}</value>
+                        </replacement>
+                    </replacements>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -115,7 +137,7 @@
                                 <exclude>none</exclude>
                             </excludes>
                             <includes>
-                                <include>**/LocalSuite.java</include>
+                                <include>**/LocalSuite.*</include>
                             </includes>
                             <testClassesDirectory>${project.build.directory}/e2e-tests</testClassesDirectory>
                             <systemPropertyVariables>
@@ -209,7 +231,7 @@
                             </excludes>
                         </resource>
                     </webResources>
-                    <webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
+                    <webXml>${basedir}/target/filtered/WEB-INF/web.xml</webXml>
                     <warSourceDirectory>
                         ${basedir}/src/main/resources
                     </warSourceDirectory>

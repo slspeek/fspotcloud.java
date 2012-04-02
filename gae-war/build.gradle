@@ -1,11 +1,12 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 description = 'Gae war'
 
 apply plugin: 'war'
 
 apply plugin: 'gae'
 System.properties['appengine.sdk.root'] = System.properties['user.home'] + "/appengine-java-sdk-1.6.0"
-System.properties[ 'GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
-        'com.googlecode.fspotcloud.test.GaeWarGuiceBerryEnv'
+
 gae {
     stopKey = 'STOP'
     disableUpdateCheck = true
@@ -29,6 +30,17 @@ dependencies {
     testCompile libs.junit
 }
 
+task initconfig(type: Copy) {
+    from('src/main/config') {
+        include '**/properties.properties'
+        filter(ReplaceTokens, tokens: [BOT_SECRET: "${bot_secret}".toString()])
+    }
+    from('src/main/config') {
+        exclude '**/properties.properties'
+    }
+    into 'build/target/config'
+}
+
 task unpackJavascript << {
     myTests = file("../client/build/libs/client-${version}-javascript.jar")
     ant.unjar(dest: "$buildDir/exploded-war/", src: myTests)
@@ -39,27 +51,42 @@ task unpackTest << {
     ant.unjar(dest: "$buildDir/classes/test", src: myTests)
 }
 
+task peerStop(type: Exec) {
+    commandLine "telnet", "localhost", "4444"
+    ignoreExitValue = true
+}
 
-task integrationTest(type: Test, dependsOn: gaeRun) {
-    systemProperty 'GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv' ,
-            'com.googlecode.fspotcloud.test.GaeWarGuiceBerryEnv'
-    testClassesDir = sourceSets.test.output.classesDir
-    classpath = sourceSets.test.runtimeClasspath
-    //tuning the included/excluded tests
-    include "**/LocalSuite.java"
-    testLogging.showStandardStreams = true
+task peerRun(type: Exec) {
+    commandLine "screen", "-d","-m", "./peer_run.sh", "${version}", "${bot_secret}"
+    ignoreExitValue = true
+}
+
+test.dependsOn gaeExplodeWar, gaeRun, peerRun
+
+test {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
-              'com.googlecode.fspotcloud.test.GaeWarGuiceBerryEnv'
+        'com.googlecode.fspotcloud.test.GaeWarGuiceBerryEnv'
+    include "com/googlecode/fspotcloud/test/LocalSuite.class"
+    testLogging.showStandardStreams = true
 }
 
-tasks.gaeStop << {
-    println "in dolast of gaeStop"
-}
+war {
+    from 'build/target/config'
 
+}
+war.dependsOn initconfig
 
 gaeExplodeWar << {
+    println "Unpacking tests"
     tasks.unpackTest.execute()
+    println "Unpacking GWT javascript"
     tasks.unpackJavascript.execute()
 }
 
-check.dependsOn integrationTest, gaeStop
+test << {
+    println "Stopping GAE-server"
+    gaeStop.execute()
+    println "Stopping peer"
+    peerStop.execute()
+}
+
