@@ -56,18 +56,13 @@
             <artifactId>guice</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.google.guiceberry</groupId>
-            <artifactId>guiceberry</artifactId>
-            <version>3.0.4</version>
-        </dependency>
-        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava-testlib</artifactId>
         </dependency>
-        
+
         <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
 
-        
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -149,7 +144,7 @@
                 <configuration>
                     <log4jConfiguration>${project.build.directory}/classes/log4j.properties</log4jConfiguration>
                     <verbose>true</verbose>
-					<!-- Make sure this path contains your persistent classes! -->
+                    <!-- Make sure this path contains your persistent classes! -->
                     <mappingIncludes>fspotcloud/model/**/*.class</mappingIncludes>
                     <verbose>true</verbose>
                     <enhancerName>ASM</enhancerName>

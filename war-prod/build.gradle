@@ -3,7 +3,15 @@ description = 'Production war'
 apply plugin: 'war'
 
 dependencies {
-    compile project(':rpc')
-    compile project(':server-module-j2ee')
-    compile project(':client')
+    compile project(':server-module-gae')
+    compile project(path: ':client', configuration: 'javascript')
+}
+
+task unpackJavascript << {
+    myTests = file("../client/build/libs/client-${version}-javascript.jar")
+    ant.unjar(dest: "$buildDir/javascript/", src: myTests)
+}
+
+war {
+    from "build/javascript"
 }
