@@ -5,7 +5,7 @@ description = 'Gae war'
 apply plugin: 'war'
 
 apply plugin: 'gae'
-System.properties['appengine.sdk.root'] = System.properties['user.home'] + "/appengine-java-sdk-1.6.0"
+System.properties['appengine.sdk.root'] = System.properties['user.home'] + "/appengine-java-sdk-${gae_version}"
 
 gae {
     stopKey = 'STOP'
@@ -43,7 +43,7 @@ task initconfig(type: Copy) {
 
 task unpackJavascript << {
     myTests = file("../client/build/libs/client-${version}-javascript.jar")
-    ant.unjar(dest: "$buildDir/exploded-war/", src: myTests)
+    ant.unjar(dest: "$buildDir/javascript/", src: myTests)
 }
 
 task unpackTest << {
@@ -52,16 +52,16 @@ task unpackTest << {
 }
 
 task peerStop(type: Exec) {
+
     commandLine "telnet", "localhost", "4444"
     ignoreExitValue = true
 }
 
-task peerRun(type: Exec) {
+task peerRun(type: Exec, dependsOn: ':peer:jar') {
     commandLine "screen", "-d","-m", "./peer_run.sh", "${version}", "${bot_secret}"
-    ignoreExitValue = true
 }
 
-test.dependsOn gaeExplodeWar, gaeRun, peerRun
+test.dependsOn gaeRun, peerRun, unpackTest
 
 test {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
@@ -72,16 +72,12 @@ test {
 
 war {
     from 'build/target/config'
-
+    from "build/javascript"
 }
-war.dependsOn initconfig
 
-gaeExplodeWar << {
-    println "Unpacking tests"
-    tasks.unpackTest.execute()
-    println "Unpacking GWT javascript"
-    tasks.unpackJavascript.execute()
-}
+war.dependsOn initconfig, unpackJavascript
+
+clean.dependsOn gaeStop, peerStop
 
 test << {
     println "Stopping GAE-server"

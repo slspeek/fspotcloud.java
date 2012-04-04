@@ -2,8 +2,6 @@ description = 'GWT client'
 
 apply plugin: 'gwt2'
 
-gwtVersion = "${gwt_version}"
-
 configurations {
     javascript
 }
@@ -26,10 +24,13 @@ dependencies {
 }
 
 task convertIcons(type:Exec, dependsOn: classes)  {
+    inputs.dir "src/main/resources/images/originals"
+    outputs.dir "build/classes/main/images/"
     commandLine  "./convert_gradle.sh", "${icon_size}"
 }
 
 task writeVersion(type:Exec, dependsOn: classes)  {
+    outputs.file "build/classes/main/version.txt"
     commandLine  "./write_version_gradle.sh", "${version}"
 }
 
@@ -44,7 +45,7 @@ compileGwt.dependsOn convertIcons, writeVersion
 
 test {
     exclude '**/*GwtTest*'
-    testLogging.showStandardStreams = true
+    //testLogging.showStandardStreams = true
 }
 
 test {
@@ -53,7 +54,6 @@ test {
 }
 
 gwtModules     = ['com.googlecode.fspotcloud.FSpotCloud', 'com.googlecode.fspotcloud.dashboard']
-
 
 compileGwt {
     style = 'DETAILED' // Script output style: OBF[USCATED], PRETTY, or DETAILED (defaults to OBF)

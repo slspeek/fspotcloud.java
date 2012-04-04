@@ -68,7 +68,7 @@
         <module>j2ee-war</module>
     </modules>
     <properties>
-        <botdispatch.version>0.44-bd</botdispatch.version>
+        <botdispatch.version>0.45-bd</botdispatch.version>
         <taskqueuedispatch.version>0.4-tqd</taskqueuedispatch.version>
         <hibernate.version>4.0.0.Final</hibernate.version>
         <derby.version>10.6.2.1</derby.version>

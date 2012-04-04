@@ -1,8 +1,6 @@
 description = 'F-SpotCloud Server GAE Configuration'
 
 configurations {
-    integrationTest
-    testCompile.extendsFrom(integrationTest)
 }
 
 dependencies {
@@ -23,7 +21,7 @@ dependencies {
     testCompile project(':user-service-api')
     testCompile project(':test-util')
     testCompile project(path: ':user-service-api', configuration: 'testFixtures')
-    testCompile project(path: ':peer-server-integration', configution: 'testCompile')
+    testCompile project(path: ':peer-server-integration', configuration: 'testCompile')
     testCompile("com.googlecode.taskqueue-dispatch:direct:${taskqueue_dispatch_version}") {
         exclude(module: 'gwt-user')
     }
@@ -32,12 +30,10 @@ dependencies {
     testCompile libs.gae_testing
     testCompile libs.junit
     testCompile libs.test_ng
-
-    integrationTest files("../peer-server-integration/build/libs/peer-server-integration-${version}-tests.jar")
 }
 
 task unpackTest << {
-    myTests = configurations.integrationTest.files.iterator().next()
+    myTests = file("../peer-server-integration/build/libs/peer-server-integration-${version}-tests.jar")
     ant.unjar(dest: "$buildDir/classes/test", src: myTests)
 }
 
@@ -45,7 +41,6 @@ test {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.server.admin.integration.GaeIntegrationGuiceBerryEnv'
     //testLogging.showStandardStreams = true
-
 }
 
 test.dependsOn(unpackTest)
