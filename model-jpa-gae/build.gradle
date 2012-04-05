@@ -94,7 +94,7 @@ task modelTest(type: Test, dependsOn: [classes, unpackTest]) {
 check.dependsOn photoDaoTest, tagDaoTest, peerDatabaseDaoTest, modelTest
 
 task jdoEnhance << {
-    inputs.dir sourceSets.main.output.classesDir
+    inputs.dir sourceSets.main.allSource
     outputs.dir sourceSets.main.output.classesDir
 
     ant.taskdef(name: 'enhancer', classname: 'org.datanucleus.enhancer.tools.EnhancerTask', classpath: configurations.jdo.asPath)

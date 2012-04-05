@@ -1,5 +1,4 @@
 libs = [
-
         bot_dispatch_bot: "com.googlecode.bot-dispatch:bot:${bot_dispatch_version}",
         bot_dispatch_controller: "com.googlecode.bot-dispatch:controller:${bot_dispatch_version}",
         inject: "javax.inject:javax.inject:1",
@@ -32,5 +31,5 @@ libs = [
         simple_jpa_dao_namedid_test: "com.googlecode.simple-jpa-dao:dao-namedid-test:${simple_jpa_dao_version}",
         task_dispatch_dispatch_api:   "com.googlecode.taskqueue-dispatch:dispatch-api:${taskqueue_dispatch_version}",
         jukito: "org.jukito:jukito:1.1",
-        test_ng: "org.testng:testng:6.1.1",
+        test_ng: "org.testng:testng:6.1.1"
 ]

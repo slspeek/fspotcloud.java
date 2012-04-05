@@ -33,7 +33,7 @@ subprojects {
     apply plugin: 'java'
     sourceCompatibility = 1.6
     targetCompatibility = 1.6
-
+    //ext.libs = libs
     repositories {
 //        maven {
 //            url "http://localhost:9090/nexus/content/groups/public/"
@@ -56,4 +56,4 @@ subprojects {
 }
 
 
-dependsOnChildren()
+//dependsOnChildren()
