@@ -1,0 +1,29 @@
+description = 'Installer for GAE setup'
+buildscript {
+    repositories {
+        add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+            name = 'GitHub'
+            addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
+        }
+    }
+
+    dependencies {
+        classpath 'bmuschko:gradle-izpack-plugin:0.2.1'
+    }
+}
+
+apply plugin: 'izpack'
+
+dependencies {
+    izpack 'org.codehaus.izpack:izpack-standalone-compiler:4.3.1'
+}
+
+izpack {
+    baseDir = file("$buildDir/assemble/izpack")
+    installFile = file('src/izpack/installer.xml')
+    outputFile = file("$buildDir/distributions/fspotcloud-${version}-installer.jar")
+    compression = 'deflate'
+    compressionLevel = 9
+    appProperties = ['app.group': 'Griffon', 'app.name': 'griffon', 'app.title': 'Griffon',
+            'app.version': version, 'app.subpath': "Griffon-$version"]
+}
