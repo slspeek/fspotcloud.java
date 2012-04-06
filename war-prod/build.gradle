@@ -14,4 +14,7 @@ task unpackJavascript << {
 
 war {
     from "build/javascript"
+    from "src/main/resources"
 }
+
+war.dependsOn unpackJavascript

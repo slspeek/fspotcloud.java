@@ -26,7 +26,7 @@ allprojects {
     apply plugin: 'eclipse'
     defaultTasks 'build'
     group = 'com.googlecode.fspotcloud'
-    version = '0.12-beta'
+    version = '0.12-beta-gradle-build'
 }
 
 subprojects {
@@ -35,10 +35,6 @@ subprojects {
     targetCompatibility = 1.6
     //ext.libs = libs
     repositories {
-//        maven {
-//            url "http://localhost:9090/nexus/content/groups/public/"
-//        }
-        mavenLocal()
         mavenCentral()
         maven {
             url "http://fspotcloud-maven.googlecode.com/svn/maven/repository"
@@ -51,6 +47,7 @@ subprojects {
         maven {
             url "http://www.datanucleus.org/downloads/maven2"
         }
+        mavenLocal()
     }
 
 }
