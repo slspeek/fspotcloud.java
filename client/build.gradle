@@ -46,14 +46,10 @@ compileGwt.dependsOn convertIcons, writeVersion
 test {
     exclude '**/*GwtTest*'
     //testLogging.showStandardStreams = true
-}
-
-test {
-    ignoreFailures = true // TODO check if this is still needed (think to enable hudson integration...)
     jvmArgs '-Xmx256m', '-XX:+HeapDumpOnOutOfMemoryError'
 }
 
-gwtModules     = ['com.googlecode.fspotcloud.FSpotCloud', 'com.googlecode.fspotcloud.dashboard']
+gwtModules  = ['com.googlecode.fspotcloud.FSpotCloud', 'com.googlecode.fspotcloud.dashboard']
 
 compileGwt {
     style = 'DETAILED' // Script output style: OBF[USCATED], PRETTY, or DETAILED (defaults to OBF)

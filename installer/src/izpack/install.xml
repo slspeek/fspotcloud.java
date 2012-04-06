@@ -82,6 +82,7 @@
 			<parsable targetfile="$INSTALL_PATH/instance.sh" />
 			<parsable targetfile="$INSTALL_PATH/gae-dashboard.sh" />
 			<parsable targetfile="$INSTALL_PATH/war/WEB-INF/appengine-web.xml" />
+            <parsable targetfile="$INSTALL_PATH/war/WEB-INF/classes/properties.properties" />
 			<executable type="bin" stage="never" targetfile="$INSTALL_PATH/peer.sh"
 				os="unix" />
 			<executable type="bin" stage="never" targetfile="$INSTALL_PATH/deploy.sh"

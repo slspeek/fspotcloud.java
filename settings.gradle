@@ -4,4 +4,4 @@ include ':rpc', ':peer-rpc', ':user-service-api',
         ':model-api', ':model-jpa', ':model-jpa-j2ee', ':model-jpa-gae', 
          ':server',  ':peer',
         ':peer-server-integration', ':server-module-gae', ':server-module-j2ee',
-        ':client', ':e2e-test', ':gae-war', ':war-prod', ':j2ee-war'//, ':installer'
+        ':client', ':e2e-test', ':gae-war', ':war-prod', ':j2ee-war', ':installer'

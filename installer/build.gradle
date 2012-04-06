@@ -12,18 +12,50 @@ buildscript {
     }
 }
 
+configurations {
+    appengine_sdk
+}
 apply plugin: 'izpack'
 
 dependencies {
     izpack 'org.codehaus.izpack:izpack-standalone-compiler:4.3.1'
+    appengine_sdk "com.google.appengine:appengine-java-sdk:${gae_version}@zip"
 }
+
+task initDirs << {
+    mkdir "${buildDir}/assemble/izpack/dependency"
+}
+
+task copyFiles(type:Copy, dependsOn: initDirs) {
+    from "src/izpack"
+    into "${buildDir}/assemble/izpack"
+}
+
+task copyPeer(type: Copy, dependsOn:  ':peer:jar') {
+    from "../peer/build/libs/peer-${version}.jar"
+    into "${buildDir}/assemble/izpack/dependency"
+    rename "peer-${version}.jar", "peer-jar-with-dependencies.jar"
+}
+
+task unpackWar(dependsOn:  ':war-prod:war') << {
+    myWar = file("../war-prod/build/libs/war-prod-${version}.war")
+    ant.unjar(dest: "${buildDir}/assemble/izpack/war", src: myWar)
+}
+
+task unpackGAESDK << {
+    myTests = configurations.appengine_sdk.files.iterator().next()
+    ant.unzip(dest: "${buildDir}/assemble/izpack", src: myTests)
+}
+
+izPackCreateInstaller.dependsOn copyFiles, copyPeer, unpackWar, unpackGAESDK
 
 izpack {
     baseDir = file("$buildDir/assemble/izpack")
-    installFile = file('src/izpack/installer.xml')
+    installFile = file('src/izpack/install.xml')
     outputFile = file("$buildDir/distributions/fspotcloud-${version}-installer.jar")
     compression = 'deflate'
     compressionLevel = 9
-    appProperties = ['app.group': 'Griffon', 'app.name': 'griffon', 'app.title': 'Griffon',
-            'app.version': version, 'app.subpath': "Griffon-$version"]
+    appProperties = ['gae.version': gae_version, 'project.version': version]
 }
+
+build.dependsOn izPackCreateInstaller

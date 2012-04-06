@@ -8,7 +8,6 @@ apply plugin: 'tomcat'
 
 dependencies {
     compile project(':server-module-j2ee')
-    compile project(path: ':client', configuration: 'javascript')
     compile("org.openid4java:openid4java-consumer:0.9.6") {
         exclude(module: 'guice')
     }
@@ -17,7 +16,6 @@ dependencies {
             "org.apache.tomcat:jasper:${tomcatVersion}"
     testCompile project(':test-util')
     testCompile project(':peer')
-    testCompile project(path: ':e2e-test', configuration: 'testCompile')
     testCompile "org.seleniumhq.selenium:selenium:2.0b3"
     testCompile "org.seleniumhq.selenium.client-drivers:selenium-java-client-driver:1.0.2"
     testCompile libs.guiceberry
@@ -36,12 +34,12 @@ task initconfig(type: Copy) {
     into 'build/target/config'
 }
 
-task unpackJavascript << {
+task unpackJavascript(dependsOn: ':client:javascriptJar') << {
     myTests = file("../client/build/libs/client-${version}-javascript.jar")
     ant.unjar(dest: "$buildDir/javascript/", src: myTests)
 }
 
-task unpackTest << {
+task unpackTest(dependsOn: ':e2e-test:packageTests') << {
     myTests = file("../e2e-test/build/libs/e2e-test-${version}-tests.jar")
     ant.unjar(dest: "$buildDir/classes/test", src: myTests)
 }
