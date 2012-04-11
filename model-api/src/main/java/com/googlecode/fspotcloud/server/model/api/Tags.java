@@ -7,4 +7,6 @@ import java.util.List;
 public interface Tags extends SimpleDAONamedId<Tag, String> {
 
 	List<TagNode> getTags();
+        
+        List<Tag> getImportedTags();
 }

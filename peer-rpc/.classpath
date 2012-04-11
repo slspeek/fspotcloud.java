@@ -6,7 +6,7 @@
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
 	<classpathentry kind="src" path="/rpc" exported="true"/>
-	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/gwt/gwt-servlet/2.4.0/gwt-servlet-2.4.0-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/gwt/gwt-servlet/2.4.0/gwt-servlet-2.4.0.jar" exported="true"/>
-	<classpathentry sourcepath="/home/steven/.m2/repository/junit/junit/3.8.1/junit-3.8.1-sources.jar" kind="lib" path="/home/steven/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar" exported="true"/>
-	<classpathentry sourcepath="/home/steven/.m2/repository/com/google/guava/guava/r09/guava-r09-sources.jar" kind="lib" path="/home/steven/.m2/repository/com/google/guava/guava/r09/guava-r09.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.gradle/caches/artifacts-8/filestore/com.google.gwt/gwt-servlet/2.4.0/source/a2ed957cde9b9d0647ed4912220f9f623f5fa5a9/gwt-servlet-2.4.0-sources.jar" kind="lib" path="/home/steven/.gradle/caches/artifacts-8/filestore/com.google.gwt/gwt-servlet/2.4.0/jar/b41d59f359d2cdc3807ea579a7fc072361482244/gwt-servlet-2.4.0.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.gradle/caches/artifacts-8/filestore/junit/junit/3.8.1/source/525753763e53f6f76da052b316d0f2e3bfa4d73/junit-3.8.1-sources.jar" kind="lib" path="/home/steven/.gradle/caches/artifacts-8/filestore/junit/junit/3.8.1/jar/99129f16442844f6a4a11ae22fbbee40b14d774f/junit-3.8.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/steven/.gradle/caches/artifacts-8/filestore/com.google.guava/guava/r09/source/a8ed88e2088ca98b7e033d2b7ebaa483fad25b37/guava-r09-sources.jar" kind="lib" path="/home/steven/.gradle/caches/artifacts-8/filestore/com.google.guava/guava/r09/jar/9c8991d491d714053d300de0f8657d95780ff923/guava-r09.jar" exported="true"/>
 </classpath>

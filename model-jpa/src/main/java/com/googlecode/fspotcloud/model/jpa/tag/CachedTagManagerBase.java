@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import net.sf.jsr107cache.Cache;
 
 public abstract class CachedTagManagerBase<T extends Tag,U extends T>
@@ -54,7 +55,23 @@ extends CachedSimpleDAONamedIdImpl<Tag, U, String> implements Tags {
 
         return result;
     }
-
+ @Override
+    public List<Tag> getImportedTags() {
+        EntityManager em = emProvider.get();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("select c from "
+                    + getEntityClass().getName() + " AS c WHERE importIssued = true ");
+            @SuppressWarnings("unchecked")
+            List<Tag> rs = (List<Tag>) query.getResultList();
+            List<Tag> result = new ArrayList<Tag>();
+            result.addAll(rs);
+            em.getTransaction().commit();
+            return result;
+        } finally {
+            em.close();
+        }
+    }
     protected abstract Tag newTag();
 
     protected abstract Class<? extends Tag> getEntityClass();

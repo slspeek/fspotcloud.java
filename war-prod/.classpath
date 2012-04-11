@@ -3,7 +3,6 @@
 	<classpathentry kind="output" path="bin"/>
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
-	<classpathentry kind="src" path="/rpc" exported="true"/>
-	<classpathentry kind="src" path="/server-module-j2ee" exported="true"/>
+	<classpathentry kind="src" path="/server-module-gae" exported="true"/>
 	<classpathentry kind="src" path="/client" exported="true"/>
 </classpath>
