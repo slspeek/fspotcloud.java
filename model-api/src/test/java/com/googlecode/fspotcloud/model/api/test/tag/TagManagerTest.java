@@ -54,4 +54,14 @@ public class TagManagerTest {
         assertEquals("desc", tagManager.find("9").getCachedPhotoList().first().getDescription());
     }
     
+    @Test public void getImportedTags() {
+        Tag tag = createSaveTag("21");
+        tag.setImportIssued(true);
+        tagManager.save(tag);
+        createSaveTag("22");
+        List<Tag> importedTags = tagManager.getImportedTags();
+        assertEquals(1, importedTags.size());
+        assertEquals("21", importedTags.get(0).getId());
+    }
+    
 }
