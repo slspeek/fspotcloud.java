@@ -18,6 +18,10 @@ public class PhotoAssert {
 
     @Inject
     Photos photos;
+    
+    public boolean isEmpty() {
+        return photos.isEmpty();
+    }
 
     public void verifyPhotoRemoved(String id) {
         Assert.assertNull(photos.find(id));

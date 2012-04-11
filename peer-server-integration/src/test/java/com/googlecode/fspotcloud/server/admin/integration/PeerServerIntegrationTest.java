@@ -16,7 +16,7 @@ import com.googlecode.fspotcloud.shared.dashboard.actions.*;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaData;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
 import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
+import static org.testng.AssertJUnit.*;
 import java.sql.SQLException;
 
 import net.customware.gwt.dispatch.shared.DispatchException;
@@ -60,6 +60,7 @@ public class PeerServerIntegrationTest {
     @AfterMethod
     public void tearDown() throws Exception {
         tags.deleteBulk(1000);
+        photos.deleteBulk(1000);
         // Make this the call to TestNgGuiceBerry.tearDown as late as possible
         toTearDown.tearDown();
     }
@@ -88,8 +89,8 @@ public class PeerServerIntegrationTest {
     public void testGetPeerMetaData() throws DispatchException, SQLException {
         setPeerTestDatabase("photos.db");
         PeerMetaDataResult result = dispatch.execute(new GetPeerMetaData());
-        AssertJUnit.assertEquals(28, result.getPhotoCount());
-        AssertJUnit.assertEquals(5, result.getTagCount());
+        assertEquals(28, result.getPhotoCount());
+        assertEquals(5, result.getTagCount());
     }
 
     @Test
@@ -168,7 +169,12 @@ public class PeerServerIntegrationTest {
     @Test
     public void testRemovingOfTags() throws Exception {
         testImportAllTags();
+        importTag("2");
+        assertComputersIsLoaded();
+        importTag("4");
+        assertPCLoaded();
         dispatch.execute(new TagDeleteAll());
+        assertTrue(photoInfo.isEmpty());
         tagInfo.assertTagsRemoved("1", "2", "3", "4", "5");
     }
 
