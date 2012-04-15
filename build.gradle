@@ -24,16 +24,25 @@ allprojects {
     apply plugin: 'maven'
     apply plugin: 'idea'
     apply plugin: 'eclipse'
+
     defaultTasks 'build'
     group = 'com.googlecode.fspotcloud'
-    version = '0.12-beta-gradle-build'
+    version = '0.12-01'
 }
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'checkstyle'
+
     sourceCompatibility = 1.6
     targetCompatibility = 1.6
     //ext.libs = libs
+    checkstyle {
+        configFile = file("../config/checkstyle/checkstyle.xml")
+    }
+
+    [checkstyleMain,checkstyleTest]*.ignoreFailures = true
+
     repositories {
         mavenCentral()
         maven {
