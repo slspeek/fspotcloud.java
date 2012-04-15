@@ -33,7 +33,9 @@ allprojects {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'jdepend'
+    apply plugin: 'findbugs'
     apply plugin: 'checkstyle'
+
 
     sourceCompatibility = 1.6
     targetCompatibility = 1.6
@@ -43,6 +45,9 @@ subprojects {
     }
 
     [checkstyleMain,checkstyleTest]*.ignoreFailures = true
+    findbugs {
+      ignoreFailures = true
+    }
 
     repositories {
         mavenCentral()

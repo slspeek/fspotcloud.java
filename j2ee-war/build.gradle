@@ -6,6 +6,8 @@ apply plugin: 'war'
 apply plugin: 'jetty'
 apply plugin: 'tomcat'
 
+findbugsTest.enabled = false;
+
 dependencies {
     compile project(':server-module-j2ee')
     compile("org.openid4java:openid4java-consumer:0.9.6") {

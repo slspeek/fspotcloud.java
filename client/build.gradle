@@ -2,6 +2,8 @@ description = 'GWT client'
 
 apply plugin: 'gwt2'
 
+[findbugsMain,findbugsTest]*.enabled = false
+
 configurations {
     javascript
 }
