@@ -1,5 +1,8 @@
 syntax: glob
 te-report/*
+out/*
+*.iml
+*.ipr
 */te-report/*
 */.idea/*
 .idea/*

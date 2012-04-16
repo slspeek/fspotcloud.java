@@ -2,7 +2,7 @@ description = 'GWT client'
 
 apply plugin: 'gwt2'
 
-[findbugsMain,findbugsTest]*.enabled = false
+[findbugsMain, findbugsTest]*.enabled = false
 
 configurations {
     javascript
@@ -21,19 +21,19 @@ dependencies {
     compile "com.google.gwt:gwt-dev:${gwt_version}"
 
     testCompile "junit:junit:3.8.1"
-    testCompile "org.jmock:jmock:2.5.1"
     testCompile libs.mockito
+    testCompile "org.jmock:jmock:2.5.1"
 }
 
-task convertIcons(type:Exec, dependsOn: classes)  {
+task convertIcons(type: Exec, dependsOn: classes) {
     inputs.dir "src/main/resources/images/originals"
     outputs.dir "build/classes/main/images/"
-    commandLine  "./convert_gradle.sh", "${icon_size}"
+    commandLine "./convert_gradle.sh", "${icon_size}"
 }
 
-task writeVersion(type:Exec, dependsOn: classes)  {
+task writeVersion(type: Exec, dependsOn: classes) {
     outputs.file "build/classes/main/version.txt"
-    commandLine  "./write_version_gradle.sh", "${version}"
+    commandLine "./write_version_gradle.sh", "${version}"
 }
 
 task javascriptJar(type: Jar, dependsOn: compileGwt) {
@@ -46,12 +46,15 @@ task javascriptJar(type: Jar, dependsOn: compileGwt) {
 compileGwt.dependsOn convertIcons, writeVersion
 
 test {
-    exclude '**/*GwtTest*'
-    //testLogging.showStandardStreams = true
-    jvmArgs '-Xmx256m', '-XX:+HeapDumpOnOutOfMemoryError'
+    doFirst()
+    {
+        exclude '**/*GwtTest*'
+        //testLogging.showStandardStreams = true
+        jvmArgs '-Xmx256m', '-XX:+HeapDumpOnOutOfMemoryError'
+    }
 }
 
-gwtModules  = ['com.googlecode.fspotcloud.FSpotCloud', 'com.googlecode.fspotcloud.dashboard']
+gwtModules = ['com.googlecode.fspotcloud.FSpotCloud', 'com.googlecode.fspotcloud.dashboard']
 
 compileGwt {
     style = 'DETAILED' // Script output style: OBF[USCATED], PRETTY, or DETAILED (defaults to OBF)
