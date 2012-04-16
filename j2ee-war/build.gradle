@@ -52,8 +52,7 @@ task peerStop(type: Exec) {
 }
 
 task peerRun(type: Exec, dependsOn: ':peer:jar') {
-    commandLine "screen", "-d", "-m", "../gae-war/peer_run.sh", "${version}", "${bot_secret}"
-    enabled = false
+    commandLine "screen", "-d", "-m", "./peer_run.sh", "${version}", "${bot_secret}"
 }
 
 //test.dependsOn jettyRunWar, peerRun
@@ -66,14 +65,12 @@ test.dependsOn tomcatRunWar, peerRun
 [tomcatRun, tomcatRunWar, tomcatStop]*.stopPort = 8090
 [tomcatRun, tomcatRunWar, tomcatStop]*.stopKey = 'STOP'
 [tomcatRun, tomcatRunWar, tomcatStop]*.daemon = true
-[tomcatRun, tomcatRunWar, tomcatStop]*.enabled = false
 test {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.test.J2eeWarGuiceBerryEnv'
     include "com/googlecode/fspotcloud/test/LocalSuite.class"
     testLogging.showStandardStreams = true
     ignoreFailures = true
-    enabled = false
 }
 
 war {

@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2248046a-9738-4556-9e34-3801355507cf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/build.gradle" afterPath="$PROJECT_DIR$/client/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/j2ee-war/src/main/config/WEB-INF/classes/properties.properties" afterPath="$PROJECT_DIR$/j2ee-war/src/main/config/WEB-INF/classes/properties.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fspotcloud.iws" afterPath="$PROJECT_DIR$/fspotcloud.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gae-war/build.gradle" afterPath="$PROJECT_DIR$/gae-war/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/build.gradle" afterPath="$PROJECT_DIR$/client/build.gradle" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/j2ee-war/src/main/config/WEB-INF/logging.properties" afterPath="$PROJECT_DIR$/j2ee-war/src/main/config/WEB-INF/classes/logging.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/j2ee-war/build.gradle" afterPath="$PROJECT_DIR$/j2ee-war/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server-module-j2ee/src/main/java/com/googlecode/fspotcloud/server/inject/J2eeTotalModule.java" afterPath="$PROJECT_DIR$/server-module-j2ee/src/main/java/com/googlecode/fspotcloud/server/inject/J2eeTotalModule.java" />
     </list>
     <ignored path="fspotcloud.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -213,28 +214,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="properties.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/j2ee-war/src/main/config/WEB-INF/classes/properties.properties">
+      <file leaf-file-name="build.gradle" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/j2ee-war/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="21" selection-start="173" selection-end="173" vertical-scroll-proportion="0.0">
+            <state line="54" column="40" selection-start="1712" selection-end="1712" vertical-scroll-proportion="0.8108108">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PropertiesLoader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/googlecode/fspotcloud/server/inject/PropertiesLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="100" selection-start="1088" selection-end="1088" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="peer_run.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gae-war/peer_run.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="11" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="peer_run.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/j2ee-war/peer_run.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="41" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PropertiesLoaderTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/src/test/java/com/googlecode/fspotcloud/server/inject/PropertiesLoaderTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="65" selection-start="483" selection-end="483" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImportTagHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/googlecode/fspotcloud/server/admin/actions/ImportTagHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="53" selection-start="422" selection-end="422" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/j2ee-war/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="36" selection-start="143" selection-end="172" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gae-war/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="29" selection-start="258" selection-end="258" vertical-scroll-proportion="0.13861386">
+            <state line="8" column="29" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -252,7 +289,7 @@
       <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="0" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
+            <state line="23" column="26" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -287,11 +324,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/e2e-test/build.gradle" />
-        <option value="$PROJECT_DIR$/libraries.gradle" />
-        <option value="$PROJECT_DIR$/installer/src/izpack/install.xml" />
-        <option value="$PROJECT_DIR$/installer/build.gradle" />
-        <option value="$PROJECT_DIR$/war-prod/src/main/resources/WEB-INF/classes/properties.properties" />
         <option value="$PROJECT_DIR$/peer/build.gradle" />
         <option value="$PROJECT_DIR$/installer/src/izpack/peer.sh" />
         <option value="$PROJECT_DIR$/war-prod/build.gradle" />
@@ -300,9 +332,14 @@
         <option value="$PROJECT_DIR$/j2ee-war/src/main/config/WEB-INF/logging.properties" />
         <option value="$PROJECT_DIR$/config/checkstyle/checkstyle.xml" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/client/build.gradle" />
-        <option value="$PROJECT_DIR$/j2ee-war/build.gradle" />
         <option value="$PROJECT_DIR$/gae-war/build.gradle" />
+        <option value="$PROJECT_DIR$/client/build.gradle" />
+        <option value="$PROJECT_DIR$/j2ee-war/src/main/config/WEB-INF/classes/properties.properties" />
+        <option value="$PROJECT_DIR$/j2ee-war/src/main/config/WEB-INF/classes/logging.properties" />
+        <option value="$PROJECT_DIR$/server-module-j2ee/src/main/java/com/googlecode/fspotcloud/server/inject/J2eeTotalModule.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/com/googlecode/fspotcloud/server/inject/PropertiesLoader.java" />
+        <option value="$PROJECT_DIR$/j2ee-war/peer_run.sh" />
+        <option value="$PROJECT_DIR$/j2ee-war/build.gradle" />
       </list>
     </option>
   </component>
@@ -391,6 +428,190 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server-module-j2ee" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server-module-j2ee" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server-module-j2ee" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server-module-j2ee" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="J2eeTotalModule.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server-module-j2ee" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="j2ee-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gae-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fspotcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="checkstyle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -445,58 +666,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fspotcloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fspotcloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fspotcloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fspotcloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fspotcloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gae-war" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fspotcloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fspotcloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="checkstyle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="ProjectViewSettings">
@@ -520,47 +689,22 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.googlecode.fspotcloud.test" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/j2ee-war" />
       <recent name="$PROJECT_DIR$/war-prod/src/main/resources/WEB-INF/classes" />
       <recent name="$PROJECT_DIR$/installer" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Groovy Script.build.peerRun">
-    <configuration default="false" name="build.unpackTest" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
-      <module name="server-module-j2ee" />
-      <setting name="path" value="$PROJECT_DIR$/server-module-j2ee/build.gradle" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="unpackTest" />
-      <setting name="workDir" value="$PROJECT_DIR$/server-module-j2ee" />
-      <setting name="debug" value="false" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method>
-        <option name="Make" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="false" name="build.integrationTest" type="GroovyScriptRunConfiguration" factoryName="Groovy Script" temporary="true">
-      <module name="server-module-j2ee" />
-      <setting name="path" value="$PROJECT_DIR$/server-module-j2ee/build.gradle" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="integrationTest" />
-      <setting name="workDir" value="$PROJECT_DIR$/server-module-j2ee" />
-      <setting name="debug" value="false" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method>
-        <option name="Make" enabled="false" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="TestNG.PropertiesLoaderTest.testLoadProperties">
     <configuration default="false" name="InjectorTest" type="TestNG" factoryName="TestNG" temporary="true">
       <module name="server-module-j2ee" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -616,6 +760,64 @@
         <option name="Make" enabled="false" />
       </method>
     </configuration>
+    <configuration default="false" name="PropertiesLoaderTest" type="TestNG" factoryName="TestNG" temporary="true">
+      <module name="server" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" value="com.googlecode.fspotcloud.server.inject" />
+      <option name="MAIN_CLASS_NAME" value="com.googlecode.fspotcloud.server.inject.PropertiesLoaderTest" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="PropertiesLoaderTest.testLoadProperties" type="TestNG" factoryName="TestNG" temporary="true">
+      <module name="server" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" value="com.googlecode.fspotcloud.server.inject" />
+      <option name="MAIN_CLASS_NAME" value="com.googlecode.fspotcloud.server.inject.PropertiesLoaderTest" />
+      <option name="METHOD_NAME" value="testLoadProperties" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -625,6 +827,24 @@
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
@@ -653,24 +873,6 @@
       <envs />
       <properties />
       <listeners />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -750,12 +952,12 @@
       </method>
     </configuration>
     <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="Groovy Script.build.unpackTest" />
-      <item index="1" class="java.lang.String" itemvalue="Groovy Script.build.integrationTest" />
-      <item index="2" class="java.lang.String" itemvalue="TestNG.InjectorTest" />
-      <item index="3" class="java.lang.String" itemvalue="Groovy Script.build" />
-      <item index="4" class="java.lang.String" itemvalue="Groovy Script.build.peerRun" />
-      <item index="5" class="java.lang.String" itemvalue="Groovy Script.build2" />
+      <item index="0" class="java.lang.String" itemvalue="TestNG.InjectorTest" />
+      <item index="1" class="java.lang.String" itemvalue="Groovy Script.build" />
+      <item index="2" class="java.lang.String" itemvalue="Groovy Script.build.peerRun" />
+      <item index="3" class="java.lang.String" itemvalue="TestNG.PropertiesLoaderTest" />
+      <item index="4" class="java.lang.String" itemvalue="Groovy Script.build2" />
+      <item index="5" class="java.lang.String" itemvalue="TestNG.PropertiesLoaderTest.testLoadProperties" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -821,17 +1023,17 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277311" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.67469877" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.6706587" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39935064" sideWeight="0.6706587" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21469387" sideWeight="0.6722689" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253012" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21469387" sideWeight="0.67587036" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32412964" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277311" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -948,46 +1150,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/war-prod/src/main/resources/WEB-INF/classes/properties.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="32" selection-start="248" selection-end="248" vertical-scroll-proportion="0.1119403" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/peer/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="85" selection-start="407" selection-end="407" vertical-scroll-proportion="0.29850745" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/installer/src/izpack/peer.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="203" selection-start="215" selection-end="215" vertical-scroll-proportion="0.018963337" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/installer/src/izpack/install.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="89" selection-start="2051" selection-end="2051" vertical-scroll-proportion="1.119403" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gae-war/src/main/config/WEB-INF/datastore-indexes.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="40" selection-start="704" selection-end="704" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/war-prod/src/main/resources/WEB-INF/datastore-indexes.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="40" selection-start="705" selection-end="705" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/installer/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="28" selection-start="1476" selection-end="1476" vertical-scroll-proportion="0.7574257" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/j2ee-war/src/main/config/WEB-INF/logging.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="75" selection-start="866" selection-end="866" vertical-scroll-proportion="0.32920793" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/peer/src/main/resources/logging.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="84" selection-start="887" selection-end="1944" vertical-scroll-proportion="0.76237625" />
@@ -998,14 +1160,37 @@
         <state line="16" column="28" selection-start="406" selection-end="406" vertical-scroll-proportion="0.27722773" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/j2ee-war/src/main/config/WEB-INF/classes/properties.properties">
+    <entry file="file://$PROJECT_DIR$/server-module-j2ee/src/main/java/com/googlecode/fspotcloud/server/inject/GuiceServletConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="21" selection-start="173" selection-end="173" vertical-scroll-proportion="0.0" />
+        <state line="7" column="13" selection-start="194" selection-end="194" vertical-scroll-proportion="0.08883249">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/checkstyle/checkstyle.xml">
+    <entry file="file://$PROJECT_DIR$/j2ee-war/src/main/config/WEB-INF/classes/logging.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="30" selection-start="5886" selection-end="5886" vertical-scroll-proportion="0.0" />
+        <state line="39" column="36" selection-start="1593" selection-end="1593" vertical-scroll-proportion="0.6928934">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/j2ee-war/src/main/config/WEB-INF/classes/properties.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="1" selection-start="93" selection-end="93" vertical-scroll-proportion="0.053299494" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server-module-j2ee/src/main/java/com/googlecode/fspotcloud/server/inject/J2eeTotalModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="82" selection-start="839" selection-end="839" vertical-scroll-proportion="0.22524753">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gae-war/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="29" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
@@ -1017,21 +1202,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
+        <state line="23" column="26" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/checkstyle/checkstyle.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="30" selection-start="5886" selection-end="5886" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/googlecode/fspotcloud/server/admin/actions/ImportTagHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="53" selection-start="422" selection-end="422" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/test/java/com/googlecode/fspotcloud/server/inject/PropertiesLoaderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="65" selection-start="483" selection-end="483" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/googlecode/fspotcloud/server/inject/PropertiesLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="100" selection-start="1088" selection-end="1088" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gae-war/peer_run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="11" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/j2ee-war/peer_run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="41" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/j2ee-war/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="36" selection-start="143" selection-end="172" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gae-war/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="29" selection-start="258" selection-end="258" vertical-scroll-proportion="0.13861386">
+        <state line="54" column="40" selection-start="1712" selection-end="1712" vertical-scroll-proportion="0.8108108">
           <folding />
         </state>
       </provider>

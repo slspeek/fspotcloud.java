@@ -22,6 +22,7 @@ public class J2eeTotalModule extends AbstractModule {
 
     @Override
     protected void configure() {
+        System.setProperty("java.util.logging.config.file", "logging.properties");
         (new PropertiesLoader()).loadProperties();
         install(new ServerTotalModule(100));
         install(new ModelModule());
