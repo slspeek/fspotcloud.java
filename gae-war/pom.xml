@@ -4,7 +4,7 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-beta</version>
+        <version>0.12-02</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>gae-war</artifactId>
@@ -249,8 +249,8 @@
                             <target>
                                 <property name="runtime_classpath" refid="maven.runtime.classpath"/>
                                 <java
-                                        jar="${basedir}/../peer/target/peer-${project.version}-jar-with-dependencies.jar"
-                                        fork="yes" spawn="yes">
+                                    jar="${basedir}/../peer/target/peer-${project.version}-jar-with-dependencies.jar"
+                                    fork="yes" spawn="yes">
                                     <sysproperty key="db"
                                                  value="${basedir}/../peer/src/test/resources/photos.db"/>
                                     <sysproperty key="endpoint" value="localhost:8080"/>

@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-beta</version>
+        <version>0.12-02</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>model-jpa</artifactId>
-    <version>0.12-beta</version>
+    <version>0.12-02</version>
     <packaging>jar</packaging>
     <name>Model JPA Base</name>
     <dependencies>

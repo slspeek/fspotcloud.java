@@ -10,11 +10,16 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.simplejpadao.EntityModule;
+
 import java.util.logging.Logger;
 
 public class ModelModule extends AbstractModule {
 
-    private static final Logger log = Logger.getLogger(ModelModule.class.getName());
+    private int maxDelete;
+
+    public ModelModule(int maxDelete) {
+        this.maxDelete = maxDelete;
+    }
 
     @Override
     protected void configure() {
@@ -22,8 +27,7 @@ public class ModelModule extends AbstractModule {
         bind(PeerDatabases.class).to(PeerDatabaseManager.class).in(
                 Singleton.class);
         bind(Tags.class).to(TagManager.class).in(Singleton.class);
-        bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(100));
+        bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(maxDelete);
         install(new EntityModule("derby"));
-        System.out.println("ModelModule configured.");
     }
 }

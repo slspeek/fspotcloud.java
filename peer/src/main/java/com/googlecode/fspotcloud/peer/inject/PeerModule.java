@@ -11,19 +11,27 @@ import com.googlecode.fspotcloud.peer.db.Data;
 
 public class PeerModule extends AbstractModule {
 
+    private final String db;
+    private final String workDir;
+    private final int stopPort;
+
+    public PeerModule(String db, String workDir, int stopPort) {
+        this.db = db;
+        this.workDir = workDir;
+        this.stopPort = stopPort;
+    }
+
     @Override
     protected void configure() {
         bind(Data.class);
         bind(ImageData.class);
-        bind(String.class).annotatedWith(Names.named("JDBC URL")).toProvider(CopyDatabase.class).in(Singleton.class);
-        bind(String.class).annotatedWith(Names.named("DatabasePath")).toInstance(
-                System.getProperty(
-                "db",
-                System.getProperty("user.dir")
-                + "/src/test/resources/photos.db"));
+        bind(String.class).annotatedWith(Names.named("JDBC URL"))
+                .toProvider(CopyDatabase.class).in(Singleton.class);
+        bind(String.class).annotatedWith(Names.named("DatabasePath"))
+                .toInstance(db);
         bind(String.class).annotatedWith(Names.named("WorkDir")).toInstance(
-                System.getProperty("user.dir"));
+                workDir);
         bind(Integer.class).annotatedWith(Names.named("stop port")).toInstance(
-                Integer.valueOf(System.getProperty("stop.port", "4444")));
+                Integer.valueOf(stopPort));
     }
 }

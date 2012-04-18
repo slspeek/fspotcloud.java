@@ -17,9 +17,11 @@ import com.googlecode.fspotcloud.server.control.task.TaskModule;
 public class ServerTotalModule extends AbstractModule {
 
     private final int maxTicks;
+    private String botSecret;
 
-    public ServerTotalModule(int maxTicks) {
+    public ServerTotalModule(int maxTicks, String botSecret) {
         this.maxTicks = maxTicks;
+        this.botSecret = botSecret;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class ServerTotalModule extends AbstractModule {
         bind(Integer.class).annotatedWith(Names.named("maxTicks")).toInstance(
                 new Integer(maxTicks));
         install(new ServerServletModule());
-        install(new ControllerServletModule());
+        install(new ControllerServletModule(botSecret));
         install(new ServerControllerModule());
         install(new TaskActionsModule());
         install(new TaskModule());

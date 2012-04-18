@@ -14,7 +14,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <listener>
-        <listener-class>com.googlecode.fspotcloud.server.inject.GuiceServletConfig</listener-class>
+        <listener-class>com.googlecode.fspotcloud.server.inject.J2eeGuiceServletConfig</listener-class>
     </listener>
 	<!-- Servlets -->
 	

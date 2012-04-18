@@ -1,23 +1,20 @@
 package com.googlecode.fspotcloud.shared.dashboard.actions;
 
+import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Action;
 
-public class UnImportTag implements Action<VoidResult> {
+public class UnImportTag implements Action<VoidResult>, Serializable {
 
-	UnImportTag() {
+    UnImportTag() {
+    }
+    private String tagId;
 
-	}
+    public UnImportTag(String tagId) {
+        super();
+        this.tagId = tagId;
+    }
 
-	private String tagId;
-	
-	
-	public UnImportTag(String tagId) {
-		super();
-		this.tagId = tagId;
-	}
-
-	public String getTagId() {
-		return tagId;
-	}
-
+    public String getTagId() {
+        return tagId;
+    }
 }

@@ -23,15 +23,20 @@ import net.sf.jsr107cache.CacheManager;
 
 public class CachedModelModule extends AbstractModule {
 
+
+    private int maxDelete;
+
+    public CachedModelModule(int maxDelete) {
+        this.maxDelete = maxDelete;
+    }
     @Override
     protected void configure() {
         bind(Photos.class).to(PhotoManager.class).in(Singleton.class);
         bind(PeerDatabases.class).to(PeerDatabaseManager.class).in(
                 Singleton.class);
         bind(Tags.class).to(TagManager.class).in(Singleton.class);
-        bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(100));
+        bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(maxDelete);
         install(new EntityModule("gae"));
-        System.out.println("CachedModelModule configured.");
     }
 
     @Provides
