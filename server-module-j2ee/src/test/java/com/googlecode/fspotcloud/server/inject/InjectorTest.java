@@ -13,7 +13,7 @@ public class InjectorTest {
 
     @Test
     public void testInjector() {
-        Injector injector = Guice.createInjector(new J2eeTotalModule());
+        Injector injector = Guice.createInjector(new J2eeTotalModule(10, "FOO_BAR"));
         AssertJUnit.assertNotNull(injector);
         PeerDatabases defaultPeer =
                 injector.getInstance(PeerDatabases.class);

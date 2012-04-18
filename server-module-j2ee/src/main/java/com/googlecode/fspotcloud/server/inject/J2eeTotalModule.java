@@ -20,16 +20,24 @@ import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
  */
 public class J2eeTotalModule extends AbstractModule {
 
+    public static final Integer MAX_COMMAND_DELETE = new Integer(300);
+    private final int maxTicks;
+    private String botSecret;
+
+    public J2eeTotalModule(int maxTicks, String botSecret) {
+        this.maxTicks = maxTicks;
+        this.botSecret = botSecret;
+    }
+
     @Override
     protected void configure() {
-        System.setProperty("java.util.logging.config.file", "logging.properties");
-        (new PropertiesLoader()).loadProperties();
-        install(new ServerTotalModule(100));
-        install(new ModelModule());
+        install(new ServerTotalModule(maxTicks, botSecret));
+        install(new ModelModule(maxTicks));
         install(new TaskQueueDispatchDirectModule());
         install(new LenientUserServiceModule());
         bind(Commands.class).to(CommandManager.class).in(Singleton.class);
-        bind(Integer.class).annotatedWith(Names.named("maxCommandDelete")).toInstance(new Integer(300));
+        bind(Integer.class).annotatedWith(Names.named("maxCommandDelete"))
+                .toInstance(MAX_COMMAND_DELETE);
     }
 }
 

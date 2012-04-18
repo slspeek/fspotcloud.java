@@ -17,7 +17,7 @@ public class InjectorTest {
     @Test
     public void testInjector() {
         System.setProperty("appengine.orm.disable.duplicate.emf.exception", "true");
-        Injector injector = Guice.createInjector(new GaeTotalModule());
+        Injector injector = Guice.createInjector(new GaeTotalModule(10, "FOO_SECRET"));
         AssertJUnit.assertNotNull(injector);
         PeerDatabases defaultPeer =
                 injector.getInstance(PeerDatabases.class);

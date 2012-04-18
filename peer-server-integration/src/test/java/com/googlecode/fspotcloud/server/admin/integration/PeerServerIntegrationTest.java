@@ -57,6 +57,10 @@ public class PeerServerIntegrationTest {
         setUpPeer();
     }
 
+    private void setUpPeer() throws SQLException {
+        setPeerTestDatabase("photos.db");
+    }
+
     @AfterMethod
     public void tearDown() throws Exception {
         tags.deleteBulk(1000);
@@ -65,15 +69,9 @@ public class PeerServerIntegrationTest {
         toTearDown.tearDown();
     }
 
-    public void setUpPeer() throws SQLException {
-        //String basedir = (new File(".")).getAbsolutePath();
-         
-        setPeerTestDatabase("photos.db");
-    }
-
     @Test
     public void testImportAllTags() throws Exception {
-        setPeerTestDatabase("photos.db");
+        setUpPeer();
         PeerDatabase peer = peers.get();
         peers.save(peer);
         synchronizePeer();
@@ -87,7 +85,7 @@ public class PeerServerIntegrationTest {
 
     @Test
     public void testGetPeerMetaData() throws DispatchException, SQLException {
-        setPeerTestDatabase("photos.db");
+        setUpPeer();
         PeerMetaDataResult result = dispatch.execute(new GetPeerMetaData());
         assertEquals(28, result.getPhotoCount());
         assertEquals(5, result.getTagCount());
@@ -95,7 +93,7 @@ public class PeerServerIntegrationTest {
 
     @Test
     public void testImportGlass() throws Exception {
-        setPeerTestDatabase("photos.db");
+        setUpPeer();
         testImportAllTags();
         importTag("5");
         photos.find("3");
@@ -114,7 +112,7 @@ public class PeerServerIntegrationTest {
         setPeerTestDatabase("photos_smaller.db");
         importTag("1");
         verfiyFurnitureFirstPhaseIsLoaded();
-        setPeerTestDatabase("photos.db");
+        setUpPeer();
         synchronizePeer();
         verfiyFurnitureIsLoaded();
     }
@@ -152,7 +150,7 @@ public class PeerServerIntegrationTest {
         setPeerTestDatabase("photos_smaller.db");
         importTag("1");
         verfiyFurnitureFirstPhaseIsLoaded();
-        setPeerTestDatabase("photos.db");
+        setUpPeer();
         synchronizePeer();
         verfiyFurnitureIsLoaded();
         setPeerTestDatabase("photos_smaller.db");
@@ -213,7 +211,7 @@ public class PeerServerIntegrationTest {
         File testDatabase = new File(basedir + "./peer/src/test/resources/"
                 + db);
         String path = testDatabase.getPath();
-        log.info("DBPath " + path);
+        log.info("DBPath " + path );
         if (data != null) {
             data.setJDBCUrl("jdbc:sqlite:" + path);
         }

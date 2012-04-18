@@ -15,10 +15,10 @@ import java.util.logging.Logger;
  * @author steven
  */
 public class PropertiesLoader {
-    
-    public void loadProperties() {
+
+    public Properties loadProperties() {
         try {
-            Properties p = new Properties(System.getProperties());
+            Properties p = new Properties();
             ClassLoader l = getClass().getClassLoader();
             //ClassLoader l = Thread.currentThread().getContextClassLoader();
             //ClassLoader l = ClassLoader.getSystemClassLoader();
@@ -27,10 +27,11 @@ public class PropertiesLoader {
                 throw new IOException("properties.properties not found");
             }
             p.load(resourceAsStream);
-            System.setProperties(p);
             Logger.getLogger(PropertiesLoader.class.getName()).info("Properties successfully loaded.");
+            return p;
         } catch (IOException ex) {
             Logger.getLogger(PropertiesLoader.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+            return null;
+        }
     }
 }

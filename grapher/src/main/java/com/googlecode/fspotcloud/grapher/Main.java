@@ -5,13 +5,14 @@ import com.google.inject.Injector;
 
 import com.googlecode.fspotcloud.peer.inject.PeerActionsModule;
 import com.googlecode.fspotcloud.peer.inject.PeerModule;
+import com.googlecode.fspotcloud.server.inject.GaeTotalModule;
 import com.googlecode.fspotcloud.server.inject.J2eeTotalModule;
 
 public class Main {
 
-    //Injector serverGaeInjector = Guice.createInjector(new GaeTotalModule());
-    Injector serverJ2eeInjector = Guice.createInjector(new J2eeTotalModule());
-    Injector peerInjector = Guice.createInjector(new PeerModule(), new PeerActionsModule());
+    //Injector serverGaeInjector = Guice.createInjector(new GaeTotalModule(100,"SECRET"));
+    Injector serverJ2eeInjector = Guice.createInjector(new J2eeTotalModule(100,"SECRET"));
+    Injector peerInjector = Guice.createInjector(new PeerModule("DB_PATH", "$(PWD)", 4444), new PeerActionsModule());
 
     // Injector clientInjector = Guice.createInjector(new GinModuleAdapter(new
     // FakeForGrapherAppModule()));
@@ -23,7 +24,7 @@ public class Main {
 
     private void plotAll() throws Exception {
         //plot(modelInjector, "model");
-        //plot(serverGaeInjector, "server-gae");
+      //  plot(serverGaeInjector, "server-gae");
         plot(serverJ2eeInjector, "server-j2ee");
         plot(peerInjector, "peer");
     }

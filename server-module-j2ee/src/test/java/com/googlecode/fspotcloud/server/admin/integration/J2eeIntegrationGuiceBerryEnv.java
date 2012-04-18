@@ -5,6 +5,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.googlecode.botdispatch.controller.inject.LocalControllerModule;
+import com.googlecode.fspotcloud.model.jpa.ModelModule;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseManager;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoManager;
 import com.googlecode.fspotcloud.model.jpa.tag.TagManager;
@@ -38,10 +39,12 @@ public class J2eeIntegrationGuiceBerryEnv extends GuiceBerryModule {
         super.configure();
         System.setProperty("photo.dir.original", "//home/steven/Photos");
         System.setProperty("photo.dir.override", "" + System.getProperty("user.dir") + "/../peer/src/test/resources/Photos");
-        install(new MyFSpotCloudModule());
+        bind(Integer.class).annotatedWith(Names.named("maxTicks")).toInstance(
+                new Integer(3));
         install(new MyAdminActionsModule());
-        install(new MyModelModule());
-        install(new MyTaskModule());
+        install(new ModelModule(100));
+        bind(ImageSpecs.class).annotatedWith(Names.named("defaultImageSpecs")).toInstance(new ImageSpecs(1024, 768, 512, 378));
+        bind(Integer.class).annotatedWith(Names.named("maxPhotoTicks")).toInstance(2);
         install(new LocalControllerModule());
         install(new TaskQueueDispatchDirectModule());
         install(new TaskActionsModule());
@@ -62,39 +65,6 @@ class MyAdminActionsModule extends ActionHandlerModule {
     }
 }
 
-class MyFSpotCloudModule extends AbstractModule {
-
-    @Override
-    protected void configure() {
-        bind(Integer.class).annotatedWith(Names.named("maxTicks")).toInstance(
-                new Integer(3));
-    }
-}
-
-class MyTaskModule extends AbstractModule {
-
-    @Override
-    protected void configure() {
-        bind(ImageSpecs.class).annotatedWith(Names.named("defaultImageSpecs")).toInstance(new ImageSpecs(1024, 768, 512, 378));
-        bind(Integer.class).annotatedWith(Names.named("maxPhotoTicks")).toInstance(2);
-    }
-}
-
-class MyModelModule extends AbstractModule {
-
-    @Override
-    protected void configure() {
-        bind(Photos.class).to(PhotoManager.class).in(Singleton.class);
-        bind(PeerDatabases.class).to(PeerDatabaseManager.class).in(
-                Singleton.class);
-        bind(Tags.class).to(TagManager.class).in(Singleton.class);
-        bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(new Integer(100));
-       install(new EntityModule("derby"));
-
-        System.out.println("ModelModule configured.");
-    }
-}
-
 class MyPeerModule extends AbstractModule {
 
     protected void configure() {
@@ -103,9 +73,9 @@ class MyPeerModule extends AbstractModule {
         bind(String.class).annotatedWith(Names.named("JDBC URL")).toProvider(CopyDatabase.class).in(Singleton.class);
         bind(String.class).annotatedWith(Names.named("DatabasePath")).toInstance(
                 System.getProperty(
-                "db",
-                System.getProperty("user.dir")
-                + "/../peer/src/test/resources/photos.db"));
+                        "db",
+                        System.getProperty("user.dir")
+                                + "/../peer/src/test/resources/photos.db"));
         bind(String.class).annotatedWith(Names.named("WorkDir")).toInstance(
                 System.getProperty("user.dir"));
         bind(Integer.class).annotatedWith(Names.named("stop port")).toInstance(

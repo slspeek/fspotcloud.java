@@ -20,15 +20,24 @@ import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchServletModule;
  */
 public class GaeTotalModule extends AbstractModule {
 
+    public static final Integer MAX_COMMAND_DELETE = new Integer(300);
+    private String botSecret;
+    private final int maxTicks;
+
+    public GaeTotalModule(int maxTicks, String botSecret) {
+        this.maxTicks = maxTicks;
+        this.botSecret = botSecret;
+    }
+
     @Override
     protected void configure() {
-        (new PropertiesLoader()).loadProperties();
-        install(new ServerTotalModule(100));
-        install(new CachedModelModule());
+        install(new ServerTotalModule(maxTicks, botSecret));
+        install(new CachedModelModule(maxTicks));
         install(new TaskQueueDispatchModule());
         install(new TaskQueueDispatchServletModule());
         install(new UserModuleGae());
-                bind(Commands.class).to(CommandManager.class).in(Singleton.class);
-        bind(Integer.class).annotatedWith(Names.named("maxCommandDelete")).toInstance(new Integer(300));
+        bind(Commands.class).to(CommandManager.class).in(Singleton.class);
+        bind(Integer.class).annotatedWith(Names.named("maxCommandDelete"))
+                .toInstance(MAX_COMMAND_DELETE);
     }
 }

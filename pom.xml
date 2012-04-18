@@ -5,7 +5,7 @@
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>fspotcloud</artifactId>
     <packaging>pom</packaging>
-    <version>0.12-beta</version>
+    <version>0.12-02</version>
     <name>F-Spot Cloud Java Edition</name>
     <prerequisites>
         <maven>3.0.0</maven>
@@ -68,7 +68,7 @@
         <module>j2ee-war</module>
     </modules>
     <properties>
-        <botdispatch.version>0.45-bd</botdispatch.version>
+        <botdispatch.version>0.46-bd</botdispatch.version>
         <taskqueuedispatch.version>0.4-tqd</taskqueuedispatch.version>
         <hibernate.version>4.0.0.Final</hibernate.version>
         <derby.version>10.6.2.1</derby.version>
