@@ -8,6 +8,7 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.googlecode.botdispatch.controller.inject.LocalControllerModule;
+import com.googlecode.fspotcloud.model.jpa.gae.GaeCacheProvider;
 import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
 import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoManager;
 import com.googlecode.fspotcloud.model.jpa.gae.tag.TagManager;
@@ -32,15 +33,16 @@ import com.googlecode.fspotcloud.user.LenientUserService;
 import com.googlecode.fspotcloud.user.UserService;
 import com.googlecode.simplejpadao.EntityModule;
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 import net.sf.jsr107cache.Cache;
 import net.sf.jsr107cache.CacheException;
 import net.sf.jsr107cache.CacheFactory;
 import net.sf.jsr107cache.CacheManager;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
 
@@ -48,65 +50,30 @@ public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
     public void configure() {
         super.configure();
         System.setProperty("photo.dir.original", "//home/steven/Photos");
-        System.setProperty("photo.dir.override", "" + System.getProperty("user.dir") + "/../peer/src/test/resources/Photos");
-        install(new MyFSpotCloudModule());
+        System.setProperty("photo.dir.override",
+                "" + System.getProperty("user.dir")
+                        + "/../peer/src/test/resources/Photos");
+        bind(Integer.class).annotatedWith(Names.named("maxTicks")).toInstance(
+                new Integer(3));
         install(new MyAdminActionsModule());
+       // install(new CachedModelModule(1));
         install(new MyModelModule());
-        install(new MyTaskModule());
+        bind(ImageSpecs.class).annotatedWith(Names.named("defaultImageSpecs"))
+                .toInstance(new ImageSpecs(1024, 768, 512, 378));
+        bind(Integer.class).annotatedWith(Names.named("maxPhotoTicks")).toInstance(2);
         install(new LocalControllerModule());
         install(new TaskQueueDispatchDirectModule());
         install(new TaskActionsModule());
         install(new PeerActionsModule());
         install(new MyPeerModule());
         install(new MyUserModule());
+        bind(Cache.class).toProvider(GaeCacheProvider.class);
+
         bind(TestWrapper.class).to(GaeLocalDatastoreTestWrapper.class);
     }
 
-    @Provides
-    public Cache get() {
-        try {
-            Cache cache;
-            Map props = new HashMap();
-            props.put(GCacheFactory.EXPIRATION_DELTA, 3600);
-            CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
-            cache = cacheFactory.createCache(props);
-            return cache;
-        } catch (CacheException ex) {
-            Logger.getLogger(GaeIntegrationGuiceBerryEnv.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
+   
 }
-
-class MyAdminActionsModule extends ActionHandlerModule {
-
-    @Override
-    protected void configureHandlers() {
-        bindHandler(TagDeleteAll.class, TagDeleteAllHandler.class);
-        bindHandler(ImportTag.class, ImportTagHandler.class);
-        bindHandler(UnImportTag.class, UnImportTagHandler.class);
-        bindHandler(SynchronizePeer.class, SynchronizePeerHandler.class);
-    }
-}
-
-class MyFSpotCloudModule extends AbstractModule {
-
-    @Override
-    protected void configure() {
-        bind(Integer.class).annotatedWith(Names.named("maxTicks")).toInstance(
-                new Integer(3));
-    }
-}
-
-class MyTaskModule extends AbstractModule {
-
-    @Override
-    protected void configure() {
-        bind(ImageSpecs.class).annotatedWith(Names.named("defaultImageSpecs")).toInstance(new ImageSpecs(1024, 768, 512, 378));
-        bind(Integer.class).annotatedWith(Names.named("maxPhotoTicks")).toInstance(2);
-    }
-}
-
 class MyModelModule extends AbstractModule {
 
     @Override
@@ -120,6 +87,17 @@ class MyModelModule extends AbstractModule {
         install(new EntityModule("gae"));
     }
 }
+class MyAdminActionsModule extends ActionHandlerModule {
+
+    @Override
+    protected void configureHandlers() {
+        bindHandler(TagDeleteAll.class, TagDeleteAllHandler.class);
+        bindHandler(ImportTag.class, ImportTagHandler.class);
+        bindHandler(UnImportTag.class, UnImportTagHandler.class);
+        bindHandler(SynchronizePeer.class, SynchronizePeerHandler.class);
+    }
+}
+
 
 class MyPeerModule extends AbstractModule {
 

@@ -6,11 +6,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-02</version>
+        <version>0.12-03</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
-    <artifactId>installer</artifactId>
-    <version>0.12-02</version>
+    <artifactId>installer-gae</artifactId>
+    <version>0.12-03</version>
     <name>Installer</name>
 
     <packaging>jar</packaging>
@@ -31,7 +31,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>war-prod</artifactId>
+            <artifactId>prod-gae-war</artifactId>
             <version>${project.version}</version>
             <type>war</type>
         </dependency>
@@ -129,14 +129,13 @@
                         <configuration>
                             <stripVersion>true</stripVersion>
                             <includeGroupIds>com.googlecode.fspotcloud</includeGroupIds>
-                            <includeArtifactIds>war-prod</includeArtifactIds>
+                            <includeArtifactIds>prod-gae-war</includeArtifactIds>
                             <outputDirectory>${staging.dir}/war</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
-			<!-- see install.xml to see how MyHelloPanel is used -->
             <plugin>
                 <groupId>org.codehaus.izpack</groupId>
                 <artifactId>izpack-maven-plugin</artifactId>

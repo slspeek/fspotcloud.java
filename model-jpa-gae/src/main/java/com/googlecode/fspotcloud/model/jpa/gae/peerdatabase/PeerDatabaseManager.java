@@ -6,9 +6,10 @@ import com.googlecode.fspotcloud.model.jpa.peerdatabase.CachedPeerDatabaseManage
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseManagerBase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import java.util.logging.Logger;
-import javax.persistence.EntityManager;
 import net.sf.jsr107cache.Cache;
+
+import javax.persistence.EntityManager;
+import java.util.logging.Logger;
 
 public class PeerDatabaseManager extends CachedPeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity> implements PeerDatabases {
 

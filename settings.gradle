@@ -2,6 +2,5 @@ rootProject.name = 'fspotcloud'
 include ':rpc', ':peer-rpc', ':user-service-api',
         ':user-service-gae', ':user-service-openid', ':test-util',
         ':model-api', ':model-jpa', ':model-jpa-j2ee', ':model-jpa-gae', 
-         ':server',  ':peer',
-        ':peer-server-integration', ':server-module-gae', ':server-module-j2ee',
-        ':client', ':e2e-test', ':gae-war', ':war-prod', ':j2ee-war', ':installer'
+        ':server', ':peer', ':peer-server-integration', ':server-module-gae', ':server-module-j2ee',
+        ':client', ':e2e-test', ':prod-gae-war', ':j2ee-war-noauth', ':installer-gae', ':gae-war' 

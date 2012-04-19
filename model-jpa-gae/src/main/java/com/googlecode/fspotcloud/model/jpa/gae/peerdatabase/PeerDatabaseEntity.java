@@ -3,12 +3,16 @@ package com.googlecode.fspotcloud.model.jpa.gae.peerdatabase;
 import com.google.appengine.api.datastore.Blob;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
+import org.apache.commons.lang.SerializationUtils;
+
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
-import org.apache.commons.lang.SerializationUtils;
 
 /**
  * Represents a whole F-Spot instance and stores application state
