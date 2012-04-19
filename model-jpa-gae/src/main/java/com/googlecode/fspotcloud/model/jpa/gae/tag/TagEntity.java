@@ -6,10 +6,13 @@ package com.googlecode.fspotcloud.model.jpa.gae.tag;
 import com.google.appengine.api.datastore.Blob;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
+import org.apache.commons.lang.SerializationUtils;
+
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.TreeSet;
-import javax.persistence.*;
-import org.apache.commons.lang.SerializationUtils;
 
 /**
  * Represents a Label in F-Spot

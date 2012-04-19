@@ -5,11 +5,12 @@ package com.googlecode.fspotcloud.model.jpa.gae.photo;
 
 import com.google.appengine.api.datastore.Blob;
 import com.googlecode.fspotcloud.server.model.api.Photo;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
 
 /**
  * @author slspeek@gmail.com

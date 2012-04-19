@@ -37,8 +37,8 @@ task copyPeer(type: Copy, dependsOn:  ':peer:jar') {
     rename "peer-${version}.jar", "peer-jar-with-dependencies.jar"
 }
 
-task unpackWar(dependsOn:  ':war-prod:war') << {
-    myWar = file("../war-prod/build/libs/war-prod-${version}.war")
+task unpackWar(dependsOn:  ':prod-gae-war:war') << {
+    myWar = file("../prod-gae-war/build/libs/prod-gae-war-${version}.war")
     ant.unjar(dest: "${buildDir}/assemble/izpack/war", src: myWar)
 }
 

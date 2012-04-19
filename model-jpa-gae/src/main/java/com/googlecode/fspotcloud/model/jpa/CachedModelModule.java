@@ -5,6 +5,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
+import com.googlecode.fspotcloud.model.jpa.gae.GaeCacheProvider;
 import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
 import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoManager;
 import com.googlecode.fspotcloud.model.jpa.gae.tag.TagManager;
@@ -36,21 +37,7 @@ public class CachedModelModule extends AbstractModule {
                 Singleton.class);
         bind(Tags.class).to(TagManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete")).toInstance(maxDelete);
+        bind(Cache.class).toProvider(GaeCacheProvider.class);//.in(Singleton.class);
         install(new EntityModule("gae"));
-    }
-
-    @Provides
-    public Cache get() {
-        try {
-            Cache cache;
-            Map props = new HashMap();
-            props.put(GCacheFactory.EXPIRATION_DELTA, 3600);
-            CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
-            cache = cacheFactory.createCache(props);
-            return cache;
-        } catch (CacheException ex) {
-            Logger.getLogger(CachedModelModule.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
     }
 }

@@ -6,9 +6,10 @@ import com.googlecode.fspotcloud.model.jpa.photo.CachedPhotoManagerBase;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoManagerBase;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
-import java.util.logging.Logger;
-import javax.persistence.EntityManager;
 import net.sf.jsr107cache.Cache;
+
+import javax.persistence.EntityManager;
+import java.util.logging.Logger;
 
 public class PhotoManager extends CachedPhotoManagerBase<Photo, PhotoEntity> implements Photos {
 
