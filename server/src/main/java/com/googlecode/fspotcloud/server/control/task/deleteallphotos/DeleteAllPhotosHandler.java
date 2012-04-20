@@ -1,12 +1,13 @@
-package com.googlecode.fspotcloud.server.control.task.unimportalltags;
+package com.googlecode.fspotcloud.server.control.task.deleteallphotos;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTags;
 import javax.inject.Inject;
 
+import com.googlecode.fspotcloud.server.model.api.Photos;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.UnImportAllTags;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.UnImportTag;
@@ -14,27 +15,26 @@ import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.logging.Logger;
 
-public class UnImportAllTagsHandler extends SimpleActionHandler<UnImportAllTags, VoidResult> {
+public class DeleteAllPhotosHandler extends SimpleActionHandler<DeleteAllPhotos, VoidResult> {
 
-    final private static Logger log = Logger.getLogger(UnImportAllTagsHandler.class.getName());
+    final private static Logger log = Logger.getLogger(DeleteAllPhotosHandler.class.getName());
     final private TaskQueueDispatch dispatchAsync;
-    final private Tags tagManager;
+    final private Photos photoManager;
 
     @Inject
-    public UnImportAllTagsHandler(TaskQueueDispatch dispatchAsync, Tags tagManager) {
+    public DeleteAllPhotosHandler(TaskQueueDispatch dispatchAsync, Photos photoManager) {
         super();
         this.dispatchAsync = dispatchAsync;
-        this.tagManager = tagManager;
-
+        this.photoManager = photoManager;
     }
 
     @Override
-    public VoidResult execute(UnImportAllTags action, ExecutionContext context)
+    public VoidResult execute(DeleteAllPhotos action, ExecutionContext context)
             throws DispatchException {
-        for(Tag importedTag: tagManager.getImportedTags()) {
-            dispatchAsync.execute(new UnImportTag(importedTag.getId()));
+        photoManager.deleteBulk(30);
+        if (!photoManager.isEmpty()) {
+            dispatchAsync.execute(new DeleteAllPhotos());
         }
-        dispatchAsync.execute(new DeleteTags());
         return new VoidResult();
     }
 }

@@ -5,11 +5,11 @@ import java.io.Serializable;
 
 import net.customware.gwt.dispatch.shared.Action;
 
-public class UnImportAllTags implements Action<VoidResult>, Serializable {
+public class DeleteAllPhotos implements Action<VoidResult>, Serializable {
 
 	private static final long serialVersionUID = 84293907017230375L;
 
-	public UnImportAllTags() {
+	public DeleteAllPhotos() {
 		super();
 	}
 
