@@ -31,6 +31,9 @@ allprojects {
 }
 
 subprojects {
+    configurations {
+        jalopy
+    }
     apply plugin: 'java'
     apply plugin: 'jdepend'
     apply plugin: 'findbugs'
@@ -51,6 +54,27 @@ subprojects {
 
     findbugsTest.enabled = false
 
+    dependencies {
+        jalopy  'jalopy:jalopy-ant:0.1-1.5b5', 'jalopy:jalopy:1.5rc3'
+    }
+
+    task jalopy(dependsOn: classes) << {
+
+        ant.taskdef(name: 'jalopy',
+                classname: 'de.hunsicker.jalopy.plugin.ant.AntPlugin',
+                classpath: configurations.jalopy.asPath)
+        ant.jalopy(convention: "${rootDir}/config/jalopy/jalopy-convention.xml") {
+            fileset(dir: "src/main/java") {
+                include(name: '**/*.java')
+            }
+        }
+        ant.jalopy(convention: "${rootDir}/config/jalopy/jalopy-convention.xml") {
+            fileset(dir: "src/test/java") {
+                include(name: '**/*.java')
+            }
+        }
+    }
+
     repositories {
         mavenCentral()
         maven {
@@ -67,6 +91,7 @@ subprojects {
         mavenLocal()
     }
 
+    check.dependsOn jalopy
 }
 
 
