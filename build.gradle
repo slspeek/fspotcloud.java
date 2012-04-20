@@ -47,15 +47,15 @@ subprojects {
         configFile = file("../config/checkstyle/checkstyle.xml")
     }
 
-    [checkstyleMain,checkstyleTest]*.ignoreFailures = true
+    [checkstyleMain, checkstyleTest]*.ignoreFailures = true
     findbugs {
-      ignoreFailures = true
+        ignoreFailures = true
     }
 
     findbugsTest.enabled = false
 
     dependencies {
-        jalopy  'jalopy:jalopy-ant:0.1-1.5b5', 'jalopy:jalopy:1.5rc3'
+        jalopy 'jalopy:jalopy-ant:0.1-1.5b5', 'jalopy:jalopy:1.5rc3'
     }
 
     task jalopy(dependsOn: classes) << {
@@ -63,14 +63,19 @@ subprojects {
         ant.taskdef(name: 'jalopy',
                 classname: 'de.hunsicker.jalopy.plugin.ant.AntPlugin',
                 classpath: configurations.jalopy.asPath)
-        ant.jalopy(convention: "${rootDir}/config/jalopy/jalopy-convention.xml") {
-            fileset(dir: "src/main/java") {
-                include(name: '**/*.java')
+        if (file("src/main/java").isDirectory()) {
+            ant.jalopy(convention: "${rootDir}/config/jalopy/jalopy-convention.xml") {
+                fileset(dir: "src/main/java") {
+                    include(name: '**/*.java')
+                }
             }
         }
-        ant.jalopy(convention: "${rootDir}/config/jalopy/jalopy-convention.xml") {
-            fileset(dir: "src/test/java") {
-                include(name: '**/*.java')
+        if (file("src/test/java").isDirectory()) {
+            ant.jalopy(convention: "${rootDir}/config/jalopy/jalopy-convention.xml") {
+                fileset(dir: "src/test/java") {
+                    include(name: '**/*.java')
+                }
+
             }
         }
     }
@@ -93,6 +98,5 @@ subprojects {
 
     check.dependsOn jalopy
 }
-
 
 //dependsOnChildren()

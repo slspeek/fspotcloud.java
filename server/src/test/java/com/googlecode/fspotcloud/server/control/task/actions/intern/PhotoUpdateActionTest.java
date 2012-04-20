@@ -1,36 +1,54 @@
+/*
+ * Copyright 2010-2012 Steven L. Speek.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoUpdate;
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeMethod;
-import org.testng.AssertJUnit;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.commons.lang.SerializationUtils;
 
+import org.testng.AssertJUnit;
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class PhotoUpdateActionTest {
+    PhotoUpdateAction action;
 
-	
-	PhotoUpdateAction action;
-	@BeforeMethod
-	protected void setUp() throws Exception {
-		PhotoUpdate update = new PhotoUpdate("1");
-		List<PhotoUpdate> list = new ArrayList<PhotoUpdate>();
-		list.add(update);
-		action = new PhotoUpdateAction(list); 
-	}
+    @BeforeMethod
+    protected void setUp() throws Exception {
+        PhotoUpdate update = new PhotoUpdate("1");
+        List<PhotoUpdate> list = new ArrayList<PhotoUpdate>();
+        list.add(update);
+        action = new PhotoUpdateAction(list);
+    }
 
-	@Test
-	public void testGetUpdates() {
-		AssertJUnit.assertEquals(1,action.getUpdates().size());
-	}
-	
-	
-	@Test
-	public void testSerialize() {
-		SerializationUtils.serialize(action);
-	}
 
+    @Test
+    public void testGetUpdates() {
+        AssertJUnit.assertEquals(1, action.getUpdates().size());
+    }
+
+
+    @Test
+    public void testSerialize() {
+        SerializationUtils.serialize(action);
+    }
 }

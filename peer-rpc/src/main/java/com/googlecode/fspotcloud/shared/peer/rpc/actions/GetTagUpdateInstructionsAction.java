@@ -1,30 +1,49 @@
+/*
+ * Copyright 2010-2012 Steven L. Speek.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
-
-import java.io.Serializable;
-import java.util.SortedSet;
 
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
 
 import net.customware.gwt.dispatch.shared.Action;
 
-public class GetTagUpdateInstructionsAction implements Action<TagUpdateInstructionsResult>, Serializable {
-	private static final long serialVersionUID = -2428269504170714946L;
-	
-	final private String tagId;
-	final private SortedSet<PhotoInfo> photosOnServer;
-	
-	public GetTagUpdateInstructionsAction(String tagId,
-			SortedSet<PhotoInfo> photosOnServer) {
-		super();
-		this.tagId = tagId;
-		this.photosOnServer = photosOnServer;
-	}
+import java.io.Serializable;
 
-	public String getTagId() {
-		return tagId;
-	}
+import java.util.SortedSet;
 
-	public SortedSet<PhotoInfo> getPhotosOnServer() {
-		return photosOnServer;
-	}
+
+public class GetTagUpdateInstructionsAction implements Action<TagUpdateInstructionsResult>,
+    Serializable {
+    private static final long serialVersionUID = -2428269504170714946L;
+    private final String tagId;
+    private final SortedSet<PhotoInfo> photosOnServer;
+
+    public GetTagUpdateInstructionsAction(
+        String tagId, SortedSet<PhotoInfo> photosOnServer) {
+        super();
+        this.tagId = tagId;
+        this.photosOnServer = photosOnServer;
+    }
+
+    public String getTagId() {
+        return tagId;
+    }
+
+
+    public SortedSet<PhotoInfo> getPhotosOnServer() {
+        return photosOnServer;
+    }
 }
