@@ -45,7 +45,7 @@ public class UnImportTagHandler extends SimpleActionHandler<UnImportTag, VoidRes
     public VoidResult execute(UnImportTag action, ExecutionContext context)
             throws DispatchException {
         log.info("Executing: " + action.getTagId());
-        //FIXME this gets UnImportAllTags to work for NOW
+        //FIXME this gets DeleteAllPhotos to work for NOW
         //adminPermission.chechAdminPermission();
         try {
             String tagId = action.getTagId();

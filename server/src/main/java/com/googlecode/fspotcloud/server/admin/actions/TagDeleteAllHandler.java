@@ -2,12 +2,12 @@ package com.googlecode.fspotcloud.server.admin.actions;
 
 import javax.inject.Inject;
 
+import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotos;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTags;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.UnImportAllTags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.TagDeleteAll;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 import com.googlecode.fspotcloud.user.AdminPermission;
@@ -30,7 +30,8 @@ public class TagDeleteAllHandler extends SimpleActionHandler<TagDeleteAll, VoidR
             throws DispatchException {
         adminPermission.chechAdminPermission();
         try {
-            dispatchAsync.execute(new UnImportAllTags());
+            dispatchAsync.execute(new DeleteTags());
+            dispatchAsync.execute(new DeleteAllPhotos());
         } catch (Exception e) {
             throw new ActionException(e);
         }
