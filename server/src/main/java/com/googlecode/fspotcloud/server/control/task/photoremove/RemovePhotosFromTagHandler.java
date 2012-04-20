@@ -1,14 +1,21 @@
+/*
+ * Copyright 2010-2012 Steven L. Speek.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 package com.googlecode.fspotcloud.server.control.task.photoremove;
 
-import java.util.Iterator;
-import java.util.SortedSet;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import net.customware.gwt.dispatch.server.ExecutionContext;
-import net.customware.gwt.dispatch.server.SimpleActionHandler;
-import net.customware.gwt.dispatch.shared.DispatchException;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
@@ -17,18 +24,31 @@ import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoRemovedFromTag;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
+
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
-public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotosFromTagAction, VoidResult> {
+import net.customware.gwt.dispatch.server.ExecutionContext;
+import net.customware.gwt.dispatch.server.SimpleActionHandler;
+import net.customware.gwt.dispatch.shared.DispatchException;
 
-    final private int MAX_DELETE_TICKS;
-    final private TaskQueueDispatch dispatchAsync;
-    final private Photos photos;
+import java.util.Iterator;
+import java.util.SortedSet;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
+
+public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotosFromTagAction, VoidResult> {
+    private final int MAX_DELETE_TICKS;
+    private final TaskQueueDispatch dispatchAsync;
+    private final Photos photos;
     private Tags tagManager;
 
     @Inject
-    public RemovePhotosFromTagHandler(@Named("maxDelete") int maxDeleteTicks,
-            TaskQueueDispatch dispatchAsync, Photos photos, Tags tagManager) {
+    public RemovePhotosFromTagHandler(
+        @Named("maxDelete")
+    int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
+        Tags tagManager) {
         super();
         MAX_DELETE_TICKS = maxDeleteTicks;
         this.dispatchAsync = dispatchAsync;
@@ -37,47 +57,60 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
     }
 
     @Override
-    public VoidResult execute(RemovePhotosFromTagAction action,
-            ExecutionContext context) throws DispatchException {
-
+    public VoidResult execute(
+        RemovePhotosFromTagAction action, ExecutionContext context)
+        throws DispatchException {
         Tag tag = tagManager.find(action.getTagId());
         Iterator<PhotoRemovedFromTag> it = action.getToBoDeleted().iterator();
-        for (int i = 0; i < MAX_DELETE_TICKS && it.hasNext(); i++) {
+
+        for (int i = 0; (i < MAX_DELETE_TICKS) && it.hasNext(); i++) {
             PhotoRemovedFromTag operation = it.next();
 
             checkForDeletion(tag, tag.getId(), operation.getPhotoId(), it);
         }
+
         tagManager.save(tag);
+
         if (!action.getToBoDeleted().isEmpty()) {
             dispatchAsync.execute(action);
         }
+
         return new VoidResult();
     }
 
-    private void checkForDeletion(Tag tag, String deleteTagId, String key,
-            Iterator<PhotoRemovedFromTag> it) {
+
+    private void checkForDeletion(
+        Tag tag, String deleteTagId, String key,
+        Iterator<PhotoRemovedFromTag> it) {
         Photo photo = photos.find(key);
+
         if (photo != null) {
             boolean moreImports = false;
+
             for (String tagId : photo.getTagList()) {
                 Tag tagRelated = tagManager.find(tagId);
+
                 if (tagRelated != null) {
                     if (!deleteTagId.equals(tagId)) {
                         if (tagRelated.isImportIssued()) {
                             moreImports = true;
+
                             break;
                         }
                     }
                 }
             }
+
             if (!moreImports) {
                 photos.delete(photo);
-                tag.getCachedPhotoList().remove(find(tag.getCachedPhotoList(), key));
+                tag.getCachedPhotoList()
+                   .remove(find(tag.getCachedPhotoList(), key));
             }
         }
-        it.remove();
 
+        it.remove();
     }
+
 
     private PhotoInfo find(SortedSet<PhotoInfo> set, String id) {
         for (PhotoInfo info : set) {
@@ -85,6 +118,7 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
                 return info;
             }
         }
+
         return null;
     }
 }
