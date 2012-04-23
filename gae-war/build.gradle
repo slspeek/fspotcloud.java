@@ -18,7 +18,6 @@ configurations {
 
 dependencies {
     compile project(':server-module-gae')
-    compile project(path: ':client', configuration: 'javascript')
 
     testCompile project(':test-util')
     testCompile project(':peer')
@@ -41,7 +40,7 @@ task initconfig(type: Copy) {
     into 'build/target/config'
 }
 
-task unpackJavascript << {
+task unpackJavascript(dependsOn: ':client:javascriptJar') << {
     myTests = file("../client/build/libs/client-${version}-javascript.jar")
     ant.unjar(dest: "$buildDir/javascript/", src: myTests)
 }

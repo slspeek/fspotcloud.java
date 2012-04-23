@@ -14,10 +14,6 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.googlecode.fspotcloud.server.inject;
 
 import com.google.inject.AbstractModule;
@@ -28,8 +24,7 @@ import com.googlecode.botdispatch.model.api.Commands;
 import com.googlecode.botdispatch.model.command.CommandManager;
 
 import com.googlecode.fspotcloud.model.jpa.ModelModule;
-import com.googlecode.fspotcloud.user.LenientUserService;
-import com.googlecode.fspotcloud.user.UserService;
+import com.googlecode.fspotcloud.user.openid.OpenIdUserModule;
 
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
 
@@ -42,11 +37,13 @@ import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
 public class J2eeTotalModule extends AbstractModule {
     public static final Integer MAX_COMMAND_DELETE = new Integer(300);
     private final int maxTicks;
-    private String botSecret;
+    private final String botSecret;
+    private final String adminEmail;
 
-    public J2eeTotalModule(int maxTicks, String botSecret) {
+    public J2eeTotalModule(int maxTicks, String botSecret, String adminEmail) {
         this.maxTicks = maxTicks;
         this.botSecret = botSecret;
+        this.adminEmail = adminEmail;
     }
 
     @Override
@@ -54,17 +51,9 @@ public class J2eeTotalModule extends AbstractModule {
         install(new ServerTotalModule(maxTicks, botSecret));
         install(new ModelModule(maxTicks));
         install(new TaskQueueDispatchDirectModule());
-        install(new LenientUserServiceModule());
+        install(new OpenIdUserModule(adminEmail));
         bind(Commands.class).to(CommandManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxCommandDelete"))
             .toInstance(MAX_COMMAND_DELETE);
-    }
-}
-
-
-class LenientUserServiceModule extends AbstractModule {
-    @Override
-    protected void configure() {
-        bind(UserService.class).to(LenientUserService.class);
     }
 }

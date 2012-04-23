@@ -31,8 +31,9 @@ public class GaeGuiceServletConfig extends GuiceServletContextListener {
         System.setProperty(
             "java.util.logging.config.file", "logging.properties");
 
-        int maxTicks = Integer.valueOf(p.getProperty("maxTicks", "100"));
-        String botSecret = p.getProperty("bot.secret");
+        int maxTicks = Integer.valueOf(
+                p.getProperty("fspotcloud.max.data.ticks", "100"));
+        String botSecret = p.getProperty("fspotcloud.bot.secret");
         Injector i = Guice.createInjector(
                 new GaeTotalModule(maxTicks, botSecret));
 

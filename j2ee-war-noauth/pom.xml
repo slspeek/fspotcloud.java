@@ -4,13 +4,13 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-04</version>
+        <version>0.12-05</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>j2ee-war-noauth</artifactId>
     <packaging>war</packaging>
-    <name>J2ee war</name>
-    <description>j2ee war with Derby</description>
+    <name>J2ee noauth war</name>
+    <description>j2ee war with Derby without authentication</description>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -274,7 +274,7 @@
                                     fork="yes" spawn="yes">
                                     <sysproperty key="db"
                                                  value="${basedir}/../peer/src/test/resources/photos.db" />
-                                    <sysproperty key="endpoint" value="localhost:8080/j2ee-war" />
+                                    <sysproperty key="endpoint" value="localhost:8080/j2ee-war-noauth" />
                                     <sysproperty key="bot.secret" value="${bot.secret}" />
                                     <sysproperty key="pause" value="2" />
                                     <sysproperty key="photo.dir.original" value="file:///home/steven/Photos" />

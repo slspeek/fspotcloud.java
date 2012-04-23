@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.googlecode.fspotcloud</groupId>
         <artifactId>fspotcloud</artifactId>
-        <version>0.12-04</version>
+        <version>0.12-05</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>user-service-openid</artifactId>
@@ -53,6 +53,12 @@
             <version>1.1</version>
             <scope>test</scope>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>r09</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <repositories>

@@ -16,26 +16,15 @@
  */
 package com.googlecode.fspotcloud.server.inject;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.servlet.GuiceServletContextListener;
+import com.google.inject.AbstractModule;
 
-import java.util.Properties;
+import com.googlecode.fspotcloud.user.LenientUserService;
+import com.googlecode.fspotcloud.user.UserService;
 
 
-public class J2eeGuiceServletConfig extends GuiceServletContextListener {
-    Properties p = (new PropertiesLoader()).loadProperties();
-
+public class LenientUserServiceModule extends AbstractModule {
     @Override
-    protected Injector getInjector() {
-        System.setProperty(
-            "java.util.logging.config.file", "logging.properties");
-
-        int maxTicks = Integer.valueOf(p.getProperty("maxTicks", "100"));
-        String botSecret = p.getProperty("bot.secret");
-        Injector i = Guice.createInjector(
-                new J2eeTotalModule(maxTicks, botSecret));
-
-        return i;
+    protected void configure() {
+        bind(UserService.class).to(LenientUserService.class);
     }
 }
