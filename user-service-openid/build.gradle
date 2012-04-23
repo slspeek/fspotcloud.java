@@ -1,13 +1,25 @@
 description = 'OpenId User service'
 
+configurations {
+    provided
+    testCompile.extendsFrom(provided)
+}
+
+sourceSets {
+    main { compileClasspath += configurations.provided }
+}
+
 dependencies {
     compile project(':user-service-api')
-    compile "org.openid4java:openid4java-consumer:0.9.6"
+    compile("org.openid4java:openid4java-consumer:0.9.6") {
+        exclude module: 'guice'
+    }
     compile libs.guice_servlet
     compile libs.guice
     compile libs.inject
-    compile libs.servlet_spec
+    provided libs.servlet_spec
 
     testCompile libs.junit
     testCompile libs.jukito
+    testCompile libs.guava
 }

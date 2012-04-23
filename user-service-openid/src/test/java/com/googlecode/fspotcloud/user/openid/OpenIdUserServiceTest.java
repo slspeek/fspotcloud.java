@@ -14,31 +14,23 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.googlecode.fspotcloud.user.openid;
 
+import com.google.common.collect.ImmutableList;
+
 import com.google.inject.Inject;
-import com.google.inject.Scopes;
-import com.google.inject.internal.ImmutableList;
-import com.google.inject.servlet.ServletModule;
-import com.google.inject.servlet.ServletScopes;
-
-import com.googlecode.fspotcloud.user.openid.AdminEmail;
-import com.googlecode.fspotcloud.user.openid.OpenIdUserService;
-
-import net.jcip.annotations.Immutable;
 
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.After;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import org.junit.runner.RunWith;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 import java.util.List;
 
@@ -46,11 +38,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
-/**
- * DOCUMENT ME!
- *
- * @author steven
-*/
 @RunWith(JukitoRunner.class)
 public class OpenIdUserServiceTest {
     @Inject

@@ -1,13 +1,12 @@
-description = 'Production war'
+description = 'Production GAE war'
 
 apply plugin: 'war'
 
 dependencies {
-    compile project(':server-module-gae')
-    compile project(path: ':client', configuration: 'javascript')
+    compile project(':server-module-j2ee')
 }
 
-task unpackJavascript << {
+task unpackJavascript(dependsOn: ':client:javascriptJar') << {
     myTests = file("../client/build/libs/client-${version}-javascript.jar")
     ant.unjar(dest: "$buildDir/javascript/", src: myTests)
 }

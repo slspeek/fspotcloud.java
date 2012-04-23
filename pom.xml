@@ -5,7 +5,7 @@
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>fspotcloud</artifactId>
     <packaging>pom</packaging>
-    <version>0.12-04</version>
+    <version>0.12-05</version>
     <name>F-Spot Cloud Java Edition</name>
     <prerequisites>
         <maven>3.0.0</maven>
@@ -64,7 +64,6 @@
         <module>prod-gae-war</module>
         <module>installer-gae</module>
         <module>deps</module>
-        <module>grapher</module>
         <module>j2ee-war-noauth</module>
     </modules>
     <properties>

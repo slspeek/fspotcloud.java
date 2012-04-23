@@ -64,8 +64,8 @@ public class UnImportTagHandler extends SimpleActionHandler<UnImportTag, VoidRes
         throws DispatchException {
         log.info("Executing: " + action.getTagId());
 
-        //FIXME this gets DeleteAllPhotos to work for NOW
-        //adminPermission.chechAdminPermission();
+        adminPermission.chechAdminPermission();
+
         try {
             String tagId = action.getTagId();
             Tag tag = tagManager.find(tagId);

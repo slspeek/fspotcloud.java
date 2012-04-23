@@ -14,25 +14,22 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.googlecode.fspotcloud.user.openid;
 
-import com.google.inject.AbstractModule;
 import com.google.inject.servlet.ServletModule;
 
 
-/**
- * DOCUMENT ME!
- *
- * @author steven
-*/
 public class OpenIdUserModule extends ServletModule {
+    private final String adminEmail;
+
+    public OpenIdUserModule(String adminEmail) {
+        this.adminEmail = adminEmail;
+    }
+
+    @Override
     protected void configureServlets() {
-        bind(String.class).annotatedWith(AdminEmail.class)
-            .toInstance("slspeek@gmail.com");
+        bind(String.class).annotatedWith(AdminEmail.class).toInstance(
+            adminEmail);
         bind(com.googlecode.fspotcloud.user.UserService.class)
             .to(com.googlecode.fspotcloud.user.openid.OpenIdUserService.class);
     }
