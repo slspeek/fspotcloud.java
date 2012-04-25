@@ -3,7 +3,7 @@ description = 'Production GAE war'
 apply plugin: 'war'
 
 dependencies {
-    compile project(':server-module-j2ee')
+    compile project(':server-module-gae')
 }
 
 task unpackJavascript(dependsOn: ':client:javascriptJar') << {

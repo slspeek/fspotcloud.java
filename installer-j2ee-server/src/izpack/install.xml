@@ -36,9 +36,9 @@
     </variables>
 
     <panels>
-        <!--<panel classname="HelloPanel"/>-->
-        <!--<panel classname="HTMLInfoPanel" id="readme"/>-->
-        <!--<panel classname="LicencePanel"/>-->
+        <panel classname="HelloPanel"/>
+        <panel classname="HTMLInfoPanel" id="readme"/>
+        <panel classname="LicencePanel"/>
         <panel classname="TargetPanel"/>
         <panel classname="PacksPanel"/>
         <panel classname="ShortcutPanel"/>
