@@ -52,7 +52,7 @@ izPackCreateInstaller.dependsOn copyFiles, copyPeer, unpackWar, unpackGAESDK
 izpack {
     baseDir = file("$buildDir/assemble/izpack")
     installFile = file('src/izpack/install.xml')
-    outputFile = file("$buildDir/distributions/fspotcloud-${version}-installer.jar")
+    outputFile = file("$buildDir/distributions/fspotcloud-appengine-${version}-installer.jar")
     compression = 'deflate'
     compressionLevel = 9
     appProperties = ['gae.version': gae_version, 'project.version': version]

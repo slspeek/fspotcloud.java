@@ -46,7 +46,7 @@ izPackCreateInstaller.dependsOn copyFiles, unpackWar
 izpack {
     baseDir = file("$buildDir/assemble/izpack")
     installFile = file('src/izpack/install.xml')
-    outputFile = file("$buildDir/distributions/fspotcloud-j2ee-${version}-installer.jar")
+    outputFile = file("$buildDir/distributions/fspotcloud-j2ee-server-installer-${version}.jar")
     compression = 'deflate'
     compressionLevel = 9
     appProperties = ['project.version': version, 'tomcat.version': tomcat_version]
