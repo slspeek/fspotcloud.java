@@ -18,7 +18,9 @@ libs = [
         hibernate_all: ["org.hibernate:hibernate-core:${hibernate_version}",
                 "javassist:javassist:3.12.0.GA",
                 "org.hibernate:hibernate-entitymanager:${hibernate_version}"],
-        servlet_spec: "org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2",
+        servlet_spec: dependencies.create("org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2") {
+            transitive = false
+        },
         mockito: "org.mockito:mockito-core:1.9.0-rc1",
         guava_testlib: "com.google.guava:guava-testlib:10.0.1",
         derby_all: ["org.apache.derby:derby:${derby_version}",

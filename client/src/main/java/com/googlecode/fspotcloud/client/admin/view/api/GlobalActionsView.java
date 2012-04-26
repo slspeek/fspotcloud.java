@@ -45,6 +45,9 @@ public interface GlobalActionsView extends IsWidget {
 
     HasEnabled getUpdateButton();
 
+
+    boolean confirm(String message);
+
     interface GlobalActionsPresenter {
         void init();
 
