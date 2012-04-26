@@ -38,7 +38,7 @@ izPackCreateInstaller.dependsOn copyFiles, copyPeer
 izpack {
     baseDir = file("$buildDir/assemble/izpack")
     installFile = file('src/izpack/install.xml')
-    outputFile = file("$buildDir/distributions/fspotcloud-${version}-peer-installer.jar")
+    outputFile = file("$buildDir/distributions/fspotcloud-peer-${version}-installer.jar")
     compression = 'deflate'
     compressionLevel = 9
     appProperties = ['project.version': version]

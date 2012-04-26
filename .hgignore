@@ -31,3 +31,5 @@ peer/peer*.log*
 */appengine-generated/*
 */META-INF/MANIFEST.MF
 */.externalToolBuilders
+client/src/main/gwt-unitCache/*
+client/src/main/webapp

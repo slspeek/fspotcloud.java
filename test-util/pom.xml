@@ -6,11 +6,11 @@
 	<parent>
 		<artifactId>fspotcloud</artifactId>
 		<groupId>com.googlecode.fspotcloud</groupId>
-		<version>0.12-05</version>
+		<version>0.12-06</version>
 	</parent>
 	<groupId>com.googlecode.fspotcloud</groupId>
 	<artifactId>test-util</artifactId>
-	<version>0.12-05</version>
+	<version>0.12-06</version>
 	<name>test-util</name>
 	<url>http://maven.apache.org</url>
 	<properties>

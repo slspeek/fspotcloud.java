@@ -27,7 +27,7 @@ allprojects {
 
     defaultTasks 'build'
     group = 'com.googlecode.fspotcloud'
-    version = '0.12-06g'
+    version = '0.12-07g'
 }
 
 subprojects {
@@ -53,6 +53,7 @@ subprojects {
     }
 
     findbugsTest.enabled = false
+    checkstyleTest.enabled = false
 
     dependencies {
         jalopy 'jalopy:jalopy-ant:0.1-1.5b5', 'jalopy:jalopy:1.5rc3'
