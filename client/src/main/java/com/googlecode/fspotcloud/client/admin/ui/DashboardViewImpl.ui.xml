@@ -17,7 +17,7 @@
 	</ui:style>
 	<g:DockLayoutPanel unit='PX'>
 		<g:north size="30">
-			<g:Label styleName="{style.title-label}" ui:field="titleLabel" text="F-SpotCloud Dashboard">
+			<g:Label styleName="{style.title-label}" ui:field="titleLabel" text="F-Spot Cloud Dashboard">
 			</g:Label>
 		</g:north>
 		<g:center>
@@ -34,7 +34,7 @@
 			</g:SplitLayoutPanel>
 		</g:center>
 		<g:south size='20'>
-			<g:HTML></g:HTML>
+			<g:HTML><center>&copy; 2010-2012 Steven L. Speek</center></g:HTML>
 		</g:south>
 	</g:DockLayoutPanel>
 </ui:UiBinder> 

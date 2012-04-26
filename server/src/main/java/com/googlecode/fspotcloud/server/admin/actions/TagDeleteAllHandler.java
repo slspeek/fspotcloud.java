@@ -18,6 +18,7 @@ package com.googlecode.fspotcloud.server.admin.actions;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotos;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTags;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.shared.dashboard.actions.TagDeleteAll;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 import com.googlecode.fspotcloud.user.AdminPermission;
@@ -35,13 +36,16 @@ import javax.inject.Inject;
 public class TagDeleteAllHandler extends SimpleActionHandler<TagDeleteAll, VoidResult> {
     private final TaskQueueDispatch dispatchAsync;
     private final AdminPermission adminPermission;
+    private final PeerDatabases peerDatabaseManager;
 
     @Inject
     public TagDeleteAllHandler(
-        TaskQueueDispatch dispatchAsync, AdminPermission adminPermission) {
+        TaskQueueDispatch dispatchAsync, AdminPermission adminPermission,
+        PeerDatabases peerDatabaseManager) {
         super();
         this.dispatchAsync = dispatchAsync;
         this.adminPermission = adminPermission;
+        this.peerDatabaseManager = peerDatabaseManager;
     }
 
     @Override
@@ -52,10 +56,16 @@ public class TagDeleteAllHandler extends SimpleActionHandler<TagDeleteAll, VoidR
         try {
             dispatchAsync.execute(new DeleteTags());
             dispatchAsync.execute(new DeleteAllPhotos());
+            clearPeer();
         } catch (Exception e) {
             throw new ActionException(e);
         }
 
         return new VoidResult();
+    }
+
+
+    private void clearPeer() {
+        peerDatabaseManager.deleteBulk(1);
     }
 }

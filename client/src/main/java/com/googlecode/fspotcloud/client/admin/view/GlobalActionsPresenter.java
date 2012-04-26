@@ -75,21 +75,28 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
     @Override
     public void deleteAllTags() {
         globalActionsView.getDeleteAllTagsButton().setEnabled(false);
-        dispatcher.execute(
-            new TagDeleteAll(),
-            new AsyncCallback<VoidResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    log.log(Level.SEVERE, "Action Exception ", caught);
-                    globalActionsView.getDeleteAllTagsButton().setEnabled(true);
-                }
+
+        if (globalActionsView.confirm("Really delete all tags and photos?")) {
+            dispatcher.execute(
+                new TagDeleteAll(),
+                new AsyncCallback<VoidResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        log.log(Level.SEVERE, "Action Exception ", caught);
+                        globalActionsView.getDeleteAllTagsButton()
+                                         .setEnabled(true);
+                    }
 
 
-                @Override
-                public void onSuccess(VoidResult result) {
-                    globalActionsView.getDeleteAllTagsButton().setEnabled(true);
-                }
-            });
+                    @Override
+                    public void onSuccess(VoidResult result) {
+                        globalActionsView.getDeleteAllTagsButton()
+                                         .setEnabled(true);
+                    }
+                });
+        } else {
+            globalActionsView.getDeleteAllTagsButton().setEnabled(true);
+        }
     }
 
 

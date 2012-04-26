@@ -68,10 +68,10 @@ test {
         'com.googlecode.fspotcloud.test.J2eeWarGuiceBerryEnv'
     include "com/googlecode/fspotcloud/test/LocalSuite.class"
     testLogging.showStandardStreams = true
-    //ignoreFailures = true
 }
 
 war {
+    webXml = file('build/target/config/WEB-INF/web.xml')
     from "build/target/config"
     from "build/javascript"
 }

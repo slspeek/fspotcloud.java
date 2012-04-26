@@ -84,10 +84,10 @@
 				
 				<tr>
 					<td>
-						<g:Label  styleName="{style.property-label}">Remove all labels</g:Label>
+						<g:Label  styleName="{style.property-label}">Remove all imported data</g:Label>
 					</td>
 					<td>
-						<g:Button ui:field="deleteAllTagsButton" >Remove labels</g:Button>
+						<g:Button ui:field="deleteAllTagsButton" >Remove all</g:Button>
 					</td>
 				</tr>
 				

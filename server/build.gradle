@@ -17,6 +17,7 @@ dependencies {
     compile libs.bot_dispatch_controller
     compile libs.task_dispatch_dispatch_api
     provided libs.servlet_spec
+//    compile libs.servlet_spec
 
     testCompile project(':model-jpa-j2ee')
     testCompile libs.test_ng
