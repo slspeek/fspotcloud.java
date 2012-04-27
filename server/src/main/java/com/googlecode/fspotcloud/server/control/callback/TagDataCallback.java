@@ -22,7 +22,7 @@ import com.googlecode.botdispatch.SerializableAsyncCallback;
 
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.ImportTag;
+import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagDataResult;
 
@@ -70,7 +70,8 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
     private void importNewImages(Tag tag, int previousCount) {
         if (tag.isImportIssued()) {
             try {
-                dispatch.execute(new ImportTag(tag.getId(), previousCount));
+                dispatch.execute(
+                    new UserImportsTagAction(tag.getId()));
             } catch (DispatchException e) {
                 log.log(Level.SEVERE, "Caught: ", e);
             }

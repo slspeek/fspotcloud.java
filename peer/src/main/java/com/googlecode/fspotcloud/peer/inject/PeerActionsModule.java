@@ -20,9 +20,9 @@ import com.googlecode.fspotcloud.peer.handlers.GetPeerMetaDataHandler;
 import com.googlecode.fspotcloud.peer.handlers.GetPhotoDataHandler;
 import com.googlecode.fspotcloud.peer.handlers.GetTagDataHandler;
 import com.googlecode.fspotcloud.peer.handlers.GetTagUpdateInstructionsHandler;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaData;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPhotoData;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagData;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaDataAction;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPhotoDataAction;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagDataAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagUpdateInstructionsAction;
 
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
@@ -31,9 +31,9 @@ import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 public class PeerActionsModule extends ActionHandlerModule {
     @Override
     protected void configureHandlers() {
-        bindHandler(GetPeerMetaData.class, GetPeerMetaDataHandler.class);
-        bindHandler(GetTagData.class, GetTagDataHandler.class);
-        bindHandler(GetPhotoData.class, GetPhotoDataHandler.class);
+        bindHandler(GetPeerMetaDataAction.class, GetPeerMetaDataHandler.class);
+        bindHandler(GetTagDataAction.class, GetTagDataHandler.class);
+        bindHandler(GetPhotoDataAction.class, GetPhotoDataHandler.class);
         bindHandler(
             GetTagUpdateInstructionsAction.class,
             GetTagUpdateInstructionsHandler.class);

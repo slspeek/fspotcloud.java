@@ -32,18 +32,15 @@ import com.googlecode.fspotcloud.peer.CopyDatabase;
 import com.googlecode.fspotcloud.peer.ImageData;
 import com.googlecode.fspotcloud.peer.db.Data;
 import com.googlecode.fspotcloud.peer.inject.PeerActionsModule;
-import com.googlecode.fspotcloud.server.admin.actions.ImportTagHandler;
-import com.googlecode.fspotcloud.server.admin.actions.SynchronizePeerHandler;
-import com.googlecode.fspotcloud.server.admin.actions.TagDeleteAllHandler;
-import com.googlecode.fspotcloud.server.admin.actions.UnImportTagHandler;
+import com.googlecode.fspotcloud.server.admin.handler.UserDeletesAllHandler;
+import com.googlecode.fspotcloud.server.admin.handler.UserImportsTagHandler;
+import com.googlecode.fspotcloud.server.admin.handler.UserSynchronizesPeerHandler;
+import com.googlecode.fspotcloud.server.admin.handler.UserUnImportsTagHandler;
 import com.googlecode.fspotcloud.server.control.task.TaskActionsModule;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.ImportTag;
-import com.googlecode.fspotcloud.shared.dashboard.actions.SynchronizePeer;
-import com.googlecode.fspotcloud.shared.dashboard.actions.TagDeleteAll;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UnImportTag;
+import com.googlecode.fspotcloud.shared.dashboard.actions.*;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import com.googlecode.fspotcloud.user.LenientUserService;
 import com.googlecode.fspotcloud.user.UserService;
@@ -85,10 +82,12 @@ public class J2eeIntegrationGuiceBerryEnv extends GuiceBerryModule {
 class MyAdminActionsModule extends ActionHandlerModule {
     @Override
     protected void configureHandlers() {
-        bindHandler(TagDeleteAll.class, TagDeleteAllHandler.class);
-        bindHandler(ImportTag.class, ImportTagHandler.class);
-        bindHandler(UnImportTag.class, UnImportTagHandler.class);
-        bindHandler(SynchronizePeer.class, SynchronizePeerHandler.class);
+        bindHandler(UserDeletesAllAction.class, UserDeletesAllHandler.class);
+        bindHandler(UserImportsTagAction.class, UserImportsTagHandler.class);
+        bindHandler(
+            UserUnImportsTagAction.class, UserUnImportsTagHandler.class);
+        bindHandler(
+            UserSynchronizesPeerAction.class, UserSynchronizesPeerHandler.class);
     }
 }
 

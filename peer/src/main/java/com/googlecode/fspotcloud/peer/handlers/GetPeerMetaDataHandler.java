@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.peer.handlers;
 import com.google.inject.Inject;
 
 import com.googlecode.fspotcloud.peer.db.Data;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaData;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaDataAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
 
 import net.customware.gwt.dispatch.server.ExecutionContext;
@@ -30,7 +30,7 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 import java.sql.SQLException;
 
 
-public class GetPeerMetaDataHandler extends SimpleActionHandler<GetPeerMetaData, PeerMetaDataResult> {
+public class GetPeerMetaDataHandler extends SimpleActionHandler<GetPeerMetaDataAction, PeerMetaDataResult> {
     private final Data data;
 
     @Inject
@@ -41,7 +41,7 @@ public class GetPeerMetaDataHandler extends SimpleActionHandler<GetPeerMetaData,
 
     @Override
     public PeerMetaDataResult execute(
-        GetPeerMetaData action, ExecutionContext context)
+        GetPeerMetaDataAction action, ExecutionContext context)
         throws DispatchException {
         PeerMetaDataResult result;
 

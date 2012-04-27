@@ -14,24 +14,22 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.server.control.task.actions.intern;
-
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
+package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
 import net.customware.gwt.dispatch.shared.Action;
 
 import java.io.Serializable;
 
 
-public class TagImportAction implements Action<VoidResult>, Serializable {
-    private static final long serialVersionUID = -8689981785339334225L;
-    private final int offset;
-    private final int limit;
+public class GetTagDataAction implements Action<TagDataResult>, Serializable {
+    private static final long serialVersionUID = -2428269504170714946L;
+    private int offset;
+    private int count;
 
-    public TagImportAction(int offset, int limit) {
+    public GetTagDataAction(int offset, int count) {
         super();
         this.offset = offset;
-        this.limit = limit;
+        this.count = count;
     }
 
     public int getOffset() {
@@ -39,25 +37,7 @@ public class TagImportAction implements Action<VoidResult>, Serializable {
     }
 
 
-    public int getLimit() {
-        return limit;
-    }
-
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof TagImportAction) {
-            TagImportAction new_name = (TagImportAction)obj;
-
-            return (new_name.getLimit() == limit)
-            && (new_name.getOffset() == offset);
-        } else {
-            return false;
-        }
-    }
-
-
-    public String toString() {
-        return "TagImportAction(" + offset + ", " + limit + ")";
+    public int getCount() {
+        return count;
     }
 }

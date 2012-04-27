@@ -16,18 +16,13 @@
  */
 package com.googlecode.fspotcloud.server.admin.integration;
 
-import com.google.appengine.api.memcache.jsr107cache.GCacheFactory;
 
 import com.google.guiceberry.GuiceBerryModule;
 import com.google.guiceberry.TestWrapper;
-
 import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
-
 import com.googlecode.botdispatch.controller.inject.LocalControllerModule;
-
 import com.googlecode.fspotcloud.model.jpa.gae.GaeCacheProvider;
 import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
 import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoManager;
@@ -36,37 +31,25 @@ import com.googlecode.fspotcloud.peer.CopyDatabase;
 import com.googlecode.fspotcloud.peer.ImageData;
 import com.googlecode.fspotcloud.peer.db.Data;
 import com.googlecode.fspotcloud.peer.inject.PeerActionsModule;
-import com.googlecode.fspotcloud.server.admin.actions.ImportTagHandler;
-import com.googlecode.fspotcloud.server.admin.actions.SynchronizePeerHandler;
-import com.googlecode.fspotcloud.server.admin.actions.TagDeleteAllHandler;
-import com.googlecode.fspotcloud.server.admin.actions.UnImportTagHandler;
+import com.googlecode.fspotcloud.server.admin.handler.UserDeletesAllHandler;
+import com.googlecode.fspotcloud.server.admin.handler.UserImportsTagHandler;
+import com.googlecode.fspotcloud.server.admin.handler.UserSynchronizesPeerHandler;
+import com.googlecode.fspotcloud.server.admin.handler.UserUnImportsTagHandler;
 import com.googlecode.fspotcloud.server.control.task.TaskActionsModule;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.ImportTag;
-import com.googlecode.fspotcloud.shared.dashboard.actions.SynchronizePeer;
-import com.googlecode.fspotcloud.shared.dashboard.actions.TagDeleteAll;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UnImportTag;
+import com.googlecode.fspotcloud.shared.dashboard.actions.UserDeletesAllAction;
+import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.actions.UserSynchronizesPeerAction;
+import com.googlecode.fspotcloud.shared.dashboard.actions.UserUnImportsTagAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import com.googlecode.fspotcloud.user.LenientUserService;
 import com.googlecode.fspotcloud.user.UserService;
-
 import com.googlecode.simplejpadao.EntityModule;
-
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
-
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
-
 import net.sf.jsr107cache.Cache;
-import net.sf.jsr107cache.CacheException;
-import net.sf.jsr107cache.CacheFactory;
-import net.sf.jsr107cache.CacheManager;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
@@ -118,10 +101,12 @@ class MyModelModule extends AbstractModule {
 class MyAdminActionsModule extends ActionHandlerModule {
     @Override
     protected void configureHandlers() {
-        bindHandler(TagDeleteAll.class, TagDeleteAllHandler.class);
-        bindHandler(ImportTag.class, ImportTagHandler.class);
-        bindHandler(UnImportTag.class, UnImportTagHandler.class);
-        bindHandler(SynchronizePeer.class, SynchronizePeerHandler.class);
+        bindHandler(UserDeletesAllAction.class, UserDeletesAllHandler.class);
+        bindHandler(UserImportsTagAction.class, UserImportsTagHandler.class);
+        bindHandler(
+            UserUnImportsTagAction.class, UserUnImportsTagHandler.class);
+        bindHandler(
+            UserSynchronizesPeerAction.class, UserSynchronizesPeerHandler.class);
     }
 }
 

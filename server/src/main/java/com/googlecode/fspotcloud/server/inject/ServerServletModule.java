@@ -28,10 +28,6 @@ import java.util.logging.Logger;
 
 
 public class ServerServletModule extends ServletModule {
-    @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            ServerServletModule.class.getName());
-
     @Override
     protected void configureServlets() {
         serve("/fspotcloud/dispatch").with(GuiceStandardDispatchServlet.class);

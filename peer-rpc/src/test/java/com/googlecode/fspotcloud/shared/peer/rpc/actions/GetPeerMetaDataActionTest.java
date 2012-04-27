@@ -14,37 +14,23 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.peer.handlers;
+package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
-import com.googlecode.fspotcloud.peer.db.Data;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaDataAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
 
 import junit.framework.TestCase;
 
-import net.customware.gwt.dispatch.shared.DispatchException;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
 
-import java.net.URL;
 
-
-public class GetPeerMetaDataHandlerTest extends TestCase {
+public class GetPeerMetaDataActionTest extends TestCase {
     GetPeerMetaDataAction action = new GetPeerMetaDataAction();
-    Data data;
-    GetPeerMetaDataHandler handler;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-
-        URL testDatabase = ClassLoader.getSystemResource("photos.db");
-        String path = testDatabase.getPath();
-        data = new Data("jdbc:sqlite:" + path);
-        handler = new GetPeerMetaDataHandler(data);
-    }
-
-
-    public void testExecute() throws DispatchException {
-        PeerMetaDataResult result = handler.execute(action, null);
-        assertEquals(5, result.getTagCount());
-        assertEquals(28, result.getPhotoCount());
+    public void testSerialize() throws Exception {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream out = new ObjectOutputStream(bos);
+        out.writeObject(action);
+        out.close();
     }
 }

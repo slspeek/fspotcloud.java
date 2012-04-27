@@ -16,13 +16,12 @@
  */
 package com.googlecode.fspotcloud.server.control.task.photoupdate;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
-
 import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPhotoData;
+import com.googlecode.fspotcloud.server.control.task.handler.intern.PhotoUpdateHandler;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPhotoDataAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoUpdate;
@@ -58,7 +57,7 @@ public class PhotoUpdateHandlerTest {
     @Mock
     TaskQueueDispatch recursive;
     @Captor
-    ArgumentCaptor<GetPhotoData> captorAction;
+    ArgumentCaptor<GetPhotoDataAction> captorAction;
     @Captor
     ArgumentCaptor<SerializableAsyncCallback<PhotoDataResult>> captorCallback;
     @Captor
@@ -92,7 +91,7 @@ public class PhotoUpdateHandlerTest {
         verify(controllerAsync)
             .execute(captorAction.capture(), captorCallback.capture());
 
-        GetPhotoData request = captorAction.getValue();
+        GetPhotoDataAction request = captorAction.getValue();
         AssertJUnit.assertEquals(1, request.getImageKeys().size());
         AssertJUnit.assertEquals("1", request.getImageKeys().get(0));
 
@@ -134,7 +133,7 @@ public class PhotoUpdateHandlerTest {
         verify(controllerAsync, times(2))
             .execute(captorAction.capture(), captorCallback.capture());
 
-        List<GetPhotoData> actionList = captorAction.getAllValues();
+        List<GetPhotoDataAction> actionList = captorAction.getAllValues();
         AssertJUnit.assertEquals(2, actionList.size());
         AssertJUnit.assertEquals(
             MAX_PHOTO_TICKS, actionList.get(0).getImageKeys().size());
@@ -179,7 +178,7 @@ public class PhotoUpdateHandlerTest {
         verify(controllerAsync, times(2))
             .execute(captorAction.capture(), captorCallback.capture());
 
-        List<GetPhotoData> request = captorAction.getAllValues();
+        List<GetPhotoDataAction> request = captorAction.getAllValues();
         AssertJUnit.assertEquals(
             MAX_PHOTO_TICKS, request.get(0).getImageKeys().size());
         AssertJUnit.assertEquals("1", request.get(0).getImageKeys().get(0));

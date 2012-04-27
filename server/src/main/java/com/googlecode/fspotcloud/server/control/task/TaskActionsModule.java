@@ -17,12 +17,12 @@
 package com.googlecode.fspotcloud.server.control.task;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.*;
-import com.googlecode.fspotcloud.server.control.task.deleteallphotos.DeleteAllPhotosHandler;
-import com.googlecode.fspotcloud.server.control.task.photodelete.DeletePhotosHandler;
-import com.googlecode.fspotcloud.server.control.task.photoremove.RemovePhotosFromTagHandler;
-import com.googlecode.fspotcloud.server.control.task.photoupdate.PhotoUpdateHandler;
-import com.googlecode.fspotcloud.server.control.task.tagdelete.DeleteTagsHandler;
-import com.googlecode.fspotcloud.server.control.task.tagimport.TagImportHandler;
+import com.googlecode.fspotcloud.server.control.task.handler.intern.*;
+import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteAllPhotosHandler;
+import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteTagsHandler;
+import com.googlecode.fspotcloud.server.control.task.handler.intern.PhotoUpdateHandler;
+import com.googlecode.fspotcloud.server.control.task.handler.intern.RemovePhotosFromTagHandler;
+import com.googlecode.fspotcloud.server.control.task.handler.intern.TagImportHandler;
 
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 

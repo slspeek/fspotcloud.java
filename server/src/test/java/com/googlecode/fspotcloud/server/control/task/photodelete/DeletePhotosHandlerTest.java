@@ -21,6 +21,7 @@ import com.google.common.collect.ImmutableList;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeletePhotos;
+import com.googlecode.fspotcloud.server.control.task.handler.intern.DeletePhotosHandler;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
