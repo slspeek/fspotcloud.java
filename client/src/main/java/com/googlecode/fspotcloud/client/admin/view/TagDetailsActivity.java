@@ -25,8 +25,9 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsView;
 import com.googlecode.fspotcloud.client.data.DataManager;
 import com.googlecode.fspotcloud.client.place.TagPlace;
-import com.googlecode.fspotcloud.shared.dashboard.actions.ImportTag;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UnImportTag;
+import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.actions.UserUnImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
 
@@ -75,7 +76,7 @@ public class TagDetailsActivity extends AbstractActivity implements TagDetailsVi
 
         if ((tagNode != null) && tagNode.isImportIssued()) {
             dispatch.execute(
-                new UnImportTag(tagPlace.getTagId()),
+                new UserUnImportsTagAction(tagPlace.getTagId()),
                 new AsyncCallback<VoidResult>() {
                     @Override
                     public void onFailure(Throwable caught) {
@@ -90,7 +91,7 @@ public class TagDetailsActivity extends AbstractActivity implements TagDetailsVi
                 });
         } else {
             dispatch.execute(
-                new ImportTag(tagPlace.getTagId(), 0),
+                new UserImportsTagAction(tagPlace.getTagId()),
                 new AsyncCallback<VoidResult>() {
                     @Override
                     public void onFailure(Throwable caught) {

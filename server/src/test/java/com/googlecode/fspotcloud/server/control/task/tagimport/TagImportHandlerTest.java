@@ -20,7 +20,8 @@ import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 
 import com.googlecode.fspotcloud.server.control.callback.TagDataCallback;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.TagImportAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagData;
+import com.googlecode.fspotcloud.server.control.task.handler.intern.TagImportHandler;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagDataAction;
 
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
@@ -48,7 +49,7 @@ public class TagImportHandlerTest {
     @Captor
     ArgumentCaptor<TagImportAction> nextCallCaptor;
     @Captor
-    ArgumentCaptor<GetTagData> scheduledActionCaptor;
+    ArgumentCaptor<GetTagDataAction> scheduledActionCaptor;
     @Captor
     ArgumentCaptor<TagDataCallback> callbackCaptor;
     TagImportAction action = new TagImportAction(0, 10);
@@ -72,11 +73,11 @@ public class TagImportHandlerTest {
         verify(dispatch, times(2))
             .execute(scheduledActionCaptor.capture(), callbackCaptor.capture());
 
-        List<GetTagData> scheduled = scheduledActionCaptor.getAllValues();
+        List<GetTagDataAction> scheduled = scheduledActionCaptor.getAllValues();
         AssertJUnit.assertEquals(2, scheduled.size());
 
-        GetTagData dataR1 = scheduled.get(0);
-        GetTagData dataR2 = scheduled.get(1);
+        GetTagDataAction dataR1 = scheduled.get(0);
+        GetTagDataAction dataR2 = scheduled.get(1);
         AssertJUnit.assertEquals(0, dataR1.getOffset());
         AssertJUnit.assertEquals(2, dataR2.getOffset());
     }

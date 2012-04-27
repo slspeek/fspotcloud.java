@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.peer.handlers;
 import com.google.inject.Inject;
 
 import com.googlecode.fspotcloud.peer.db.Data;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPhotoData;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPhotoDataAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
 
 import net.customware.gwt.dispatch.server.ExecutionContext;
@@ -28,7 +28,7 @@ import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 
-public class GetPhotoDataHandler extends SimpleActionHandler<GetPhotoData, PhotoDataResult> {
+public class GetPhotoDataHandler extends SimpleActionHandler<GetPhotoDataAction, PhotoDataResult> {
     private final Data data;
 
     @Inject
@@ -39,7 +39,7 @@ public class GetPhotoDataHandler extends SimpleActionHandler<GetPhotoData, Photo
 
     @Override
     public PhotoDataResult execute(
-        GetPhotoData action, ExecutionContext context)
+        GetPhotoDataAction action, ExecutionContext context)
         throws DispatchException {
         PhotoDataResult result;
 

@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.peer.handlers;
 import com.google.inject.Inject;
 
 import com.googlecode.fspotcloud.peer.db.Data;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagData;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagDataAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagDataResult;
 
 import net.customware.gwt.dispatch.server.ExecutionContext;
@@ -28,7 +28,7 @@ import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 
-public class GetTagDataHandler extends SimpleActionHandler<GetTagData, TagDataResult> {
+public class GetTagDataHandler extends SimpleActionHandler<GetTagDataAction, TagDataResult> {
     private final Data data;
 
     @Inject
@@ -38,7 +38,8 @@ public class GetTagDataHandler extends SimpleActionHandler<GetTagData, TagDataRe
     }
 
     @Override
-    public TagDataResult execute(GetTagData action, ExecutionContext context)
+    public TagDataResult execute(
+        GetTagDataAction action, ExecutionContext context)
         throws DispatchException {
         TagDataResult result;
 

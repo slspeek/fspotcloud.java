@@ -17,6 +17,7 @@
 package com.googlecode.fspotcloud.server.control.task.tagdelete;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTags;
+import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteTagsHandler;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;

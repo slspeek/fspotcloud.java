@@ -20,8 +20,6 @@ import com.google.common.testing.TearDown;
 
 import com.google.guiceberry.testng.TestNgGuiceBerry;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
-
 import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 
@@ -31,7 +29,7 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.*;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaData;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaDataAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
 
 import net.customware.gwt.dispatch.server.Dispatch;
@@ -117,7 +115,8 @@ public class PeerServerIntegrationTest {
     public void testGetPeerMetaData() throws DispatchException, SQLException {
         setUpPeer();
 
-        PeerMetaDataResult result = dispatch.execute(new GetPeerMetaData());
+        PeerMetaDataResult result = dispatch.execute(
+                new GetPeerMetaDataAction());
         assertEquals(28, result.getPhotoCount());
         assertEquals(5, result.getTagCount());
     }
@@ -209,7 +208,7 @@ public class PeerServerIntegrationTest {
         assertComputersIsLoaded();
         importTag("4");
         assertPCLoaded();
-        dispatch.execute(new TagDeleteAll());
+        dispatch.execute(new UserDeletesAllAction());
         assertTrue(photoInfo.isEmpty());
         tagInfo.assertTagsRemoved("1", "2", "3", "4", "5");
     }
@@ -271,7 +270,7 @@ public class PeerServerIntegrationTest {
 
     protected void synchronizePeer() {
         controller.execute(
-            new SynchronizePeer(),
+            new UserSynchronizesPeerAction(),
             new SerializableAsyncCallback<VoidResult>() {
                 @Override
                 public void onFailure(Throwable caught) {
@@ -289,7 +288,7 @@ public class PeerServerIntegrationTest {
 
     protected void importTag(String tagId) {
         controller.execute(
-            new ImportTag(tagId, 0),
+            new UserImportsTagAction(tagId),
             new SerializableAsyncCallback<VoidResult>() {
                 @Override
                 public void onFailure(Throwable caught) {
@@ -307,7 +306,7 @@ public class PeerServerIntegrationTest {
 
     protected void unImportTag(String tagId) {
         controller.execute(
-            new UnImportTag(tagId),
+            new UserUnImportsTagAction(tagId),
             new SerializableAsyncCallback<VoidResult>() {
                 @Override
                 public void onFailure(Throwable caught) {

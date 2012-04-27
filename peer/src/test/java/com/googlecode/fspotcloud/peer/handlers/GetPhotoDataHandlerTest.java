@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.peer.handlers;
 import com.google.common.collect.ImmutableList;
 
 import com.googlecode.fspotcloud.peer.db.Data;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPhotoData;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPhotoDataAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoData;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
@@ -34,7 +34,7 @@ import java.net.URL;
 public class GetPhotoDataHandlerTest extends TestCase {
     private Data data;
     private GetPhotoDataHandler handler;
-    private GetPhotoData action;
+    private GetPhotoDataAction action;
 
     protected void setUp() throws Exception {
         super.setUp();
@@ -47,7 +47,7 @@ public class GetPhotoDataHandlerTest extends TestCase {
         String path = testDatabase.getPath();
         data = new Data("jdbc:sqlite:" + path);
         handler = new GetPhotoDataHandler(data);
-        action = new GetPhotoData(
+        action = new GetPhotoDataAction(
                 new ImageSpecs(1, 1, 1, 1), ImmutableList.of("3"));
     }
 

@@ -22,8 +22,8 @@ import com.google.inject.Inject;
 
 import com.googlecode.fspotcloud.client.admin.view.api.GlobalActionsView;
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
-import com.googlecode.fspotcloud.shared.admin.GetMetaDataResult;
 import com.googlecode.fspotcloud.shared.dashboard.actions.*;
+import com.googlecode.fspotcloud.shared.dashboard.actions.GetMetaDataResult;
 
 import net.customware.gwt.dispatch.client.DispatchAsync;
 
@@ -53,7 +53,7 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
     public void deleteAllCommands() {
         globalActionsView.getDeleteAllCommandsButton().setEnabled(false);
         dispatcher.execute(
-            new CommandDeleteAll(),
+            new UserDeletesAllCommandsAction(),
             new AsyncCallback<VoidResult>() {
                 @Override
                 public void onFailure(Throwable caught) {
@@ -78,7 +78,7 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
 
         if (globalActionsView.confirm("Really delete all tags and photos?")) {
             dispatcher.execute(
-                new TagDeleteAll(),
+                new UserDeletesAllAction(),
                 new AsyncCallback<VoidResult>() {
                     @Override
                     public void onFailure(Throwable caught) {
@@ -105,7 +105,7 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
         log.info("update");
         globalActionsView.getUpdateButton().setEnabled(false);
         dispatcher.execute(
-            new SynchronizePeer(),
+            new UserSynchronizesPeerAction(),
             new AsyncCallback<VoidResult>() {
                 public void onFailure(Throwable caught) {
                     log.log(Level.SEVERE, "Action Exception ", caught);
@@ -132,7 +132,7 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
 
     private void getMetaData() {
         dispatcher.execute(
-            new GetMetaData(),
+            new GetMetaDataAction(),
             new AsyncCallback<GetMetaDataResult>() {
                 @Override
                 public void onSuccess(GetMetaDataResult meta) {

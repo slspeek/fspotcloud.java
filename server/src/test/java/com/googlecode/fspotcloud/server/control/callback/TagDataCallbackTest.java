@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.server.control.callback;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.ImportTag;
+import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagDataResult;
 
@@ -98,11 +98,11 @@ public class TagDataCallbackTest {
         AssertJUnit.assertEquals(TAGNAME, tag.getTagName());
         AssertJUnit.assertNull(tag.getParentId());
 
-        ArgumentCaptor<ImportTag> actionCaptor = ArgumentCaptor.forClass(
-                ImportTag.class);
+        ArgumentCaptor<UserImportsTagAction> actionCaptor = ArgumentCaptor
+            .forClass(UserImportsTagAction.class);
         verify(dispatch).execute(actionCaptor.capture());
 
-        ImportTag action = actionCaptor.getValue();
+        UserImportsTagAction action = actionCaptor.getValue();
         AssertJUnit.assertEquals(TAGID, action.getTagId());
     }
 }

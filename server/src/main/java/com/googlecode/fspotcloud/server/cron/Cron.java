@@ -18,7 +18,8 @@ package com.googlecode.fspotcloud.server.cron;
 
 import com.google.inject.Inject;
 
-import com.googlecode.fspotcloud.shared.dashboard.actions.SynchronizePeer;
+import com.googlecode.fspotcloud.shared.dashboard.actions.UserSynchronizesPeerAction;
+import com.googlecode.fspotcloud.shared.dashboard.actions.UserSynchronizesPeerAction;
 
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
@@ -44,7 +45,7 @@ public class Cron {
             String action = request.getParameter("action");
 
             if (action.equals("synchronize-peer")) {
-                dispatch.execute(new SynchronizePeer());
+                dispatch.execute(new UserSynchronizesPeerAction());
             }
         } catch (DispatchException e) {
             response.getOutputStream().println(e.getMessage());
