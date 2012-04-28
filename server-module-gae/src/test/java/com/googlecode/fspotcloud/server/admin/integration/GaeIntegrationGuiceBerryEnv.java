@@ -16,13 +16,15 @@
  */
 package com.googlecode.fspotcloud.server.admin.integration;
 
-
 import com.google.guiceberry.GuiceBerryModule;
 import com.google.guiceberry.TestWrapper;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
+
 import com.googlecode.botdispatch.controller.inject.LocalControllerModule;
+
 import com.googlecode.fspotcloud.model.jpa.gae.GaeCacheProvider;
 import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
 import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoManager;
@@ -46,9 +48,13 @@ import com.googlecode.fspotcloud.shared.dashboard.actions.UserUnImportsTagAction
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import com.googlecode.fspotcloud.user.LenientUserService;
 import com.googlecode.fspotcloud.user.UserService;
+
 import com.googlecode.simplejpadao.EntityModule;
+
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
+
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
+
 import net.sf.jsr107cache.Cache;
 
 

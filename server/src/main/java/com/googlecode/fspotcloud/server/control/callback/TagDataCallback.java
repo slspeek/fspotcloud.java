@@ -70,8 +70,7 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
     private void importNewImages(Tag tag, int previousCount) {
         if (tag.isImportIssued()) {
             try {
-                dispatch.execute(
-                    new UserImportsTagAction(tag.getId()));
+                dispatch.execute(new UserImportsTagAction(tag.getId()));
             } catch (DispatchException e) {
                 log.log(Level.SEVERE, "Caught: ", e);
             }
