@@ -38,6 +38,7 @@ task writeVersion(type: Exec, dependsOn: classes) {
 
 task javascriptJar(type: Jar, dependsOn: compileGwt) {
     classifier = 'javascript'
+    excludes = ['**/WEB-INF/web.xml']
     from "${buildDir}/gwt/out",
             "${rootDir}/client/src/main/webapp",
             "${rootDir}/client/src/main/resources"
