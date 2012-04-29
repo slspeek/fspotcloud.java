@@ -44,8 +44,7 @@ public class GetTagDataHandler extends SimpleActionHandler<GetTagDataAction, Tag
         TagDataResult result;
 
         try {
-            result = new TagDataResult(
-                    data.getTagData(action.getOffset(), action.getCount()));
+            result = new TagDataResult(data.getTagData(action.getTagIdList()));
         } catch (Exception e) {
             throw new ActionException(e);
         }

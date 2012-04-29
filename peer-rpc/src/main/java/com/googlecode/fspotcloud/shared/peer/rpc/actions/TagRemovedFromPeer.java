@@ -16,22 +16,24 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
-import net.customware.gwt.dispatch.shared.Action;
-
 import java.io.Serializable;
 
-import java.util.List;
 
+public class TagRemovedFromPeer implements Serializable {
+    private static final long serialVersionUID = 2281991078733846131L;
+    private final String tagId;
 
-public class GetTagDataAction implements Action<TagDataResult>, Serializable {
-    private static final long serialVersionUID = -2428269504170714946L;
-    private List<String> tagIdList;
-
-    public GetTagDataAction(List<String> tagIdList) {
-        this.tagIdList = tagIdList;
+    public TagRemovedFromPeer(String tagId) {
+        super();
+        this.tagId = tagId;
     }
 
-    public List<String> getTagIdList() {
-        return tagIdList;
+    public String getTagId() {
+        return tagId;
+    }
+
+
+    public String toString() {
+        return "TagRemovedFromPeer(tag=" + getTagId() + ")";
     }
 }

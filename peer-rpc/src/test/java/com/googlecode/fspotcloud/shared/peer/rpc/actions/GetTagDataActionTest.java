@@ -16,22 +16,23 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagDataAction;
+import com.google.common.collect.ImmutableList;
 
 import junit.framework.TestCase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 
+import java.util.List;
+
 
 public class GetTagDataActionTest extends TestCase {
-    private static final int OFFSET = 10;
-    private static final int COUNT = 30;
+    private final List<String> ID_LIST = ImmutableList.of("1", "2");
     GetTagDataAction action;
 
     @Override
     protected void setUp() throws Exception {
-        action = new GetTagDataAction(OFFSET, COUNT);
+        action = new GetTagDataAction(ID_LIST);
     }
 
 
@@ -40,15 +41,5 @@ public class GetTagDataActionTest extends TestCase {
         ObjectOutputStream out = new ObjectOutputStream(bos);
         out.writeObject(action);
         out.close();
-    }
-
-
-    public void testGetOffset() {
-        assertEquals(OFFSET, action.getOffset());
-    }
-
-
-    public void testGetCount() {
-        assertEquals(COUNT, action.getCount());
     }
 }

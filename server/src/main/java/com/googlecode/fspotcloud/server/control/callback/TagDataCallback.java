@@ -59,15 +59,14 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
         for (TagData data : result.getTagDataList()) {
             String keyName = data.getTagId();
             Tag tag = tagManager.findOrNew(keyName);
-            int previousCount = tag.getCount();
             recieveTag(data, tag);
             tagManager.save(tag);
-            importNewImages(tag, previousCount);
+            updateTagPhotos(tag);
         }
     }
 
 
-    private void importNewImages(Tag tag, int previousCount) {
+    private void updateTagPhotos(Tag tag) {
         if (tag.isImportIssued()) {
             try {
                 dispatch.execute(new UserImportsTagAction(tag.getId()));

@@ -18,6 +18,7 @@ dependencies {
     compile libs.task_dispatch_dispatch_api
     provided libs.servlet_spec
 //    compile libs.servlet_spec
+    compile libs.guava
 
     testCompile project(':model-jpa-j2ee')
     testCompile libs.test_ng

@@ -16,7 +16,7 @@
  */
 package com.googlecode.fspotcloud.server.control.task.tagdelete;
 
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTags;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTags;
 import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteTagsHandler;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 
@@ -46,7 +46,7 @@ public class DeleteTagsHandlerTest {
     @Mock
     Tags tagManager;
     @Captor
-    ArgumentCaptor<DeleteTags> newAction;
+    ArgumentCaptor<DeleteAllTags> newAction;
 
     @BeforeMethod
     protected void setUp() throws Exception {
@@ -59,7 +59,7 @@ public class DeleteTagsHandlerTest {
     @Test
     public void testRecursionStop() throws DispatchException {
         when(tagManager.isEmpty()).thenReturn(true);
-        target.execute(new DeleteTags(), null);
+        target.execute(new DeleteAllTags(), null);
         verifyNoMoreInteractions(dispatchAsync);
     }
 
@@ -67,7 +67,7 @@ public class DeleteTagsHandlerTest {
     @Test
     public void testRecursion() throws DispatchException {
         when(tagManager.isEmpty()).thenReturn(false);
-        target.execute(new DeleteTags(), null);
+        target.execute(new DeleteAllTags(), null);
         verify(dispatchAsync).execute(newAction.capture());
         AssertJUnit.assertNotNull(newAction.getValue());
     }

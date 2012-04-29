@@ -3,7 +3,7 @@ description = 'peer-rpc'
 dependencies {
     compile project(':rpc')
     compile libs.gwt_servlet
+    compile libs.guava
 
     testCompile "junit:junit:3.8.1"
-    testCompile libs.guava
 }

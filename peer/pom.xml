@@ -5,11 +5,11 @@
     <parent>
         <groupId>com.googlecode.fspotcloud</groupId>
         <artifactId>fspotcloud</artifactId>
-        <version>0.12-09</version>
+        <version>0.12-10</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>peer</artifactId>
-    <name>The Peer Bot</name>
+    <name>Peer Bot</name>
     <description>The bot that sends the requested photo data to the server.</description>
     <packaging>jar</packaging>
     <dependencies>

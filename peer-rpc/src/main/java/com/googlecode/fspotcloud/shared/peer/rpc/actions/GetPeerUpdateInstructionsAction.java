@@ -14,10 +14,11 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.server.control.task.actions.intern;
-
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
 import net.customware.gwt.dispatch.shared.Action;
 
@@ -26,23 +27,20 @@ import java.io.Serializable;
 import java.util.List;
 
 
-public class DeletePhotos implements Action<VoidResult>, Serializable {
-    private static final long serialVersionUID = -8353337263892135688L;
-    private final String tagId;
-    private final List<PhotoInfo> toBoDeleted;
+/**
+ * DOCUMENT ME!
+ *
+ * @author steven
+*/
+public class GetPeerUpdateInstructionsAction implements Action<PeerUpdateInstructionsResult>,
+    Serializable {
+    private List<TagData> tagsOnServer;
 
-    public DeletePhotos(String tagId, List<PhotoInfo> toBoDeleted) {
-        super();
-        this.tagId = tagId;
-        this.toBoDeleted = toBoDeleted;
+    public GetPeerUpdateInstructionsAction(List<TagData> tagsOnServer) {
+        this.tagsOnServer = tagsOnServer;
     }
 
-    public String getTagId() {
-        return tagId;
-    }
-
-
-    public List<PhotoInfo> getToBoDeleted() {
-        return toBoDeleted;
+    public List<TagData> getTagsOnServer() {
+        return tagsOnServer;
     }
 }

@@ -20,8 +20,8 @@ import com.google.common.collect.ImmutableList;
 
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeletePhotos;
-import com.googlecode.fspotcloud.server.control.task.handler.intern.DeletePhotosHandler;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTagPhotosAction;
+import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteTagPhotosHandler;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
@@ -66,7 +66,7 @@ public class DeletePhotosHandlerTest {
     Tag tag;
     Tag tag3;
     @Captor
-    ArgumentCaptor<DeletePhotos> nextCallCaptor;
+    ArgumentCaptor<DeleteTagPhotosAction> nextCallCaptor;
     PhotoInfo photoInfoA;
     PhotoInfo photoInfoB;
     List<PhotoInfo> infoList;
@@ -74,12 +74,12 @@ public class DeletePhotosHandlerTest {
     Photo photoB;
     List<String> tagIdListA = ImmutableList.of("1");
     List<String> tagIdListB = ImmutableList.of("1", "3");
-    DeletePhotosHandler handler;
+    DeleteTagPhotosHandler handler;
 
     @BeforeMethod
     protected void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        handler = new DeletePhotosHandler(
+        handler = new DeleteTagPhotosHandler(
                 MAX_DELETE_TICKS, dispatchAsync, photos, tagManager);
         tag3 = new TagEntity();
         tag3.setId("3");
@@ -116,14 +116,14 @@ public class DeletePhotosHandlerTest {
     @Test
     public void testExecute() throws DispatchException {
         AssertJUnit.assertEquals(2, tag.getCachedPhotoList().size());
-        handler.execute(new DeletePhotos(TAG_ID, infoList), null);
+        handler.execute(new DeleteTagPhotosAction(TAG_ID, infoList), null);
         verify(photos).delete(photoA);
         verify(photos).find(ID_A);
         AssertJUnit.assertEquals(1, tag.getCachedPhotoList().size());
         verifyNoMoreInteractions(photos);
         verify(dispatchAsync).execute(nextCallCaptor.capture());
         AssertJUnit.assertEquals(TAG_ID, nextCallCaptor.getValue().getTagId());
-        handler.execute(new DeletePhotos(TAG_ID, infoList), null);
+        handler.execute(new DeleteTagPhotosAction(TAG_ID, infoList), null);
         verifyNoMoreInteractions(dispatchAsync);
         verify(photos).find(ID_B);
         verifyNoMoreInteractions(photos);

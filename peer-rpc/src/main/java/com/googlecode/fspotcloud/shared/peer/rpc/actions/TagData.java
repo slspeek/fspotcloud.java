@@ -16,9 +16,10 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.google.common.base.Objects;
+import static com.google.common.base.Objects.equal;
+
 import java.io.Serializable;
-
-
 public class TagData implements Serializable {
     private static final long serialVersionUID = -7990602627338507900L;
     private String tagId;
@@ -51,5 +52,20 @@ public class TagData implements Serializable {
 
     public int getCount() {
         return count;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof TagData) {
+            TagData other = (TagData)obj;
+
+            return equal(getTagId(), other.getTagId())
+            && equal(getParentId(), other.getParentId())
+            && equal(getName(), other.getName())
+            && equal(getCount(), other.getCount());
+        } else {
+            return false;
+        }
     }
 }
