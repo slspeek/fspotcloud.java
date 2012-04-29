@@ -14,24 +14,19 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.shared.peer.rpc.actions;
+package com.googlecode.fspotcloud.server.control.task.actions.intern;
+
+import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 
 import net.customware.gwt.dispatch.shared.Action;
 
 import java.io.Serializable;
 
-import java.util.List;
 
+public class DeleteAllTags implements Action<VoidResult>, Serializable {
+    private static final long serialVersionUID = 8429390701736230375L;
 
-public class GetTagDataAction implements Action<TagDataResult>, Serializable {
-    private static final long serialVersionUID = -2428269504170714946L;
-    private List<String> tagIdList;
-
-    public GetTagDataAction(List<String> tagIdList) {
-        this.tagIdList = tagIdList;
-    }
-
-    public List<String> getTagIdList() {
-        return tagIdList;
+    public DeleteAllTags() {
+        super();
     }
 }

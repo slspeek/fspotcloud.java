@@ -17,7 +17,7 @@
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotos;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTags;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTags;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.shared.dashboard.actions.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
@@ -55,7 +55,7 @@ public class UserDeletesAllHandler extends SimpleActionHandler<UserDeletesAllAct
         adminPermission.chechAdminPermission();
 
         try {
-            dispatchAsync.execute(new DeleteTags());
+            dispatchAsync.execute(new DeleteAllTags());
             dispatchAsync.execute(new DeleteAllPhotos());
             clearPeer();
         } catch (Exception e) {

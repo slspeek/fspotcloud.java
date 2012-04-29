@@ -16,34 +16,31 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
+import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagUpdate;
 
-import org.apache.commons.lang.SerializationUtils;
+import net.customware.gwt.dispatch.shared.Action;
 
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import java.io.Serializable;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
-public class DeletePhotosTest {
-    @BeforeMethod
-    protected void setUp() throws Exception {
+public class TagUpdateAction implements Action<VoidResult>, Serializable {
+    private static final long serialVersionUID = -5470374310534233053L;
+    private final List<TagUpdate> updates;
+
+    public TagUpdateAction(List<TagUpdate> updates) {
+        super();
+        this.updates = updates;
+    }
+
+    public List<TagUpdate> getUpdates() {
+        return updates;
     }
 
 
-    @Test
-    public void testSerialization() {
-        PhotoInfo photoInfoA = new PhotoInfo("", "", new Date(10));
-        List<PhotoInfo> list = new ArrayList<PhotoInfo>();
-        list.add(photoInfoA);
-
-        DeleteTagPhotosAction action = new DeleteTagPhotosAction(
-                "fooMock", list);
-        byte[] ser = SerializationUtils.serialize(action);
-        DeleteTagPhotosAction deserialized = (DeleteTagPhotosAction)SerializationUtils
-            .deserialize(ser);
+    public String toString() {
+        return updates.toString();
     }
 }

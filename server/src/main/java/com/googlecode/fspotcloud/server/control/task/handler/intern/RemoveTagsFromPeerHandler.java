@@ -16,12 +16,16 @@
  */
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeletePhotos;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTagPhotosAction;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsFromPeerAction;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoRemovedFromTag;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagRemovedFromPeer;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
 
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
@@ -30,22 +34,23 @@ import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.SortedSet;
-import java.util.TreeSet;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 
-public class DeletePhotosHandler extends SimpleActionHandler<DeletePhotos, VoidResult> {
+public class RemoveTagsFromPeerHandler extends SimpleActionHandler<RemoveTagsFromPeerAction, VoidResult> {
     private final int MAX_DELETE_TICKS;
     private final TaskQueueDispatch dispatchAsync;
     private final Photos photos;
     private Tags tagManager;
 
     @Inject
-    public DeletePhotosHandler(
+    public RemoveTagsFromPeerHandler(
         @Named("maxDelete")
     int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
         Tags tagManager) {
@@ -57,68 +62,26 @@ public class DeletePhotosHandler extends SimpleActionHandler<DeletePhotos, VoidR
     }
 
     @Override
-    public VoidResult execute(DeletePhotos action, ExecutionContext context)
+    public VoidResult execute(
+        RemoveTagsFromPeerAction action, ExecutionContext context)
         throws DispatchException {
-        Tag tag = tagManager.find(action.getTagId());
-        Iterator<PhotoInfo> it = action.getToBoDeleted().iterator();
+        Iterator<TagRemovedFromPeer> it = action.getToBoDeleted().iterator();
 
         for (int i = 0; (i < MAX_DELETE_TICKS) && it.hasNext(); i++) {
-            String key = it.next().getId();
-            checkForDeletion(tag, tag.getId(), key, it);
-        }
+            TagRemovedFromPeer operation = it.next();
+            String tagId = operation.getTagId();
+            Tag tag = tagManager.find(tagId);
 
-        tagManager.save(tag);
+            List<PhotoInfo> infoList = new ArrayList<PhotoInfo>();
+            infoList.addAll(tag.getCachedPhotoList());
+            dispatchAsync.execute(new DeleteTagPhotosAction(tagId, infoList));
+            tagManager.deleteByKey(tagId);
+        }
 
         if (!action.getToBoDeleted().isEmpty()) {
             dispatchAsync.execute(action);
         }
 
         return new VoidResult();
-    }
-
-
-    private void checkForDeletion(
-        Tag tag, String deleteTagId, String key, Iterator<PhotoInfo> it) {
-        Photo photo = photos.find(key);
-
-        if (photo != null) {
-            boolean moreImports = false;
-
-            for (String tagId : photo.getTagList()) {
-                Tag tagRelated = tagManager.find(tagId);
-
-                if (tagRelated != null) {
-                    if (!deleteTagId.equals(tagId)) {
-                        if (tagRelated.isImportIssued()) {
-                            moreImports = true;
-
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (!moreImports) {
-                photos.delete(photo);
-
-                final TreeSet<PhotoInfo> cachedPhotoList = tag
-                    .getCachedPhotoList();
-                cachedPhotoList.remove(find(tag.getCachedPhotoList(), key));
-                tag.setCachedPhotoList(cachedPhotoList);
-            }
-        }
-
-        it.remove();
-    }
-
-
-    private PhotoInfo find(SortedSet<PhotoInfo> set, String id) {
-        for (PhotoInfo info : set) {
-            if (info.getId().equals(id)) {
-                return info;
-            }
-        }
-
-        return null;
     }
 }

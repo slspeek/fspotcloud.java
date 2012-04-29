@@ -17,47 +17,31 @@
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagRemovedFromPeer;
 
 import net.customware.gwt.dispatch.shared.Action;
 
 import java.io.Serializable;
 
+import java.util.List;
 
-public class TagImportAction implements Action<VoidResult>, Serializable {
-    private static final long serialVersionUID = -8689981785339334225L;
-    private final int offset;
-    private final int limit;
 
-    public TagImportAction(int offset, int limit) {
+public class RemoveTagsFromPeerAction implements Action<VoidResult>,
+    Serializable {
+    private static final long serialVersionUID = 7650176553018963544L;
+    private final List<TagRemovedFromPeer> toBoDeleted;
+
+    public RemoveTagsFromPeerAction(List<TagRemovedFromPeer> toBoDeleted) {
         super();
-        this.offset = offset;
-        this.limit = limit;
+        this.toBoDeleted = toBoDeleted;
     }
 
-    public int getOffset() {
-        return offset;
-    }
-
-
-    public int getLimit() {
-        return limit;
-    }
-
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof TagImportAction) {
-            TagImportAction new_name = (TagImportAction)obj;
-
-            return (new_name.getLimit() == limit)
-            && (new_name.getOffset() == offset);
-        } else {
-            return false;
-        }
+    public List<TagRemovedFromPeer> getToBoDeleted() {
+        return toBoDeleted;
     }
 
 
     public String toString() {
-        return "TagImportAction(" + offset + ", " + limit + ")";
+        return toBoDeleted.toString();
     }
 }

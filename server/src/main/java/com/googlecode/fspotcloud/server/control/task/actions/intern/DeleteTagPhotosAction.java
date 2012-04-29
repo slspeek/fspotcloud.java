@@ -17,16 +17,32 @@
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
+import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
 
 import net.customware.gwt.dispatch.shared.Action;
 
 import java.io.Serializable;
 
+import java.util.List;
 
-public class DeleteTags implements Action<VoidResult>, Serializable {
-    private static final long serialVersionUID = 8429390701736230375L;
 
-    public DeleteTags() {
+public class DeleteTagPhotosAction implements Action<VoidResult>, Serializable {
+    private static final long serialVersionUID = -8353337263892135688L;
+    private final String tagId;
+    private final List<PhotoInfo> toBoDeleted;
+
+    public DeleteTagPhotosAction(String tagId, List<PhotoInfo> toBoDeleted) {
         super();
+        this.tagId = tagId;
+        this.toBoDeleted = toBoDeleted;
+    }
+
+    public String getTagId() {
+        return tagId;
+    }
+
+
+    public List<PhotoInfo> getToBoDeleted() {
+        return toBoDeleted;
     }
 }

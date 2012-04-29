@@ -120,20 +120,50 @@ public class Data {
     }
 
 
-    public List<TagData> getTagData(int offset, int limit)
+    public List<TagData> getTagData(List<String> tagIdList)
         throws SQLException {
         Connection conn = null;
         ResultSet rs = null;
         List<TagData> tagList;
+        tagList = new ArrayList<TagData>();
+
+        for (String id : tagIdList) {
+            try {
+                conn = getConnection();
+
+                Statement stmt = conn.createStatement();
+                rs = stmt.executeQuery(
+                        "SELECT id, name, category_id FROM tags WHERE id=" + id);
+
+                while (rs.next()) {
+                    String tagId = rs.getString(1);
+                    String tagName = rs.getString(2);
+                    String parentId = rs.getString(3);
+                    int photoCount = getPhotoCountForTag(
+                            Integer.valueOf(tagId));
+                    tagList.add(
+                        new TagData(tagId, tagName, parentId, photoCount));
+                }
+            } finally {
+                rs.close();
+            }
+        }
+
+        return tagList;
+    }
+
+
+    public List<TagData> getTagData() throws SQLException {
+        Connection conn = null;
+        ResultSet rs = null;
+        List<TagData> tagList;
+        tagList = new ArrayList<TagData>();
 
         try {
             conn = getConnection();
 
             Statement stmt = conn.createStatement();
-            tagList = new ArrayList<TagData>();
-            rs = stmt.executeQuery(
-                    "SELECT id, name, category_id FROM tags ORDER BY id LIMIT "
-                    + limit + " OFFSET " + offset);
+            rs = stmt.executeQuery("SELECT id, name, category_id FROM tags");
 
             while (rs.next()) {
                 String tagId = rs.getString(1);

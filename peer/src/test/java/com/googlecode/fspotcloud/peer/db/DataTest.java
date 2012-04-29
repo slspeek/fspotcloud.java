@@ -19,6 +19,8 @@
  */
 package com.googlecode.fspotcloud.peer.db;
 
+import com.google.common.collect.ImmutableList;
+
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
 
 import junit.framework.TestCase;
@@ -68,14 +70,8 @@ public class DataTest extends TestCase {
 
 
     public final void testGetTagList2() throws SQLException {
-        List<TagData> result = data.getTagData(0, 1);
+        List<TagData> result = data.getTagData(ImmutableList.of("1"));
         assertEquals(1, result.size());
-    }
-
-
-    public final void testGetTagListOverItsSize() throws SQLException {
-        List<TagData> result = data.getTagData(8, 2);
-        assertEquals(0, result.size());
     }
 
 

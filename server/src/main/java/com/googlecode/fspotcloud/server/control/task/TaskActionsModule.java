@@ -22,7 +22,6 @@ import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteAllPho
 import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteTagsHandler;
 import com.googlecode.fspotcloud.server.control.task.handler.intern.PhotoUpdateHandler;
 import com.googlecode.fspotcloud.server.control.task.handler.intern.RemovePhotosFromTagHandler;
-import com.googlecode.fspotcloud.server.control.task.handler.intern.TagImportHandler;
 
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
@@ -31,11 +30,13 @@ public class TaskActionsModule extends ActionHandlerModule {
     @Override
     protected void configureHandlers() {
         bindHandler(PhotoUpdateAction.class, PhotoUpdateHandler.class);
-        bindHandler(TagImportAction.class, TagImportHandler.class);
-        bindHandler(DeleteTags.class, DeleteTagsHandler.class);
+        bindHandler(DeleteAllTags.class, DeleteTagsHandler.class);
         bindHandler(DeleteAllPhotos.class, DeleteAllPhotosHandler.class);
-        bindHandler(DeletePhotos.class, DeletePhotosHandler.class);
+        bindHandler(DeleteTagPhotosAction.class, DeleteTagPhotosHandler.class);
         bindHandler(
             RemovePhotosFromTagAction.class, RemovePhotosFromTagHandler.class);
+        bindHandler(
+            RemoveTagsFromPeerAction.class, RemoveTagsFromPeerHandler.class);
+        bindHandler(TagUpdateAction.class, TagUpdateHandler.class);
     }
 }

@@ -16,19 +16,22 @@
  */
 package com.googlecode.fspotcloud.server.control.callback;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 import com.google.inject.Inject;
 
 import com.googlecode.botdispatch.SerializableAsyncCallback;
+import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 
-import com.googlecode.fspotcloud.server.control.task.actions.intern.TagImportAction;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
+import com.googlecode.fspotcloud.server.model.api.Tag;
+import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerUpdateInstructionsAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
 
-import com.googlecode.taskqueuedispatch.NullCallback;
-import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
+import java.util.List;
 import java.util.logging.Logger;
 
 
@@ -39,10 +42,12 @@ public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaD
     @Inject
     private transient PeerDatabases defaultPeer;
     @Inject
-    private transient TaskQueueDispatch dispatchAsync;
+    private transient Tags tagManager;
+    @Inject
+    private transient ControllerDispatchAsync dispatchAsync;
 
     public PeerMetaDataCallback(
-        PeerDatabases defaultPeer, TaskQueueDispatch dispatchAsync) {
+        PeerDatabases defaultPeer, ControllerDispatchAsync dispatchAsync) {
         super();
         this.defaultPeer = defaultPeer;
         this.dispatchAsync = dispatchAsync;
@@ -56,7 +61,8 @@ public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaD
         int tagCount = result.getTagCount();
         PeerDatabase p = defaultPeer.get();
         dispatchAsync.execute(
-            new TagImportAction(0, tagCount), new NullCallback<VoidResult>());
+            new GetPeerUpdateInstructionsAction(getTagData()),
+            new PeerUpdateInstructionsCallback(null));
         p.setPeerPhotoCount(count);
         p.setTagCount(tagCount);
         defaultPeer.save(p);
@@ -65,5 +71,19 @@ public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaD
 
     @Override
     public void onFailure(Throwable caught) {
+    }
+
+
+    private List<TagData> getTagData() {
+        List<TagData> result = newArrayList();
+
+        for (Tag tag : tagManager.findAll(1000)) {
+            TagData data = new TagData(
+                    tag.getId(), tag.getTagName(), tag.getParentId(),
+                    tag.getCount());
+            result.add(data);
+        }
+
+        return result;
     }
 }
