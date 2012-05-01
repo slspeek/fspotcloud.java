@@ -42,6 +42,7 @@ import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.*;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
+import com.googlecode.fspotcloud.user.LenientUserModule;
 import com.googlecode.fspotcloud.user.LenientUserService;
 import com.googlecode.fspotcloud.user.UserService;
 
@@ -74,7 +75,7 @@ public class J2eeIntegrationGuiceBerryEnv extends GuiceBerryModule {
         install(new TaskActionsModule());
         install(new PeerActionsModule());
         install(new MyPeerModule());
-        install(new MyUserModule());
+        install(new LenientUserModule());
     }
 }
 
@@ -109,12 +110,5 @@ class MyPeerModule extends AbstractModule {
         bind(Integer.class).annotatedWith(Names.named("stop port"))
             .toInstance(
             Integer.valueOf(System.getProperty("stop.port", "4444")));
-    }
-}
-
-
-class MyUserModule extends AbstractModule {
-    protected void configure() {
-        bind(UserService.class).to(LenientUserService.class);
     }
 }

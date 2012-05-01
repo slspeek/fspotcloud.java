@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.googlecode.fspotcloud</groupId>
         <artifactId>fspotcloud</artifactId>
-        <version>0.12-10</version>
+        <version>0.12-11</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>user-service-api</artifactId>
@@ -25,6 +25,11 @@
             <groupId>org.jukito</groupId>
             <artifactId>jukito</artifactId>
             <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+            <version>3.0</version>
         </dependency>
     </dependencies>
     <build>

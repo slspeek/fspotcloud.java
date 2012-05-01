@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2010-2012 Steven L. Speek.
  * This program is free software; you can redistribute it and/or
@@ -23,74 +24,37 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.shared.dashboard.actions.GetMetaDataAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.GetMetaDataResult;
-import com.googlecode.fspotcloud.user.IAdminPermission;
 
+import javax.inject.Inject;
+
+import com.googlecode.fspotcloud.user.IAdminPermission;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-import org.mockito.Mock;
 import static org.mockito.Mockito.*;
-
-import org.mockito.MockitoAnnotations;
-
-import org.testng.Assert;
-import org.testng.AssertJUnit;
-import static org.testng.AssertJUnit.assertNull;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import org.jukito.JukitoRunner;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 
+@RunWith(JukitoRunner.class)
 public class GetMetaDataHandlerTest {
+    
+    @Inject
     GetMetaDataHandler handler;
-    GetMetaDataAction action = new GetMetaDataAction();
-    @Mock
-    Commands commandManager;
-    @Mock
-    PeerDatabases defaultPeer;
-    @Mock
-    IAdminPermission adminPermission;
-    PeerDatabase pd;
 
-    @BeforeMethod
-    protected void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
-        pd = new PeerDatabaseEntity();
-        handler = new GetMetaDataHandler(
-                commandManager, defaultPeer, adminPermission);
-    }
-
+    private GetMetaDataAction action = new GetMetaDataAction();
+    private PeerDatabase pd = new PeerDatabaseEntity();
 
     @Test
-    public void testExecute() throws DispatchException {
+    public void testExecute(Commands commandManager, PeerDatabases defaultPeer, IAdminPermission IAdminPermission) throws DispatchException {
         when(commandManager.getCountUnderAThousend()).thenReturn(100);
         when(defaultPeer.get()).thenReturn(pd);
-
         GetMetaDataResult result = handler.execute(action, null);
         assertNull(result.getInstanceName());
-        AssertJUnit.assertEquals(0, result.getPeerPhotoCount());
-        AssertJUnit.assertEquals(100, result.getPendingCommandCount());
+        assertEquals(0, result.getPeerPhotoCount());
+        assertEquals(100, result.getPendingCommandCount());
     }
 
-
-    @Test
-    public void testException() {
-        when(commandManager.getCountUnderAThousend())
-            .thenThrow(RuntimeException.class);
-        when(defaultPeer.get()).thenReturn(pd);
-
-        try {
-            GetMetaDataResult result = handler.execute(action, null);
-            Assert.fail();
-        } catch (DispatchException e) {
-        }
-    }
-
-
-    @Test(expectedExceptions = SecurityException.class)
-    void forbidden() throws DispatchException {
-        doThrow(new SecurityException()).when(adminPermission)
-            .checkAdminPermission();
-
-        GetMetaDataResult result = handler.execute(action, null);
-    }
 }

@@ -24,7 +24,7 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.shared.dashboard.actions.GetMetaDataAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.GetMetaDataResult;
-import com.googlecode.fspotcloud.user.AdminPermission;
+import com.googlecode.fspotcloud.user.IAdminPermission;
 
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
@@ -40,23 +40,23 @@ public class GetMetaDataHandler extends SimpleActionHandler<GetMetaDataAction, G
             GetMetaDataHandler.class.getName());
     private final Commands commandManager;
     private final PeerDatabases defaultPeer;
-    private final AdminPermission adminPermission;
+    private final IAdminPermission IAdminPermission;
 
     @Inject
     public GetMetaDataHandler(
         Commands commandManager, PeerDatabases defaultPeer,
-        AdminPermission adminPermission) {
+        IAdminPermission IAdminPermission) {
         super();
         this.commandManager = commandManager;
         this.defaultPeer = defaultPeer;
-        this.adminPermission = adminPermission;
+        this.IAdminPermission = IAdminPermission;
     }
 
     @Override
     public GetMetaDataResult execute(
         GetMetaDataAction action, ExecutionContext context)
         throws DispatchException {
-        adminPermission.chechAdminPermission();
+        IAdminPermission.checkAdminPermission();
 
         GetMetaDataResult dataInfo = new GetMetaDataResult();
 

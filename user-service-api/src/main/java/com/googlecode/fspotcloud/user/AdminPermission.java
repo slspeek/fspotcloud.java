@@ -14,10 +14,6 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.googlecode.fspotcloud.user;
 
 import com.googlecode.fspotcloud.user.UserService;
@@ -27,11 +23,11 @@ import javax.inject.Provider;
 
 
 /**
- * DOCUMENT ME!
+ * Encapsulated the verification of the user being logged as admin
  *
  * @author steven
 */
-public class AdminPermission {
+public class AdminPermission implements IAdminPermission {
     private final Provider<UserService> userServiceProvider;
 
     @Inject
@@ -39,7 +35,8 @@ public class AdminPermission {
         this.userServiceProvider = userServiceProvider;
     }
 
-    public void chechAdminPermission() {
+    @Override
+    public void checkAdminPermission() {
         UserService userService = userServiceProvider.get();
 
         if (!userService.isUserAdmin()) {

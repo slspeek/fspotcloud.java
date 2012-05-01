@@ -14,25 +14,29 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.shared.dashboard.actions;
+package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import java.io.Serializable;
+import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
+import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
+
 import net.customware.gwt.dispatch.shared.Action;
 
+import java.io.Serializable;
 
-public class UserImportsTagAction implements Action<VoidResult>, Serializable {
-    private String tagId;
+import java.util.List;
 
-    public UserImportsTagAction(String tagId) {
+
+public class ImportManyTagsPhotosAction implements Action<VoidResult>,
+    Serializable {
+    private static final long serialVersionUID = -8353337263892135688L;
+    private final List<String> tagIdList;
+
+    public ImportManyTagsPhotosAction(List<String> tagIdList) {
         super();
-        this.tagId = tagId;
+        this.tagIdList = tagIdList;
     }
 
-
-    UserImportsTagAction() {
-    }
-
-    public String getTagId() {
-        return tagId;
+    public List<String> getTagIdList() {
+        return tagIdList;
     }
 }

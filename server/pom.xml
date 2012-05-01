@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-10</version>
+        <version>0.12-11</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>server</artifactId>
-    <version>0.12-10</version>
+    <version>0.12-11</version>
     <name>Server Component</name>
     <description>The controller and data reading</description>
     <dependencies>
@@ -53,7 +53,7 @@
         <dependency>
             <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>user-service-api</artifactId>
-            <version>0.12-10</version>
+            <version>0.12-11</version>
             <type>jar</type>
         </dependency>
         <dependency>

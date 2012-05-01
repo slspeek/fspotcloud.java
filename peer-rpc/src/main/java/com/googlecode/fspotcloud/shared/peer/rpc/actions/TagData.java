@@ -20,6 +20,8 @@ import com.google.common.base.Objects;
 import static com.google.common.base.Objects.equal;
 
 import java.io.Serializable;
+
+
 public class TagData implements Serializable {
     private static final long serialVersionUID = -7990602627338507900L;
     private String tagId;

@@ -14,25 +14,17 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.shared.dashboard.actions;
+package com.googlecode.fspotcloud.user.inject;
 
-import java.io.Serializable;
-import net.customware.gwt.dispatch.shared.Action;
+import com.google.inject.servlet.ServletModule;
 
-
-public class UserImportsTagAction implements Action<VoidResult>, Serializable {
-    private String tagId;
-
-    public UserImportsTagAction(String tagId) {
-        super();
-        this.tagId = tagId;
-    }
+import com.googlecode.fspotcloud.user.AdminPermission;
+import com.googlecode.fspotcloud.user.IAdminPermission;
 
 
-    UserImportsTagAction() {
-    }
-
-    public String getTagId() {
-        return tagId;
+public class AbstractUserModule extends ServletModule {
+    @Override
+    protected void configureServlets() {
+        bind(IAdminPermission.class).to(AdminPermission.class);
     }
 }

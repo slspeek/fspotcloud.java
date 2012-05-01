@@ -17,14 +17,11 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTagPhotosAction;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsFromPeerAction;
-import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoRemovedFromTag;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagRemovedFromPeer;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
 
@@ -37,7 +34,6 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.SortedSet;
 
 import javax.inject.Inject;
 import javax.inject.Named;

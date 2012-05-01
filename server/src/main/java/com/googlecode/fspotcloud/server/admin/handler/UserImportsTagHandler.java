@@ -26,7 +26,7 @@ import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagUpdateInstructionsAction;
-import com.googlecode.fspotcloud.user.AdminPermission;
+import com.googlecode.fspotcloud.user.IAdminPermission;
 
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
@@ -41,15 +41,15 @@ public class UserImportsTagHandler extends SimpleActionHandler<UserImportsTagAct
             UserImportsTagHandler.class.getName());
     private final Tags tagManager;
     private final ControllerDispatchAsync dispatchAsync;
-    private final AdminPermission adminPermission;
+    private final IAdminPermission IAdminPermission;
 
     @Inject
     public UserImportsTagHandler(
         Tags tagManager, ControllerDispatchAsync dispatchAsync,
-        AdminPermission adminPermission) {
+        IAdminPermission IAdminPermission) {
         this.tagManager = tagManager;
         this.dispatchAsync = dispatchAsync;
-        this.adminPermission = adminPermission;
+        this.IAdminPermission = IAdminPermission;
     }
 
     @Override

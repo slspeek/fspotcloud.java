@@ -237,6 +237,7 @@
             </grouping>
             <policy>disabled</policy>
             <sort>true</sort>
+            <optimize>true</optimize>
         </imports>
         <indentation>
             <caseFromSwitch>true</caseFromSwitch>
