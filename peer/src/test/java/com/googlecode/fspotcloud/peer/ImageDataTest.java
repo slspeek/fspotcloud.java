@@ -16,8 +16,6 @@
  */
 package com.googlecode.fspotcloud.peer;
 
-import com.googlecode.fspotcloud.peer.ImageData;
-
 import junit.framework.TestCase;
 
 import java.awt.Dimension;
@@ -26,14 +24,13 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import java.net.URL;
-
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
 
 public class ImageDataTest extends TestCase {
+    @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(
             ImageDataTest.class.getName());
     private ImageData target;

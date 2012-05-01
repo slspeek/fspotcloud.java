@@ -18,12 +18,11 @@ package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 
-import com.googlecode.fspotcloud.server.control.callback.PhotoDataCallback;
 import com.googlecode.fspotcloud.server.control.callback.TagDataCallback;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.TagUpdateAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.*;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagDataAction;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagUpdate;
 
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 

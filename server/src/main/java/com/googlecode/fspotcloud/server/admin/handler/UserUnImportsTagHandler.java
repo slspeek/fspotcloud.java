@@ -26,7 +26,7 @@ import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.UserUnImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-import com.googlecode.fspotcloud.user.AdminPermission;
+import com.googlecode.fspotcloud.user.IAdminPermission;
 
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
@@ -46,17 +46,17 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
     private final Tags tagManager;
     private final TaskQueueDispatch dispatchAsync;
     private final PeerDatabases peerDatabases;
-    private final AdminPermission adminPermission;
+    private final IAdminPermission IAdminPermission;
 
     @Inject
     public UserUnImportsTagHandler(
         Tags tagManager, TaskQueueDispatch dispatchAsync,
-        PeerDatabases peerDatabases, AdminPermission adminPermission) {
+        PeerDatabases peerDatabases, IAdminPermission IAdminPermission) {
         super();
         this.tagManager = tagManager;
         this.dispatchAsync = dispatchAsync;
         this.peerDatabases = peerDatabases;
-        this.adminPermission = adminPermission;
+        this.IAdminPermission = IAdminPermission;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
         throws DispatchException {
         log.info("Executing: " + action.getTagId());
 
-        adminPermission.chechAdminPermission();
+        IAdminPermission.checkAdminPermission();
 
         try {
             String tagId = action.getTagId();

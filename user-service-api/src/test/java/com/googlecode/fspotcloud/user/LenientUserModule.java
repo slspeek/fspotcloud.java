@@ -14,25 +14,24 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.shared.dashboard.actions;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.googlecode.fspotcloud.user;
 
-import java.io.Serializable;
-import net.customware.gwt.dispatch.shared.Action;
-
-
-public class UserImportsTagAction implements Action<VoidResult>, Serializable {
-    private String tagId;
-
-    public UserImportsTagAction(String tagId) {
-        super();
-        this.tagId = tagId;
-    }
+import com.googlecode.fspotcloud.user.inject.AbstractUserModule;
 
 
-    UserImportsTagAction() {
-    }
-
-    public String getTagId() {
-        return tagId;
+/**
+ * User module for testing, no authentication checks done at all.
+ *
+ * @author steven
+*/
+public class LenientUserModule extends AbstractUserModule {
+    @Override
+    protected void configureServlets() {
+        super.configureServlets();
+        bind(UserService.class).to(LenientUserService.class);
     }
 }

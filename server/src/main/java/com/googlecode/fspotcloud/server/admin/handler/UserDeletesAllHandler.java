@@ -21,7 +21,7 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTag
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.shared.dashboard.actions.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.user.AdminPermission;
+import com.googlecode.fspotcloud.user.IAdminPermission;
 
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
@@ -35,16 +35,16 @@ import javax.inject.Inject;
 
 public class UserDeletesAllHandler extends SimpleActionHandler<UserDeletesAllAction, VoidResult> {
     private final TaskQueueDispatch dispatchAsync;
-    private final AdminPermission adminPermission;
+    private final IAdminPermission IAdminPermission;
     private final PeerDatabases peerDatabaseManager;
 
     @Inject
     public UserDeletesAllHandler(
-        TaskQueueDispatch dispatchAsync, AdminPermission adminPermission,
+        TaskQueueDispatch dispatchAsync, IAdminPermission IAdminPermission,
         PeerDatabases peerDatabaseManager) {
         super();
         this.dispatchAsync = dispatchAsync;
-        this.adminPermission = adminPermission;
+        this.IAdminPermission = IAdminPermission;
         this.peerDatabaseManager = peerDatabaseManager;
     }
 
@@ -52,7 +52,7 @@ public class UserDeletesAllHandler extends SimpleActionHandler<UserDeletesAllAct
     public VoidResult execute(
         UserDeletesAllAction action, ExecutionContext context)
         throws DispatchException {
-        adminPermission.chechAdminPermission();
+        IAdminPermission.checkAdminPermission();
 
         try {
             dispatchAsync.execute(new DeleteAllTags());

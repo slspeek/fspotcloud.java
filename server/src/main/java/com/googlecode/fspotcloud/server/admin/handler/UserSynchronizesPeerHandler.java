@@ -16,52 +16,80 @@
  */
 package com.googlecode.fspotcloud.server.admin.handler;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 import com.google.inject.Inject;
 
 import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 
 import com.googlecode.fspotcloud.server.control.callback.PeerMetaDataCallback;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserSynchronizesPeerAction;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.ImportManyTagsPhotosAction;
+import com.googlecode.fspotcloud.server.model.api.Tag;
+import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.UserSynchronizesPeerAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaDataAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
-import com.googlecode.fspotcloud.user.AdminPermission;
+import com.googlecode.fspotcloud.user.IAdminPermission;
+
+import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
+import java.util.List;
+
 
 public class UserSynchronizesPeerHandler extends SimpleActionHandler<UserSynchronizesPeerAction, VoidResult> {
     private final ControllerDispatchAsync dispatch;
-    private final AdminPermission adminPermission;
+    private final IAdminPermission IAdminPermission;
+    private final TaskQueueDispatch taskQueueDispatch;
+    private final Tags tagManager;
 
     @Inject
     public UserSynchronizesPeerHandler(
-        ControllerDispatchAsync dispatch, AdminPermission adminPermission) {
+        ControllerDispatchAsync dispatch, IAdminPermission IAdminPermission,
+        TaskQueueDispatch taskQueueDispatch, Tags tagManager) {
         super();
         this.dispatch = dispatch;
-        this.adminPermission = adminPermission;
+        this.IAdminPermission = IAdminPermission;
+        this.taskQueueDispatch = taskQueueDispatch;
+        this.tagManager = tagManager;
     }
 
     @Override
     public VoidResult execute(
         UserSynchronizesPeerAction action, ExecutionContext context)
         throws DispatchException {
-        adminPermission.chechAdminPermission();
+        IAdminPermission.checkAdminPermission();
 
         try {
             GetPeerMetaDataAction metaAction = new GetPeerMetaDataAction();
             SerializableAsyncCallback<PeerMetaDataResult> callback = new PeerMetaDataCallback(
                     null, null);
             dispatch.execute(metaAction, callback);
+
+            taskQueueDispatch.execute(
+                new ImportManyTagsPhotosAction(getImportTagIds()));
         } catch (Exception e) {
             throw new ActionException(e);
         }
 
         return new VoidResult();
+    }
+
+
+    private List<String> getImportTagIds() {
+        List<Tag> importedTags = tagManager.getImportedTags();
+        List<String> idList = newArrayList();
+
+        for (Tag tag : importedTags) {
+            idList.add(tag.getId());
+        }
+
+        return idList;
     }
 }

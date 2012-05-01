@@ -16,10 +16,10 @@
  */
 package com.googlecode.fspotcloud.user.openid;
 
-import com.google.inject.servlet.ServletModule;
+import com.googlecode.fspotcloud.user.inject.AbstractUserModule;
 
 
-public class OpenIdUserModule extends ServletModule {
+public class OpenIdUserModule extends AbstractUserModule {
     private final String adminEmail;
 
     public OpenIdUserModule(String adminEmail) {
@@ -28,6 +28,7 @@ public class OpenIdUserModule extends ServletModule {
 
     @Override
     protected void configureServlets() {
+        super.configureServlets();
         bind(String.class).annotatedWith(AdminEmail.class).toInstance(
             adminEmail);
         bind(com.googlecode.fspotcloud.user.UserService.class)

@@ -8,6 +8,7 @@ configurations {
 
 dependencies {
     compile libs.inject
+    compile libs.guice_servlet
     testCompile libs.junit
     testCompile libs.jukito
 }

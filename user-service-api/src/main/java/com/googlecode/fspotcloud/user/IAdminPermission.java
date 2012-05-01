@@ -14,16 +14,15 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.client.view.action;
+package com.googlecode.fspotcloud.user;
 
-import junit.framework.TestCase;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-public class GenericsTest extends TestCase {
-    public void testOne() {
-        String aap = "aap";
-    }
+/**
+ * Created by IntelliJ IDEA.
+ * User: steven
+ * Date: 1-5-12
+ * Time: 18:48
+ * To change this template use File | Settings | File Templates.
+ */
+public interface IAdminPermission {
+    void checkAdminPermission();
 }

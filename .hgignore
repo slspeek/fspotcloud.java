@@ -1,5 +1,9 @@
 syntax: glob
 fspotcloud.iws
+*/.project
+.project
+.classpath
+*/.classpath
 te-report/*
 out/*
 *.iml

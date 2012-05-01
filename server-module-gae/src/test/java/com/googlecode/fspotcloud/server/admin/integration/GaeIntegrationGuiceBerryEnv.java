@@ -46,6 +46,7 @@ import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.UserSynchronizesPeerAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.UserUnImportsTagAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
+import com.googlecode.fspotcloud.user.LenientUserModule;
 import com.googlecode.fspotcloud.user.LenientUserService;
 import com.googlecode.fspotcloud.user.UserService;
 
@@ -81,7 +82,7 @@ public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
         install(new TaskActionsModule());
         install(new PeerActionsModule());
         install(new MyPeerModule());
-        install(new MyUserModule());
+        install(new LenientUserModule());
         bind(Cache.class).toProvider(GaeCacheProvider.class);
 
         bind(TestWrapper.class).to(GaeLocalDatastoreTestWrapper.class);
@@ -134,12 +135,5 @@ class MyPeerModule extends AbstractModule {
         bind(Integer.class).annotatedWith(Names.named("stop port"))
             .toInstance(
             Integer.valueOf(System.getProperty("stop.port", "4444")));
-    }
-}
-
-
-class MyUserModule extends AbstractModule {
-    protected void configure() {
-        bind(UserService.class).to(LenientUserService.class);
     }
 }

@@ -19,6 +19,7 @@ package com.googlecode.fspotcloud.server.control.task.actions.intern;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
 
 import org.apache.commons.lang.SerializationUtils;
+import static org.testng.AssertJUnit.assertNotNull;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -45,5 +46,6 @@ public class DeletePhotosTest {
         byte[] ser = SerializationUtils.serialize(action);
         DeleteTagPhotosAction deserialized = (DeleteTagPhotosAction)SerializationUtils
             .deserialize(ser);
+        assertNotNull(deserialized);
     }
 }
