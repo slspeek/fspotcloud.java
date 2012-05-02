@@ -28,13 +28,13 @@ import com.googlecode.fspotcloud.user.UserService;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
+import org.junit.Before;
+import org.junit.Test;
+
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 
 import org.mockito.MockitoAnnotations;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import javax.inject.Provider;
 
@@ -51,7 +51,7 @@ public class UserDeletesAllCommandsHandlerTest {
     UserService userService;
     UserDeletesAllCommandsHandler handler;
 
-    @BeforeMethod
+    @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
@@ -72,7 +72,7 @@ public class UserDeletesAllCommandsHandlerTest {
      *
      * @throws Exception DOCUMENT ME!
      */
-    @Test(expectedExceptions = SecurityException.class)
+    @Test(expected = SecurityException.class)
     public void testExecuteNotBeingAdmin() throws Exception {
         when(userService.isUserAdmin()).thenReturn(Boolean.FALSE);
         handler.execute(new UserDeletesAllCommandsAction(), null);
@@ -81,7 +81,7 @@ public class UserDeletesAllCommandsHandlerTest {
 
 
     @Test
-    void execute() throws DispatchException {
+    public void execute() throws DispatchException {
         when(userService.isUserAdmin()).thenReturn(Boolean.TRUE);
         handler.execute(new UserDeletesAllCommandsAction(), null);
         verify(commandManager).deleteAll();
@@ -90,8 +90,8 @@ public class UserDeletesAllCommandsHandlerTest {
     }
 
 
-    @Test(expectedExceptions = ActionException.class)
-    void commandManagerFails() throws DispatchException {
+    @Test(expected = ActionException.class)
+    public void commandManagerFails() throws DispatchException {
         when(userService.isUserAdmin()).thenReturn(Boolean.TRUE);
         doThrow(new RuntimeException()).when(commandManager).deleteAll();
         handler.execute(new UserDeletesAllCommandsAction(), null);

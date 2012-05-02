@@ -16,7 +16,7 @@
  */
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotos;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.ImportManyTagsPhotosAction;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;

@@ -22,9 +22,9 @@ package com.googlecode.fspotcloud.server.inject;
 
 import com.googlecode.fspotcloud.server.inject.PropertiesLoader;
 
-import org.testng.Assert;
+import junit.framework.Assert;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 
 /**
@@ -34,7 +34,7 @@ import org.testng.annotations.Test;
 */
 public class PropertiesLoaderTest {
     /**
-     * Test of loadProperties method, of class PropertiesLoader.
+     * Verifies that pl preserves system properties
      */
     @Test
     public void testLoadProperties() {

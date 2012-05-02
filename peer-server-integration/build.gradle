@@ -1,10 +1,11 @@
 description = 'Peer server integration tests'
 
 dependencies {
-    compile project(':server')
+    testCompile project(':server')
     testCompile project(':model-api')
     testCompile project(':peer')
     testCompile project(':test-util')
+    testCompile project(':rpc')
     testCompile libs.test_ng
     testCompile libs.mockito
     testCompile libs.guava_testlib

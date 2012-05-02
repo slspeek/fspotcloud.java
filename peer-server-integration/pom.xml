@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-11</version>
+        <version>0.12-12</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>peer-server-integration</artifactId>
-    <version>0.12-11</version>
+    <version>0.12-12</version>
     <name>Peer server integration tests</name>
     <dependencies>
         <dependency>
@@ -66,6 +66,11 @@
             <groupId>com.google.guiceberry</groupId>
             <artifactId>guiceberry</artifactId>
             <version>3.0.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.fspotcloud</groupId>
+            <artifactId>rpc</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

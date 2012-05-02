@@ -14,19 +14,12 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.server.control.task.actions.intern;
-
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
+package com.googlecode.fspotcloud.shared.main.actions;
 
 import net.customware.gwt.dispatch.shared.Action;
 
-import java.io.Serializable;
 
-
-public class DeleteAllPhotos implements Action<VoidResult>, Serializable {
-    private static final long serialVersionUID = 84293907017230375L;
-
-    public DeleteAllPhotos() {
-        super();
+public class GetTagTreeAction implements Action<TagTreeResult> {
+    public GetTagTreeAction() {
     }
 }

@@ -16,13 +16,17 @@
  */
 package com.googlecode.fspotcloud.server.control.task.tagdelete;
 
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTags;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTagsAction;
 import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteTagsHandler;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
 import net.customware.gwt.dispatch.shared.DispatchException;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -33,11 +37,6 @@ import static org.mockito.Mockito.when;
 
 import org.mockito.MockitoAnnotations;
 
-import org.testng.AssertJUnit;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 
 public class DeleteTagsHandlerTest {
     DeleteTagsHandler target;
@@ -46,10 +45,10 @@ public class DeleteTagsHandlerTest {
     @Mock
     Tags tagManager;
     @Captor
-    ArgumentCaptor<DeleteAllTags> newAction;
+    ArgumentCaptor<DeleteAllTagsAction> newAction;
 
-    @BeforeMethod
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         target = new DeleteTagsHandler(dispatchAsync, tagManager);
         System.out.println(tagManager);
@@ -59,7 +58,7 @@ public class DeleteTagsHandlerTest {
     @Test
     public void testRecursionStop() throws DispatchException {
         when(tagManager.isEmpty()).thenReturn(true);
-        target.execute(new DeleteAllTags(), null);
+        target.execute(new DeleteAllTagsAction(), null);
         verifyNoMoreInteractions(dispatchAsync);
     }
 
@@ -67,8 +66,8 @@ public class DeleteTagsHandlerTest {
     @Test
     public void testRecursion() throws DispatchException {
         when(tagManager.isEmpty()).thenReturn(false);
-        target.execute(new DeleteAllTags(), null);
+        target.execute(new DeleteAllTagsAction(), null);
         verify(dispatchAsync).execute(newAction.capture());
-        AssertJUnit.assertNotNull(newAction.getValue());
+        assertNotNull(newAction.getValue());
     }
 }

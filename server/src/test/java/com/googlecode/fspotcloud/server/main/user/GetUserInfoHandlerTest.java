@@ -26,15 +26,14 @@ import com.googlecode.fspotcloud.user.UserService;
 
 import net.customware.gwt.dispatch.shared.DispatchException;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 
 import org.mockito.MockitoAnnotations;
-
-import org.testng.Assert;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 
 public class GetUserInfoHandlerTest {
@@ -42,7 +41,7 @@ public class GetUserInfoHandlerTest {
     @Mock
     UserService service;
 
-    @BeforeMethod
+    @Before
     public void mockit() {
         MockitoAnnotations.initMocks(this);
         handler = new GetUserInfoHandler(service);

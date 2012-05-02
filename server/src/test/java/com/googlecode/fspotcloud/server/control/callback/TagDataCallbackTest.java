@@ -25,17 +25,16 @@ import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagDataResult;
 
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-
-import org.testng.AssertJUnit;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
@@ -56,8 +55,8 @@ public class TagDataCallbackTest {
     ArgumentCaptor<List<Tag>> argumentCaptor = (ArgumentCaptor<List<Tag>>)(Object)ArgumentCaptor
         .forClass(List.class);
 
-    @BeforeMethod
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         dispatch = mock(Dispatch.class);
         tagManager = mock(Tags.class);
         tag = new TagEntity();
@@ -84,9 +83,9 @@ public class TagDataCallbackTest {
     @Test
     public void testRecieveTagData() throws DispatchException {
         callback.onSuccess(incoming);
-        AssertJUnit.assertEquals(10, tag.getCount());
-        AssertJUnit.assertEquals(TAGNAME, tag.getTagName());
-        AssertJUnit.assertNull(tag.getParentId());
+        assertEquals(10, tag.getCount());
+        assertEquals(TAGNAME, tag.getTagName());
+        assertNull(tag.getParentId());
         verifyNoMoreInteractions(dispatch);
     }
 
@@ -95,15 +94,15 @@ public class TagDataCallbackTest {
     public void testRecieveTagDataImported() throws DispatchException {
         tag.setImportIssued(true);
         callback.onSuccess(incoming);
-        AssertJUnit.assertEquals(10, tag.getCount());
-        AssertJUnit.assertEquals(TAGNAME, tag.getTagName());
-        AssertJUnit.assertNull(tag.getParentId());
+        assertEquals(10, tag.getCount());
+        assertEquals(TAGNAME, tag.getTagName());
+        assertNull(tag.getParentId());
 
         ArgumentCaptor<UserImportsTagAction> actionCaptor = ArgumentCaptor
             .forClass(UserImportsTagAction.class);
         verify(dispatch).execute(actionCaptor.capture());
 
         UserImportsTagAction action = actionCaptor.getValue();
-        AssertJUnit.assertEquals(TAGID, action.getTagId());
+        assertEquals(TAGID, action.getTagId());
     }
 }

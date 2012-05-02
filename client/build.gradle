@@ -16,6 +16,7 @@ dependencies {
     compile libs.guice
     compile libs.inject
     compile libs.guava
+    compile libs.guava_gwt
     compile "com.google.gwt:gwt-user:${gwt_version}"
     compile "com.reveregroup.gwt:gwt-image-loader:1.1.4"
     compile "com.google.gwt:gwt-dev:${gwt_version}"

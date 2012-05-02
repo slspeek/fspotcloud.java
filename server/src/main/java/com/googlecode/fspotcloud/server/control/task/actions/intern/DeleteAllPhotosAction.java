@@ -23,10 +23,10 @@ import net.customware.gwt.dispatch.shared.Action;
 import java.io.Serializable;
 
 
-public class DeleteAllTags implements Action<VoidResult>, Serializable {
-    private static final long serialVersionUID = 8429390701736230375L;
+public class DeleteAllPhotosAction implements Action<VoidResult>, Serializable {
+    private static final long serialVersionUID = 84293907017230375L;
 
-    public DeleteAllTags() {
+    public DeleteAllPhotosAction() {
         super();
     }
 }

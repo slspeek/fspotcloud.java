@@ -14,20 +14,19 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.rpc;
+package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.google.gwt.user.client.rpc.RemoteService;
-import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 
-import com.googlecode.fspotcloud.shared.tag.TagNode;
+import net.customware.gwt.dispatch.shared.Action;
 
-import java.util.List;
+import java.io.Serializable;
 
 
-/**
- * The client side stub for the RPC service.
- */
-@RemoteServiceRelativePath("tag")
-public interface TagService extends RemoteService {
-    List<TagNode> loadAdminTagTree();
+public class DeleteAllTagsAction implements Action<VoidResult>, Serializable {
+    private static final long serialVersionUID = 8429390701736230375L;
+
+    public DeleteAllTagsAction() {
+        super();
+    }
 }

@@ -16,7 +16,7 @@
  */
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotos;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 
@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 
 
-public class DeleteAllPhotosHandler extends SimpleActionHandler<DeleteAllPhotos, VoidResult> {
+public class DeleteAllPhotosHandler extends SimpleActionHandler<DeleteAllPhotosAction, VoidResult> {
     private static final Logger log = Logger.getLogger(
             DeleteAllPhotosHandler.class.getName());
     private final TaskQueueDispatch dispatchAsync;
@@ -46,12 +46,13 @@ public class DeleteAllPhotosHandler extends SimpleActionHandler<DeleteAllPhotos,
     }
 
     @Override
-    public VoidResult execute(DeleteAllPhotos action, ExecutionContext context)
+    public VoidResult execute(
+        DeleteAllPhotosAction action, ExecutionContext context)
         throws DispatchException {
         photoManager.deleteBulk(30);
 
         if (!photoManager.isEmpty()) {
-            dispatchAsync.execute(new DeleteAllPhotos());
+            dispatchAsync.execute(new DeleteAllPhotosAction());
         }
 
         return new VoidResult();

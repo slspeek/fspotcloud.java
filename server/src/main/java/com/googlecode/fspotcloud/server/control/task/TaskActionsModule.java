@@ -30,8 +30,8 @@ public class TaskActionsModule extends ActionHandlerModule {
     @Override
     protected void configureHandlers() {
         bindHandler(PhotoUpdateAction.class, PhotoUpdateHandler.class);
-        bindHandler(DeleteAllTags.class, DeleteTagsHandler.class);
-        bindHandler(DeleteAllPhotos.class, DeleteAllPhotosHandler.class);
+        bindHandler(DeleteAllTagsAction.class, DeleteTagsHandler.class);
+        bindHandler(DeleteAllPhotosAction.class, DeleteAllPhotosHandler.class);
         bindHandler(DeleteTagPhotosAction.class, DeleteTagPhotosHandler.class);
         bindHandler(
             RemovePhotosFromTagAction.class, RemovePhotosFromTagHandler.class);

@@ -16,7 +16,7 @@
  */
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTags;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTagsAction;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 
@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 
 
-public class DeleteTagsHandler extends SimpleActionHandler<DeleteAllTags, VoidResult> {
+public class DeleteTagsHandler extends SimpleActionHandler<DeleteAllTagsAction, VoidResult> {
     private static final Logger log = Logger.getLogger(
             DeleteTagsHandler.class.getName());
     private final TaskQueueDispatch dispatchAsync;
@@ -45,13 +45,14 @@ public class DeleteTagsHandler extends SimpleActionHandler<DeleteAllTags, VoidRe
     }
 
     @Override
-    public VoidResult execute(DeleteAllTags action, ExecutionContext context)
+    public VoidResult execute(
+        DeleteAllTagsAction action, ExecutionContext context)
         throws DispatchException {
         log.info("Delete tags entered");
         tagManager.deleteBulk(30);
 
         if (!tagManager.isEmpty()) {
-            dispatchAsync.execute(new DeleteAllTags());
+            dispatchAsync.execute(new DeleteAllTagsAction());
         }
 
         return new VoidResult();

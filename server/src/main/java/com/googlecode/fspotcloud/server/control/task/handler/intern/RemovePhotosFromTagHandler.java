@@ -17,10 +17,7 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
-import com.googlecode.fspotcloud.server.model.api.Photo;
-import com.googlecode.fspotcloud.server.model.api.Photos;
-import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoRemovedFromTag;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
@@ -42,18 +39,20 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
     private final int MAX_DELETE_TICKS;
     private final TaskQueueDispatch dispatchAsync;
     private final Photos photos;
-    private Tags tagManager;
+    private final Tags tagManager;
+    private final PeerDatabases peerDatabaseManager;
 
     @Inject
     public RemovePhotosFromTagHandler(
         @Named("maxDelete")
     int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
-        Tags tagManager) {
+        Tags tagManager, PeerDatabases peerDatabaseManager) {
         super();
         MAX_DELETE_TICKS = maxDeleteTicks;
         this.dispatchAsync = dispatchAsync;
         this.photos = photos;
         this.tagManager = tagManager;
+        this.peerDatabaseManager = peerDatabaseManager;
     }
 
     @Override
@@ -75,7 +74,19 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
             dispatchAsync.execute(action);
         }
 
+        clearTreeCache();
+
         return new VoidResult();
+    }
+
+
+    private void clearTreeCache() {
+        PeerDatabase peer = peerDatabaseManager.get();
+
+        if (peer.getCachedTagTree() != null) {
+            peer.setCachedTagTree(null);
+            peerDatabaseManager.save(peer);
+        }
     }
 
 
