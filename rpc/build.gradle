@@ -6,9 +6,11 @@ configurations {
 dependencies {
     compile libs.gwt_servlet
     compile libs.gwt_dispatch
+    compile libs.guava
+    compile libs.guava_gwt
 
     testCompile "junit:junit:3.8.1"
-    testCompile libs.guava
+    testCompile libs.commons_lang
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

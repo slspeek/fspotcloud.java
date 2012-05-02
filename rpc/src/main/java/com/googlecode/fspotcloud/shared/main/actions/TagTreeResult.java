@@ -14,20 +14,42 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.rpc;
+package com.googlecode.fspotcloud.shared.main.actions;
 
-import com.google.gwt.user.client.rpc.RemoteService;
-import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.google.common.base.Objects;
 
 import com.googlecode.fspotcloud.shared.tag.TagNode;
+
+import net.customware.gwt.dispatch.shared.Result;
 
 import java.util.List;
 
 
-/**
- * The client side stub for the RPC service.
- */
-@RemoteServiceRelativePath("tag")
-public interface TagService extends RemoteService {
-    List<TagNode> loadAdminTagTree();
+public class TagTreeResult implements Result {
+    private List<TagNode> tree;
+
+    public TagTreeResult() {
+    }
+
+
+    public TagTreeResult(List<TagNode> tree) {
+        this.tree = tree;
+    }
+
+    public List<TagNode> getTree() {
+        return tree;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof TagTreeResult) {
+            TagTreeResult other = (TagTreeResult)obj;
+            List<TagNode> otherNodes = other.getTree();
+
+            return Objects.equal(otherNodes, getTree());
+        } else {
+            return false;
+        }
+    }
 }

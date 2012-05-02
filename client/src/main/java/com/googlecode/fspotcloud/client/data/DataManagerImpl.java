@@ -21,7 +21,11 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
 import com.googlecode.fspotcloud.rpc.TagServiceAsync;
+import com.googlecode.fspotcloud.shared.main.actions.GetTagTreeAction;
+import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
+
+import net.customware.gwt.dispatch.client.DispatchAsync;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,10 +56,13 @@ public class DataManagerImpl implements DataManager {
     private List<TagNode> adminTagTreeData = null;
     private final Map<String, TagNode> tagNodeIndex = new HashMap<String, TagNode>();
     private final Map<String, TagNode> adminTagNodeIndex = new HashMap<String, TagNode>();
+    private final DispatchAsync dispatchAsync;
 
     @Inject
-    public DataManagerImpl(TagServiceAsync tagService) {
+    public DataManagerImpl(
+        TagServiceAsync tagService, DispatchAsync dispatchAsync) {
         this.tagService = tagService;
+        this.dispatchAsync = dispatchAsync;
         this.indexingUtil = new IndexingUtil();
     }
 
@@ -130,15 +137,16 @@ public class DataManagerImpl implements DataManager {
 
             if (!isCalled) {
                 isCalled = true;
-                tagService.loadTagTree(
-                    new AsyncCallback<List<TagNode>>() {
+                dispatchAsync.execute(
+                    new GetTagTreeAction(),
+                    new AsyncCallback<TagTreeResult>() {
                         public void onFailure(Throwable caught) {
                             callback.onFailure(caught);
                         }
 
 
-                        public void onSuccess(List<TagNode> result) {
-                            tagTreeData = result;
+                        public void onSuccess(TagTreeResult result) {
+                            tagTreeData = result.getTree();
                             indexingUtil.rebuildTagNodeIndex(
                                 tagNodeIndex, tagTreeData);
                             callbackHook.run();

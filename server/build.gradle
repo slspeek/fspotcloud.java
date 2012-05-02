@@ -7,7 +7,6 @@ configurations {
 
 sourceSets {
     main { compileClasspath += configurations.provided }
-    jukito {}
 }
 
 dependencies {
@@ -22,26 +21,11 @@ dependencies {
     compile libs.guava
 
     testCompile project(':model-jpa-j2ee')
-    testCompile libs.test_ng
+    testCompile libs.junit
     testCompile libs.mockito
     testCompile libs.guava
-
-    jukitoCompile libs.jukito
-    jukitoCompile libs.junit
-    jukitoCompile sourceSets.main.output
-    jukitoCompile configurations.testCompile
-    jukitoCompile sourceSets.test.output
-    jukitoRuntime configurations.testRuntime
+    testCompile libs.jukito
 
 }
 
-checkstyleJukito.ignoreFailures = true
 
-task jukitoTest(type: Test, dependsOn: classes) {
-    testClassesDir = sourceSets.jukito.output.classesDir
-    classpath = sourceSets.jukito.runtimeClasspath
-}
-
-test.dependsOn jukitoTest
-
-test.useTestNG()

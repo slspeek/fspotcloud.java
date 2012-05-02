@@ -29,6 +29,10 @@ import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
 import net.customware.gwt.dispatch.shared.DispatchException;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -38,11 +42,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import org.mockito.MockitoAnnotations;
-
-import org.testng.AssertJUnit;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,8 +62,8 @@ public class PhotoUpdateHandlerTest {
     @Captor
     ArgumentCaptor<PhotoUpdateAction> recursiveActionCaptor;
 
-    @BeforeMethod
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         handler = new PhotoUpdateHandler(
                 1, 1, new ImageSpecs(1, 1, 1, 1), controllerAsync, recursive);
@@ -92,13 +91,13 @@ public class PhotoUpdateHandlerTest {
             .execute(captorAction.capture(), captorCallback.capture());
 
         GetPhotoDataAction request = captorAction.getValue();
-        AssertJUnit.assertEquals(1, request.getImageKeys().size());
-        AssertJUnit.assertEquals("1", request.getImageKeys().get(0));
+        assertEquals(1, request.getImageKeys().size());
+        assertEquals("1", request.getImageKeys().get(0));
 
         PhotoUpdateAction nextAction = recursiveActionCaptor.getValue();
-        AssertJUnit.assertEquals(1, nextAction.getUpdates().size());
+        assertEquals(1, nextAction.getUpdates().size());
         update = nextAction.getUpdates().get(0);
-        AssertJUnit.assertEquals("2", update.getPhotoId());
+        assertEquals("2", update.getPhotoId());
     }
 
 
@@ -134,22 +133,21 @@ public class PhotoUpdateHandlerTest {
             .execute(captorAction.capture(), captorCallback.capture());
 
         List<GetPhotoDataAction> actionList = captorAction.getAllValues();
-        AssertJUnit.assertEquals(2, actionList.size());
-        AssertJUnit.assertEquals(
-            MAX_PHOTO_TICKS, actionList.get(0).getImageKeys().size());
-        AssertJUnit.assertEquals("1", actionList.get(0).getImageKeys().get(0));
-        AssertJUnit.assertEquals("2", actionList.get(0).getImageKeys().get(1));
-        AssertJUnit.assertEquals("3", actionList.get(0).getImageKeys().get(2));
-        AssertJUnit.assertEquals("4", actionList.get(1).getImageKeys().get(0));
-        AssertJUnit.assertEquals("5", actionList.get(1).getImageKeys().get(1));
-        AssertJUnit.assertEquals("6", actionList.get(1).getImageKeys().get(2));
+        assertEquals(2, actionList.size());
+        assertEquals(MAX_PHOTO_TICKS, actionList.get(0).getImageKeys().size());
+        assertEquals("1", actionList.get(0).getImageKeys().get(0));
+        assertEquals("2", actionList.get(0).getImageKeys().get(1));
+        assertEquals("3", actionList.get(0).getImageKeys().get(2));
+        assertEquals("4", actionList.get(1).getImageKeys().get(0));
+        assertEquals("5", actionList.get(1).getImageKeys().get(1));
+        assertEquals("6", actionList.get(1).getImageKeys().get(2));
 
         PhotoUpdateAction nextAction = recursiveActionCaptor.getValue();
-        AssertJUnit.assertEquals(2, nextAction.getUpdates().size());
+        assertEquals(2, nextAction.getUpdates().size());
         update = nextAction.getUpdates().get(0);
-        AssertJUnit.assertEquals("7", update.getPhotoId());
+        assertEquals("7", update.getPhotoId());
         update = nextAction.getUpdates().get(1);
-        AssertJUnit.assertEquals("8", update.getPhotoId());
+        assertEquals("8", update.getPhotoId());
     }
 
 
@@ -179,12 +177,11 @@ public class PhotoUpdateHandlerTest {
             .execute(captorAction.capture(), captorCallback.capture());
 
         List<GetPhotoDataAction> request = captorAction.getAllValues();
-        AssertJUnit.assertEquals(
-            MAX_PHOTO_TICKS, request.get(0).getImageKeys().size());
-        AssertJUnit.assertEquals("1", request.get(0).getImageKeys().get(0));
-        AssertJUnit.assertEquals("2", request.get(0).getImageKeys().get(1));
-        AssertJUnit.assertEquals("3", request.get(0).getImageKeys().get(2));
-        AssertJUnit.assertEquals("4", request.get(1).getImageKeys().get(0));
-        AssertJUnit.assertEquals("5", request.get(1).getImageKeys().get(1));
+        assertEquals(MAX_PHOTO_TICKS, request.get(0).getImageKeys().size());
+        assertEquals("1", request.get(0).getImageKeys().get(0));
+        assertEquals("2", request.get(0).getImageKeys().get(1));
+        assertEquals("3", request.get(0).getImageKeys().get(2));
+        assertEquals("4", request.get(1).getImageKeys().get(0));
+        assertEquals("5", request.get(1).getImageKeys().get(1));
     }
 }

@@ -20,9 +20,14 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import com.googlecode.fspotcloud.client.data.DataManagerImpl;
 import com.googlecode.fspotcloud.rpc.TagServiceAsync;
+import com.googlecode.fspotcloud.shared.main.actions.GetTagTreeAction;
+import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
 
 import junit.framework.TestCase;
+
+import net.customware.gwt.dispatch.client.DispatchAsync;
+import net.customware.gwt.dispatch.shared.Action;
 
 import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.*;
@@ -43,7 +48,10 @@ public class DataManagerImplTest extends TestCase {
     AsyncCallback<TagNode> secondCall;
     AsyncCallback<List<TagNode>> thirdCall;
     ArgumentCaptor<AsyncCallback<List<TagNode>>> remoteCallCaptor;
+    ArgumentCaptor<AsyncCallback<TagTreeResult>> newRemoteCallCaptor;
     TagNode tagNode = new TagNode(ID);
+    DispatchAsync dispatchAsync;
+    ArgumentCaptor<GetTagTreeAction> actionCapture;
 
     @Override
     protected void setUp() throws Exception {
@@ -51,34 +59,41 @@ public class DataManagerImplTest extends TestCase {
         firstCall = mock(AsyncCallback.class);
         secondCall = mock(AsyncCallback.class);
         thirdCall = mock(AsyncCallback.class);
-        dataManager = new DataManagerImpl(tagService);
+        dispatchAsync = mock(DispatchAsync.class);
+        dataManager = new DataManagerImpl(tagService, dispatchAsync);
         remoteCallCaptor = (ArgumentCaptor<AsyncCallback<List<TagNode>>>)(Object)ArgumentCaptor
             .forClass(AsyncCallback.class);
+        newRemoteCallCaptor = (ArgumentCaptor<AsyncCallback<TagTreeResult>>)(Object)ArgumentCaptor
+            .forClass(AsyncCallback.class);
+        actionCapture = ArgumentCaptor.forClass(GetTagTreeAction.class);
         super.setUp();
     }
 
 
     public void testSimpleCall() {
         dataManager.getTagTree(firstCall);
-        verify(tagService).loadTagTree(remoteCallCaptor.capture());
 
-        AsyncCallback<List<TagNode>> callback = remoteCallCaptor.getValue();
+        verify(dispatchAsync)
+            .execute(actionCapture.capture(), newRemoteCallCaptor.capture());
+
+        AsyncCallback<TagTreeResult> callback = newRemoteCallCaptor.getValue();
         List<TagNode> result = new ArrayList<TagNode>();
-        callback.onSuccess(result);
+        callback.onSuccess(new TagTreeResult(result));
         verify(firstCall).onSuccess(result);
     }
 
 
     public void testTwoCalls() {
         dataManager.getTagTree(firstCall);
-        verify(tagService).loadTagTree(remoteCallCaptor.capture());
+        verify(dispatchAsync)
+            .execute(actionCapture.capture(), newRemoteCallCaptor.capture());
         dataManager.getTagNode(ID, secondCall);
-        verifyNoMoreInteractions(tagService);
+        verifyNoMoreInteractions(dispatchAsync);
 
-        AsyncCallback<List<TagNode>> callback = remoteCallCaptor.getValue();
+        AsyncCallback<TagTreeResult> callback = newRemoteCallCaptor.getValue();
         List<TagNode> result = new ArrayList<TagNode>();
         result.add(tagNode);
-        callback.onSuccess(result);
+        callback.onSuccess(new TagTreeResult(result));
         verify(firstCall).onSuccess(result);
         verify(secondCall).onSuccess(tagNode);
     }
@@ -86,16 +101,17 @@ public class DataManagerImplTest extends TestCase {
 
     public void testThreeCalls() {
         dataManager.getTagTree(firstCall);
-        verify(tagService).loadTagTree(remoteCallCaptor.capture());
+        verify(dispatchAsync)
+            .execute(actionCapture.capture(), newRemoteCallCaptor.capture());
         dataManager.getTagNode(ID, secondCall);
-        verifyNoMoreInteractions(tagService);
+        verifyNoMoreInteractions(dispatchAsync);
         dataManager.getTagTree(thirdCall);
-        verifyNoMoreInteractions(tagService);
+        verifyNoMoreInteractions(dispatchAsync);
 
-        AsyncCallback<List<TagNode>> callback = remoteCallCaptor.getValue();
+        AsyncCallback<TagTreeResult> callback = newRemoteCallCaptor.getValue();
         List<TagNode> result = new ArrayList<TagNode>();
         result.add(tagNode);
-        callback.onSuccess(result);
+        callback.onSuccess(new TagTreeResult(result));
         verify(firstCall).onSuccess(result);
         verify(secondCall).onSuccess(tagNode);
         verify(thirdCall).onSuccess(result);
@@ -104,16 +120,17 @@ public class DataManagerImplTest extends TestCase {
 
     public void testThreeCallsWithWrongId() {
         dataManager.getTagTree(firstCall);
-        verify(tagService).loadTagTree(remoteCallCaptor.capture());
+        verify(dispatchAsync)
+            .execute(actionCapture.capture(), newRemoteCallCaptor.capture());
         dataManager.getTagNode(WRONG_ID, secondCall);
-        verifyNoMoreInteractions(tagService);
+        verifyNoMoreInteractions(dispatchAsync);
         dataManager.getTagTree(thirdCall);
-        verifyNoMoreInteractions(tagService);
+        verifyNoMoreInteractions(dispatchAsync);
 
-        AsyncCallback<List<TagNode>> callback = remoteCallCaptor.getValue();
+        AsyncCallback<TagTreeResult> callback = newRemoteCallCaptor.getValue();
         List<TagNode> result = new ArrayList<TagNode>();
         result.add(tagNode);
-        callback.onSuccess(result);
+        callback.onSuccess(new TagTreeResult(result));
         verify(firstCall).onSuccess(result);
         verify(secondCall).onSuccess(null);
         verify(thirdCall).onSuccess(result);
@@ -122,18 +139,18 @@ public class DataManagerImplTest extends TestCase {
 
     public void testThreeFirstWithWrongId() {
         dataManager.getTagNode(WRONG_ID, secondCall);
-        verify(tagService).loadTagTree(remoteCallCaptor.capture());
-
+        verify(dispatchAsync)
+            .execute(actionCapture.capture(), newRemoteCallCaptor.capture());
         dataManager.getTagTree(firstCall);
-
-        verifyNoMoreInteractions(tagService);
+        verifyNoMoreInteractions(dispatchAsync);
         dataManager.getTagTree(thirdCall);
-        verifyNoMoreInteractions(tagService);
+        verifyNoMoreInteractions(dispatchAsync);
 
-        AsyncCallback<List<TagNode>> callback = remoteCallCaptor.getValue();
+        AsyncCallback<TagTreeResult> callback = newRemoteCallCaptor.getValue();
         List<TagNode> result = new ArrayList<TagNode>();
         result.add(tagNode);
-        callback.onSuccess(result);
+        callback.onSuccess(new TagTreeResult(result));
+
         verify(firstCall).onSuccess(result);
         verify(secondCall).onSuccess(null);
         verify(thirdCall).onSuccess(result);
@@ -142,20 +159,21 @@ public class DataManagerImplTest extends TestCase {
 
     public void testOnceCalledbackNoMoreDelay() {
         dataManager.getTagTree(firstCall);
+        verify(dispatchAsync)
+            .execute(actionCapture.capture(), newRemoteCallCaptor.capture());
 
-        verify(tagService).loadTagTree(remoteCallCaptor.capture());
-
-        AsyncCallback<List<TagNode>> callback = remoteCallCaptor.getValue();
+        AsyncCallback<TagTreeResult> callback = newRemoteCallCaptor.getValue();
         List<TagNode> result = new ArrayList<TagNode>();
         result.add(tagNode);
-        callback.onSuccess(result);
+        callback.onSuccess(new TagTreeResult(result));
+
         verify(firstCall).onSuccess(result);
 
         dataManager.getTagNode(WRONG_ID, secondCall);
         verify(secondCall).onSuccess(null);
-        verifyNoMoreInteractions(tagService);
+        verifyNoMoreInteractions(dispatchAsync);
         dataManager.getTagTree(thirdCall);
         verify(thirdCall).onSuccess(result);
-        verifyNoMoreInteractions(tagService);
+        verifyNoMoreInteractions(dispatchAsync);
     }
 }

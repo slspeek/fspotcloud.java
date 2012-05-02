@@ -40,7 +40,7 @@ public class OpenIdUserModuleTest {
      */
     @Test
     public void testConfigure() {
-        //        Injector injector = Guice.createInjector(
-        //                new OpenIdUserModule("foo@bar.org"));
+        Injector injector = Guice.createInjector(
+                new OpenIdUserModule("foo@bar.org"));
     }
 }

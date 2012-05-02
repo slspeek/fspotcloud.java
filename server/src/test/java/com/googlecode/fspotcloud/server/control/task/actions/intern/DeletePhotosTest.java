@@ -19,10 +19,9 @@ package com.googlecode.fspotcloud.server.control.task.actions.intern;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
 
 import org.apache.commons.lang.SerializationUtils;
-import static org.testng.AssertJUnit.assertNotNull;
+import static org.junit.Assert.assertNotNull;
 
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,11 +29,6 @@ import java.util.List;
 
 
 public class DeletePhotosTest {
-    @BeforeMethod
-    protected void setUp() throws Exception {
-    }
-
-
     @Test
     public void testSerialization() {
         PhotoInfo photoInfoA = new PhotoInfo("", "", new Date(10));

@@ -26,18 +26,15 @@ import com.googlecode.fspotcloud.shared.dashboard.actions.GetMetaDataResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 
 import net.customware.gwt.dispatch.shared.DispatchException;
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 
 import org.mockito.MockitoAnnotations;
-
-import org.testng.Assert;
-import org.testng.AssertJUnit;
-import static org.testng.AssertJUnit.assertNull;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 
 public class GetMetaDataHandlerTest {
@@ -51,8 +48,8 @@ public class GetMetaDataHandlerTest {
     IAdminPermission adminPermission;
     PeerDatabase pd;
 
-    @BeforeMethod
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         pd = new PeerDatabaseEntity();
         handler = new GetMetaDataHandler(
@@ -67,8 +64,8 @@ public class GetMetaDataHandlerTest {
 
         GetMetaDataResult result = handler.execute(action, null);
         assertNull(result.getInstanceName());
-        AssertJUnit.assertEquals(0, result.getPeerPhotoCount());
-        AssertJUnit.assertEquals(100, result.getPendingCommandCount());
+        assertEquals(0, result.getPeerPhotoCount());
+        assertEquals(100, result.getPendingCommandCount());
     }
 
 
@@ -80,14 +77,14 @@ public class GetMetaDataHandlerTest {
 
         try {
             GetMetaDataResult result = handler.execute(action, null);
-            Assert.fail();
+            fail();
         } catch (DispatchException e) {
         }
     }
 
 
-    @Test(expectedExceptions = SecurityException.class)
-    void forbidden() throws DispatchException {
+    @Test(expected = SecurityException.class)
+    public void forbidden() throws DispatchException {
         doThrow(new SecurityException()).when(adminPermission)
             .checkAdminPermission();
 

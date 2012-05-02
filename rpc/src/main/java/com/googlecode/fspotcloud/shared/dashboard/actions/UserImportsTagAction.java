@@ -16,8 +16,9 @@
  */
 package com.googlecode.fspotcloud.shared.dashboard.actions;
 
-import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Action;
+
+import java.io.Serializable;
 
 
 public class UserImportsTagAction implements Action<VoidResult>, Serializable {

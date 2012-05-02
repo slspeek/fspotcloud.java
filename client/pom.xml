@@ -4,7 +4,7 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-11</version>
+        <version>0.12-12</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>client</artifactId>
@@ -15,7 +15,7 @@
         <dependency>
             <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>rpc</artifactId>
-            <version>0.12-11</version>
+            <version>0.12-12</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -48,8 +48,13 @@
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>r09</version>
+            <artifactId>guava-gwt</artifactId>
+            <version>11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>1.3.9</version>
         </dependency>
     </dependencies>
     <build>
@@ -73,8 +78,8 @@
                         <configuration>
                             <target>
                                 <exec failonerror="true" executable="${basedir}/convert.sh">
-                                    <arg value="${project.version}" />
-                                    <arg value="${icon.size}" />
+                                    <arg value="${project.version}"/>
+                                    <arg value="${icon.size}"/>
                                 </exec>
                             </target>
                         </configuration>
@@ -88,7 +93,7 @@
                         <configuration>
                             <target>
                                 <exec failonerror="true" executable="${basedir}/write_version.sh">
-                                    <arg value="${project.version}" />
+                                    <arg value="${project.version}"/>
                                 </exec>
                             </target>
                         </configuration>
@@ -101,7 +106,7 @@
                         <phase>clean</phase>
                         <configuration>
                             <tasks>
-                                <delete dir="${basedir}/war" includeemptydirs="true" />
+                                <delete dir="${basedir}/war" includeemptydirs="true"/>
                             </tasks>
                         </configuration>
                         <goals>
@@ -152,7 +157,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
-                    <classesDirectory>${project.build.directory}					
+                    <classesDirectory>${project.build.directory}
                     </classesDirectory>
                     <includes>
                         <include>classes/*.html</include>
@@ -162,7 +167,7 @@
                     </includes>
                 </configuration>
             </plugin>
-			<!-- All the fantastical settings that GWT needs -->
+            <!-- All the fantastical settings that GWT needs -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
@@ -215,9 +220,9 @@
                         <compileSourcesArtifact>fspotcloud:rpc</compileSourcesArtifact>
                     </compileSourcesArtifacts>
                     <logLevel>INFO</logLevel>
-					<!-- match -Dgae.port -->
+                    <!-- match -Dgae.port -->
                     <port>${gae.port}</port>
-					<!-- This must point to your GWT modules! -->
+                    <!-- This must point to your GWT modules! -->
                     <compileTargets>
                         <value>fspotcloud.FSpotCloud</value>
                         <value>fspotcloud.dashboard</value>

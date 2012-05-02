@@ -33,10 +33,7 @@ import com.googlecode.fspotcloud.peer.CopyDatabase;
 import com.googlecode.fspotcloud.peer.ImageData;
 import com.googlecode.fspotcloud.peer.db.Data;
 import com.googlecode.fspotcloud.peer.inject.PeerActionsModule;
-import com.googlecode.fspotcloud.server.admin.handler.UserDeletesAllHandler;
-import com.googlecode.fspotcloud.server.admin.handler.UserImportsTagHandler;
-import com.googlecode.fspotcloud.server.admin.handler.UserSynchronizesPeerHandler;
-import com.googlecode.fspotcloud.server.admin.handler.UserUnImportsTagHandler;
+import com.googlecode.fspotcloud.server.admin.handler.*;
 import com.googlecode.fspotcloud.server.control.task.TaskActionsModule;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Photos;
@@ -45,6 +42,7 @@ import com.googlecode.fspotcloud.shared.dashboard.actions.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.UserSynchronizesPeerAction;
 import com.googlecode.fspotcloud.shared.dashboard.actions.UserUnImportsTagAction;
+import com.googlecode.fspotcloud.shared.main.actions.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 import com.googlecode.fspotcloud.user.LenientUserModule;
 import com.googlecode.fspotcloud.user.LenientUserService;
@@ -114,6 +112,7 @@ class MyAdminActionsModule extends ActionHandlerModule {
             UserUnImportsTagAction.class, UserUnImportsTagHandler.class);
         bindHandler(
             UserSynchronizesPeerAction.class, UserSynchronizesPeerHandler.class);
+        bindHandler(GetTagTreeAction.class, GetTagTreeHandler.class);
     }
 }
 

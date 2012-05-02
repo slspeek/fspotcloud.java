@@ -31,6 +31,10 @@ import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
 import net.customware.gwt.dispatch.shared.DispatchException;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -40,11 +44,6 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import org.mockito.MockitoAnnotations;
-
-import org.testng.AssertJUnit;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -76,8 +75,8 @@ public class DeletePhotosHandlerTest {
     List<String> tagIdListB = ImmutableList.of("1", "3");
     DeleteTagPhotosHandler handler;
 
-    @BeforeMethod
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         handler = new DeleteTagPhotosHandler(
                 MAX_DELETE_TICKS, dispatchAsync, photos, tagManager);
@@ -115,18 +114,18 @@ public class DeletePhotosHandlerTest {
      */
     @Test
     public void testExecute() throws DispatchException {
-        AssertJUnit.assertEquals(2, tag.getCachedPhotoList().size());
+        assertEquals(2, tag.getCachedPhotoList().size());
         handler.execute(new DeleteTagPhotosAction(TAG_ID, infoList), null);
         verify(photos).delete(photoA);
         verify(photos).find(ID_A);
-        AssertJUnit.assertEquals(1, tag.getCachedPhotoList().size());
+        assertEquals(1, tag.getCachedPhotoList().size());
         verifyNoMoreInteractions(photos);
         verify(dispatchAsync).execute(nextCallCaptor.capture());
-        AssertJUnit.assertEquals(TAG_ID, nextCallCaptor.getValue().getTagId());
+        assertEquals(TAG_ID, nextCallCaptor.getValue().getTagId());
         handler.execute(new DeleteTagPhotosAction(TAG_ID, infoList), null);
         verifyNoMoreInteractions(dispatchAsync);
         verify(photos).find(ID_B);
         verifyNoMoreInteractions(photos);
-        AssertJUnit.assertEquals(1, tag.getCachedPhotoList().size());
+        assertEquals(1, tag.getCachedPhotoList().size());
     }
 }

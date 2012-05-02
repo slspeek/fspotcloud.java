@@ -29,8 +29,11 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.*;
+import com.googlecode.fspotcloud.shared.main.actions.GetTagTreeAction;
+import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaDataAction;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
+import com.googlecode.fspotcloud.shared.tag.TagNode;
 
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
@@ -81,6 +84,11 @@ public class PeerServerIntegrationTest {
     }
 
 
+    private TagTreeResult fetchTagTree() throws DispatchException {
+        return dispatch.execute(new GetTagTreeAction());
+    }
+
+
     private void setUpPeer() throws SQLException {
         setPeerTestDatabase("photos.db");
     }
@@ -90,17 +98,50 @@ public class PeerServerIntegrationTest {
     public void tearDown() throws Exception {
         tags.deleteBulk(1000);
         photos.deleteBulk(1000);
+        peers.deleteBulk(1000);
         // Make this the call to TestNgGuiceBerry.tearDown as late as possible
         toTearDown.tearDown();
     }
 
 
     @Test
-    public void testImportAllTags() throws Exception {
+    public void getTagTreeSimple() throws Exception {
+        setUpPeer();
+        TagTreeResult result = fetchTagTree();
+        assertTrue(result.getTree().isEmpty());
+        
+    }
+
+
+    @Test
+    public void getTagTreeAfterOneSynchronize() throws Exception {
         setUpPeer();
 
-        PeerDatabase peer = peers.get();
-        peers.save(peer);
+        TagTreeResult result = fetchTagTree();
+        assertTrue(result.getTree().isEmpty());
+
+        synchronizePeer();
+        result = fetchTagTree();
+        //As nothing is imported yet
+        assertTrue(result.getTree().isEmpty());
+
+        importTag("3");
+        result = fetchTagTree();
+
+        TagNode mac = result.getTree().get(0);
+        assertEquals("Mac", mac.getTagName());
+
+        setPeerTestDatabase("photos_smaller.db");
+        synchronizePeer();
+        result = fetchTagTree();
+        mac = result.getTree().get(0);
+        assertEquals("Macintosh", mac.getTagName());
+    }
+
+
+    @Test
+    public void testImportAllTags() throws Exception {
+        setUpPeer();
         synchronizePeer();
         verifyAllTagsAreLoaded();
     }
@@ -190,7 +231,7 @@ public class PeerServerIntegrationTest {
         verfiyFurnitureIsLoaded();
         setPeerTestDatabase("photos_smaller.db");
         synchronizePeer();
-        //verifyImagesWereRemoved();
+        verifyImagesWereRemoved();
         photoInfo.assertPhotosRemoved("6");
         verfiyFurnitureFirstPhaseIsLoaded();
     }

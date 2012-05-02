@@ -22,18 +22,23 @@ import com.google.common.collect.ImmutableSortedSet;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import com.googlecode.fspotcloud.rpc.TagServiceAsync;
+import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfoStore;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
+
+import net.customware.gwt.dispatch.client.DispatchAsync;
+import net.customware.gwt.dispatch.shared.Action;
+import net.customware.gwt.dispatch.shared.Result;
 
 import java.util.Date;
 import java.util.List;
 
 
-public class TagServiceAsyncTestImpl implements TagServiceAsync {
+public class DispatchAsyncTestImpl implements DispatchAsync {
     private List<TagNode> tagTreeData;
 
-    public TagServiceAsyncTestImpl() {
+    public DispatchAsyncTestImpl() {
         initData();
     }
 
@@ -113,18 +118,10 @@ public class TagServiceAsyncTestImpl implements TagServiceAsync {
     }
 
 
-    public void keysForTag(String tagId, AsyncCallback<List<String>> callback) {
-        throw new UnsupportedOperationException();
-    }
-
-
-    public void loadTagTree(AsyncCallback<List<TagNode>> callback) {
-        callback.onSuccess(tagTreeData);
-    }
-
-
     @Override
-    public void loadAdminTagTree(AsyncCallback<List<TagNode>> callback) {
-        callback.onSuccess(tagTreeData);
+    public <A extends Action<R>, R extends Result> void execute(
+        A action, AsyncCallback<R> _callback) {
+        AsyncCallback<TagTreeResult> callback = (AsyncCallback<TagTreeResult>)_callback;
+        callback.onSuccess(new TagTreeResult(tagTreeData));
     }
 }

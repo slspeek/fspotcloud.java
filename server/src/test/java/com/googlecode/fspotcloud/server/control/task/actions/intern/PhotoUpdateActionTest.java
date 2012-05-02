@@ -19,11 +19,10 @@ package com.googlecode.fspotcloud.server.control.task.actions.intern;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoUpdate;
 
 import org.apache.commons.lang.SerializationUtils;
+import static org.junit.Assert.assertEquals;
 
-import org.testng.AssertJUnit;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +31,8 @@ import java.util.List;
 public class PhotoUpdateActionTest {
     PhotoUpdateAction action;
 
-    @BeforeMethod
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         PhotoUpdate update = new PhotoUpdate("1");
         List<PhotoUpdate> list = new ArrayList<PhotoUpdate>();
         list.add(update);
@@ -43,7 +42,7 @@ public class PhotoUpdateActionTest {
 
     @Test
     public void testGetUpdates() {
-        AssertJUnit.assertEquals(1, action.getUpdates().size());
+        assertEquals(1, action.getUpdates().size());
     }
 
 

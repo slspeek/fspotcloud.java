@@ -26,16 +26,15 @@ import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoData;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import org.testng.AssertJUnit;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
@@ -66,8 +65,8 @@ public class PhotoDataCallbackTest {
     private ArrayList<PhotoData> dataList;
     private Tag tag1;
 
-    @BeforeMethod
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         photoManager = mock(Photos.class);
         tagManager = mock(Tags.class);
         photo1 = new PhotoEntity();
@@ -103,18 +102,18 @@ public class PhotoDataCallbackTest {
     public void testOnSuccess() {
         peer.setCachedTagTree(new ArrayList<TagNode>());
         callback.onSuccess(result);
-        AssertJUnit.assertEquals(date, photo1.getDate());
-        AssertJUnit.assertEquals(DESCRIPTION, photo1.getDescription());
+        assertEquals(date, photo1.getDate());
+        assertEquals(DESCRIPTION, photo1.getDescription());
         verify(photoManager).saveAll(argumentCaptor.capture());
-        AssertJUnit.assertEquals(photo1, argumentCaptor.getValue().get(0));
-        AssertJUnit.assertEquals(IMAGE_DATA, photo1.getImage());
-        AssertJUnit.assertEquals(THUMB_DATA, photo1.getThumb());
-        AssertJUnit.assertTrue(photo1.isThumbLoaded());
-        AssertJUnit.assertTrue(photo1.isImageLoaded());
+        assertEquals(photo1, argumentCaptor.getValue().get(0));
+        assertEquals(IMAGE_DATA, photo1.getImage());
+        assertEquals(THUMB_DATA, photo1.getThumb());
+        assertTrue(photo1.isThumbLoaded());
+        assertTrue(photo1.isImageLoaded());
 
         PhotoInfo info = tag1.getCachedPhotoList().first();
-        AssertJUnit.assertEquals(PHOTO_ID, info.getId());
-        AssertJUnit.assertEquals(VERSION, info.getVersion());
-        AssertJUnit.assertNull(peer.getCachedTagTree());
+        assertEquals(PHOTO_ID, info.getId());
+        assertEquals(VERSION, info.getVersion());
+        assertNull(peer.getCachedTagTree());
     }
 }
