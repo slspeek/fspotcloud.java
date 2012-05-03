@@ -21,7 +21,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.googlecode.fspotcloud.client.data.DataManager;
 import com.googlecode.fspotcloud.client.data.DataManagerImpl;
 import com.googlecode.fspotcloud.client.main.DispatchAsyncTestImpl;
-import com.googlecode.fspotcloud.client.main.TagServiceAsyncTestImpl;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Direction;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Unit;
@@ -35,8 +34,7 @@ import org.jmock.Mockery;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 public class NavigatorImplTest extends TestCase {
-    DataManager dataManager = new DataManagerImpl(
-            new TagServiceAsyncTestImpl(), new DispatchAsyncTestImpl());
+    DataManager dataManager = new DataManagerImpl(new DispatchAsyncTestImpl());
     PlaceCalculator placeCalculator = new PlaceCalculator();
     Navigator navigator;
     Mockery context;

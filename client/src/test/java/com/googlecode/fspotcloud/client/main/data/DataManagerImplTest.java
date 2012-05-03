@@ -19,7 +19,6 @@ package com.googlecode.fspotcloud.client.main.data;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import com.googlecode.fspotcloud.client.data.DataManagerImpl;
-import com.googlecode.fspotcloud.rpc.TagServiceAsync;
 import com.googlecode.fspotcloud.shared.main.actions.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
@@ -27,7 +26,6 @@ import com.googlecode.fspotcloud.shared.tag.TagNode;
 import junit.framework.TestCase;
 
 import net.customware.gwt.dispatch.client.DispatchAsync;
-import net.customware.gwt.dispatch.shared.Action;
 
 import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.*;
@@ -43,7 +41,6 @@ public class DataManagerImplTest extends TestCase {
     private static final String ID = "1";
     private static final String WRONG_ID = "2";
     private DataManagerImpl dataManager;
-    TagServiceAsync tagService;
     AsyncCallback<List<TagNode>> firstCall;
     AsyncCallback<TagNode> secondCall;
     AsyncCallback<List<TagNode>> thirdCall;
@@ -55,12 +52,11 @@ public class DataManagerImplTest extends TestCase {
 
     @Override
     protected void setUp() throws Exception {
-        tagService = mock(TagServiceAsync.class);
         firstCall = mock(AsyncCallback.class);
         secondCall = mock(AsyncCallback.class);
         thirdCall = mock(AsyncCallback.class);
         dispatchAsync = mock(DispatchAsync.class);
-        dataManager = new DataManagerImpl(tagService, dispatchAsync);
+        dataManager = new DataManagerImpl(dispatchAsync);
         remoteCallCaptor = (ArgumentCaptor<AsyncCallback<List<TagNode>>>)(Object)ArgumentCaptor
             .forClass(AsyncCallback.class);
         newRemoteCallCaptor = (ArgumentCaptor<AsyncCallback<TagTreeResult>>)(Object)ArgumentCaptor

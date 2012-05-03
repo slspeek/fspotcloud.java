@@ -107,9 +107,9 @@ public class PeerServerIntegrationTest {
     @Test
     public void getTagTreeSimple() throws Exception {
         setUpPeer();
+
         TagTreeResult result = fetchTagTree();
         assertTrue(result.getTree().isEmpty());
-        
     }
 
 

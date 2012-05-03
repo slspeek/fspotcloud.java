@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.client.main.view;
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.view.client.TreeViewModel.NodeInfo;
 
-import com.googlecode.fspotcloud.client.main.TagServiceAsyncTestImpl;
+import com.googlecode.fspotcloud.client.main.DispatchAsyncTestImpl;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
 
 import junit.framework.TestCase;
@@ -34,7 +34,7 @@ public class TagTreeModelTest extends TestCase {
     private TagTreeModel model;
 
     public TagTreeModelTest() {
-        TagServiceAsyncTestImpl service = new TagServiceAsyncTestImpl();
+        DispatchAsyncTestImpl service = new DispatchAsyncTestImpl();
         data = service.initData();
     }
 

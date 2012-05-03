@@ -18,7 +18,6 @@ package com.googlecode.fspotcloud.server.model.tag;
 
 import com.google.common.collect.ImmutableList;
 
-import com.googlecode.fspotcloud.server.main.TreeBuilder;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
 import static org.junit.Assert.*;
 

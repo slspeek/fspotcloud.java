@@ -22,7 +22,6 @@ import com.google.gwt.view.client.TreeViewModel;
 import com.googlecode.fspotcloud.client.data.DataManager;
 import com.googlecode.fspotcloud.client.data.DataManagerImpl;
 import com.googlecode.fspotcloud.client.main.DispatchAsyncTestImpl;
-import com.googlecode.fspotcloud.client.main.TagServiceAsyncTestImpl;
 import com.googlecode.fspotcloud.client.main.view.api.TreeSelectionHandlerInterface;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
@@ -38,8 +37,7 @@ public class TreePresenterImplTest extends TestCase {
     TreeView.TreePresenter presenter;
     TreeSelectionHandlerInterface handler;
     TreeView treeView;
-    DataManager dataManager = new DataManagerImpl(
-            new TagServiceAsyncTestImpl(), new DispatchAsyncTestImpl());
+    DataManager dataManager = new DataManagerImpl(new DispatchAsyncTestImpl());
     SingleSelectionModel<TagNode> model = new SingleSelectionModel<TagNode>();
 
     @Override

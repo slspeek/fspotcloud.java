@@ -21,7 +21,6 @@ import com.google.common.collect.ImmutableSortedSet;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import com.googlecode.fspotcloud.rpc.TagServiceAsync;
 import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
 import com.googlecode.fspotcloud.shared.photo.PhotoInfoStore;

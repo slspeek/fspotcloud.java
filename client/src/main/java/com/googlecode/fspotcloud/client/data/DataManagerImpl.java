@@ -16,19 +16,20 @@
  */
 package com.googlecode.fspotcloud.client.data;
 
+import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Maps.newHashMap;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import com.google.inject.Inject;
 
-import com.googlecode.fspotcloud.rpc.TagServiceAsync;
+import com.googlecode.fspotcloud.shared.dashboard.actions.GetAdminTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.actions.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
 
 import net.customware.gwt.dispatch.client.DispatchAsync;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -37,10 +38,9 @@ import java.util.logging.Logger;
 public class DataManagerImpl implements DataManager {
     private static final Logger log = Logger.getLogger(
             DataManagerImpl.class.getName());
-    private final TagServiceAsync tagService;
     private final IndexingUtil indexingUtil;
     private boolean isCalled = false;
-    private List<Runnable> queue = new ArrayList<Runnable>();
+    private List<Runnable> queue = newArrayList();
     private Runnable callbackHook = new Runnable() {
             @Override
             public void run() {
@@ -53,15 +53,12 @@ public class DataManagerImpl implements DataManager {
         };
 
     private List<TagNode> tagTreeData = null;
-    private List<TagNode> adminTagTreeData = null;
-    private final Map<String, TagNode> tagNodeIndex = new HashMap<String, TagNode>();
-    private final Map<String, TagNode> adminTagNodeIndex = new HashMap<String, TagNode>();
+    private final Map<String, TagNode> tagNodeIndex = newHashMap();
+    private final Map<String, TagNode> adminTagNodeIndex = newHashMap();
     private final DispatchAsync dispatchAsync;
 
     @Inject
-    public DataManagerImpl(
-        TagServiceAsync tagService, DispatchAsync dispatchAsync) {
-        this.tagService = tagService;
+    public DataManagerImpl(DispatchAsync dispatchAsync) {
         this.dispatchAsync = dispatchAsync;
         this.indexingUtil = new IndexingUtil();
     }
@@ -159,23 +156,19 @@ public class DataManagerImpl implements DataManager {
 
 
     public void getAdminTagTree(final AsyncCallback<List<TagNode>> callback) {
-        if (adminTagTreeData != null) {
-            callback.onSuccess(adminTagTreeData);
-        } else {
-            tagService.loadAdminTagTree(
-                new AsyncCallback<List<TagNode>>() {
-                    public void onFailure(Throwable caught) {
-                        log.warning(caught.getLocalizedMessage());
-                        callback.onFailure(caught);
-                    }
+        dispatchAsync.execute(
+            new GetAdminTagTreeAction(),
+            new AsyncCallback<TagTreeResult>() {
+                public void onFailure(Throwable caught) {
+                    callback.onFailure(caught);
+                }
 
 
-                    public void onSuccess(List<TagNode> adminTagTreeData) {
-                        indexingUtil.rebuildTagNodeIndex(
-                            adminTagNodeIndex, adminTagTreeData);
-                        callback.onSuccess(adminTagTreeData);
-                    }
-                });
-        }
+                public void onSuccess(TagTreeResult result) {
+                    indexingUtil.rebuildTagNodeIndex(
+                        adminTagNodeIndex, result.getTree());
+                    callback.onSuccess(result.getTree());
+                }
+            });
     }
 }

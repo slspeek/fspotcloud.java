@@ -14,20 +14,20 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.rpc;
+package com.googlecode.fspotcloud.server.control.task.inject;
 
-import com.google.gwt.user.client.rpc.RemoteService;
-import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.google.inject.AbstractModule;
+import com.google.inject.name.Names;
 
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
-import java.util.List;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
 
 
-/**
- * The client side stub for the RPC service.
- */
-@RemoteServiceRelativePath("tag")
-public interface TagService extends RemoteService {
-    List<TagNode> loadAdminTagTree();
+public class TaskModule extends AbstractModule {
+    @Override
+    protected void configure() {
+        bind(ImageSpecs.class).annotatedWith(Names.named("defaultImageSpecs"))
+            .toInstance(new ImageSpecs(1024, 768, 512, 378));
+        bind(Integer.class).annotatedWith(Names.named("maxPhotoTicks"))
+            .toInstance(7);
+    }
 }
