@@ -14,20 +14,14 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.server.control.task;
+package com.googlecode.fspotcloud.shared.dashboard.actions;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.name.Names;
+import com.googlecode.fspotcloud.shared.main.actions.*;
 
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
+import net.customware.gwt.dispatch.shared.Action;
 
 
-public class TaskModule extends AbstractModule {
-    @Override
-    protected void configure() {
-        bind(ImageSpecs.class).annotatedWith(Names.named("defaultImageSpecs"))
-            .toInstance(new ImageSpecs(1024, 768, 512, 378));
-        bind(Integer.class).annotatedWith(Names.named("maxPhotoTicks"))
-            .toInstance(7);
+public class GetAdminTagTreeAction implements Action<TagTreeResult> {
+    public GetAdminTagTreeAction() {
     }
 }

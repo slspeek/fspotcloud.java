@@ -29,4 +29,13 @@ public class DeleteAllPhotosAction implements Action<VoidResult>, Serializable {
     public DeleteAllPhotosAction() {
         super();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof DeleteAllPhotosAction) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

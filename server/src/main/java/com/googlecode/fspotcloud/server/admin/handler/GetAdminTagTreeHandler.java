@@ -16,13 +16,13 @@
  */
 package com.googlecode.fspotcloud.server.admin.handler;
 
-import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.server.model.tag.TreeBuilder;
-import com.googlecode.fspotcloud.shared.main.actions.GetTagTreeAction;
+import com.googlecode.fspotcloud.shared.dashboard.actions.GetAdminTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
+import com.googlecode.fspotcloud.user.IAdminPermission;
 
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
@@ -34,40 +34,30 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 
 
-public class GetTagTreeHandler extends SimpleActionHandler<GetTagTreeAction, TagTreeResult> {
+public class GetAdminTagTreeHandler extends SimpleActionHandler<GetAdminTagTreeAction, TagTreeResult> {
     @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(
-            GetTagTreeHandler.class.getName());
-    private final PeerDatabases peerDatabases;
+            GetAdminTagTreeHandler.class.getName());
     private final Tags tagManager;
+    private final IAdminPermission adminPermission;
 
     @Inject
-    public GetTagTreeHandler(PeerDatabases peerDatabases, Tags tagManager) {
-        this.peerDatabases = peerDatabases;
+    public GetAdminTagTreeHandler(
+        Tags tagManager, IAdminPermission adminPermission) {
         this.tagManager = tagManager;
+        this.adminPermission = adminPermission;
     }
 
     @Override
     public TagTreeResult execute(
-        GetTagTreeAction action, ExecutionContext context)
+        GetAdminTagTreeAction action, ExecutionContext context)
         throws DispatchException {
-        PeerDatabase p = peerDatabases.get();
+        adminPermission.checkAdminPermission();
 
-        if (p.getCachedTagTree() != null) {
-            log.info("Got the tree from cache HIT");
+        List<TagNode> tags = tagManager.getTags();
+        TreeBuilder builder = new TreeBuilder(tags);
+        List<TagNode> tree = builder.getRoots();
 
-            return new TagTreeResult(p.getCachedTagTree());
-        } else {
-            log.info("Missed the cache; building");
-
-            List<TagNode> tags = tagManager.getTags();
-            TreeBuilder builder = new TreeBuilder(tags);
-            List<TagNode> tree = builder.getPublicRoots();
-            p.setCachedTagTree(tree);
-            log.info("Builded, about to save");
-            peerDatabases.save(p);
-
-            return new TagTreeResult(tree);
-        }
+        return new TagTreeResult(tree);
     }
 }

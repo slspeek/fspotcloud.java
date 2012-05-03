@@ -29,4 +29,13 @@ public class DeleteAllTagsAction implements Action<VoidResult>, Serializable {
     public DeleteAllTagsAction() {
         super();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof DeleteAllTagsAction) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -25,8 +25,8 @@ import com.google.inject.name.Names;
 
 import com.googlecode.botdispatch.controller.inject.ControllerServletModule;
 
-import com.googlecode.fspotcloud.server.control.task.TaskActionsModule;
-import com.googlecode.fspotcloud.server.control.task.TaskModule;
+import com.googlecode.fspotcloud.server.control.task.inject.TaskActionsModule;
+import com.googlecode.fspotcloud.server.control.task.inject.TaskModule;
 
 
 /**
