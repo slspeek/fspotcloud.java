@@ -36,8 +36,8 @@ import javax.inject.Inject;
 
 public class GetAdminTagTreeHandler extends SimpleActionHandler<GetAdminTagTreeAction, TagTreeResult> {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            GetAdminTagTreeHandler.class.getName());
+    @Inject
+    private Logger log;
     private final Tags tagManager;
     private final IAdminPermission adminPermission;
 

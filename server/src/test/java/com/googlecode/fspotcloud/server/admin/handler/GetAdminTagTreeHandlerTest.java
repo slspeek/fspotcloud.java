@@ -22,20 +22,11 @@ package com.googlecode.fspotcloud.server.admin.handler;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTagsAction;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.actions.GetAdminTagTreeAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserDeletesAllAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
 import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
 import com.googlecode.fspotcloud.shared.tag.TagNode;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-
-import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
-import net.customware.gwt.dispatch.server.ExecutionContext;
 
 import org.jukito.JukitoRunner;
 

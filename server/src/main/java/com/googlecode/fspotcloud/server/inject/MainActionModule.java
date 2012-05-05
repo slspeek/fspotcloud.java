@@ -16,15 +16,15 @@
  */
 package com.googlecode.fspotcloud.server.inject;
 
-import com.googlecode.fspotcloud.server.admin.handler.GetTagTreeHandler;
-import com.googlecode.fspotcloud.server.main.user.GetUserInfoHandler;
+import com.googlecode.fspotcloud.server.main.handler.GetTagTreeHandler;
+import com.googlecode.fspotcloud.server.main.handler.GetUserInfoHandler;
 import com.googlecode.fspotcloud.shared.main.actions.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.actions.GetUserInfo;
 
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
 
-public class UserActionModule extends ActionHandlerModule {
+public class MainActionModule extends ActionHandlerModule {
     @Override
     protected void configureHandlers() {
         bindHandler(GetUserInfo.class, GetUserInfoHandler.class);

@@ -14,7 +14,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.server.control.task.photoupdate;
+package com.googlecode.fspotcloud.server.control.task.handler;
 
 import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;

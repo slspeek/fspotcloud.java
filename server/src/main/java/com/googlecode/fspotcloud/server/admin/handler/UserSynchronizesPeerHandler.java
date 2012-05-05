@@ -45,17 +45,17 @@ import java.util.List;
 
 public class UserSynchronizesPeerHandler extends SimpleActionHandler<UserSynchronizesPeerAction, VoidResult> {
     private final ControllerDispatchAsync dispatch;
-    private final IAdminPermission IAdminPermission;
+    private final IAdminPermission adminPermission;
     private final TaskQueueDispatch taskQueueDispatch;
     private final Tags tagManager;
 
     @Inject
     public UserSynchronizesPeerHandler(
-        ControllerDispatchAsync dispatch, IAdminPermission IAdminPermission,
+        ControllerDispatchAsync dispatch, IAdminPermission adminPermission,
         TaskQueueDispatch taskQueueDispatch, Tags tagManager) {
         super();
         this.dispatch = dispatch;
-        this.IAdminPermission = IAdminPermission;
+        this.adminPermission = adminPermission;
         this.taskQueueDispatch = taskQueueDispatch;
         this.tagManager = tagManager;
     }
@@ -64,14 +64,12 @@ public class UserSynchronizesPeerHandler extends SimpleActionHandler<UserSynchro
     public VoidResult execute(
         UserSynchronizesPeerAction action, ExecutionContext context)
         throws DispatchException {
-        IAdminPermission.checkAdminPermission();
+        adminPermission.checkAdminPermission();
 
         try {
             GetPeerMetaDataAction metaAction = new GetPeerMetaDataAction();
-            SerializableAsyncCallback<PeerMetaDataResult> callback = new PeerMetaDataCallback(
-                    null, null);
+            PeerMetaDataCallback callback = new PeerMetaDataCallback();
             dispatch.execute(metaAction, callback);
-
             taskQueueDispatch.execute(
                 new ImportManyTagsPhotosAction(getImportTagIds()));
         } catch (Exception e) {

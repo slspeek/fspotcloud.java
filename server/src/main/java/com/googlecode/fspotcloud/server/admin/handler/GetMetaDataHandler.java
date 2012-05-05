@@ -31,16 +31,11 @@ import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-import java.util.logging.Logger;
-
 
 public class GetMetaDataHandler extends SimpleActionHandler<GetMetaDataAction, GetMetaDataResult> {
-    @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            GetMetaDataHandler.class.getName());
     private final Commands commandManager;
     private final PeerDatabases defaultPeer;
-    private final IAdminPermission IAdminPermission;
+    private final IAdminPermission adminPermission;
 
     @Inject
     public GetMetaDataHandler(
@@ -49,14 +44,14 @@ public class GetMetaDataHandler extends SimpleActionHandler<GetMetaDataAction, G
         super();
         this.commandManager = commandManager;
         this.defaultPeer = defaultPeer;
-        this.IAdminPermission = IAdminPermission;
+        this.adminPermission = IAdminPermission;
     }
 
     @Override
     public GetMetaDataResult execute(
         GetMetaDataAction action, ExecutionContext context)
         throws DispatchException {
-        IAdminPermission.checkAdminPermission();
+        adminPermission.checkAdminPermission();
 
         GetMetaDataResult dataInfo = new GetMetaDataResult();
 

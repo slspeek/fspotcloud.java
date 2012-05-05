@@ -32,13 +32,14 @@ import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
 import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaDataResult> {
-    private static final Logger log = Logger.getLogger(
-            PeerMetaDataCallback.class.getName());
     private static final long serialVersionUID = 1851403859917750767L;
+    @Inject
+    Logger log;
     @Inject
     private transient PeerDatabases defaultPeer;
     @Inject
@@ -46,23 +47,20 @@ public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaD
     @Inject
     private transient ControllerDispatchAsync dispatchAsync;
 
-    public PeerMetaDataCallback(
-        PeerDatabases defaultPeer, ControllerDispatchAsync dispatchAsync) {
+    public PeerMetaDataCallback() {
         super();
-        this.defaultPeer = defaultPeer;
-        this.dispatchAsync = dispatchAsync;
     }
 
     @Override
     public void onSuccess(PeerMetaDataResult result) {
-        log.info("On success: " + result);
+        log.log(Level.INFO, "On success: {0}", result);
 
         int count = result.getPhotoCount();
         int tagCount = result.getTagCount();
         PeerDatabase p = defaultPeer.get();
         dispatchAsync.execute(
             new GetPeerUpdateInstructionsAction(getTagData()),
-            new PeerUpdateInstructionsCallback(null));
+            new PeerUpdateInstructionsCallback());
         p.setPeerPhotoCount(count);
         p.setTagCount(tagCount);
         defaultPeer.save(p);
@@ -71,6 +69,7 @@ public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaD
 
     @Override
     public void onFailure(Throwable caught) {
+        log.log(Level.SEVERE, "Error on peer-component: ", caught);
     }
 
 
