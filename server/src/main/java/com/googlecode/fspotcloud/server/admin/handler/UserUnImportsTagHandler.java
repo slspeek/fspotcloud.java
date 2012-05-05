@@ -46,17 +46,17 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
     private final Tags tagManager;
     private final TaskQueueDispatch dispatchAsync;
     private final PeerDatabases peerDatabases;
-    private final IAdminPermission IAdminPermission;
+    private final IAdminPermission adminPermission;
 
     @Inject
     public UserUnImportsTagHandler(
         Tags tagManager, TaskQueueDispatch dispatchAsync,
-        PeerDatabases peerDatabases, IAdminPermission IAdminPermission) {
+        PeerDatabases peerDatabases, IAdminPermission adminPermission) {
         super();
         this.tagManager = tagManager;
         this.dispatchAsync = dispatchAsync;
         this.peerDatabases = peerDatabases;
-        this.IAdminPermission = IAdminPermission;
+        this.adminPermission = adminPermission;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
         throws DispatchException {
         log.info("Executing: " + action.getTagId());
 
-        IAdminPermission.checkAdminPermission();
+        adminPermission.checkAdminPermission();
 
         try {
             String tagId = action.getTagId();

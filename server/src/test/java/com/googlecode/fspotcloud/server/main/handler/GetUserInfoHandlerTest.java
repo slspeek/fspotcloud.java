@@ -18,7 +18,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.googlecode.fspotcloud.server.main.user;
+package com.googlecode.fspotcloud.server.main.handler;
 
 import com.googlecode.fspotcloud.shared.main.actions.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.actions.UserInfo;
@@ -26,30 +26,25 @@ import com.googlecode.fspotcloud.user.UserService;
 
 import net.customware.gwt.dispatch.shared.DispatchException;
 
+import org.jukito.JukitoRunner;
+
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-import org.mockito.Mock;
+import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
 
-import org.mockito.MockitoAnnotations;
+import javax.inject.Inject;
 
 
+@RunWith(JukitoRunner.class)
 public class GetUserInfoHandlerTest {
+    @Inject
     GetUserInfoHandler handler;
-    @Mock
-    UserService service;
-
-    @Before
-    public void mockit() {
-        MockitoAnnotations.initMocks(this);
-        handler = new GetUserInfoHandler(service);
-    }
-
 
     @Test
-    public void execute() throws DispatchException {
+    public void executeUserLoggedOn(UserService service)
+        throws DispatchException {
         when(service.isUserLoggedIn()).thenReturn(Boolean.TRUE);
         when(service.isUserAdmin()).thenReturn(Boolean.FALSE);
         when(service.createLoginURL("later")).thenReturn("login_url");
@@ -63,7 +58,8 @@ public class GetUserInfoHandlerTest {
 
 
     @Test
-    public void execute2() throws DispatchException {
+    public void executeNoUserLoggedOn(UserService service)
+        throws DispatchException {
         when(service.isUserLoggedIn()).thenReturn(Boolean.FALSE);
         when(service.isUserAdmin()).thenReturn(Boolean.FALSE);
         when(service.createLoginURL("later")).thenReturn("login_url");

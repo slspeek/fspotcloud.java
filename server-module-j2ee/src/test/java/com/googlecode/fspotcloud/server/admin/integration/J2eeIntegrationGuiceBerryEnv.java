@@ -34,6 +34,7 @@ import com.googlecode.fspotcloud.peer.db.Data;
 import com.googlecode.fspotcloud.peer.inject.PeerActionsModule;
 import com.googlecode.fspotcloud.server.admin.handler.*;
 import com.googlecode.fspotcloud.server.control.task.inject.TaskActionsModule;
+import com.googlecode.fspotcloud.server.main.handler.GetTagTreeHandler;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tags;

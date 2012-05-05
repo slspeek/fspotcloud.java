@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 
 
 public class TagUpdateInstructionsCallback implements SerializableAsyncCallback<TagUpdateInstructionsResult> {
-    protected static final Logger log = Logger.getLogger(
+    private static final Logger log = Logger.getLogger(
             TagUpdateInstructionsCallback.class.getName());
     private static final long serialVersionUID = -6213572441944313878L;
     @Inject
@@ -41,8 +41,9 @@ public class TagUpdateInstructionsCallback implements SerializableAsyncCallback<
     public TagUpdateInstructionsCallback(
         String tagId, TaskQueueDispatch dispatchAsync) {
         super();
-        this.dispatchAsync = dispatchAsync;
         this.tagId = tagId;
+        log.info("tagId:" + tagId);
+        this.dispatchAsync = dispatchAsync;
     }
 
     @Override

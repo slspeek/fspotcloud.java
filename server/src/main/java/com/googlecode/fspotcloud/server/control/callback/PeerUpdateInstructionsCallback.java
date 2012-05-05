@@ -35,15 +35,14 @@ import java.util.logging.Logger;
 
 
 public class PeerUpdateInstructionsCallback implements SerializableAsyncCallback<PeerUpdateInstructionsResult> {
-    protected static final Logger log = Logger.getLogger(
-            PeerUpdateInstructionsCallback.class.getName());
     private static final long serialVersionUID = -6213572441944313878L;
+    @Inject
+    private Logger log;
     @Inject
     private transient TaskQueueDispatch dispatchAsync;
 
-    public PeerUpdateInstructionsCallback(TaskQueueDispatch dispatchAsync) {
+    public PeerUpdateInstructionsCallback() {
         super();
-        this.dispatchAsync = dispatchAsync;
     }
 
     @Override

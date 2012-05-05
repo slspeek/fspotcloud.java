@@ -29,8 +29,6 @@ import com.googlecode.fspotcloud.user.IAdminPermission;
 
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 
-import net.customware.gwt.dispatch.server.ExecutionContext;
-
 import org.jukito.JukitoRunner;
 
 import org.junit.*;
@@ -42,11 +40,6 @@ import static org.mockito.Mockito.*;
 import javax.inject.Inject;
 
 
-/**
- * DOCUMENT ME!
- *
- * @author steven
-*/
 @RunWith(JukitoRunner.class)
 public class UserDeletesAllHandlerTest {
     @Inject

@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class DeletePhotosTest {
+public class DeleteTagPhotosActionTest {
     @Test
     public void testSerialization() {
         PhotoInfo photoInfoA = new PhotoInfo("", "", new Date(10));

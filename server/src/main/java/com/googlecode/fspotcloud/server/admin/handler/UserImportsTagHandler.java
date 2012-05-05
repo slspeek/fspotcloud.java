@@ -37,19 +37,19 @@ import java.util.logging.Logger;
 
 
 public class UserImportsTagHandler extends SimpleActionHandler<UserImportsTagAction, VoidResult> {
-    protected static final Logger log = Logger.getLogger(
-            UserImportsTagHandler.class.getName());
+    @Inject
+    Logger log;
     private final Tags tagManager;
     private final ControllerDispatchAsync dispatchAsync;
-    private final IAdminPermission IAdminPermission;
+    private final IAdminPermission adminPermission;
 
     @Inject
     public UserImportsTagHandler(
         Tags tagManager, ControllerDispatchAsync dispatchAsync,
-        IAdminPermission IAdminPermission) {
+        IAdminPermission adminPermission) {
         this.tagManager = tagManager;
         this.dispatchAsync = dispatchAsync;
-        this.IAdminPermission = IAdminPermission;
+        this.adminPermission = adminPermission;
     }
 
     @Override
