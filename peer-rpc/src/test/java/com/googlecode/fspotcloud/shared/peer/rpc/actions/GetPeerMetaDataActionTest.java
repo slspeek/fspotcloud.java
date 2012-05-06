@@ -16,21 +16,16 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaDataAction;
+import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
 
-import junit.framework.TestCase;
-
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
+import org.junit.Test;
 
 
-public class GetPeerMetaDataActionTest extends TestCase {
+public class GetPeerMetaDataActionTest {
     GetPeerMetaDataAction action = new GetPeerMetaDataAction();
 
+    @Test
     public void testSerialize() throws Exception {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutputStream out = new ObjectOutputStream(bos);
-        out.writeObject(action);
-        out.close();
+        testSerialization(action);
     }
 }

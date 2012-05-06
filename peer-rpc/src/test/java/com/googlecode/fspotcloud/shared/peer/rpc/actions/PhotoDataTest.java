@@ -16,19 +16,17 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoData;
+import static com.google.common.collect.Lists.newArrayList;
+import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
+import static org.junit.Assert.assertEquals;
 
-import junit.framework.TestCase;
+import org.junit.Before;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 
-public class PhotoDataTest extends TestCase {
+public class PhotoDataTest {
     private static final int VERSION = 17;
     private static final byte[] IMAGE_DATA = new byte[] { 0, 1 };
     private static final byte[] THUMB_DATA = new byte[] { 0 };
@@ -38,22 +36,17 @@ public class PhotoDataTest extends TestCase {
     private static final String PHOTO_ID = "1";
     PhotoData data;
 
-    @Override
-    protected void setUp() throws Exception {
-        List<String> tags = new ArrayList<String>();
-        tags.add(TAG);
+    @Before
+    public void setUp() throws Exception {
+        List<String> tags = newArrayList(TAG);
         data = new PhotoData(
                 PHOTO_ID, DESCR, LONG_TIME_AGO, IMAGE_DATA, THUMB_DATA, tags,
                 VERSION);
-        super.setUp();
     }
 
 
     public void testSerialize() throws Exception {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutputStream out = new ObjectOutputStream(bos);
-        out.writeObject(data);
-        out.close();
+        testSerialization(data);
     }
 
 

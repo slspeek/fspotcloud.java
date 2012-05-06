@@ -16,44 +16,50 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
+import static com.google.common.collect.Lists.newArrayList;
 
-import junit.framework.TestCase;
+import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
+import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 
 
-public class TagDataTest extends TestCase {
+public class TagDataTest {
     private static final int COUNT = 10;
     private static final String PARENT = "2";
     private static final String NAME = "Tag";
     private static final String TAG_ID = "1";
     TagData tag = new TagData(TAG_ID, NAME, PARENT, COUNT);
 
+    @Test
     public void testSerialize() throws Exception {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutputStream out = new ObjectOutputStream(bos);
-        out.writeObject(tag);
-        out.close();
+        testSerialization(tag);
     }
 
 
+    @Test
     public void testId() {
         assertEquals(TAG_ID, tag.getTagId());
     }
 
 
+    @Test
     public void testParent() {
         assertEquals(PARENT, tag.getParentId());
     }
 
 
+    @Test
     public void testName() {
         assertEquals(NAME, tag.getName());
     }
 
 
+    @Test
     public void testCount() {
         assertEquals(COUNT, tag.getCount());
     }
