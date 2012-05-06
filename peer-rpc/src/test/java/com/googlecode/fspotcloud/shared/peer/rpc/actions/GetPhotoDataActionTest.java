@@ -17,27 +17,20 @@
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
 import com.google.common.collect.ImmutableList;
+import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
 
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPhotoDataAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
-
-import junit.framework.TestCase;
-
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
+import org.junit.Test;
 
 import java.util.List;
 
 
-public class GetPhotoDataActionTest extends TestCase {
+public class GetPhotoDataActionTest {
     private static final ImageSpecs SPECS = new ImageSpecs(1024, 768, 512, 378);
     private static final List<String> keys = ImmutableList.of("1", "2");
     GetPhotoDataAction action = new GetPhotoDataAction(SPECS, keys);
 
-    public void testSerialize() throws Exception {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutputStream out = new ObjectOutputStream(bos);
-        out.writeObject(action);
-        out.close();
+    @Test
+    public void testSerialize2() throws Exception {
+        testSerialization(action);
     }
 }

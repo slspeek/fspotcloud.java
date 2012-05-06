@@ -14,29 +14,24 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.shared.peer.rpc.actions;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.googlecode.fspotcloud.test;
 
-import static com.google.common.collect.Lists.newArrayList;
-import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
+import org.apache.commons.lang.SerializationUtils;
+import static org.junit.Assert.assertNotNull;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.List;
-
-
-public class GetTagDataActionTest {
-    private final List<String> ID_LIST = newArrayList("1", "2");
-    GetTagDataAction action;
-
-    @Before
-    public void setUp() throws Exception {
-        action = new GetTagDataAction(ID_LIST);
-    }
-
-
-    @Test
-    public void testSerialize() throws Exception {
-        testSerialization(action);
+/**
+ *
+ * @author steven
+ */
+import java.io.Serializable;
+public class Serialization {
+    public static <T> void testSerialization(T underTest) {
+        byte[] data = SerializationUtils.serialize((Serializable)underTest);
+        T readBack = (T)SerializationUtils.deserialize(data);
+        assertNotNull(readBack);
     }
 }
