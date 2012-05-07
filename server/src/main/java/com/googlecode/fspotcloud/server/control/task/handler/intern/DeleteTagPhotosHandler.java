@@ -21,21 +21,17 @@ import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
-import net.customware.gwt.dispatch.server.ExecutionContext;
-import net.customware.gwt.dispatch.server.SimpleActionHandler;
-import net.customware.gwt.dispatch.shared.DispatchException;
-
 import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
-
 import javax.inject.Inject;
 import javax.inject.Named;
+import net.customware.gwt.dispatch.server.ExecutionContext;
+import net.customware.gwt.dispatch.server.SimpleActionHandler;
+import net.customware.gwt.dispatch.shared.DispatchException;
 
 
 public class DeleteTagPhotosHandler extends SimpleActionHandler<DeleteTagPhotosAction, VoidResult> {
@@ -45,8 +41,7 @@ public class DeleteTagPhotosHandler extends SimpleActionHandler<DeleteTagPhotosA
     private Tags tagManager;
 
     @Inject
-    public DeleteTagPhotosHandler(
-        @Named("maxDelete")
+    public DeleteTagPhotosHandler(@Named("maxDelete")
     int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
         Tags tagManager) {
         super();
@@ -57,9 +52,8 @@ public class DeleteTagPhotosHandler extends SimpleActionHandler<DeleteTagPhotosA
     }
 
     @Override
-    public VoidResult execute(
-        DeleteTagPhotosAction action, ExecutionContext context)
-        throws DispatchException {
+    public VoidResult execute(DeleteTagPhotosAction action,
+        ExecutionContext context) throws DispatchException {
         Tag tag = tagManager.find(action.getTagId());
         Iterator<PhotoInfo> it = action.getToBoDeleted().iterator();
 
@@ -77,9 +71,8 @@ public class DeleteTagPhotosHandler extends SimpleActionHandler<DeleteTagPhotosA
         return new VoidResult();
     }
 
-
-    private void checkForDeletion(
-        Tag tag, String deleteTagId, String key, Iterator<PhotoInfo> it) {
+    private void checkForDeletion(Tag tag, String deleteTagId, String key,
+        Iterator<PhotoInfo> it) {
         Photo photo = photos.find(key);
 
         if (photo != null) {
@@ -102,8 +95,7 @@ public class DeleteTagPhotosHandler extends SimpleActionHandler<DeleteTagPhotosA
             if (!moreImports) {
                 photos.delete(photo);
 
-                final TreeSet<PhotoInfo> cachedPhotoList = tag
-                    .getCachedPhotoList();
+                final TreeSet<PhotoInfo> cachedPhotoList = tag.getCachedPhotoList();
                 cachedPhotoList.remove(find(tag.getCachedPhotoList(), key));
                 tag.setCachedPhotoList(cachedPhotoList);
             }
@@ -111,7 +103,6 @@ public class DeleteTagPhotosHandler extends SimpleActionHandler<DeleteTagPhotosA
 
         it.remove();
     }
-
 
     private PhotoInfo find(SortedSet<PhotoInfo> set, String id) {
         for (PhotoInfo info : set) {

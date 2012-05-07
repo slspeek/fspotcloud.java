@@ -17,32 +17,26 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
-
 import com.googlecode.fspotcloud.server.control.callback.PhotoDataCallback;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPhotoDataAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoUpdate;
-
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.peer.GetPhotoDataAction;
+import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
+import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+import javax.inject.Inject;
+import javax.inject.Named;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
 
 public class PhotoUpdateHandler extends SimpleActionHandler<PhotoUpdateAction, VoidResult> {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            PhotoUpdateHandler.class.getName());
+    private static final Logger log = Logger.getLogger(PhotoUpdateHandler.class.getName());
     private final int MAX_DATA_TICKS;
     private final int MAX_PHOTO_TICKS;
     private final ControllerDispatchAsync controllerDispatch;
@@ -50,8 +44,7 @@ public class PhotoUpdateHandler extends SimpleActionHandler<PhotoUpdateAction, V
     private final ImageSpecs imageSpecs;
 
     @Inject
-    public PhotoUpdateHandler(
-        @Named("maxTicks")
+    public PhotoUpdateHandler(@Named("maxTicks")
     int maxTicks, @Named("maxPhotoTicks")
     int maxPhotoTicks, @Named("defaultImageSpecs")
     ImageSpecs imageSpecs, ControllerDispatchAsync controllerDispatch,
@@ -65,21 +58,19 @@ public class PhotoUpdateHandler extends SimpleActionHandler<PhotoUpdateAction, V
     }
 
     @Override
-    public VoidResult execute(
-        PhotoUpdateAction action, ExecutionContext context)
+    public VoidResult execute(PhotoUpdateAction action, ExecutionContext context)
         throws DispatchException {
         List<PhotoUpdate> updates = action.getUpdates();
         int size = updates.size();
         int countWeWillDo;
-        int needToScheduleCount = (int)Math.ceil(
-                (double)size / (double)MAX_PHOTO_TICKS);
+        int needToScheduleCount = (int) Math.ceil((double) size / (double) MAX_PHOTO_TICKS);
 
         if (needToScheduleCount > MAX_DATA_TICKS) {
             countWeWillDo = MAX_DATA_TICKS;
 
             List<PhotoUpdate> nextList = new ArrayList<PhotoUpdate>();
-            nextList.addAll(
-                updates.subList(countWeWillDo * MAX_PHOTO_TICKS, size));
+            nextList.addAll(updates.subList(countWeWillDo * MAX_PHOTO_TICKS,
+                    size));
             dispatchAsync.execute(new PhotoUpdateAction(nextList));
         } else {
             countWeWillDo = needToScheduleCount;
@@ -90,19 +81,17 @@ public class PhotoUpdateHandler extends SimpleActionHandler<PhotoUpdateAction, V
             int beginning = i * MAX_PHOTO_TICKS;
             List<String> imageKeys = new ArrayList<String>();
 
-            for (
-                int j = beginning;
-                    (j < (MAX_PHOTO_TICKS + beginning)) && (j < updates.size());
-                    j++) {
+            for (int j = beginning;
+                    (j < (MAX_PHOTO_TICKS + beginning)) &&
+                    (j < updates.size()); j++) {
                 PhotoUpdate photoUpdate = updates.get(j);
                 imageKeys.add(photoUpdate.getPhotoId());
             }
 
             // log.info("Doing our part " + imageKeys);
-            GetPhotoDataAction botAction = new GetPhotoDataAction(
-                    imageSpecs, imageKeys);
-            PhotoDataCallback callback = new PhotoDataCallback(
-                    null, null, null);
+            GetPhotoDataAction botAction = new GetPhotoDataAction(imageSpecs,
+                    imageKeys);
+            PhotoDataCallback callback = new PhotoDataCallback(null, null, null);
             controllerDispatch.execute(botAction, callback);
         }
 

@@ -17,19 +17,15 @@
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.i18n.client.NumberFormat;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.shared.SlideshowStatusEvent;
 import com.googlecode.fspotcloud.client.main.view.api.SlideshowView;
-
 import java.util.logging.Logger;
 
 
 public class SlideshowPresenterImpl implements SlideshowView.SlideshowPresenter,
     SlideshowStatusEvent.Handler {
-    private static final Logger log = Logger.getLogger(
-            SlideshowPresenterImpl.class.getName());
+    private static final Logger log = Logger.getLogger(SlideshowPresenterImpl.class.getName());
     private final SlideshowView slideshowView;
     private final NumberFormat formatter = NumberFormat.getDecimalFormat();
 
@@ -48,7 +44,6 @@ public class SlideshowPresenterImpl implements SlideshowView.SlideshowPresenter,
             slideshowView.asWidget().removeStyleDependentName("running");
         }
     }
-
 
     @Override
     public void onEvent(SlideshowStatusEvent e) {

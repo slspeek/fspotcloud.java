@@ -17,78 +17,54 @@
 package com.googlecode.fspotcloud.client.place.api;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfoStore;
-
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import java.util.List;
 
 
 public interface Navigator {
     void goAsync(Direction direction, Unit step);
 
+    void canGoAsync(Direction direction, Unit step,
+        AsyncCallback<Boolean> callback);
 
-    void canGoAsync(
-        Direction direction, Unit step, AsyncCallback<Boolean> callback);
+    void getPageCountAsync(String tagId, int pageSize,
+        AsyncCallback<Integer> callback);
 
-
-    void getPageCountAsync(
-        String tagId, int pageSize, AsyncCallback<Integer> callback);
-
-
-    void getPageAsync(
-        String tagId, int pageSize, int pageNumber,
+    void getPageAsync(String tagId, int pageSize, int pageNumber,
         AsyncCallback<List<PhotoInfo>> callback);
 
-
-    void getPageAsync(
-        String tagId, String photoId, int pageSize,
+    void getPageAsync(String tagId, String photoId, int pageSize,
         AsyncCallback<List<PhotoInfo>> callback);
 
-
-    void getPageRelativePositionAsync(
-        String tagId, String photoId, int pageSize,
-        AsyncCallback<Integer[]> callback);
-
+    void getPageRelativePositionAsync(String tagId, String photoId,
+        int pageSize, AsyncCallback<Integer[]> callback);
 
     void toggleZoomViewAsync(String tagId, String photoId);
 
-
     void goToTag(String otherTagId, PhotoInfoStore store);
-
 
     void goToLatestTag();
 
-
     void setRasterWidth(int width);
-
 
     void setRasterHeight(int height);
 
-
     void increaseRasterWidth(int amount);
-
 
     void increaseRasterHeight(int amount);
 
-
     void toggleRasterView();
-
 
     void setRasterDimension(int i, int j);
 
-
     void resetRasterSize();
-
 
     void fullscreen();
 
-
     void slideshow();
 
-
     void zoom(Zoom direction);
-
 
     void unslideshow();
     enum Direction {BACKWARD, FORWARD;

@@ -16,16 +16,13 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoUpdate;
-
-import org.apache.commons.lang.SerializationUtils;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Before;
-import org.junit.Test;
-
+import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang.SerializationUtils;
+import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
 
 
 public class PhotoUpdateActionTest {
@@ -39,12 +36,10 @@ public class PhotoUpdateActionTest {
         action = new PhotoUpdateAction(list);
     }
 
-
     @Test
     public void testGetUpdates() {
         assertEquals(1, action.getUpdates().size());
     }
-
 
     @Test
     public void testSerialize() {

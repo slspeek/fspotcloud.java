@@ -27,13 +27,11 @@ import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-
 import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsView;
 
 
 public class TagDetailsViewImpl extends Composite implements TagDetailsView {
-    private static TagDetailsViewImplUiBinder uiBinder = GWT.create(
-            TagDetailsViewImplUiBinder.class);
+    private static TagDetailsViewImplUiBinder uiBinder = GWT.create(TagDetailsViewImplUiBinder.class);
     @UiField
     Label tagNameValueLabel;
     @UiField
@@ -58,48 +56,40 @@ public class TagDetailsViewImpl extends Composite implements TagDetailsView {
         return tagDescriptionValueLabel;
     }
 
-
     @Override
     public HasText getTagImageCountValue() {
         return tagCountValueLabel;
     }
-
 
     @Override
     public HasText getTagImportIssuedValue() {
         return tagImportIssuedValueLabel;
     }
 
-
     @Override
     public HasText getTagLoadedImagesCountValue() {
         return tagLoadedCountValueLabel;
     }
-
 
     @Override
     public HasText getTagNameValue() {
         return tagNameValueLabel;
     }
 
-
     @UiHandler("importTagButton")
     public void onImportClicked(ClickEvent event) {
         presenter.importTag();
     }
-
 
     @Override
     public void setPresenter(TagDetailsPresenter presenter) {
         this.presenter = presenter;
     }
 
-
     @Override
     public HasEnabled getImportButton() {
         return importTagButton;
     }
-
 
     @Override
     public HasText getImportButtonText() {

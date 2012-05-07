@@ -18,10 +18,8 @@ package com.googlecode.fspotcloud.client.main.view.factory;
 
 import com.googlecode.fspotcloud.client.main.view.api.ImageView;
 import com.googlecode.fspotcloud.client.main.view.api.ImageViewFactory;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.inject.Inject;
 
 

@@ -18,9 +18,8 @@ package com.googlecode.fspotcloud.server.inject;
 
 import com.googlecode.fspotcloud.server.main.handler.GetTagTreeHandler;
 import com.googlecode.fspotcloud.server.main.handler.GetUserInfoHandler;
-import com.googlecode.fspotcloud.shared.main.actions.GetTagTreeAction;
-import com.googlecode.fspotcloud.shared.main.actions.GetUserInfo;
-
+import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
+import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
 

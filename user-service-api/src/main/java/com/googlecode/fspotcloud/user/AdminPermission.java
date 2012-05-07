@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.user;
 
 import com.googlecode.fspotcloud.user.UserService;
-
 import javax.inject.Inject;
 import javax.inject.Provider;
 

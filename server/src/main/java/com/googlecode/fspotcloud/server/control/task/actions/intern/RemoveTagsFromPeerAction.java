@@ -16,14 +16,11 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagRemovedFromPeer;
-
-import net.customware.gwt.dispatch.shared.Action;
-
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
 import java.io.Serializable;
-
 import java.util.List;
+import net.customware.gwt.dispatch.shared.Action;
 
 
 public class RemoveTagsFromPeerAction implements Action<VoidResult>,
@@ -39,7 +36,6 @@ public class RemoveTagsFromPeerAction implements Action<VoidResult>,
     public List<TagRemovedFromPeer> getToBoDeleted() {
         return toBoDeleted;
     }
-
 
     public String toString() {
         return toBoDeleted.toString();

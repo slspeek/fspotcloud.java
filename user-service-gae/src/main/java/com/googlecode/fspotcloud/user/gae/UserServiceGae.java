@@ -17,9 +17,7 @@
 package com.googlecode.fspotcloud.user.gae;
 
 import com.google.inject.Provider;
-
 import javax.inject.Inject;
-
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -31,13 +29,12 @@ public class UserServiceGae implements com.googlecode.fspotcloud.user.UserServic
 
     private String toAbsoluteURL(String url) {
         HttpServletRequest request = requestProvider.get();
-        String result = request.getScheme() + "://" + request.getServerName()
-            + ":" + request.getServerPort() + request.getContextPath() + "/"
-            + url;
+        String result = request.getScheme() + "://" + request.getServerName() +
+            ":" + request.getServerPort() + request.getContextPath() + "/" +
+            url;
 
         return result;
     }
-
 
     @Override
     public String createLoginURL(String string) {
@@ -46,14 +43,12 @@ public class UserServiceGae implements com.googlecode.fspotcloud.user.UserServic
         return delegate.createLoginURL(string);
     }
 
-
     @Override
     public String createLogoutURL(String string) {
         string = toAbsoluteURL(string);
 
         return delegate.createLogoutURL(string);
     }
-
 
     @Override
     public String getEmail() {
@@ -64,12 +59,10 @@ public class UserServiceGae implements com.googlecode.fspotcloud.user.UserServic
         }
     }
 
-
     @Override
     public boolean isUserLoggedIn() {
         return delegate.isUserLoggedIn();
     }
-
 
     @Override
     public boolean isUserAdmin() {

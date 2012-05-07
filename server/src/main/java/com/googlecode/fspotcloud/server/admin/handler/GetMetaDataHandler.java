@@ -17,15 +17,12 @@
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.google.inject.Inject;
-
 import com.googlecode.botdispatch.model.api.Commands;
-
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import com.googlecode.fspotcloud.shared.dashboard.actions.GetMetaDataAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.GetMetaDataResult;
+import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataAction;
+import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
@@ -38,9 +35,8 @@ public class GetMetaDataHandler extends SimpleActionHandler<GetMetaDataAction, G
     private final IAdminPermission adminPermission;
 
     @Inject
-    public GetMetaDataHandler(
-        Commands commandManager, PeerDatabases defaultPeer,
-        IAdminPermission IAdminPermission) {
+    public GetMetaDataHandler(Commands commandManager,
+        PeerDatabases defaultPeer, IAdminPermission IAdminPermission) {
         super();
         this.commandManager = commandManager;
         this.defaultPeer = defaultPeer;
@@ -48,9 +44,8 @@ public class GetMetaDataHandler extends SimpleActionHandler<GetMetaDataAction, G
     }
 
     @Override
-    public GetMetaDataResult execute(
-        GetMetaDataAction action, ExecutionContext context)
-        throws DispatchException {
+    public GetMetaDataResult execute(GetMetaDataAction action,
+        ExecutionContext context) throws DispatchException {
         adminPermission.checkAdminPermission();
 
         GetMetaDataResult dataInfo = new GetMetaDataResult();
@@ -69,7 +64,6 @@ public class GetMetaDataHandler extends SimpleActionHandler<GetMetaDataAction, G
 
         return dataInfo;
     }
-
 
     private int getPendingCommandCount() {
         int result = commandManager.getCountUnderAThousend();

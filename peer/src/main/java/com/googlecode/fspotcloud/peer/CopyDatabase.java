@@ -22,9 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
 import java.util.logging.Logger;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
@@ -68,7 +66,6 @@ public class CopyDatabase implements Provider<String> {
 
         return url;
     }
-
 
     @Override
     public String get() {

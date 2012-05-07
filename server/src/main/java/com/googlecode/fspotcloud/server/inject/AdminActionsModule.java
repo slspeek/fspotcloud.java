@@ -17,8 +17,13 @@
 package com.googlecode.fspotcloud.server.inject;
 
 import com.googlecode.fspotcloud.server.admin.handler.*;
-import com.googlecode.fspotcloud.shared.dashboard.actions.*;
-
+import com.googlecode.fspotcloud.shared.dashboard.GetAdminTagTreeAction;
+import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllCommandsAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
 
@@ -27,14 +32,12 @@ public class AdminActionsModule extends ActionHandlerModule {
     protected void configureHandlers() {
         bindHandler(GetMetaDataAction.class, GetMetaDataHandler.class);
         bindHandler(UserDeletesAllAction.class, UserDeletesAllHandler.class);
-        bindHandler(
-            UserDeletesAllCommandsAction.class,
+        bindHandler(UserDeletesAllCommandsAction.class,
             UserDeletesAllCommandsHandler.class);
         bindHandler(UserImportsTagAction.class, UserImportsTagHandler.class);
-        bindHandler(
-            UserUnImportsTagAction.class, UserUnImportsTagHandler.class);
-        bindHandler(
-            UserSynchronizesPeerAction.class, UserSynchronizesPeerHandler.class);
+        bindHandler(UserUnImportsTagAction.class, UserUnImportsTagHandler.class);
+        bindHandler(UserSynchronizesPeerAction.class,
+            UserSynchronizesPeerHandler.class);
         bindHandler(GetAdminTagTreeAction.class, GetAdminTagTreeHandler.class);
     }
 }

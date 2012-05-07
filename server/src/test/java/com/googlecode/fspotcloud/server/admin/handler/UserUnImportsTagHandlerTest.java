@@ -21,7 +21,6 @@
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import static com.google.common.collect.Lists.newArrayList;
-
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTagPhotosAction;
@@ -29,40 +28,29 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserUnImportsTagAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
+import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
+import java.util.List;
+import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-
 import org.junit.*;
 import static org.junit.Assert.*;
-
 import org.junit.runner.RunWith;
-
 import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.*;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
-
 @RunWith(JukitoRunner.class)
 public class UserUnImportsTagHandlerTest {
     @Inject
     private UserUnImportsTagHandler handler;
     private final String TAG_ID = "1";
-    private final UserUnImportsTagAction action = new UserUnImportsTagAction(
-            TAG_ID);
+    private final UserUnImportsTagAction action = new UserUnImportsTagAction(TAG_ID);
 
     @Test
-    public void testNormalExecute(
-        Tags tagManager, TaskQueueDispatch dispatchAsync,
-        PeerDatabases peerDatabases,
+    public void testNormalExecute(Tags tagManager,
+        TaskQueueDispatch dispatchAsync, PeerDatabases peerDatabases,
         ArgumentCaptor<DeleteTagPhotosAction> actionCaptor)
         throws Exception {
         PeerDatabase peer = new PeerDatabaseEntity();
@@ -82,11 +70,9 @@ public class UserUnImportsTagHandlerTest {
         verifyNoMoreInteractions(tagManager, peerDatabases, dispatchAsync);
     }
 
-
     @Test
-    public void testNormalExecuteUnImportNeeded(
-        Tags tagManager, TaskQueueDispatch dispatchAsync,
-        PeerDatabases peerDatabases,
+    public void testNormalExecuteUnImportNeeded(Tags tagManager,
+        TaskQueueDispatch dispatchAsync, PeerDatabases peerDatabases,
         ArgumentCaptor<DeleteTagPhotosAction> actionCaptor)
         throws Exception {
         PeerDatabase peer = new PeerDatabaseEntity();
@@ -108,11 +94,9 @@ public class UserUnImportsTagHandlerTest {
         verifyNoMoreInteractions(tagManager, peerDatabases, dispatchAsync);
     }
 
-
     @Test
-    public void testNormalExecuteTreeCacheNeedsClearing(
-        Tags tagManager, TaskQueueDispatch dispatchAsync,
-        PeerDatabases peerDatabases,
+    public void testNormalExecuteTreeCacheNeedsClearing(Tags tagManager,
+        TaskQueueDispatch dispatchAsync, PeerDatabases peerDatabases,
         ArgumentCaptor<DeleteTagPhotosAction> actionCaptor)
         throws Exception {
         PeerDatabase peer = new PeerDatabaseEntity();
@@ -137,7 +121,6 @@ public class UserUnImportsTagHandlerTest {
         verify(peerDatabases).save(peer);
         verifyNoMoreInteractions(tagManager, peerDatabases, dispatchAsync);
     }
-
 
     @Test(expected = SecurityException.class)
     public void testUnAuthorizedExecute(IAdminPermission adminPermission)

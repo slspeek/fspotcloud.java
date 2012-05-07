@@ -18,8 +18,7 @@ package com.googlecode.fspotcloud.server.control.task.inject;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
-
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
+import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 
 
 public class TaskModule extends AbstractModule {

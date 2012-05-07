@@ -22,10 +22,8 @@ import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.view.client.SelectionChangeEvent;
-
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
-
 import com.googlecode.fspotcloud.client.data.DataManager;
 import com.googlecode.fspotcloud.client.data.DataManagerImpl;
 import com.googlecode.fspotcloud.client.demo.DemoStep;
@@ -113,8 +111,7 @@ public class AppModule extends AbstractGinModule {
         bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
         bind(KeyDispatcherProvider.class).in(Singleton.class);
         bind(ShortcutHandler.class).toProvider(KeyDispatcherProvider.class);
-        bind(SlideshowView.class).to(SlideshowViewImpl.class).in(
-            Singleton.class);
+        bind(SlideshowView.class).to(SlideshowViewImpl.class).in(Singleton.class);
         bind(TimerInterface.class).to(TimerImpl.class);
         bind(Navigator.class).to(NavigatorImpl.class).in(Singleton.class);
         bind(Slideshow.class).to(SlideshowImpl.class).in(Singleton.class);
@@ -128,33 +125,24 @@ public class AppModule extends AbstractGinModule {
             .in(Singleton.class);
         bind(SlideshowView.SlideshowPresenter.class)
             .toProvider(SlideshowPresenterFactoryImpl.class);
-        install(
-            new GinFactoryModuleBuilder().implement(
+        install(new GinFactoryModuleBuilder().implement(
                 ImageRasterView.ImageRasterPresenter.class,
                 ImageRasterPresenterImpl.class)
-                                         .build(
-                ImageRasterPresenterFactory.class));
-        install(
-            new GinFactoryModuleBuilder().implement(
-                ImageView.ImagePresenter.class, ImagePresenterImpl.class)
-                                         .build(ImagePresenterFactory.class));
-        install(
-            new GinFactoryModuleBuilder().implement(
-                ImageView.class, ImageViewImpl.class)
-                                         .build(ImageViewFactory.class));
+                                             .build(ImageRasterPresenterFactory.class));
+        install(new GinFactoryModuleBuilder().implement(
+                ImageView.ImagePresenter.class,
+                ImagePresenterImpl.class).build(ImagePresenterFactory.class));
+        install(new GinFactoryModuleBuilder().implement(ImageView.class,
+                ImageViewImpl.class).build(ImageViewFactory.class));
 
-        install(
-            new GinFactoryModuleBuilder().implement(
-                DemoStep.class, ShortcutDemoStep.class)
-                                         .build(DemoStepFactory.class));
+        install(new GinFactoryModuleBuilder().implement(DemoStep.class,
+                ShortcutDemoStep.class).build(DemoStepFactory.class));
 
         bind(UserButtonViewFactory.class).to(UserButtonViewFactoryImpl.class);
-        install(
-            new GinFactoryModuleBuilder().implement(
+        install(new GinFactoryModuleBuilder().implement(
                 UserButtonView.UserButtonPresenter.class,
                 UserButtonPresenterImpl.class)
-                                         .build(
-                UserButtonPresenterFactory.class));
+                                             .build(UserButtonPresenterFactory.class));
 
         bind(SlideshowControlsPresenter.class)
             .toProvider(SlideshowControlsPresenterProvider.class);
@@ -165,10 +153,8 @@ public class AppModule extends AbstractGinModule {
             .to(ButtonPanelViewImpl.class).in(Singleton.class);
         bind(ButtonPanelView.class).annotatedWith(Names.named("Slideshow"))
             .to(ButtonPanelViewImpl.class).in(Singleton.class);
-        bind(TreeSelectionHandlerInterface.class).to(
-            TreeSelectionHandler.class);
-        install(
-            new GinFactoryModuleBuilder().build(
+        bind(TreeSelectionHandlerInterface.class).to(TreeSelectionHandler.class);
+        install(new GinFactoryModuleBuilder().build(
                 LoadNewLocationActionFactory.class));
         bind(LoadNewLocation.class).to(LoadNewLocationImpl.class);
 

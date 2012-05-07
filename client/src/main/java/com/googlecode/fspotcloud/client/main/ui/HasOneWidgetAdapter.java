@@ -39,7 +39,6 @@ public class HasOneWidgetAdapter implements HasOneWidget {
         }
     }
 
-
     private void clear() {
         if (currentWidget != null) {
             panel.remove(currentWidget);
@@ -47,12 +46,10 @@ public class HasOneWidgetAdapter implements HasOneWidget {
         }
     }
 
-
     @Override
     public Widget getWidget() {
         return currentWidget;
     }
-
 
     @Override
     public void setWidget(Widget w) {

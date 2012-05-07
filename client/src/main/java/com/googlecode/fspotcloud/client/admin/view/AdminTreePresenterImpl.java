@@ -22,9 +22,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SelectionChangeEvent.Handler;
 import com.google.gwt.view.client.SingleSelectionModel;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.data.DataManager;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.view.TagTreeModel;
@@ -32,17 +30,15 @@ import com.googlecode.fspotcloud.client.main.view.api.TreeView;
 import com.googlecode.fspotcloud.client.place.BasePlace;
 import com.googlecode.fspotcloud.client.place.TagPlace;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.inject.Provider;
 
 
-public class AdminTreePresenterImpl implements TreeView.TreePresenter, Handler {
-    private static final Logger log = Logger.getLogger(
-            AdminTreePresenterImpl.class.getName());
+public class AdminTreePresenterImpl implements TreeView.TreePresenter,
+    Handler {
+    private static final Logger log = Logger.getLogger(AdminTreePresenterImpl.class.getName());
     private final TreeView treeView;
     private final DataManager dataManager;
     private final SingleSelectionModel<TagNode> selectionModel;
@@ -50,8 +46,7 @@ public class AdminTreePresenterImpl implements TreeView.TreePresenter, Handler {
     private final Resources resources;
 
     @Inject
-    public AdminTreePresenterImpl(
-        TreeView treeView, DataManager dataManager,
+    public AdminTreePresenterImpl(TreeView treeView, DataManager dataManager,
         SingleSelectionModel<TagNode> selectionModel, PlaceGoTo placeGoTo,
         Resources resources) {
         super();
@@ -68,10 +63,8 @@ public class AdminTreePresenterImpl implements TreeView.TreePresenter, Handler {
         selectionModel.addSelectionChangeHandler(this);
     }
 
-
     private void setModel(List<TagNode> roots) {
-        TagTreeModel treeModel = new TagTreeModel(
-                roots, selectionModel,
+        TagTreeModel treeModel = new TagTreeModel(roots, selectionModel,
                 new Provider<Cell<TagNode>>() {
                     @Override
                     public Cell<TagNode> get() {
@@ -81,15 +74,12 @@ public class AdminTreePresenterImpl implements TreeView.TreePresenter, Handler {
         treeView.setTreeModel(treeModel);
     }
 
-
     private void requestTagTreeData() {
-        dataManager.getAdminTagTree(
-            new AsyncCallback<List<TagNode>>() {
+        dataManager.getAdminTagTree(new AsyncCallback<List<TagNode>>() {
                 @Override
                 public void onFailure(Throwable caught) {
                     Window.alert("Exception: " + caught);
                 }
-
 
                 @Override
                 public void onSuccess(List<TagNode> result) {
@@ -98,17 +88,14 @@ public class AdminTreePresenterImpl implements TreeView.TreePresenter, Handler {
             });
     }
 
-
     public void reloadTree() {
         requestTagTreeData();
     }
-
 
     @Override
     public void setPlace(BasePlace place) {
         throw new UnsupportedOperationException();
     }
-
 
     @Override
     public void onSelectionChange(SelectionChangeEvent event) {

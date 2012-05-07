@@ -20,9 +20,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.place.shared.PlaceController;
-
 import com.google.inject.Singleton;
-
 import com.googlecode.fspotcloud.client.admin.ui.DashboardViewImpl;
 import com.googlecode.fspotcloud.client.admin.ui.GlobalActionsViewImpl;
 import com.googlecode.fspotcloud.client.admin.ui.TagDetailsViewImpl;
@@ -52,8 +50,7 @@ public class AdminModule extends AbstractGinModule {
             .to(TagDetailsActivityFactoryImpl.class);
         bind(TagDetailsView.class).to(TagDetailsViewImpl.class)
             .in(Singleton.class);
-        bind(DashboardView.class).to(DashboardViewImpl.class).in(
-            Singleton.class);
+        bind(DashboardView.class).to(DashboardViewImpl.class).in(Singleton.class);
         bind(GlobalActionsView.class).to(GlobalActionsViewImpl.class)
             .in(Singleton.class);
         bind(DataManager.class).to(DataManagerImpl.class).in(Singleton.class);

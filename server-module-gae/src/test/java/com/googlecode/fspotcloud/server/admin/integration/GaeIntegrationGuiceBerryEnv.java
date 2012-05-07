@@ -18,13 +18,10 @@ package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.guiceberry.GuiceBerryModule;
 import com.google.guiceberry.TestWrapper;
-
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
-
 import com.googlecode.botdispatch.controller.inject.LocalControllerModule;
-
 import com.googlecode.fspotcloud.model.jpa.gae.GaeCacheProvider;
 import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
 import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoManager;
@@ -39,22 +36,18 @@ import com.googlecode.fspotcloud.server.main.handler.GetTagTreeHandler;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserDeletesAllAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserSynchronizesPeerAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserUnImportsTagAction;
-import com.googlecode.fspotcloud.shared.main.actions.GetTagTreeAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
+import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
+import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
+import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.fspotcloud.user.LenientUserModule;
 import com.googlecode.fspotcloud.user.LenientUserService;
 import com.googlecode.fspotcloud.user.UserService;
-
 import com.googlecode.simplejpadao.EntityModule;
-
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
-
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
-
 import net.sf.jsr107cache.Cache;
 
 
@@ -63,10 +56,9 @@ public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
     public void configure() {
         super.configure();
         System.setProperty("photo.dir.original", "//home/steven/Photos");
-        System.setProperty(
-            "photo.dir.override",
-            "" + System.getProperty("user.dir")
-            + "/../peer/src/test/resources/Photos");
+        System.setProperty("photo.dir.override",
+            "" + System.getProperty("user.dir") +
+            "/../peer/src/test/resources/Photos");
         bind(Integer.class).annotatedWith(Names.named("maxTicks"))
             .toInstance(new Integer(3));
         install(new MyAdminActionsModule());
@@ -109,10 +101,9 @@ class MyAdminActionsModule extends ActionHandlerModule {
     protected void configureHandlers() {
         bindHandler(UserDeletesAllAction.class, UserDeletesAllHandler.class);
         bindHandler(UserImportsTagAction.class, UserImportsTagHandler.class);
-        bindHandler(
-            UserUnImportsTagAction.class, UserUnImportsTagHandler.class);
-        bindHandler(
-            UserSynchronizesPeerAction.class, UserSynchronizesPeerHandler.class);
+        bindHandler(UserUnImportsTagAction.class, UserUnImportsTagHandler.class);
+        bindHandler(UserSynchronizesPeerAction.class,
+            UserSynchronizesPeerHandler.class);
         bindHandler(GetTagTreeAction.class, GetTagTreeHandler.class);
     }
 }
@@ -125,15 +116,12 @@ class MyPeerModule extends AbstractModule {
         bind(String.class).annotatedWith(Names.named("JDBC URL"))
             .toProvider(CopyDatabase.class).in(Singleton.class);
         bind(String.class).annotatedWith(Names.named("DatabasePath"))
-            .toInstance(
-            System.getProperty(
-                "db",
-                System.getProperty("user.dir")
-                + "/../peer/src/test/resources/photos.db"));
+            .toInstance(System.getProperty("db",
+                System.getProperty("user.dir") +
+                "/../peer/src/test/resources/photos.db"));
         bind(String.class).annotatedWith(Names.named("WorkDir"))
             .toInstance(System.getProperty("user.dir"));
         bind(Integer.class).annotatedWith(Names.named("stop port"))
-            .toInstance(
-            Integer.valueOf(System.getProperty("stop.port", "4444")));
+            .toInstance(Integer.valueOf(System.getProperty("stop.port", "4444")));
     }
 }

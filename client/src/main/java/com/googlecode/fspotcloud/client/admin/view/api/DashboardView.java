@@ -23,12 +23,10 @@ import com.google.gwt.user.client.ui.IsWidget;
 public interface DashboardView extends IsWidget {
     GlobalActionsView getGlobalActionsView();
 
-
     HasOneWidget getTagDetailsContainer();
 
     interface DashboardPresenter {
         DashboardView getView();
-
 
         void init();
     }

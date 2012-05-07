@@ -18,9 +18,7 @@ package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.logging.Logger;
 
 
@@ -29,9 +27,8 @@ public class TagCell extends AbstractCell<TagNode> {
     private static final Logger log = Logger.getLogger(TagCell.class.getName());
 
     @Override
-    public void render(
-        com.google.gwt.cell.client.Cell.Context arg0, TagNode value,
-        SafeHtmlBuilder sb) {
+    public void render(com.google.gwt.cell.client.Cell.Context arg0,
+        TagNode value, SafeHtmlBuilder sb) {
         sb.appendEscaped(value.getTagName());
     }
 }

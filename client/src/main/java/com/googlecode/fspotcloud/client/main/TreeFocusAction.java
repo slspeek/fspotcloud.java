@@ -17,33 +17,29 @@
 package com.googlecode.fspotcloud.client.main;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.IGlobalShortcutController.Mode;
 import com.googlecode.fspotcloud.client.main.ui.TagViewImpl;
 import com.googlecode.fspotcloud.client.main.view.api.TagView;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView;
 import com.googlecode.fspotcloud.client.place.api.Slideshow;
-
 import java.util.logging.Logger;
 
 
 public class TreeFocusAction implements Runnable {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            TreeFocusAction.class.getName());
+    private static final Logger log = Logger.getLogger(TreeFocusAction.class.getName());
     private final TreeView treeView;
     private final TagViewImpl tagView;
     private final Slideshow slideshow;
     private final IGlobalShortcutController keyboard;
 
     @Inject
-    public TreeFocusAction(
-        TreeView treeView, TagView tagView, Slideshow slideshow,
-        IGlobalShortcutController keyboard) {
+    public TreeFocusAction(TreeView treeView, TagView tagView,
+        Slideshow slideshow, IGlobalShortcutController keyboard) {
         super();
         this.slideshow = slideshow;
         this.treeView = treeView;
-        this.tagView = (TagViewImpl)tagView;
+        this.tagView = (TagViewImpl) tagView;
         this.keyboard = keyboard;
     }
 

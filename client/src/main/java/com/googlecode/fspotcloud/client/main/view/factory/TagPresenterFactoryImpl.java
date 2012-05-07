@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.main.view.factory;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.ui.TagViewImpl;
 import com.googlecode.fspotcloud.client.main.view.TagActivity;
 import com.googlecode.fspotcloud.client.main.view.api.ButtonPanelView;
@@ -28,26 +27,24 @@ import com.googlecode.fspotcloud.client.main.view.api.TagView;
 import com.googlecode.fspotcloud.client.main.view.api.TagView.TagPresenter;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView.TreePresenter;
 import com.googlecode.fspotcloud.client.place.BasePlace;
-
 import java.util.logging.Logger;
 
 
 public class TagPresenterFactoryImpl implements TagPresenterFactory {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            TagPresenterFactoryImpl.class.getName());
+    private static final Logger log = Logger.getLogger(TagPresenterFactoryImpl.class.getName());
     private final TagViewImpl tagView;
     private final TreePresenter treePresenter;
     private final ButtonPanelView.ButtonPanelPresenter buttonPanelPresenter;
     private final ImageRasterPresenterFactory rasterFactory;
 
     @Inject
-    public TagPresenterFactoryImpl(
-        TagView tagView, TreePresenter treePresenter,
+    public TagPresenterFactoryImpl(TagView tagView,
+        TreePresenter treePresenter,
         ButtonPanelView.ButtonPanelPresenter buttonPanelPresenter,
         ImageRasterPresenterFactory rasterFactory) {
         super();
-        this.tagView = (TagViewImpl)tagView;
+        this.tagView = (TagViewImpl) tagView;
         this.buttonPanelPresenter = buttonPanelPresenter;
         this.treePresenter = treePresenter;
         this.rasterFactory = rasterFactory;
@@ -58,11 +55,10 @@ public class TagPresenterFactoryImpl implements TagPresenterFactory {
         treePresenter.init();
     }
 
-
     @Override
     public TagPresenter get(BasePlace place) {
-        final ImageRasterView.ImageRasterPresenter rasterPresenter = rasterFactory
-            .get(place, tagView.getImageRasterView());
+        final ImageRasterView.ImageRasterPresenter rasterPresenter = rasterFactory.get(place,
+                tagView.getImageRasterView());
         TagPresenter presenter = new TagActivity(tagView, rasterPresenter);
         treePresenter.setPlace(place);
 

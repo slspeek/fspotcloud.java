@@ -18,9 +18,7 @@ package com.googlecode.fspotcloud.client.main.view;
 
 import com.googlecode.fspotcloud.client.main.view.LoadNewLocationAction;
 import com.googlecode.fspotcloud.client.main.view.api.LoadNewLocation;
-
 import junit.framework.TestCase;
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
@@ -36,11 +34,9 @@ public class LoadNewLocationActionTest extends TestCase {
         assertNotNull(action);
     }
 
-
     public void testRun() {
         testLoadNewLocationAction();
-        context.checking(
-            new Expectations() {
+        context.checking(new Expectations() {
 
                 {
                     oneOf(loader).setLocation(with("#"));

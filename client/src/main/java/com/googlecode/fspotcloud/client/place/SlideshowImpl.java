@@ -18,22 +18,18 @@ package com.googlecode.fspotcloud.client.place;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.shared.SlideshowStatusEvent;
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Direction;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Unit;
 import com.googlecode.fspotcloud.client.place.api.Slideshow;
-
 import java.util.logging.Logger;
 
 
 public class SlideshowImpl implements Slideshow {
-    private static final Logger log = Logger.getLogger(
-            SlideshowImpl.class.getName());
+    private static final Logger log = Logger.getLogger(SlideshowImpl.class.getName());
     private final Navigator navigator;
     private final TimerInterface timer;
     private boolean isRunning = false;
@@ -42,8 +38,8 @@ public class SlideshowImpl implements Slideshow {
     private final EventBus eventBus;
 
     @Inject
-    public SlideshowImpl(
-        Navigator navigator, TimerInterface timer, EventBus eventBus) {
+    public SlideshowImpl(Navigator navigator, TimerInterface timer,
+        EventBus eventBus) {
         this.eventBus = eventBus;
         this.navigator = navigator;
         this.timer = timer;
@@ -52,18 +48,15 @@ public class SlideshowImpl implements Slideshow {
     }
 
     private void initTimer() {
-        timer.setRunnable(
-            new Runnable() {
+        timer.setRunnable(new Runnable() {
                 @Override
                 public void run() {
-                    navigator.canGoAsync(
-                        Direction.FORWARD, Unit.SINGLE,
+                    navigator.canGoAsync(Direction.FORWARD, Unit.SINGLE,
                         new AsyncCallback<Boolean>() {
                             @Override
                             public void onFailure(Throwable caught) {
                                 log.warning(caught.getMessage());
                             }
-
 
                             @Override
                             public void onSuccess(Boolean result) {
@@ -74,7 +67,6 @@ public class SlideshowImpl implements Slideshow {
             });
     }
 
-
     private void go(boolean canGo) {
         if (canGo) {
             navigator.goAsync(Direction.FORWARD, Unit.SINGLE);
@@ -84,14 +76,12 @@ public class SlideshowImpl implements Slideshow {
         }
     }
 
-
     private void reschedule() {
         if (isRunning) {
             timer.cancel();
-            timer.scheduleRepeating((int)(1000 * delay));
+            timer.scheduleRepeating((int) (1000 * delay));
         }
     }
-
 
     @Override
     public void start() {
@@ -102,7 +92,6 @@ public class SlideshowImpl implements Slideshow {
         fireStatusChanged();
     }
 
-
     @Override
     public void stop() {
         log.info("Stopping slideshow");
@@ -112,7 +101,6 @@ public class SlideshowImpl implements Slideshow {
         navigator.unslideshow();
     }
 
-
     @Override
     public void pause() {
         log.info("Pause slideshow");
@@ -120,7 +108,6 @@ public class SlideshowImpl implements Slideshow {
         timer.cancel();
         fireStatusChanged();
     }
-
 
     @Override
     public float faster() {
@@ -131,7 +118,6 @@ public class SlideshowImpl implements Slideshow {
         return delay();
     }
 
-
     @Override
     public float slower() {
         delay *= INCREASE_FACTOR;
@@ -141,17 +127,14 @@ public class SlideshowImpl implements Slideshow {
         return delay();
     }
 
-
     private void fireStatusChanged() {
         eventBus.fireEvent(new SlideshowStatusEvent(isRunning, delay()));
     }
-
 
     @Override
     public float delay() {
         return delay;
     }
-
 
     @Override
     public boolean isRunning() {

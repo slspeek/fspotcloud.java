@@ -19,19 +19,15 @@ package com.googlecode.fspotcloud.client.admin.view;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsActivityFactory;
 import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsView;
 import com.googlecode.fspotcloud.client.place.TagPlace;
-
 import java.util.logging.Logger;
 
 
 public class TagDetailsActivityMapper implements ActivityMapper {
-    private static final Logger log = Logger.getLogger(
-            TagDetailsActivityMapper.class.getName());
+    private static final Logger log = Logger.getLogger(TagDetailsActivityMapper.class.getName());
     private final TagDetailsActivityFactory tagDetailsActivityFactory;
 
     @Inject
@@ -45,8 +41,7 @@ public class TagDetailsActivityMapper implements ActivityMapper {
     public Activity getActivity(Place place) {
         log.info("getActivity: " + place);
 
-        TagDetailsView.TagDetailsPresenter activity = tagDetailsActivityFactory
-            .get((TagPlace)place);
+        TagDetailsView.TagDetailsPresenter activity = tagDetailsActivityFactory.get((TagPlace) place);
         activity.init();
 
         return activity;

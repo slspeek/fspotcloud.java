@@ -16,6 +16,7 @@
  */
 package com.googlecode.fspotcloud.user;
 
+
 /**
  * Created by IntelliJ IDEA.
  * User: steven

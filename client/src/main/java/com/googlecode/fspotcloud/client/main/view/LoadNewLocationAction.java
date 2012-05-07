@@ -18,7 +18,6 @@ package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
-
 import com.googlecode.fspotcloud.client.main.view.api.LoadNewLocation;
 
 
@@ -27,8 +26,8 @@ public class LoadNewLocationAction implements Runnable {
     private String newLocation;
 
     @Inject
-    public LoadNewLocationAction(
-        LoadNewLocation loader, @Assisted
+    public LoadNewLocationAction(LoadNewLocation loader,
+        @Assisted
     String newLocation) {
         super();
         this.loader = loader;

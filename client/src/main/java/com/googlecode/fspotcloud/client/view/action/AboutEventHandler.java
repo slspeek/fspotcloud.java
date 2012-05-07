@@ -17,23 +17,19 @@
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.shared.EventBus;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.api.Initializable;
 import com.googlecode.fspotcloud.client.main.event.UserEvent;
 import com.googlecode.fspotcloud.client.main.event.UserEventHandler;
 import com.googlecode.fspotcloud.client.main.event.about.AboutEvent;
 import com.googlecode.fspotcloud.client.main.event.about.AboutType;
 import com.googlecode.fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
-
 import java.util.logging.Logger;
 
 
 public class AboutEventHandler implements AboutEvent.Handler, Initializable {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            AboutEventHandler.class.getName());
+    private static final Logger log = Logger.getLogger(AboutEventHandler.class.getName());
     private final LoadNewLocationActionFactory locationFactory;
     private Runnable projectHostingAction;
     private Runnable fspotAction;
@@ -44,8 +40,8 @@ public class AboutEventHandler implements AboutEvent.Handler, Initializable {
     private final EventBus eventBus;
 
     @Inject
-    public AboutEventHandler(
-        LoadNewLocationActionFactory locationFactory, EventBus eventBus) {
+    public AboutEventHandler(LoadNewLocationActionFactory locationFactory,
+        EventBus eventBus) {
         super();
         this.locationFactory = locationFactory;
         this.eventBus = eventBus;
@@ -55,48 +51,46 @@ public class AboutEventHandler implements AboutEvent.Handler, Initializable {
     public void onEvent(UserEvent<?extends UserEventHandler> e) {
         log.info("On application event of type " + e.getActionDef());
 
-        switch ((AboutType)e.getActionDef()) {
-            case PROJECT_HOSTING:
-                projectHostingAction.run();
+        switch ((AboutType) e.getActionDef()) {
+        case PROJECT_HOSTING:
+            projectHostingAction.run();
 
-                break;
+            break;
 
-            case F_SPOT:
-                fspotAction.run();
+        case F_SPOT:
+            fspotAction.run();
 
-                break;
+            break;
 
-            case MAVEN:
-                mavenAction.run();
+        case MAVEN:
+            mavenAction.run();
 
-                break;
+            break;
 
-            case PROTON:
-                protonAction.run();
+        case PROTON:
+            protonAction.run();
 
-                break;
+            break;
 
-            case LICENSE:
-                licenseAction.run();
+        case LICENSE:
+            licenseAction.run();
 
-                break;
+            break;
 
-            case STEVEN:
-                stevenAction.run();
+        case STEVEN:
+            stevenAction.run();
 
-                break;
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
     }
-
 
     public void init() {
         initLocationActions();
         eventBus.addHandler(AboutEvent.TYPE, this);
     }
-
 
     private void initLocationActions() {
         projectHostingAction = locationFactory.get(
@@ -108,7 +102,6 @@ public class AboutEventHandler implements AboutEvent.Handler, Initializable {
                 "http://slspeek.github.com/FSpotCloudSite/license.html");
         protonAction = locationFactory.get(
                 "http://www.protonradio.com/player/live/player.php");
-        stevenAction = locationFactory.get(
-                "http://profiles.google.com/slspeek");
+        stevenAction = locationFactory.get("http://profiles.google.com/slspeek");
     }
 }

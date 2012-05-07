@@ -17,8 +17,11 @@
 package com.googlecode.fspotcloud.peer.inject;
 
 import com.googlecode.fspotcloud.peer.handlers.*;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.*;
-
+import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
+import com.googlecode.fspotcloud.shared.peer.GetPeerUpdateInstructionsAction;
+import com.googlecode.fspotcloud.shared.peer.GetPhotoDataAction;
+import com.googlecode.fspotcloud.shared.peer.GetTagDataAction;
+import com.googlecode.fspotcloud.shared.peer.GetTagUpdateInstructionsAction;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
 
@@ -28,11 +31,9 @@ public class PeerActionsModule extends ActionHandlerModule {
         bindHandler(GetPeerMetaDataAction.class, GetPeerMetaDataHandler.class);
         bindHandler(GetTagDataAction.class, GetTagDataHandler.class);
         bindHandler(GetPhotoDataAction.class, GetPhotoDataHandler.class);
-        bindHandler(
-            GetTagUpdateInstructionsAction.class,
+        bindHandler(GetTagUpdateInstructionsAction.class,
             GetTagUpdateInstructionsHandler.class);
-        bindHandler(
-            GetPeerUpdateInstructionsAction.class,
+        bindHandler(GetPeerUpdateInstructionsAction.class,
             GetPeerUpdateInstructionsHandler.class);
     }
 }

@@ -19,34 +19,28 @@ package com.googlecode.fspotcloud.server.control.task.handler.intern;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.ImportManyTagsPhotosAction;
 import com.googlecode.fspotcloud.server.model.api.Photos;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-
+import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+import javax.inject.Inject;
+import javax.inject.Named;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
 
 public class ImportManyTagsPhotosHandler extends SimpleActionHandler<ImportManyTagsPhotosAction, VoidResult> {
-    private static final Logger log = Logger.getLogger(
-            ImportManyTagsPhotosHandler.class.getName());
+    private static final Logger log = Logger.getLogger(ImportManyTagsPhotosHandler.class.getName());
     private final TaskQueueDispatch dispatchAsync;
     private final Photos photoManager;
     private final int MAX_DATA_TICKS;
 
     @Inject
-    public ImportManyTagsPhotosHandler(
-        TaskQueueDispatch dispatchAsync, Photos photoManager,
-        @Named("maxTicks")
+    public ImportManyTagsPhotosHandler(TaskQueueDispatch dispatchAsync,
+        Photos photoManager, @Named("maxTicks")
     int MAX_DATA_TICKS) {
         super();
         this.dispatchAsync = dispatchAsync;
@@ -55,15 +49,13 @@ public class ImportManyTagsPhotosHandler extends SimpleActionHandler<ImportManyT
     }
 
     @Override
-    public VoidResult execute(
-        ImportManyTagsPhotosAction action, ExecutionContext context)
-        throws DispatchException {
+    public VoidResult execute(ImportManyTagsPhotosAction action,
+        ExecutionContext context) throws DispatchException {
         final List<String> tagIdList = action.getTagIdList();
 
         if (tagIdList.size() > MAX_DATA_TICKS) {
             List<String> nextList = new ArrayList<String>();
-            nextList.addAll(
-                tagIdList.subList(MAX_DATA_TICKS, tagIdList.size()));
+            nextList.addAll(tagIdList.subList(MAX_DATA_TICKS, tagIdList.size()));
             dispatchAsync.execute(new ImportManyTagsPhotosAction(nextList));
         }
 

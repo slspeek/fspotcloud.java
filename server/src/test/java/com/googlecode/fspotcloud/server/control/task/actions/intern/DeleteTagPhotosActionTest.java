@@ -16,16 +16,13 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-
-import org.apache.commons.lang.SerializationUtils;
-import static org.junit.Assert.assertNotNull;
-
-import org.junit.Test;
-
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.apache.commons.lang.SerializationUtils;
+import static org.junit.Assert.assertNotNull;
+import org.junit.Test;
 
 
 public class DeleteTagPhotosActionTest {
@@ -35,11 +32,9 @@ public class DeleteTagPhotosActionTest {
         List<PhotoInfo> list = new ArrayList<PhotoInfo>();
         list.add(photoInfoA);
 
-        DeleteTagPhotosAction action = new DeleteTagPhotosAction(
-                "fooMock", list);
+        DeleteTagPhotosAction action = new DeleteTagPhotosAction("fooMock", list);
         byte[] ser = SerializationUtils.serialize(action);
-        DeleteTagPhotosAction deserialized = (DeleteTagPhotosAction)SerializationUtils
-            .deserialize(ser);
+        DeleteTagPhotosAction deserialized = (DeleteTagPhotosAction) SerializationUtils.deserialize(ser);
         assertNotNull(deserialized);
     }
 }

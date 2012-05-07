@@ -17,17 +17,13 @@
 package com.googlecode.fspotcloud.server.cron;
 
 import com.google.inject.Inject;
-
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserSynchronizesPeerAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserSynchronizesPeerAction;
-
-import net.customware.gwt.dispatch.server.Dispatch;
-import net.customware.gwt.dispatch.shared.DispatchException;
-
+import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
 import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.customware.gwt.dispatch.server.Dispatch;
+import net.customware.gwt.dispatch.shared.DispatchException;
 
 
 public class Cron {

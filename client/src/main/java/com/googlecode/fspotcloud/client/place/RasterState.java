@@ -29,18 +29,15 @@ public class RasterState implements Raster, RasterSetter {
         this.width = width;
     }
 
-
     @Override
     public void setRowCount(int height) {
         this.height = height;
     }
 
-
     @Override
     public int getRowCount() {
         return height;
     }
-
 
     @Override
     public int getColumnCount() {

@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.main;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.api.Initializable;
 import com.googlecode.fspotcloud.client.view.action.AboutEventHandler;
 import com.googlecode.fspotcloud.client.view.action.ApplicationEventHandler;
@@ -36,10 +35,10 @@ public class EventHandlersSetup {
     private final Initializable zoomViewEventHandler;
 
     @Inject
-    public EventHandlersSetup(
-        SlideshowEventHandler slideshow, NavigationEventHandler navigation,
-        ApplicationEventHandler application, AboutEventHandler about,
-        RasterEventHandler raster, ZoomViewEventHandler zoomViewEventHandler) {
+    public EventHandlersSetup(SlideshowEventHandler slideshow,
+        NavigationEventHandler navigation, ApplicationEventHandler application,
+        AboutEventHandler about, RasterEventHandler raster,
+        ZoomViewEventHandler zoomViewEventHandler) {
         super();
         this.about = about;
         this.slideshow = slideshow;

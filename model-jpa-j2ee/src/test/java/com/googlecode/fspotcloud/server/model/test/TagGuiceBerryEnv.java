@@ -17,11 +17,8 @@
 package com.googlecode.fspotcloud.server.model.test;
 
 import com.google.guiceberry.GuiceBerryModule;
-
 import com.google.inject.name.Names;
-
 import com.googlecode.fspotcloud.model.jpa.tag.TagManager;
-
 import com.googlecode.simplejpadao.EntityModule;
 import com.googlecode.simplejpadao.SimpleDAONamedId;
 

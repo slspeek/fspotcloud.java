@@ -31,10 +31,9 @@ public class SlideshowPlace extends BasePlace {
         return interval;
     }
 
-
     public boolean equals(Object otherObject) {
         if (otherObject instanceof SlideshowPlace) {
-            BasePlace basePlace = (BasePlace)otherObject;
+            BasePlace basePlace = (BasePlace) otherObject;
             String tagId = basePlace.getTagId();
             String photoId = basePlace.getPhotoId();
 
@@ -54,7 +53,6 @@ public class SlideshowPlace extends BasePlace {
 
             return new SlideshowPlace(util.getTagId(), util.getPhotoId(), 0f);
         }
-
 
         @Override
         public String getToken(SlideshowPlace place) {

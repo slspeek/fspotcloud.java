@@ -18,7 +18,6 @@ package com.googlecode.fspotcloud.client.demo;
 
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
-
 import com.googlecode.fspotcloud.client.main.help.HelpContentGenerator;
 import com.googlecode.fspotcloud.client.view.action.api.ShortcutHandler;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
@@ -31,9 +30,8 @@ public class ShortcutDemoStep implements DemoStep {
     private final HelpContentGenerator generator;
 
     @Inject
-    public ShortcutDemoStep(
-        HelpContentGenerator generator, ShortcutHandler shortcutHandler,
-        @Assisted
+    public ShortcutDemoStep(HelpContentGenerator generator,
+        ShortcutHandler shortcutHandler, @Assisted
     UserAction shortcut, @Assisted
     int pause) {
         this.shortcutHandler = shortcutHandler;
@@ -52,12 +50,10 @@ public class ShortcutDemoStep implements DemoStep {
             };
     }
 
-
     @Override
     public int pauseTime() {
         return pause;
     }
-
 
     @Override
     public String getDescription() {

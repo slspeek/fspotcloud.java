@@ -25,7 +25,6 @@ public class GwtTestButtonPanelPresenterProvider extends GWTTestCase {
         return "fspotcloud.FSpotCloud";
     }
 
-
     public void testOne() throws Exception {
     }
 }

@@ -34,16 +34,13 @@ public class ZoomViewEvent extends GwtEvent<ZoomViewEvent.Handler> {
         return TYPE;
     }
 
-
     protected void dispatch(Handler handler) {
         handler.onEvent(this);
     }
 
-
     public String getPhotoId() {
         return photoId;
     }
-
 
     public String getTagId() {
         return tagId;

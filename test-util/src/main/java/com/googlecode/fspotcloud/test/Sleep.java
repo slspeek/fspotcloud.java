@@ -21,7 +21,6 @@ public class Sleep {
         sleepShort(1);
     }
 
-
     public static void sleepShort(int times) throws InterruptedException {
         Thread.sleep(900 * times);
     }

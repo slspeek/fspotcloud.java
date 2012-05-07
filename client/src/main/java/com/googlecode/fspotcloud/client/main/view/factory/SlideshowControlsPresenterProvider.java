@@ -17,11 +17,9 @@
 package com.googlecode.fspotcloud.client.main.view.factory;
 
 import com.google.gwt.user.client.ui.Widget;
-
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
-
 import com.googlecode.fspotcloud.client.main.event.AbstractActionMap;
 import com.googlecode.fspotcloud.client.main.event.slideshow.SlideshowType;
 import com.googlecode.fspotcloud.client.main.view.SlideshowControlsPresenter;
@@ -30,13 +28,11 @@ import com.googlecode.fspotcloud.client.main.view.api.SlideshowView;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonPresenterFactory;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonView;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
-
 import java.util.logging.Logger;
 
 
 public class SlideshowControlsPresenterProvider implements Provider<SlideshowControlsPresenter> {
-    private static final Logger log = Logger.getLogger(
-            SlideshowControlsPresenterProvider.class.getName());
+    private static final Logger log = Logger.getLogger(SlideshowControlsPresenterProvider.class.getName());
     private final AbstractActionMap actions;
     private final UserButtonPresenterFactory buttonPresenterFactory;
     private final SlideshowView slideshowView;
@@ -48,7 +44,8 @@ public class SlideshowControlsPresenterProvider implements Provider<SlideshowCon
         @Named("Slideshow")
     ButtonPanelView buttonPanelView,
         @Named("slideshow")
-    AbstractActionMap actions, UserButtonPresenterFactory buttonPresenterFactory,
+    AbstractActionMap actions,
+        UserButtonPresenterFactory buttonPresenterFactory,
         SlideshowView slideshowView,
         SlideshowView.SlideshowPresenter slideshowPresenter) {
         super();
@@ -75,18 +72,15 @@ public class SlideshowControlsPresenterProvider implements Provider<SlideshowCon
         addAction(actions.get(SlideshowType.SLIDESHOW_FASTER));
     }
 
-
     private void addAction(UserAction action) {
-        UserButtonView.UserButtonPresenter buttonPresenter = buttonPresenterFactory
-            .get(action);
+        UserButtonView.UserButtonPresenter buttonPresenter = buttonPresenterFactory.get(action);
         buttonPresenter.init();
         buttonPanelView.add(buttonPresenter.getView());
     }
 
-
     @Override
     public SlideshowControlsPresenter get() {
-        return new SlideshowControlsPresenter(
-            slideshowPresenter, buttonPanelView);
+        return new SlideshowControlsPresenter(slideshowPresenter,
+            buttonPanelView);
     }
 }

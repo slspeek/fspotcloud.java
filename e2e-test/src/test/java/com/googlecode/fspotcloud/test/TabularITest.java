@@ -17,21 +17,16 @@
 package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
-
 import com.thoughtworks.selenium.Selenium;
-
+import javax.inject.Inject;
 import junit.framework.Assert;
-
 import org.junit.Rule;
 import org.junit.Test;
-
-import javax.inject.Inject;
 
 
 public class TabularITest {
     @Rule
-    public GuiceBerryRule guiceBerry = new GuiceBerryRule(
-            EmptyGuiceBerryEnv.class);
+    public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
     Selenium selenium;
 
@@ -48,8 +43,7 @@ public class TabularITest {
         selenium.waitForPageToLoad("30000");
         selenium.click("gwt-debug-back");
         selenium.waitForPageToLoad("30000");
-        Assert.assertEquals(
-            "image?id=6&thumb",
+        Assert.assertEquals("image?id=6&thumb",
             selenium.getAttribute("//*[@id=\"gwt-debug-image-view-0x1\"]@src"));
     }
 }

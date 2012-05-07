@@ -23,7 +23,6 @@ import com.google.gwt.user.client.ui.Widget;
 public interface ButtonPanelView extends IsWidget {
     void setWidgetCount(int count);
 
-
     void add(Widget widget);
 
     interface ButtonPanelPresenter {

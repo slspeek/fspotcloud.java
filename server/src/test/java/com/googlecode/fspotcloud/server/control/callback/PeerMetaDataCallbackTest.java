@@ -21,33 +21,24 @@
 package com.googlecode.fspotcloud.server.control.callback;
 
 import static com.google.common.collect.Lists.newArrayList;
-
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
-
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerUpdateInstructionsAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
-
+import com.googlecode.fspotcloud.shared.peer.GetPeerUpdateInstructionsAction;
+import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
+import com.googlecode.fspotcloud.shared.peer.TagData;
+import java.util.List;
+import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-
 import org.junit.*;
 import static org.junit.Assert.*;
-
 import org.junit.runner.RunWith;
-
 import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.*;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
 
 /**
  * DOCUMENT ME!
@@ -61,9 +52,8 @@ public class PeerMetaDataCallbackTest {
     PeerMetaDataCallback callback;
 
     @Test
-    public void testNormalExecute(
-        PeerDatabases defaultPeer, ControllerDispatchAsync dispatchAsync,
-        Tags tagManager,
+    public void testNormalExecute(PeerDatabases defaultPeer,
+        ControllerDispatchAsync dispatchAsync, Tags tagManager,
         ArgumentCaptor<GetPeerUpdateInstructionsAction> actionCaptor,
         ArgumentCaptor<PeerUpdateInstructionsCallback> callbackCaptor)
         throws Exception {

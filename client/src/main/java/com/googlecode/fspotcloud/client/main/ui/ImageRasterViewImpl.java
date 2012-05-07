@@ -26,26 +26,22 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.Widget;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
 import com.googlecode.fspotcloud.client.main.view.api.ImageView;
 import com.googlecode.fspotcloud.client.main.view.api.ImageViewFactory;
 import com.googlecode.fspotcloud.client.main.view.factory.ImageViewFactoryImpl;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 
 public class ImageRasterViewImpl extends ResizeComposite
-    implements ImageRasterView, MouseWheelHandler {
+    implements ImageRasterView,
+        MouseWheelHandler {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            ImageRasterViewImpl.class.getName());
-    private static ImageRasterViewImplUiBinder uiBinder = GWT.create(
-            ImageRasterViewImplUiBinder.class);
+    private static final Logger log = Logger.getLogger(ImageRasterViewImpl.class.getName());
+    private static ImageRasterViewImplUiBinder uiBinder = GWT.create(ImageRasterViewImplUiBinder.class);
     int storedColumnCount = 0;
     int storedRowCount = 0;
     List<ImageView> storedViews;
@@ -57,8 +53,8 @@ public class ImageRasterViewImpl extends ResizeComposite
     private final Resources resources;
 
     @Inject
-    public ImageRasterViewImpl(
-        ImageViewFactoryImpl imageViewFactory, Resources resources) {
+    public ImageRasterViewImpl(ImageViewFactoryImpl imageViewFactory,
+        Resources resources) {
         this.imageViewFactory = imageViewFactory;
         this.resources = resources;
         initWidget(uiBinder.createAndBindUi(this));
@@ -82,21 +78,21 @@ public class ImageRasterViewImpl extends ResizeComposite
                     ImageView view = imageViewFactory.get(column + "x" + row);
                     Widget asWidget = view.asWidget();
                     layoutPanel.add(asWidget);
-                    layoutPanel.setWidgetTopHeight(
-                        asWidget, row * (100 / (float)rowCount), Unit.PCT,
+                    layoutPanel.setWidgetTopHeight(asWidget,
+                        row * (100 / (float) rowCount), Unit.PCT,
                         100 / rowCount, Unit.PCT);
-                    layoutPanel.setWidgetLeftWidth(
-                        asWidget, column * (100 / (float)columnCount), Unit.PCT,
+                    layoutPanel.setWidgetLeftWidth(asWidget,
+                        column * (100 / (float) columnCount), Unit.PCT,
                         100 / rowCount, Unit.PCT);
                     result.add(view);
                 }
             }
 
             layoutPanel.add(pagingLabel);
-            layoutPanel.setWidgetBottomHeight(
-                pagingLabel, 0, Unit.PT, 16, Unit.PT);
-            layoutPanel.setWidgetRightWidth(
-                pagingLabel, 0, Unit.PT, 10, Unit.PCT);
+            layoutPanel.setWidgetBottomHeight(pagingLabel, 0, Unit.PT, 16,
+                Unit.PT);
+            layoutPanel.setWidgetRightWidth(pagingLabel, 0, Unit.PT, 10,
+                Unit.PCT);
 
             storedRowCount = rowCount;
             storedColumnCount = columnCount;
@@ -106,12 +102,10 @@ public class ImageRasterViewImpl extends ResizeComposite
         }
     }
 
-
     @Override
     public void setPresenter(ImageRasterPresenter presenter) {
         this.presenter = presenter;
     }
-
 
     @Override
     public void onMouseWheel(MouseWheelEvent event) {
@@ -121,7 +115,6 @@ public class ImageRasterViewImpl extends ResizeComposite
             presenter.onMouseWheelSouth();
         }
     }
-
 
     @Override
     public void setPagingText(String text) {

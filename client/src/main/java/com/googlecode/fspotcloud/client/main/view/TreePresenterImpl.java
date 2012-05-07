@@ -20,25 +20,20 @@ import com.google.gwt.cell.client.Cell;
 import com.google.gwt.user.cellview.client.TreeNode;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.view.client.SingleSelectionModel;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.data.DataManager;
 import com.googlecode.fspotcloud.client.main.view.api.TreeSelectionHandlerInterface;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView;
 import com.googlecode.fspotcloud.client.place.BasePlace;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.inject.Provider;
 
 
 public class TreePresenterImpl implements TreeView.TreePresenter {
-    private static final Logger log = Logger.getLogger(
-            TreePresenterImpl.class.getName());
+    private static final Logger log = Logger.getLogger(TreePresenterImpl.class.getName());
     private final TreeView treeView;
     private final DataManager dataManager;
     private final SingleSelectionModel<TagNode> selectionModel;
@@ -46,8 +41,7 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
     private BasePlace place;
 
     @Inject
-    public TreePresenterImpl(
-        TreeView treeView, DataManager dataManager,
+    public TreePresenterImpl(TreeView treeView, DataManager dataManager,
         SingleSelectionModel<TagNode> singleSelectionModel,
         TreeSelectionHandlerInterface treeSelectionHandler) {
         this.treeView = treeView;
@@ -61,10 +55,8 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
         reloadTree();
     }
 
-
     private void setModel(List<TagNode> roots) {
-        TagTreeModel treeModel = new TagTreeModel(
-                roots, selectionModel,
+        TagTreeModel treeModel = new TagTreeModel(roots, selectionModel,
                 new Provider<Cell<TagNode>>() {
                     @Override
                     public Cell<TagNode> get() {
@@ -76,15 +68,12 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
         updatePlace();
     }
 
-
     private void requestTagTreeData() {
-        dataManager.getTagTree(
-            new AsyncCallback<List<TagNode>>() {
+        dataManager.getTagTree(new AsyncCallback<List<TagNode>>() {
                 @Override
                 public void onFailure(Throwable caught) {
                     log.warning("Loading of the tree data failed: " + caught);
                 }
-
 
                 @Override
                 public void onSuccess(List<TagNode> result) {
@@ -93,11 +82,9 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
             });
     }
 
-
     public void reloadTree() {
         requestTagTreeData();
     }
-
 
     private void openSelectedTreeNode(TreeNode node) {
         try {
@@ -113,12 +100,10 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
         }
     }
 
-
     public void setPlace(BasePlace place) {
         this.place = place;
         updatePlace();
     }
-
 
     private void updatePlace() {
         if (place != null) {

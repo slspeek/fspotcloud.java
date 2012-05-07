@@ -17,10 +17,8 @@
 package com.googlecode.fspotcloud.client.demo;
 
 import com.google.gwt.user.client.Timer;
-
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-
 import com.googlecode.fspotcloud.client.main.event.ActionFamily;
 import com.googlecode.fspotcloud.client.main.event.ActionMap;
 import com.googlecode.fspotcloud.client.main.event.application.ApplicationType;
@@ -30,15 +28,13 @@ import com.googlecode.fspotcloud.client.main.view.DemoPresenter;
 import com.googlecode.fspotcloud.client.view.action.KeyDispatcher;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
 import com.googlecode.fspotcloud.client.view.action.api.UserActionFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 
 public class DemoAction implements Runnable {
-    private static final Logger log = Logger.getLogger(
-            KeyDispatcher.class.getName());
+    private static final Logger log = Logger.getLogger(KeyDispatcher.class.getName());
     List<DemoStep> demo;
     int stepPointer = -1;
     private final DemoStepFactory factory;
@@ -47,9 +43,9 @@ public class DemoAction implements Runnable {
     private final Provider<DemoPresenter> demoPresenterProvider;
 
     @Inject
-    public DemoAction(
-        DemoStepFactory factory, UserActionFactory shortcutFactory,
-        ActionFamily actions, Provider<DemoPresenter> demoPresenterProvider) {
+    public DemoAction(DemoStepFactory factory,
+        UserActionFactory shortcutFactory, ActionFamily actions,
+        Provider<DemoPresenter> demoPresenterProvider) {
         this.factory = factory;
         this.actions = actions;
         this.shortcutFactory = shortcutFactory;
@@ -64,8 +60,7 @@ public class DemoAction implements Runnable {
         addStep(raster.get(RasterType.SET_RASTER_3x3), 2000);
         addStep(raster.get(RasterType.SET_RASTER_4x4), 4000);
         addStep(raster.get(RasterType.ADD_COLUMN), 1000);
-        addStep(
-            raster.get(RasterType.ADD_COLUMN), 4000,
+        addStep(raster.get(RasterType.ADD_COLUMN), 4000,
             "You can do this again and again");
         addStep(raster.get(RasterType.TOGGLE_TABULAR_VIEW), 2000);
 
@@ -79,28 +74,27 @@ public class DemoAction implements Runnable {
         ActionMap application = actions.get("Application");
         addStep(raster.get(RasterType.SET_DEFAULT_RASTER), 4000);
         addStep(application.get(ApplicationType.TOGGLE_HELP), 5000);
-        addStep(
-            application.get(ApplicationType.TOGGLE_HELP), 1000,
+        addStep(application.get(ApplicationType.TOGGLE_HELP), 1000,
             "Again to hide the help.");
     }
-
 
     private void addStep(UserAction shortcut, int pause) {
         DemoStep step = factory.getDemoStep(shortcut, pause);
         demo.add(step);
     }
 
-
-    private void addStep(
-        UserAction shortcut, int pause, String descriptionOverride) {
-        DemoStep step = factory.getDemoStep(
-                shortcutFactory.get(
-                    shortcut.getId(), shortcut.getCaption(), descriptionOverride,
-                    shortcut.getKey(), shortcut.getAlternateKey(),
-                    shortcut.getIcon(), shortcut.getEventProvider()), pause);
+    private void addStep(UserAction shortcut, int pause,
+        String descriptionOverride) {
+        DemoStep step = factory.getDemoStep(shortcutFactory.get(
+                    shortcut.getId(),
+                    shortcut.getCaption(),
+                    descriptionOverride,
+                    shortcut.getKey(),
+                    shortcut.getAlternateKey(),
+                    shortcut.getIcon(),
+                    shortcut.getEventProvider()), pause);
         demo.add(step);
     }
-
 
     @Override
     public void run() {

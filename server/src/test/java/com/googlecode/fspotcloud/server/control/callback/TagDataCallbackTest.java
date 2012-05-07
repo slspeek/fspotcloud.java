@@ -19,30 +19,23 @@ package com.googlecode.fspotcloud.server.control.callback;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagDataResult;
-
+import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
+import com.googlecode.fspotcloud.shared.peer.TagData;
+import com.googlecode.fspotcloud.shared.peer.TagDataResult;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class TagDataCallbackTest {
     Dispatch dispatch;
     Tags tagManager;
@@ -52,8 +45,7 @@ public class TagDataCallbackTest {
     final String TAGID = "FooID";
     TagDataResult incoming;
     TagData row;
-    ArgumentCaptor<List<Tag>> argumentCaptor = (ArgumentCaptor<List<Tag>>)(Object)ArgumentCaptor
-        .forClass(List.class);
+    ArgumentCaptor<List<Tag>> argumentCaptor = (ArgumentCaptor<List<Tag>>) (Object) ArgumentCaptor.forClass(List.class);
 
     @Before
     public void setUp() throws Exception {
@@ -70,7 +62,6 @@ public class TagDataCallbackTest {
         callback = new TagDataCallback(tagManager, dispatch);
     }
 
-
     @Test
     public void testSerialize() throws Exception {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -78,7 +69,6 @@ public class TagDataCallbackTest {
         out.writeObject(callback);
         out.close();
     }
-
 
     @Test
     public void testRecieveTagData() throws DispatchException {
@@ -89,7 +79,6 @@ public class TagDataCallbackTest {
         verifyNoMoreInteractions(dispatch);
     }
 
-
     @Test
     public void testRecieveTagDataImported() throws DispatchException {
         tag.setImportIssued(true);
@@ -98,8 +87,7 @@ public class TagDataCallbackTest {
         assertEquals(TAGNAME, tag.getTagName());
         assertNull(tag.getParentId());
 
-        ArgumentCaptor<UserImportsTagAction> actionCaptor = ArgumentCaptor
-            .forClass(UserImportsTagAction.class);
+        ArgumentCaptor<UserImportsTagAction> actionCaptor = ArgumentCaptor.forClass(UserImportsTagAction.class);
         verify(dispatch).execute(actionCaptor.capture());
 
         UserImportsTagAction action = actionCaptor.getValue();

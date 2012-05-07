@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.place;
 
 import com.googlecode.fspotcloud.client.place.BasePlace;
-
 import junit.framework.TestCase;
 
 
@@ -30,7 +29,6 @@ public class TokenizerTest extends TestCase {
         BasePlace actual = tokenizer.getPlace(first);
         assertEquals(actual, expected);
     }
-
 
     public void testGetToken() {
         BasePlace first = new BasePlace("1", "2", 1, 1);

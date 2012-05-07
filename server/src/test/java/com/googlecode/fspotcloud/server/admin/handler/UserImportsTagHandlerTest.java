@@ -21,29 +21,21 @@
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
-
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.control.callback.TagUpdateInstructionsCallback;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagUpdateInstructionsAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.peer.GetTagUpdateInstructionsAction;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-
+import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-
 import org.junit.*;
 import static org.junit.Assert.*;
-
 import org.junit.runner.RunWith;
-
 import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.*;
-
-import javax.inject.Inject;
-
-
 @RunWith(JukitoRunner.class)
 public class UserImportsTagHandlerTest {
     private final String TAG_ID = "1";
@@ -58,10 +50,9 @@ public class UserImportsTagHandlerTest {
         tagOne.setId(TAG_ID);
     }
 
-
     @Test
-    public void testNormalExecute(
-        Tags tagManager, ControllerDispatchAsync dispatchAsync,
+    public void testNormalExecute(Tags tagManager,
+        ControllerDispatchAsync dispatchAsync,
         ArgumentCaptor<GetTagUpdateInstructionsAction> actionCaptor,
         ArgumentCaptor<TagUpdateInstructionsCallback> callbackCaptor)
         throws Exception {
@@ -78,7 +69,6 @@ public class UserImportsTagHandlerTest {
         TagUpdateInstructionsCallback callback = callbackCaptor.getValue();
         assertEquals(TAG_ID, action.getTagId());
     }
-
 
     //FIXME: Must be open as it is called from within
     //@Test(expected = SecurityException.class)

@@ -18,9 +18,7 @@ package com.googlecode.fspotcloud.client.place;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 
 

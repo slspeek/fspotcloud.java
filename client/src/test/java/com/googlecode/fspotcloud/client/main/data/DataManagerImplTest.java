@@ -17,27 +17,19 @@
 package com.googlecode.fspotcloud.client.main.data;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-
 import com.googlecode.fspotcloud.client.data.DataManagerImpl;
-import com.googlecode.fspotcloud.shared.main.actions.GetTagTreeAction;
-import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
-import junit.framework.TestCase;
-
-import net.customware.gwt.dispatch.client.DispatchAsync;
-
-import org.mockito.ArgumentCaptor;
-import static org.mockito.Mockito.*;
-
+import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
+import com.googlecode.fspotcloud.shared.main.TagNode;
+import com.googlecode.fspotcloud.shared.main.TagTreeResult;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-
+import junit.framework.TestCase;
+import net.customware.gwt.dispatch.client.DispatchAsync;
+import org.mockito.ArgumentCaptor;
+import static org.mockito.Mockito.*;
 public class DataManagerImplTest extends TestCase {
-    private static final Logger log = Logger.getLogger(
-            DataManagerImplTest.class.getName());
+    private static final Logger log = Logger.getLogger(DataManagerImplTest.class.getName());
     private static final String ID = "1";
     private static final String WRONG_ID = "2";
     private DataManagerImpl dataManager;
@@ -57,14 +49,11 @@ public class DataManagerImplTest extends TestCase {
         thirdCall = mock(AsyncCallback.class);
         dispatchAsync = mock(DispatchAsync.class);
         dataManager = new DataManagerImpl(dispatchAsync);
-        remoteCallCaptor = (ArgumentCaptor<AsyncCallback<List<TagNode>>>)(Object)ArgumentCaptor
-            .forClass(AsyncCallback.class);
-        newRemoteCallCaptor = (ArgumentCaptor<AsyncCallback<TagTreeResult>>)(Object)ArgumentCaptor
-            .forClass(AsyncCallback.class);
+        remoteCallCaptor = (ArgumentCaptor<AsyncCallback<List<TagNode>>>) (Object) ArgumentCaptor.forClass(AsyncCallback.class);
+        newRemoteCallCaptor = (ArgumentCaptor<AsyncCallback<TagTreeResult>>) (Object) ArgumentCaptor.forClass(AsyncCallback.class);
         actionCapture = ArgumentCaptor.forClass(GetTagTreeAction.class);
         super.setUp();
     }
-
 
     public void testSimpleCall() {
         dataManager.getTagTree(firstCall);
@@ -77,7 +66,6 @@ public class DataManagerImplTest extends TestCase {
         callback.onSuccess(new TagTreeResult(result));
         verify(firstCall).onSuccess(result);
     }
-
 
     public void testTwoCalls() {
         dataManager.getTagTree(firstCall);
@@ -93,7 +81,6 @@ public class DataManagerImplTest extends TestCase {
         verify(firstCall).onSuccess(result);
         verify(secondCall).onSuccess(tagNode);
     }
-
 
     public void testThreeCalls() {
         dataManager.getTagTree(firstCall);
@@ -113,7 +100,6 @@ public class DataManagerImplTest extends TestCase {
         verify(thirdCall).onSuccess(result);
     }
 
-
     public void testThreeCallsWithWrongId() {
         dataManager.getTagTree(firstCall);
         verify(dispatchAsync)
@@ -131,7 +117,6 @@ public class DataManagerImplTest extends TestCase {
         verify(secondCall).onSuccess(null);
         verify(thirdCall).onSuccess(result);
     }
-
 
     public void testThreeFirstWithWrongId() {
         dataManager.getTagNode(WRONG_ID, secondCall);
@@ -151,7 +136,6 @@ public class DataManagerImplTest extends TestCase {
         verify(secondCall).onSuccess(null);
         verify(thirdCall).onSuccess(result);
     }
-
 
     public void testOnceCalledbackNoMoreDelay() {
         dataManager.getTagTree(firstCall);

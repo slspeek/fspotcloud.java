@@ -20,6 +20,6 @@ import com.googlecode.fspotcloud.client.place.BasePlace;
 
 
 public interface ImageRasterPresenterFactory {
-    ImageRasterView.ImageRasterPresenter get(
-        BasePlace place, ImageRasterView view);
+    ImageRasterView.ImageRasterPresenter get(BasePlace place,
+        ImageRasterView view);
 }

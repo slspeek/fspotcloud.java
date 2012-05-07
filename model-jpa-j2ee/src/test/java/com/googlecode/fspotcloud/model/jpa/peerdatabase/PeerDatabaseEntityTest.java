@@ -21,13 +21,10 @@
 package com.googlecode.fspotcloud.model.jpa.peerdatabase;
 
 import com.google.common.collect.Lists;
-
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.TagNode;
+import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;
-
-import java.util.List;
 
 
 /**

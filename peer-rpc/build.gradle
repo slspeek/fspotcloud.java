@@ -1,5 +1,8 @@
 description = 'peer-rpc'
 
+
+checkstyleMain.ignoreFailures = false
+
 dependencies {
     compile project(':rpc')
     compile libs.gwt_servlet

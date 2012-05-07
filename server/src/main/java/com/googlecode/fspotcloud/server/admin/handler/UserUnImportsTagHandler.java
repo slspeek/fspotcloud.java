@@ -17,41 +17,36 @@
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTagPhotosAction;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserUnImportsTagAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
+import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
-
 
 public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTagAction, VoidResult> {
-    private static final Logger log = Logger.getLogger(
-            UserUnImportsTagHandler.class.getName());
+    private static final Logger log = Logger.getLogger(UserUnImportsTagHandler.class.getName());
     private final Tags tagManager;
     private final TaskQueueDispatch dispatchAsync;
     private final PeerDatabases peerDatabases;
     private final IAdminPermission adminPermission;
 
     @Inject
-    public UserUnImportsTagHandler(
-        Tags tagManager, TaskQueueDispatch dispatchAsync,
-        PeerDatabases peerDatabases, IAdminPermission adminPermission) {
+    public UserUnImportsTagHandler(Tags tagManager,
+        TaskQueueDispatch dispatchAsync, PeerDatabases peerDatabases,
+        IAdminPermission adminPermission) {
         super();
         this.tagManager = tagManager;
         this.dispatchAsync = dispatchAsync;
@@ -60,9 +55,8 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
     }
 
     @Override
-    public VoidResult execute(
-        UserUnImportsTagAction action, ExecutionContext context)
-        throws DispatchException {
+    public VoidResult execute(UserUnImportsTagAction action,
+        ExecutionContext context) throws DispatchException {
         log.info("Executing: " + action.getTagId());
 
         adminPermission.checkAdminPermission();
@@ -78,8 +72,8 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
 
             List<PhotoInfo> infoList = new ArrayList<PhotoInfo>();
             infoList.addAll(tag.getCachedPhotoList());
-            dispatchAsync.execute(
-                new DeleteTagPhotosAction(tag.getId(), infoList));
+            dispatchAsync.execute(new DeleteTagPhotosAction(tag.getId(),
+                    infoList));
             clearTreeCache();
         } catch (Exception e) {
             throw new ActionException(e);
@@ -87,7 +81,6 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
 
         return new VoidResult();
     }
-
 
     private void clearTreeCache() {
         PeerDatabase peer = peerDatabases.get();

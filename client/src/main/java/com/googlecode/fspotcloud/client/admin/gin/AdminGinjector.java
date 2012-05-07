@@ -18,9 +18,7 @@ package com.googlecode.fspotcloud.client.admin.gin;
 
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
-
 import com.googlecode.fspotcloud.client.admin.MVPSetup;
-
 import net.customware.gwt.dispatch.client.gin.StandardDispatchModule;
 
 

@@ -34,7 +34,6 @@ public class DemoRunner extends Timer {
         step.getAction().run();
     }
 
-
     @Override
     public void run() {
         action.run();

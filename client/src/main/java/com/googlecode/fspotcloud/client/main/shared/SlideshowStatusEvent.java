@@ -35,16 +35,13 @@ public class SlideshowStatusEvent extends GwtEvent<SlideshowStatusEvent.Handler>
         return TYPE;
     }
 
-
     protected void dispatch(Handler handler) {
         handler.onEvent(this);
     }
 
-
     public float getDelay() {
         return delay;
     }
-
 
     public boolean isRunning() {
         return running;

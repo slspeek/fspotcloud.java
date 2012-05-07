@@ -33,21 +33,17 @@ public class PlaceConverter {
         return new BasePlace(tagId, photoId, columnCount, rowCount);
     }
 
-
     void setTagId(String tagId) {
         this.tagId = tagId;
     }
-
 
     public void setPhotoId(String photoId) {
         this.photoId = photoId;
     }
 
-
     public void setColumnCount(int columnCount) {
         this.columnCount = columnCount;
     }
-
 
     public void setRowCount(int rowCount) {
         this.rowCount = rowCount;

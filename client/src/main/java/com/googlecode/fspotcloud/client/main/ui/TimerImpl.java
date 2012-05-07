@@ -17,16 +17,13 @@
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.user.client.Timer;
-
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
-
 import java.util.logging.Logger;
 
 
 public class TimerImpl extends Timer implements TimerInterface {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            TimerImpl.class.getName());
+    private static final Logger log = Logger.getLogger(TimerImpl.class.getName());
     private Runnable runnable;
 
     public TimerImpl() {
@@ -35,7 +32,6 @@ public class TimerImpl extends Timer implements TimerInterface {
     public void run() {
         runnable.run();
     }
-
 
     @Override
     public void setRunnable(Runnable runnable) {

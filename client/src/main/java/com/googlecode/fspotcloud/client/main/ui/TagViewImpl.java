@@ -30,30 +30,26 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
-
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-
 import com.googlecode.fspotcloud.client.main.view.api.ButtonPanelView;
 import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
 import com.googlecode.fspotcloud.client.main.view.api.TagView;
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView;
-
 import java.util.logging.Logger;
 
 
-public class TagViewImpl extends Composite implements TagView, MouseOverHandler,
+public class TagViewImpl extends Composite implements TagView,
+    MouseOverHandler,
     MouseOutHandler {
     private static final int TREE_VIEW_WIDTH_PCT = 22;
     private static final int IMAGE_PANEL_WIDTH_PCT = 100 - TREE_VIEW_WIDTH_PCT;
     private static final int BUTTON_PANEL_HEIGHT_PCT = 6;
-    private static final int IMAGEPANEL_HEIGHT_PCT = 100
-        - BUTTON_PANEL_HEIGHT_PCT;
-    private static final Logger log = Logger.getLogger(
-            TagViewImpl.class.getName());
-    private static TagViewImplUiBinder uiBinder = GWT.create(
-            TagViewImplUiBinder.class);
+    private static final int IMAGEPANEL_HEIGHT_PCT = 100 -
+        BUTTON_PANEL_HEIGHT_PCT;
+    private static final Logger log = Logger.getLogger(TagViewImpl.class.getName());
+    private static TagViewImplUiBinder uiBinder = GWT.create(TagViewImplUiBinder.class);
     static int ID;
     @UiField
     HTML horizontalFocusPanel;
@@ -70,15 +66,14 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler,
     int id = ID++;
 
     @Inject
-    public TagViewImpl(
-        TreeView treeView, @Named("Main")
+    public TagViewImpl(TreeView treeView,
+        @Named("Main")
     ButtonPanelView buttonPanelView, ImageRasterView imageRasterView,
         TimerInterface timer) {
         this.timer = timer;
         this.treeView = treeView;
         this.buttonPanelView = buttonPanelView;
-        imageRasterView.asWidget().addDomHandler(
-            this, MouseOverEvent.getType());
+        imageRasterView.asWidget().addDomHandler(this, MouseOverEvent.getType());
         imageRasterView.asWidget().addDomHandler(this, MouseOutEvent.getType());
         this.imageRasterView = imageRasterView;
         initWidget(uiBinder.createAndBindUi(this));
@@ -92,7 +87,6 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler,
         animateControlsIn(600);
     }
 
-
     @UiHandler("verticalFocusPanel")
     public void verticalMousePanel(MouseOverEvent event) {
         cancelHiding();
@@ -100,53 +94,46 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler,
         log.info("vertical mouse over");
     }
 
-
     public void animateControlsIn(int duration) {
         cancelHiding();
-        mainPanel.setWidgetBottomHeight(
-            buttonPanelView, 0, Unit.CM, BUTTON_PANEL_HEIGHT_PCT, Unit.PCT);
-        mainPanel.setWidgetTopHeight(
-            imageRasterView, 0, Unit.CM, IMAGEPANEL_HEIGHT_PCT, Unit.PCT);
-        mainPanel.setWidgetRightWidth(
-            imageRasterView, 0, Unit.CM, IMAGE_PANEL_WIDTH_PCT, Unit.PCT);
-        mainPanel.setWidgetLeftWidth(
-            treeView, 0, Unit.PCT, TREE_VIEW_WIDTH_PCT, Unit.PCT);
-        mainPanel.setWidgetTopHeight(
-            treeView, 0, Unit.PCT, IMAGEPANEL_HEIGHT_PCT, Unit.PCT);
+        mainPanel.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM,
+            BUTTON_PANEL_HEIGHT_PCT, Unit.PCT);
+        mainPanel.setWidgetTopHeight(imageRasterView, 0, Unit.CM,
+            IMAGEPANEL_HEIGHT_PCT, Unit.PCT);
+        mainPanel.setWidgetRightWidth(imageRasterView, 0, Unit.CM,
+            IMAGE_PANEL_WIDTH_PCT, Unit.PCT);
+        mainPanel.setWidgetLeftWidth(treeView, 0, Unit.PCT,
+            TREE_VIEW_WIDTH_PCT, Unit.PCT);
+        mainPanel.setWidgetTopHeight(treeView, 0, Unit.PCT,
+            IMAGEPANEL_HEIGHT_PCT, Unit.PCT);
 
-        mainPanel.setWidgetBottomHeight(
-            horizontalFocusPanel, 0, Unit.PCT, 0, Unit.PCT);
-        mainPanel.setWidgetLeftWidth(
-            verticalFocusPanel, 0, Unit.PCT, 0, Unit.PCT);
+        mainPanel.setWidgetBottomHeight(horizontalFocusPanel, 0, Unit.PCT, 0,
+            Unit.PCT);
+        mainPanel.setWidgetLeftWidth(verticalFocusPanel, 0, Unit.PCT, 0,
+            Unit.PCT);
 
         mainPanel.animate(duration);
     }
-
 
     public void animateControlsOut(int duration) {
         cancelHiding();
-        mainPanel.setWidgetBottomHeight(
-            buttonPanelView, 0, Unit.CM, 0, Unit.PX);
-        mainPanel.setWidgetTopHeight(
-            imageRasterView, 0, Unit.CM, 100, Unit.PCT);
-        mainPanel.setWidgetRightWidth(
-            imageRasterView, 0, Unit.CM, 100, Unit.PCT);
+        mainPanel.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM, 0, Unit.PX);
+        mainPanel.setWidgetTopHeight(imageRasterView, 0, Unit.CM, 100, Unit.PCT);
+        mainPanel.setWidgetRightWidth(imageRasterView, 0, Unit.CM, 100, Unit.PCT);
         mainPanel.setWidgetLeftWidth(treeView, 0, Unit.PCT, 0, Unit.PCT);
         mainPanel.setWidgetTopHeight(treeView, 0, Unit.PCT, 100, Unit.PCT);
 
-        mainPanel.setWidgetBottomHeight(
-            horizontalFocusPanel, 0, Unit.PCT, 10, Unit.PCT);
-        mainPanel.setWidgetLeftWidth(
-            verticalFocusPanel, 0, Unit.PCT, 10, Unit.PCT);
+        mainPanel.setWidgetBottomHeight(horizontalFocusPanel, 0, Unit.PCT, 10,
+            Unit.PCT);
+        mainPanel.setWidgetLeftWidth(verticalFocusPanel, 0, Unit.PCT, 10,
+            Unit.PCT);
 
         mainPanel.animate(duration);
     }
 
-
     @Override
     public void hideLabelLater(final int duration) {
-        timer.setRunnable(
-            new Runnable() {
+        timer.setRunnable(new Runnable() {
                 @Override
                 public void run() {
                     animateControlsOut(1000);
@@ -155,35 +142,29 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler,
         timer.schedule(duration);
     }
 
-
     @UiFactory
     public TreeViewImpl getView() {
-        return (TreeViewImpl)treeView;
+        return (TreeViewImpl) treeView;
     }
-
 
     @UiFactory
     public ButtonPanelViewImpl getButtonView() {
-        return (ButtonPanelViewImpl)buttonPanelView;
+        return (ButtonPanelViewImpl) buttonPanelView;
     }
-
 
     @UiFactory
     public ImageRasterViewImpl getImageRasterView() {
-        return (ImageRasterViewImpl)imageRasterView;
+        return (ImageRasterViewImpl) imageRasterView;
     }
-
 
     @Override
     public void setPresenter(TagPresenter presenter) {
         this.presenter = presenter;
     }
 
-
     public String toString() {
         return "TagView:" + id;
     }
-
 
     @Override
     public void onMouseOver(MouseOverEvent event) {
@@ -192,12 +173,10 @@ public class TagViewImpl extends Composite implements TagView, MouseOverHandler,
         hideLabelLater(1000);
     }
 
-
     @Override
     public void cancelHiding() {
         timer.cancel();
     }
-
 
     @Override
     public void onMouseOut(MouseOutEvent event) {

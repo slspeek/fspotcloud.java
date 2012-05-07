@@ -23,18 +23,14 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-
 import com.googlecode.fspotcloud.client.main.view.api.SlideshowView;
-
 import java.util.logging.Logger;
 
 
 public class SlideshowViewImpl extends Composite implements SlideshowView {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            SlideshowViewImpl.class.getName());
-    private static SlideshowViewImplUiBinder uiBinder = GWT.create(
-            SlideshowViewImplUiBinder.class);
+    private static final Logger log = Logger.getLogger(SlideshowViewImpl.class.getName());
+    private static SlideshowViewImplUiBinder uiBinder = GWT.create(SlideshowViewImplUiBinder.class);
     @UiField
     HorizontalPanel mainPanel;
     @UiField

@@ -18,34 +18,28 @@ package com.googlecode.fspotcloud.model.jpa.tag;
 
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfoStore;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.logging.Logger;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 
 public abstract class TagManagerBase<T extends Tag, U extends T>
     extends SimpleDAONamedIdImpl<Tag, U, String> implements Tags {
-    private static final Logger log = Logger.getLogger(
-            TagManagerBase.class.getName());
+    private static final Logger log = Logger.getLogger(TagManagerBase.class.getName());
 
     @Inject
-    public TagManagerBase(
-        Class<U> entityType, Provider<EntityManager> emProvider,
-        @Named("maxDelete")
+    public TagManagerBase(Class<U> entityType,
+        Provider<EntityManager> emProvider, @Named("maxDelete")
     Integer maxDelete) {
         super(entityType, emProvider);
     }
@@ -77,18 +71,16 @@ public abstract class TagManagerBase<T extends Tag, U extends T>
         return result;
     }
 
-
     @Override
     public List<Tag> getImportedTags() {
         EntityManager em = entityManagerProvider.get();
         em.getTransaction().begin();
 
         try {
-            Query query = em.createQuery(
-                    "select c from " + entityType.getName()
-                    + " AS c WHERE importIssued = true ");
+            Query query = em.createQuery("select c from " +
+                    entityType.getName() + " AS c WHERE importIssued = true ");
             @SuppressWarnings("unchecked")
-            List<Tag> rs = (List<Tag>)query.getResultList();
+            List<Tag> rs = (List<Tag>) query.getResultList();
             List<Tag> result = new ArrayList<Tag>();
             result.addAll(rs);
             em.getTransaction().commit();
@@ -99,9 +91,7 @@ public abstract class TagManagerBase<T extends Tag, U extends T>
         }
     }
 
-
     protected abstract Tag newTag();
-
 
     protected abstract Class<?extends Tag> getEntityClass();
 }

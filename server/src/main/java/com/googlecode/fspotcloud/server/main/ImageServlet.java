@@ -18,21 +18,16 @@ package com.googlecode.fspotcloud.server.main;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
-
 import java.io.IOException;
 import java.io.OutputStream;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -63,24 +58,21 @@ public class ImageServlet extends HttpServlet {
         out.close();
     }
 
-
-    public static void setCacheExpireDate(
-        HttpServletResponse response, int seconds) {
+    public static void setCacheExpireDate(HttpServletResponse response,
+        int seconds) {
         if (response != null) {
             Calendar cal = new GregorianCalendar();
             cal.roll(Calendar.SECOND, seconds);
-            response.setHeader(
-                "Cache-Control",
+            response.setHeader("Cache-Control",
                 "PUBLIC, max-age=" + seconds + ", must-revalidate");
-            response.setHeader(
-                "Expires", htmlExpiresDateFormat().format(cal.getTime()));
+            response.setHeader("Expires",
+                htmlExpiresDateFormat().format(cal.getTime()));
         }
     }
 
-
     public static DateFormat htmlExpiresDateFormat() {
-        DateFormat httpDateFormat = new SimpleDateFormat(
-                "EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
+        DateFormat httpDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z",
+                Locale.US);
         httpDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         return httpDateFormat;

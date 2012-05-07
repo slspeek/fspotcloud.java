@@ -17,14 +17,11 @@
 package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.inject.Inject;
-
 import com.googlecode.botdispatch.SerializableAsyncCallback;
-
 import com.googlecode.fspotcloud.server.model.api.*;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoData;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+import com.googlecode.fspotcloud.shared.peer.PhotoData;
+import com.googlecode.fspotcloud.shared.peer.PhotoDataResult;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,8 +37,8 @@ public class PhotoDataCallback implements SerializableAsyncCallback<PhotoDataRes
     @Inject
     private transient PeerDatabases peerDatabases;
 
-    public PhotoDataCallback(
-        Photos photoManager, Tags tagManager, PeerDatabases peerDatabases) {
+    public PhotoDataCallback(Photos photoManager, Tags tagManager,
+        PeerDatabases peerDatabases) {
         super();
         this.photoManager = photoManager;
         this.tagManager = tagManager;
@@ -51,7 +48,6 @@ public class PhotoDataCallback implements SerializableAsyncCallback<PhotoDataRes
     @Override
     public void onFailure(Throwable caught) {
     }
-
 
     @Override
     public void onSuccess(PhotoDataResult result) {
@@ -66,7 +62,6 @@ public class PhotoDataCallback implements SerializableAsyncCallback<PhotoDataRes
         clearTreeCache();
     }
 
-
     private void clearTreeCache() {
         PeerDatabase peer = peerDatabases.get();
 
@@ -75,7 +70,6 @@ public class PhotoDataCallback implements SerializableAsyncCallback<PhotoDataRes
             peerDatabases.save(peer);
         }
     }
-
 
     private Photo recievePhoto(PhotoData photoData) {
         String keyName = photoData.getPhotoId();
@@ -96,8 +90,8 @@ public class PhotoDataCallback implements SerializableAsyncCallback<PhotoDataRes
 
         for (String tagId : tags) {
             Tag tag = tagManager.find(tagId);
-            PhotoInfo updatedInfo = new PhotoInfo(
-                    photo.getId(), photo.getDescription(), photo.getDate(),
+            PhotoInfo updatedInfo = new PhotoInfo(photo.getId(),
+                    photo.getDescription(), photo.getDate(),
                     photoData.getVersion());
             TreeSet<PhotoInfo> cachedPhotoList = tag.getCachedPhotoList();
             cachedPhotoList.remove(updatedInfo);

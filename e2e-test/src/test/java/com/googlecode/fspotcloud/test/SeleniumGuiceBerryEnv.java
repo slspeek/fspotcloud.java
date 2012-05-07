@@ -19,17 +19,13 @@ package com.googlecode.fspotcloud.test;
 import com.google.guiceberry.GuiceBerryModule;
 import com.google.guiceberry.TestScoped;
 import com.google.guiceberry.TestWrapper;
-
 import com.google.inject.Provides;
-
 import com.thoughtworks.selenium.Selenium;
-
+import javax.inject.Named;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-
-import javax.inject.Named;
 
 
 public class SeleniumGuiceBerryEnv extends GuiceBerryModule {
@@ -44,12 +40,11 @@ public class SeleniumGuiceBerryEnv extends GuiceBerryModule {
             driver = new FirefoxDriver();
         } else {
             driver = new HtmlUnitDriver();
-            ((HtmlUnitDriver)driver).setJavascriptEnabled(true);
+            ((HtmlUnitDriver) driver).setJavascriptEnabled(true);
         }
 
         return new WebDriverBackedSelenium(driver, baseUrl);
     }
-
 
     @Override
     protected void configure() {

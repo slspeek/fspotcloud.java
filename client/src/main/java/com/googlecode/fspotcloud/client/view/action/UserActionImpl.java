@@ -19,21 +19,17 @@ package com.googlecode.fspotcloud.client.view.action;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.resources.client.ImageResource;
-
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.assistedinject.Assisted;
-
 import com.googlecode.fspotcloud.client.main.event.UserEvent;
 import com.googlecode.fspotcloud.client.main.event.UserEventHandler;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
-
 import java.util.logging.Logger;
 
 
 public class UserActionImpl implements UserAction {
-    private static final Logger log = Logger.getLogger(
-            UserActionImpl.class.getName());
+    private static final Logger log = Logger.getLogger(UserActionImpl.class.getName());
     private final String description;
     private final KeyStroke key;
     private final KeyStroke alternateKey;
@@ -44,8 +40,7 @@ public class UserActionImpl implements UserAction {
     private final EventBus eventBus;
 
     @Inject
-    public UserActionImpl(
-        @Assisted("id")
+    public UserActionImpl(@Assisted("id")
     String id, @Assisted("caption")
     String caption, @Assisted("description")
     String description, @Assisted("key")
@@ -70,26 +65,21 @@ public class UserActionImpl implements UserAction {
         return eventProvider;
     }
 
-
     public String getDescription() {
         return description;
     }
-
 
     public KeyStroke getKey() {
         return key;
     }
 
-
     public KeyStroke getAlternateKey() {
         return alternateKey;
     }
 
-
     public ImageResource getIcon() {
         return imageResource;
     }
-
 
     @Override
     public void run() {
@@ -97,12 +87,10 @@ public class UserActionImpl implements UserAction {
         eventBus.fireEvent(event);
     }
 
-
     @Override
     public String getCaption() {
         return caption;
     }
-
 
     public String getId() {
         return id;

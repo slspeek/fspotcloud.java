@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.admin.view;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.admin.ui.DashboardViewFactory;
 import com.googlecode.fspotcloud.client.admin.view.api.DashboardView;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView;
@@ -30,8 +29,8 @@ public class DashboardPresenter implements com.googlecode.fspotcloud.client.admi
     private final GlobalActionsPresenter globalActionsPresenter;
 
     @Inject
-    public DashboardPresenter(
-        DashboardViewFactory dashboardViewFactory, TreePresenter treePresenter,
+    public DashboardPresenter(DashboardViewFactory dashboardViewFactory,
+        TreePresenter treePresenter,
         GlobalActionsPresenter globalActionsPresenter) {
         super();
         this.dashboardViewFactory = dashboardViewFactory;
@@ -42,7 +41,6 @@ public class DashboardPresenter implements com.googlecode.fspotcloud.client.admi
     public DashboardView getView() {
         return dashboardViewFactory.get();
     }
-
 
     @Override
     public void init() {

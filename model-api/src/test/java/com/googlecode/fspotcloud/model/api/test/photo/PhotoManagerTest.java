@@ -17,31 +17,24 @@
 package com.googlecode.fspotcloud.model.api.test.photo;
 
 import com.google.common.collect.ImmutableList;
-
 import com.google.guiceberry.junit4.GuiceBerryRule;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
-
-import org.junit.After;
-import static org.junit.Assert.*;
-
-import org.junit.Rule;
-import org.junit.Test;
-
 import java.util.*;
 import java.util.Calendar;
 import java.util.Date;
+import org.junit.After;
+import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.Test;
 
 
 public class PhotoManagerTest {
     public static final String TEST_ID = "1";
     @Rule
-    public GuiceBerryRule guiceBerry = new GuiceBerryRule(
-            EmptyGuiceBerryEnv.class);
+    public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
     private Photos photoManager;
 
@@ -49,7 +42,6 @@ public class PhotoManagerTest {
     public void cleanUp() {
         photoManager.deleteBulk(100);
     }
-
 
     public Date getDate(int year, int month, int date) {
         Calendar cal = Calendar.getInstance();
@@ -60,7 +52,6 @@ public class PhotoManagerTest {
 
         return cal.getTime();
     }
-
 
     @Test
     public void simple() {
@@ -74,7 +65,6 @@ public class PhotoManagerTest {
 
         //photoManager.delete(TEST_ID);
     }
-
 
     @Test
     public void simpleDescr() {
@@ -93,7 +83,6 @@ public class PhotoManagerTest {
         //photoManager.delete(TEST_ID);
     }
 
-
     @Test
     public void testGetOrNew() {
         Photo photo = photoManager.findOrNew(TEST_ID);
@@ -106,7 +95,6 @@ public class PhotoManagerTest {
             fail();
         }
     }
-
 
     @Test
     public void testCreateLoadModify() {
@@ -124,7 +112,6 @@ public class PhotoManagerTest {
         //photoManager.delete(TEST_ID);
     }
 
-
     @Test
     public void testSave() {
         Photo photo = photoManager.findOrNew(TEST_ID);
@@ -137,7 +124,6 @@ public class PhotoManagerTest {
         //photoManager.delete(TEST_ID);
     }
 
-
     @Test
     public void testDelete() {
         Photo photo = photoManager.findOrNew(TEST_ID);
@@ -146,7 +132,6 @@ public class PhotoManagerTest {
 
         //photoManager.delete(TEST_ID);
     }
-
 
     @Test
     public void tagListPersists() {
@@ -160,20 +145,17 @@ public class PhotoManagerTest {
         assertEquals(abc, photo.getTagList());
     }
 
-
     @Test
     public void saveAndLoad2kImage() {
         byte[] image = new byte[2000];
         testSavingAndLoading(image);
     }
 
-
     @Test
     public void saveAndLoad10kImage() {
         byte[] image = new byte[10000];
         testSavingAndLoading(image);
     }
-
 
     private void testSavingAndLoading(byte[] image) {
         (new Random()).nextBytes(image);
@@ -190,13 +172,11 @@ public class PhotoManagerTest {
         //photoManager.delete(TEST_ID);
     }
 
-
     @Test
     public void saveAndLoad400kImage() {
         byte[] image = new byte[400000];
         testSavingAndLoading(image);
     }
-
 
     public void saveAndLoad2MImage() {
         byte[] image = new byte[2000000];

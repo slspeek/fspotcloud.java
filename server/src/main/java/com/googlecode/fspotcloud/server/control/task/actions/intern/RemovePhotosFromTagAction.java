@@ -16,14 +16,11 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoRemovedFromTag;
-
-import net.customware.gwt.dispatch.shared.Action;
-
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.peer.PhotoRemovedFromTag;
 import java.io.Serializable;
-
 import java.util.List;
+import net.customware.gwt.dispatch.shared.Action;
 
 
 public class RemovePhotosFromTagAction implements Action<VoidResult>,
@@ -32,8 +29,8 @@ public class RemovePhotosFromTagAction implements Action<VoidResult>,
     private final List<PhotoRemovedFromTag> toBoDeleted;
     private String tagId;
 
-    public RemovePhotosFromTagAction(
-        String tagId, List<PhotoRemovedFromTag> toBoDeleted) {
+    public RemovePhotosFromTagAction(String tagId,
+        List<PhotoRemovedFromTag> toBoDeleted) {
         super();
         this.toBoDeleted = toBoDeleted;
         this.tagId = tagId;
@@ -43,11 +40,9 @@ public class RemovePhotosFromTagAction implements Action<VoidResult>,
         return toBoDeleted;
     }
 
-
     public String getTagId() {
         return tagId;
     }
-
 
     public String toString() {
         return toBoDeleted.toString();

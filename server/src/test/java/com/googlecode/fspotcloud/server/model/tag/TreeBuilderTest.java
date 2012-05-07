@@ -17,14 +17,11 @@
 package com.googlecode.fspotcloud.server.model.tag;
 
 import com.google.common.collect.ImmutableList;
-
-import com.googlecode.fspotcloud.shared.tag.TagNode;
+import com.googlecode.fspotcloud.shared.main.TagNode;
+import java.util.List;
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
 
 
 public class TreeBuilderTest {
@@ -42,7 +39,6 @@ public class TreeBuilderTest {
         nodes = ImmutableList.of(root, level1_a, level2_b, secondRoot);
     }
 
-
     @Test
     public void testVerySimpleTree() {
         TreeBuilder builder = new TreeBuilder(nodes);
@@ -53,7 +49,6 @@ public class TreeBuilderTest {
         List<TagNode> level_1s = root.getChildren();
         assertEquals(2, level_1s.size());
     }
-
 
     @Test
     public void testPublicTreeSimpleTree() {

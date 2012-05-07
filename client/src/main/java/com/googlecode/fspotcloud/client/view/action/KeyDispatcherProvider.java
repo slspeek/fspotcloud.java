@@ -18,17 +18,14 @@ package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-
 import com.googlecode.fspotcloud.client.main.event.ActionFamily;
 import com.googlecode.fspotcloud.client.main.event.ActionMap;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
-
 import java.util.logging.Logger;
 
 
 public class KeyDispatcherProvider implements Provider<KeyDispatcher> {
-    private static final Logger log = Logger.getLogger(
-            KeyDispatcherProvider.class.getName());
+    private static final Logger log = Logger.getLogger(KeyDispatcherProvider.class.getName());
     private final KeyDispatcher keyDispatcher = new KeyDispatcher();
     private final ActionFamily actions;
 
@@ -50,7 +47,6 @@ public class KeyDispatcherProvider implements Provider<KeyDispatcher> {
             }
         }
     }
-
 
     @Override
     public KeyDispatcher get() {

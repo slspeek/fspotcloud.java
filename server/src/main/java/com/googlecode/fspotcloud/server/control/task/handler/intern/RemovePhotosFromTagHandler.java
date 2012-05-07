@@ -18,21 +18,17 @@ package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.model.api.*;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoRemovedFromTag;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+import com.googlecode.fspotcloud.shared.peer.PhotoRemovedFromTag;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
+import java.util.Iterator;
+import java.util.SortedSet;
+import javax.inject.Inject;
+import javax.inject.Named;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
-
-import java.util.Iterator;
-import java.util.SortedSet;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 
 public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotosFromTagAction, VoidResult> {
@@ -43,8 +39,7 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
     private final PeerDatabases peerDatabaseManager;
 
     @Inject
-    public RemovePhotosFromTagHandler(
-        @Named("maxDelete")
+    public RemovePhotosFromTagHandler(@Named("maxDelete")
     int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
         Tags tagManager, PeerDatabases peerDatabaseManager) {
         super();
@@ -56,9 +51,8 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
     }
 
     @Override
-    public VoidResult execute(
-        RemovePhotosFromTagAction action, ExecutionContext context)
-        throws DispatchException {
+    public VoidResult execute(RemovePhotosFromTagAction action,
+        ExecutionContext context) throws DispatchException {
         Tag tag = tagManager.find(action.getTagId());
         Iterator<PhotoRemovedFromTag> it = action.getToBoDeleted().iterator();
 
@@ -79,7 +73,6 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
         return new VoidResult();
     }
 
-
     private void clearTreeCache() {
         PeerDatabase peer = peerDatabaseManager.get();
 
@@ -89,9 +82,7 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
         }
     }
 
-
-    private void checkForDeletion(
-        Tag tag, String deleteTagId, String key,
+    private void checkForDeletion(Tag tag, String deleteTagId, String key,
         Iterator<PhotoRemovedFromTag> it) {
         Photo photo = photos.find(key);
 
@@ -121,7 +112,6 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
 
         it.remove();
     }
-
 
     private PhotoInfo find(SortedSet<PhotoInfo> set, String id) {
         for (PhotoInfo info : set) {

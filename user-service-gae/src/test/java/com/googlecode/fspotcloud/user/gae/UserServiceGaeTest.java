@@ -21,24 +21,17 @@
 package com.googlecode.fspotcloud.user.gae;
 
 import com.google.appengine.api.users.User;
-
 import com.googlecode.fspotcloud.user.gae.UserServiceGae;
-
+import java.util.List;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.jukito.JukitoRunner;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.when;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 
 /**
@@ -59,14 +52,12 @@ public class UserServiceGaeTest {
         when(request.getServerName()).thenReturn("localhost");
     }
 
-
     @Test
     public void isUserLoggedIn(
         com.google.appengine.api.users.UserService delegate) {
         when(delegate.isUserLoggedIn()).thenReturn(Boolean.TRUE);
         Assert.assertTrue(userService.isUserLoggedIn());
     }
-
 
     @Test
     public void createLoginURL(
@@ -76,7 +67,6 @@ public class UserServiceGaeTest {
         Assert.assertEquals("url", userService.createLoginURL("later"));
     }
 
-
     @Test
     public void createLogoutURL(
         com.google.appengine.api.users.UserService delegate) {
@@ -85,15 +75,12 @@ public class UserServiceGaeTest {
         Assert.assertEquals("url", userService.createLogoutURL("later"));
     }
 
-
     @Test
-    public void isUserAdmin(
-        com.google.appengine.api.users.UserService delegate) {
+    public void isUserAdmin(com.google.appengine.api.users.UserService delegate) {
         when(delegate.isUserLoggedIn()).thenReturn(Boolean.TRUE);
         when(delegate.isUserAdmin()).thenReturn(Boolean.TRUE);
         Assert.assertTrue(userService.isUserAdmin());
     }
-
 
     @Test
     public void email(com.google.appengine.api.users.UserService delegate) {
@@ -104,7 +91,6 @@ public class UserServiceGaeTest {
 
         Assert.assertEquals(userService.getEmail(), "foo@bar.com");
     }
-
 
     @Test
     public void emailReturnsNull(

@@ -19,21 +19,17 @@ package com.googlecode.fspotcloud.client.main.view;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
-
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
-
 import com.googlecode.fspotcloud.client.main.shared.ZoomViewEvent;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.view.api.ImageView;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import java.util.logging.Logger;
 
 
 public class ImagePresenterImpl implements ImageView.ImagePresenter {
-    private static final Logger log = Logger.getLogger(
-            ImagePresenterImpl.class.getName());
+    private static final Logger log = Logger.getLogger(ImagePresenterImpl.class.getName());
     private final ImageView imageView;
     private final String tagId;
     private final String photoId;
@@ -44,8 +40,7 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
     private final Resources resources;
 
     @Inject
-    public ImagePresenterImpl(
-        @Assisted
+    public ImagePresenterImpl(@Assisted
     String tagId, @Assisted
     ImageView imageView, @Assisted
     boolean thumb, @Assisted
@@ -65,7 +60,6 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
         imageView.hideLabelLater(4000);
     }
 
-
     public void setImage() {
         if (photoId != null) {
             String date;
@@ -75,10 +69,10 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
                                      .format(info.getDate());
             } else {
                 date = DateTimeFormat.getFormat(PredefinedFormat.DATE_FULL)
-                                     .format(info.getDate()) + " "
-                    + DateTimeFormat.getFormat(PredefinedFormat.TIME_MEDIUM)
-                                    .format(info.getDate()) + "(v"
-                    + info.getVersion() + ")";
+                                     .format(info.getDate()) + " " +
+                    DateTimeFormat.getFormat(PredefinedFormat.TIME_MEDIUM)
+                                  .format(info.getDate()) + "(v" +
+                    info.getVersion() + ")";
             }
 
             imageView.setDescription(date);
@@ -98,13 +92,11 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
         }
     }
 
-
     @Override
     public void imageClicked() {
         log.info("about to fire zoom event");
         eventBus.fireEvent(new ZoomViewEvent(tagId, photoId));
     }
-
 
     @Override
     public void setSelected(boolean selected) {

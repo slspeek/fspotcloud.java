@@ -16,23 +16,18 @@
  */
 package com.googlecode.fspotcloud.peer;
 
-import junit.framework.TestCase;
-
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
 import java.util.logging.Logger;
-
 import javax.imageio.ImageIO;
+import junit.framework.TestCase;
 
 
 public class ImageDataTest extends TestCase {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            ImageDataTest.class.getName());
+    private static final Logger log = Logger.getLogger(ImageDataTest.class.getName());
     private ImageData target;
     String cwd;
 
@@ -42,11 +37,9 @@ public class ImageDataTest extends TestCase {
         cwd = System.getProperty("user.dir");
     }
 
-
     protected void tearDown() throws Exception {
         super.tearDown();
     }
-
 
     public final void testGetScaledImageData() throws Exception {
         String imgPath = "/src/test/resources/images/img_0659 (Gewijzigd).jpg";
@@ -63,11 +56,10 @@ public class ImageDataTest extends TestCase {
         assertEquals(100, h);
     }
 
-
     public final void testGetScaledImageDataPortrait()
         throws Exception {
-        String urlString = cwd
-            + "/src/test/resources/Photos/2010/06/04/Mac-classic.jpg";
+        String urlString = cwd +
+            "/src/test/resources/Photos/2010/06/04/Mac-classic.jpg";
         Dimension size = new Dimension(200, 100);
         byte[] data = target.getScaledImageData(urlString, size);
         InputStream dataStream = new ByteArrayInputStream(data);
