@@ -16,14 +16,20 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.openpojo.business.BusinessIdentity;
+import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 
+public class ImageSpecs extends BusinessBase implements Serializable {
 
-public class ImageSpecs implements Serializable {
     private static final long serialVersionUID = 5812879917430846998L;
+    @BusinessKey
     private final int width;
+    @BusinessKey
     private final int height;
+    @BusinessKey
     private final int thumbWidth;
+    @BusinessKey
     private final int thumbHeight;
 
     public ImageSpecs(int width, int height, int thumbWidth, int thumbHeight) {
@@ -38,16 +44,13 @@ public class ImageSpecs implements Serializable {
         return width;
     }
 
-
     public int getHeight() {
         return height;
     }
 
-
     public int getThumbWidth() {
         return thumbWidth;
     }
-
 
     public int getThumbHeight() {
         return thumbHeight;

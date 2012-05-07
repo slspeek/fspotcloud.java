@@ -17,6 +17,7 @@
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
 import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -27,5 +28,12 @@ public class GetPeerMetaDataActionTest {
     @Test
     public void testSerialize() throws Exception {
         testSerialization(action);
+    }
+
+
+    @Test
+    public void testSerializEquals() throws Exception {
+        GetPeerMetaDataAction second = new GetPeerMetaDataAction();
+        assertEquals(second, action);
     }
 }

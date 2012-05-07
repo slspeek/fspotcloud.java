@@ -16,16 +16,10 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
-import static com.google.common.collect.Lists.newArrayList;
-
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
 import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
 
 
 public class TagDataTest {

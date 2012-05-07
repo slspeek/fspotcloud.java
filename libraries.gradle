@@ -23,6 +23,7 @@ libs = [
             transitive = false
         },
         mockito: "org.mockito:mockito-core:1.9.0-rc1",
+        openpojo: "com.googlecode.openpojo:openpojo:0.3.9",
         guava_testlib: "com.google.guava:guava-testlib:10.0.1",
         derby_all: ["org.apache.derby:derby:${derby_version}",
                 "org.apache.derby:derbyclient:${derby_version}",

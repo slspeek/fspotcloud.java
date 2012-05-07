@@ -16,14 +16,19 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.openpojo.business.BusinessIdentity;
+import com.openpojo.business.annotation.BusinessKey;
+
 import net.customware.gwt.dispatch.shared.Result;
 
 import java.io.Serializable;
 
 
-public class PeerMetaDataResult implements Result, Serializable {
+public class PeerMetaDataResult extends BusinessBase implements Result, Serializable {
     private static final long serialVersionUID = 5786908411967248429L;
+    @BusinessKey
     private int tagCount;
+    @BusinessKey
     private int photoCount;
 
     public PeerMetaDataResult(int tagCount, int photoCount) {
@@ -32,14 +37,9 @@ public class PeerMetaDataResult implements Result, Serializable {
         this.photoCount = photoCount;
     }
 
-
-    public PeerMetaDataResult() {
-    }
-
     public int getTagCount() {
         return tagCount;
     }
-
 
     public int getPhotoCount() {
         return photoCount;

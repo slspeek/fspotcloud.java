@@ -16,12 +16,15 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 
 
-public class PhotoRemovedFromTag implements Serializable {
+public class PhotoRemovedFromTag extends BusinessBase implements Serializable {
     private static final long serialVersionUID = 2281991078773646131L;
+    @BusinessKey
     private final String photoId;
+    @BusinessKey
     private final String tagId;
 
     public PhotoRemovedFromTag(String photoId, String tagId) {
@@ -34,14 +37,7 @@ public class PhotoRemovedFromTag implements Serializable {
         return photoId;
     }
 
-
     public String getTagId() {
         return tagId;
-    }
-
-
-    public String toString() {
-        return "PhotoRemovedFromTag(photo=" + getPhotoId() + ", tag="
-        + getTagId() + ")";
     }
 }

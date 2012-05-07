@@ -28,6 +28,8 @@ import static org.junit.Assert.assertNotNull;
  * @author steven
  */
 import java.io.Serializable;
+
+
 public class Serialization {
     public static <T> void testSerialization(T underTest) {
         byte[] data = SerializationUtils.serialize((Serializable)underTest);

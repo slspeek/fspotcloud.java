@@ -16,6 +16,7 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.openpojo.business.annotation.BusinessKey;
 import net.customware.gwt.dispatch.shared.Result;
 
 import java.io.Serializable;
@@ -23,8 +24,9 @@ import java.io.Serializable;
 import java.util.List;
 
 
-public class PhotoDataResult implements Result, Serializable {
+public class PhotoDataResult extends BusinessBase implements Result, Serializable {
     private static final long serialVersionUID = -2531344462382063416L;
+    @BusinessKey
     private List<PhotoData> photoDataList;
 
     public PhotoDataResult(List<PhotoData> photoDataList) {
