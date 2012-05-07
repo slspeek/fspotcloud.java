@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.view.api.PopupView;
 
 
@@ -36,7 +35,6 @@ public class DemoPresenter {
         popupView.setText(initText());
     }
 
-
     private String initText() {
         String helptext = "<table><tr><td>";
         helptext += text;
@@ -45,12 +43,10 @@ public class DemoPresenter {
         return helptext;
     }
 
-
     public void show() {
         popupView.setPopupPosition(30, 30);
         popupView.show();
     }
-
 
     public void hide() {
         popupView.hide();

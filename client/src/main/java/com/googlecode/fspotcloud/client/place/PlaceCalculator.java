@@ -18,7 +18,6 @@ package com.googlecode.fspotcloud.client.place;
 
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Zoom;
-
 import java.util.logging.Logger;
 
 
@@ -28,8 +27,7 @@ import java.util.logging.Logger;
  * @author steven
 */
 public class PlaceCalculator {
-    private static final Logger log = Logger.getLogger(
-            PlaceCalculator.class.getName());
+    private static final Logger log = Logger.getLogger(PlaceCalculator.class.getName());
     public static final int DEFAULT_RASTER_WIDTH = 5;
     public static final int DEFAULT_RASTER_HEIGHT = 4;
     public static final int MINIMUM_RASTER_WIDTH = 2;
@@ -51,7 +49,6 @@ public class PlaceCalculator {
         return dest;
     }
 
-
     public BasePlace toggleRasterView(BasePlace place) {
         PlaceConverter converter = new PlaceConverter(place);
         int width = place.getColumnCount();
@@ -71,9 +68,8 @@ public class PlaceCalculator {
         return converter.getNewPlace();
     }
 
-
-    public BasePlace toggleZoomView(
-        BasePlace place, String tagId, String photoId) {
+    public BasePlace toggleZoomView(BasePlace place, String tagId,
+        String photoId) {
         PlaceConverter converter = new PlaceConverter(place);
         converter.setTagId(tagId);
         converter.setPhotoId(photoId);
@@ -97,18 +93,15 @@ public class PlaceCalculator {
         return converter.getNewPlace();
     }
 
-
     public void setRasterHeight(int rasterHeight) {
         if (rasterHeight >= MINIMUM_RASTER_HEIGHT) {
             this.rasterHeight = rasterHeight;
         }
     }
 
-
     public int getRasterHeight() {
         return rasterHeight;
     }
-
 
     public void setRasterWidth(int rasterWidth) {
         if (rasterWidth >= MINIMUM_RASTER_WIDTH) {
@@ -116,11 +109,9 @@ public class PlaceCalculator {
         }
     }
 
-
     public int getRasterWidth() {
         return rasterWidth;
     }
-
 
     public BasePlace getTabularPlace(BasePlace place) {
         PlaceConverter converter = new PlaceConverter(place);
@@ -129,7 +120,6 @@ public class PlaceCalculator {
 
         return converter.getNewPlace();
     }
-
 
     public BasePlace zoom(BasePlace now, Navigator.Zoom direction) {
         BasePlace dest;
@@ -146,12 +136,10 @@ public class PlaceCalculator {
 
                 if ((width - 1) != getRasterWidth()) {
                     // switch to 1x1
-                    dest = new BasePlace(
-                            now.getTagId(), now.getPhotoId(), 1, 1);
+                    dest = new BasePlace(now.getTagId(), now.getPhotoId(), 1, 1);
                 } else {
-                    dest = new BasePlace(
-                            now.getTagId(), now.getPhotoId(), getRasterWidth(),
-                            getRasterHeight());
+                    dest = new BasePlace(now.getTagId(), now.getPhotoId(),
+                            getRasterWidth(), getRasterHeight());
                 }
             }
         } else {
@@ -159,22 +147,19 @@ public class PlaceCalculator {
             int height = now.getRowCount();
             setRasterWidth(width + 1);
             setRasterHeight(height + 1);
-            dest = new BasePlace(
-                    now.getTagId(), now.getPhotoId(), getRasterWidth(),
-                    getRasterHeight());
+            dest = new BasePlace(now.getTagId(), now.getPhotoId(),
+                    getRasterWidth(), getRasterHeight());
         }
 
         return dest;
     }
 
-
     public BasePlace unslideshow(BasePlace tagViewingPlace) {
         BasePlace result;
 
         if (tagViewingPlace instanceof SlideshowPlace) {
-            result = new BasePlace(
-                    tagViewingPlace.getTagId(), tagViewingPlace.getPhotoId(), 1,
-                    1);
+            result = new BasePlace(tagViewingPlace.getTagId(),
+                    tagViewingPlace.getPhotoId(), 1, 1);
         } else {
             result = tagViewingPlace;
         }

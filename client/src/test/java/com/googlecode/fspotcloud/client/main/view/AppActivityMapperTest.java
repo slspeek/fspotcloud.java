@@ -17,9 +17,7 @@
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.googlecode.fspotcloud.client.main.view.MainWindowActivityMapper;
-
 import junit.framework.TestCase;
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
@@ -32,11 +30,9 @@ public class AppActivityMapperTest extends TestCase {
         super.setUp();
     }
 
-
     protected void tearDown() throws Exception {
         super.tearDown();
     }
-
 
     public void testGetTagActivity() {
     }

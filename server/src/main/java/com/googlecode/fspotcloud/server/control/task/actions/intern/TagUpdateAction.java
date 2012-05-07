@@ -16,14 +16,11 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagUpdate;
-
-import net.customware.gwt.dispatch.shared.Action;
-
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.peer.TagUpdate;
 import java.io.Serializable;
-
 import java.util.List;
+import net.customware.gwt.dispatch.shared.Action;
 
 
 public class TagUpdateAction implements Action<VoidResult>, Serializable {
@@ -38,7 +35,6 @@ public class TagUpdateAction implements Action<VoidResult>, Serializable {
     public List<TagUpdate> getUpdates() {
         return updates;
     }
-
 
     public String toString() {
         return updates.toString();

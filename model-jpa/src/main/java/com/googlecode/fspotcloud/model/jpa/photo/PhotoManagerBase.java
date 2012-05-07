@@ -18,16 +18,12 @@ package com.googlecode.fspotcloud.model.jpa.photo;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
-
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -35,13 +31,12 @@ import javax.persistence.Query;
 public abstract class PhotoManagerBase<T extends Photo, U extends T>
     extends SimpleDAONamedIdImpl<Photo, U, String> implements Photos {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            PhotoManagerBase.class.getName());
+    private static final Logger log = Logger.getLogger(PhotoManagerBase.class.getName());
     protected final Provider<EntityManager> entityManagerProvider;
 
     @Inject
-    public PhotoManagerBase(
-        Class<U> entityType, Provider<EntityManager> emProvider) {
+    public PhotoManagerBase(Class<U> entityType,
+        Provider<EntityManager> emProvider) {
         super(entityType, emProvider);
         this.entityManagerProvider = emProvider;
     }
@@ -50,7 +45,6 @@ public abstract class PhotoManagerBase<T extends Photo, U extends T>
         List<String> tagList = photo.getTagList();
         photo.setTagList(new ArrayList<String>(tagList));
     }
-
 
     @Override
     public Photo find(String key) {
@@ -68,19 +62,18 @@ public abstract class PhotoManagerBase<T extends Photo, U extends T>
         return attachted;
     }
 
-
     @Override
     public List<Photo> findAll(int max) {
         EntityManager em = entityManagerProvider.get();
         em.getTransaction().begin();
 
         try {
-            Query query = em.createQuery(
-                    "select c from " + getEntityClass().getName() + " AS c");
+            Query query = em.createQuery("select c from " +
+                    getEntityClass().getName() + " AS c");
             query.setMaxResults(max);
 
             @SuppressWarnings("unchecked")
-            List<Photo> rs = (List<Photo>)query.getResultList();
+            List<Photo> rs = (List<Photo>) query.getResultList();
             List<Photo> result = new ArrayList<Photo>();
             result.addAll(rs);
 
@@ -98,9 +91,7 @@ public abstract class PhotoManagerBase<T extends Photo, U extends T>
         }
     }
 
-
     protected abstract Photo newPhoto();
-
 
     protected abstract Class<?extends Photo> getEntityClass();
 }

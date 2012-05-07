@@ -25,24 +25,19 @@ import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.LayoutPanel;
-
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-
 import com.googlecode.fspotcloud.client.main.view.api.ButtonPanelView;
 import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
 import com.googlecode.fspotcloud.client.main.view.api.SingleImageView;
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
-
 import java.util.logging.Logger;
 
 
 public class SingleImageViewImpl extends Composite implements SingleImageView,
     MouseMoveHandler {
-    private static final Logger log = Logger.getLogger(
-            SingleImageViewImpl.class.getName());
-    private static SingleImageViewImplUiBinder uiBinder = GWT.create(
-            SingleImageViewImplUiBinder.class);
+    private static final Logger log = Logger.getLogger(SingleImageViewImpl.class.getName());
+    private static SingleImageViewImplUiBinder uiBinder = GWT.create(SingleImageViewImplUiBinder.class);
     private final ButtonPanelView buttonPanelView;
     private final ImageRasterView imageRasterView;
     private final TimerInterface timer;
@@ -51,8 +46,7 @@ public class SingleImageViewImpl extends Composite implements SingleImageView,
     private SingleImageView.SingleImagePresenter presenter;
 
     @Inject
-    public SingleImageViewImpl(
-        ImageRasterView imageRasterView,
+    public SingleImageViewImpl(ImageRasterView imageRasterView,
         @Named("Slideshow")
     ButtonPanelView buttonPanelView, TimerInterface timer) {
         this.timer = timer;
@@ -65,32 +59,27 @@ public class SingleImageViewImpl extends Composite implements SingleImageView,
 
     @UiFactory
     public ButtonPanelViewImpl getButtonPanelView() {
-        return (ButtonPanelViewImpl)buttonPanelView;
+        return (ButtonPanelViewImpl) buttonPanelView;
     }
-
 
     @UiFactory
     public ImageRasterViewImpl getImageRasterView() {
-        return (ImageRasterViewImpl)imageRasterView;
+        return (ImageRasterViewImpl) imageRasterView;
     }
-
 
     public void showControls(int duration) {
         layout.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM, 50, Unit.PX);
         layout.animate(duration);
     }
 
-
     public void hideControls(int duration) {
         layout.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM, 0, Unit.PX);
         layout.animate(duration);
     }
 
-
     @Override
     public void hideControlsLater(int visibleDuration) {
-        timer.setRunnable(
-            new Runnable() {
+        timer.setRunnable(new Runnable() {
                 @Override
                 public void run() {
                     hideControls(1000);
@@ -99,13 +88,11 @@ public class SingleImageViewImpl extends Composite implements SingleImageView,
         timer.schedule(visibleDuration);
     }
 
-
     @Override
     public void onMouseMove(MouseMoveEvent event) {
         showControls(600);
         hideControlsLater(6000);
     }
-
 
     @Override
     public void setPresenter(SingleImagePresenter singleImageActivity) {

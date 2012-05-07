@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.main.view.factory;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.ui.SingleImageViewImpl;
 import com.googlecode.fspotcloud.client.main.view.SingleImageActivity;
 import com.googlecode.fspotcloud.client.main.view.SlideshowControlsPresenter;
@@ -48,8 +47,8 @@ public class SingleImageViewActivityFactoryImpl
 
     @Override
     public SingleImagePresenter get(BasePlace place) {
-        ImageRasterView.ImageRasterPresenter raster = imageRasterPresenterFactory
-            .get(place, singleImageView.getImageRasterView());
+        ImageRasterView.ImageRasterPresenter raster = imageRasterPresenterFactory.get(place,
+                singleImageView.getImageRasterView());
 
         return new SingleImageActivity(singleImageView, raster);
     }

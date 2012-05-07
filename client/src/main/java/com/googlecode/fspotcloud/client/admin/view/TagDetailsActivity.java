@@ -21,33 +21,28 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-
 import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsView;
 import com.googlecode.fspotcloud.client.data.DataManager;
 import com.googlecode.fspotcloud.client.place.TagPlace;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserUnImportsTagAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
-import net.customware.gwt.dispatch.client.DispatchAsync;
-
+import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class TagDetailsActivity extends AbstractActivity implements TagDetailsView.TagDetailsPresenter {
-    private static final Logger log = Logger.getLogger(
-            TagDetailsActivity.class.getName());
+    private static final Logger log = Logger.getLogger(TagDetailsActivity.class.getName());
     private final TagDetailsView tagDetailsView;
     private final TagPlace tagPlace;
     private TagNode tagNode;
     private final DataManager dataManager;
     private final DispatchAsync dispatch;
 
-    public TagDetailsActivity(
-        TagDetailsView tagDetailsView, TagPlace tagPlace,
+    public TagDetailsActivity(TagDetailsView tagDetailsView, TagPlace tagPlace,
         DataManager dataManager, DispatchAsync dispatch) {
         super();
         this.tagDetailsView = tagDetailsView;
@@ -62,27 +57,23 @@ public class TagDetailsActivity extends AbstractActivity implements TagDetailsVi
         populateView();
     }
 
-
     @Override
     public void start(AcceptsOneWidget panel, EventBus eventBus) {
         tagDetailsView.setPresenter(this);
         panel.setWidget(tagDetailsView);
     }
 
-
     @Override
     public void importTag() {
         log.info("TagNode: " + tagNode + tagNode.isImportIssued());
 
         if ((tagNode != null) && tagNode.isImportIssued()) {
-            dispatch.execute(
-                new UserUnImportsTagAction(tagPlace.getTagId()),
+            dispatch.execute(new UserUnImportsTagAction(tagPlace.getTagId()),
                 new AsyncCallback<VoidResult>() {
                     @Override
                     public void onFailure(Throwable caught) {
                         log.log(Level.SEVERE, "Action Exception ", caught);
                     }
-
 
                     @Override
                     public void onSuccess(VoidResult result) {
@@ -90,14 +81,12 @@ public class TagDetailsActivity extends AbstractActivity implements TagDetailsVi
                     }
                 });
         } else {
-            dispatch.execute(
-                new UserImportsTagAction(tagPlace.getTagId()),
+            dispatch.execute(new UserImportsTagAction(tagPlace.getTagId()),
                 new AsyncCallback<VoidResult>() {
                     @Override
                     public void onFailure(Throwable caught) {
                         log.log(Level.SEVERE, "Action Exception ", caught);
                     }
-
 
                     @Override
                     public void onSuccess(VoidResult result) {
@@ -107,19 +96,15 @@ public class TagDetailsActivity extends AbstractActivity implements TagDetailsVi
         }
     }
 
-
     private void populateView() {
         String tagId = tagPlace.getTagId();
-        dataManager.getAdminTagNode(
-            tagId,
+        dataManager.getAdminTagNode(tagId,
             new AsyncCallback<TagNode>() {
                 @Override
                 public void onFailure(Throwable caught) {
-                    log.log(
-                        Level.SEVERE, "Trouble retrieving admin tag tree ",
+                    log.log(Level.SEVERE, "Trouble retrieving admin tag tree ",
                         caught);
                 }
-
 
                 @Override
                 public void onSuccess(TagNode result) {
@@ -128,7 +113,6 @@ public class TagDetailsActivity extends AbstractActivity implements TagDetailsVi
                 }
             });
     }
-
 
     private void populateView(TagNode tag) {
         tagDetailsView.getTagNameValue().setText(tag.getTagName());
@@ -141,7 +125,7 @@ public class TagDetailsActivity extends AbstractActivity implements TagDetailsVi
         tagDetailsView.getImportButtonText()
                       .setText(tag.isImportIssued() ? "Remove" : "Import");
         tagDetailsView.getTagLoadedImagesCountValue()
-                      .setText(
-            String.valueOf(tag.getCachedPhotoList().lastIndex() + 1));
+                      .setText(String.valueOf(tag.getCachedPhotoList()
+                                                 .lastIndex() + 1));
     }
 }

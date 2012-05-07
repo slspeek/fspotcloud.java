@@ -16,14 +16,11 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-
-import net.customware.gwt.dispatch.shared.Action;
-
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import java.io.Serializable;
-
 import java.util.List;
+import net.customware.gwt.dispatch.shared.Action;
 
 
 public class ImportManyTagsPhotosAction implements Action<VoidResult>,

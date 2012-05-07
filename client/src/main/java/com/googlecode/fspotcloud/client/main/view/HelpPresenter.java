@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.event.ActionFamily;
 import com.googlecode.fspotcloud.client.main.event.ActionMap;
 import com.googlecode.fspotcloud.client.main.help.HelpContentGenerator;
@@ -32,8 +31,7 @@ public class HelpPresenter implements PopupView.PopupPresenter {
     private final ActionFamily actions;
 
     @Inject
-    public HelpPresenter(
-        ActionFamily actions, HelpContentGenerator generator,
+    public HelpPresenter(ActionFamily actions, HelpContentGenerator generator,
         PopupView popupView) {
         this.actions = actions;
         this.generator = generator;
@@ -59,7 +57,6 @@ public class HelpPresenter implements PopupView.PopupPresenter {
         return helptext;
     }
 
-
     private String getHelpGroup(ActionMap group) {
         String title = group.getDescription();
         String helptext = "<table style='text-align: left'>";
@@ -68,15 +65,14 @@ public class HelpPresenter implements PopupView.PopupPresenter {
         helptext += "</th></tr></th>";
 
         for (UserAction shortcut : group.allActions()) {
-            helptext += ("<tr><td>" + generator.getHelpText(shortcut)
-            + "</td></tr>");
+            helptext += ("<tr><td>" + generator.getHelpText(shortcut) +
+            "</td></tr>");
         }
 
         helptext += "</table>";
 
         return helptext;
     }
-
 
     public void show() {
         popupView.setGlassEnabled(true);
@@ -85,11 +81,9 @@ public class HelpPresenter implements PopupView.PopupPresenter {
         popupView.focus();
     }
 
-
     public void hide() {
         popupView.hide();
     }
-
 
     @Override
     public boolean isShowing() {

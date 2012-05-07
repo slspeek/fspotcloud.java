@@ -18,7 +18,6 @@ package com.googlecode.fspotcloud.client.main.shared;
 
 import com.googlecode.fspotcloud.client.main.event.navigation.NavigationEvent;
 import com.googlecode.fspotcloud.client.main.event.navigation.NavigationType;
-
 import junit.framework.TestCase;
 
 
@@ -27,7 +26,6 @@ public class NavigationEventTest extends TestCase {
         NavigationEvent event = new NavigationEvent(NavigationType.BACK);
         assertNotNull(event);
     }
-
 
     public void testGetActionType() {
         NavigationEvent event = new NavigationEvent(NavigationType.BACK);

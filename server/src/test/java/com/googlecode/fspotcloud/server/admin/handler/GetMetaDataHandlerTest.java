@@ -17,23 +17,18 @@
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.googlecode.botdispatch.model.api.Commands;
-
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import com.googlecode.fspotcloud.shared.dashboard.actions.GetMetaDataAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.GetMetaDataResult;
+import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataAction;
+import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-
 import net.customware.gwt.dispatch.shared.DispatchException;
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
-
 import org.mockito.MockitoAnnotations;
 
 
@@ -52,10 +47,9 @@ public class GetMetaDataHandlerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         pd = new PeerDatabaseEntity();
-        handler = new GetMetaDataHandler(
-                commandManager, defaultPeer, adminPermission);
+        handler = new GetMetaDataHandler(commandManager, defaultPeer,
+                adminPermission);
     }
-
 
     @Test
     public void testExecute() throws DispatchException {
@@ -67,7 +61,6 @@ public class GetMetaDataHandlerTest {
         assertEquals(0, result.getPeerPhotoCount());
         assertEquals(100, result.getPendingCommandCount());
     }
-
 
     @Test
     public void testException() {
@@ -81,7 +74,6 @@ public class GetMetaDataHandlerTest {
         } catch (DispatchException e) {
         }
     }
-
 
     @Test(expected = SecurityException.class)
     public void forbidden() throws DispatchException {

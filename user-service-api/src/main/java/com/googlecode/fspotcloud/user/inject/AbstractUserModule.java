@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.user.inject;
 
 import com.google.inject.servlet.ServletModule;
-
 import com.googlecode.fspotcloud.user.AdminPermission;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 

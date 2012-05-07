@@ -17,34 +17,28 @@
 package com.googlecode.fspotcloud.model.api.test.peerdatabase;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
-
 import com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
+import com.googlecode.fspotcloud.shared.main.TagNode;
+import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
 
 public class PeerDatabaseManagerTest {
     @Rule
-    public GuiceBerryRule guiceBerry = new GuiceBerryRule(
-            EmptyGuiceBerryEnv.class);
+    public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
     private PeerDatabases manager;
 
     @Before
     public void setUp() throws Exception {
     }
-
 
     @Test
     public void resetCachedTagTree() {
@@ -67,7 +61,6 @@ public class PeerDatabaseManagerTest {
         assertNull(list);
     }
 
-
     @Test
     public void testGet() {
         PeerDatabase defaultPD = manager.get();
@@ -77,13 +70,11 @@ public class PeerDatabaseManagerTest {
         assertNotNull(secondInstance);
     }
 
-
     @Test
     public void testSave() {
         PeerDatabase defaultPD = manager.get();
         manager.save(defaultPD);
     }
-
 
     @Test
     public void testGetCachedTagTree() {
@@ -92,14 +83,12 @@ public class PeerDatabaseManagerTest {
         assertNull(list);
     }
 
-
     @Test
     public void testDefaultsForThumbDimension() {
         PeerDatabase defaultPD = manager.get();
         String dim = defaultPD.getThumbDimension();
         assertEquals("512x384", dim);
     }
-
 
     @Test
     public void testDefaultForGetTagCount() {

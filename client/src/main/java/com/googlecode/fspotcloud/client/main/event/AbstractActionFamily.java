@@ -35,18 +35,15 @@ public abstract class AbstractActionFamily implements ActionFamily {
         return new ArrayList<ActionMap>(familyMap.values());
     }
 
-
     @Override
     public ActionMap get(String name) {
         return familyMap.get(name);
     }
 
-
     @Override
     public String getDescription() {
         return description;
     }
-
 
     public void addMap(AbstractActionMap actionMap) {
         actionMap.buildMap();

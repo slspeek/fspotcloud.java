@@ -18,16 +18,13 @@ package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
-
 import com.googlecode.fspotcloud.client.data.DataManager;
 import com.googlecode.fspotcloud.client.data.DataManagerImpl;
 import com.googlecode.fspotcloud.client.main.DispatchAsyncTestImpl;
 import com.googlecode.fspotcloud.client.main.view.api.TreeSelectionHandlerInterface;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import junit.framework.TestCase;
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
@@ -48,23 +45,18 @@ public class TreePresenterImplTest extends TestCase {
         super.setUp();
     }
 
-
     public void testConstructor() {
-        presenter = new TreePresenterImpl(
-                treeView, dataManager, model, handler);
+        presenter = new TreePresenterImpl(treeView, dataManager, model, handler);
         assertNotNull(presenter);
     }
 
-
     public void testInit() {
         testConstructor();
-        context.checking(
-            new Expectations() {
+        context.checking(new Expectations() {
 
                 {
                     oneOf(handler).setSelectionModel(with(model));
-                    oneOf(treeView).setTreeModel(
-                        with(any(TreeViewModel.class)));
+                    oneOf(treeView).setTreeModel(with(any(TreeViewModel.class)));
                 }
             });
         presenter.init();

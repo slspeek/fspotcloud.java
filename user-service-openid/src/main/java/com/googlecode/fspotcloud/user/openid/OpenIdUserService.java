@@ -24,11 +24,8 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.servlet.RequestScoped;
 import com.google.inject.servlet.SessionScoped;
-
 import com.googlecode.fspotcloud.user.UserService;
-
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -54,7 +51,6 @@ public class OpenIdUserService implements UserService {
         return "index.jsp?dest=" + destinationURL;
     }
 
-
     @Override
     public String createLogoutURL(String destinationURL) {
         destinationURL = toAbsoluteURL(destinationURL);
@@ -62,21 +58,19 @@ public class OpenIdUserService implements UserService {
         return "index.jsp?logout=true&dest=" + destinationURL;
     }
 
-
     private String toAbsoluteURL(String url) {
         HttpServletRequest request = requestProvider.get();
-        String result = request.getScheme() + "://" + request.getServerName()
-            + ":" + request.getServerPort() + request.getContextPath() + "/"
-            + url;
+        String result = request.getScheme() + "://" + request.getServerName() +
+            ":" + request.getServerPort() + request.getContextPath() + "/" +
+            url;
 
         return result;
     }
 
-
     @Override
     public String getEmail() {
         HttpSession session = sessionProvider.get();
-        List<String> emails = (List<String>)session.getAttribute("email");
+        List<String> emails = (List<String>) session.getAttribute("email");
 
         if ((emails != null) && !emails.isEmpty()) {
             return emails.get(0);
@@ -85,12 +79,10 @@ public class OpenIdUserService implements UserService {
         }
     }
 
-
     @Override
     public boolean isUserLoggedIn() {
         return getEmail() != null;
     }
-
 
     @Override
     public boolean isUserAdmin() {

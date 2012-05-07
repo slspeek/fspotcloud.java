@@ -21,22 +21,16 @@
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.googlecode.botdispatch.model.api.Commands;
-
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserDeletesAllCommandsAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllCommandsAction;
 import com.googlecode.fspotcloud.user.UserService;
-
+import javax.inject.Provider;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
-
 import org.mockito.MockitoAnnotations;
-
-import javax.inject.Provider;
 
 
 /**
@@ -62,10 +56,9 @@ public class UserDeletesAllCommandsHandlerTest {
                 }
             };
 
-        handler = new UserDeletesAllCommandsHandler(
-                commandManager, userServiceProvider);
+        handler = new UserDeletesAllCommandsHandler(commandManager,
+                userServiceProvider);
     }
-
 
     /**
      * Test of execute method, of class UserDeletesAllCommandsHandler.
@@ -79,7 +72,6 @@ public class UserDeletesAllCommandsHandlerTest {
         verifyNoMoreInteractions(commandManager, userService);
     }
 
-
     @Test
     public void execute() throws DispatchException {
         when(userService.isUserAdmin()).thenReturn(Boolean.TRUE);
@@ -88,7 +80,6 @@ public class UserDeletesAllCommandsHandlerTest {
         verifyNoMoreInteractions(commandManager);
         verify(userService).isUserAdmin();
     }
-
 
     @Test(expected = ActionException.class)
     public void commandManagerFails() throws DispatchException {

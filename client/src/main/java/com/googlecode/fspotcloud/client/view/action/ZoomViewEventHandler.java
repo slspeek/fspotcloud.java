@@ -17,9 +17,7 @@
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.shared.EventBus;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.api.Initializable;
 import com.googlecode.fspotcloud.client.main.shared.ZoomViewEvent;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
@@ -40,7 +38,6 @@ public class ZoomViewEventHandler implements ZoomViewEvent.Handler,
     public void init() {
         eventBus.addHandler(ZoomViewEvent.TYPE, this);
     }
-
 
     @Override
     public void onEvent(ZoomViewEvent e) {

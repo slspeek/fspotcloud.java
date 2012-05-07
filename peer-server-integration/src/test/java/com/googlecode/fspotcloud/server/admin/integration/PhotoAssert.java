@@ -22,9 +22,7 @@ package com.googlecode.fspotcloud.server.admin.integration;
  * and open the template in the editor.
  */
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.server.model.api.Photos;
-
 import org.testng.Assert;
 
 
@@ -41,23 +39,19 @@ public class PhotoAssert {
         return photos.isEmpty();
     }
 
-
     public void verifyPhotoRemoved(String id) {
         Assert.assertNull(photos.find(id));
     }
 
-
     public void assertPhotoLoaded(String id) {
         Assert.assertNotNull(photos.find(id));
     }
-
 
     public void assertPhotosRemoved(String... allIds) {
         for (String id : allIds) {
             verifyPhotoRemoved(id);
         }
     }
-
 
     public void assertPhotosLoaded(String... allIds) {
         for (String id : allIds) {

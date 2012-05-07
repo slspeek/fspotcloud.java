@@ -17,10 +17,8 @@
 package com.googlecode.fspotcloud.client.main;
 
 import com.google.gwt.junit.tools.GWTTestSuite;
-
 import com.googlecode.fspotcloud.client.main.event.GwtTestEventModule;
 import com.googlecode.fspotcloud.client.main.ui.GwtTestImageViewImpl;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 

@@ -17,15 +17,12 @@
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.resources.client.ImageResource;
-
 import com.googlecode.fspotcloud.client.main.view.UserButtonPresenterImpl;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonView;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonViewFactory;
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
-
 import junit.framework.TestCase;
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
@@ -48,17 +45,14 @@ public class UserButtonPresenterImplTest extends TestCase {
         super.setUp();
     }
 
-
     public void testConstructor() {
         presenter = new UserButtonPresenterImpl(action, viewFactory);
         context.assertIsSatisfied();
     }
 
-
     public void testInitWithoutIcon() {
         testConstructor();
-        context.checking(
-            new Expectations() {
+        context.checking(new Expectations() {
 
                 {
                     oneOf(viewFactory).get(action);
@@ -83,11 +77,9 @@ public class UserButtonPresenterImplTest extends TestCase {
         context.assertIsSatisfied();
     }
 
-
     public void testInitWithIcon() {
         testConstructor();
-        context.checking(
-            new Expectations() {
+        context.checking(new Expectations() {
 
                 {
                     oneOf(viewFactory).get(action);
@@ -111,11 +103,9 @@ public class UserButtonPresenterImplTest extends TestCase {
         context.assertIsSatisfied();
     }
 
-
     public void testButtonClicked() {
         testConstructor();
-        context.checking(
-            new Expectations() {
+        context.checking(new Expectations() {
 
                 {
                     oneOf(action).run();

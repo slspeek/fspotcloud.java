@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.IGlobalShortcutController;
 import com.googlecode.fspotcloud.client.main.IGlobalShortcutController.Mode;
 import com.googlecode.fspotcloud.client.main.event.AbstractActionMap;
@@ -26,7 +25,6 @@ import com.googlecode.fspotcloud.client.main.help.HelpContentGenerator;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.view.api.PopupView;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
-
 import javax.inject.Named;
 
 
@@ -39,8 +37,7 @@ public class AboutPresenter implements PopupView.PopupPresenter {
     private final IGlobalShortcutController globalShortcutController;
 
     @Inject
-    public AboutPresenter(
-        IGlobalShortcutController globalShortcutController,
+    public AboutPresenter(IGlobalShortcutController globalShortcutController,
         @Named("about")
     AbstractActionMap actions, HelpContentGenerator generator,
         PopupView popupView, Resources resources) {
@@ -69,16 +66,14 @@ public class AboutPresenter implements PopupView.PopupPresenter {
         return helptext;
     }
 
-
     private String getAboutGroup(ActionMap group) {
         for (UserAction shortcut : group.allActions()) {
-            helptext += ("<tr><td>" + generator.getHelpText(shortcut)
-            + "</td></tr>");
+            helptext += ("<tr><td>" + generator.getHelpText(shortcut) +
+            "</td></tr>");
         }
 
         return helptext;
     }
-
 
     public void show() {
         popupView.setGlassEnabled(true);
@@ -88,12 +83,10 @@ public class AboutPresenter implements PopupView.PopupPresenter {
         globalShortcutController.setMode(Mode.ABOUT);
     }
 
-
     public void hide() {
         popupView.hide();
         globalShortcutController.setMode(Mode.TAG_VIEW);
     }
-
 
     @Override
     public boolean isShowing() {

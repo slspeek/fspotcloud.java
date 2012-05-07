@@ -19,22 +19,17 @@ package com.googlecode.fspotcloud.server.control.task.handler;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTagsAction;
 import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteTagsHandler;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
 import net.customware.gwt.dispatch.shared.DispatchException;
 import static org.junit.Assert.assertNotNull;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-
 import org.mockito.MockitoAnnotations;
 
 
@@ -54,14 +49,12 @@ public class DeleteTagsHandlerTest {
         System.out.println(tagManager);
     }
 
-
     @Test
     public void testRecursionStop() throws DispatchException {
         when(tagManager.isEmpty()).thenReturn(true);
         target.execute(new DeleteAllTagsAction(), null);
         verifyNoMoreInteractions(dispatchAsync);
     }
-
 
     @Test
     public void testRecursion() throws DispatchException {

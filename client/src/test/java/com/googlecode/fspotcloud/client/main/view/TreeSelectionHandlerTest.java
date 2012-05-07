@@ -17,13 +17,10 @@
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.view.client.SingleSelectionModel;
-
 import com.googlecode.fspotcloud.client.main.view.api.TreeSelectionHandlerInterface;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import junit.framework.TestCase;
-
 import org.jmock.Mockery;
 
 
@@ -41,12 +38,10 @@ public class TreeSelectionHandlerTest extends TestCase {
         super.setUp();
     }
 
-
     public void testTreeSelectionHandler() {
         handler = new TreeSelectionHandler(navigator);
         assertNotNull(handler);
     }
-
 
     public void testSetSelectionModel() {
         testTreeSelectionHandler();

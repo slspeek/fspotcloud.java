@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.place;
 
 import com.googlecode.fspotcloud.client.place.RasterState;
-
 import junit.framework.TestCase;
 
 
@@ -32,12 +31,10 @@ public class RasterStateTest extends TestCase {
         super.setUp();
     }
 
-
     public void testSetWidth() {
         state.setColumnCount(WIDTH);
         assertEquals(WIDTH, state.getColumnCount());
     }
-
 
     public void testSetHeight() {
         state.setRowCount(HEIGHT);

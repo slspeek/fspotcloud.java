@@ -18,9 +18,7 @@ package com.googlecode.fspotcloud.client.main.event;
 
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
-
 import com.google.inject.name.Names;
-
 import com.googlecode.fspotcloud.client.main.event.about.AboutMapBuilder;
 import com.googlecode.fspotcloud.client.main.event.application.ApplicationMapBuilder;
 import com.googlecode.fspotcloud.client.main.event.navigation.NavigationMapBuilder;
@@ -46,9 +44,7 @@ public class EventModule extends AbstractGinModule {
             .to(SlideshowMapBuilder.class);
         bind(ActionFamily.class).to(DefaultActionFamily.class);
 
-        install(
-            new GinFactoryModuleBuilder().implement(
-                UserAction.class, UserActionImpl.class)
-                                         .build(UserActionFactory.class));
+        install(new GinFactoryModuleBuilder().implement(UserAction.class,
+                UserActionImpl.class).build(UserActionFactory.class));
     }
 }

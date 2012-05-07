@@ -21,16 +21,12 @@
 package com.googlecode.fspotcloud.client.main;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-
 import com.google.inject.Inject;
-
-import com.googlecode.fspotcloud.shared.main.actions.GetUserInfo;
-import com.googlecode.fspotcloud.shared.main.actions.UserInfo;
-
-import net.customware.gwt.dispatch.client.DispatchAsync;
-
+import com.googlecode.fspotcloud.shared.main.GetUserInfo;
+import com.googlecode.fspotcloud.shared.main.UserInfo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 /**
@@ -39,8 +35,7 @@ import java.util.logging.Logger;
  * @author steven
 */
 public class UserInformation {
-    private static final Logger log = Logger.getLogger(
-            UserInformation.class.getName());
+    private static final Logger log = Logger.getLogger(UserInformation.class.getName());
     private final DispatchAsync dispatch;
 
     @Inject
@@ -49,27 +44,23 @@ public class UserInformation {
     }
 
     public void getAsync() {
-        getUserInfoAsync(
-            new GetUserInfo(""),
+        getUserInfoAsync(new GetUserInfo(""),
             new AsyncCallback<UserInfo>() {
                 @Override
                 public void onFailure(Throwable caught) {
                     log.log(Level.SEVERE, "User info failure ", caught);
                 }
 
-
                 @Override
                 public void onSuccess(UserInfo result) {
-                    log.info(
-                        "User is " + result.isLoggedIn() + " with email: "
-                        + result.getEmail());
+                    log.info("User is " + result.isLoggedIn() +
+                        " with email: " + result.getEmail());
                 }
             });
     }
 
-
-    public void getUserInfoAsync(
-        GetUserInfo info, AsyncCallback<UserInfo> callback) {
+    public void getUserInfoAsync(GetUserInfo info,
+        AsyncCallback<UserInfo> callback) {
         dispatch.execute(info, callback);
     }
 }

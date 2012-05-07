@@ -17,31 +17,29 @@
 package com.googlecode.fspotcloud.client.admin.view;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.admin.view.api.GlobalActionsView;
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
-import com.googlecode.fspotcloud.shared.dashboard.actions.*;
-import com.googlecode.fspotcloud.shared.dashboard.actions.GetMetaDataResult;
-
-import net.customware.gwt.dispatch.client.DispatchAsync;
-
+import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataAction;
+import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataResult;
+import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllCommandsAction;
+import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPresenter {
-    private static final Logger log = Logger.getLogger(
-            GlobalActionsPresenter.class.getName());
+    private static final Logger log = Logger.getLogger(GlobalActionsPresenter.class.getName());
     private final GlobalActionsView globalActionsView;
     private final DispatchAsync dispatcher;
     private final TimerInterface timer;
 
     @Inject
-    public GlobalActionsPresenter(
-        GlobalActionsView globalActionsView, DispatchAsync dispatcher,
-        TimerInterface timer) {
+    public GlobalActionsPresenter(GlobalActionsView globalActionsView,
+        DispatchAsync dispatcher, TimerInterface timer) {
         super();
         this.timer = timer;
         this.globalActionsView = globalActionsView;
@@ -52,8 +50,7 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
     @Override
     public void deleteAllCommands() {
         globalActionsView.getDeleteAllCommandsButton().setEnabled(false);
-        dispatcher.execute(
-            new UserDeletesAllCommandsAction(),
+        dispatcher.execute(new UserDeletesAllCommandsAction(),
             new AsyncCallback<VoidResult>() {
                 @Override
                 public void onFailure(Throwable caught) {
@@ -61,7 +58,6 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
                     globalActionsView.getDeleteAllCommandsButton()
                                      .setEnabled(true);
                 }
-
 
                 @Override
                 public void onSuccess(VoidResult result) {
@@ -71,14 +67,12 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
             });
     }
 
-
     @Override
     public void deleteAllTags() {
         globalActionsView.getDeleteAllTagsButton().setEnabled(false);
 
         if (globalActionsView.confirm("Really delete all tags and photos?")) {
-            dispatcher.execute(
-                new UserDeletesAllAction(),
+            dispatcher.execute(new UserDeletesAllAction(),
                 new AsyncCallback<VoidResult>() {
                     @Override
                     public void onFailure(Throwable caught) {
@@ -86,7 +80,6 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
                         globalActionsView.getDeleteAllTagsButton()
                                          .setEnabled(true);
                     }
-
 
                     @Override
                     public void onSuccess(VoidResult result) {
@@ -99,19 +92,16 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
         }
     }
 
-
     @Override
     public void update() {
         log.info("update");
         globalActionsView.getUpdateButton().setEnabled(false);
-        dispatcher.execute(
-            new UserSynchronizesPeerAction(),
+        dispatcher.execute(new UserSynchronizesPeerAction(),
             new AsyncCallback<VoidResult>() {
                 public void onFailure(Throwable caught) {
                     log.log(Level.SEVERE, "Action Exception ", caught);
                     globalActionsView.getUpdateButton().setEnabled(true);
                 }
-
 
                 @Override
                 public void onSuccess(VoidResult result) {
@@ -121,7 +111,6 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
             });
     }
 
-
     @Override
     public void init() {
         globalActionsView.setPresenter(this);
@@ -129,23 +118,19 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
         getMetaData();
     }
 
-
     private void getMetaData() {
-        dispatcher.execute(
-            new GetMetaDataAction(),
+        dispatcher.execute(new GetMetaDataAction(),
             new AsyncCallback<GetMetaDataResult>() {
                 @Override
                 public void onSuccess(GetMetaDataResult meta) {
                     populateView(meta);
                 }
 
-
                 @Override
                 public void onFailure(Throwable caught) {
-                    log.log(
-                        Level.SEVERE, "Action Exception from remote: ", caught);
-                    timer.setRunnable(
-                        new Runnable() {
+                    log.log(Level.SEVERE, "Action Exception from remote: ",
+                        caught);
+                    timer.setRunnable(new Runnable() {
                             @Override
                             public void run() {
                                 getMetaData();
@@ -156,7 +141,6 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
             });
     }
 
-
     private void populateView(GetMetaDataResult info) {
         log.info("populate");
         globalActionsView.getLastSeenPeerValue()
@@ -166,11 +150,9 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
         globalActionsView.getTagCountValue()
                          .setText(String.valueOf(info.getTagCount()));
         globalActionsView.getPendingCommandCountValue()
-                         .setText(
-            String.valueOf(info.getPendingCommandCount()));
+                         .setText(String.valueOf(info.getPendingCommandCount()));
 
-        timer.setRunnable(
-            new Runnable() {
+        timer.setRunnable(new Runnable() {
                 @Override
                 public void run() {
                     getMetaData();

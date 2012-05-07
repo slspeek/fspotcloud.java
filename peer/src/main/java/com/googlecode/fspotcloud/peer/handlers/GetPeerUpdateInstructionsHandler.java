@@ -17,21 +17,20 @@
 package com.googlecode.fspotcloud.peer.handlers;
 
 import com.google.common.collect.ImmutableList;
-
 import com.googlecode.fspotcloud.peer.db.Data;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.*;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+import com.googlecode.fspotcloud.shared.peer.GetPeerUpdateInstructionsAction;
+import com.googlecode.fspotcloud.shared.peer.PeerUpdateInstructionsResult;
+import com.googlecode.fspotcloud.shared.peer.TagData;
+import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
+import com.googlecode.fspotcloud.shared.peer.TagUpdate;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
-
-import java.sql.SQLException;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
 
 
 public class GetPeerUpdateInstructionsHandler extends SimpleActionHandler<GetPeerUpdateInstructionsAction, PeerUpdateInstructionsResult> {
@@ -45,10 +44,10 @@ public class GetPeerUpdateInstructionsHandler extends SimpleActionHandler<GetPee
 
     @Override
     public PeerUpdateInstructionsResult execute(
-        GetPeerUpdateInstructionsAction action, ExecutionContext context)
-        throws DispatchException {
-        PeerUpdateInstructionsResult result = new PeerUpdateInstructionsResult(
-                new ArrayList<TagUpdate>(), new ArrayList<TagRemovedFromPeer>());
+        GetPeerUpdateInstructionsAction action,
+        ExecutionContext context) throws DispatchException {
+        PeerUpdateInstructionsResult result = new PeerUpdateInstructionsResult(new ArrayList<TagUpdate>(),
+                new ArrayList<TagRemovedFromPeer>());
 
         try {
             List<TagData> peerTagData = data.getTagData();

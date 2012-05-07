@@ -22,25 +22,21 @@ import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
-
 import com.googlecode.fspotcloud.client.main.view.api.ImagePresenterFactory;
 import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
 import com.googlecode.fspotcloud.client.main.view.api.ImageView;
 import com.googlecode.fspotcloud.client.place.BasePlace;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 
 public class ImageRasterPresenterImpl extends AbstractActivity implements ImageRasterView.ImageRasterPresenter {
-    private static final Logger log = Logger.getLogger(
-            ImageRasterPresenterImpl.class.getName());
+    private static final Logger log = Logger.getLogger(ImageRasterPresenterImpl.class.getName());
     private final String tagId;
     private final String photoId;
     private final int columnCount;
@@ -54,8 +50,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements ImageR
     List<ImageView.ImagePresenter> imagePresenterList = new ArrayList<ImageView.ImagePresenter>();
 
     @Inject
-    public ImageRasterPresenterImpl(
-        @Assisted
+    public ImageRasterPresenterImpl(@Assisted
     BasePlace place, @Assisted
     ImageRasterView imageRasterView, Navigator navigator,
         ImagePresenterFactory imagePresenterFactory) {
@@ -76,42 +71,36 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements ImageR
         setImages();
     }
 
-
     public void setImages() {
-        navigator.getPageAsync(
-            tagId, photoId, pageSize,
+        navigator.getPageAsync(tagId, photoId, pageSize,
             new AsyncCallback<List<PhotoInfo>>() {
                 @Override
                 public void onSuccess(List<PhotoInfo> result) {
-                    imageViewList = imageRasterView.buildRaster(
-                            rowCount, columnCount);
+                    imageViewList = imageRasterView.buildRaster(rowCount,
+                            columnCount);
                     setImages(result);
-                    navigator.getPageRelativePositionAsync(
-                        tagId, photoId, pageSize,
+                    navigator.getPageRelativePositionAsync(tagId, photoId,
+                        pageSize,
                         new AsyncCallback<Integer[]>() {
                             @Override
                             public void onFailure(Throwable caught) {
-                                imageRasterView.setPagingText(
-                                    caught.getMessage());
+                                imageRasterView.setPagingText(caught.getMessage());
                             }
-
 
                             @Override
                             public void onSuccess(Integer[] result) {
-                                String label = (result[0] + 1) + " of "
-                                    + result[1];
+                                String label = (result[0] + 1) + " of " +
+                                    result[1];
                                 imageRasterView.setPagingText(label);
                             }
                         });
                 }
-
 
                 @Override
                 public void onFailure(Throwable caught) {
                 }
             });
     }
-
 
     private void setImages(List<PhotoInfo> result) {
         imagePresenterList.clear();
@@ -122,8 +111,8 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements ImageR
             ImageView view = imageViewList.get(i);
             view.asWidget().setVisible(true);
 
-            final ImageView.ImagePresenter presenter = imagePresenterFactory.get(
-                    tagId, result.get(i), view, thumb);
+            final ImageView.ImagePresenter presenter = imagePresenterFactory.get(tagId,
+                    result.get(i), view, thumb);
 
             if (result.get(i).getId().equals(photoId) && (pageSize > 1)) {
                 presenter.setSelected(true);
@@ -132,8 +121,7 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements ImageR
             }
 
             imagePresenterList.add(presenter);
-            Scheduler.get().scheduleDeferred(
-                new ScheduledCommand() {
+            Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                     @Override
                     public void execute() {
                         // TODO Auto-generated method stub
@@ -151,18 +139,15 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements ImageR
         }
     }
 
-
     @Override
     public void start(AcceptsOneWidget panel, EventBus eventBus) {
         panel.setWidget(imageRasterView);
     }
 
-
     @Override
     public void onMouseWheelNorth() {
         navigator.goAsync(Navigator.Direction.BACKWARD, Navigator.Unit.PAGE);
     }
-
 
     @Override
     public void onMouseWheelSouth() {

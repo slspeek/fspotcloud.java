@@ -17,25 +17,20 @@
 package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.inject.Inject;
-
 import com.googlecode.botdispatch.SerializableAsyncCallback;
-
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserImportsTagAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagDataResult;
-
+import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
+import com.googlecode.fspotcloud.shared.peer.TagData;
+import com.googlecode.fspotcloud.shared.peer.TagDataResult;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 public class TagDataCallback implements SerializableAsyncCallback<TagDataResult> {
-    protected static final Logger log = Logger.getLogger(
-            TagDataCallback.class.getName());
+    protected static final Logger log = Logger.getLogger(TagDataCallback.class.getName());
     private static final long serialVersionUID = 5342287706825285919L;
     @Inject
     private transient Tags tagManager;
@@ -53,7 +48,6 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
         log.log(Level.SEVERE, "TagDataCallbask", caught);
     }
 
-
     @Override
     public void onSuccess(TagDataResult result) {
         for (TagData data : result.getTagDataList()) {
@@ -65,7 +59,6 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
         }
     }
 
-
     private void updateTagPhotos(Tag tag) {
         if (tag.isImportIssued()) {
             try {
@@ -75,7 +68,6 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
             }
         }
     }
-
 
     private void recieveTag(TagData data, Tag tag) {
         String tagName = data.getName();

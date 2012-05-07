@@ -18,33 +18,26 @@ package com.googlecode.fspotcloud.server.control.task.handler;
 
 import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
-
 import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
 import com.googlecode.fspotcloud.server.control.task.handler.intern.PhotoUpdateHandler;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPhotoDataAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.ImageSpecs;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoUpdate;
-
+import com.googlecode.fspotcloud.shared.peer.GetPhotoDataAction;
+import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
+import com.googlecode.fspotcloud.shared.peer.PhotoDataResult;
+import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
+import java.util.ArrayList;
+import java.util.List;
 import net.customware.gwt.dispatch.shared.DispatchException;
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-
 import org.mockito.MockitoAnnotations;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class PhotoUpdateHandlerTest {
@@ -65,15 +58,14 @@ public class PhotoUpdateHandlerTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        handler = new PhotoUpdateHandler(
-                1, 1, new ImageSpecs(1, 1, 1, 1), controllerAsync, recursive);
+        handler = new PhotoUpdateHandler(1, 1, new ImageSpecs(1, 1, 1, 1),
+                controllerAsync, recursive);
 
         PhotoUpdate update = new PhotoUpdate("1");
         List<PhotoUpdate> list = new ArrayList<PhotoUpdate>();
         list.add(update);
         action = new PhotoUpdateAction(list);
     }
-
 
     @Test
     public void testExecuteRecursive() throws DispatchException {
@@ -100,12 +92,10 @@ public class PhotoUpdateHandlerTest {
         assertEquals("2", update.getPhotoId());
     }
 
-
     @Test
     public void testExecute() throws DispatchException {
-        handler = new PhotoUpdateHandler(
-                2, MAX_PHOTO_TICKS, new ImageSpecs(1, 1, 1, 1), controllerAsync,
-                recursive);
+        handler = new PhotoUpdateHandler(2, MAX_PHOTO_TICKS,
+                new ImageSpecs(1, 1, 1, 1), controllerAsync, recursive);
 
         PhotoUpdate update = new PhotoUpdate("1");
         update = new PhotoUpdate("1");
@@ -150,12 +140,10 @@ public class PhotoUpdateHandlerTest {
         assertEquals("8", update.getPhotoId());
     }
 
-
     @Test
     public void testExecute5() throws DispatchException {
-        handler = new PhotoUpdateHandler(
-                2, MAX_PHOTO_TICKS, new ImageSpecs(1, 1, 1, 1), controllerAsync,
-                recursive);
+        handler = new PhotoUpdateHandler(2, MAX_PHOTO_TICKS,
+                new ImageSpecs(1, 1, 1, 1), controllerAsync, recursive);
 
         PhotoUpdate update = new PhotoUpdate("1");
         update = new PhotoUpdate("1");

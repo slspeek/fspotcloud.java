@@ -24,19 +24,14 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.PopupPanel;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.view.api.PopupView;
-
 import java.util.logging.Logger;
 
 
 public class HelpPopup extends PopupPanel implements PopupView {
-    private static final Logger log = Logger.getLogger(
-            HelpPopup.class.getName());
-    private static HelpPopupUiBinder uiBinder = GWT.create(
-            HelpPopupUiBinder.class);
+    private static final Logger log = Logger.getLogger(HelpPopup.class.getName());
+    private static HelpPopupUiBinder uiBinder = GWT.create(HelpPopupUiBinder.class);
     @UiField
     FocusPanel focusPanel;
     @UiField
@@ -50,8 +45,7 @@ public class HelpPopup extends PopupPanel implements PopupView {
         super(true);
         setWidget(uiBinder.createAndBindUi(this));
         setStyleName(resources.style().helpPopup());
-        focusPanel.addKeyDownHandler(
-            new KeyDownHandler() {
+        focusPanel.addKeyDownHandler(new KeyDownHandler() {
                 @Override
                 public void onKeyDown(KeyDownEvent event) {
                     log.info("Keydown in help-popup " + event);
@@ -64,17 +58,14 @@ public class HelpPopup extends PopupPanel implements PopupView {
         helpBodyDiv.setInnerHTML(text);
     }
 
-
     public void setTitle(String text) {
         titleSpan.setInnerHTML(text);
     }
-
 
     @Override
     public void focus() {
         focusPanel.setFocus(true);
     }
-
 
     public void setPresenter(PopupView.PopupPresenter presenter) {
         this.presenter = presenter;

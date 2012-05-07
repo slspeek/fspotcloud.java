@@ -25,18 +25,14 @@ import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.TreeViewModel;
-
 import com.googlecode.fspotcloud.client.main.view.CustomCellTree;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView;
-
 import java.util.logging.Logger;
 
 
 public class TreeViewImpl extends ResizeComposite implements TreeView {
-    private static final Logger log = Logger.getLogger(
-            TreeViewImpl.class.getName());
-    private static TreeViewImplUiBinder uiBinder = GWT.create(
-            TreeViewImplUiBinder.class);
+    private static final Logger log = Logger.getLogger(TreeViewImpl.class.getName());
+    private static TreeViewImplUiBinder uiBinder = GWT.create(TreeViewImplUiBinder.class);
     CellTree cellTree;
     @UiField
     ScrollPanel tagTreeViewPanel;
@@ -52,7 +48,6 @@ public class TreeViewImpl extends ResizeComposite implements TreeView {
         tagTreeViewPanel.setWidget(cellTree);
     }
 
-
     @Override
     public TreeNode getRootNode() {
         if (cellTree != null) {
@@ -63,7 +58,6 @@ public class TreeViewImpl extends ResizeComposite implements TreeView {
             return null;
         }
     }
-
 
     public void requestFocus() {
         if (cellTree != null) {

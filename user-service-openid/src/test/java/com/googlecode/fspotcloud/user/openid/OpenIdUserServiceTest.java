@@ -17,25 +17,18 @@
 package com.googlecode.fspotcloud.user.openid;
 
 import com.google.common.collect.ImmutableList;
-
 import com.google.inject.Inject;
-
-import org.jukito.JukitoModule;
-import org.jukito.JukitoRunner;
-
-import org.junit.After;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import org.junit.runner.RunWith;
-import static org.mockito.Mockito.when;
-
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.jukito.JukitoModule;
+import org.jukito.JukitoRunner;
+import org.junit.After;
+import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import static org.mockito.Mockito.when;
 
 
 @RunWith(JukitoRunner.class)
@@ -53,11 +46,9 @@ public class OpenIdUserServiceTest {
         when(request.getServerName()).thenReturn("localhost");
     }
 
-
     @After
     public void tearDown() {
     }
-
 
     /**
      * Test of createLoginURL method, of class OpenIdUserService.
@@ -70,7 +61,6 @@ public class OpenIdUserServiceTest {
         assertEquals(expResult, result);
     }
 
-
     /**
      * Test of createLogoutURL method, of class OpenIdUserService.
      */
@@ -81,7 +71,6 @@ public class OpenIdUserServiceTest {
         String result = instance.createLogoutURL(destinationURL);
         assertEquals(expResult, result);
     }
-
 
     /**
      * Test of getEmail method, of class OpenIdUserService.
@@ -97,14 +86,12 @@ public class OpenIdUserServiceTest {
         assertEquals(expResult, result);
     }
 
-
     @Test
     public void testGetEmailFoo() {
         String expResult = "foo@bar.com";
         String result = instance.getEmail();
         assertEquals(expResult, result);
     }
-
 
     /**
      * Test of isUserLoggedIn method, of class OpenIdUserService.
@@ -115,7 +102,6 @@ public class OpenIdUserServiceTest {
         boolean result = instance.isUserLoggedIn();
         assertEquals(expResult, result);
     }
-
 
     /**
      * Test of isUserAdmin method, of class OpenIdUserService.
@@ -128,7 +114,6 @@ public class OpenIdUserServiceTest {
         boolean result = instance.isUserAdmin();
         assertEquals(expResult, result);
     }
-
 
     /**
      * Test of isUserAdmin method, of class OpenIdUserService.

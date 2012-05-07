@@ -17,42 +17,35 @@
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.google.inject.Inject;
-
 import com.googlecode.botdispatch.model.api.Commands;
-
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserDeletesAllCommandsAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
+import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllCommandsAction;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.user.UserService;
-
+import java.util.logging.Logger;
+import javax.inject.Provider;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-import java.util.logging.Logger;
-
-import javax.inject.Provider;
-
 
 public class UserDeletesAllCommandsHandler extends SimpleActionHandler<UserDeletesAllCommandsAction, VoidResult> {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            UserDeletesAllCommandsHandler.class.getName());
+    private static final Logger log = Logger.getLogger(UserDeletesAllCommandsHandler.class.getName());
     private final Commands commandManager;
     private final Provider<UserService> userServiceProvider;
 
     @Inject
-    public UserDeletesAllCommandsHandler(
-        Commands commandManager, Provider<UserService> userServiceProvider) {
+    public UserDeletesAllCommandsHandler(Commands commandManager,
+        Provider<UserService> userServiceProvider) {
         super();
         this.commandManager = commandManager;
         this.userServiceProvider = userServiceProvider;
     }
 
     @Override
-    public VoidResult execute(
-        UserDeletesAllCommandsAction action, ExecutionContext context)
-        throws DispatchException {
+    public VoidResult execute(UserDeletesAllCommandsAction action,
+        ExecutionContext context) throws DispatchException {
         UserService userService = userServiceProvider.get();
 
         if (!userService.isUserAdmin()) {

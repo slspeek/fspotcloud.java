@@ -21,11 +21,9 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.safehtml.client.SafeHtmlTemplates;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.view.TagCell;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.logging.Logger;
 
 
@@ -39,14 +37,13 @@ public class AdminTagCell extends AbstractCell<TagNode> {
     }
 
     @Override
-    public void render(
-        com.google.gwt.cell.client.Cell.Context arg0, TagNode value,
-        SafeHtmlBuilder sb) {
+    public void render(com.google.gwt.cell.client.Cell.Context arg0,
+        TagNode value, SafeHtmlBuilder sb) {
         log.info("" + value.isImportIssued());
 
         if (value.isImportIssued()) {
-            SafeHtml snippetHtml = TEMPLATES.message(
-                    value.getTagName(), resources.style().importedTag());
+            SafeHtml snippetHtml = TEMPLATES.message(value.getTagName(),
+                    resources.style().importedTag());
             log.info(snippetHtml.asString());
             sb.append(snippetHtml);
         } else {

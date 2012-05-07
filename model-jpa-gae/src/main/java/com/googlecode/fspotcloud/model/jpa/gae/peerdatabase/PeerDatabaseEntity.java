@@ -17,22 +17,17 @@
 package com.googlecode.fspotcloud.model.jpa.gae.peerdatabase;
 
 import com.google.appengine.api.datastore.Blob;
-
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
-import org.apache.commons.lang.SerializationUtils;
-
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
+import org.apache.commons.lang.SerializationUtils;
 
 
 /**
@@ -69,102 +64,85 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable {
         return thumbDimension;
     }
 
-
     @Override
     public void setThumbDimension(String thumbDimension) {
         this.thumbDimension = thumbDimension;
     }
-
 
     @Override
     public String getImageDimension() {
         return imageDimension;
     }
 
-
     @Override
     public void setImageDimension(String imageDimension) {
         this.imageDimension = imageDimension;
     }
-
 
     @Override
     public Date getPeerLastContact() {
         return peerLastContact;
     }
 
-
     @Override
     public void setPeerLastContact(Date peerLastContact) {
         this.peerLastContact = peerLastContact;
     }
-
 
     @Override
     public String getId() {
         return id;
     }
 
-
     @Override
     public void setId(String id) {
         this.id = id;
     }
-
 
     @Override
     public void setPeerPhotoCount(int count) {
         this.peerPhotoCount = count;
     }
 
-
     @Override
     public void setPeerName(String peerName) {
         this.peerName = peerName;
     }
-
 
     @Override
     public String getPeerName() {
         return peerName;
     }
 
-
     @Override
     public void setTagCount(int tagCount) {
         this.tagCount = tagCount;
     }
-
 
     @Override
     public int getTagCount() {
         return tagCount;
     }
 
-
     @Override
     public void touchPeerContact() {
         setPeerLastContact(new Date());
     }
-
 
     @Override
     public int getPeerPhotoCount() {
         return peerPhotoCount;
     }
 
-
     @Override
     public void setPhotoCount(long photoCount) {
         this.photoCount = photoCount;
     }
 
-
     @Override
     public long getPhotoCount() {
         return photoCount;
     }
-
 
     @Override
     public void setCachedTagTree(List<TagNode> newTagTree) {
@@ -173,17 +151,15 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable {
             this.cachedTagTree = null;
         } else {
             this.cachedTagTree = new ArrayList<TagNode>(newTagTree);
-            this.cachedTagTreeData = new Blob(
-                    SerializationUtils.serialize(this.cachedTagTree));
+            this.cachedTagTreeData = new Blob(SerializationUtils.serialize(
+                        this.cachedTagTree));
         }
     }
-
 
     @Override
     public List<TagNode> getCachedTagTree() {
         if ((cachedTagTree == null) && (cachedTagTreeData != null)) {
-            cachedTagTree = (ArrayList<TagNode>)SerializationUtils.deserialize(
-                    cachedTagTreeData.getBytes());
+            cachedTagTree = (ArrayList<TagNode>) SerializationUtils.deserialize(cachedTagTreeData.getBytes());
         }
 
         return cachedTagTree;

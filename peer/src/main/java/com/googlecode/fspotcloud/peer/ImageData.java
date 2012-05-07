@@ -17,24 +17,21 @@
 package com.googlecode.fspotcloud.peer;
 
 import java.awt.Dimension;
-
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class ImageData {
-    private static final Logger log = Logger.getLogger(
-            ImageData.class.getName());
+    private static final Logger log = Logger.getLogger(ImageData.class.getName());
 
     public byte[] getScaledImageData(String url, Dimension size)
         throws Exception {
-        int width = (int)size.width;
-        int height = (int)size.height;
+        int width = (int) size.width;
+        int height = (int) size.height;
 
         if (url.startsWith("file://")) {
             url = url.substring(6);
@@ -74,7 +71,6 @@ public class ImageData {
 
         return data;
     }
-
 
     private String[] getCommand(String path, int width, int height) {
         String[] result = new String[10];

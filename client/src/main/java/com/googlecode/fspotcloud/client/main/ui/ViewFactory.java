@@ -20,13 +20,11 @@ import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.HasOneWidget;
-
 import java.util.logging.Logger;
 
 
 public class ViewFactory {
-    private static final Logger log = Logger.getLogger(
-            ViewFactory.class.getName());
+    private static final Logger log = Logger.getLogger(ViewFactory.class.getName());
     private final EventBus eventBus;
 
     public ViewFactory(EventBus eventBus) {

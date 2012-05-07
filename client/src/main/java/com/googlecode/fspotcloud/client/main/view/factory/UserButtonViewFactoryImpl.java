@@ -17,9 +17,7 @@
 package com.googlecode.fspotcloud.client.main.view.factory;
 
 import com.google.gwt.resources.client.ImageResource;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.ui.UserButtonViewImpl;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonView;

@@ -17,11 +17,9 @@
 package com.googlecode.fspotcloud.peer.handlers;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.peer.db.Data;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPhotoDataAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PhotoDataResult;
-
+import com.googlecode.fspotcloud.shared.peer.GetPhotoDataAction;
+import com.googlecode.fspotcloud.shared.peer.PhotoDataResult;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
@@ -38,15 +36,14 @@ public class GetPhotoDataHandler extends SimpleActionHandler<GetPhotoDataAction,
     }
 
     @Override
-    public PhotoDataResult execute(
-        GetPhotoDataAction action, ExecutionContext context)
-        throws DispatchException {
+    public PhotoDataResult execute(GetPhotoDataAction action,
+        ExecutionContext context) throws DispatchException {
         PhotoDataResult result;
 
         try {
-            result = new PhotoDataResult(
-                    data.getPhotoData(
-                        action.getImageSpecs(), action.getImageKeys()));
+            result = new PhotoDataResult(data.getPhotoData(
+                        action.getImageSpecs(),
+                        action.getImageKeys()));
         } catch (Exception e) {
             throw new ActionException(e);
         }

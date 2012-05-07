@@ -17,19 +17,15 @@
 package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.inject.Inject;
-
 import com.googlecode.botdispatch.SerializableAsyncCallback;
-
 import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsFromPeerAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.TagUpdateAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagDataAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerUpdateInstructionsResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagUpdateInstructionsResult;
-
+import com.googlecode.fspotcloud.shared.peer.GetTagDataAction;
+import com.googlecode.fspotcloud.shared.peer.PeerUpdateInstructionsResult;
+import com.googlecode.fspotcloud.shared.peer.TagUpdateInstructionsResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -50,13 +46,10 @@ public class PeerUpdateInstructionsCallback implements SerializableAsyncCallback
         log.log(Level.SEVERE, "Caught: ", caught);
     }
 
-
     @Override
     public void onSuccess(PeerUpdateInstructionsResult result) {
-        TagUpdateAction tagDataAction = new TagUpdateAction(
-                result.getToBoUpdated());
-        RemoveTagsFromPeerAction tagRemove = new RemoveTagsFromPeerAction(
-                result.getToBoRemovedFromPeer());
+        TagUpdateAction tagDataAction = new TagUpdateAction(result.getToBoUpdated());
+        RemoveTagsFromPeerAction tagRemove = new RemoveTagsFromPeerAction(result.getToBoRemovedFromPeer());
         dispatchAsync.execute(tagRemove);
         dispatchAsync.execute(tagDataAction);
     }

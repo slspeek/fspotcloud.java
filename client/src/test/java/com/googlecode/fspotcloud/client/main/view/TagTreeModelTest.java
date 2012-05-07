@@ -18,15 +18,11 @@ package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.view.client.TreeViewModel.NodeInfo;
-
 import com.googlecode.fspotcloud.client.main.DispatchAsyncTestImpl;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
-import junit.framework.TestCase;
-
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.List;
-
 import javax.inject.Provider;
+import junit.framework.TestCase;
 
 
 public class TagTreeModelTest extends TestCase {
@@ -40,8 +36,7 @@ public class TagTreeModelTest extends TestCase {
 
     protected void setUp() throws Exception {
         super.setUp();
-        model = new TagTreeModel(
-                data, null,
+        model = new TagTreeModel(data, null,
                 new Provider<Cell<TagNode>>() {
                     @Override
                     public Cell<TagNode> get() {
@@ -50,17 +45,13 @@ public class TagTreeModelTest extends TestCase {
                 });
     }
 
-
     protected void tearDown() throws Exception {
         super.tearDown();
     }
 
-
     public void testGetNodeInfo() {
-        NodeInfo<TagNode> roots = (NodeInfo<TagNode>)model
-            .getNodeInfo(null);
+        NodeInfo<TagNode> roots = (NodeInfo<TagNode>) model.getNodeInfo(null);
     }
-
 
     public void testIsLeaf() {
         assertFalse(model.isLeaf(null));

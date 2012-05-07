@@ -17,18 +17,15 @@
 package com.googlecode.fspotcloud.client.place;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.data.DataManager;
 import com.googlecode.fspotcloud.client.data.IndexingUtil;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.client.place.api.PlaceWhere;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfoStore;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,16 +36,14 @@ import java.util.logging.Logger;
 
 
 public class NavigatorImpl implements Navigator {
-    private static final Logger log = Logger.getLogger(
-            NavigatorImpl.class.getName());
+    private static final Logger log = Logger.getLogger(NavigatorImpl.class.getName());
     private final PlaceGoTo placeGoTo;
     private final PlaceWhere placeWhere;
     private final DataManager dataManager;
     private final PlaceCalculator placeCalculator;
 
     @Inject
-    public NavigatorImpl(
-        PlaceWhere placeWhere, PlaceGoTo placeGoTo,
+    public NavigatorImpl(PlaceWhere placeWhere, PlaceGoTo placeGoTo,
         PlaceCalculator placeCalculator, DataManager dataManager) {
         this.placeGoTo = placeGoTo;
         this.placeWhere = placeWhere;
@@ -61,20 +56,16 @@ public class NavigatorImpl implements Navigator {
         goAsync(direction, step, placeWhere.where());
     }
 
-
     @Override
-    public void canGoAsync(
-        final Direction direction, final Unit step,
+    public void canGoAsync(final Direction direction, final Unit step,
         final AsyncCallback<Boolean> callback) {
         final BasePlace place = placeWhere.where();
-        dataManager.getTagNode(
-            place.getTagId(),
+        dataManager.getTagNode(place.getTagId(),
             new AsyncCallback<TagNode>() {
                 @Override
                 public void onFailure(Throwable caught) {
                     log.warning("getTagNode failed " + caught);
                 }
-
 
                 @Override
                 public void onSuccess(TagNode result) {
@@ -84,22 +75,18 @@ public class NavigatorImpl implements Navigator {
             });
     }
 
-
     private int indexOf(BasePlace place, PhotoInfoStore store) {
         return store.indexOf(place.getPhotoId());
     }
 
-
-    private void goAsync(
-        final Direction direction, final Unit step, final BasePlace place) {
-        dataManager.getTagNode(
-            place.getTagId(),
+    private void goAsync(final Direction direction, final Unit step,
+        final BasePlace place) {
+        dataManager.getTagNode(place.getTagId(),
             new AsyncCallback<TagNode>() {
                 @Override
                 public void onFailure(Throwable caught) {
                     log.warning("getTagNode failed " + caught);
                 }
-
 
                 @Override
                 public void onSuccess(TagNode result) {
@@ -109,35 +96,32 @@ public class NavigatorImpl implements Navigator {
             });
     }
 
-
     private int stepSize(Unit unit, BasePlace place) {
         int stepSize = 0;
 
         switch (unit) {
-            case SINGLE:
-                stepSize = 1;
+        case SINGLE:
+            stepSize = 1;
 
-                break;
+            break;
 
-            case ROW:
-                stepSize = place.getColumnCount();
+        case ROW:
+            stepSize = place.getColumnCount();
 
-                break;
+            break;
 
-            case PAGE:
-                stepSize = place.getColumnCount() * place.getRowCount();
-                ;
+        case PAGE:
+            stepSize = place.getColumnCount() * place.getRowCount();
+            ;
 
-                break;
+            break;
         }
 
         return stepSize;
     }
 
-
-    private void go(
-        final Direction direction, final Unit step, BasePlace place,
-        PhotoInfoStore store) {
+    private void go(final Direction direction, final Unit step,
+        BasePlace place, PhotoInfoStore store) {
         if (step == Unit.BORDER) {
             if (!store.isEmpty()) {
                 String photoId;
@@ -155,14 +139,13 @@ public class NavigatorImpl implements Navigator {
             int stepSize = stepSize(step, place);
 
             if (canGo(direction, step, place, store)) {
-                int nextIndex = position
-                    + (stepSize * ((direction == Direction.FORWARD) ? 1 : (-1)));
+                int nextIndex = position +
+                    (stepSize * ((direction == Direction.FORWARD) ? 1 : (-1)));
                 String photoId = store.get(nextIndex).getId();
                 goToPhoto(place, place.getTagId(), photoId);
             }
         }
     }
-
 
     protected int pageOf(BasePlace place, PhotoInfoStore store, int pageSize) {
         int result;
@@ -171,7 +154,6 @@ public class NavigatorImpl implements Navigator {
 
         return result;
     }
-
 
     protected int pageCount(PhotoInfoStore store, int pageSize) {
         int result = store.size() / pageSize;
@@ -183,10 +165,8 @@ public class NavigatorImpl implements Navigator {
         return result;
     }
 
-
-    private boolean canGo(
-        final Direction direction, final Unit step, BasePlace place,
-        PhotoInfoStore store) {
+    private boolean canGo(final Direction direction, final Unit step,
+        BasePlace place, PhotoInfoStore store) {
         if (step == Unit.BORDER) {
             return true;
         }
@@ -201,36 +181,31 @@ public class NavigatorImpl implements Navigator {
         }
     }
 
-
     protected void goToPhoto(BasePlace place, String tagId, String photoId) {
         BasePlace newPlace;
 
         if (place instanceof SlideshowPlace) {
             newPlace = new SlideshowPlace(tagId, photoId, 0f);
         } else {
-            newPlace = new BasePlace(
-                    tagId, photoId, place.getColumnCount(), place.getRowCount());
+            newPlace = new BasePlace(tagId, photoId, place.getColumnCount(),
+                    place.getRowCount());
         }
 
-        log.info(
-            "About to go to: " + this + " : " + newPlace + " from: " + place);
+        log.info("About to go to: " + this + " : " + newPlace + " from: " +
+            place);
         placeGoTo.goTo(newPlace);
     }
 
-
     @Override
-    public void getPageCountAsync(
-        String tagId, final int pageSize, final AsyncCallback<Integer> callback) {
-        dataManager.getTagNode(
-            tagId,
+    public void getPageCountAsync(String tagId, final int pageSize,
+        final AsyncCallback<Integer> callback) {
+        dataManager.getTagNode(tagId,
             new AsyncCallback<TagNode>() {
                 @Override
                 public void onFailure(Throwable caught) {
-                    log.log(
-                        Level.WARNING, "getTagNode on datamanager failed",
+                    log.log(Level.WARNING, "getTagNode on datamanager failed",
                         caught);
                 }
-
 
                 @Override
                 public void onSuccess(TagNode result) {
@@ -239,9 +214,8 @@ public class NavigatorImpl implements Navigator {
             });
     }
 
-
-    private void getPageCount(
-        TagNode node, int pageSize, AsyncCallback<Integer> callback) {
+    private void getPageCount(TagNode node, int pageSize,
+        AsyncCallback<Integer> callback) {
         PhotoInfoStore store = node.getCachedPhotoList();
         int result = store.size() / pageSize;
 
@@ -252,22 +226,17 @@ public class NavigatorImpl implements Navigator {
         callback.onSuccess(result);
     }
 
-
     @Override
-    public void getPageAsync(
-        String tagId, final int pageSize, final int pageNumber,
-        final AsyncCallback<List<PhotoInfo>> callback) {
-        dataManager.getTagNode(
-            tagId,
+    public void getPageAsync(String tagId, final int pageSize,
+        final int pageNumber, final AsyncCallback<List<PhotoInfo>> callback) {
+        dataManager.getTagNode(tagId,
             new AsyncCallback<TagNode>() {
                 @Override
                 public void onFailure(Throwable caught) {
-                    log.log(
-                        Level.WARNING, "getTagNode on datamanager failed",
+                    log.log(Level.WARNING, "getTagNode on datamanager failed",
                         caught);
                     callback.onFailure(caught);
                 }
-
 
                 @Override
                 public void onSuccess(TagNode result) {
@@ -276,9 +245,7 @@ public class NavigatorImpl implements Navigator {
             });
     }
 
-
-    private void getPage(
-        TagNode node, int pageSize, int pageNumber,
+    private void getPage(TagNode node, int pageSize, int pageNumber,
         AsyncCallback<List<PhotoInfo>> callback) {
         PhotoInfoStore store = node.getCachedPhotoList();
         log.info("Store: " + store);
@@ -297,22 +264,17 @@ public class NavigatorImpl implements Navigator {
         callback.onSuccess(result);
     }
 
-
     @Override
-    public void getPageAsync(
-        String tagId, final String photoId, final int pageSize,
-        final AsyncCallback<List<PhotoInfo>> callback) {
-        dataManager.getTagNode(
-            tagId,
+    public void getPageAsync(String tagId, final String photoId,
+        final int pageSize, final AsyncCallback<List<PhotoInfo>> callback) {
+        dataManager.getTagNode(tagId,
             new AsyncCallback<TagNode>() {
                 @Override
                 public void onFailure(Throwable caught) {
-                    log.log(
-                        Level.WARNING, "getTagNode on datamanager failed",
+                    log.log(Level.WARNING, "getTagNode on datamanager failed",
                         caught);
                     callback.onFailure(caught);
                 }
-
 
                 @Override
                 public void onSuccess(TagNode result) {
@@ -324,34 +286,27 @@ public class NavigatorImpl implements Navigator {
             });
     }
 
-
     @Override
     public void toggleZoomViewAsync(String tagId, String photoId) {
-        BasePlace newPlace = placeCalculator.toggleZoomView(
-                placeWhere.where(), tagId, photoId);
+        BasePlace newPlace = placeCalculator.toggleZoomView(placeWhere.where(),
+                tagId, photoId);
         placeGoTo.goTo(newPlace);
     }
 
-
     @Override
     public void goToTag(String otherTagId, PhotoInfoStore store) {
-        go(
-            Direction.BACKWARD, Unit.BORDER,
-            new BasePlace(
-                otherTagId, null, placeCalculator.getRasterWidth(),
+        go(Direction.BACKWARD, Unit.BORDER,
+            new BasePlace(otherTagId, null, placeCalculator.getRasterWidth(),
                 placeCalculator.getRasterHeight()), store);
     }
 
-
     @Override
     public void goToLatestTag() {
-        dataManager.getTagTree(
-            new AsyncCallback<List<TagNode>>() {
+        dataManager.getTagTree(new AsyncCallback<List<TagNode>>() {
                 @Override
                 public void onFailure(Throwable caught) {
                     // TODO Auto-generated method stub
                 }
-
 
                 @Override
                 public void onSuccess(List<TagNode> result) {
@@ -376,40 +331,34 @@ public class NavigatorImpl implements Navigator {
                         }
                     }
 
-                    goToTag(
-                        latestNode.getId(), latestNode.getCachedPhotoList());
+                    goToTag(latestNode.getId(), latestNode.getCachedPhotoList());
                 }
             });
     }
-
 
     @Override
     public void setRasterWidth(int width) {
         placeCalculator.setRasterWidth(width);
     }
 
-
     @Override
     public void setRasterHeight(int height) {
         placeCalculator.setRasterHeight(height);
     }
 
-
     @Override
     public void increaseRasterWidth(int amount) {
-        placeCalculator.setRasterWidth(
-            placeCalculator.getRasterWidth() + amount);
+        placeCalculator.setRasterWidth(placeCalculator.getRasterWidth() +
+            amount);
         reloadCurrentPlaceOnNewSize();
     }
-
 
     @Override
     public void increaseRasterHeight(int amount) {
-        placeCalculator.setRasterHeight(
-            placeCalculator.getRasterHeight() + amount);
+        placeCalculator.setRasterHeight(placeCalculator.getRasterHeight() +
+            amount);
         reloadCurrentPlaceOnNewSize();
     }
-
 
     @Override
     public void setRasterDimension(int i, int j) {
@@ -418,13 +367,11 @@ public class NavigatorImpl implements Navigator {
         reloadCurrentPlaceOnNewSize();
     }
 
-
     private void reloadCurrentPlaceOnNewSize() {
         BasePlace now = placeWhere.where();
         BasePlace destination = placeCalculator.getTabularPlace(now);
         placeGoTo.goTo(destination);
     }
-
 
     @Override
     public void toggleRasterView() {
@@ -433,14 +380,11 @@ public class NavigatorImpl implements Navigator {
         placeGoTo.goTo(destination);
     }
 
-
     @Override
     public void resetRasterSize() {
-        setRasterDimension(
-            PlaceCalculator.DEFAULT_RASTER_WIDTH,
+        setRasterDimension(PlaceCalculator.DEFAULT_RASTER_WIDTH,
             PlaceCalculator.DEFAULT_RASTER_HEIGHT);
     }
-
 
     @Override
     public void fullscreen() {
@@ -449,7 +393,6 @@ public class NavigatorImpl implements Navigator {
         placeGoTo.goTo(destination);
     }
 
-
     @Override
     public void zoom(Zoom direction) {
         BasePlace now = placeWhere.where();
@@ -457,15 +400,13 @@ public class NavigatorImpl implements Navigator {
         placeGoTo.goTo(destination);
     }
 
-
     @Override
     public void slideshow() {
         BasePlace now = placeWhere.where();
-        SlideshowPlace destination = new SlideshowPlace(
-                now.getTagId(), now.getPhotoId(), 0f);
+        SlideshowPlace destination = new SlideshowPlace(now.getTagId(),
+                now.getPhotoId(), 0f);
         placeGoTo.goTo(destination);
     }
-
 
     @Override
     public void unslideshow() {
@@ -474,22 +415,18 @@ public class NavigatorImpl implements Navigator {
         placeGoTo.goTo(destination);
     }
 
-
     @Override
-    public void getPageRelativePositionAsync(
-        String tagId, final String photoId, final int pageSize,
+    public void getPageRelativePositionAsync(String tagId,
+        final String photoId, final int pageSize,
         final AsyncCallback<Integer[]> callback) {
-        dataManager.getTagNode(
-            tagId,
+        dataManager.getTagNode(tagId,
             new AsyncCallback<TagNode>() {
                 @Override
                 public void onFailure(Throwable caught) {
-                    log.log(
-                        Level.WARNING, "getTagNode on datamanager failed",
+                    log.log(Level.WARNING, "getTagNode on datamanager failed",
                         caught);
                     callback.onFailure(caught);
                 }
-
 
                 @Override
                 public void onSuccess(TagNode result) {
@@ -497,14 +434,12 @@ public class NavigatorImpl implements Navigator {
                         int total = result.getCount();
                         int photoIndex = result.getCachedPhotoList()
                                                .indexOf(photoId);
-                        int noOfPages = (int)Math.ceil(
-                                (float)total / (float)pageSize);
+                        int noOfPages = (int) Math.ceil((float) total / (float) pageSize);
                         int pageNumber = photoIndex / pageSize;
-                        callback.onSuccess(
-                            new Integer[] { pageNumber, noOfPages });
+                        callback.onSuccess(new Integer[] { pageNumber, noOfPages });
                     } else {
-                        callback.onFailure(
-                            new RuntimeException("label not found."));
+                        callback.onFailure(new RuntimeException(
+                                "label not found."));
                     }
                 }
             });

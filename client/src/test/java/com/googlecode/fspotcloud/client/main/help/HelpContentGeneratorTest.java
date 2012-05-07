@@ -17,15 +17,12 @@
 package com.googlecode.fspotcloud.client.main.help;
 
 import com.google.gwt.resources.client.ImageResource;
-
 import com.googlecode.fspotcloud.client.main.help.HelpContentGenerator;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.ui.Resources.Style;
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;
 import com.googlecode.fspotcloud.client.view.action.UserActionImpl;
-
 import junit.framework.TestCase;
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 
@@ -47,10 +44,8 @@ public class HelpContentGeneratorTest extends TestCase {
         super.setUp();
     }
 
-
     public void testOne() {
-        context.checking(
-            new Expectations() {
+        context.checking(new Expectations() {
 
                 {
                     exactly(1).of(icon).getURL();
@@ -67,13 +62,12 @@ public class HelpContentGeneratorTest extends TestCase {
             });
         gen = new HelpContentGenerator(resources);
 
-        UserActionImpl s = new UserActionImpl(
-                "", "", "Start slideshow", new KeyStroke('s'), null, icon, null,
-                null);
+        UserActionImpl s = new UserActionImpl("", "", "Start slideshow",
+                new KeyStroke('s'), null, icon, null, null);
         String row = gen.getHelpText(s);
-        String desired = "<span class='fsc-help-key'>s</span></td>"
-            + "<td><span class='fsc-help-separator'>:</span></td><td><img src='bar' /></td>"
-            + "<td><span class='fsc-help-description'>Start slideshow</span>";
+        String desired = "<span class='fsc-help-key'>s</span></td>" +
+            "<td><span class='fsc-help-separator'>:</span></td><td><img src='bar' /></td>" +
+            "<td><span class='fsc-help-description'>Start slideshow</span>";
         assertEquals(desired, row);
     }
 }

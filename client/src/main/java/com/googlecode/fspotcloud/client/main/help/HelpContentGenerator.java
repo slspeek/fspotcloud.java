@@ -17,9 +17,7 @@
 package com.googlecode.fspotcloud.client.main.help;
 
 import com.google.gwt.resources.client.ImageResource;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
@@ -34,25 +32,25 @@ public class HelpContentGenerator {
         this.style = res.style();
     }
 
-    private String getHelpRow(
-        String key, String altKey1, String altKey2, String description,
-        ImageResource icon) {
+    private String getHelpRow(String key, String altKey1, String altKey2,
+        String description, ImageResource icon) {
         String row = "";
         row += ("<span class='" + style.helpKey() + "'>" + key + "</span>");
 
         if (altKey1 != null) {
-            row += (" or <span class='" + style.helpKey() + "'>" + altKey1
-            + "</span>");
+            row += (" or <span class='" + style.helpKey() + "'>" + altKey1 +
+            "</span>");
 
             if (altKey2 != null) {
-                row += (" or <span class='" + style.helpKey() + "'>" + altKey2
-                + "</span>");
+                row += (" or <span class='" + style.helpKey() + "'>" + altKey2 +
+                "</span>");
             }
         }
 
         row += "</td>";
 
-        row += ("<td><span class='" + style.helpSeparator() + "'>:</span></td>");
+        row += ("<td><span class='" + style.helpSeparator() +
+        "'>:</span></td>");
         row += "<td>";
 
         if (icon != null) {
@@ -60,12 +58,11 @@ public class HelpContentGenerator {
         }
 
         row += "</td>";
-        row += ("<td><span class='" + style.helpDescription() + "'>"
-        + description + "</span>");
+        row += ("<td><span class='" + style.helpDescription() + "'>" +
+        description + "</span>");
 
         return row;
     }
-
 
     public String getHelpText(UserAction shortcut) {
         String key;
@@ -79,11 +76,11 @@ public class HelpContentGenerator {
         if (altStroke != null) {
             altKey = altStroke.getKeyString();
 
-            return getHelpRow(
-                key, altKey, null, shortcut.getDescription(), shortcut.getIcon());
+            return getHelpRow(key, altKey, null, shortcut.getDescription(),
+                shortcut.getIcon());
         } else {
-            return getHelpRow(
-                key, null, null, shortcut.getDescription(), shortcut.getIcon());
+            return getHelpRow(key, null, null, shortcut.getDescription(),
+                shortcut.getIcon());
         }
     }
 }

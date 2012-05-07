@@ -23,20 +23,16 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.admin.view.DashboardPresenter;
 import com.googlecode.fspotcloud.client.main.UserInformation;
 import com.googlecode.fspotcloud.client.place.AdminPlaceHistoryMapper;
 import com.googlecode.fspotcloud.client.place.TagPlace;
-
 import java.util.logging.Logger;
 
 
 public class MVPSetup {
-    private static final Logger log = Logger.getLogger(
-            MVPSetup.class.getName());
+    private static final Logger log = Logger.getLogger(MVPSetup.class.getName());
     private final Place defaultPlace = new TagPlace("1");
     private final EventBus eventBus;
     private final PlaceController placeController;
@@ -44,8 +40,7 @@ public class MVPSetup {
     private final UserInformation userInformation;
 
     @Inject
-    public MVPSetup(
-        EventBus eventBus, PlaceController placeController,
+    public MVPSetup(EventBus eventBus, PlaceController placeController,
         DashboardPresenter dashboard, UserInformation userInformation) {
         super();
         this.eventBus = eventBus;
@@ -57,10 +52,8 @@ public class MVPSetup {
     public void setup() {
         log.info("Admin setup");
 
-        AdminPlaceHistoryMapper historyMapper = GWT.create(
-                AdminPlaceHistoryMapper.class);
-        PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(
-                historyMapper);
+        AdminPlaceHistoryMapper historyMapper = GWT.create(AdminPlaceHistoryMapper.class);
+        PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
         historyHandler.register(placeController, eventBus, defaultPlace);
 
         log.info("Just before handleCurrentHistory()");

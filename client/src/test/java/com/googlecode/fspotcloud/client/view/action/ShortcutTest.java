@@ -17,10 +17,8 @@
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.dom.client.KeyCodes;
-
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;
 import com.googlecode.fspotcloud.client.view.action.UserActionImpl;
-
 import junit.framework.TestCase;
 
 
@@ -33,50 +31,44 @@ public class ShortcutTest extends TestCase {
     UserActionImpl userActionImpl;
 
     public void testShortcut() {
-        userActionImpl = new UserActionImpl(
-                id, caption, description, key1, key2, null, null, null);
+        userActionImpl = new UserActionImpl(id, caption, description, key1,
+                key2, null, null, null);
         assertNotNull(userActionImpl);
     }
 
-
     public void testGetDescription() {
-        userActionImpl = new UserActionImpl(
-                id, caption, description, key1, key2, null, null, null);
+        userActionImpl = new UserActionImpl(id, caption, description, key1,
+                key2, null, null, null);
         assertEquals(description, userActionImpl.getDescription());
     }
 
-
     public void testGetKey() {
-        userActionImpl = new UserActionImpl(
-                id, caption, description, key1, key2, null, null, null);
+        userActionImpl = new UserActionImpl(id, caption, description, key1,
+                key2, null, null, null);
         assertEquals(key1, userActionImpl.getKey());
     }
 
-
     public void testGetAlternateKey() {
-        userActionImpl = new UserActionImpl(
-                id, caption, description, key1, key2, null, null, null);
+        userActionImpl = new UserActionImpl(id, caption, description, key1,
+                key2, null, null, null);
         assertEquals(key2, userActionImpl.getAlternateKey());
     }
 
-
     public void testGetIcon() {
-        userActionImpl = new UserActionImpl(
-                id, caption, description, key1, key2, null, null, null);
+        userActionImpl = new UserActionImpl(id, caption, description, key1,
+                key2, null, null, null);
         assertNull(userActionImpl.getIcon());
     }
 
-
     public void testGetCaption() {
-        userActionImpl = new UserActionImpl(
-                id, caption, description, key1, key2, null, null, null);
+        userActionImpl = new UserActionImpl(id, caption, description, key1,
+                key2, null, null, null);
         assertEquals(caption, userActionImpl.getCaption());
     }
 
-
     public void testGetId() {
-        userActionImpl = new UserActionImpl(
-                id, caption, description, key1, key2, null, null, null);
+        userActionImpl = new UserActionImpl(id, caption, description, key1,
+                key2, null, null, null);
         assertEquals(id, userActionImpl.getId());
     }
 }

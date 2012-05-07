@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.server.control.task.handler;
 
 import com.google.common.collect.ImmutableList;
-
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTagPhotosAction;
@@ -26,29 +25,23 @@ import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.TreeSet;
 import net.customware.gwt.dispatch.shared.DispatchException;
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-
 import org.mockito.MockitoAnnotations;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.TreeSet;
 
 
 public class DeletePhotosHandlerTest {
@@ -78,8 +71,8 @@ public class DeletePhotosHandlerTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        handler = new DeleteTagPhotosHandler(
-                MAX_DELETE_TICKS, dispatchAsync, photos, tagManager);
+        handler = new DeleteTagPhotosHandler(MAX_DELETE_TICKS, dispatchAsync,
+                photos, tagManager);
         tag3 = new TagEntity();
         tag3.setId("3");
         tag3.setImportIssued(true);
@@ -104,7 +97,6 @@ public class DeletePhotosHandlerTest {
         when(photos.find(ID_A)).thenReturn(photoA);
         when(photos.find(ID_B)).thenReturn(photoB);
     }
-
 
     /**
      * First gets deleted, the second is needed in another tag. The

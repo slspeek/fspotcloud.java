@@ -24,39 +24,28 @@ import com.google.gwt.user.client.ui.IsWidget;
 public interface GlobalActionsView extends IsWidget {
     void setPresenter(GlobalActionsPresenter presenter);
 
-
     HasText getTagCountValue();
-
 
     HasText getPhotoCountOnPeerValue();
 
-
     HasText getPendingCommandCountValue();
-
 
     HasText getLastSeenPeerValue();
 
-
     HasEnabled getDeleteAllTagsButton();
-
 
     HasEnabled getDeleteAllCommandsButton();
 
-
     HasEnabled getUpdateButton();
-
 
     boolean confirm(String message);
 
     interface GlobalActionsPresenter {
         void init();
 
-
         void deleteAllCommands();
 
-
         void deleteAllTags();
-
 
         void update();
     }

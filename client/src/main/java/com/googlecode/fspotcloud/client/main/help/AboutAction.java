@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.main.help;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.view.AboutPresenter;
 
 

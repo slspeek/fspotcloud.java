@@ -17,31 +17,24 @@
 package com.googlecode.fspotcloud.client.main.view.api;
 
 import com.google.gwt.user.client.ui.IsWidget;
-
 import com.googlecode.fspotcloud.client.main.api.Initializable;
 
 
 public interface ImageView extends IsWidget {
     void setSelected(boolean selected);
 
-
     void setImageUrl(String url);
-
 
     void setPresenter(ImagePresenter presenter);
 
-
     void setDescription(String date);
 
-
     void hideLabelLater(int visibleDuration);
-
 
     void adjustSize();
 
     interface ImagePresenter extends Initializable {
         void imageClicked();
-
 
         void setSelected(boolean selected);
     }

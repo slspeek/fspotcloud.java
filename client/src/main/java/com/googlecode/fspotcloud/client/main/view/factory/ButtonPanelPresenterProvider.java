@@ -19,7 +19,6 @@ package com.googlecode.fspotcloud.client.main.view.factory;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
-
 import com.googlecode.fspotcloud.client.main.event.ActionFamily;
 import com.googlecode.fspotcloud.client.main.event.ActionMap;
 import com.googlecode.fspotcloud.client.main.event.application.ApplicationType;
@@ -30,14 +29,12 @@ import com.googlecode.fspotcloud.client.main.view.api.ButtonPanelView.ButtonPane
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonPresenterFactory;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonView;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
-
 import java.util.logging.Logger;
 
 
 public class ButtonPanelPresenterProvider implements Provider<ButtonPanelView.ButtonPanelPresenter> {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            ButtonPanelPresenterProvider.class.getName());
+    private static final Logger log = Logger.getLogger(ButtonPanelPresenterProvider.class.getName());
     private final ButtonPanelView buttonPanelView;
     private final ActionFamily allActions;
     private final UserButtonPresenterFactory buttonPresenterFactory;
@@ -45,7 +42,8 @@ public class ButtonPanelPresenterProvider implements Provider<ButtonPanelView.Bu
     @Inject
     public ButtonPanelPresenterProvider(
         @Named("Main")
-    ButtonPanelView buttonPanelView, ActionFamily allActions,
+    ButtonPanelView buttonPanelView,
+        ActionFamily allActions,
         UserButtonPresenterFactory buttonPresenterFactory) {
         super();
         this.buttonPanelView = buttonPanelView;
@@ -76,21 +74,17 @@ public class ButtonPanelPresenterProvider implements Provider<ButtonPanelView.Bu
         addAction(app.get(ApplicationType.LOGOUT));
     }
 
-
     private void addActionGroup(ActionMap group) {
         for (UserAction action : group.allActions()) {
             addAction(action);
         }
     }
 
-
     private void addAction(UserAction action) {
-        UserButtonView.UserButtonPresenter buttonPresenter = buttonPresenterFactory
-            .get(action);
+        UserButtonView.UserButtonPresenter buttonPresenter = buttonPresenterFactory.get(action);
         buttonPresenter.init();
         buttonPanelView.add(buttonPresenter.getView());
     }
-
 
     @Override
     public ButtonPanelPresenter get() {

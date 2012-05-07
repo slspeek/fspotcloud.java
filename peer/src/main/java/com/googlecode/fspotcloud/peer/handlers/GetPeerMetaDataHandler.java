@@ -17,17 +17,14 @@
 package com.googlecode.fspotcloud.peer.handlers;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.peer.db.Data;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaDataAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
-
+import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
+import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
+import java.sql.SQLException;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
-
-import java.sql.SQLException;
 
 
 public class GetPeerMetaDataHandler extends SimpleActionHandler<GetPeerMetaDataAction, PeerMetaDataResult> {
@@ -40,15 +37,14 @@ public class GetPeerMetaDataHandler extends SimpleActionHandler<GetPeerMetaDataA
     }
 
     @Override
-    public PeerMetaDataResult execute(
-        GetPeerMetaDataAction action, ExecutionContext context)
-        throws DispatchException {
+    public PeerMetaDataResult execute(GetPeerMetaDataAction action,
+        ExecutionContext context) throws DispatchException {
         PeerMetaDataResult result;
 
         try {
             Object[] resultArray = data.getMetaData();
-            result = new PeerMetaDataResult(
-                    (Integer)resultArray[1], (Integer)resultArray[0]);
+            result = new PeerMetaDataResult((Integer) resultArray[1],
+                    (Integer) resultArray[0]);
         } catch (SQLException e) {
             throw new ActionException(e);
         }

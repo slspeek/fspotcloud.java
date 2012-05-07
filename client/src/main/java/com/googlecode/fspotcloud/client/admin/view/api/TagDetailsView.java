@@ -25,30 +25,22 @@ import com.google.gwt.user.client.ui.IsWidget;
 public interface TagDetailsView extends IsWidget {
     HasEnabled getImportButton();
 
-
     HasText getImportButtonText();
-
 
     HasText getTagNameValue();
 
-
     HasText getTagDescriptionValue();
-
 
     HasText getTagImportIssuedValue();
 
-
     HasText getTagLoadedImagesCountValue();
 
-
     HasText getTagImageCountValue();
-
 
     void setPresenter(TagDetailsPresenter presenter);
 
     interface TagDetailsPresenter extends Activity {
         void importTag();
-
 
         void init();
     }

@@ -21,29 +21,21 @@
 package com.googlecode.fspotcloud.server.control.callback;
 
 import static com.google.common.collect.Lists.newArrayList;
-
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsFromPeerAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.TagUpdateAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.*;
-
+import com.googlecode.fspotcloud.shared.peer.PeerUpdateInstructionsResult;
+import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
+import com.googlecode.fspotcloud.shared.peer.TagUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
+import java.util.List;
+import javax.inject.Inject;
 import net.customware.gwt.dispatch.shared.Action;
-
 import org.jukito.JukitoRunner;
-
 import org.junit.*;
 import static org.junit.Assert.*;
-
 import org.junit.runner.RunWith;
-
 import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.*;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
 
 /**
  * DOCUMENT ME!
@@ -58,23 +50,21 @@ public class PeerUpdateInstructionsCallbackTest {
     PeerUpdateInstructionsCallback callback;
 
     @Test
-    public void testNormalExecute(
-        TaskQueueDispatch dispatchAsync, ArgumentCaptor<Action> updateCaptor)
-        throws Exception {
-        List<TagRemovedFromPeer> removedTags = newArrayList(
-                new TagRemovedFromPeer(TAG_REMOVED_ID));
+    public void testNormalExecute(TaskQueueDispatch dispatchAsync,
+        ArgumentCaptor<Action> updateCaptor) throws Exception {
+        List<TagRemovedFromPeer> removedTags = newArrayList(new TagRemovedFromPeer(
+                    TAG_REMOVED_ID));
         List<TagUpdate> tagUpdates = newArrayList(new TagUpdate(TAG_ID));
-        PeerUpdateInstructionsResult result = new PeerUpdateInstructionsResult(
-                tagUpdates, removedTags);
+        PeerUpdateInstructionsResult result = new PeerUpdateInstructionsResult(tagUpdates,
+                removedTags);
 
         callback.onSuccess(result);
 
         verify(dispatchAsync, times(2)).execute(updateCaptor.capture());
 
         List<Action> actions = updateCaptor.getAllValues();
-        TagUpdateAction update = (TagUpdateAction)actions.get(1);
-        RemoveTagsFromPeerAction remove = (RemoveTagsFromPeerAction)actions.get(
-                0);
+        TagUpdateAction update = (TagUpdateAction) actions.get(1);
+        RemoveTagsFromPeerAction remove = (RemoveTagsFromPeerAction) actions.get(0);
         assertEquals(TAG_REMOVED_ID, remove.getToBoDeleted().get(0).getTagId());
         assertEquals(TAG_ID, update.getUpdates().get(0).getTagId());
     }

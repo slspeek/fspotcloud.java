@@ -21,22 +21,18 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsFr
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagRemovedFromPeer;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
-import net.customware.gwt.dispatch.server.ExecutionContext;
-import net.customware.gwt.dispatch.server.SimpleActionHandler;
-import net.customware.gwt.dispatch.shared.DispatchException;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.inject.Named;
+import net.customware.gwt.dispatch.server.ExecutionContext;
+import net.customware.gwt.dispatch.server.SimpleActionHandler;
+import net.customware.gwt.dispatch.shared.DispatchException;
 
 
 public class RemoveTagsFromPeerHandler extends SimpleActionHandler<RemoveTagsFromPeerAction, VoidResult> {
@@ -46,8 +42,7 @@ public class RemoveTagsFromPeerHandler extends SimpleActionHandler<RemoveTagsFro
     private Tags tagManager;
 
     @Inject
-    public RemoveTagsFromPeerHandler(
-        @Named("maxDelete")
+    public RemoveTagsFromPeerHandler(@Named("maxDelete")
     int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
         Tags tagManager) {
         super();
@@ -58,9 +53,8 @@ public class RemoveTagsFromPeerHandler extends SimpleActionHandler<RemoveTagsFro
     }
 
     @Override
-    public VoidResult execute(
-        RemoveTagsFromPeerAction action, ExecutionContext context)
-        throws DispatchException {
+    public VoidResult execute(RemoveTagsFromPeerAction action,
+        ExecutionContext context) throws DispatchException {
         Iterator<TagRemovedFromPeer> it = action.getToBoDeleted().iterator();
 
         for (int i = 0; (i < MAX_DELETE_TICKS) && it.hasNext(); i++) {

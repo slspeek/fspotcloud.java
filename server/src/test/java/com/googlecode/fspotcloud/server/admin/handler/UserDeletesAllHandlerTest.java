@@ -23,32 +23,25 @@ package com.googlecode.fspotcloud.server.admin.handler;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTagsAction;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserDeletesAllAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
+import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
+import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-
 import org.junit.*;
 import static org.junit.Assert.*;
-
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
-
-import javax.inject.Inject;
-
-
 @RunWith(JukitoRunner.class)
 public class UserDeletesAllHandlerTest {
     @Inject
     UserDeletesAllHandler handler;
 
     @Test
-    public void testNormalExecute(
-        TaskQueueDispatch dispatchAsync, IAdminPermission IAdminPermission,
-        PeerDatabases peerDatabaseManager) throws Exception {
+    public void testNormalExecute(TaskQueueDispatch dispatchAsync,
+        IAdminPermission IAdminPermission, PeerDatabases peerDatabaseManager)
+        throws Exception {
         UserDeletesAllAction action = new UserDeletesAllAction();
         VoidResult result = handler.execute(action, null);
 
@@ -57,11 +50,10 @@ public class UserDeletesAllHandlerTest {
         verify(dispatchAsync).execute(new DeleteAllPhotosAction());
     }
 
-
     @Test(expected = SecurityException.class)
-    public void testUnAuthorizedExecute(
-        TaskQueueDispatch dispatchAsync, IAdminPermission iAdminPermission,
-        PeerDatabases peerDatabaseManager) throws Exception {
+    public void testUnAuthorizedExecute(TaskQueueDispatch dispatchAsync,
+        IAdminPermission iAdminPermission, PeerDatabases peerDatabaseManager)
+        throws Exception {
         doThrow(new SecurityException()).when(iAdminPermission)
             .checkAdminPermission();
 

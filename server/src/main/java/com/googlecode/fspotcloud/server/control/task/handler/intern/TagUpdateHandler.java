@@ -17,38 +17,31 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
-
 import com.googlecode.fspotcloud.server.control.callback.TagDataCallback;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.TagUpdateAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetTagDataAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagUpdate;
-
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.peer.GetTagDataAction;
+import com.googlecode.fspotcloud.shared.peer.TagUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+import javax.inject.Inject;
+import javax.inject.Named;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
 
 public class TagUpdateHandler extends SimpleActionHandler<TagUpdateAction, VoidResult> {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            TagUpdateHandler.class.getName());
+    private static final Logger log = Logger.getLogger(TagUpdateHandler.class.getName());
     private final int MAX_DATA_TICKS;
     private final ControllerDispatchAsync controllerDispatch;
     private final TaskQueueDispatch dispatchAsync;
 
     @Inject
-    public TagUpdateHandler(
-        @Named("maxTicks")
+    public TagUpdateHandler(@Named("maxTicks")
     int maxTicks, ControllerDispatchAsync controllerDispatch,
         TaskQueueDispatch dispatchAsync) {
         super();
@@ -63,15 +56,13 @@ public class TagUpdateHandler extends SimpleActionHandler<TagUpdateAction, VoidR
         List<TagUpdate> updates = action.getUpdates();
         int size = updates.size();
         int countWeWillDo;
-        int needToScheduleCount = (int)Math.ceil(
-                (double)size / (double)MAX_DATA_TICKS);
+        int needToScheduleCount = (int) Math.ceil((double) size / (double) MAX_DATA_TICKS);
 
         if (needToScheduleCount > MAX_DATA_TICKS) {
             countWeWillDo = MAX_DATA_TICKS;
 
             List<TagUpdate> nextList = new ArrayList<TagUpdate>();
-            nextList.addAll(
-                updates.subList(countWeWillDo * MAX_DATA_TICKS, size));
+            nextList.addAll(updates.subList(countWeWillDo * MAX_DATA_TICKS, size));
             dispatchAsync.execute(new TagUpdateAction(nextList));
         } else {
             countWeWillDo = needToScheduleCount;
@@ -82,8 +73,7 @@ public class TagUpdateHandler extends SimpleActionHandler<TagUpdateAction, VoidR
             int beginning = i * MAX_DATA_TICKS;
             List<String> imageKeys = new ArrayList<String>();
 
-            for (
-                int j = beginning;
+            for (int j = beginning;
                     (j < (MAX_DATA_TICKS + beginning)) && (j < updates.size());
                     j++) {
                 TagUpdate tagUpdate = updates.get(j);

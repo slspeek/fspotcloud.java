@@ -18,20 +18,16 @@ package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.view.api.TreeSelectionHandlerInterface;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfoStore;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.logging.Logger;
 
 
 public class TreeSelectionHandler implements TreeSelectionHandlerInterface {
-    private static final Logger log = Logger.getLogger(
-            TreeSelectionHandler.class.getName());
+    private static final Logger log = Logger.getLogger(TreeSelectionHandler.class.getName());
     private SingleSelectionModel<TagNode> selectionModel;
     private final Navigator navigator;
 
@@ -45,7 +41,6 @@ public class TreeSelectionHandler implements TreeSelectionHandlerInterface {
         selectionModel.addSelectionChangeHandler(this);
     }
 
-
     @Override
     public void onSelectionChange(SelectionChangeEvent event) {
         log.info("Selection event from tree" + selectionModel);
@@ -57,7 +52,6 @@ public class TreeSelectionHandler implements TreeSelectionHandlerInterface {
             goToPhoto(tagId, node.getCachedPhotoList());
         }
     }
-
 
     private void goToPhoto(String otherTagId, PhotoInfoStore store) {
         navigator.goToTag(otherTagId, store);

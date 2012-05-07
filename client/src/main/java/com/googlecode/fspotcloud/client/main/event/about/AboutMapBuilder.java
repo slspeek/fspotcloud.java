@@ -17,9 +17,7 @@
 package com.googlecode.fspotcloud.client.main.event.about;
 
 import com.google.gwt.resources.client.ImageResource;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.event.AbstractActionMap;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.view.action.api.ActionDef;
@@ -30,8 +28,8 @@ public class AboutMapBuilder extends AbstractActionMap {
     private Resources resources;
 
     @Inject
-    public AboutMapBuilder(
-        UserActionFactory userActionFactory, Resources resources) {
+    public AboutMapBuilder(UserActionFactory userActionFactory,
+        Resources resources) {
         super(userActionFactory, "About");
         this.resources = resources;
     }
@@ -44,7 +42,6 @@ public class AboutMapBuilder extends AbstractActionMap {
         put(AboutType.PROTON, resources.protonIcon());
         put(AboutType.STEVEN, resources.authorIcon());
     }
-
 
     private void put(ActionDef actionDef, ImageResource icon) {
         put(actionDef, icon, new AboutEventProvider(actionDef));

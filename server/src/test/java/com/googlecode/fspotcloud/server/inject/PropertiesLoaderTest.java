@@ -21,9 +21,7 @@
 package com.googlecode.fspotcloud.server.inject;
 
 import com.googlecode.fspotcloud.server.inject.PropertiesLoader;
-
 import junit.framework.Assert;
-
 import org.junit.Test;
 
 

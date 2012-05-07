@@ -20,24 +20,20 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.server.model.tag.TreeBuilder;
-import com.googlecode.fspotcloud.shared.main.actions.GetTagTreeAction;
-import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
+import com.googlecode.fspotcloud.shared.main.TagNode;
+import com.googlecode.fspotcloud.shared.main.TagTreeResult;
+import java.util.List;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-import java.util.List;
-import java.util.logging.Logger;
-
-import javax.inject.Inject;
-
 
 public class GetTagTreeHandler extends SimpleActionHandler<GetTagTreeAction, TagTreeResult> {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            GetTagTreeHandler.class.getName());
+    private static final Logger log = Logger.getLogger(GetTagTreeHandler.class.getName());
     private final PeerDatabases peerDatabases;
     private final Tags tagManager;
 
@@ -48,9 +44,8 @@ public class GetTagTreeHandler extends SimpleActionHandler<GetTagTreeAction, Tag
     }
 
     @Override
-    public TagTreeResult execute(
-        GetTagTreeAction action, ExecutionContext context)
-        throws DispatchException {
+    public TagTreeResult execute(GetTagTreeAction action,
+        ExecutionContext context) throws DispatchException {
         PeerDatabase p = peerDatabases.get();
 
         if (p.getCachedTagTree() != null) {

@@ -16,7 +16,7 @@
  */
 package com.googlecode.fspotcloud.server.model.tag;
 
-import com.googlecode.fspotcloud.shared.tag.TagNode;
+import com.googlecode.fspotcloud.shared.main.TagNode;
 
 
 public interface Filter {

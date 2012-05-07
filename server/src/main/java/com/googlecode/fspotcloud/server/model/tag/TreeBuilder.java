@@ -17,8 +17,7 @@
 package com.googlecode.fspotcloud.server.model.tag;
 
 import com.googlecode.fspotcloud.server.model.tag.Filter;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,15 +33,13 @@ public class TreeBuilder {
     }
 
     public List<TagNode> getRoots() {
-        return getFilteredRoots(
-            new Filter() {
+        return getFilteredRoots(new Filter() {
                 @Override
                 public boolean isValid(TagNode node) {
                     return true;
                 }
             });
     }
-
 
     private void buildMap() {
         index = new HashMap<String, TagNode>();
@@ -53,17 +50,14 @@ public class TreeBuilder {
         }
     }
 
-
     public List<TagNode> getPublicRoots() {
-        return getFilteredRoots(
-            new Filter() {
+        return getFilteredRoots(new Filter() {
                 @Override
                 public boolean isValid(TagNode node) {
                     return node.isImportIssued();
                 }
             });
     }
-
 
     private List<TagNode> getFilteredRoots(Filter f) {
         buildMap();
@@ -84,7 +78,6 @@ public class TreeBuilder {
 
         return roots;
     }
-
 
     private TagNode getFilteredParent(TagNode node, Filter filter) {
         if ("0".equals(node.getParentId())) {

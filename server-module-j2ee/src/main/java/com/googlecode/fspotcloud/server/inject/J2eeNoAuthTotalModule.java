@@ -23,13 +23,10 @@ package com.googlecode.fspotcloud.server.inject;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
-
 import com.googlecode.botdispatch.model.api.Commands;
 import com.googlecode.botdispatch.model.command.CommandManager;
-
 import com.googlecode.fspotcloud.model.jpa.ModelModule;
 import com.googlecode.fspotcloud.user.LenientUserService;
-
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
 
 

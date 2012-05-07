@@ -17,20 +17,16 @@
 package com.googlecode.fspotcloud.server.control.callback;
 
 import static com.google.common.collect.Lists.newArrayList;
-
 import com.google.inject.Inject;
-
 import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
-
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerUpdateInstructionsAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.TagData;
-
+import com.googlecode.fspotcloud.shared.peer.GetPeerUpdateInstructionsAction;
+import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
+import com.googlecode.fspotcloud.shared.peer.TagData;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,28 +54,24 @@ public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaD
         int count = result.getPhotoCount();
         int tagCount = result.getTagCount();
         PeerDatabase p = defaultPeer.get();
-        dispatchAsync.execute(
-            new GetPeerUpdateInstructionsAction(getTagData()),
+        dispatchAsync.execute(new GetPeerUpdateInstructionsAction(getTagData()),
             new PeerUpdateInstructionsCallback());
         p.setPeerPhotoCount(count);
         p.setTagCount(tagCount);
         defaultPeer.save(p);
     }
 
-
     @Override
     public void onFailure(Throwable caught) {
         log.log(Level.SEVERE, "Error on peer-component: ", caught);
     }
 
-
     private List<TagData> getTagData() {
         List<TagData> result = newArrayList();
 
         for (Tag tag : tagManager.findAll(1000)) {
-            TagData data = new TagData(
-                    tag.getId(), tag.getTagName(), tag.getParentId(),
-                    tag.getCount());
+            TagData data = new TagData(tag.getId(), tag.getTagName(),
+                    tag.getParentId(), tag.getCount());
             result.add(data);
         }
 

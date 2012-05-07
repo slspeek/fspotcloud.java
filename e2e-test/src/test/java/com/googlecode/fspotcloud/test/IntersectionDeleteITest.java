@@ -18,20 +18,16 @@ package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
 import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
-
 import com.thoughtworks.selenium.Selenium;
+import javax.inject.Inject;
 import static junit.framework.Assert.fail;
-
 import org.junit.Rule;
 import org.junit.Test;
-
-import javax.inject.Inject;
 
 
 public class IntersectionDeleteITest {
     @Rule
-    public GuiceBerryRule guiceBerry = new GuiceBerryRule(
-            EmptyGuiceBerryEnv.class);
+    public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
     Selenium selenium;
     @Inject
@@ -58,13 +54,11 @@ public class IntersectionDeleteITest {
         pressButtonForPC();
     }
 
-
     private void pressButtonForComputers() throws InterruptedException {
         selenium.open("/Dashboard.html#TagPlace:2");
         selenium.waitForPageToLoad("30000");
         selenium.click("gwt-debug-import-tag-button");
     }
-
 
     private void pressButtonForPC() throws InterruptedException {
         selenium.open("/Dashboard.html#TagPlace:4");

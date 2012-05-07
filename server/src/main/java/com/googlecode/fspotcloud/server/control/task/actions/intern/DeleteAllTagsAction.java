@@ -16,14 +16,13 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
-
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Action;
 
-import java.io.Serializable;
 
-
-public class DeleteAllTagsAction implements Action<VoidResult>, Serializable {
+public class DeleteAllTagsAction implements Action<VoidResult>,
+    Serializable {
     private static final long serialVersionUID = 8429390701736230375L;
 
     public DeleteAllTagsAction() {

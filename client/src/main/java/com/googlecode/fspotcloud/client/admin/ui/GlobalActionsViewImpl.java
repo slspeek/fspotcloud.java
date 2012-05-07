@@ -28,14 +28,12 @@ import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-
 import com.googlecode.fspotcloud.client.admin.view.api.GlobalActionsView;
 
 
 public class GlobalActionsViewImpl extends Composite
     implements GlobalActionsView {
-    private static GlobalActionsViewImplUiBinder uiBinder = GWT.create(
-            GlobalActionsViewImplUiBinder.class);
+    private static GlobalActionsViewImplUiBinder uiBinder = GWT.create(GlobalActionsViewImplUiBinder.class);
     private GlobalActionsPresenter presenter;
     @UiField
     Label peerPhotoCountValueLabel;
@@ -68,66 +66,55 @@ public class GlobalActionsViewImpl extends Composite
         presenter.deleteAllCommands();
     }
 
-
     @UiHandler("updateButton")
     public void updateButtonClicked(ClickEvent event) {
         presenter.update();
     }
-
 
     @UiHandler("deleteAllTagsButton")
     public void deleteAllTagsButtonClicked(ClickEvent event) {
         presenter.deleteAllTags();
     }
 
-
     @Override
     public HasText getPhotoCountOnPeerValue() {
         return peerPhotoCountValueLabel;
     }
-
 
     @Override
     public HasEnabled getDeleteAllTagsButton() {
         return deleteAllTagsButton;
     }
 
-
     @Override
     public HasEnabled getDeleteAllCommandsButton() {
         return deleteAllCommandsButton;
     }
-
 
     @Override
     public HasEnabled getUpdateButton() {
         return updateButton;
     }
 
-
     @Override
     public boolean confirm(String message) {
         return Window.confirm(message);
     }
-
 
     @Override
     public HasText getLastSeenPeerValue() {
         return lastSeenPeerValueLabel;
     }
 
-
     @Override
     public void setPresenter(GlobalActionsPresenter presenter) {
         this.presenter = presenter;
     }
 
-
     @Override
     public HasText getTagCountValue() {
         return tagCountOnPeerValueLabel;
     }
-
 
     @Override
     public HasText getPendingCommandCountValue() {

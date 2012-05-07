@@ -22,26 +22,22 @@ import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-
 import com.googlecode.fspotcloud.client.main.event.application.ApplicationEvent;
 import com.googlecode.fspotcloud.client.main.event.application.ApplicationType;
 import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
 import com.googlecode.fspotcloud.client.main.view.api.SingleImageView;
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;
-
 import java.util.logging.Logger;
 
 
 public class SingleImageActivity extends AbstractActivity implements SingleImageView.SingleImagePresenter {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            SingleImageActivity.class.getName());
+    private static final Logger log = Logger.getLogger(SingleImageActivity.class.getName());
     private final SingleImageView singleImageView;
     private final ImageRasterView.ImageRasterPresenter imageRasterPresenter;
     private EventBus eventBus;
 
-    public SingleImageActivity(
-        SingleImageView imageView,
+    public SingleImageActivity(SingleImageView imageView,
         ImageRasterView.ImageRasterPresenter imageRasterPresenter) {
         this.singleImageView = imageView;
         this.imageRasterPresenter = imageRasterPresenter;
@@ -54,8 +50,7 @@ public class SingleImageActivity extends AbstractActivity implements SingleImage
         panel.setWidget(singleImageView);
 
         Scheduler scheduler = Scheduler.get();
-        scheduler.scheduleDeferred(
-            new ScheduledCommand() {
+        scheduler.scheduleDeferred(new ScheduledCommand() {
                 @Override
                 public void execute() {
                     imageRasterPresenter.init();

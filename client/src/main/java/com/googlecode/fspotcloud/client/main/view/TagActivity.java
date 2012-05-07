@@ -21,22 +21,18 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-
 import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
 import com.googlecode.fspotcloud.client.main.view.api.TagView;
-
 import java.util.logging.Logger;
 
 
 public class TagActivity extends AbstractActivity implements TagView.TagPresenter {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            TagActivity.class.getName());
+    private static final Logger log = Logger.getLogger(TagActivity.class.getName());
     private final TagView tagView;
     private final ImageRasterView.ImageRasterPresenter imageRasterPresenter;
 
-    public TagActivity(
-        TagView tagView,
+    public TagActivity(TagView tagView,
         ImageRasterView.ImageRasterPresenter imageRasterPresenter) {
         this.tagView = tagView;
         this.imageRasterPresenter = imageRasterPresenter;
@@ -47,8 +43,7 @@ public class TagActivity extends AbstractActivity implements TagView.TagPresente
         containerWidget.setWidget(tagView);
 
         Scheduler scheduler = Scheduler.get();
-        scheduler.scheduleDeferred(
-            new ScheduledCommand() {
+        scheduler.scheduleDeferred(new ScheduledCommand() {
                 @Override
                 public void execute() {
                     imageRasterPresenter.init();

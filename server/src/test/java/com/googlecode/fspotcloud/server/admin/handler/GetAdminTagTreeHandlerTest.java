@@ -21,25 +21,18 @@
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import static com.google.common.collect.Lists.newArrayList;
-
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.actions.GetAdminTagTreeAction;
-import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
+import com.googlecode.fspotcloud.shared.dashboard.GetAdminTagTreeAction;
+import com.googlecode.fspotcloud.shared.main.TagNode;
+import com.googlecode.fspotcloud.shared.main.TagTreeResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-
+import java.util.List;
+import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-
 import org.junit.*;
 import static org.junit.Assert.*;
-
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
 
 /**
  * DOCUMENT ME!
@@ -53,19 +46,16 @@ public class GetAdminTagTreeHandlerTest {
     private final GetAdminTagTreeAction action = new GetAdminTagTreeAction();
 
     @Test
-    public void testNormalExecuteNoTags(
-        Tags tagManager, IAdminPermission adminPermission)
-        throws Exception {
+    public void testNormalExecuteNoTags(Tags tagManager,
+        IAdminPermission adminPermission) throws Exception {
         TagTreeResult result = handler.execute(action, null);
         verify(tagManager).getTags();
         assertTrue(result.getTree().isEmpty());
     }
 
-
     @Test
-    public void testNormalExecuteOneTags(
-        Tags tagManager, IAdminPermission adminPermission)
-        throws Exception {
+    public void testNormalExecuteOneTags(Tags tagManager,
+        IAdminPermission adminPermission) throws Exception {
         List<TagNode> list = newArrayList();
         list.add(new TagNode("1"));
         when(tagManager.getTags()).thenReturn(list);
@@ -75,11 +65,9 @@ public class GetAdminTagTreeHandlerTest {
         assertEquals(1, result.getTree().size());
     }
 
-
     @Test(expected = SecurityException.class)
-    public void testUnAuthorizedExecute(
-        Tags tagManager, IAdminPermission adminPermission)
-        throws Exception {
+    public void testUnAuthorizedExecute(Tags tagManager,
+        IAdminPermission adminPermission) throws Exception {
         doThrow(new SecurityException()).when(adminPermission)
             .checkAdminPermission();
 

@@ -18,13 +18,11 @@ package com.googlecode.fspotcloud.client.main.view;
 
 import com.googlecode.fspotcloud.client.main.view.api.ButtonPanelView;
 import com.googlecode.fspotcloud.client.main.view.api.SlideshowView;
-
 import java.util.logging.Logger;
 
 
 public class SlideshowControlsPresenter implements ButtonPanelView.ButtonPanelPresenter {
-    private static final Logger log = Logger.getLogger(
-            SlideshowControlsPresenter.class.getName());
+    private static final Logger log = Logger.getLogger(SlideshowControlsPresenter.class.getName());
     @SuppressWarnings("unused")
     private final SlideshowView.SlideshowPresenter slideshowPresenter;
     private final ButtonPanelView view;

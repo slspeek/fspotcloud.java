@@ -17,33 +17,26 @@
 package com.googlecode.fspotcloud.model.api.test.tag;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
-
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
-import org.junit.After;
-import static org.junit.Assert.*;
-
-import org.junit.Rule;
-import org.junit.Test;
-
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.Date;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.logging.Logger;
+import org.junit.After;
+import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.Test;
 
 
 public class TagManagerTest {
-    private static final Logger log = Logger.getLogger(
-            TagManagerTest.class.getName());
+    private static final Logger log = Logger.getLogger(TagManagerTest.class.getName());
     @Rule
-    public GuiceBerryRule guiceBerry = new GuiceBerryRule(
-            EmptyGuiceBerryEnv.class);
+    public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
     private Tags tagManager;
 
@@ -51,7 +44,6 @@ public class TagManagerTest {
     public void setUp() throws Exception {
         tagManager.deleteBulk(100);
     }
-
 
     @Test
     public void testGetTags() {
@@ -62,7 +54,6 @@ public class TagManagerTest {
         assertEquals("21", node.getId());
     }
 
-
     private Tag createSaveTag(String id) {
         Tag tag = tagManager.findOrNew(id);
         tag.setId(id);
@@ -71,7 +62,6 @@ public class TagManagerTest {
         return tag;
     }
 
-
     @Test
     public void modifyPhotoList() {
         Tag subject = createSaveTag("9");
@@ -79,11 +69,9 @@ public class TagManagerTest {
         list.add(new PhotoInfo("1", "desc", new Date(10000)));
         subject.setCachedPhotoList(list);
         tagManager.save(subject);
-        assertEquals(
-            "desc",
+        assertEquals("desc",
             tagManager.find("9").getCachedPhotoList().first().getDescription());
     }
-
 
     @Test
     public void getImportedTags() {

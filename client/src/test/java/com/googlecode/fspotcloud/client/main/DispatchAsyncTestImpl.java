@@ -18,20 +18,16 @@ package com.googlecode.fspotcloud.client.main;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSortedSet;
-
 import com.google.gwt.user.client.rpc.AsyncCallback;
-
-import com.googlecode.fspotcloud.shared.main.actions.TagTreeResult;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
-import com.googlecode.fspotcloud.shared.photo.PhotoInfoStore;
-import com.googlecode.fspotcloud.shared.tag.TagNode;
-
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
+import com.googlecode.fspotcloud.shared.main.TagNode;
+import com.googlecode.fspotcloud.shared.main.TagTreeResult;
+import java.util.Date;
+import java.util.List;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.Result;
-
-import java.util.Date;
-import java.util.List;
 
 
 public class DispatchAsyncTestImpl implements DispatchAsync {
@@ -50,14 +46,13 @@ public class DispatchAsyncTestImpl implements DispatchAsync {
         return node;
     }
 
-
     public List<TagNode> initData() {
         TagNode root1 = createNode("1", "Friends", 10);
         PhotoInfo pi1 = new PhotoInfo("1", "Daniel", new Date(1));
         PhotoInfo pi2 = new PhotoInfo("2", "Aute", new Date(2));
         PhotoInfo pi3 = new PhotoInfo("3", "Jan", new Date(3));
-        ImmutableSortedSet<PhotoInfo> photoList = ImmutableSortedSet.of(
-                pi1, pi2, pi3);
+        ImmutableSortedSet<PhotoInfo> photoList = ImmutableSortedSet.of(pi1,
+                pi2, pi3);
         root1.setCachedPhotoList(new PhotoInfoStore(photoList));
 
         TagNode cats = createNode("2", "Cats", 10);
@@ -102,8 +97,8 @@ public class DispatchAsyncTestImpl implements DispatchAsync {
         PhotoInfo pi7 = new PhotoInfo("106", "", new Date(106));
         PhotoInfo pi8 = new PhotoInfo("107", "", new Date(107));
         PhotoInfo pi9 = new PhotoInfo("108", "", new Date(108));
-        photoList = ImmutableSortedSet.of(
-                pi1, pi2, pi3, pi4, pi5, pi6, pi7, pi8, pi9);
+        photoList = ImmutableSortedSet.of(pi1, pi2, pi3, pi4, pi5, pi6, pi7,
+                pi8, pi9);
         otherCats.setCachedPhotoList(new PhotoInfoStore(photoList));
 
         cats.addChild(empty);
@@ -116,11 +111,10 @@ public class DispatchAsyncTestImpl implements DispatchAsync {
         return tagTreeData;
     }
 
-
     @Override
-    public <A extends Action<R>, R extends Result> void execute(
-        A action, AsyncCallback<R> _callback) {
-        AsyncCallback<TagTreeResult> callback = (AsyncCallback<TagTreeResult>)_callback;
+    public <A extends Action<R>, R extends Result> void execute(A action,
+        AsyncCallback<R> _callback) {
+        AsyncCallback<TagTreeResult> callback = (AsyncCallback<TagTreeResult>) _callback;
         callback.onSuccess(new TagTreeResult(tagTreeData));
     }
 }

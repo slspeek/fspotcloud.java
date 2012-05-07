@@ -26,23 +26,17 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ResizeComposite;
-
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
-
 import com.googlecode.fspotcloud.client.main.view.api.ImageView;
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
-
 import com.reveregroup.gwt.imagepreloader.FitImage;
-
 import java.util.logging.Logger;
 
 
 public class ImageViewImpl extends ResizeComposite implements ImageView {
-    private static final Logger log = Logger.getLogger(
-            ImageViewImpl.class.getName());
-    private static ImageViewImplUiBinder uiBinder = GWT.create(
-            ImageViewImplUiBinder.class);
+    private static final Logger log = Logger.getLogger(ImageViewImpl.class.getName());
+    private static ImageViewImplUiBinder uiBinder = GWT.create(ImageViewImplUiBinder.class);
     private final TimerInterface timer;
     @UiField
     Label info;
@@ -54,8 +48,7 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
     private final Resources resources;
 
     @Inject
-    public ImageViewImpl(
-        @Assisted
+    public ImageViewImpl(@Assisted
     String location, TimerInterface timer, Resources resources) {
         this.timer = timer;
         this.resources = resources;
@@ -67,19 +60,16 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
         image.ensureDebugId("image-view-" + location);
     }
 
-
     @Override
     public void setImageUrl(final String url) {
         image.setUrl(url);
     }
-
 
     @UiHandler("image")
     public void imageClicked(ClickEvent event) {
         log.info("image clicked");
         this.presenter.imageClicked();
     }
-
 
     @UiHandler("image")
     public void infoHover(MouseMoveEvent event) {
@@ -88,10 +78,8 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
         hideLabelLater(3000);
     }
 
-
     public void hideLabelLater(final int duration) {
-        timer.setRunnable(
-            new Runnable() {
+        timer.setRunnable(new Runnable() {
                 @Override
                 public void run() {
                     layout.setWidgetBottomHeight(info, 0, Unit.CM, 0, Unit.PX);
@@ -101,18 +89,15 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
         timer.schedule(duration);
     }
 
-
     @Override
     public void setPresenter(ImagePresenter presenter) {
         this.presenter = presenter;
     }
 
-
     @Override
     public void setDescription(String text) {
         info.setText(text);
     }
-
 
     @Override
     public void setSelected(boolean selected) {
@@ -123,13 +108,11 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
         }
     }
 
-
     @Override
     public void onResize() {
         image.setMaxSize(getOffsetWidth(), getOffsetHeight());
         super.onResize();
     }
-
 
     @Override
     public void adjustSize() {

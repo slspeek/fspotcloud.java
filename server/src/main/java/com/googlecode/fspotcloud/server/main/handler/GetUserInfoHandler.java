@@ -17,11 +17,9 @@
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.google.inject.Inject;
-
-import com.googlecode.fspotcloud.shared.main.actions.GetUserInfo;
-import com.googlecode.fspotcloud.shared.main.actions.UserInfo;
+import com.googlecode.fspotcloud.shared.main.GetUserInfo;
+import com.googlecode.fspotcloud.shared.main.UserInfo;
 import com.googlecode.fspotcloud.user.UserService;
-
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
@@ -38,9 +36,8 @@ public class GetUserInfoHandler extends SimpleActionHandler<GetUserInfo, UserInf
     @Override
     public UserInfo execute(GetUserInfo action, ExecutionContext context)
         throws DispatchException {
-        UserInfo info = new UserInfo(
-                userService.getEmail(), userService.isUserAdmin(),
-                userService.isUserLoggedIn(),
+        UserInfo info = new UserInfo(userService.getEmail(),
+                userService.isUserAdmin(), userService.isUserLoggedIn(),
                 userService.createLoginURL(action.getDestinationUrl()),
                 userService.createLogoutURL(action.getDestinationUrl()));
 

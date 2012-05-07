@@ -31,11 +31,10 @@ public class TagPlace extends Place {
         return tagId;
     }
 
-
     @Override
     public boolean equals(Object other) {
         if (other instanceof TagPlace) {
-            TagPlace basePlace = (TagPlace)other;
+            TagPlace basePlace = (TagPlace) other;
             String tagId = basePlace.getTagId();
 
             return equal(this.tagId, tagId);
@@ -43,7 +42,6 @@ public class TagPlace extends Place {
             return false;
         }
     }
-
 
     @Override
     public int hashCode() {
@@ -56,13 +54,11 @@ public class TagPlace extends Place {
         return hash;
     }
 
-
     public String toString() {
         String result = getClass().getName() + ": tagId: " + tagId;
 
         return result;
     }
-
 
     public static boolean equal(Object a, Object b) {
         if (a == null) {
@@ -81,7 +77,6 @@ public class TagPlace extends Place {
         public TagPlace getPlace(String token) {
             return new TagPlace(token);
         }
-
 
         @Override
         public String getToken(TagPlace place) {

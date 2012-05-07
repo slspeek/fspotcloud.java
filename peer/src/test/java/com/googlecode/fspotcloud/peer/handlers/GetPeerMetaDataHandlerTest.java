@@ -17,14 +17,11 @@
 package com.googlecode.fspotcloud.peer.handlers;
 
 import com.googlecode.fspotcloud.peer.db.Data;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.GetPeerMetaDataAction;
-import com.googlecode.fspotcloud.shared.peer.rpc.actions.PeerMetaDataResult;
-
-import junit.framework.TestCase;
-
-import net.customware.gwt.dispatch.shared.DispatchException;
-
+import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
+import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
 import java.net.URL;
+import junit.framework.TestCase;
+import net.customware.gwt.dispatch.shared.DispatchException;
 
 
 public class GetPeerMetaDataHandlerTest extends TestCase {
@@ -40,7 +37,6 @@ public class GetPeerMetaDataHandlerTest extends TestCase {
         data = new Data("jdbc:sqlite:" + path);
         handler = new GetPeerMetaDataHandler(data);
     }
-
 
     public void testExecute() throws DispatchException {
         PeerMetaDataResult result = handler.execute(action, null);

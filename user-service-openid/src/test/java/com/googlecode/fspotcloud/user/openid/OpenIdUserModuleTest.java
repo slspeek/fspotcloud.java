@@ -22,7 +22,6 @@ package com.googlecode.fspotcloud.user.openid;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-
 import org.junit.*;
 
 
@@ -40,7 +39,7 @@ public class OpenIdUserModuleTest {
      */
     @Test
     public void testConfigure() {
-        Injector injector = Guice.createInjector(
-                new OpenIdUserModule("foo@bar.org"));
+        Injector injector = Guice.createInjector(new OpenIdUserModule(
+                    "foo@bar.org"));
     }
 }

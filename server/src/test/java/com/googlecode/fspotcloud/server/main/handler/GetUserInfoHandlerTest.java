@@ -20,23 +20,16 @@
  */
 package com.googlecode.fspotcloud.server.main.handler;
 
-import com.googlecode.fspotcloud.shared.main.actions.GetUserInfo;
-import com.googlecode.fspotcloud.shared.main.actions.UserInfo;
+import com.googlecode.fspotcloud.shared.main.GetUserInfo;
+import com.googlecode.fspotcloud.shared.main.UserInfo;
 import com.googlecode.fspotcloud.user.UserService;
-
+import javax.inject.Inject;
 import net.customware.gwt.dispatch.shared.DispatchException;
-
 import org.jukito.JukitoRunner;
-
 import org.junit.Assert;
 import org.junit.Test;
-
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
-
-import javax.inject.Inject;
-
-
 @RunWith(JukitoRunner.class)
 public class GetUserInfoHandlerTest {
     @Inject
@@ -55,7 +48,6 @@ public class GetUserInfoHandlerTest {
         Assert.assertEquals("foo@bar.com", info.getEmail());
         Assert.assertTrue(info.isLoggedIn());
     }
-
 
     @Test
     public void executeNoUserLoggedOn(UserService service)

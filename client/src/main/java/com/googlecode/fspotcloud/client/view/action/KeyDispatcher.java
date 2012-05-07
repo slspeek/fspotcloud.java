@@ -18,15 +18,13 @@ package com.googlecode.fspotcloud.client.view.action;
 
 import com.googlecode.fspotcloud.client.view.action.api.ShortcutHandler;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
 
 public class KeyDispatcher implements ShortcutHandler {
-    private static final Logger log = Logger.getLogger(
-            KeyDispatcher.class.getName());
+    private static final Logger log = Logger.getLogger(KeyDispatcher.class.getName());
     Map<Integer, Runnable> registeredActions = new HashMap<Integer, Runnable>();
 
     public void register(UserAction shortcut) {
@@ -45,7 +43,6 @@ public class KeyDispatcher implements ShortcutHandler {
             registeredActions.put(key, shortcut);
         }
     }
-
 
     @Override
     public boolean handle(int keycode) {

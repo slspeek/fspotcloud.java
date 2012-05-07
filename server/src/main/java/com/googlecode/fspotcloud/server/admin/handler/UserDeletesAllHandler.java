@@ -19,18 +19,15 @@ package com.googlecode.fspotcloud.server.admin.handler;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTagsAction;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import com.googlecode.fspotcloud.shared.dashboard.actions.UserDeletesAllAction;
-import com.googlecode.fspotcloud.shared.dashboard.actions.VoidResult;
+import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
+import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
-
-import javax.inject.Inject;
 
 
 public class UserDeletesAllHandler extends SimpleActionHandler<UserDeletesAllAction, VoidResult> {
@@ -39,9 +36,8 @@ public class UserDeletesAllHandler extends SimpleActionHandler<UserDeletesAllAct
     private final PeerDatabases peerDatabaseManager;
 
     @Inject
-    public UserDeletesAllHandler(
-        TaskQueueDispatch dispatchAsync, IAdminPermission IAdminPermission,
-        PeerDatabases peerDatabaseManager) {
+    public UserDeletesAllHandler(TaskQueueDispatch dispatchAsync,
+        IAdminPermission IAdminPermission, PeerDatabases peerDatabaseManager) {
         super();
         this.dispatchAsync = dispatchAsync;
         this.IAdminPermission = IAdminPermission;
@@ -49,9 +45,8 @@ public class UserDeletesAllHandler extends SimpleActionHandler<UserDeletesAllAct
     }
 
     @Override
-    public VoidResult execute(
-        UserDeletesAllAction action, ExecutionContext context)
-        throws DispatchException {
+    public VoidResult execute(UserDeletesAllAction action,
+        ExecutionContext context) throws DispatchException {
         IAdminPermission.checkAdminPermission();
 
         try {
@@ -64,7 +59,6 @@ public class UserDeletesAllHandler extends SimpleActionHandler<UserDeletesAllAct
 
         return new VoidResult();
     }
-
 
     private void clearPeer() {
         peerDatabaseManager.deleteBulk(1);

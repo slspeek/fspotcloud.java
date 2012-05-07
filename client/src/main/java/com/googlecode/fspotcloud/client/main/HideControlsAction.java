@@ -17,26 +17,23 @@
 package com.googlecode.fspotcloud.client.main;
 
 import com.google.inject.Inject;
-
 import com.googlecode.fspotcloud.client.main.IGlobalShortcutController.Mode;
 import com.googlecode.fspotcloud.client.main.ui.TagViewImpl;
 import com.googlecode.fspotcloud.client.main.view.api.TagView;
-
 import java.util.logging.Logger;
 
 
 public class HideControlsAction implements Runnable {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(
-            HideControlsAction.class.getName());
+    private static final Logger log = Logger.getLogger(HideControlsAction.class.getName());
     private final TagViewImpl tagView;
     private final IGlobalShortcutController keyboard;
 
     @Inject
-    public HideControlsAction(
-        TagView tagView, IGlobalShortcutController keyboard) {
+    public HideControlsAction(TagView tagView,
+        IGlobalShortcutController keyboard) {
         super();
-        this.tagView = (TagViewImpl)tagView;
+        this.tagView = (TagViewImpl) tagView;
         this.keyboard = keyboard;
     }
 

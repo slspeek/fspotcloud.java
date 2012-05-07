@@ -22,10 +22,8 @@ import com.googlecode.fspotcloud.client.main.event.ActionMap;
 import com.googlecode.fspotcloud.client.view.action.KeyDispatcher;
 import com.googlecode.fspotcloud.client.view.action.api.ShortcutHandler;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.inject.Inject;
 import javax.inject.Provider;
 
@@ -71,7 +69,6 @@ public class GlobalShortcutControllerFactory implements Provider<GlobalShortcutC
     public GlobalShortcutController get() {
         return controller;
     }
-
 
     private void putAll(String name, KeyDispatcher dispatcher) {
         ActionMap actions = family.get(name);

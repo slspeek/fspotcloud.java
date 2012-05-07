@@ -17,10 +17,8 @@
 package com.googlecode.fspotcloud.user.gae;
 
 import com.google.appengine.api.users.UserServiceFactory;
-
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-
 import com.googlecode.fspotcloud.user.AdminPermission;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 import com.googlecode.fspotcloud.user.inject.AbstractUserModule;
@@ -33,7 +31,6 @@ public class UserModuleGae extends AbstractUserModule {
         bind(com.googlecode.fspotcloud.user.UserService.class)
             .to(com.googlecode.fspotcloud.user.gae.UserServiceGae.class);
     }
-
 
     @Provides
     com.google.appengine.api.users.UserService getService() {
