@@ -16,11 +16,13 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 
 
-public class TagUpdate implements Serializable {
+public class TagUpdate extends BusinessBase implements Serializable {
     private static final long serialVersionUID = 9202829522681263384L;
+    @BusinessKey
     private final String tagId;
 
     public TagUpdate(String photoId) {
@@ -30,10 +32,5 @@ public class TagUpdate implements Serializable {
 
     public String getTagId() {
         return tagId;
-    }
-
-
-    public String toString() {
-        return "TagUpdate(" + getTagId() + ")";
     }
 }

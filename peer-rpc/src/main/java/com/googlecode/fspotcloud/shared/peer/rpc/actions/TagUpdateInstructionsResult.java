@@ -16,6 +16,7 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.openpojo.business.annotation.BusinessKey;
 import net.customware.gwt.dispatch.shared.Result;
 
 import java.io.Serializable;
@@ -23,9 +24,11 @@ import java.io.Serializable;
 import java.util.List;
 
 
-public class TagUpdateInstructionsResult implements Result, Serializable {
+public class TagUpdateInstructionsResult extends BusinessBase implements Result, Serializable {
     private static final long serialVersionUID = -4987610701630937829L;
+    @BusinessKey
     private final List<PhotoUpdate> toBoUpdated;
+    @BusinessKey
     private final List<PhotoRemovedFromTag> toBoRemovedFromTag;
 
     public TagUpdateInstructionsResult(
@@ -39,7 +42,6 @@ public class TagUpdateInstructionsResult implements Result, Serializable {
     public List<PhotoRemovedFromTag> getToBoRemovedFromTag() {
         return toBoRemovedFromTag;
     }
-
 
     public List<PhotoUpdate> getToBoUpdated() {
         return toBoUpdated;

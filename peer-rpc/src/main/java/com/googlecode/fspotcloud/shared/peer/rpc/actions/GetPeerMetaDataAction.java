@@ -16,12 +16,17 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.openpojo.business.BusinessIdentity;
+import com.openpojo.business.annotation.BusinessKey;
+
 import net.customware.gwt.dispatch.shared.Action;
 
 import java.io.Serializable;
 
 
-public class GetPeerMetaDataAction implements Action<PeerMetaDataResult>,
+public class GetPeerMetaDataAction extends BusinessBase implements Action<PeerMetaDataResult>,
     Serializable {
+    @BusinessKey
     private static final long serialVersionUID = 3730836943695700527L;
+    
 }

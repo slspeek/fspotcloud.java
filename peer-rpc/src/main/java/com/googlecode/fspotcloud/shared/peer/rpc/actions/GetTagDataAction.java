@@ -16,6 +16,8 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.openpojo.business.BusinessIdentity;
+import com.openpojo.business.annotation.BusinessKey;
 import net.customware.gwt.dispatch.shared.Action;
 
 import java.io.Serializable;
@@ -23,8 +25,9 @@ import java.io.Serializable;
 import java.util.List;
 
 
-public class GetTagDataAction implements Action<TagDataResult>, Serializable {
+public class GetTagDataAction extends BusinessBase implements Action<TagDataResult>, Serializable {
     private static final long serialVersionUID = -2428269504170714946L;
+    @BusinessKey
     private List<String> tagIdList;
 
     public GetTagDataAction(List<String> tagIdList) {
@@ -34,4 +37,6 @@ public class GetTagDataAction implements Action<TagDataResult>, Serializable {
     public List<String> getTagIdList() {
         return tagIdList;
     }
+    
+   
 }

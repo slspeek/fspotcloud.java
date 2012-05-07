@@ -16,18 +16,18 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
-import com.google.common.base.Objects;
-import static com.google.common.base.Objects.equal;
+import com.openpojo.business.annotation.BusinessKey;
 
 import java.io.Serializable;
 
 
-public class TagData implements Serializable {
+public class TagData extends BusinessBase implements Serializable {
     private static final long serialVersionUID = -7990602627338507900L;
+    @BusinessKey
     private String tagId;
-    private String parentId;
-    private String name;
-    private int count;
+    @BusinessKey private String parentId;
+    @BusinessKey private String name;
+    @BusinessKey private int count;
 
     public TagData(String tagId, String name, String parentId, int count) {
         super();
@@ -54,20 +54,5 @@ public class TagData implements Serializable {
 
     public int getCount() {
         return count;
-    }
-
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof TagData) {
-            TagData other = (TagData)obj;
-
-            return equal(getTagId(), other.getTagId())
-            && equal(getParentId(), other.getParentId())
-            && equal(getName(), other.getName())
-            && equal(getCount(), other.getCount());
-        } else {
-            return false;
-        }
     }
 }

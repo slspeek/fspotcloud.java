@@ -16,21 +16,24 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 
 import java.util.Date;
 import java.util.List;
 
 
-public class PhotoData implements Serializable {
+public class PhotoData extends BusinessBase implements Serializable {
     private static final long serialVersionUID = -4172714943981557358L;
+    @BusinessKey
+    
     private String photoId;
-    private String description;
-    private Date date;
-    private byte[] imageData;
-    private byte[] thumbData;
-    private List<String> tagList;
-    private int version;
+    @BusinessKey private String description;
+    @BusinessKey private Date date;
+    @BusinessKey private byte[] imageData;
+    @BusinessKey private byte[] thumbData;
+    @BusinessKey private List<String> tagList;
+    @BusinessKey private int version;
 
     public PhotoData(
         String photoId, String description, Date date, byte[] imageData,

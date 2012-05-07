@@ -16,17 +16,20 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.openpojo.business.annotation.BusinessKey;
 import net.customware.gwt.dispatch.shared.Action;
 
 import java.io.Serializable;
 
 import java.util.List;
 
+public class GetPhotoDataAction extends BusinessBase implements Action<PhotoDataResult>,
+        Serializable {
 
-public class GetPhotoDataAction implements Action<PhotoDataResult>,
-    Serializable {
     private static final long serialVersionUID = 3730836943695700527L;
+    @BusinessKey
     private final ImageSpecs imageSpecs;
+    @BusinessKey
     final List<String> imageKeys;
 
     public GetPhotoDataAction(ImageSpecs imageSpecs, List<String> imageKeys) {
@@ -38,7 +41,6 @@ public class GetPhotoDataAction implements Action<PhotoDataResult>,
     public ImageSpecs getImageSpecs() {
         return imageSpecs;
     }
-
 
     public List<String> getImageKeys() {
         return imageKeys;

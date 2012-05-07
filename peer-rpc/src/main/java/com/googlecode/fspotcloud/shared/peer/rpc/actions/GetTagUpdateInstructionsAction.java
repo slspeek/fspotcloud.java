@@ -17,6 +17,7 @@
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
 import com.googlecode.fspotcloud.shared.photo.PhotoInfo;
+import com.openpojo.business.annotation.BusinessKey;
 
 import net.customware.gwt.dispatch.shared.Action;
 
@@ -25,10 +26,12 @@ import java.io.Serializable;
 import java.util.SortedSet;
 
 
-public class GetTagUpdateInstructionsAction implements Action<TagUpdateInstructionsResult>,
+public class GetTagUpdateInstructionsAction extends BusinessBase implements Action<TagUpdateInstructionsResult>,
     Serializable {
     private static final long serialVersionUID = -2428269504170714946L;
+    @BusinessKey
     private final String tagId;
+    @BusinessKey
     private final SortedSet<PhotoInfo> photosOnServer;
 
     public GetTagUpdateInstructionsAction(
@@ -41,7 +44,6 @@ public class GetTagUpdateInstructionsAction implements Action<TagUpdateInstructi
     public String getTagId() {
         return tagId;
     }
-
 
     public SortedSet<PhotoInfo> getPhotosOnServer() {
         return photosOnServer;

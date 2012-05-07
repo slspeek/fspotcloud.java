@@ -16,11 +16,13 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 
 
-public class PhotoUpdate implements Serializable {
+public class PhotoUpdate extends BusinessBase implements Serializable {
     private static final long serialVersionUID = 9209829522681263384L;
+    @BusinessKey
     private final String photoId;
 
     public PhotoUpdate(String photoId) {

@@ -24,12 +24,13 @@ import org.junit.Before;
 
 import java.util.Date;
 import java.util.List;
-
+import org.junit.Test;
 
 public class PhotoDataTest {
+
     private static final int VERSION = 17;
-    private static final byte[] IMAGE_DATA = new byte[] { 0, 1 };
-    private static final byte[] THUMB_DATA = new byte[] { 0 };
+    private static final byte[] IMAGE_DATA = new byte[]{0, 1};
+    private static final byte[] THUMB_DATA = new byte[]{0};
     private static final String TAG = "TAG";
     private static final Date LONG_TIME_AGO = new Date(10);
     private static final String DESCR = "Story";
@@ -44,42 +45,46 @@ public class PhotoDataTest {
                 VERSION);
     }
 
-
+    @Test
+    public void print() {
+        System.out.println(data);
+    }
+    @Test
     public void testSerialize() throws Exception {
         testSerialization(data);
     }
 
-
+    @Test
     public void testGetPhotoId() {
         assertEquals(PHOTO_ID, data.getPhotoId());
     }
 
-
+    @Test
     public void testGetDesscription() {
         assertEquals(DESCR, data.getDescription());
     }
 
-
+    @Test
     public void testGetDate() {
         assertEquals(LONG_TIME_AGO, data.getDate());
     }
 
-
+    @Test
     public void testGetTagList() {
         assertEquals(TAG, data.getTagList().get(0));
     }
 
-
+    @Test
     public void testGetThumbData() {
         assertEquals(THUMB_DATA, data.getThumbData());
     }
 
-
+    @Test
     public void testGetImageData() {
         assertEquals(IMAGE_DATA, data.getImageData());
     }
 
-
+    @Test
     public void testGetVersion() {
         assertEquals(VERSION, data.getVersion());
     }

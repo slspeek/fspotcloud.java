@@ -20,20 +20,24 @@
  */
 package com.googlecode.fspotcloud.shared.peer.rpc.actions;
 
+import com.openpojo.business.BusinessIdentity;
+import com.openpojo.business.annotation.BusinessKey;
+
 import net.customware.gwt.dispatch.shared.Action;
 
 import java.io.Serializable;
 
 import java.util.List;
 
-
 /**
  * DOCUMENT ME!
  *
  * @author steven
-*/
-public class GetPeerUpdateInstructionsAction implements Action<PeerUpdateInstructionsResult>,
-    Serializable {
+ */
+public class GetPeerUpdateInstructionsAction extends BusinessBase implements Action<PeerUpdateInstructionsResult>,
+        Serializable {
+
+    @BusinessKey
     private List<TagData> tagsOnServer;
 
     public GetPeerUpdateInstructionsAction(List<TagData> tagsOnServer) {
