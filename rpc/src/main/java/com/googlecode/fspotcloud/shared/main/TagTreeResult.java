@@ -16,12 +16,13 @@
  */
 package com.googlecode.fspotcloud.shared.main;
 
+import com.google.common.annotations.GwtCompatible;
 import com.google.common.base.Objects;
-import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.List;
 import net.customware.gwt.dispatch.shared.Result;
 
 
+@GwtCompatible
 public class TagTreeResult implements Result {
     private List<TagNode> tree;
 

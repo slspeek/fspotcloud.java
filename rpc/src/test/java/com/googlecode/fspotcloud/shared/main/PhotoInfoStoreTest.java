@@ -16,27 +16,19 @@
  */
 package com.googlecode.fspotcloud.shared.main;
 
-import com.googlecode.fspotcloud.shared.main.PhotoInfo;
-import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import java.util.Date;
 import java.util.SortedSet;
-import java.util.TreeSet;
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
+import static com.google.common.collect.Sets.newTreeSet;
+import org.junit.Test;
 
+public class PhotoInfoStoreTest {
 
-public class PhotoInfoStoreTest extends TestCase {
-    SortedSet<PhotoInfo> set;
+    private SortedSet<PhotoInfo> set;
 
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
+    @Test
     public void testPhotoInfoStore() {
-        set = new TreeSet<PhotoInfo>();
+        set = newTreeSet();
         set.add(new PhotoInfo("5", "Me", new Date(0)));
         set.add(new PhotoInfo("4", "John", new Date(1)));
         set.add(new PhotoInfo("3", "Mary", new Date(2)));
@@ -48,8 +40,9 @@ public class PhotoInfoStoreTest extends TestCase {
         assertEquals(4, store.size());
     }
 
+    @Test
     public void testGetInfo() {
-        set = new TreeSet<PhotoInfo>();
+        set = newTreeSet();
         set.add(new PhotoInfo("5", "Me", new Date(0)));
 
         PhotoInfoStore store = new PhotoInfoStore(set);
@@ -59,16 +52,18 @@ public class PhotoInfoStoreTest extends TestCase {
         assertEquals("Me", me.getDescription());
     }
 
+    @Test
     public void testGet() {
-        set = new TreeSet<PhotoInfo>();
+        set = newTreeSet();
         set.add(new PhotoInfo("5", "Me", new Date(0)));
 
         PhotoInfoStore store = new PhotoInfoStore(set);
         assertNotNull(store.get(0));
     }
 
+    @Test
     public void testIndexOf() {
-        set = new TreeSet<PhotoInfo>();
+        set = newTreeSet();
         set.add(new PhotoInfo("5", "Me", new Date(0)));
         set.add(new PhotoInfo("4", "John", new Date(1)));
         set.add(new PhotoInfo("3", "Mary", new Date(2)));
@@ -83,8 +78,9 @@ public class PhotoInfoStoreTest extends TestCase {
         assertEquals(3, store.indexOf("2"));
     }
 
+    @Test
     public void testLast() {
-        set = new TreeSet<PhotoInfo>();
+        set = newTreeSet();
         set.add(new PhotoInfo("5", "Me", new Date(0)));
         set.add(new PhotoInfo("4", "John", new Date(1)));
         set.add(new PhotoInfo("3", "Mary", new Date(2)));
@@ -95,16 +91,11 @@ public class PhotoInfoStoreTest extends TestCase {
         assertEquals("2", last.getId()); // Pete
     }
 
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void testLastOnEmptyStore() {
-        set = new TreeSet<PhotoInfo>();
+        set = newTreeSet();
 
         PhotoInfoStore store = new PhotoInfoStore(set);
-
-        try {
-            PhotoInfo info = store.last();
-            fail("Exception expected");
-        } catch (ArrayIndexOutOfBoundsException e) {
-        } finally {
-        }
+        store.last();
     }
 }

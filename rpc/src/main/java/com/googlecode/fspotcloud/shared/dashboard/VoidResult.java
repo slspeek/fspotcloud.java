@@ -16,8 +16,10 @@
  */
 package com.googlecode.fspotcloud.shared.dashboard;
 
+import com.google.common.annotations.GwtCompatible;
 import net.customware.gwt.dispatch.shared.Result;
 
 
+@GwtCompatible
 public class VoidResult implements Result {
 }

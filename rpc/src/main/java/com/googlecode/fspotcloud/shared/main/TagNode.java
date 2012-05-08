@@ -16,6 +16,8 @@
  */
 package com.googlecode.fspotcloud.shared.main;
 
+import com.google.common.annotations.GwtCompatible;
+import static com.google.common.base.Objects.equal;
 import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-@SuppressWarnings("serial")
+@GwtCompatible
 public class TagNode implements Serializable {
     private int count;
     private String description;
@@ -108,13 +110,13 @@ public class TagNode implements Serializable {
     }
 
     public boolean equals(Object other) {
-        if (!(other instanceof TagNode) || (other == null)) {
+        if (!(other instanceof TagNode)) {
             return false;
         }
 
         TagNode node = (TagNode) other;
 
-        return node.getId().equals(getId());
+        return equal(node.getId(),getId());
     }
 
     public int hashCode() {

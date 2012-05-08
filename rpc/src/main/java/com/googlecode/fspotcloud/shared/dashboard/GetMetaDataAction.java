@@ -16,9 +16,11 @@
  */
 package com.googlecode.fspotcloud.shared.dashboard;
 
+import com.google.common.annotations.GwtCompatible;
 import net.customware.gwt.dispatch.shared.Action;
 
 
+@GwtCompatible
 public class GetMetaDataAction implements Action<GetMetaDataResult> {
     public GetMetaDataAction() {
     }

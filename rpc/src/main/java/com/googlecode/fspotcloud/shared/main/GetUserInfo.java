@@ -16,12 +16,17 @@
  */
 package com.googlecode.fspotcloud.shared.main;
 
+import com.google.common.annotations.GwtCompatible;
 import net.customware.gwt.dispatch.shared.Action;
 
 
+@GwtCompatible
 public class GetUserInfo implements Action<UserInfo> {
     private String destinationUrl;
 
+    /**
+     * Needed for GWT-RPC
+     */
     public GetUserInfo() {
     }
 
