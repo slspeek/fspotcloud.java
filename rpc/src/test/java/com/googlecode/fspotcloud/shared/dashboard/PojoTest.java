@@ -14,7 +14,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.shared.peer;
+package com.googlecode.fspotcloud.shared.dashboard;
 
 import static com.google.common.collect.Lists.newArrayList;
 import com.openpojo.reflection.PojoClass;
@@ -32,21 +32,22 @@ import org.junit.Test;
 
 public class PojoTest {
     // Configured for expectation, so we know when a class gets added or removed.
-    private static final int EXPECTED_CLASS_COUNT = 15;
+    private static final int EXPECTED_CLASS_COUNT = 9;
 
     // The package to test
     private static final String POJO_PACKAGE = "com.googlecode.fspotcloud.shared.peer.rpc.actions";
     private List<PojoClass> pojoClasses;
     private PojoValidator pojoValidator;
     private Class<?>[] POJO_CLASSES = new Class<?>[] {
-            GetPeerUpdateInstructionsAction.class, GetPeerMetaDataAction.class,
-            TagData.class, ImageSpecs.class, GetPhotoDataAction.class,
-            GetTagDataAction.class, PeerUpdateInstructionsResult.class,
-            //     PhotoData.class,
-            PhotoDataResult.class, PhotoRemovedFromTag.class, PhotoUpdate.class,
-            TagDataResult.class, TagRemovedFromPeer.class, TagUpdate.class,
-            TagUpdateInstructionsResult.class,
-            GetTagUpdateInstructionsAction.class
+              GetAdminTagTreeAction.class,
+            GetMetaDataAction.class,
+            GetMetaDataResult.class,
+            UserDeletesAllAction.class,
+            UserDeletesAllCommandsAction.class,
+            UserImportsTagAction.class,
+            UserSynchronizesPeerAction.class,
+            UserUnImportsTagAction.class,
+             VoidResult.class
         };
 
     @Before
@@ -58,20 +59,11 @@ public class PojoTest {
         }
 
         pojoValidator = new PojoValidator();
-        // Create Rules to validate structure for POJO_PACKAGE
         pojoValidator.addRule(new NoPublicFieldsRule());
-        //pojoValidator.addRule(new NoPrimitivesRule());
-        //pojoValidator.addRule(new NoStaticExceptFinalRule());
         pojoValidator.addRule(new GetterMustExistRule());
-        //pojoValidator.addRule(new SetterMustExistRule());
         pojoValidator.addRule(new NoNestedClassRule());
-        pojoValidator.addRule(new BusinessKeyMustExistRule());
-
-        // Create Testers to validate behaviour for POJO_PACKAGE
-        //pojoValidator.addTester(new DefaultValuesNullTester());
         pojoValidator.addTester(new SetterTester());
         pojoValidator.addTester(new GetterTester());
-        pojoValidator.addTester(new BusinessIdentityTester());
     }
 
     @Test

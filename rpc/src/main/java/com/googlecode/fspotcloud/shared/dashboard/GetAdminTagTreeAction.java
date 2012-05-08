@@ -16,10 +16,12 @@
  */
 package com.googlecode.fspotcloud.shared.dashboard;
 
+import com.google.common.annotations.GwtCompatible;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
 import net.customware.gwt.dispatch.shared.Action;
 
 
+@GwtCompatible
 public class GetAdminTagTreeAction implements Action<TagTreeResult> {
     public GetAdminTagTreeAction() {
     }

@@ -27,10 +27,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 
 
-public class PhotoInfoTest extends TestCase {
+public class PhotoInfoTest  {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
     Date longAgo;
     Date ago;
@@ -40,31 +42,31 @@ public class PhotoInfoTest extends TestCase {
     String photoMan = "2";
     String exif = "EXIF:";
 
-    protected void setUp() throws Exception {
+    @Before
+    public  void setUp() throws Exception {
         longAgo = formatter.parse("20100101");
         ago = formatter.parse("20100102");
         ape = new PhotoInfo(photoApe, "Ape", longAgo);
         man = new PhotoInfo(photoMan, "Human", ago, exif);
-        super.setUp();
     }
 
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
+    @Test
     public void testCompareToSmaller() throws Exception {
         assertEquals(-1, ape.compareTo(man));
     }
 
+    @Test
     public void testCompareToEquals() throws Exception {
         assertEquals(0, ape.compareTo(ape));
         assertEquals(0, man.compareTo(man));
     }
 
+    @Test
     public void testCompareToLarger() throws Exception {
         assertEquals(1, man.compareTo(ape));
     }
 
+    @Test
     public void testEqualDates() throws Exception {
         PhotoInfo info1 = new PhotoInfo("1", "", new Date(0));
         PhotoInfo info2 = new PhotoInfo("2", "", new Date(0));
@@ -72,6 +74,7 @@ public class PhotoInfoTest extends TestCase {
         assertEquals(-1, info1.compareTo(info2));
     }
 
+    @Test
     public void testEqualDatesEqualIds() throws Exception {
         PhotoInfo info1 = new PhotoInfo("1", "", new Date(0));
         PhotoInfo info2 = new PhotoInfo("1", "", new Date(0));
@@ -79,6 +82,7 @@ public class PhotoInfoTest extends TestCase {
         assertEquals(0, info1.compareTo(info2));
     }
 
+    @Test
     public void testEquals() throws Exception {
         assertTrue(ape.equals(ape));
         assertFalse(ape.equals(man));
@@ -86,23 +90,27 @@ public class PhotoInfoTest extends TestCase {
         assertTrue(ape.equals(new PhotoInfo(photoApe, "", new Date())));
     }
 
+    @Test
     public void testHashCode() {
         PhotoInfo sameMan = new PhotoInfo(photoMan, "Foo", new Date(), "Bar");
         assertEquals(sameMan.hashCode(), man.hashCode());
         assertEquals(sameMan, man);
     }
 
+    @Test
     public void testExif() {
         assertNull(ape.getExifData());
         ape.setExifData(exif);
         assertEquals(exif, ape.getExifData());
     }
 
+    @Test
     public void testToString() {
         String s = man.toString();
         assertEquals("PhotoInfo(2)", s);
     }
 
+    @Test
     public void testSerialization() throws IOException, ClassNotFoundException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ObjectOutputStream objectOut = new ObjectOutputStream(out);
@@ -113,12 +121,12 @@ public class PhotoInfoTest extends TestCase {
         PhotoInfo apeReadBack = (PhotoInfo) objectIn.readObject();
         assertEquals(ape, apeReadBack);
     }
-
+@Test
     public void testVersion() {
         int v = man.getVersion();
         assertEquals(1, v);
     }
-
+@Test
     public void toInSortedSet() {
         SortedSet<PhotoInfo> set = new TreeSet<PhotoInfo>();
         set.add(man);

@@ -21,32 +21,19 @@
 package com.googlecode.fspotcloud.shared.dashboard;
 
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
-import junit.framework.TestCase;
 import org.apache.commons.lang.SerializationUtils;
-
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  * DOCUMENT ME!
  *
  * @author steven
 */
-public class UserImportsTagActionTest extends TestCase {
+public class UserImportsTagActionTest  {
     public static final String TAG_ID = "1";
 
-    public UserImportsTagActionTest(String testName) {
-        super(testName);
-    }
-
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
+    @Test
     public void testGetTagId() {
         UserImportsTagAction instance = new UserImportsTagAction(TAG_ID);
         String expResult = TAG_ID;
@@ -54,6 +41,7 @@ public class UserImportsTagActionTest extends TestCase {
         assertEquals(expResult, result);
     }
 
+    @Test
     public void testSeriazability() {
         UserImportsTagAction instance = new UserImportsTagAction(TAG_ID);
         SerializationUtils.serialize(instance);

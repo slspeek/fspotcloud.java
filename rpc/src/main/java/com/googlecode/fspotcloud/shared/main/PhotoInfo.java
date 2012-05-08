@@ -16,10 +16,12 @@
  */
 package com.googlecode.fspotcloud.shared.main;
 
+import com.google.common.annotations.GwtCompatible;
 import java.io.Serializable;
 import java.util.Date;
 
 
+@GwtCompatible
 public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
     private static final long serialVersionUID = -4084831085611916754L;
     private String id;

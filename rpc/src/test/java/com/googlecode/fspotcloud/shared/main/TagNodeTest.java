@@ -17,18 +17,20 @@
 package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.collect.ImmutableSortedSet;
-import com.googlecode.fspotcloud.shared.main.PhotoInfo;
-import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
-import com.googlecode.fspotcloud.shared.main.TagNode;
+import com.google.common.collect.Maps;
 import java.util.Date;
-import junit.framework.TestCase;
+import java.util.Map;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
+public class TagNodeTest {
 
-public class TagNodeTest extends TestCase {
     TagNode node;
+    TagNode root;
 
-    protected void setUp() throws Exception {
-        super.setUp();
+    @Before
+    public void setUp() throws Exception {
         node = new TagNode();
         node.setTagName("Friends");
         node.setDescription("Friends and family");
@@ -39,26 +41,47 @@ public class TagNodeTest extends TestCase {
 
         PhotoInfoStore store = new PhotoInfoStore(ImmutableSortedSet.of(man));
         node.setCachedPhotoList(store);
+        root = new TagNode("TopNode");
     }
 
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
+    @Test
     public void testEqualsObject() {
         TagNode other = new TagNode();
         other.setId("1");
         assertEquals(node, other);
     }
 
+    @Test
+    public void testNotEquals() {
+        assertFalse(root.equals(""));
+        assertFalse(root.equals(null));
+    }
+
+    @Test
+    public void testAddChild() {
+        root.addChild(node);
+
+        TagNode child = root.getChildren().get(0);
+        assertEquals(child, node);
+    }
+
+    @Test
+    public void testToString() {
+        root.toString();
+        node.toString();
+    }
+
+    @Test
     public void testConstructor() {
         TagNode t = new TagNode("1", "0");
         assertEquals("1", t.getId());
         assertEquals("0", t.getParentId());
     }
 
-    public void testToString() {
-        String s = node.toString();
-        System.out.println(s);
+    @Test
+    public void hashTable() {
+        Map<TagNode, String> map = Maps.newHashMap();
+        map.put(new TagNode("3"), "FOO");
+        assertEquals("FOO", map.get(new TagNode("3")));
     }
 }

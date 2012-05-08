@@ -16,10 +16,12 @@
  */
 package com.googlecode.fspotcloud.shared.dashboard;
 
+import com.google.common.annotations.GwtCompatible;
 import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Action;
 
 
+@GwtCompatible
 public class UserImportsTagAction implements Action<VoidResult>,
     Serializable {
     private String tagId;
@@ -29,6 +31,9 @@ public class UserImportsTagAction implements Action<VoidResult>,
         this.tagId = tagId;
     }
 
+    /**
+     * Needed for GWT-RPC
+     */
     UserImportsTagAction() {
     }
 

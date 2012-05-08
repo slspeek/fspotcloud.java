@@ -16,11 +16,13 @@
  */
 package com.googlecode.fspotcloud.shared.dashboard;
 
+import com.google.common.annotations.GwtCompatible;
 import com.google.gwt.user.client.rpc.IsSerializable;
 import java.util.Date;
 import net.customware.gwt.dispatch.shared.Result;
 
 
+@GwtCompatible
 public class GetMetaDataResult implements IsSerializable, Result {
     private Date created;
     private int peerPhotoCount;

@@ -16,6 +16,7 @@
  */
 package com.googlecode.fspotcloud.shared.main;
 
+import com.google.common.annotations.GwtCompatible;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ import java.util.ListIterator;
 import java.util.SortedSet;
 
 
+@GwtCompatible
 public class PhotoInfoStore implements Serializable {
     private static final long serialVersionUID = 4509115035183737104L;
     private List<PhotoInfo> store;

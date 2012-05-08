@@ -20,6 +20,7 @@
  */
 package com.googlecode.fspotcloud.shared.main;
 
+import com.google.common.annotations.GwtCompatible;
 import com.google.gwt.user.client.rpc.IsSerializable;
 import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Result;
@@ -30,6 +31,7 @@ import net.customware.gwt.dispatch.shared.Result;
  *
  * @author steven
 */
+@GwtCompatible
 public class UserInfo implements Result, IsSerializable, Serializable {
     private String email;
     private boolean isAdmin;

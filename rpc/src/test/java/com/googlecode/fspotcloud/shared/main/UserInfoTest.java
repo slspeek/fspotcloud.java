@@ -20,35 +20,21 @@
  */
 package com.googlecode.fspotcloud.shared.main;
 
-import com.googlecode.fspotcloud.shared.main.UserInfo;
-import junit.framework.TestCase;
-
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * DOCUMENT ME!
  *
  * @author steven
 */
-public class UserInfoTest extends TestCase {
+public class UserInfoTest  {
     /** Test of isLoggedIn method, of class UserInfo. */
     UserInfo instance = new UserInfo("foo@bar.com", true, true,
             "index.jsp?dest=", "index.jsp?action=logout&dest=");
 
-    public UserInfoTest(String testName) {
-        super(testName);
-    }
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
-    public void testIsLoggedIn() {
+    @Test public void testIsLoggedIn() {
         System.out.println("isLoggedIn");
 
         boolean expResult = true;
@@ -59,6 +45,7 @@ public class UserInfoTest extends TestCase {
     /**
      * Test of createLogoutUrl method, of class UserInfo.
      */
+    @Test
     public void testCreateLogoutUrl() {
         System.out.println("createLogoutUrl");
 
@@ -71,6 +58,7 @@ public class UserInfoTest extends TestCase {
     /**
      * Test of createLoginUrl method, of class UserInfo.
      */
+    @Test
     public void testCreateLoginUrl() {
         System.out.println("createLoginUrl");
 

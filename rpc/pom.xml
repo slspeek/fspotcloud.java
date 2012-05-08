@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.googlecode.fspotcloud</groupId>
         <artifactId>fspotcloud</artifactId>
-        <version>0.12-15</version>
+        <version>0.12-16</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>rpc</artifactId>
@@ -21,6 +21,8 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>net.customware.gwt.dispatch</groupId>
@@ -30,6 +32,11 @@
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.openpojo</groupId>
+            <artifactId>openpojo</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
