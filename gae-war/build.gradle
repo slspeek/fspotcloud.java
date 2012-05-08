@@ -57,7 +57,7 @@ task peerStop(type: Exec) {
 }
 
 task peerRun(type: Exec, dependsOn: ':peer:jar') {
-    commandLine "screen", "-d","-m", "./peer_run.sh", "${version}", "${bot_secret}"
+    commandLine "screen", "-d","-m", "../peer/peer_run.sh", "${version}", "${bot_secret}", "localhost:8080"
 }
 
 test.dependsOn gaeRun, peerRun, unpackTest

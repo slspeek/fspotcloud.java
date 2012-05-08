@@ -17,6 +17,7 @@ dependencies {
             "org.apache.tomcat:coyote:${tomcatVersion}",
             "org.apache.tomcat:juli:${tomcatVersion}",
             "org.apache.tomcat:jasper:${tomcatVersion}"
+    testCompile project(path: ':e2e-test', configuration: 'testCompile')
     testCompile project(':test-util')
     testCompile project(':peer')
     testCompile "org.seleniumhq.selenium:selenium:2.0b3"
@@ -53,7 +54,7 @@ task peerStop(type: Exec) {
 }
 
 task peerRun(type: Exec, dependsOn: ':peer:jar') {
-    commandLine "screen", "-d", "-m", "./peer_run.sh", "${version}", "${bot_secret}"
+    commandLine "screen", "-d", "-m", "../peer/peer_run.sh", "${version}", "${bot_secret}", "localhost:8080/j2ee-war-noauth"
 }
 
 test.dependsOn tomcatRunWar, peerRun
@@ -70,13 +71,6 @@ test {
     testLogging.showStandardStreams = true
 }
 
-war {
-    webXml = file('build/target/config/WEB-INF/web.xml')
-    from "build/target/config"
-    from "build/javascript"
-}
-
-war.dependsOn initconfig, unpackJavascript, unpackTest
 
 check << {
     println "Stopping server"
