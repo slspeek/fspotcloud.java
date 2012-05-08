@@ -116,7 +116,7 @@ public class TagNode implements Serializable {
 
         TagNode node = (TagNode) other;
 
-        return equal(node.getId(),getId());
+        return equal(node.getId(), getId());
     }
 
     public int hashCode() {

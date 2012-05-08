@@ -16,6 +16,7 @@ libs = [
         guava_gwt: "com.google.guava:guava-gwt:${guava_version}",
         gwt_dispatch: "net.customware.gwt.dispatch:gwt-dispatch:1.2.0",
         gwt_servlet: "com.google.gwt:gwt-servlet:${gwt_version}",
+        gwt_test_utils: "com.googlecode.gwt-test-utils:gwt-test-utils:0.38",
         hibernate_all: ["org.hibernate:hibernate-core:${hibernate_version}",
                 "javassist:javassist:3.12.0.GA",
                 "org.hibernate:hibernate-entitymanager:${hibernate_version}"],

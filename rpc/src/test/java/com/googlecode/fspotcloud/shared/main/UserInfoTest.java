@@ -23,18 +23,19 @@ package com.googlecode.fspotcloud.shared.main;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+
 /**
  * DOCUMENT ME!
  *
  * @author steven
 */
-public class UserInfoTest  {
+public class UserInfoTest {
     /** Test of isLoggedIn method, of class UserInfo. */
     UserInfo instance = new UserInfo("foo@bar.com", true, true,
             "index.jsp?dest=", "index.jsp?action=logout&dest=");
 
-
-    @Test public void testIsLoggedIn() {
+    @Test
+    public void testIsLoggedIn() {
         System.out.println("isLoggedIn");
 
         boolean expResult = true;

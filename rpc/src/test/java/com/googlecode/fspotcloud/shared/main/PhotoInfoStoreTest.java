@@ -16,14 +16,14 @@
  */
 package com.googlecode.fspotcloud.shared.main;
 
+import static com.google.common.collect.Sets.newTreeSet;
 import java.util.Date;
 import java.util.SortedSet;
 import static org.junit.Assert.*;
-import static com.google.common.collect.Sets.newTreeSet;
 import org.junit.Test;
 
-public class PhotoInfoStoreTest {
 
+public class PhotoInfoStoreTest {
     private SortedSet<PhotoInfo> set;
 
     @Test

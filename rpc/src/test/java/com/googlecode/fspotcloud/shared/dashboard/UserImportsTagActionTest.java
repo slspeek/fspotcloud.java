@@ -22,15 +22,16 @@ package com.googlecode.fspotcloud.shared.dashboard;
 
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import org.apache.commons.lang.SerializationUtils;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
+
 
 /**
  * DOCUMENT ME!
  *
  * @author steven
 */
-public class UserImportsTagActionTest  {
+public class UserImportsTagActionTest {
     public static final String TAG_ID = "1";
 
     @Test
