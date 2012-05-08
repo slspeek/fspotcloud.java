@@ -14,41 +14,19 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.googlecode.fspotcloud.user;
+package com.googlecode.fspotcloud.test;
+
+import com.thoughtworks.selenium.Selenium;
+import javax.inject.Inject;
 
 
-/**
- * DOCUMENT ME!
- *
- * @author steven
-*/
-public class LenientUserService implements UserService {
-    @Override
-    public String createLoginURL(String destinationURL) {
-        return "";
-    }
+public class NoLoginBot implements ILogin {
+    @Inject
+    Selenium selenium;
 
     @Override
-    public String createLogoutURL(String destinationURL) {
-        return "";
-    }
-
-    @Override
-    public String getEmail() {
-        return "";
-    }
-
-    @Override
-    public boolean isUserLoggedIn() {
-        return true;
-    }
-
-    @Override
-    public boolean isUserAdmin() {
-        return true;
+    public void login() throws Exception {
+        selenium.open("/Dashboard.html");
+        selenium.waitForPageToLoad("30000");
     }
 }

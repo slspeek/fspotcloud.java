@@ -14,41 +14,17 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.googlecode.fspotcloud.user;
+package com.googlecode.fspotcloud.test;
+
+import com.google.inject.name.Names;
 
 
-/**
- * DOCUMENT ME!
- *
- * @author steven
-*/
-public class LenientUserService implements UserService {
+public class J2eeWarGuiceBerryEnv extends SeleniumGuiceBerryEnv {
     @Override
-    public String createLoginURL(String destinationURL) {
-        return "";
-    }
-
-    @Override
-    public String createLogoutURL(String destinationURL) {
-        return "";
-    }
-
-    @Override
-    public String getEmail() {
-        return "";
-    }
-
-    @Override
-    public boolean isUserLoggedIn() {
-        return true;
-    }
-
-    @Override
-    public boolean isUserAdmin() {
-        return true;
+    protected void configure() {
+        super.configure();
+        bind(ILogin.class).to(NoLoginBot.class);
+        bind(String.class).annotatedWith(Names.named("baseUrl"))
+            .toInstance("http://localhost:8080/j2ee-e2e");
     }
 }

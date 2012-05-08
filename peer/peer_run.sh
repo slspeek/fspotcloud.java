@@ -1,8 +1,9 @@
 VERSION=$1
 BOT_SECRET=$2
+END_POINT=$3
 java -cp "../peer/build/libs/peer-$VERSION.jar" \
       -Ddb="../peer/src/test/resources/photos.db" \
-      -Dendpoint="localhost:8080/j2ee-war-noauth" \
+      -Dendpoint=${END_POINT} \
       -Dbot.secret="${BOT_SECRET}" \
       -Dpause=2 \
       -Dphoto.dir.original="file:///home/steven/Photos" \
