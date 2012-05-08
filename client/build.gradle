@@ -24,6 +24,7 @@ dependencies {
     testCompile "junit:junit:3.8.1"
     testCompile libs.mockito
     testCompile "org.jmock:jmock:2.5.1"
+    testCompile libs.gwt_test_utils
 }
 
 task convertIcons(type: Exec, dependsOn: classes) {

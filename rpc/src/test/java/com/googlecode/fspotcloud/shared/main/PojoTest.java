@@ -38,13 +38,9 @@ public class PojoTest {
     private List<PojoClass> pojoClasses;
     private PojoValidator pojoValidator;
     private Class<?>[] POJO_CLASSES = new Class<?>[] {
-          GetTagTreeAction.class,
-          GetUserInfo.class,
-          PhotoInfo.class,
-          PhotoInfoStore.class,
-          TagNode.class,
-          TagTreeResult.class,
-          UserInfo.class
+            GetTagTreeAction.class, GetUserInfo.class, PhotoInfo.class,
+            PhotoInfoStore.class, TagNode.class, TagTreeResult.class,
+            UserInfo.class
         };
 
     @Before
@@ -69,6 +65,7 @@ public class PojoTest {
         //pojoValidator.addTester(new DefaultValuesNullTester());
         pojoValidator.addTester(new SetterTester());
         pojoValidator.addTester(new GetterTester());
+
         //pojoValidator.addTester(new BusinessIdentityTester());
     }
 

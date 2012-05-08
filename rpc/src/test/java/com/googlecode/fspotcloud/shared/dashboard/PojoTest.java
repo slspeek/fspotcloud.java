@@ -39,15 +39,11 @@ public class PojoTest {
     private List<PojoClass> pojoClasses;
     private PojoValidator pojoValidator;
     private Class<?>[] POJO_CLASSES = new Class<?>[] {
-              GetAdminTagTreeAction.class,
-            GetMetaDataAction.class,
-            GetMetaDataResult.class,
-            UserDeletesAllAction.class,
-            UserDeletesAllCommandsAction.class,
-            UserImportsTagAction.class,
-            UserSynchronizesPeerAction.class,
-            UserUnImportsTagAction.class,
-             VoidResult.class
+            GetAdminTagTreeAction.class, GetMetaDataAction.class,
+            GetMetaDataResult.class, UserDeletesAllAction.class,
+            UserDeletesAllCommandsAction.class, UserImportsTagAction.class,
+            UserSynchronizesPeerAction.class, UserUnImportsTagAction.class,
+            VoidResult.class
         };
 
     @Before

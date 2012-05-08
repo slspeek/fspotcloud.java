@@ -32,7 +32,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class PhotoInfoTest  {
+public class PhotoInfoTest {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
     Date longAgo;
     Date ago;
@@ -43,7 +43,7 @@ public class PhotoInfoTest  {
     String exif = "EXIF:";
 
     @Before
-    public  void setUp() throws Exception {
+    public void setUp() throws Exception {
         longAgo = formatter.parse("20100101");
         ago = formatter.parse("20100102");
         ape = new PhotoInfo(photoApe, "Ape", longAgo);
@@ -121,12 +121,14 @@ public class PhotoInfoTest  {
         PhotoInfo apeReadBack = (PhotoInfo) objectIn.readObject();
         assertEquals(ape, apeReadBack);
     }
-@Test
+
+    @Test
     public void testVersion() {
         int v = man.getVersion();
         assertEquals(1, v);
     }
-@Test
+
+    @Test
     public void toInSortedSet() {
         SortedSet<PhotoInfo> set = new TreeSet<PhotoInfo>();
         set.add(man);

@@ -9,8 +9,9 @@ dependencies {
     compile libs.guava
     compile libs.guava_gwt
 
-    testCompile "junit:junit:3.8.1"
+    testCompile libs.junit
     testCompile libs.commons_lang
+    testCompile libs.openpojo
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
