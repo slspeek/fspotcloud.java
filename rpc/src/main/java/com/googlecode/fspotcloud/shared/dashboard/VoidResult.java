@@ -22,4 +22,11 @@ import net.customware.gwt.dispatch.shared.Result;
 
 @GwtCompatible
 public class VoidResult implements Result {
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof VoidResult;
+    }
+    
+    
 }

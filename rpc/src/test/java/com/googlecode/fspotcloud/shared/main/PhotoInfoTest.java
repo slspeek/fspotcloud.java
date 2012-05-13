@@ -87,16 +87,9 @@ public class PhotoInfoTest {
         assertTrue(ape.equals(ape));
         assertFalse(ape.equals(man));
         assertFalse(man.equals(ape));
-        assertTrue(ape.equals(new PhotoInfo(photoApe, "", new Date())));
     }
 
-    @Test
-    public void testHashCode() {
-        PhotoInfo sameMan = new PhotoInfo(photoMan, "Foo", new Date(), "Bar");
-        assertEquals(sameMan.hashCode(), man.hashCode());
-        assertEquals(sameMan, man);
-    }
-
+    
     @Test
     public void testExif() {
         assertNull(ape.getExifData());

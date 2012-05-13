@@ -20,18 +20,18 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotos
 import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
-import com.googlecode.fspotcloud.shared.peer.PhotoRemovedFromTag;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.Iterator;
 import java.util.SortedSet;
+import java.util.TreeSet;
 import javax.inject.Inject;
 import javax.inject.Named;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-
 public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotosFromTagAction, VoidResult> {
+
     private final int MAX_DELETE_TICKS;
     private final TaskQueueDispatch dispatchAsync;
     private final Photos photos;
@@ -39,9 +39,8 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
     private final PeerDatabases peerDatabaseManager;
 
     @Inject
-    public RemovePhotosFromTagHandler(@Named("maxDelete")
-    int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
-        Tags tagManager, PeerDatabases peerDatabaseManager) {
+    public RemovePhotosFromTagHandler(@Named("maxDelete") int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
+            Tags tagManager, PeerDatabases peerDatabaseManager) {
         super();
         MAX_DELETE_TICKS = maxDeleteTicks;
         this.dispatchAsync = dispatchAsync;
@@ -52,19 +51,19 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
 
     @Override
     public VoidResult execute(RemovePhotosFromTagAction action,
-        ExecutionContext context) throws DispatchException {
+            ExecutionContext context) throws DispatchException {
         Tag tag = tagManager.find(action.getTagId());
-        Iterator<PhotoRemovedFromTag> it = action.getToBoDeleted().iterator();
+        Iterator<String> it = action.getToBeDeleted().iterator();
 
         for (int i = 0; (i < MAX_DELETE_TICKS) && it.hasNext(); i++) {
-            PhotoRemovedFromTag operation = it.next();
+            String photoId = it.next();
 
-            checkForDeletion(tag, tag.getId(), operation.getPhotoId(), it);
+            checkForDeletion(tag, tag.getId(), photoId, it);
         }
 
         tagManager.save(tag);
 
-        if (!action.getToBoDeleted().isEmpty()) {
+        if (!action.getToBeDeleted().isEmpty()) {
             dispatchAsync.execute(action);
         }
 
@@ -83,33 +82,30 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
     }
 
     private void checkForDeletion(Tag tag, String deleteTagId, String key,
-        Iterator<PhotoRemovedFromTag> it) {
+            Iterator<?> it) {
         Photo photo = photos.find(key);
 
         if (photo != null) {
             boolean moreImports = false;
 
             for (String tagId : photo.getTagList()) {
-                Tag tagRelated = tagManager.find(tagId);
-
-                if (tagRelated != null) {
-                    if (!deleteTagId.equals(tagId)) {
+                if (!deleteTagId.equals(tagId)) {
+                    Tag tagRelated = tagManager.find(tagId);
+                    if (tagRelated != null) {
                         if (tagRelated.isImportIssued()) {
                             moreImports = true;
-
                             break;
                         }
                     }
                 }
             }
-
             if (!moreImports) {
                 photos.delete(photo);
-                tag.getCachedPhotoList()
-                   .remove(find(tag.getCachedPhotoList(), key));
+                final TreeSet<PhotoInfo> cachedPhotoList = tag.getCachedPhotoList();
+                cachedPhotoList.remove(find(tag.getCachedPhotoList(), key));
+                tag.setCachedPhotoList(cachedPhotoList);
             }
         }
-
         it.remove();
     }
 

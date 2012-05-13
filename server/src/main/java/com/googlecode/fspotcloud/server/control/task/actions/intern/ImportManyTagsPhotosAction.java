@@ -36,4 +36,28 @@ public class ImportManyTagsPhotosAction implements Action<VoidResult>,
     public List<String> getTagIdList() {
         return tagIdList;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ImportManyTagsPhotosAction other = (ImportManyTagsPhotosAction) obj;
+        if (this.tagIdList != other.tagIdList && (this.tagIdList == null || !this.tagIdList.equals(other.tagIdList))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + (this.tagIdList != null ? this.tagIdList.hashCode() : 0);
+        return hash;
+    }
+    
+    
 }

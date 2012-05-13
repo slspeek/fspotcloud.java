@@ -23,7 +23,7 @@ package com.googlecode.fspotcloud.server.admin.handler;
 import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTagPhotosAction;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tag;
@@ -51,7 +51,7 @@ public class UserUnImportsTagHandlerTest {
     @Test
     public void testNormalExecute(Tags tagManager,
         TaskQueueDispatch dispatchAsync, PeerDatabases peerDatabases,
-        ArgumentCaptor<DeleteTagPhotosAction> actionCaptor)
+        ArgumentCaptor<RemovePhotosFromTagAction> actionCaptor)
         throws Exception {
         PeerDatabase peer = new PeerDatabaseEntity();
         Tag tagOne = new TagEntity();
@@ -63,7 +63,7 @@ public class UserUnImportsTagHandlerTest {
 
         verify(dispatchAsync).execute(actionCaptor.capture());
 
-        DeleteTagPhotosAction deleteAction = actionCaptor.getValue();
+        RemovePhotosFromTagAction deleteAction = actionCaptor.getValue();
         assertEquals(TAG_ID, deleteAction.getTagId());
         verify(peerDatabases).get();
         verify(tagManager).find(TAG_ID);
@@ -73,7 +73,7 @@ public class UserUnImportsTagHandlerTest {
     @Test
     public void testNormalExecuteUnImportNeeded(Tags tagManager,
         TaskQueueDispatch dispatchAsync, PeerDatabases peerDatabases,
-        ArgumentCaptor<DeleteTagPhotosAction> actionCaptor)
+        ArgumentCaptor<RemovePhotosFromTagAction> actionCaptor)
         throws Exception {
         PeerDatabase peer = new PeerDatabaseEntity();
         Tag tagOne = new TagEntity();
@@ -86,7 +86,7 @@ public class UserUnImportsTagHandlerTest {
 
         verify(dispatchAsync).execute(actionCaptor.capture());
 
-        DeleteTagPhotosAction deleteAction = actionCaptor.getValue();
+        RemovePhotosFromTagAction deleteAction = actionCaptor.getValue();
         assertEquals(TAG_ID, deleteAction.getTagId());
         verify(peerDatabases).get();
         verify(tagManager).find(TAG_ID);
@@ -97,7 +97,7 @@ public class UserUnImportsTagHandlerTest {
     @Test
     public void testNormalExecuteTreeCacheNeedsClearing(Tags tagManager,
         TaskQueueDispatch dispatchAsync, PeerDatabases peerDatabases,
-        ArgumentCaptor<DeleteTagPhotosAction> actionCaptor)
+        ArgumentCaptor<RemovePhotosFromTagAction> actionCaptor)
         throws Exception {
         PeerDatabase peer = new PeerDatabaseEntity();
         List<TagNode> emptyList = newArrayList();
@@ -113,7 +113,7 @@ public class UserUnImportsTagHandlerTest {
 
         verify(dispatchAsync).execute(actionCaptor.capture());
 
-        DeleteTagPhotosAction deleteAction = actionCaptor.getValue();
+        RemovePhotosFromTagAction deleteAction = actionCaptor.getValue();
         assertEquals(TAG_ID, deleteAction.getTagId());
         verify(peerDatabases).get();
         verify(tagManager).find(TAG_ID);

@@ -17,7 +17,7 @@
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
-import com.googlecode.fspotcloud.shared.peer.PhotoRemovedFromTag;
+import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import java.io.Serializable;
 import java.util.List;
 import net.customware.gwt.dispatch.shared.Action;
@@ -25,26 +25,49 @@ import net.customware.gwt.dispatch.shared.Action;
 
 public class RemovePhotosFromTagAction implements Action<VoidResult>,
     Serializable {
-    private static final long serialVersionUID = 7650176553018963544L;
-    private final List<PhotoRemovedFromTag> toBoDeleted;
-    private String tagId;
+    private static final long serialVersionUID = -8353337263892135688L;
+    private final String tagId;
+    private final List<String> toBeDeleted;
 
-    public RemovePhotosFromTagAction(String tagId,
-        List<PhotoRemovedFromTag> toBoDeleted) {
+    public RemovePhotosFromTagAction(String tagId, List<String> toBeDeleted) {
         super();
-        this.toBoDeleted = toBoDeleted;
         this.tagId = tagId;
-    }
-
-    public List<PhotoRemovedFromTag> getToBoDeleted() {
-        return toBoDeleted;
+        this.toBeDeleted = toBeDeleted;
     }
 
     public String getTagId() {
         return tagId;
     }
 
-    public String toString() {
-        return toBoDeleted.toString();
+    public List<String> getToBeDeleted() {
+        return toBeDeleted;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final RemovePhotosFromTagAction other = (RemovePhotosFromTagAction) obj;
+        if ((this.tagId == null) ? (other.tagId != null) : !this.tagId.equals(other.tagId)) {
+            return false;
+        }
+        if (this.toBeDeleted != other.toBeDeleted && (this.toBeDeleted == null || !this.toBeDeleted.equals(other.toBeDeleted))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 73 * hash + (this.tagId != null ? this.tagId.hashCode() : 0);
+        hash = 73 * hash + (this.toBeDeleted != null ? this.toBeDeleted.hashCode() : 0);
+        return hash;
+    }
+
+    
 }

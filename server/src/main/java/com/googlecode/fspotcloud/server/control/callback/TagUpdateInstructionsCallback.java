@@ -18,13 +18,15 @@ package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.inject.Inject;
 import com.googlecode.botdispatch.SerializableAsyncCallback;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
 import com.googlecode.fspotcloud.shared.peer.TagUpdateInstructionsResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import static com.google.common.collect.Lists.newArrayList;
+import com.googlecode.fspotcloud.shared.peer.PhotoRemovedFromTag;
 
 public class TagUpdateInstructionsCallback implements SerializableAsyncCallback<TagUpdateInstructionsResult> {
     private static final Logger log = Logger.getLogger(TagUpdateInstructionsCallback.class.getName());
@@ -49,8 +51,13 @@ public class TagUpdateInstructionsCallback implements SerializableAsyncCallback<
     @Override
     public void onSuccess(TagUpdateInstructionsResult result) {
         PhotoUpdateAction photoUpdate = new PhotoUpdateAction(result.getToBoUpdated());
+        List<String> photoIds = newArrayList();
+        for (PhotoRemovedFromTag removal: result.getToBoRemovedFromTag()) {
+            photoIds.add(removal.getPhotoId());
+        }
+        
         RemovePhotosFromTagAction photoRemove = new RemovePhotosFromTagAction(tagId,
-                result.getToBoRemovedFromTag());
+                photoIds);
         log.info("Before " + photoRemove);
         dispatchAsync.execute(photoRemove);
         log.info("2 Before " + photoUpdate);
