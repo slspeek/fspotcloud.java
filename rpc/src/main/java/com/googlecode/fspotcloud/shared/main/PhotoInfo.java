@@ -63,20 +63,45 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
         return id;
     }
 
-    public int hashCode() {
-        return id.hashCode();
-    }
-
-    public boolean equals(Object o) {
-        String id = null;
-
-        if (o instanceof PhotoInfo) {
-            PhotoInfo photo = (PhotoInfo) o;
-            id = photo.getId();
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
         }
-
-        return this.id.equals(id);
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PhotoInfo other = (PhotoInfo) obj;
+        if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
+            return false;
+        }
+        if ((this.description == null) ? (other.description != null) : !this.description.equals(other.description)) {
+            return false;
+        }
+        if ((this.exifData == null) ? (other.exifData != null) : !this.exifData.equals(other.exifData)) {
+            return false;
+        }
+        if (this.date != other.date && (this.date == null || !this.date.equals(other.date))) {
+            return false;
+        }
+        if (this.version != other.version) {
+            return false;
+        }
+        return true;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 47 * hash + (this.description != null ? this.description.hashCode() : 0);
+        hash = 47 * hash + (this.exifData != null ? this.exifData.hashCode() : 0);
+        hash = 47 * hash + (this.date != null ? this.date.hashCode() : 0);
+        hash = 47 * hash + this.version;
+        return hash;
+    }
+
+   
 
     public int compareTo(PhotoInfo o) {
         Date otherDate = o.getDate();

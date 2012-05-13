@@ -24,20 +24,13 @@ public class PhotoRemovedFromTag extends BusinessBase implements Serializable {
     private static final long serialVersionUID = 2281991078773646131L;
     @BusinessKey
     private final String photoId;
-    @BusinessKey
-    private final String tagId;
 
-    public PhotoRemovedFromTag(String photoId, String tagId) {
+    public PhotoRemovedFromTag(String photoId) {
         super();
         this.photoId = photoId;
-        this.tagId = tagId;
     }
 
     public String getPhotoId() {
         return photoId;
-    }
-
-    public String getTagId() {
-        return tagId;
     }
 }

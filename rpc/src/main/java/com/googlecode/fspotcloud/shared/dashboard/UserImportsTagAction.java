@@ -40,4 +40,28 @@ public class UserImportsTagAction implements Action<VoidResult>,
     public String getTagId() {
         return tagId;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UserImportsTagAction other = (UserImportsTagAction) obj;
+        if ((this.tagId == null) ? (other.tagId != null) : !this.tagId.equals(other.tagId)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + (this.tagId != null ? this.tagId.hashCode() : 0);
+        return hash;
+    }
+    
+    
 }

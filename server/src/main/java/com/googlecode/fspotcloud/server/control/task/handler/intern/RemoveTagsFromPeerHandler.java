@@ -16,8 +16,8 @@
  */
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTagPhotosAction;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsFromPeerAction;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsDeletedFromPeerAction;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
@@ -35,7 +35,7 @@ import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 
-public class RemoveTagsFromPeerHandler extends SimpleActionHandler<RemoveTagsFromPeerAction, VoidResult> {
+public class RemoveTagsFromPeerHandler extends SimpleActionHandler<RemoveTagsDeletedFromPeerAction, VoidResult> {
     private final int MAX_DELETE_TICKS;
     private final TaskQueueDispatch dispatchAsync;
     private final Photos photos;
@@ -53,7 +53,7 @@ public class RemoveTagsFromPeerHandler extends SimpleActionHandler<RemoveTagsFro
     }
 
     @Override
-    public VoidResult execute(RemoveTagsFromPeerAction action,
+    public VoidResult execute(RemoveTagsDeletedFromPeerAction action,
         ExecutionContext context) throws DispatchException {
         Iterator<TagRemovedFromPeer> it = action.getToBoDeleted().iterator();
 
@@ -64,7 +64,7 @@ public class RemoveTagsFromPeerHandler extends SimpleActionHandler<RemoveTagsFro
 
             List<PhotoInfo> infoList = new ArrayList<PhotoInfo>();
             infoList.addAll(tag.getCachedPhotoList());
-            dispatchAsync.execute(new DeleteTagPhotosAction(tagId, infoList));
+            dispatchAsync.execute(new RemovePhotosFromTagAction(tagId, null));
             tagManager.deleteByKey(tagId);
         }
 

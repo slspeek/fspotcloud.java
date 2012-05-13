@@ -21,6 +21,7 @@ dependencies {
     compile libs.guava
 
     testCompile project(':model-jpa-j2ee')
+    testCompile project(':test-util')
     testCompile libs.junit
     testCompile libs.mockito
     testCompile libs.guava

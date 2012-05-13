@@ -17,24 +17,39 @@
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+import com.googlecode.fspotcloud.test.EqualsTest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.apache.commons.lang.SerializationUtils;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
+import static com.google.common.collect.Lists.newArrayList;
 
 
-public class DeleteTagPhotosActionTest {
+public class RemovePhotosFromTagActionTest extends EqualsTest<RemovePhotosFromTagAction>{
     @Test
     public void testSerialization() {
-        PhotoInfo photoInfoA = new PhotoInfo("", "", new Date(10));
-        List<PhotoInfo> list = new ArrayList<PhotoInfo>();
-        list.add(photoInfoA);
 
-        DeleteTagPhotosAction action = new DeleteTagPhotosAction("fooMock", list);
+        RemovePhotosFromTagAction action = new RemovePhotosFromTagAction("fooMock", newArrayList("2","3"));
         byte[] ser = SerializationUtils.serialize(action);
-        DeleteTagPhotosAction deserialized = (DeleteTagPhotosAction) SerializationUtils.deserialize(ser);
+        RemovePhotosFromTagAction deserialized = (RemovePhotosFromTagAction) SerializationUtils.deserialize(ser);
         assertNotNull(deserialized);
+    }
+
+
+    @Override
+    protected RemovePhotosFromTagAction getOne() {
+        return new RemovePhotosFromTagAction("1", newArrayList("2", "3"));
+    }
+
+    @Override
+    protected RemovePhotosFromTagAction getTheOther() {
+        return new RemovePhotosFromTagAction("1", newArrayList("2", "3"));
+    }
+
+    @Override
+    protected RemovePhotosFromTagAction getDifferentOne() {
+        return new RemovePhotosFromTagAction("2", newArrayList("2", "3"));
     }
 }

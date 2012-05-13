@@ -14,20 +14,18 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.server.control.task.handler;
+package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.google.common.collect.ImmutableList;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTagPhotosAction;
-import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteTagPhotosHandler;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TreeSet;
@@ -42,9 +40,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
+import static com.google.common.collect.Lists.newArrayList;
+import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
+import com.googlecode.fspotcloud.server.model.api.*;
 
-
-public class DeletePhotosHandlerTest {
+public class RemovePhotosFromTagHandlerTest {
     private static final String ID_B = "B";
     private static final String ID_A = "A";
     private static final String TAG_ID = "1";
@@ -55,24 +55,27 @@ public class DeletePhotosHandlerTest {
     Photos photos;
     @Mock
     Tags tagManager;
+    @Mock 
+    PeerDatabases peers;
     Tag tag;
     Tag tag3;
     @Captor
-    ArgumentCaptor<DeleteTagPhotosAction> nextCallCaptor;
+    ArgumentCaptor<RemovePhotosFromTagAction> nextCallCaptor;
     PhotoInfo photoInfoA;
     PhotoInfo photoInfoB;
-    List<PhotoInfo> infoList;
+    List<String> idList;
     Photo photoA;
     Photo photoB;
     List<String> tagIdListA = ImmutableList.of("1");
     List<String> tagIdListB = ImmutableList.of("1", "3");
-    DeleteTagPhotosHandler handler;
+    PeerDatabase peer = new PeerDatabaseEntity();
+    RemovePhotosFromTagHandler handler;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        handler = new DeleteTagPhotosHandler(MAX_DELETE_TICKS, dispatchAsync,
-                photos, tagManager);
+        handler = new RemovePhotosFromTagHandler(MAX_DELETE_TICKS, dispatchAsync,
+                photos, tagManager, peers);
         tag3 = new TagEntity();
         tag3.setId("3");
         tag3.setImportIssued(true);
@@ -84,9 +87,7 @@ public class DeletePhotosHandlerTest {
         photoB.setTagList(tagIdListB);
         photoInfoA = new PhotoInfo(ID_A, "", new Date(10));
         photoInfoB = new PhotoInfo(ID_B, "", new Date(100000));
-        infoList = new ArrayList<PhotoInfo>();
-        infoList.add(photoInfoA);
-        infoList.add(photoInfoB);
+        idList = newArrayList(ID_A, ID_B);
 
         TreeSet<PhotoInfo> cached = new TreeSet<PhotoInfo>();
         cached.add(photoInfoA);
@@ -96,6 +97,8 @@ public class DeletePhotosHandlerTest {
         when(tagManager.find("3")).thenReturn(tag3);
         when(photos.find(ID_A)).thenReturn(photoA);
         when(photos.find(ID_B)).thenReturn(photoB);
+        when(peers.get()).thenReturn(peer);
+        
     }
 
     /**
@@ -107,14 +110,15 @@ public class DeletePhotosHandlerTest {
     @Test
     public void testExecute() throws DispatchException {
         assertEquals(2, tag.getCachedPhotoList().size());
-        handler.execute(new DeleteTagPhotosAction(TAG_ID, infoList), null);
+        
+        handler.execute(new RemovePhotosFromTagAction(TAG_ID, idList), null);
         verify(photos).delete(photoA);
         verify(photos).find(ID_A);
         assertEquals(1, tag.getCachedPhotoList().size());
         verifyNoMoreInteractions(photos);
         verify(dispatchAsync).execute(nextCallCaptor.capture());
         assertEquals(TAG_ID, nextCallCaptor.getValue().getTagId());
-        handler.execute(new DeleteTagPhotosAction(TAG_ID, infoList), null);
+        handler.execute(new RemovePhotosFromTagAction(TAG_ID, idList), null);
         verifyNoMoreInteractions(dispatchAsync);
         verify(photos).find(ID_B);
         verifyNoMoreInteractions(photos);

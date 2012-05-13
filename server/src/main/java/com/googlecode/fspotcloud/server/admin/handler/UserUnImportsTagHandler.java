@@ -17,7 +17,7 @@
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.google.inject.Inject;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteTagPhotosAction;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tag;
@@ -58,9 +58,7 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
     public VoidResult execute(UserUnImportsTagAction action,
         ExecutionContext context) throws DispatchException {
         log.info("Executing: " + action.getTagId());
-
         adminPermission.checkAdminPermission();
-
         try {
             String tagId = action.getTagId();
             Tag tag = tagManager.find(tagId);
@@ -70,10 +68,11 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
                 tagManager.save(tag);
             }
 
-            List<PhotoInfo> infoList = new ArrayList<PhotoInfo>();
-            infoList.addAll(tag.getCachedPhotoList());
-            dispatchAsync.execute(new DeleteTagPhotosAction(tag.getId(),
-                    infoList));
+            List<String> idList = new ArrayList<String>();
+            for (PhotoInfo info: tag.getCachedPhotoList()) {
+                idList.add(info.getId());
+            }
+            dispatchAsync.execute(new RemovePhotosFromTagAction(tag.getId(), idList));
             clearTreeCache();
         } catch (Exception e) {
             throw new ActionException(e);

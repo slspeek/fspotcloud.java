@@ -16,9 +16,7 @@
  */
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
-import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.ImportManyTagsPhotosAction;
-import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
@@ -35,16 +33,13 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 public class ImportManyTagsPhotosHandler extends SimpleActionHandler<ImportManyTagsPhotosAction, VoidResult> {
     private static final Logger log = Logger.getLogger(ImportManyTagsPhotosHandler.class.getName());
     private final TaskQueueDispatch dispatchAsync;
-    private final Photos photoManager;
     private final int MAX_DATA_TICKS;
 
     @Inject
     public ImportManyTagsPhotosHandler(TaskQueueDispatch dispatchAsync,
-        Photos photoManager, @Named("maxTicks")
-    int MAX_DATA_TICKS) {
+        @Named("maxTicks")    int MAX_DATA_TICKS) {
         super();
         this.dispatchAsync = dispatchAsync;
-        this.photoManager = photoManager;
         this.MAX_DATA_TICKS = MAX_DATA_TICKS;
     }
 

@@ -21,7 +21,7 @@
 package com.googlecode.fspotcloud.server.control.callback;
 
 import static com.google.common.collect.Lists.newArrayList;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsFromPeerAction;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsDeletedFromPeerAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.TagUpdateAction;
 import com.googlecode.fspotcloud.shared.peer.PeerUpdateInstructionsResult;
 import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
@@ -64,7 +64,7 @@ public class PeerUpdateInstructionsCallbackTest {
 
         List<Action> actions = updateCaptor.getAllValues();
         TagUpdateAction update = (TagUpdateAction) actions.get(1);
-        RemoveTagsFromPeerAction remove = (RemoveTagsFromPeerAction) actions.get(0);
+        RemoveTagsDeletedFromPeerAction remove = (RemoveTagsDeletedFromPeerAction) actions.get(0);
         assertEquals(TAG_REMOVED_ID, remove.getToBoDeleted().get(0).getTagId());
         assertEquals(TAG_ID, update.getUpdates().get(0).getTagId());
     }
