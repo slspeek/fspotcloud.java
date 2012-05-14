@@ -46,22 +46,28 @@ public class RemoveTagsDeletedFromPeerAction implements Action<VoidResult>,
         if (obj == null) {
             return false;
         }
+
         if (getClass() != obj.getClass()) {
             return false;
         }
+
         final RemoveTagsDeletedFromPeerAction other = (RemoveTagsDeletedFromPeerAction) obj;
-        if (this.toBoDeleted != other.toBoDeleted && (this.toBoDeleted == null || !this.toBoDeleted.equals(other.toBoDeleted))) {
+
+        if (this.toBoDeleted != other.toBoDeleted &&
+                (this.toBoDeleted == null ||
+                !this.toBoDeleted.equals(other.toBoDeleted))) {
             return false;
         }
+
         return true;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 41 * hash + (this.toBoDeleted != null ? this.toBoDeleted.hashCode() : 0);
+        hash = 41 * hash +
+            (this.toBoDeleted != null ? this.toBoDeleted.hashCode() : 0);
+
         return hash;
     }
-    
-    
 }

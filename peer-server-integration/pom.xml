@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-17</version>
+        <version>0.12-18</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>peer-server-integration</artifactId>
-    <version>0.12-17</version>
+    <version>0.12-18</version>
     <name>Peer server integration tests</name>
     <dependencies>
         <dependency>

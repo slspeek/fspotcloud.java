@@ -24,4 +24,14 @@ import net.customware.gwt.dispatch.shared.Action;
 public class UserSynchronizesPeerAction implements Action<VoidResult> {
     public UserSynchronizesPeerAction() {
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof UserSynchronizesPeerAction;
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

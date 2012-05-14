@@ -30,8 +30,8 @@ import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotosFromTagAction, VoidResult> {
 
+public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotosFromTagAction, VoidResult> {
     private final int MAX_DELETE_TICKS;
     private final TaskQueueDispatch dispatchAsync;
     private final Photos photos;
@@ -39,8 +39,9 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
     private final PeerDatabases peerDatabaseManager;
 
     @Inject
-    public RemovePhotosFromTagHandler(@Named("maxDelete") int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
-            Tags tagManager, PeerDatabases peerDatabaseManager) {
+    public RemovePhotosFromTagHandler(@Named("maxDelete")
+    int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
+        Tags tagManager, PeerDatabases peerDatabaseManager) {
         super();
         MAX_DELETE_TICKS = maxDeleteTicks;
         this.dispatchAsync = dispatchAsync;
@@ -51,7 +52,7 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
 
     @Override
     public VoidResult execute(RemovePhotosFromTagAction action,
-            ExecutionContext context) throws DispatchException {
+        ExecutionContext context) throws DispatchException {
         Tag tag = tagManager.find(action.getTagId());
         Iterator<String> it = action.getToBeDeleted().iterator();
 
@@ -82,7 +83,7 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
     }
 
     private void checkForDeletion(Tag tag, String deleteTagId, String key,
-            Iterator<?> it) {
+        Iterator<?> it) {
         Photo photo = photos.find(key);
 
         if (photo != null) {
@@ -91,21 +92,26 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
             for (String tagId : photo.getTagList()) {
                 if (!deleteTagId.equals(tagId)) {
                     Tag tagRelated = tagManager.find(tagId);
+
                     if (tagRelated != null) {
                         if (tagRelated.isImportIssued()) {
                             moreImports = true;
+
                             break;
                         }
                     }
                 }
             }
+
             if (!moreImports) {
                 photos.delete(photo);
+
                 final TreeSet<PhotoInfo> cachedPhotoList = tag.getCachedPhotoList();
                 cachedPhotoList.remove(find(tag.getCachedPhotoList(), key));
                 tag.setCachedPhotoList(cachedPhotoList);
             }
         }
+
         it.remove();
     }
 

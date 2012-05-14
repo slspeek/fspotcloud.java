@@ -16,6 +16,7 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
+import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
 import com.googlecode.fspotcloud.test.EqualsTest;
 import java.util.ArrayList;
@@ -24,10 +25,9 @@ import org.apache.commons.lang.SerializationUtils;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-import static com.google.common.collect.Lists.newArrayList;
+
 
 public class PhotoUpdateActionTest extends EqualsTest<PhotoUpdateAction> {
-
     PhotoUpdateAction action;
 
     @Before

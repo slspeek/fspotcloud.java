@@ -71,17 +71,17 @@ public class TagUpdateHandler extends SimpleActionHandler<TagUpdateAction, VoidR
         // Do our part of the job, scheduling the head
         for (int i = 0; i < countWeWillDo; i++) {
             int beginning = i * MAX_DATA_TICKS;
-            List<String> imageKeys = new ArrayList<String>();
+            List<String> tagKeys = new ArrayList<String>();
 
             for (int j = beginning;
                     (j < (MAX_DATA_TICKS + beginning)) && (j < updates.size());
                     j++) {
                 TagUpdate tagUpdate = updates.get(j);
-                imageKeys.add(tagUpdate.getTagId());
+                tagKeys.add(tagUpdate.getTagId());
             }
 
             // log.info("Doing our part " + imageKeys);
-            GetTagDataAction botAction = new GetTagDataAction(imageKeys);
+            GetTagDataAction botAction = new GetTagDataAction(tagKeys);
             TagDataCallback callback = new TagDataCallback(null, null);
             controllerDispatch.execute(botAction, callback);
         }

@@ -18,9 +18,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.googlecode.fspotcloud.server.inject;
+package com.googlecode.fspotcloud.server.main;
 
-import com.googlecode.fspotcloud.server.inject.PropertiesLoader;
+import com.googlecode.fspotcloud.server.main.PropertiesLoader;
 import junit.framework.Assert;
 import org.junit.Test;
 
