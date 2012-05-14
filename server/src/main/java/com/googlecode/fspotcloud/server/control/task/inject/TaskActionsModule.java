@@ -31,7 +31,8 @@ public class TaskActionsModule extends ActionHandlerModule {
         bindHandler(PhotoUpdateAction.class, PhotoUpdateHandler.class);
         bindHandler(DeleteAllTagsAction.class, DeleteTagsHandler.class);
         bindHandler(DeleteAllPhotosAction.class, DeleteAllPhotosHandler.class);
-        bindHandler(RemovePhotosFromTagAction.class, RemovePhotosFromTagHandler.class);
+        bindHandler(RemovePhotosFromTagAction.class,
+            RemovePhotosFromTagHandler.class);
         bindHandler(RemoveTagsDeletedFromPeerAction.class,
             RemoveTagsFromPeerHandler.class);
         bindHandler(TagUpdateAction.class, TagUpdateHandler.class);

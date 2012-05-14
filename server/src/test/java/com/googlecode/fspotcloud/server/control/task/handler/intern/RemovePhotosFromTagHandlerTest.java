@@ -17,9 +17,12 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.google.common.collect.ImmutableList;
+import static com.google.common.collect.Lists.newArrayList;
+import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
+import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
@@ -40,9 +43,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
-import static com.google.common.collect.Lists.newArrayList;
-import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
-import com.googlecode.fspotcloud.server.model.api.*;
+
 
 public class RemovePhotosFromTagHandlerTest {
     private static final String ID_B = "B";
@@ -55,7 +56,7 @@ public class RemovePhotosFromTagHandlerTest {
     Photos photos;
     @Mock
     Tags tagManager;
-    @Mock 
+    @Mock
     PeerDatabases peers;
     Tag tag;
     Tag tag3;
@@ -74,8 +75,8 @@ public class RemovePhotosFromTagHandlerTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        handler = new RemovePhotosFromTagHandler(MAX_DELETE_TICKS, dispatchAsync,
-                photos, tagManager, peers);
+        handler = new RemovePhotosFromTagHandler(MAX_DELETE_TICKS,
+                dispatchAsync, photos, tagManager, peers);
         tag3 = new TagEntity();
         tag3.setId("3");
         tag3.setImportIssued(true);
@@ -98,7 +99,6 @@ public class RemovePhotosFromTagHandlerTest {
         when(photos.find(ID_A)).thenReturn(photoA);
         when(photos.find(ID_B)).thenReturn(photoB);
         when(peers.get()).thenReturn(peer);
-        
     }
 
     /**
@@ -110,7 +110,7 @@ public class RemovePhotosFromTagHandlerTest {
     @Test
     public void testExecute() throws DispatchException {
         assertEquals(2, tag.getCachedPhotoList().size());
-        
+
         handler.execute(new RemovePhotosFromTagAction(TAG_ID, idList), null);
         verify(photos).delete(photoA);
         verify(photos).find(ID_A);

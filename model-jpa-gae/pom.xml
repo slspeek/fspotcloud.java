@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-17</version>
+        <version>0.12-18</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>model-jpa-gae</artifactId>
-    <version>0.12-17</version>
+    <version>0.12-18</version>
     <packaging>jar</packaging>
     <name>Model JPA GAE Implementation</name>
     <dependencies>

@@ -37,7 +37,8 @@ public class ImportManyTagsPhotosHandler extends SimpleActionHandler<ImportManyT
 
     @Inject
     public ImportManyTagsPhotosHandler(TaskQueueDispatch dispatchAsync,
-        @Named("maxTicks")    int MAX_DATA_TICKS) {
+        @Named("maxTicks")
+    int MAX_DATA_TICKS) {
         super();
         this.dispatchAsync = dispatchAsync;
         this.MAX_DATA_TICKS = MAX_DATA_TICKS;

@@ -19,6 +19,7 @@ package com.googlecode.fspotcloud.server.inject;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
+import com.googlecode.fspotcloud.server.main.PropertiesLoader;
 import java.util.Properties;
 
 

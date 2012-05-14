@@ -16,6 +16,7 @@
  */
 package com.googlecode.fspotcloud.server.main;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlecode.fspotcloud.server.model.api.Photo;
@@ -40,8 +41,9 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings("serial")
 @Singleton
 public class ImageServlet extends HttpServlet {
+    @VisibleForTesting
     @Inject
-    private Photos photoManager;
+    Photos photoManager;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)

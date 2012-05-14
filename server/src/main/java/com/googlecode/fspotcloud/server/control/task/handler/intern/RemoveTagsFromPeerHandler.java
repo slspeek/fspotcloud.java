@@ -16,9 +16,9 @@
  */
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
+import static com.google.common.collect.Lists.*;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsDeletedFromPeerAction;
-import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
@@ -38,17 +38,14 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 public class RemoveTagsFromPeerHandler extends SimpleActionHandler<RemoveTagsDeletedFromPeerAction, VoidResult> {
     private final int MAX_DELETE_TICKS;
     private final TaskQueueDispatch dispatchAsync;
-    private final Photos photos;
     private Tags tagManager;
 
     @Inject
     public RemoveTagsFromPeerHandler(@Named("maxDelete")
-    int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
-        Tags tagManager) {
+    int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Tags tagManager) {
         super();
         MAX_DELETE_TICKS = maxDeleteTicks;
         this.dispatchAsync = dispatchAsync;
-        this.photos = photos;
         this.tagManager = tagManager;
     }
 
@@ -60,12 +57,8 @@ public class RemoveTagsFromPeerHandler extends SimpleActionHandler<RemoveTagsDel
         for (int i = 0; (i < MAX_DELETE_TICKS) && it.hasNext(); i++) {
             TagRemovedFromPeer operation = it.next();
             String tagId = operation.getTagId();
-            Tag tag = tagManager.find(tagId);
-
-            List<PhotoInfo> infoList = new ArrayList<PhotoInfo>();
-            infoList.addAll(tag.getCachedPhotoList());
-            dispatchAsync.execute(new RemovePhotosFromTagAction(tagId, null));
-            tagManager.deleteByKey(tagId);
+            handleOneTag(tagId);
+            it.remove();
         }
 
         if (!action.getToBoDeleted().isEmpty()) {
@@ -73,5 +66,18 @@ public class RemoveTagsFromPeerHandler extends SimpleActionHandler<RemoveTagsDel
         }
 
         return new VoidResult();
+    }
+
+    private void handleOneTag(String tagId) {
+        Tag tag = tagManager.find(tagId);
+
+        List<String> idList = newArrayList();
+
+        for (PhotoInfo info : tag.getCachedPhotoList()) {
+            idList.add(info.getId());
+        }
+
+        dispatchAsync.execute(new RemovePhotosFromTagAction(tagId, idList));
+        tagManager.deleteByKey(tagId);
     }
 }

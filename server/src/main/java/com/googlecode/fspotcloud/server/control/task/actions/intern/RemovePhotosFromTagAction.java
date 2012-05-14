@@ -48,16 +48,24 @@ public class RemovePhotosFromTagAction implements Action<VoidResult>,
         if (obj == null) {
             return false;
         }
+
         if (getClass() != obj.getClass()) {
             return false;
         }
+
         final RemovePhotosFromTagAction other = (RemovePhotosFromTagAction) obj;
-        if ((this.tagId == null) ? (other.tagId != null) : !this.tagId.equals(other.tagId)) {
+
+        if ((this.tagId == null) ? (other.tagId != null)
+                                     : !this.tagId.equals(other.tagId)) {
             return false;
         }
-        if (this.toBeDeleted != other.toBeDeleted && (this.toBeDeleted == null || !this.toBeDeleted.equals(other.toBeDeleted))) {
+
+        if (this.toBeDeleted != other.toBeDeleted &&
+                (this.toBeDeleted == null ||
+                !this.toBeDeleted.equals(other.toBeDeleted))) {
             return false;
         }
+
         return true;
     }
 
@@ -65,9 +73,9 @@ public class RemovePhotosFromTagAction implements Action<VoidResult>,
     public int hashCode() {
         int hash = 5;
         hash = 73 * hash + (this.tagId != null ? this.tagId.hashCode() : 0);
-        hash = 73 * hash + (this.toBeDeleted != null ? this.toBeDeleted.hashCode() : 0);
+        hash = 73 * hash +
+            (this.toBeDeleted != null ? this.toBeDeleted.hashCode() : 0);
+
         return hash;
     }
-
-    
 }

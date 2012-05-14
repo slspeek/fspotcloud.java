@@ -89,7 +89,6 @@ public class PhotoInfoTest {
         assertFalse(man.equals(ape));
     }
 
-    
     @Test
     public void testExif() {
         assertNull(ape.getExifData());

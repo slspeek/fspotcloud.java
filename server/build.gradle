@@ -26,6 +26,7 @@ dependencies {
     testCompile libs.mockito
     testCompile libs.guava
     testCompile libs.jukito
+    testCompile libs.http_unit
 
 }
 

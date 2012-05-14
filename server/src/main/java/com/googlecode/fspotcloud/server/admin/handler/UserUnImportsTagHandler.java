@@ -59,6 +59,7 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
         ExecutionContext context) throws DispatchException {
         log.info("Executing: " + action.getTagId());
         adminPermission.checkAdminPermission();
+
         try {
             String tagId = action.getTagId();
             Tag tag = tagManager.find(tagId);
@@ -69,10 +70,13 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
             }
 
             List<String> idList = new ArrayList<String>();
-            for (PhotoInfo info: tag.getCachedPhotoList()) {
+
+            for (PhotoInfo info : tag.getCachedPhotoList()) {
                 idList.add(info.getId());
             }
-            dispatchAsync.execute(new RemovePhotosFromTagAction(tag.getId(), idList));
+
+            dispatchAsync.execute(new RemovePhotosFromTagAction(tag.getId(),
+                    idList));
             clearTreeCache();
         } catch (Exception e) {
             throw new ActionException(e);

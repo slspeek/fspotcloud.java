@@ -16,24 +16,36 @@
  */
 package com.googlecode.fspotcloud.server.cron;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.customware.gwt.dispatch.server.Dispatch;
+import net.customware.gwt.dispatch.shared.DispatchException;
 
 
 @SuppressWarnings("serial")
 @Singleton
 public class CronServlet extends HttpServlet {
     @Inject
-    private Cron cron;
+    @VisibleForTesting
+    Dispatch dispatch;
 
-    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-        cron.doGet(request, response);
+        throws IOException {
+        try {
+            String action = request.getParameter("action");
+
+            if (action.equals("synchronize-peer")) {
+                dispatch.execute(new UserSynchronizesPeerAction());
+            }
+        } catch (DispatchException e) {
+            response.getOutputStream().println(e.getMessage());
+        }
     }
 }

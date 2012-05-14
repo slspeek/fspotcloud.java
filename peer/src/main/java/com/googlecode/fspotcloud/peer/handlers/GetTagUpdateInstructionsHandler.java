@@ -82,8 +82,7 @@ public class GetTagUpdateInstructionsHandler extends SimpleActionHandler<GetTagU
                 result.getToBoUpdated().add(new PhotoUpdate(id));
             }
         } else {
-            result.getToBoRemovedFromTag()
-                  .add(new PhotoRemovedFromTag(id));
+            result.getToBoRemovedFromTag().add(new PhotoRemovedFromTag(id));
         }
     }
 }

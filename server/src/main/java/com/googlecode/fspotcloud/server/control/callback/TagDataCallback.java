@@ -77,4 +77,26 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
         tag.setParentId(parentId);
         tag.setCount(count);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final TagDataCallback other = (TagDataCallback) obj;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+
+        return hash;
+    }
 }

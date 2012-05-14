@@ -38,13 +38,10 @@ public class PojoTest {
     private List<PojoClass> pojoClasses;
     private PojoValidator pojoValidator;
     private Class<?>[] POJO_CLASSES = new Class<?>[] {
-            DeleteAllPhotosAction.class,
-            DeleteAllTagsAction.class,
-            RemovePhotosFromTagAction.class,
-            ImportManyTagsPhotosAction.class,
-PhotoUpdateAction.class,
-          RemoveTagsDeletedFromPeerAction.class,
-          TagUpdateAction.class
+            DeleteAllPhotosAction.class, DeleteAllTagsAction.class,
+            RemovePhotosFromTagAction.class, ImportManyTagsPhotosAction.class,
+            PhotoUpdateAction.class, RemoveTagsDeletedFromPeerAction.class,
+            TagUpdateAction.class
         };
 
     @Before
