@@ -16,54 +16,14 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
-import com.googlecode.fspotcloud.shared.main.PhotoInfo;
-import java.io.Serializable;
 import java.util.List;
-import net.customware.gwt.dispatch.shared.Action;
 
 
-public class ImportManyTagsPhotosAction implements Action<VoidResult>,
-    Serializable {
+public class ImportManyTagsPhotosAction extends AbstractBatchAction<String> {
     private static final long serialVersionUID = -8353337263892135688L;
-    private final List<String> tagIdList;
 
     public ImportManyTagsPhotosAction(List<String> tagIdList) {
-        super();
-        this.tagIdList = tagIdList;
+        super(tagIdList);
     }
-
-    public List<String> getTagIdList() {
-        return tagIdList;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        final ImportManyTagsPhotosAction other = (ImportManyTagsPhotosAction) obj;
-
-        if (this.tagIdList != other.tagIdList &&
-                (this.tagIdList == null ||
-                !this.tagIdList.equals(other.tagIdList))) {
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash +
-            (this.tagIdList != null ? this.tagIdList.hashCode() : 0);
-
-        return hash;
-    }
+    
 }

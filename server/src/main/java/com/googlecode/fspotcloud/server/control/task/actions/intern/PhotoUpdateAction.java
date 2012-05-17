@@ -16,56 +16,16 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
-import java.io.Serializable;
 import java.util.List;
-import net.customware.gwt.dispatch.shared.Action;
 
 
-public class PhotoUpdateAction implements Action<VoidResult>, Serializable {
+public class PhotoUpdateAction extends AbstractBatchAction<PhotoUpdate> {
     private static final long serialVersionUID = -5470374310534233053L;
-    private final List<PhotoUpdate> updates;
 
     public PhotoUpdateAction(List<PhotoUpdate> updates) {
-        super();
-        this.updates = updates;
+        super(updates);
     }
 
-    public List<PhotoUpdate> getUpdates() {
-        return updates;
-    }
 
-    public String toString() {
-        return updates.toString();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        final PhotoUpdateAction other = (PhotoUpdateAction) obj;
-
-        if (this.updates != other.updates &&
-                (this.updates == null || !this.updates.equals(other.updates))) {
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 61 * hash +
-            (this.updates != null ? this.updates.hashCode() : 0);
-
-        return hash;
-    }
 }

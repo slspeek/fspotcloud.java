@@ -16,50 +16,50 @@
  */
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
+import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.ImportManyTagsPhotosAction;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
+import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
-import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
+public class ImportManyTagsPhotosHandler extends AbstractBatchActionHandler<String> implements ActionHandler<ImportManyTagsPhotosAction, VoidResult> {
 
-public class ImportManyTagsPhotosHandler extends SimpleActionHandler<ImportManyTagsPhotosAction, VoidResult> {
     private static final Logger log = Logger.getLogger(ImportManyTagsPhotosHandler.class.getName());
     private final TaskQueueDispatch dispatchAsync;
-    private final int MAX_DATA_TICKS;
 
     @Inject
     public ImportManyTagsPhotosHandler(TaskQueueDispatch dispatchAsync,
-        @Named("maxTicks")
-    int MAX_DATA_TICKS) {
-        super();
+            @Named("maxTicks") int MAX_DATA_TICKS) {
+        super(dispatchAsync, MAX_DATA_TICKS);
         this.dispatchAsync = dispatchAsync;
-        this.MAX_DATA_TICKS = MAX_DATA_TICKS;
     }
 
     @Override
-    public VoidResult execute(ImportManyTagsPhotosAction action,
-        ExecutionContext context) throws DispatchException {
-        final List<String> tagIdList = action.getTagIdList();
+    public void doWork(AbstractBatchAction<String> action, Iterator<String> workLoad) {
+        dispatchAsync.execute(new UserImportsTagAction(workLoad.next()));
+    }
 
-        if (tagIdList.size() > MAX_DATA_TICKS) {
-            List<String> nextList = new ArrayList<String>();
-            nextList.addAll(tagIdList.subList(MAX_DATA_TICKS, tagIdList.size()));
-            dispatchAsync.execute(new ImportManyTagsPhotosAction(nextList));
-        }
+    @Override
+    public Class<ImportManyTagsPhotosAction> getActionType() {
+        ImportManyTagsPhotosAction action = new ImportManyTagsPhotosAction(Collections.EMPTY_LIST);
+        return (Class<ImportManyTagsPhotosAction>) action.getClass();
+    }
 
-        for (int i = 0; (i < MAX_DATA_TICKS) && (i < tagIdList.size()); i++) {
-            String tagId = tagIdList.get(i);
-            dispatchAsync.execute(new UserImportsTagAction(tagId));
-        }
+    @Override
+    public VoidResult execute(ImportManyTagsPhotosAction a, ExecutionContext ec) throws DispatchException {
+        return super.execute(a, ec);
+    }
 
-        return new VoidResult();
+    @Override
+    public void rollback(ImportManyTagsPhotosAction a, VoidResult r, ExecutionContext ec) throws DispatchException {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

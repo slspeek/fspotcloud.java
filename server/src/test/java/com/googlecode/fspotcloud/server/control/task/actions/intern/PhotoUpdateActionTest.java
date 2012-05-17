@@ -40,7 +40,7 @@ public class PhotoUpdateActionTest extends EqualsTest<PhotoUpdateAction> {
 
     @Test
     public void testGetUpdates() {
-        assertEquals(1, action.getUpdates().size());
+        assertEquals(1, action.getWorkLoad().size());
     }
 
     @Test
