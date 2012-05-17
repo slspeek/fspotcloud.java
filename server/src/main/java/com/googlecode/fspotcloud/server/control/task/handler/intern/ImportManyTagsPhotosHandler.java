@@ -30,36 +30,22 @@ import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-public class ImportManyTagsPhotosHandler extends AbstractBatchActionHandler<String> implements ActionHandler<ImportManyTagsPhotosAction, VoidResult> {
 
+public class ImportManyTagsPhotosHandler extends AbstractBatchActionHandler<ImportManyTagsPhotosAction, String> {
     private static final Logger log = Logger.getLogger(ImportManyTagsPhotosHandler.class.getName());
     private final TaskQueueDispatch dispatchAsync;
 
     @Inject
     public ImportManyTagsPhotosHandler(TaskQueueDispatch dispatchAsync,
-            @Named("maxTicks") int MAX_DATA_TICKS) {
+        @Named("maxTicks")
+    int MAX_DATA_TICKS) {
         super(dispatchAsync, MAX_DATA_TICKS);
         this.dispatchAsync = dispatchAsync;
     }
 
     @Override
-    public void doWork(AbstractBatchAction<String> action, Iterator<String> workLoad) {
+    public void doWork(AbstractBatchAction<String> action,
+        Iterator<String> workLoad) {
         dispatchAsync.execute(new UserImportsTagAction(workLoad.next()));
-    }
-
-    @Override
-    public Class<ImportManyTagsPhotosAction> getActionType() {
-        ImportManyTagsPhotosAction action = new ImportManyTagsPhotosAction(Collections.EMPTY_LIST);
-        return (Class<ImportManyTagsPhotosAction>) action.getClass();
-    }
-
-    @Override
-    public VoidResult execute(ImportManyTagsPhotosAction a, ExecutionContext ec) throws DispatchException {
-        return super.execute(a, ec);
-    }
-
-    @Override
-    public void rollback(ImportManyTagsPhotosAction a, VoidResult r, ExecutionContext ec) throws DispatchException {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

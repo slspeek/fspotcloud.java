@@ -18,7 +18,6 @@ package com.googlecode.fspotcloud.server.admin.handler;
 
 import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.Inject;
-import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.callback.PeerMetaDataCallback;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.ImportManyTagsPhotosAction;
@@ -27,7 +26,6 @@ import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
-import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.List;

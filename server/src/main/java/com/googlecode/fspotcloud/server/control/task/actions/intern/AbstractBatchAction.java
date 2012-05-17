@@ -22,9 +22,9 @@ import java.util.Iterator;
 import java.util.List;
 import net.customware.gwt.dispatch.shared.Action;
 
-public abstract class AbstractBatchAction<T> implements Action<VoidResult>,
-        Serializable {
 
+public abstract class AbstractBatchAction<T> implements Action<VoidResult>,
+    Serializable {
     List<T> workLoad;
 
     public AbstractBatchAction(List<T> workLoad) {
@@ -34,7 +34,7 @@ public abstract class AbstractBatchAction<T> implements Action<VoidResult>,
     public Iterator<T> iterator() {
         return new RemovingIterator<T>(workLoad.iterator());
     }
-    
+
     public List<T> getWorkLoad() {
         return workLoad;
     }
@@ -44,21 +44,28 @@ public abstract class AbstractBatchAction<T> implements Action<VoidResult>,
         if (obj == null) {
             return false;
         }
+
         if (getClass() != obj.getClass()) {
             return false;
         }
+
         final AbstractBatchAction<T> other = (AbstractBatchAction<T>) obj;
-        if (this.workLoad != other.workLoad && (this.workLoad == null || !this.workLoad.equals(other.workLoad))) {
+
+        if (this.workLoad != other.workLoad &&
+                (this.workLoad == null ||
+                !this.workLoad.equals(other.workLoad))) {
             return false;
         }
+
         return true;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + (this.workLoad != null ? this.workLoad.hashCode() : 0);
+        hash = 71 * hash +
+            (this.workLoad != null ? this.workLoad.hashCode() : 0);
+
         return hash;
     }
-    
 }

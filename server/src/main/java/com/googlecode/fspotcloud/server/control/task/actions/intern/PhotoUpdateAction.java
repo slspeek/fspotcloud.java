@@ -26,6 +26,4 @@ public class PhotoUpdateAction extends AbstractBatchAction<PhotoUpdate> {
     public PhotoUpdateAction(List<PhotoUpdate> updates) {
         super(updates);
     }
-
-
 }

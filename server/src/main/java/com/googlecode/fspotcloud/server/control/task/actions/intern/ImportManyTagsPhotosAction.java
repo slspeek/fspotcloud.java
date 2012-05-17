@@ -25,5 +25,4 @@ public class ImportManyTagsPhotosAction extends AbstractBatchAction<String> {
     public ImportManyTagsPhotosAction(List<String> tagIdList) {
         super(tagIdList);
     }
-    
 }

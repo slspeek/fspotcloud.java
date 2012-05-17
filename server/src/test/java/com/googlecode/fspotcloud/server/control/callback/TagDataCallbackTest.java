@@ -16,7 +16,10 @@
  */
 package com.googlecode.fspotcloud.server.control.callback;
 
+import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
@@ -40,6 +43,8 @@ public class TagDataCallbackTest {
     Dispatch dispatch;
     Tags tagManager;
     Tag tag;
+    PeerDatabase peer = new PeerDatabaseEntity();
+    PeerDatabases peers;
     TagDataCallback callback;
     final String TAGNAME = "Foo";
     final String TAGID = "FooID";
@@ -51,6 +56,8 @@ public class TagDataCallbackTest {
     public void setUp() throws Exception {
         dispatch = mock(Dispatch.class);
         tagManager = mock(Tags.class);
+        peers = mock(PeerDatabases.class);
+        when(peers.get()).thenReturn(peer);
         tag = new TagEntity();
         tag.setId(TAGID);
         row = new TagData(TAGID, TAGNAME, null, 10);
@@ -59,7 +66,7 @@ public class TagDataCallbackTest {
         list.add(row);
         incoming = new TagDataResult(list);
         when(tagManager.findOrNew(TAGID)).thenReturn(tag);
-        callback = new TagDataCallback(tagManager, dispatch);
+        callback = new TagDataCallback(tagManager, dispatch, peers);
     }
 
     @Test
@@ -76,7 +83,8 @@ public class TagDataCallbackTest {
         assertEquals(10, tag.getCount());
         assertEquals(TAGNAME, tag.getTagName());
         assertNull(tag.getParentId());
-        verifyNoMoreInteractions(dispatch);
+        verify(peers).get();
+        verifyNoMoreInteractions(dispatch, peers);
     }
 
     @Test
@@ -87,10 +95,12 @@ public class TagDataCallbackTest {
         assertEquals(TAGNAME, tag.getTagName());
         assertNull(tag.getParentId());
 
-        ArgumentCaptor<UserImportsTagAction> actionCaptor = ArgumentCaptor.forClass(UserImportsTagAction.class);
-        verify(dispatch).execute(actionCaptor.capture());
-
-        UserImportsTagAction action = actionCaptor.getValue();
-        assertEquals(TAGID, action.getTagId());
+        //        ArgumentCaptor<UserImportsTagAction> actionCaptor = ArgumentCaptor.forClass(UserImportsTagAction.class);
+        //        verify(dispatch).execute(actionCaptor.capture());
+        //
+        //        UserImportsTagAction action = actionCaptor.getValue();
+        //        assertEquals(TAGID, action.getTagId());
+        verify(peers).get();
+        verifyNoMoreInteractions(peers, dispatch);
     }
 }

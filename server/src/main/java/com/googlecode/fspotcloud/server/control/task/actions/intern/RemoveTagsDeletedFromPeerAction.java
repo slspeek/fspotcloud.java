@@ -16,58 +16,14 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
-import java.io.Serializable;
 import java.util.List;
-import net.customware.gwt.dispatch.shared.Action;
 
 
-public class RemoveTagsDeletedFromPeerAction implements Action<VoidResult>,
-    Serializable {
+public class RemoveTagsDeletedFromPeerAction extends AbstractBatchAction<TagRemovedFromPeer> {
     private static final long serialVersionUID = 7650176553018963544L;
-    private final List<TagRemovedFromPeer> toBoDeleted;
 
     public RemoveTagsDeletedFromPeerAction(List<TagRemovedFromPeer> toBoDeleted) {
-        super();
-        this.toBoDeleted = toBoDeleted;
-    }
-
-    public List<TagRemovedFromPeer> getToBoDeleted() {
-        return toBoDeleted;
-    }
-
-    public String toString() {
-        return toBoDeleted.toString();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        final RemoveTagsDeletedFromPeerAction other = (RemoveTagsDeletedFromPeerAction) obj;
-
-        if (this.toBoDeleted != other.toBoDeleted &&
-                (this.toBoDeleted == null ||
-                !this.toBoDeleted.equals(other.toBoDeleted))) {
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash +
-            (this.toBoDeleted != null ? this.toBoDeleted.hashCode() : 0);
-
-        return hash;
+        super(toBoDeleted);
     }
 }

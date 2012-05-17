@@ -65,7 +65,7 @@ public class PeerUpdateInstructionsCallbackTest {
         List<Action> actions = updateCaptor.getAllValues();
         TagUpdateAction update = (TagUpdateAction) actions.get(1);
         RemoveTagsDeletedFromPeerAction remove = (RemoveTagsDeletedFromPeerAction) actions.get(0);
-        assertEquals(TAG_REMOVED_ID, remove.getToBoDeleted().get(0).getTagId());
-        assertEquals(TAG_ID, update.getUpdates().get(0).getTagId());
+        assertEquals(TAG_REMOVED_ID, remove.getWorkLoad().get(0).getTagId());
+        assertEquals(TAG_ID, update.getWorkLoad().get(0).getTagId());
     }
 }

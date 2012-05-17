@@ -16,9 +16,9 @@
  */
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
+import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.model.api.*;
-import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.Iterator;
@@ -26,12 +26,9 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import javax.inject.Inject;
 import javax.inject.Named;
-import net.customware.gwt.dispatch.server.ExecutionContext;
-import net.customware.gwt.dispatch.server.SimpleActionHandler;
-import net.customware.gwt.dispatch.shared.DispatchException;
 
 
-public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotosFromTagAction, VoidResult> {
+public class RemovePhotosFromTagHandler extends AbstractBatchActionHandler<RemovePhotosFromTagAction, String> {
     private final int MAX_DELETE_TICKS;
     private final TaskQueueDispatch dispatchAsync;
     private final Photos photos;
@@ -42,7 +39,7 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
     public RemovePhotosFromTagHandler(@Named("maxDelete")
     int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
         Tags tagManager, PeerDatabases peerDatabaseManager) {
-        super();
+        super(dispatchAsync, maxDeleteTicks);
         MAX_DELETE_TICKS = maxDeleteTicks;
         this.dispatchAsync = dispatchAsync;
         this.photos = photos;
@@ -50,40 +47,7 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
         this.peerDatabaseManager = peerDatabaseManager;
     }
 
-    @Override
-    public VoidResult execute(RemovePhotosFromTagAction action,
-        ExecutionContext context) throws DispatchException {
-        Tag tag = tagManager.find(action.getTagId());
-        Iterator<String> it = action.getToBeDeleted().iterator();
-
-        for (int i = 0; (i < MAX_DELETE_TICKS) && it.hasNext(); i++) {
-            String photoId = it.next();
-
-            checkForDeletion(tag, tag.getId(), photoId, it);
-        }
-
-        tagManager.save(tag);
-
-        if (!action.getToBeDeleted().isEmpty()) {
-            dispatchAsync.execute(action);
-        }
-
-        clearTreeCache();
-
-        return new VoidResult();
-    }
-
-    private void clearTreeCache() {
-        PeerDatabase peer = peerDatabaseManager.get();
-
-        if (peer.getCachedTagTree() != null) {
-            peer.setCachedTagTree(null);
-            peerDatabaseManager.save(peer);
-        }
-    }
-
-    private void checkForDeletion(Tag tag, String deleteTagId, String key,
-        Iterator<?> it) {
+    private void checkForDeletion(Tag tag, String deleteTagId, String key) {
         Photo photo = photos.find(key);
 
         if (photo != null) {
@@ -111,8 +75,6 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
                 tag.setCachedPhotoList(cachedPhotoList);
             }
         }
-
-        it.remove();
     }
 
     private PhotoInfo find(SortedSet<PhotoInfo> set, String id) {
@@ -123,5 +85,28 @@ public class RemovePhotosFromTagHandler extends SimpleActionHandler<RemovePhotos
         }
 
         return null;
+    }
+
+    @Override
+    public void doWork(AbstractBatchAction<String> action,
+        Iterator<String> workLoad) {
+        Tag tag = tagManager.find(((RemovePhotosFromTagAction) action).getTagId());
+
+        for (int i = 0; (i < MAX_DELETE_TICKS) && workLoad.hasNext(); i++) {
+            String photoId = workLoad.next();
+            checkForDeletion(tag, tag.getId(), photoId);
+        }
+
+        tagManager.save(tag);
+        clearTreeCache();
+    }
+
+    private void clearTreeCache() {
+        PeerDatabase peer = peerDatabaseManager.get();
+
+        if (peer.getCachedTagTree() != null) {
+            peer.setCachedTagTree(null);
+            peerDatabaseManager.save(peer);
+        }
     }
 }
