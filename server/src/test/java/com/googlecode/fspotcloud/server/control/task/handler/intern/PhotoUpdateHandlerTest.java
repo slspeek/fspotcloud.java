@@ -19,7 +19,6 @@ package com.googlecode.fspotcloud.server.control.task.handler.intern;
 import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
-import com.googlecode.fspotcloud.server.control.task.handler.intern.PhotoUpdateHandler;
 import com.googlecode.fspotcloud.shared.peer.GetPhotoDataAction;
 import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.fspotcloud.shared.peer.PhotoDataResult;
@@ -87,8 +86,8 @@ public class PhotoUpdateHandlerTest {
         assertEquals("1", request.getImageKeys().get(0));
 
         PhotoUpdateAction nextAction = recursiveActionCaptor.getValue();
-        assertEquals(1, nextAction.getUpdates().size());
-        update = nextAction.getUpdates().get(0);
+        assertEquals(1, nextAction.getWorkLoad().size());
+        update = nextAction.getWorkLoad().get(0);
         assertEquals("2", update.getPhotoId());
     }
 
@@ -133,10 +132,10 @@ public class PhotoUpdateHandlerTest {
         assertEquals("6", actionList.get(1).getImageKeys().get(2));
 
         PhotoUpdateAction nextAction = recursiveActionCaptor.getValue();
-        assertEquals(2, nextAction.getUpdates().size());
-        update = nextAction.getUpdates().get(0);
+        assertEquals(2, nextAction.getWorkLoad().size());
+        update = nextAction.getWorkLoad().get(0);
         assertEquals("7", update.getPhotoId());
-        update = nextAction.getUpdates().get(1);
+        update = nextAction.getWorkLoad().get(1);
         assertEquals("8", update.getPhotoId());
     }
 

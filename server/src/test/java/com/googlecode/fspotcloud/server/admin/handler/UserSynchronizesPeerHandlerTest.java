@@ -68,7 +68,7 @@ public class UserSynchronizesPeerHandlerTest {
         verify(taskQueueDispatch).execute(taskActionCaptor.capture());
 
         ImportManyTagsPhotosAction importAction = taskActionCaptor.getValue();
-        assertEquals(TAG_ID, importAction.getTagIdList().get(0));
+        assertEquals(TAG_ID, importAction.getWorkLoad().get(0));
     }
 
     @Test(expected = SecurityException.class)

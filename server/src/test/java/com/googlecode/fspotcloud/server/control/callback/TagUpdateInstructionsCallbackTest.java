@@ -72,7 +72,8 @@ public class TagUpdateInstructionsCallbackTest {
         List<Action> actions = updateCaptor.getAllValues();
         PhotoUpdateAction update = (PhotoUpdateAction) actions.get(1);
         RemovePhotosFromTagAction photoRemove = (RemovePhotosFromTagAction) actions.get(0);
+       // assertEquals(PHOTO_DELETE_ID, photoRemove.getWorkLoad().get(0));
         assertEquals(PHOTO_DELETE_ID, photoRemove.getToBeDeleted().get(0));
-        assertEquals(PHOTO_UPDATE_ID, update.getUpdates().get(0).getPhotoId());
+        assertEquals(PHOTO_UPDATE_ID, update.getWorkLoad().get(0).getPhotoId());
     }
 }

@@ -25,16 +25,18 @@ import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
+import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
-import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
+import static com.google.common.collect.Lists.*;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
 
-
-public class PhotoUpdateHandler extends SimpleActionHandler<PhotoUpdateAction, VoidResult> {
+public class PhotoUpdateHandler extends AbstractBatchActionHandler<PhotoUpdate> implements ActionHandler<PhotoUpdateAction, VoidResult> {
     @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(PhotoUpdateHandler.class.getName());
     private final int MAX_DATA_TICKS;
@@ -49,7 +51,7 @@ public class PhotoUpdateHandler extends SimpleActionHandler<PhotoUpdateAction, V
     int maxPhotoTicks, @Named("defaultImageSpecs")
     ImageSpecs imageSpecs, ControllerDispatchAsync controllerDispatch,
         TaskQueueDispatch dispatchAsync) {
-        super();
+        super(dispatchAsync, maxTicks);
         this.controllerDispatch = controllerDispatch;
         this.dispatchAsync = dispatchAsync;
         MAX_DATA_TICKS = maxTicks;
@@ -60,41 +62,31 @@ public class PhotoUpdateHandler extends SimpleActionHandler<PhotoUpdateAction, V
     @Override
     public VoidResult execute(PhotoUpdateAction action, ExecutionContext context)
         throws DispatchException {
-        List<PhotoUpdate> updates = action.getUpdates();
-        int size = updates.size();
-        int countWeWillDo;
-        int needToScheduleCount = (int) Math.ceil((double) size / (double) MAX_PHOTO_TICKS);
+        return super.execute(action, context);
+    }
 
-        if (needToScheduleCount > MAX_DATA_TICKS) {
-            countWeWillDo = MAX_DATA_TICKS;
+    @Override
+    public Class<PhotoUpdateAction> getActionType() {
+        PhotoUpdateAction action = new PhotoUpdateAction(null);
+        return (Class<PhotoUpdateAction>) action.getClass();
+    }
 
-            List<PhotoUpdate> nextList = new ArrayList<PhotoUpdate>();
-            nextList.addAll(updates.subList(countWeWillDo * MAX_PHOTO_TICKS,
-                    size));
-            dispatchAsync.execute(new PhotoUpdateAction(nextList));
-        } else {
-            countWeWillDo = needToScheduleCount;
-        }
+    @Override
+    public void rollback(PhotoUpdateAction a, VoidResult r, ExecutionContext ec) throws DispatchException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-        // Do our part of the job, scheduling the head
-        for (int i = 0; i < countWeWillDo; i++) {
-            int beginning = i * MAX_PHOTO_TICKS;
-            List<String> imageKeys = new ArrayList<String>();
-
-            for (int j = beginning;
-                    (j < (MAX_PHOTO_TICKS + beginning)) &&
-                    (j < updates.size()); j++) {
-                PhotoUpdate photoUpdate = updates.get(j);
+    @Override
+    public void doWork(AbstractBatchAction<PhotoUpdate> action, Iterator<PhotoUpdate> workLoad) {
+            List<String> imageKeys = newArrayList();
+            for (int j = 0; j < MAX_PHOTO_TICKS &&  workLoad.hasNext(); j++) {
+                PhotoUpdate photoUpdate = workLoad.next();
                 imageKeys.add(photoUpdate.getPhotoId());
             }
-
-            // log.info("Doing our part " + imageKeys);
             GetPhotoDataAction botAction = new GetPhotoDataAction(imageSpecs,
                     imageKeys);
             PhotoDataCallback callback = new PhotoDataCallback(null, null, null);
             controllerDispatch.execute(botAction, callback);
-        }
-
-        return new VoidResult();
+        
     }
 }

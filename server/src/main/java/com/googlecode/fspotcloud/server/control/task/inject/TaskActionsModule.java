@@ -22,6 +22,8 @@ import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteAllPho
 import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteTagsHandler;
 import com.googlecode.fspotcloud.server.control.task.handler.intern.PhotoUpdateHandler;
 import com.googlecode.fspotcloud.server.control.task.handler.intern.RemovePhotosFromTagHandler;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
 
