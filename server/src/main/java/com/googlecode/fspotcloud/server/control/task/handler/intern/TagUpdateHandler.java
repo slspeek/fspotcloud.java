@@ -18,12 +18,14 @@ package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.callback.TagDataCallback;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.TagUpdateAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetTagDataAction;
 import com.googlecode.fspotcloud.shared.peer.TagUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -33,59 +35,31 @@ import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 
-public class TagUpdateHandler extends SimpleActionHandler<TagUpdateAction, VoidResult> {
-    @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(TagUpdateHandler.class.getName());
+public class TagUpdateHandler extends AbstractBatchActionHandler<TagUpdateAction, TagUpdate> {
     private final int MAX_DATA_TICKS;
     private final ControllerDispatchAsync controllerDispatch;
-    private final TaskQueueDispatch dispatchAsync;
 
     @Inject
     public TagUpdateHandler(@Named("maxTicks")
     int maxTicks, ControllerDispatchAsync controllerDispatch,
         TaskQueueDispatch dispatchAsync) {
-        super();
+        super(dispatchAsync, maxTicks);
         this.controllerDispatch = controllerDispatch;
-        this.dispatchAsync = dispatchAsync;
         MAX_DATA_TICKS = maxTicks;
     }
 
     @Override
-    public VoidResult execute(TagUpdateAction action, ExecutionContext context)
-        throws DispatchException {
-        List<TagUpdate> updates = action.getUpdates();
-        int size = updates.size();
-        int countWeWillDo;
-        int needToScheduleCount = (int) Math.ceil((double) size / (double) MAX_DATA_TICKS);
+    public void doWork(AbstractBatchAction<TagUpdate> action,
+        Iterator<TagUpdate> workLoad) {
+        List<String> tagKeys = new ArrayList<String>();
 
-        if (needToScheduleCount > MAX_DATA_TICKS) {
-            countWeWillDo = MAX_DATA_TICKS;
-
-            List<TagUpdate> nextList = new ArrayList<TagUpdate>();
-            nextList.addAll(updates.subList(countWeWillDo * MAX_DATA_TICKS, size));
-            dispatchAsync.execute(new TagUpdateAction(nextList));
-        } else {
-            countWeWillDo = needToScheduleCount;
+        for (int j = 0; workLoad.hasNext() && j < MAX_DATA_TICKS; j++) {
+            TagUpdate tagUpdate = workLoad.next();
+            tagKeys.add(tagUpdate.getTagId());
         }
 
-        // Do our part of the job, scheduling the head
-        for (int i = 0; i < countWeWillDo; i++) {
-            int beginning = i * MAX_DATA_TICKS;
-            List<String> tagKeys = new ArrayList<String>();
-
-            for (int j = beginning;
-                    (j < (MAX_DATA_TICKS + beginning)) && (j < updates.size());
-                    j++) {
-                TagUpdate tagUpdate = updates.get(j);
-                tagKeys.add(tagUpdate.getTagId());
-            }
-
-            // log.info("Doing our part " + imageKeys);
-            GetTagDataAction botAction = new GetTagDataAction(tagKeys);
-            TagDataCallback callback = new TagDataCallback(null, null);
-            controllerDispatch.execute(botAction, callback);
-        }
-
-        return new VoidResult();
+        GetTagDataAction botAction = new GetTagDataAction(tagKeys);
+        TagDataCallback callback = new TagDataCallback(null, null, null);
+        controllerDispatch.execute(botAction, callback);
     }
 }

@@ -40,7 +40,7 @@ task unpackTest << {
 test {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.server.admin.integration.GaeIntegrationGuiceBerryEnv'
-    //testLogging.showStandardStreams = true
+    testLogging.showStandardStreams = true
 }
 
 test.dependsOn(unpackTest)

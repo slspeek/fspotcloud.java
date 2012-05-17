@@ -17,22 +17,19 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovingIterator;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.Iterator;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
+import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
+import net.customware.gwt.dispatch.server.standard.GenericUtils;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 
-public abstract class AbstractBatchActionHandler<T> {
-    
-    
-    @Inject
-    private Logger log;
+public abstract class AbstractBatchActionHandler<V extends AbstractBatchAction<T>, T>
+    implements ActionHandler<V, VoidResult> {
     private final TaskQueueDispatch dispatchAsync;
     protected final int MAX_DATA_TICKS;
 
@@ -45,23 +42,32 @@ public abstract class AbstractBatchActionHandler<T> {
         this.MAX_DATA_TICKS = MAX_DATA_TICKS;
     }
 
-    public VoidResult execute(AbstractBatchAction<T> action,
-        ExecutionContext context) throws DispatchException {
+    public abstract void doWork(AbstractBatchAction<T> action,
+        Iterator<T> workLoad);
+
+    @Override
+    public VoidResult execute(V action, ExecutionContext ec)
+        throws DispatchException {
         Iterator<T> it = action.iterator();
+
         for (int i = 0; (i < MAX_DATA_TICKS) && it.hasNext(); i++) {
             doWork(action, it);
         }
-        finish();
+
         if (it.hasNext()) {
             dispatchAsync.execute(action);
         }
+
         return new VoidResult();
     }
 
-    public abstract  void doWork(AbstractBatchAction<T> action, Iterator<T> workLoad);
-
-    public void finish() {
-        
+    @Override
+    public Class<V> getActionType() {
+        return (Class<V>) GenericUtils.getFirstTypeParameterDeclaredOnSuperclass(this.getClass());
     }
-    
+
+    @Override
+    public void rollback(V a, VoidResult r, ExecutionContext ec)
+        throws DispatchException {
+    }
 }

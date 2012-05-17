@@ -16,31 +16,20 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
-import com.googlecode.fspotcloud.shared.main.PhotoInfo;
-import java.io.Serializable;
 import java.util.List;
-import net.customware.gwt.dispatch.shared.Action;
 
 
-public class RemovePhotosFromTagAction implements Action<VoidResult>,
-    Serializable {
+public class RemovePhotosFromTagAction extends AbstractBatchAction<String> {
     private static final long serialVersionUID = -8353337263892135688L;
     private final String tagId;
-    private final List<String> toBeDeleted;
 
     public RemovePhotosFromTagAction(String tagId, List<String> toBeDeleted) {
-        super();
+        super(toBeDeleted);
         this.tagId = tagId;
-        this.toBeDeleted = toBeDeleted;
     }
 
     public String getTagId() {
         return tagId;
-    }
-
-    public List<String> getToBeDeleted() {
-        return toBeDeleted;
     }
 
     @Override
@@ -60,21 +49,13 @@ public class RemovePhotosFromTagAction implements Action<VoidResult>,
             return false;
         }
 
-        if (this.toBeDeleted != other.toBeDeleted &&
-                (this.toBeDeleted == null ||
-                !this.toBeDeleted.equals(other.toBeDeleted))) {
-            return false;
-        }
-
-        return true;
+        return super.equals(obj);
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 73 * hash + (this.tagId != null ? this.tagId.hashCode() : 0);
-        hash = 73 * hash +
-            (this.toBeDeleted != null ? this.toBeDeleted.hashCode() : 0);
+        hash = 71 * hash + (this.tagId != null ? this.tagId.hashCode() : 0);
 
         return hash;
     }

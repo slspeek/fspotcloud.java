@@ -16,56 +16,14 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.TagUpdate;
-import java.io.Serializable;
 import java.util.List;
-import net.customware.gwt.dispatch.shared.Action;
 
 
-public class TagUpdateAction implements Action<VoidResult>, Serializable {
+public class TagUpdateAction extends AbstractBatchAction<TagUpdate> {
     private static final long serialVersionUID = -5470374310534233053L;
-    private final List<TagUpdate> updates;
 
     public TagUpdateAction(List<TagUpdate> updates) {
-        super();
-        this.updates = updates;
-    }
-
-    public List<TagUpdate> getUpdates() {
-        return updates;
-    }
-
-    public String toString() {
-        return updates.toString();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        final TagUpdateAction other = (TagUpdateAction) obj;
-
-        if (this.updates != other.updates &&
-                (this.updates == null || !this.updates.equals(other.updates))) {
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 11 * hash +
-            (this.updates != null ? this.updates.hashCode() : 0);
-
-        return hash;
+        super(updates);
     }
 }

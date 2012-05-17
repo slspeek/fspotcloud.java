@@ -101,31 +101,30 @@ public class PeerServerIntegrationTest {
         assertTrue(result.getTree().isEmpty());
     }
 
-    @Test
-    public void getTagTreeAfterOneSynchronize() throws Exception {
-        setUpPeer();
-
-        TagTreeResult result = fetchTagTree();
-        assertTrue(result.getTree().isEmpty());
-
-        synchronizePeer();
-        result = fetchTagTree();
-        //As nothing is imported yet
-        assertTrue(result.getTree().isEmpty());
-
-        importTag("3");
-        result = fetchTagTree();
-
-        TagNode mac = result.getTree().get(0);
-        assertEquals("Mac", mac.getTagName());
-
-        setPeerTestDatabase("photos_smaller.db");
-        synchronizePeer();
-        result = fetchTagTree();
-        mac = result.getTree().get(0);
-        assertEquals("Macintosh", mac.getTagName());
-    }
-
+    //    @Test
+    //    public void getTagTreeAfterOneSynchronize() throws Exception {
+    //        setUpPeer();
+    //
+    //        TagTreeResult result = fetchTagTree();
+    //        assertTrue(result.getTree().isEmpty());
+    //
+    //        synchronizePeer();
+    //        result = fetchTagTree();
+    //        //As nothing is imported yet
+    //        assertTrue(result.getTree().isEmpty());
+    //
+    //        importTag("3");
+    //        result = fetchTagTree();
+    //
+    //        TagNode mac = result.getTree().get(0);
+    //        assertEquals("Mac", mac.getTagName());
+    //
+    //        setPeerTestDatabase("photos_smaller.db");
+    //        synchronizePeer();
+    //        result = fetchTagTree();
+    //        mac = result.getTree().get(0);
+    //        assertEquals("Macintosh", mac.getTagName());
+    //    }
     @Test
     public void testImportAllTags() throws Exception {
         setUpPeer();

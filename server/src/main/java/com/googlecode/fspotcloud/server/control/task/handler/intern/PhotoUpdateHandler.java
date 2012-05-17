@@ -16,33 +16,24 @@
  */
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
+import static com.google.common.collect.Lists.*;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.callback.PhotoDataCallback;
+import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
-import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetPhotoDataAction;
 import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
-import net.customware.gwt.dispatch.server.ActionHandler;
-import net.customware.gwt.dispatch.server.ExecutionContext;
-import net.customware.gwt.dispatch.shared.DispatchException;
-import static com.google.common.collect.Lists.*;
-import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
 
-public class PhotoUpdateHandler extends AbstractBatchActionHandler<PhotoUpdate> implements ActionHandler<PhotoUpdateAction, VoidResult> {
-    @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(PhotoUpdateHandler.class.getName());
-    private final int MAX_DATA_TICKS;
+
+public class PhotoUpdateHandler extends AbstractBatchActionHandler<PhotoUpdateAction, PhotoUpdate> {
     private final int MAX_PHOTO_TICKS;
     private final ControllerDispatchAsync controllerDispatch;
-    private final TaskQueueDispatch dispatchAsync;
     private final ImageSpecs imageSpecs;
 
     @Inject
@@ -53,40 +44,23 @@ public class PhotoUpdateHandler extends AbstractBatchActionHandler<PhotoUpdate> 
         TaskQueueDispatch dispatchAsync) {
         super(dispatchAsync, maxTicks);
         this.controllerDispatch = controllerDispatch;
-        this.dispatchAsync = dispatchAsync;
-        MAX_DATA_TICKS = maxTicks;
         MAX_PHOTO_TICKS = maxPhotoTicks;
         this.imageSpecs = imageSpecs;
     }
 
     @Override
-    public VoidResult execute(PhotoUpdateAction action, ExecutionContext context)
-        throws DispatchException {
-        return super.execute(action, context);
-    }
+    public void doWork(AbstractBatchAction<PhotoUpdate> action,
+        Iterator<PhotoUpdate> workLoad) {
+        List<String> imageKeys = newArrayList();
 
-    @Override
-    public Class<PhotoUpdateAction> getActionType() {
-        PhotoUpdateAction action = new PhotoUpdateAction(null);
-        return (Class<PhotoUpdateAction>) action.getClass();
-    }
+        for (int j = 0; j < MAX_PHOTO_TICKS && workLoad.hasNext(); j++) {
+            PhotoUpdate photoUpdate = workLoad.next();
+            imageKeys.add(photoUpdate.getPhotoId());
+        }
 
-    @Override
-    public void rollback(PhotoUpdateAction a, VoidResult r, ExecutionContext ec) throws DispatchException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void doWork(AbstractBatchAction<PhotoUpdate> action, Iterator<PhotoUpdate> workLoad) {
-            List<String> imageKeys = newArrayList();
-            for (int j = 0; j < MAX_PHOTO_TICKS &&  workLoad.hasNext(); j++) {
-                PhotoUpdate photoUpdate = workLoad.next();
-                imageKeys.add(photoUpdate.getPhotoId());
-            }
-            GetPhotoDataAction botAction = new GetPhotoDataAction(imageSpecs,
-                    imageKeys);
-            PhotoDataCallback callback = new PhotoDataCallback(null, null, null);
-            controllerDispatch.execute(botAction, callback);
-        
+        GetPhotoDataAction botAction = new GetPhotoDataAction(imageSpecs,
+                imageKeys);
+        PhotoDataCallback callback = new PhotoDataCallback(null, null, null);
+        controllerDispatch.execute(botAction, callback);
     }
 }
