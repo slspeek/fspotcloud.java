@@ -63,12 +63,7 @@ public class PhotoDataCallback implements SerializableAsyncCallback<PhotoDataRes
     }
 
     private void clearTreeCache() {
-        PeerDatabase peer = peerDatabases.get();
-
-        if (peer.getCachedTagTree() != null) {
-            peer.setCachedTagTree(null);
-            peerDatabases.save(peer);
-        }
+        peerDatabases.resetCachedTagTree();
     }
 
     private Photo recievePhoto(PhotoData photoData) {

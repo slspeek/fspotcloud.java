@@ -14,30 +14,51 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.googlecode.fspotcloud.test;
 
-import com.google.guiceberry.junit4.GuiceBerryRule;
 import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
 import javax.inject.Inject;
-import org.junit.Rule;
-import org.junit.Test;
 
 
-public class ApplicationActionsITest {
-    @Rule
-    public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
+/**
+ *
+ * @author steven
+ */
+public class DashboardPage {
     @Inject
-    PhotoPage photoPage;
+    Selenium selenium;
+    @Inject
+    ILogin login;
 
-    @Test
-    public void showPopups() throws Exception {
-        photoPage.open();
-        photoPage.about();
+    public void open() {
+        selenium.open("/Dashboard.html");
+        selenium.waitForPageToLoad("30000");
+    }
+
+    public void loginAndOpen() throws Exception {
+        login.login();
+        open();
+    }
+
+    public void synchronize() throws InterruptedException {
+        selenium.click("gwt-debug-update-button");
+        sleepShort(9);
+    }
+
+    public void toggleImportForTagId(String id) throws InterruptedException {
+        selenium.open("/Dashboard.html#TagPlace:" + id);
+        selenium.waitForPageToLoad("30000");
+        selenium.click("gwt-debug-import-tag-button");
+        sleepShort(5);
+    }
+
+    void removeAll() throws InterruptedException {
+        selenium.click("gwt-debug-delete-all-tags-button");
         sleepShort();
-        photoPage.about();
-        photoPage.help();
-        sleepShort();
-        photoPage.help();
     }
 }

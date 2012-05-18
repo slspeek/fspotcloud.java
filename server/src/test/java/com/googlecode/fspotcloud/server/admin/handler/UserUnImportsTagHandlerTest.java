@@ -53,19 +53,15 @@ public class UserUnImportsTagHandlerTest {
         TaskQueueDispatch dispatchAsync, PeerDatabases peerDatabases,
         ArgumentCaptor<RemovePhotosFromTagAction> actionCaptor)
         throws Exception {
-        PeerDatabase peer = new PeerDatabaseEntity();
         Tag tagOne = new TagEntity();
         tagOne.setId(TAG_ID);
         when(tagManager.find(TAG_ID)).thenReturn(tagOne);
-        when(peerDatabases.get()).thenReturn(peer);
 
         VoidResult result = handler.execute(action, null);
-
         verify(dispatchAsync).execute(actionCaptor.capture());
 
         RemovePhotosFromTagAction deleteAction = actionCaptor.getValue();
         assertEquals(TAG_ID, deleteAction.getTagId());
-        verify(peerDatabases).get();
         verify(tagManager).find(TAG_ID);
         verifyNoMoreInteractions(tagManager, peerDatabases, dispatchAsync);
     }
@@ -75,12 +71,10 @@ public class UserUnImportsTagHandlerTest {
         TaskQueueDispatch dispatchAsync, PeerDatabases peerDatabases,
         ArgumentCaptor<RemovePhotosFromTagAction> actionCaptor)
         throws Exception {
-        PeerDatabase peer = new PeerDatabaseEntity();
         Tag tagOne = new TagEntity();
         tagOne.setId(TAG_ID);
         tagOne.setImportIssued(true);
         when(tagManager.find(TAG_ID)).thenReturn(tagOne);
-        when(peerDatabases.get()).thenReturn(peer);
 
         VoidResult result = handler.execute(action, null);
 
@@ -88,7 +82,6 @@ public class UserUnImportsTagHandlerTest {
 
         RemovePhotosFromTagAction deleteAction = actionCaptor.getValue();
         assertEquals(TAG_ID, deleteAction.getTagId());
-        verify(peerDatabases).get();
         verify(tagManager).find(TAG_ID);
         verify(tagManager).save(tagOne);
         verifyNoMoreInteractions(tagManager, peerDatabases, dispatchAsync);
@@ -107,7 +100,6 @@ public class UserUnImportsTagHandlerTest {
         tagOne.setId(TAG_ID);
         tagOne.setImportIssued(true);
         when(tagManager.find(TAG_ID)).thenReturn(tagOne);
-        when(peerDatabases.get()).thenReturn(peer);
 
         VoidResult result = handler.execute(action, null);
 
@@ -115,10 +107,8 @@ public class UserUnImportsTagHandlerTest {
 
         RemovePhotosFromTagAction deleteAction = actionCaptor.getValue();
         assertEquals(TAG_ID, deleteAction.getTagId());
-        verify(peerDatabases).get();
         verify(tagManager).find(TAG_ID);
         verify(tagManager).save(tagOne);
-        verify(peerDatabases).save(peer);
         verifyNoMoreInteractions(tagManager, peerDatabases, dispatchAsync);
     }
 

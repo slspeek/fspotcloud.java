@@ -14,30 +14,39 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.googlecode.fspotcloud.test;
 
-import com.google.guiceberry.junit4.GuiceBerryRule;
-import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
 import javax.inject.Inject;
-import org.junit.Rule;
-import org.junit.Test;
 
 
-public class ApplicationActionsITest {
-    @Rule
-    public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
+/**
+ *
+ * @author steven
+ */
+public class PhotoPage {
     @Inject
-    PhotoPage photoPage;
+    Selenium selenium;
 
-    @Test
-    public void showPopups() throws Exception {
-        photoPage.open();
-        photoPage.about();
-        sleepShort();
-        photoPage.about();
-        photoPage.help();
-        sleepShort();
-        photoPage.help();
+    public void open() {
+        selenium.open("/");
+        selenium.waitForPageToLoad("30000");
+    }
+
+    public void about() {
+        selenium.click("gwt-debug-about");
+    }
+
+    public void help() {
+        selenium.click("gwt-debug-help");
+    }
+
+    public void back() {
+        selenium.click("gwt-debug-back");
+        selenium.waitForPageToLoad("30000");
     }
 }

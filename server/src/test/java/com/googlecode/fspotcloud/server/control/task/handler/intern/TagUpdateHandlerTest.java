@@ -57,7 +57,7 @@ public class TagUpdateHandlerTest {
         assertEquals(expResult, result);
         verify(controllerDispatch)
             .execute(new GetTagDataAction(newArrayList("2")),
-            new TagDataCallback(null, null, null));
+            new TagDataCallback(null, null));
         verify(dispatchAsync)
             .execute(new TagUpdateAction(newArrayList(new TagUpdate("3"))));
         verifyNoMoreInteractions(controllerDispatch, dispatchAsync);
@@ -74,7 +74,7 @@ public class TagUpdateHandlerTest {
         assertEquals(expResult, result);
         verify(controllerDispatch)
             .execute(new GetTagDataAction(newArrayList("2")),
-            new TagDataCallback(null, null, null));
+            new TagDataCallback(null, null));
         verifyNoMoreInteractions(controllerDispatch, dispatchAsync);
     }
 

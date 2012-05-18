@@ -14,30 +14,35 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.test;
-
-import com.google.guiceberry.junit4.GuiceBerryRule;
-import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
-import com.thoughtworks.selenium.Selenium;
-import javax.inject.Inject;
-import org.junit.Rule;
-import org.junit.Test;
+package com.googlecode.fspotcloud.server.admin.integration;
 
 
-public class ApplicationActionsITest {
-    @Rule
-    public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+import com.google.inject.Inject;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import java.util.logging.Logger;
+
+
+/**
+ * DOCUMENT ME!
+ *
+ * @author steven
+*/
+public class PeerDatabaseAssert {
     @Inject
-    PhotoPage photoPage;
+    Logger log;
+    @Inject
+    PeerDatabases peers;
 
-    @Test
-    public void showPopups() throws Exception {
-        photoPage.open();
-        photoPage.about();
-        sleepShort();
-        photoPage.about();
-        photoPage.help();
-        sleepShort();
-        photoPage.help();
+    public boolean isEmpty() {
+        return peers.isEmpty();
+    }
+
+    public void printPeers() {
+        log.info(peers + " PEERS: " + peers.findAll(10) + "Tree:" +
+            peers.get().getCachedTagTree());
     }
 }

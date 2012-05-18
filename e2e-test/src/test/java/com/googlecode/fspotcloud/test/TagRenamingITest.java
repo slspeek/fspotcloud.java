@@ -20,24 +20,40 @@ import com.google.guiceberry.junit4.GuiceBerryRule;
 import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
 import javax.inject.Inject;
+import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.Test;
 
 
-public class ApplicationActionsITest {
+public class TagRenamingITest {
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
+    Selenium selenium;
+    @Inject
+    ILogin login;
+    @Inject
     PhotoPage photoPage;
+    @Inject
+    DashboardPage dashboardPage;
+    @Inject
+    PeerRunner peerRunner;
 
     @Test
-    public void showPopups() throws Exception {
+    public void shouldBeRenamedAfterSynchronize() throws Exception {
+        //We start off with empty db
+        peerRunner.startPeer("../peer/src/test/resources/photos.db");
+        dashboardPage.loginAndOpen();
+        dashboardPage.synchronize();
+        dashboardPage.toggleImportForTagId("3"); //Mac
         photoPage.open();
-        photoPage.about();
-        sleepShort();
-        photoPage.about();
-        photoPage.help();
-        sleepShort();
-        photoPage.help();
+        assertTrue(selenium.isTextPresent("Mac"));
+        peerRunner.stopPeer();
+        dashboardPage.open();
+        peerRunner.startPeer("../peer/src/test/resources/photos_smaller.db");
+        dashboardPage.synchronize();
+        photoPage.open();
+        assertTrue(selenium.isTextPresent("Macintosh"));
+        peerRunner.stopPeer();
     }
 }

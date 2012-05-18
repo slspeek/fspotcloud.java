@@ -19,16 +19,11 @@ package com.googlecode.fspotcloud.server.control.task.handler.intern;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.ImportManyTagsPhotosAction;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
-import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
-import net.customware.gwt.dispatch.server.ActionHandler;
-import net.customware.gwt.dispatch.server.ExecutionContext;
-import net.customware.gwt.dispatch.shared.DispatchException;
 
 
 public class ImportManyTagsPhotosHandler extends AbstractBatchActionHandler<ImportManyTagsPhotosAction, String> {

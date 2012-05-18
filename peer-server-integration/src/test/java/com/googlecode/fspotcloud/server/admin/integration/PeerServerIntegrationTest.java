@@ -67,6 +67,8 @@ public class PeerServerIntegrationTest {
     PhotoAssert photoInfo;
     @Inject
     TagAssert tagInfo;
+    @Inject
+    PeerDatabaseAssert peerInfo;
     private TearDown toTearDown;
 
     @BeforeMethod
@@ -74,6 +76,22 @@ public class PeerServerIntegrationTest {
         // Make this the call to TestNgGuiceBerry.setUp as early as possible
         toTearDown = TestNgGuiceBerry.setUp(this, m, EmptyGuiceBerryEnv.class);
         setUpPeer();
+    }
+
+    @Test
+    public void shouldBeNull() throws SQLException, DispatchException {
+        setUpPeer();
+        fetchTagTree();
+        peers.resetCachedTagTree();
+
+        PeerDatabase peer = peers.get();
+        assertNull(peer.getCachedTagTree());
+        fetchTagTree();
+        peer = peers.get();
+        assertNotNull(peer.getCachedTagTree());
+        synchronizePeer();
+        peer = peers.get();
+        assertNull(peer.getCachedTagTree());
     }
 
     private TagTreeResult fetchTagTree() throws DispatchException {
@@ -101,30 +119,38 @@ public class PeerServerIntegrationTest {
         assertTrue(result.getTree().isEmpty());
     }
 
-    //    @Test
-    //    public void getTagTreeAfterOneSynchronize() throws Exception {
-    //        setUpPeer();
-    //
-    //        TagTreeResult result = fetchTagTree();
-    //        assertTrue(result.getTree().isEmpty());
-    //
-    //        synchronizePeer();
-    //        result = fetchTagTree();
-    //        //As nothing is imported yet
-    //        assertTrue(result.getTree().isEmpty());
-    //
-    //        importTag("3");
-    //        result = fetchTagTree();
-    //
-    //        TagNode mac = result.getTree().get(0);
-    //        assertEquals("Mac", mac.getTagName());
-    //
-    //        setPeerTestDatabase("photos_smaller.db");
-    //        synchronizePeer();
-    //        result = fetchTagTree();
-    //        mac = result.getTree().get(0);
-    //        assertEquals("Macintosh", mac.getTagName());
-    //    }
+    @Test
+    public void getTagTreeAfterOneSynchronize() throws Exception {
+        peerInfo.printPeers();
+        setUpPeer();
+
+        TagTreeResult result = fetchTagTree();
+        assertTrue(result.getTree().isEmpty());
+
+        synchronizePeer();
+        peerInfo.printPeers();
+        result = fetchTagTree();
+        //As nothing is imported yet
+        assertTrue(result.getTree().isEmpty());
+
+        importTag("3");
+        result = fetchTagTree();
+
+        TagNode mac = result.getTree().get(0);
+        assertEquals("Mac", mac.getTagName());
+
+        setPeerTestDatabase("photos_smaller.db");
+        log.info("Before sync Got");
+        synchronizePeer();
+
+        peerInfo.printPeers();
+        //peers.resetCachedTagTree();
+        peerInfo.printPeers();
+        result = fetchTagTree();
+        mac = result.getTree().get(0);
+        assertEquals("Macintosh", mac.getTagName());
+    }
+
     @Test
     public void testImportAllTags() throws Exception {
         setUpPeer();
@@ -279,6 +305,7 @@ public class PeerServerIntegrationTest {
                 @Override
                 public void onFailure(Throwable caught) {
                     log.log(Level.SEVERE, "On fail ", caught);
+                    fail();
                 }
 
                 @Override
@@ -294,6 +321,7 @@ public class PeerServerIntegrationTest {
                 @Override
                 public void onFailure(Throwable caught) {
                     log.info("On fail " + caught);
+                    fail();
                 }
 
                 @Override
@@ -309,6 +337,7 @@ public class PeerServerIntegrationTest {
                 @Override
                 public void onFailure(Throwable caught) {
                     log.info("On fail " + caught);
+                    fail();
                 }
 
                 @Override

@@ -18,17 +18,13 @@ package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.inject.Inject;
 import com.googlecode.botdispatch.SerializableAsyncCallback;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.peer.TagData;
 import com.googlecode.fspotcloud.shared.peer.TagDataResult;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.customware.gwt.dispatch.server.Dispatch;
-import net.customware.gwt.dispatch.shared.DispatchException;
 
 
 public class TagDataCallback implements SerializableAsyncCallback<TagDataResult> {
@@ -37,15 +33,11 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
     @Inject
     private transient Tags tagManager;
     @Inject
-    private transient Dispatch dispatch;
-    @Inject
     private transient PeerDatabases peerDatabases;
 
-    public TagDataCallback(Tags tagManager, Dispatch dispatch,
-        PeerDatabases peerDatabaseManager) {
+    public TagDataCallback(Tags tagManager, PeerDatabases peerDatabaseManager) {
         super();
         this.tagManager = tagManager;
-        this.dispatch = dispatch;
         this.peerDatabases = peerDatabaseManager;
     }
 
@@ -69,24 +61,9 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
     }
 
     private void clearTreeCache() {
-        PeerDatabase peer = peerDatabases.get();
-
-        if (peer.getCachedTagTree() != null) {
-            peer.setCachedTagTree(null);
-            peerDatabases.save(peer);
-            log.info("TagData clear CT");
-        }
+        peerDatabases.resetCachedTagTree();
     }
 
-    //    private void updateTagPhotos(Tag tag) {
-    //        if (tag.isImportIssued()) {
-    //            try {
-    //                dispatch.execute(new UserImportsTagAction(tag.getId()));
-    //            } catch (DispatchException e) {
-    //                log.log(Level.SEVERE, "Caught: ", e);
-    //            }
-    //        }
-    //    }
     private void recieveTag(TagData data, Tag tag) {
         String tagName = data.getName();
         String parentId = data.getParentId();

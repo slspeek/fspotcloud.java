@@ -21,6 +21,6 @@ import org.junit.runners.Suite;
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({DashboardITest.class, ApplicationActionsITest.class, TabularITest.class, IntersectionDeleteITest.class, DeleteITest.class})
+@Suite.SuiteClasses({DashboardITest.class, ApplicationActionsITest.class, TabularITest.class, IntersectionDeleteITest.class, DeleteITest.class, TagRenamingITest.class})
 public class LocalSuite {
 }

@@ -26,7 +26,6 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.simplejpadao.EntityModule;
-import java.util.logging.Logger;
 
 
 public class ModelModule extends AbstractModule {
