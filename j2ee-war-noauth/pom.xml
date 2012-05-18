@@ -4,7 +4,7 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-19</version>
+        <version>0.12-20</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>j2ee-war-noauth</artifactId>
@@ -157,6 +157,9 @@
                             <testClassesDirectory>${project.build.directory}/e2e-tests</testClassesDirectory>
                             <systemPropertyVariables>
                                 <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.test.J2eeWarGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>
+                                 <bot.secret>${bot.secret}</bot.secret>
+                                <peer.jar>../peer/target/peer-${project.version}-jar-with-dependencies.jar</peer.jar>
+                                <endpoint>localhost:8080/j2ee-war-noauth</endpoint>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>

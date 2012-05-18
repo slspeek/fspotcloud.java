@@ -40,7 +40,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 public class TagDataCallbackTest {
-    Dispatch dispatch;
     Tags tagManager;
     Tag tag;
     PeerDatabase peer = new PeerDatabaseEntity();
@@ -54,7 +53,6 @@ public class TagDataCallbackTest {
 
     @Before
     public void setUp() throws Exception {
-        dispatch = mock(Dispatch.class);
         tagManager = mock(Tags.class);
         peers = mock(PeerDatabases.class);
         when(peers.get()).thenReturn(peer);
@@ -66,7 +64,7 @@ public class TagDataCallbackTest {
         list.add(row);
         incoming = new TagDataResult(list);
         when(tagManager.findOrNew(TAGID)).thenReturn(tag);
-        callback = new TagDataCallback(tagManager, dispatch, peers);
+        callback = new TagDataCallback(tagManager, peers);
     }
 
     @Test
@@ -83,8 +81,8 @@ public class TagDataCallbackTest {
         assertEquals(10, tag.getCount());
         assertEquals(TAGNAME, tag.getTagName());
         assertNull(tag.getParentId());
-        verify(peers).get();
-        verifyNoMoreInteractions(dispatch, peers);
+        verify(peers).resetCachedTagTree();
+        verifyNoMoreInteractions(peers);
     }
 
     @Test
@@ -94,13 +92,7 @@ public class TagDataCallbackTest {
         assertEquals(10, tag.getCount());
         assertEquals(TAGNAME, tag.getTagName());
         assertNull(tag.getParentId());
-
-        //        ArgumentCaptor<UserImportsTagAction> actionCaptor = ArgumentCaptor.forClass(UserImportsTagAction.class);
-        //        verify(dispatch).execute(actionCaptor.capture());
-        //
-        //        UserImportsTagAction action = actionCaptor.getValue();
-        //        assertEquals(TAGID, action.getTagId());
-        verify(peers).get();
-        verifyNoMoreInteractions(peers, dispatch);
+        verify(peers).resetCachedTagTree();
+        verifyNoMoreInteractions(peers);
     }
 }

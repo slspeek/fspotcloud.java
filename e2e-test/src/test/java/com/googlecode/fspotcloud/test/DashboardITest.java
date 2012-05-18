@@ -28,21 +28,17 @@ public class DashboardITest {
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
-    Selenium selenium;
+    PeerRunner peerRunner;
     @Inject
-    ILogin login;
+    DashboardPage dashboardPage;
 
     @Test
-    public void testImport() throws Exception {
-        login.login();
-        selenium.waitForPageToLoad("30000");
-        selenium.click("gwt-debug-update-button");
-        sleepShort(9);
-        selenium.open("/Dashboard.html");
-        selenium.waitForPageToLoad("30000");
-        sleepShort();
-        //import Furniture		
-        selenium.click("gwt-debug-import-tag-button");
-        selenium.waitForPageToLoad("30000");
+    public void testImportFurniture() throws Exception {
+        peerRunner.startPeer("../peer/src/test/resources/photos.db");
+        dashboardPage.loginAndOpen();
+        dashboardPage.synchronize();
+        dashboardPage.open();
+        dashboardPage.toggleImportForTagId("1"); //Furniture
+        peerRunner.stopPeer();
     }
 }

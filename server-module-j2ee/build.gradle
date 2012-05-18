@@ -39,6 +39,7 @@ test {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.server.admin.integration.J2eeIntegrationGuiceBerryEnv'
     testLogging.showStandardStreams = true
+    ignoreFailures = true
 }
 
 test.dependsOn(unpackTest)

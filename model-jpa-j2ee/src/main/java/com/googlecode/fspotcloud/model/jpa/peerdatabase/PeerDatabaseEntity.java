@@ -31,7 +31,7 @@ import org.apache.commons.lang.SerializationUtils;
 */
 @Entity
 public class PeerDatabaseEntity implements PeerDatabase, Serializable {
-    public static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
+    //public static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
     private static final transient long serialVersionUID = -4842421992073164575L;
     @Id
     private String name;
@@ -50,7 +50,7 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable {
     @Basic
     private String imageDimension = "1024x768";
     @Lob
-    byte[] cachedTagTreeData = EMPTY_BYTE_ARRAY;
+    byte[] cachedTagTreeData; // = EMPTY_BYTE_ARRAY;
     @Basic
     private boolean cachedTagTreeNull = true;
     private transient ArrayList<TagNode> cachedTagTree = null;
@@ -142,23 +142,19 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable {
     }
 
     @Override
-    public void setCachedTagTree(List<TagNode> cachedTagTree) {
-        if (cachedTagTree == null) {
+    public void setCachedTagTree(List<TagNode> newTagTree) {
+        if (newTagTree == null) {
+            this.cachedTagTreeData = null;
             this.cachedTagTree = null;
-            this.cachedTagTreeNull = true;
-            this.cachedTagTreeData = EMPTY_BYTE_ARRAY;
         } else {
-            this.cachedTagTreeNull = false;
-            this.cachedTagTree = new ArrayList<TagNode>(cachedTagTree);
+            this.cachedTagTree = new ArrayList<TagNode>(newTagTree);
             this.cachedTagTreeData = SerializationUtils.serialize(this.cachedTagTree);
         }
     }
 
     @Override
     public List<TagNode> getCachedTagTree() {
-        if (cachedTagTreeNull) {
-            return null;
-        } else {
+        if ((cachedTagTree == null) && (cachedTagTreeData != null)) {
             cachedTagTree = (ArrayList<TagNode>) SerializationUtils.deserialize(cachedTagTreeData);
         }
 

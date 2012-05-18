@@ -30,18 +30,14 @@ public class DeleteITest {
     @Inject
     Selenium selenium;
     @Inject
-    ILogin login;
+    DashboardPage dashboardPage;
 
     @Test
     public void testClear() throws Exception {
-        login.login();
-        selenium.waitForPageToLoad("30000");
-        selenium.click("gwt-debug-delete-all-tags-button");
+        dashboardPage.loginAndOpen();
+        dashboardPage.removeAll();
         sleepShort();
-
-        selenium.open("/Dashboard.html");
-        selenium.waitForPageToLoad("30000");
-        sleepShort();
+        dashboardPage.open();
         sleepShort();
     }
 }

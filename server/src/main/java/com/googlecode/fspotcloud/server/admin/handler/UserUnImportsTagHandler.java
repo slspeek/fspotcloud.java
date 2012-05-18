@@ -18,8 +18,6 @@ package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
@@ -40,17 +38,14 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
     private static final Logger log = Logger.getLogger(UserUnImportsTagHandler.class.getName());
     private final Tags tagManager;
     private final TaskQueueDispatch dispatchAsync;
-    private final PeerDatabases peerDatabases;
     private final IAdminPermission adminPermission;
 
     @Inject
     public UserUnImportsTagHandler(Tags tagManager,
-        TaskQueueDispatch dispatchAsync, PeerDatabases peerDatabases,
-        IAdminPermission adminPermission) {
+        TaskQueueDispatch dispatchAsync, IAdminPermission adminPermission) {
         super();
         this.tagManager = tagManager;
         this.dispatchAsync = dispatchAsync;
-        this.peerDatabases = peerDatabases;
         this.adminPermission = adminPermission;
     }
 
@@ -77,20 +72,10 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
 
             dispatchAsync.execute(new RemovePhotosFromTagAction(tag.getId(),
                     idList));
-            clearTreeCache();
         } catch (Exception e) {
             throw new ActionException(e);
         }
 
         return new VoidResult();
-    }
-
-    private void clearTreeCache() {
-        PeerDatabase peer = peerDatabases.get();
-
-        if (peer.getCachedTagTree() != null) {
-            peer.setCachedTagTree(null);
-            peerDatabases.save(peer);
-        }
     }
 }

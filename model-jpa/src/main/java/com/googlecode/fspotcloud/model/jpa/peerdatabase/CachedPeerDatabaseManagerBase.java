@@ -18,9 +18,11 @@ package com.googlecode.fspotcloud.model.jpa.peerdatabase;
 
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import com.googlecode.simplejpadao.cacheddao.CachedSimpleDAONamedIdImpl;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -75,10 +77,20 @@ public abstract class CachedPeerDatabaseManagerBase<T extends PeerDatabase, U ex
         return peerDatabase;
     }
 
+    @Override
     public void touchPeerContact() {
         T dp = get();
         dp.setPeerLastContact(new Date());
         save(dp);
+    }
+
+    @Override
+    public void resetCachedTagTree() {
+        T dp = get();
+        List<TagNode> tree = dp.getCachedTagTree();
+        dp.setCachedTagTree(null);
+        save(dp);
+        log.info("RESET Tree was:" + tree);
     }
 
     protected abstract T newInstance();

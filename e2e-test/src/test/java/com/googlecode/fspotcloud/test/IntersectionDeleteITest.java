@@ -31,19 +31,21 @@ public class IntersectionDeleteITest {
     @Inject
     Selenium selenium;
     @Inject
-    ILogin login;
+    PeerRunner peerRunner;
+    @Inject
+    DashboardPage dashboardPage;
 
     @Test
     public void testImport() throws Exception {
-        login.login();
-        pressButtonForComputers();
-        pressButtonForPC();
-        sleepShort(15);
-        pressButtonForComputers();
+        peerRunner.startPeer("../peer/src/test/resources/photos.db");
+        dashboardPage.loginAndOpen();
+        dashboardPage.toggleImportForTagId("2");
+        dashboardPage.toggleImportForTagId("4"); //import pc
+        dashboardPage.toggleImportForTagId("2"); //remove computers
         sleepShort(3);
         selenium.open("/#BasePlace:4:11:1:1");
         selenium.waitForPageToLoad("30000");
-        sleepShort(3);
+        sleepShort(4);
 
         String page = selenium.getText("gwt-debug-paging-label");
 
@@ -51,18 +53,6 @@ public class IntersectionDeleteITest {
             fail();
         }
 
-        pressButtonForPC();
-    }
-
-    private void pressButtonForComputers() throws InterruptedException {
-        selenium.open("/Dashboard.html#TagPlace:2");
-        selenium.waitForPageToLoad("30000");
-        selenium.click("gwt-debug-import-tag-button");
-    }
-
-    private void pressButtonForPC() throws InterruptedException {
-        selenium.open("/Dashboard.html#TagPlace:4");
-        selenium.waitForPageToLoad("30000");
-        selenium.click("gwt-debug-import-tag-button");
+        peerRunner.stopPeer();
     }
 }

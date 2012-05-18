@@ -4,7 +4,7 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-19</version>
+        <version>0.12-20</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>gae-war</artifactId>
@@ -144,6 +144,9 @@
                                 <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>
                                     com.googlecode.fspotcloud.test.GaeWarGuiceBerryEnv
                                 </GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>
+                                <bot.secret>${bot.secret}</bot.secret>
+                                <peer.jar>../peer/target/peer-${project.version}-jar-with-dependencies.jar</peer.jar>
+                                <endpoint>localhost:8080</endpoint>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes
@@ -237,53 +240,7 @@
                     </warSourceDirectory>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>run-peer</id>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <target>
-                                <property name="runtime_classpath" refid="maven.runtime.classpath"/>
-                                <java
-                                    jar="${basedir}/../peer/target/peer-${project.version}-jar-with-dependencies.jar"
-                                    fork="yes" spawn="yes">
-                                    <sysproperty key="db"
-                                                 value="${basedir}/../peer/src/test/resources/photos.db"/>
-                                    <sysproperty key="endpoint" value="localhost:8080"/>
-                                    <sysproperty key="bot.secret" value="${bot.secret}"/>
-                                    <sysproperty key="pause" value="2"/>
-                                    <sysproperty key="photo.dir.original" value="file:///home/steven/Photos"/>
-                                    <sysproperty key="photo.dir.override"
-                                                 value="file://${basedir}/../peer/src/test/resources/Photos"/>
-                                </java>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>stop-peer</id>
-                        <phase>post-integration-test</phase>
-                        <configuration>
-                            <target>
-                                <property name="runtime_classpath" refid="maven.runtime.classpath"/>
-                                <exec executable="telnet">
-                                    <arg value="localhost"/>
-                                    <arg value="4444"/>
-                                </exec>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+           
         </plugins>
     </build>
     <pluginRepositories>

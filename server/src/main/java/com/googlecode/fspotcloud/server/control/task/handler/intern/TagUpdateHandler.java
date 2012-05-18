@@ -20,19 +20,14 @@ import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.callback.TagDataCallback;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.TagUpdateAction;
-import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetTagDataAction;
 import com.googlecode.fspotcloud.shared.peer.TagUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
-import net.customware.gwt.dispatch.server.ExecutionContext;
-import net.customware.gwt.dispatch.server.SimpleActionHandler;
-import net.customware.gwt.dispatch.shared.DispatchException;
 
 
 public class TagUpdateHandler extends AbstractBatchActionHandler<TagUpdateAction, TagUpdate> {
@@ -59,7 +54,7 @@ public class TagUpdateHandler extends AbstractBatchActionHandler<TagUpdateAction
         }
 
         GetTagDataAction botAction = new GetTagDataAction(tagKeys);
-        TagDataCallback callback = new TagDataCallback(null, null, null);
+        TagDataCallback callback = new TagDataCallback(null, null);
         controllerDispatch.execute(botAction, callback);
     }
 }

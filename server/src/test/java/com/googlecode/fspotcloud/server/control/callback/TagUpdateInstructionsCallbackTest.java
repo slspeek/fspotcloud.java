@@ -29,6 +29,7 @@ import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
 import com.googlecode.fspotcloud.shared.peer.TagUpdateInstructionsResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.List;
+import java.util.logging.Logger;
 import net.customware.gwt.dispatch.shared.Action;
 import org.jukito.JukitoRunner;
 import org.junit.*;
@@ -52,6 +53,7 @@ public class TagUpdateInstructionsCallbackTest {
     @Before
     public void createCallback(TaskQueueDispatch dispatchAsync) {
         callback = new TagUpdateInstructionsCallback(TAG_ID, dispatchAsync);
+        callback.log = Logger.getAnonymousLogger();
     }
 
     @Test

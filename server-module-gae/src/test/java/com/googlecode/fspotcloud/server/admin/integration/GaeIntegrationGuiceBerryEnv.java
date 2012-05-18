@@ -22,6 +22,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.googlecode.botdispatch.controller.inject.LocalControllerModule;
+import com.googlecode.fspotcloud.model.jpa.CachedModelModule;
 import com.googlecode.fspotcloud.model.jpa.gae.GaeCacheProvider;
 import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
 import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoManager;
@@ -43,8 +44,6 @@ import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
 import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.fspotcloud.user.LenientUserModule;
-import com.googlecode.fspotcloud.user.LenientUserService;
-import com.googlecode.fspotcloud.user.UserService;
 import com.googlecode.simplejpadao.EntityModule;
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
@@ -62,8 +61,8 @@ public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
         bind(Integer.class).annotatedWith(Names.named("maxTicks"))
             .toInstance(new Integer(3));
         install(new MyAdminActionsModule());
-        // install(new CachedModelModule(1));
-        install(new MyModelModule());
+        install(new CachedModelModule(1));
+        //install(new MyModelModule());
         bind(ImageSpecs.class).annotatedWith(Names.named("defaultImageSpecs"))
             .toInstance(new ImageSpecs(1024, 768, 512, 378));
         bind(Integer.class).annotatedWith(Names.named("maxPhotoTicks"))

@@ -56,11 +56,12 @@ task removeSecurity(type: Exec, dependsOn: copyWar) {
             "build/exploded/WEB-INF/web.xml"
 }
 task peerRun(type: Exec, dependsOn: ':peer:jar') {
-    commandLine "screen", "-d", "-m", "../peer/peer_run.sh", "${version}", "${bot_secret}", "localhost:8080/j2ee-e2e"
+    commandLine /*"screen", "-d", "-m", */ "../peer/peer_run.sh",
+            "${version}", "${bot_secret}", "localhost:8080/j2ee-e2e",
+            "../peer/src/test/resources/photos.db"
 }
 
 tomcatRun.dependsOn removeSecurity
-test.dependsOn tomcatRun, peerRun, unpackTest
 
 
 [tomcatRun, tomcatStop]*.stopPort = 8090
@@ -68,15 +69,20 @@ test.dependsOn tomcatRun, peerRun, unpackTest
 [tomcatRun, tomcatStop]*.daemon = true
 
 tomcatRun {
-        webAppSourceDirectory = file("build/exploded")
+    webAppSourceDirectory = file("build/exploded")
 }
+
 test {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.test.J2eeWarGuiceBerryEnv'
+    systemProperties['bot.secret'] = bot_secret
+    systemProperties['endpoint'] = "localhost:8080/j2ee-e2e"
+    systemProperties['peer.jar'] = "../peer/build/libs/peer-${version}.jar"
     include "com/googlecode/fspotcloud/test/LocalSuite.class"
     testLogging.showStandardStreams = true
 }
 
+test.dependsOn tomcatRun, unpackTest, ":peer:assemble"
 
 test << {
     println "Stopping server"

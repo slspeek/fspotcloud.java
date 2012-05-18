@@ -16,6 +16,7 @@
  */
 package com.googlecode.fspotcloud.server.control.callback;
 
+import com.google.common.annotations.VisibleForTesting;
 import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.Inject;
 import com.googlecode.botdispatch.SerializableAsyncCallback;
@@ -30,8 +31,10 @@ import java.util.logging.Logger;
 
 
 public class TagUpdateInstructionsCallback implements SerializableAsyncCallback<TagUpdateInstructionsResult> {
-    private static final Logger log = Logger.getLogger(TagUpdateInstructionsCallback.class.getName());
     private static final long serialVersionUID = -6213572441944313878L;
+    @Inject
+    @VisibleForTesting
+    Logger log;
     @Inject
     private transient TaskQueueDispatch dispatchAsync;
     private String tagId;
@@ -40,7 +43,6 @@ public class TagUpdateInstructionsCallback implements SerializableAsyncCallback<
         TaskQueueDispatch dispatchAsync) {
         super();
         this.tagId = tagId;
-        log.info("tagId:" + tagId);
         this.dispatchAsync = dispatchAsync;
     }
 

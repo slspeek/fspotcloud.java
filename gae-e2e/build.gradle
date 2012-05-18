@@ -51,15 +51,14 @@ task peerStop(type: Exec) {
     ignoreExitValue = true
 }
 
-task peerRun(type: Exec, dependsOn: ':peer:jar') {
-    commandLine "screen", "-d","-m", "../peer/peer_run.sh", "${version}", "${bot_secret}", "localhost:8080"
-}
-
-test.dependsOn copyWar, gaeRun, peerRun, unpackTest
+test.dependsOn copyWar, gaeRun, unpackTest, ":peer:assemble"
 
 test {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.test.GaeWarGuiceBerryEnv'
+    systemProperties['bot.secret'] = bot_secret
+    systemProperties['endpoint'] = "localhost:8080"
+    systemProperties['peer.jar'] = "../peer/build/libs/peer-${version}.jar"
     include "com/googlecode/fspotcloud/test/LocalSuite.class"
     testLogging.showStandardStreams = true
 }
