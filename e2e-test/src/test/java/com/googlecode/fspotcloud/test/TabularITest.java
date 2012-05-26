@@ -35,15 +35,12 @@ public class TabularITest {
     @Test
     public void testTabular() throws Exception {
         photoPage.open();
-        selenium.click("gwt-debug-image-view-4x0");
-        selenium.waitForPageToLoad("30000");
-        selenium.click("gwt-debug-image-view-0x0");
-        selenium.waitForPageToLoad("30000");
+        photoPage.clickImage(4, 0);
+        photoPage.clickImage(0, 0);
 
         selenium.open("/#BasePlace:1:12:2:2:false:true");
         selenium.waitForPageToLoad("30000");
         photoPage.back();
-        Assert.assertEquals("image?id=6&thumb",
-            selenium.getAttribute("//*[@id=\"gwt-debug-image-view-0x1\"]@src"));
+        photoPage.assertImageHasId(0, 1, "6");
     }
 }

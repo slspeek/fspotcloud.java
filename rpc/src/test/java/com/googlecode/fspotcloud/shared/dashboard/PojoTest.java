@@ -21,15 +21,14 @@ import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.impl.PojoClassFactory;
 import com.openpojo.validation.PojoValidator;
 import com.openpojo.validation.affirm.Affirm;
-import com.openpojo.validation.rule.impl.*;
-import com.openpojo.validation.test.impl.BusinessIdentityTester;
+import com.openpojo.validation.rule.impl.GetterMustExistRule;
+import com.openpojo.validation.rule.impl.NoNestedClassRule;
+import com.openpojo.validation.rule.impl.NoPublicFieldsRule;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-
-
 public class PojoTest {
     // Configured for expectation, so we know when a class gets added or removed.
     private static final int EXPECTED_CLASS_COUNT = 9;

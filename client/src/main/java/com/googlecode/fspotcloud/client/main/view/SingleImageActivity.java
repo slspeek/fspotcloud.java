@@ -19,14 +19,10 @@ package com.googlecode.fspotcloud.client.main.view;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
-import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.googlecode.fspotcloud.client.main.event.application.ApplicationEvent;
-import com.googlecode.fspotcloud.client.main.event.application.ApplicationType;
 import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
 import com.googlecode.fspotcloud.client.main.view.api.SingleImageView;
-import com.googlecode.fspotcloud.client.view.action.KeyStroke;
 import java.util.logging.Logger;
 
 

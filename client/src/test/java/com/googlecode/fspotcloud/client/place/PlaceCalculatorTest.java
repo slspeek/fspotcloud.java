@@ -16,9 +16,6 @@
  */
 package com.googlecode.fspotcloud.client.place;
 
-import com.googlecode.fspotcloud.client.place.BasePlace;
-import com.googlecode.fspotcloud.client.place.PlaceCalculator;
-import com.googlecode.fspotcloud.client.place.SlideshowPlace;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Zoom;
 import junit.framework.TestCase;
 

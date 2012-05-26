@@ -16,7 +16,6 @@
  */
 package com.googlecode.fspotcloud.server.inject;
 
-import com.google.inject.AbstractModule;
 import com.googlecode.fspotcloud.user.LenientUserService;
 import com.googlecode.fspotcloud.user.UserService;
 import com.googlecode.fspotcloud.user.inject.AbstractUserModule;

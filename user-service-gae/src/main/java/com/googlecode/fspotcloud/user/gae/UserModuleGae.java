@@ -17,10 +17,7 @@
 package com.googlecode.fspotcloud.user.gae;
 
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.googlecode.fspotcloud.user.AdminPermission;
-import com.googlecode.fspotcloud.user.IAdminPermission;
 import com.googlecode.fspotcloud.user.inject.AbstractUserModule;
 
 

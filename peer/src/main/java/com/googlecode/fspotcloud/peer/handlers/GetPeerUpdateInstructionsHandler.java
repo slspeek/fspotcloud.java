@@ -18,13 +18,7 @@ package com.googlecode.fspotcloud.peer.handlers;
 
 import com.google.common.collect.ImmutableList;
 import com.googlecode.fspotcloud.peer.db.Data;
-import com.googlecode.fspotcloud.shared.main.PhotoInfo;
-import com.googlecode.fspotcloud.shared.peer.GetPeerUpdateInstructionsAction;
-import com.googlecode.fspotcloud.shared.peer.PeerUpdateInstructionsResult;
-import com.googlecode.fspotcloud.shared.peer.TagData;
-import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
-import com.googlecode.fspotcloud.shared.peer.TagUpdate;
-import java.sql.SQLException;
+import com.googlecode.fspotcloud.shared.peer.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;

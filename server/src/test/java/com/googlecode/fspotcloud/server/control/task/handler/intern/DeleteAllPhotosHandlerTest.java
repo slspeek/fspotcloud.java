@@ -27,8 +27,8 @@ import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import org.jukito.JukitoRunner;
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
 

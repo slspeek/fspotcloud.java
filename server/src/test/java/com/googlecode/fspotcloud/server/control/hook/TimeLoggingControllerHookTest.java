@@ -26,10 +26,11 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import java.util.Date;
 import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  *

@@ -23,7 +23,10 @@ import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import java.io.Serializable;
 import java.util.TreeSet;
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
 import org.apache.commons.lang.SerializationUtils;
 
 

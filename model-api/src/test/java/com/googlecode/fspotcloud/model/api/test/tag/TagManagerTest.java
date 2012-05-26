@@ -28,11 +28,9 @@ import java.util.List;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 import org.junit.After;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.Rule;
 import org.junit.Test;
-
-
 public class TagManagerTest {
     private static final Logger log = Logger.getLogger(TagManagerTest.class.getName());
     @Rule

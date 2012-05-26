@@ -17,13 +17,10 @@
 package com.googlecode.fspotcloud.shared.peer;
 
 import static com.google.common.collect.Lists.newArrayList;
-import com.googlecode.fspotcloud.shared.peer.GetTagDataAction;
 import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-
-
 public class GetTagDataActionTest {
     private final List<String> ID_LIST = newArrayList("1", "2");
     GetTagDataAction action;

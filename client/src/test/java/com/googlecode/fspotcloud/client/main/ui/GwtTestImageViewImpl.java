@@ -17,8 +17,6 @@
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.junit.client.GWTTestCase;
-import com.googlecode.fspotcloud.client.main.ui.ImageViewImpl;
-import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
 import java.util.logging.Logger;
 
 

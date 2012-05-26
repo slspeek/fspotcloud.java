@@ -21,14 +21,13 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.google.common.collect.ImmutableList;
-import static com.google.common.collect.Lists.*;
+import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.name.Names;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsDeletedFromPeerAction;
 import com.googlecode.fspotcloud.server.model.api.Photo;
-import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
@@ -39,19 +38,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.TreeSet;
 import javax.inject.Inject;
-import javax.inject.Named;
-import net.customware.gwt.dispatch.server.ExecutionContext;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
-import org.junit.AfterClass;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
-import org.mockito.MockitoAnnotations;
-
 
 /**
  *

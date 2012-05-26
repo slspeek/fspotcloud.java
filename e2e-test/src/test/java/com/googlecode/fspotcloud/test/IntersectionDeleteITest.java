@@ -34,6 +34,8 @@ public class IntersectionDeleteITest {
     PeerRunner peerRunner;
     @Inject
     DashboardPage dashboardPage;
+    @Inject
+    PhotoPage photoPage;
 
     @Test
     public void testImport() throws Exception {
@@ -47,11 +49,7 @@ public class IntersectionDeleteITest {
         selenium.waitForPageToLoad("30000");
         sleepShort(4);
 
-        String page = selenium.getText("gwt-debug-paging-label");
-
-        if (!page.contains("1 of 14")) {
-            fail();
-        }
+        photoPage.assertPagingLabelSays(1, 14);
 
         peerRunner.stopPeer();
     }

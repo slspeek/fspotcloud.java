@@ -34,11 +34,12 @@ import com.googlecode.fspotcloud.shared.peer.TagData;
 import java.util.List;
 import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * DOCUMENT ME!

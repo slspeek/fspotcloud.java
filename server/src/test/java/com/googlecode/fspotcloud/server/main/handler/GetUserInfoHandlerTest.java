@@ -29,7 +29,7 @@ import org.jukito.JukitoRunner;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 @RunWith(JukitoRunner.class)
 public class GetUserInfoHandlerTest {
     @Inject

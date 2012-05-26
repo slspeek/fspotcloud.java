@@ -6,7 +6,6 @@ apply plugin: 'tomcat'
 
 findbugsTest.enabled = false;
 
-
 dependencies {
     tomcat "org.apache.tomcat:catalina:${tomcatVersion}",
             "org.apache.tomcat:coyote:${tomcatVersion}",
@@ -55,18 +54,14 @@ task removeSecurity(type: Exec, dependsOn: copyWar) {
     commandLine "sed", "-i", "-e", "s/com.googlecode.fspotcloud.server.inject.J2eeGuiceServletConfig/com.googlecode.fspotcloud.server.inject.J2eeNoAuthGuiceServletConfig/",
             "build/exploded/WEB-INF/web.xml"
 }
-task peerRun(type: Exec, dependsOn: ':peer:jar') {
-    commandLine /*"screen", "-d", "-m", */ "../peer/peer_run.sh",
-            "${version}", "${bot_secret}", "localhost:8080/j2ee-e2e",
-            "../peer/src/test/resources/photos.db"
-}
 
 tomcatRun.dependsOn removeSecurity
 
 
-[tomcatRun, tomcatStop]*.stopPort = 8090
+[tomcatRun, tomcatStop]*.stopPort = 8060
 [tomcatRun, tomcatStop]*.stopKey = 'STOP'
 [tomcatRun, tomcatStop]*.daemon = true
+[tomcatRun, tomcatStop]*.httpPort = 8050
 
 tomcatRun {
     webAppSourceDirectory = file("build/exploded")
@@ -76,7 +71,7 @@ test {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.test.J2eeWarGuiceBerryEnv'
     systemProperties['bot.secret'] = bot_secret
-    systemProperties['endpoint'] = "localhost:8080/j2ee-e2e"
+    systemProperties['endpoint'] = "localhost:8050/j2ee-e2e"
     systemProperties['peer.jar'] = "../peer/build/libs/peer-${version}.jar"
     include "com/googlecode/fspotcloud/test/LocalSuite.class"
     testLogging.showStandardStreams = true

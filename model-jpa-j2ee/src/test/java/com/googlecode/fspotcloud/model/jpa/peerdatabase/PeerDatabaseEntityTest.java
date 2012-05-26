@@ -23,8 +23,9 @@ package com.googlecode.fspotcloud.model.jpa.peerdatabase;
 import com.google.common.collect.Lists;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.List;
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import org.junit.Test;
 
 /**
  * DOCUMENT ME!

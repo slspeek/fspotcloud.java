@@ -20,11 +20,9 @@
  */
 package com.googlecode.fspotcloud.shared.dashboard;
 
-import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import org.apache.commons.lang.SerializationUtils;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-
 
 /**
  * DOCUMENT ME!

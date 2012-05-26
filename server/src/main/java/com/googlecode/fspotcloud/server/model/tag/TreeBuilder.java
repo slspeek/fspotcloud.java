@@ -16,7 +16,6 @@
  */
 package com.googlecode.fspotcloud.server.model.tag;
 
-import com.googlecode.fspotcloud.server.model.tag.Filter;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -20,7 +20,7 @@
  */
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
-import static com.google.common.collect.Lists.*;
+import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.name.Names;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.ImportManyTagsPhotosAction;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
@@ -30,10 +30,11 @@ import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  *

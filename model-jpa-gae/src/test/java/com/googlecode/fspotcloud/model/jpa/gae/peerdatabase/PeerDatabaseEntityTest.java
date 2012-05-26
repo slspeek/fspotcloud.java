@@ -23,8 +23,10 @@ package com.googlecode.fspotcloud.model.jpa.gae.peerdatabase;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.After;
+import static org.junit.Assert.assertNull;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * DOCUMENT ME!

@@ -32,11 +32,7 @@ import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import com.googlecode.fspotcloud.client.main.view.api.ButtonPanelView;
-import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
-import com.googlecode.fspotcloud.client.main.view.api.TagView;
-import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
-import com.googlecode.fspotcloud.client.main.view.api.TreeView;
+import com.googlecode.fspotcloud.client.main.view.api.*;
 import java.util.logging.Logger;
 
 

@@ -18,7 +18,6 @@ package com.googlecode.fspotcloud.client.main.event;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.junit.client.GWTTestCase;
-import com.googlecode.fspotcloud.client.main.event.ActionFamily;
 import com.googlecode.fspotcloud.client.main.gin.EventGinjector;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
 
