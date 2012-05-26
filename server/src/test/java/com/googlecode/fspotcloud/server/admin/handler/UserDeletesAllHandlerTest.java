@@ -29,10 +29,11 @@ import com.googlecode.fspotcloud.user.IAdminPermission;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
 @RunWith(JukitoRunner.class)
 public class UserDeletesAllHandlerTest {
     @Inject

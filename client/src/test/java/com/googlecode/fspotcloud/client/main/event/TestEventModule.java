@@ -18,7 +18,6 @@ package com.googlecode.fspotcloud.client.main.event;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.googlecode.fspotcloud.client.main.event.EventModule;
 
 
 public class TestEventModule extends EventModule {

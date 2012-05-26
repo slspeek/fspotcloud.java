@@ -16,7 +16,6 @@
  */
 package com.googlecode.fspotcloud.client.place;
 
-import com.googlecode.fspotcloud.client.place.BasePlace;
 import junit.framework.TestCase;
 
 

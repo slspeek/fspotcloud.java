@@ -16,7 +16,7 @@
  */
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
-import static com.google.common.collect.Lists.*;
+import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.callback.PhotoDataCallback;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
@@ -29,8 +29,6 @@ import java.util.Iterator;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-
 public class PhotoUpdateHandler extends AbstractBatchActionHandler<PhotoUpdateAction, PhotoUpdate> {
     private final int MAX_PHOTO_TICKS;
     private final ControllerDispatchAsync controllerDispatch;

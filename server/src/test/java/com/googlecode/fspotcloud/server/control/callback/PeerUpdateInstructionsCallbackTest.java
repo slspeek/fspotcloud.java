@@ -31,11 +31,12 @@ import java.util.List;
 import javax.inject.Inject;
 import net.customware.gwt.dispatch.shared.Action;
 import org.jukito.JukitoRunner;
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 /**
  * DOCUMENT ME!

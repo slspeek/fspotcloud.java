@@ -16,7 +16,6 @@
  */
 package com.googlecode.fspotcloud.client.place;
 
-import com.googlecode.fspotcloud.client.place.RasterState;
 import junit.framework.TestCase;
 
 

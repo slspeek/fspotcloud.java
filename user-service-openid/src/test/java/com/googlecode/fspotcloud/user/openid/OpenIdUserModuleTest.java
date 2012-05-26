@@ -22,7 +22,7 @@ package com.googlecode.fspotcloud.user.openid;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import org.junit.*;
+import org.junit.Test;
 
 
 /**

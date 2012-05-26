@@ -20,12 +20,12 @@
  */
 package com.googlecode.fspotcloud.test;
 
+import java.io.Serializable;
 
 /**
  *
  * @author steven
  */
-import java.io.Serializable;
 import org.apache.commons.lang.SerializationUtils;
 import static org.junit.Assert.assertNotNull;
 public class Serialization {

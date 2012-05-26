@@ -47,14 +47,21 @@ public class DashboardPage {
 
     public void synchronize() throws InterruptedException {
         selenium.click("gwt-debug-update-button");
-        sleepShort(9);
+        sleepShort(6);
+        open();
+        sleepShort(3);
+        open();
+        sleepShort(3);
     }
 
     public void toggleImportForTagId(String id) throws InterruptedException {
         selenium.open("/Dashboard.html#TagPlace:" + id);
         selenium.waitForPageToLoad("30000");
         selenium.click("gwt-debug-import-tag-button");
-        sleepShort(5);
+        open();
+        sleepShort(3);
+        open();
+        sleepShort(3);
     }
 
     void removeAll() throws InterruptedException {

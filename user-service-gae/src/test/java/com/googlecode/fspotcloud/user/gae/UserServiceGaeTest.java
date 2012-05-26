@@ -21,8 +21,6 @@
 package com.googlecode.fspotcloud.user.gae;
 
 import com.google.appengine.api.users.User;
-import com.googlecode.fspotcloud.user.gae.UserServiceGae;
-import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

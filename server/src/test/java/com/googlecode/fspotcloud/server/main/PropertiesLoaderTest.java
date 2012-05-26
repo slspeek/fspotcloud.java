@@ -20,7 +20,6 @@
  */
 package com.googlecode.fspotcloud.server.main;
 
-import com.googlecode.fspotcloud.server.main.PropertiesLoader;
 import junit.framework.Assert;
 import org.junit.Test;
 

@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTagsAction;
-import com.googlecode.fspotcloud.server.control.task.handler.intern.DeleteTagsHandler;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
@@ -27,12 +26,8 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
-
-
 public class DeleteTagsHandlerTest {
     DeleteTagsHandler target;
     @Mock

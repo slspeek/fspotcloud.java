@@ -20,20 +20,11 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import static com.google.common.collect.Lists.*;
-import com.google.inject.name.Names;
+import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
 import com.googlecode.fspotcloud.test.EqualsTest;
-import java.util.List;
-import javax.inject.Inject;
-import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
-import org.junit.AfterClass;
-import static org.junit.Assert.*;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.Mockito.*;
 
 /**
  *

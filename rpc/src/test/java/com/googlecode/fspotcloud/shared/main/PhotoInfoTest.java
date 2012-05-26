@@ -16,13 +16,7 @@
  */
 package com.googlecode.fspotcloud.shared.main;
 
-import com.googlecode.fspotcloud.shared.main.PhotoInfo;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.SortedSet;
@@ -30,8 +24,6 @@ import java.util.TreeSet;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-
-
 public class PhotoInfoTest {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
     Date longAgo;

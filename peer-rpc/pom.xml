@@ -6,11 +6,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-20</version>
+        <version>0.12-21</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>peer-rpc</artifactId>
-    <version>0.12-20</version>
+    <version>0.12-21</version>
     <name>peer-rpc</name>
     <url>http://maven.apache.org</url>
     <properties>

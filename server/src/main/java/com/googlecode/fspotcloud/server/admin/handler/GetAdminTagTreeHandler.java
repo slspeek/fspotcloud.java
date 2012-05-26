@@ -16,7 +16,6 @@
  */
 package com.googlecode.fspotcloud.server.admin.handler;
 
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tags;
 import com.googlecode.fspotcloud.server.model.tag.TreeBuilder;
 import com.googlecode.fspotcloud.shared.dashboard.GetAdminTagTreeAction;

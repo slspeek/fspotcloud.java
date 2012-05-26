@@ -16,12 +16,9 @@
  */
 package com.googlecode.fspotcloud.shared.peer;
 
-import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
 import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-
-
 public class PeerMetaDataResultTest {
     int TAG_COUNT = 10;
     int PHOTO_COUNT = 1000;

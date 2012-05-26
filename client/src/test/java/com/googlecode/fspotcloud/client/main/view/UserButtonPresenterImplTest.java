@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.resources.client.ImageResource;
-import com.googlecode.fspotcloud.client.main.view.UserButtonPresenterImpl;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonView;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonViewFactory;
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;

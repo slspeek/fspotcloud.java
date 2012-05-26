@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.main.help;
 
 import com.google.gwt.resources.client.ImageResource;
-import com.googlecode.fspotcloud.client.main.help.HelpContentGenerator;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.ui.Resources.Style;
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;

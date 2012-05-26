@@ -16,7 +16,7 @@
  */
 package com.googlecode.fspotcloud.peer;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

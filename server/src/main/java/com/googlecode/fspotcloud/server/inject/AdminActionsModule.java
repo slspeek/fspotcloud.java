@@ -17,13 +17,7 @@
 package com.googlecode.fspotcloud.server.inject;
 
 import com.googlecode.fspotcloud.server.admin.handler.*;
-import com.googlecode.fspotcloud.shared.dashboard.GetAdminTagTreeAction;
-import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataAction;
-import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
-import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllCommandsAction;
-import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
-import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
-import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
+import com.googlecode.fspotcloud.shared.dashboard.*;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
 

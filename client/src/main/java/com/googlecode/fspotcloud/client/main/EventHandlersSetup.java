@@ -18,12 +18,7 @@ package com.googlecode.fspotcloud.client.main;
 
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.api.Initializable;
-import com.googlecode.fspotcloud.client.view.action.AboutEventHandler;
-import com.googlecode.fspotcloud.client.view.action.ApplicationEventHandler;
-import com.googlecode.fspotcloud.client.view.action.NavigationEventHandler;
-import com.googlecode.fspotcloud.client.view.action.RasterEventHandler;
-import com.googlecode.fspotcloud.client.view.action.SlideshowEventHandler;
-import com.googlecode.fspotcloud.client.view.action.ZoomViewEventHandler;
+import com.googlecode.fspotcloud.client.view.action.*;
 
 
 public class EventHandlersSetup {

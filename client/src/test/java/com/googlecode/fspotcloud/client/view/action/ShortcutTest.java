@@ -17,8 +17,6 @@
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.dom.client.KeyCodes;
-import com.googlecode.fspotcloud.client.view.action.KeyStroke;
-import com.googlecode.fspotcloud.client.view.action.UserActionImpl;
 import junit.framework.TestCase;
 
 

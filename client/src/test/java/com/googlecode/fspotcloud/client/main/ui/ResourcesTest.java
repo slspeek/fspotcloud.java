@@ -16,7 +16,6 @@
  */
 package com.googlecode.fspotcloud.client.main.ui;
 
-import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.view.action.KeyDispatcher;
 import java.util.logging.Logger;
 import junit.framework.TestCase;

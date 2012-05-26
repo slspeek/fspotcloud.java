@@ -28,10 +28,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
-
-
 public class GetMetaDataHandlerTest {
     GetMetaDataHandler handler;
     GetMetaDataAction action = new GetMetaDataAction();

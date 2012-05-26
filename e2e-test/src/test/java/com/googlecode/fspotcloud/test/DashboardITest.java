@@ -17,8 +17,6 @@
 package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
-import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
-import com.thoughtworks.selenium.Selenium;
 import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;

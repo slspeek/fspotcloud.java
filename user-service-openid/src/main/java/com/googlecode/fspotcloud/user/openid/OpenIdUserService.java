@@ -22,8 +22,6 @@ package com.googlecode.fspotcloud.user.openid;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import com.google.inject.servlet.RequestScoped;
-import com.google.inject.servlet.SessionScoped;
 import com.googlecode.fspotcloud.user.UserService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

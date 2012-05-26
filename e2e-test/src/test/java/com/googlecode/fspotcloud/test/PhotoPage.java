@@ -22,7 +22,8 @@ package com.googlecode.fspotcloud.test;
 
 import com.thoughtworks.selenium.Selenium;
 import javax.inject.Inject;
-
+import org.junit.Assert;
+import static org.junit.Assert.fail;
 
 /**
  *
@@ -48,5 +49,24 @@ public class PhotoPage {
     public void back() {
         selenium.click("gwt-debug-back");
         selenium.waitForPageToLoad("30000");
+    }
+
+    public void clickImage(int x, int y) {
+        selenium.click("gwt-debug-image-view-" + x + "x" + y);
+        selenium.waitForPageToLoad("30000");
+    }
+
+    public void assertImageHasId(int x, int y, String id) {
+        Assert.assertEquals("image?id=" + id + "&thumb",
+            selenium.getAttribute("//*[@id=\"gwt-debug-image-view-" + x + "x" +
+                y + "\"]@src"));
+    }
+
+    public void assertPagingLabelSays(int pos, int total) {
+        String pagingLabelText = selenium.getText("gwt-debug-paging-label");
+
+        if (!pagingLabelText.contains(pos + " of " + total)) {
+            fail();
+        }
     }
 }

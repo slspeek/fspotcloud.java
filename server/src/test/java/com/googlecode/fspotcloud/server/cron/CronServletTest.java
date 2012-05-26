@@ -16,11 +16,6 @@
  */
 package com.googlecode.fspotcloud.server.cron;
 
-import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
-import com.googlecode.fspotcloud.server.cron.CronServlet;
-import com.googlecode.fspotcloud.server.main.ImageServlet;
-import com.googlecode.fspotcloud.server.model.api.Photo;
-import com.googlecode.fspotcloud.server.model.api.Photos;
 import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
 import com.meterware.httpunit.GetMethodWebRequest;
 import com.meterware.httpunit.WebRequest;
@@ -29,14 +24,12 @@ import com.meterware.servletunit.InvocationContext;
 import com.meterware.servletunit.ServletRunner;
 import com.meterware.servletunit.ServletTestCase;
 import com.meterware.servletunit.ServletUnitClient;
-import java.io.InputStream;
-import java.util.Arrays;
 import net.customware.gwt.dispatch.server.Dispatch;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 public class CronServletTest extends ServletTestCase {
     ServletRunner sr;
 

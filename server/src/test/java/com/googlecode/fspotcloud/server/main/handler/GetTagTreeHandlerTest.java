@@ -22,19 +22,17 @@ package com.googlecode.fspotcloud.server.main.handler;
 
 import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
-import com.googlecode.fspotcloud.server.admin.handler.*;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
 import com.googlecode.fspotcloud.server.model.api.Tags;
-import com.googlecode.fspotcloud.shared.dashboard.GetAdminTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
-import com.googlecode.fspotcloud.user.IAdminPermission;
 import java.util.List;
 import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
 

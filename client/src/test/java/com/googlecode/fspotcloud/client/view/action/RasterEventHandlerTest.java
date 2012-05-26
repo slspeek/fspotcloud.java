@@ -22,7 +22,6 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.googlecode.fspotcloud.client.main.event.raster.RasterEvent;
 import com.googlecode.fspotcloud.client.main.event.raster.RasterType;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
-import com.googlecode.fspotcloud.client.view.action.RasterEventHandler;
 import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
