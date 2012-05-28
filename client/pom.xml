@@ -4,7 +4,7 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-21</version>
+        <version>0.12-22</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>client</artifactId>
@@ -15,7 +15,7 @@
         <dependency>
             <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>rpc</artifactId>
-            <version>0.12-21</version>
+            <version>0.12-22</version>
             <type>jar</type>
         </dependency>
         <dependency>

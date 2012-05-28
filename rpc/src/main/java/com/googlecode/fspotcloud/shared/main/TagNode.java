@@ -22,6 +22,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+
 @GwtCompatible
 public class TagNode implements Serializable {
     private int count;

@@ -29,6 +29,8 @@ import com.openpojo.validation.test.impl.SetterTester;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+
+
 public class PojoTest {
     // Configured for expectation, so we know when a class gets added or removed.
     private static final int EXPECTED_CLASS_COUNT = 9;

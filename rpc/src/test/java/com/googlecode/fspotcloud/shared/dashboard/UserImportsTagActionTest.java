@@ -24,6 +24,7 @@ import org.apache.commons.lang.SerializationUtils;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
+
 /**
  * DOCUMENT ME!
  *
