@@ -35,6 +35,7 @@ public class GlobalShortcutControllerFactory implements Provider<GlobalShortcutC
     private final KeyDispatcher tagViewDispatcher = new KeyDispatcher();
     private final KeyDispatcher aboutDispatcher = new KeyDispatcher();
     private final KeyDispatcher treeFocusDispatcher = new KeyDispatcher();
+    private final KeyDispatcher loginDispatcher = new KeyDispatcher();
     private final GlobalShortcutController controller;
 
     @Inject
@@ -46,6 +47,7 @@ public class GlobalShortcutControllerFactory implements Provider<GlobalShortcutC
         map.put(Mode.ABOUT, aboutDispatcher);
         map.put(Mode.TAG_VIEW, tagViewDispatcher);
         map.put(Mode.TREE_VIEW, treeFocusDispatcher);
+        map.put(Mode.LOGIN, loginDispatcher);
 
         putAll("Slideshow", slideshowDispatcher);
         putAll("Application", slideshowDispatcher);

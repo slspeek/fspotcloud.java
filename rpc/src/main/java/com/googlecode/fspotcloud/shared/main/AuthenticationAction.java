@@ -14,12 +14,30 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.client.place;
+package com.googlecode.fspotcloud.shared.main;
 
-import com.google.gwt.place.shared.PlaceHistoryMapper;
-import com.google.gwt.place.shared.WithTokenizers;
+import com.google.common.annotations.GwtCompatible;
+import net.customware.gwt.dispatch.shared.Action;
 
 
-@WithTokenizers({BasePlace.Tokenizer.class, SlideshowPlace.Tokenizer.class, LoginPlace.Tokenizer.class})
-public interface MainPlaceHistoryMapper extends PlaceHistoryMapper {
+@GwtCompatible
+public class AuthenticationAction implements Action<AuthenticationResult> {
+    private String userName;
+    private String password;
+
+    public AuthenticationAction() {
+    }
+
+    public AuthenticationAction(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }

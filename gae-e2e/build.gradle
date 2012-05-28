@@ -1,4 +1,5 @@
 import org.apache.tools.ant.filters.ExpandProperties
+
 description = 'Selenium testing of prod-gae-war'
 
 apply plugin: 'gae'
@@ -29,7 +30,7 @@ task unpackWar(dependsOn: ':prod-gae-war:assemble') << {
     ant.unjar(dest: "$buildDir/exploded-war-raw/", src: myTests)
 }
 
-task copyWar(dependsOn:  unpackWar, type: Copy) {
+task copyWar(dependsOn: unpackWar, type: Copy) {
     ant.properties['bot.secret.userinput'] = "${bot_secret}".toString()
     from('build/exploded-war-raw') {
         include "**/properties.properties"
@@ -51,7 +52,8 @@ task peerStop(type: Exec) {
     ignoreExitValue = true
 }
 
-test.dependsOn copyWar, gaeRun, unpackTest, ":peer:assemble"
+gaeRun.dependsOn copyWar
+test.dependsOn gaeRun, unpackTest, ":peer:assemble"
 
 test {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =

@@ -21,6 +21,6 @@ import com.googlecode.fspotcloud.client.main.api.Initializable;
 
 public interface IGlobalShortcutController extends Initializable {
     void setMode(Mode mode);
-    enum Mode {ABOUT, SLIDESHOW, TAG_VIEW, TREE_VIEW;
+    enum Mode {ABOUT, SLIDESHOW, TAG_VIEW, TREE_VIEW, LOGIN;
     }
 }

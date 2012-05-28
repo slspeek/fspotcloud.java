@@ -59,6 +59,8 @@ public class AppModule extends AbstractGinModule {
         bind(SingleViewActivityFactory.class)
             .to(SingleImageViewActivityFactoryImpl.class);
         bind(SingleImageView.class).to(SingleImageViewImpl.class);
+        bind(LoginView.class).to(LoginViewImpl.class);
+        bind(LoginView.LoginPresenter.class).to(LoginPresenterImpl.class);
 
         bind(PlaceCalculator.class);
         bind(PlaceGoTo.class).to(PlaceGoToImpl.class);

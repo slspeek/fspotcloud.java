@@ -14,12 +14,28 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.client.place;
+package com.googlecode.fspotcloud.client.main.view.api;
 
-import com.google.gwt.place.shared.PlaceHistoryMapper;
-import com.google.gwt.place.shared.WithTokenizers;
+import com.google.gwt.activity.shared.Activity;
+import com.google.gwt.event.dom.client.KeyUpEvent;
+import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.IsWidget;
 
 
-@WithTokenizers({BasePlace.Tokenizer.class, SlideshowPlace.Tokenizer.class, LoginPlace.Tokenizer.class})
-public interface MainPlaceHistoryMapper extends PlaceHistoryMapper {
+public interface LoginView extends IsWidget {
+    void setPresenter(LoginPresenter presenter);
+
+    public HasText getUserNameField();
+
+    public HasText getPasswordField();
+
+    public void focusUserNameField();
+
+    public void focusPasswordField();
+
+    interface LoginPresenter extends Activity {
+        public void onUserFieldKeyUp(KeyUpEvent e);
+
+        public void onPasswordFieldKeyUp(KeyUpEvent e);
+    }
 }

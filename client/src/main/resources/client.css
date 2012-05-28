@@ -40,6 +40,7 @@
 	border-color: borderColor;
   border-collapse: collapse;
   border-width: 1px;
+    color: #F0F0F0;
 }
 
 .button {

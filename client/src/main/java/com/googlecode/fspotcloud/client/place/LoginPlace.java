@@ -16,10 +16,29 @@
  */
 package com.googlecode.fspotcloud.client.place;
 
-import com.google.gwt.place.shared.PlaceHistoryMapper;
-import com.google.gwt.place.shared.WithTokenizers;
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceTokenizer;
 
 
-@WithTokenizers({BasePlace.Tokenizer.class, SlideshowPlace.Tokenizer.class, LoginPlace.Tokenizer.class})
-public interface MainPlaceHistoryMapper extends PlaceHistoryMapper {
+public class LoginPlace extends Place {
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof LoginPlace) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static class Tokenizer implements PlaceTokenizer<LoginPlace> {
+        @Override
+        public LoginPlace getPlace(String token) {
+            return new LoginPlace();
+        }
+
+        @Override
+        public String getToken(LoginPlace place) {
+            return "";
+        }
+    }
 }

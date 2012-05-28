@@ -24,6 +24,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.shared.peer.TagUpdate;
 import com.googlecode.fspotcloud.test.EqualsTest;
 
+
 /**
  *
  * @author steven

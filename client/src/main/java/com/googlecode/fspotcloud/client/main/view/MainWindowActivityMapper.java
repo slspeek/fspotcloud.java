@@ -22,9 +22,12 @@ import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.IGlobalShortcutController;
 import com.googlecode.fspotcloud.client.main.IGlobalShortcutController.Mode;
+import com.googlecode.fspotcloud.client.main.view.api.LoginView;
 import com.googlecode.fspotcloud.client.main.view.api.SingleViewActivityFactory;
 import com.googlecode.fspotcloud.client.main.view.api.TagPresenterFactory;
 import com.googlecode.fspotcloud.client.place.BasePlace;
+import com.googlecode.fspotcloud.client.place.LoginPlace;
+import com.googlecode.fspotcloud.client.place.SignUpPlace;
 import com.googlecode.fspotcloud.client.place.SlideshowPlace;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import java.util.logging.Logger;
@@ -36,16 +39,19 @@ public class MainWindowActivityMapper implements ActivityMapper {
     private final SingleViewActivityFactory singleViewActivityFactory;
     private final Navigator navigator;
     private final IGlobalShortcutController keyboard;
+    private final LoginView.LoginPresenter loginPresenter;
 
     @Inject
     public MainWindowActivityMapper(TagPresenterFactory tagPresenterFactory,
         SingleViewActivityFactory singleViewActivityFactory,
-        Navigator navigator, IGlobalShortcutController keyboard) {
+        Navigator navigator, IGlobalShortcutController keyboard,
+        LoginView.LoginPresenter loginPresenter) {
         super();
         this.singleViewActivityFactory = singleViewActivityFactory;
         this.tagPresenterFactory = tagPresenterFactory;
         this.navigator = navigator;
         this.keyboard = keyboard;
+        this.loginPresenter = loginPresenter;
     }
 
     @Override
@@ -55,7 +61,11 @@ public class MainWindowActivityMapper implements ActivityMapper {
 
         Activity activity = null;
 
-        if (place instanceof SlideshowPlace) {
+        if (place instanceof SignUpPlace) {
+        } else if (place instanceof LoginPlace) {
+            activity = loginPresenter;
+            keyboard.setMode(Mode.LOGIN);
+        } else if (place instanceof SlideshowPlace) {
             BasePlace basePlace = (BasePlace) place;
             activity = singleViewActivityFactory.get(basePlace);
             keyboard.setMode(Mode.SLIDESHOW);

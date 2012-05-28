@@ -30,8 +30,10 @@ import com.googlecode.fspotcloud.client.main.event.application.ApplicationEvent;
 import com.googlecode.fspotcloud.client.main.event.application.ApplicationType;
 import com.googlecode.fspotcloud.client.main.help.AboutAction;
 import com.googlecode.fspotcloud.client.main.help.HelpAction;
+import com.googlecode.fspotcloud.client.place.LoginPlace;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Zoom;
+import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
@@ -52,13 +54,14 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
     private final Navigator navigator;
     private final HideControlsAction hideControlsAction;
     private final UserInformation userInformation;
+    private final PlaceGoTo placeGoTo;
 
     @Inject
     public ApplicationEventHandler(AboutAction aboutAction,
         DemoAction demoAction, HelpAction helpAction,
         TreeFocusAction treeFocusAction, HideControlsAction hideControlsAction,
         LoadNewLocationActionFactory locationFactory, Navigator navigator,
-        EventBus eventBus, UserInformation userInformation) {
+        EventBus eventBus, UserInformation userInformation, PlaceGoTo placeGoTo) {
         super();
         this.navigator = navigator;
         this.hideControlsAction = hideControlsAction;
@@ -69,6 +72,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
         this.aboutAction = aboutAction;
         this.eventBus = eventBus;
         this.userInformation = userInformation;
+        this.placeGoTo = placeGoTo;
     }
 
     @Override
@@ -133,6 +137,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
                 });
 
 
+            //placeGoTo.goTo(new LoginPlace());
             break;
 
         case LOGOUT:

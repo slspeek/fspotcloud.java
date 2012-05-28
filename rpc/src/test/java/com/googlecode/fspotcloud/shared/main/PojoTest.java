@@ -28,15 +28,18 @@ import com.openpojo.validation.test.impl.SetterTester;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+
+
 public class PojoTest {
     // Configured for expectation, so we know when a class gets added or removed.
-    private static final int EXPECTED_CLASS_COUNT = 7;
+    private static final int EXPECTED_CLASS_COUNT = 9;
 
     // The package to test
     private static final String POJO_PACKAGE = "com.googlecode.fspotcloud.shared.peer.rpc.actions";
     private List<PojoClass> pojoClasses;
     private PojoValidator pojoValidator;
     private Class<?>[] POJO_CLASSES = new Class<?>[] {
+            AuthenticationAction.class, AuthenticationResult.class,
             GetTagTreeAction.class, GetUserInfo.class, PhotoInfo.class,
             PhotoInfoStore.class, TagNode.class, TagTreeResult.class,
             UserInfo.class
