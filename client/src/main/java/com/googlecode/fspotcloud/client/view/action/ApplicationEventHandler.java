@@ -26,6 +26,7 @@ import com.googlecode.fspotcloud.client.main.TreeFocusAction;
 import com.googlecode.fspotcloud.client.main.UserInformation;
 import com.googlecode.fspotcloud.client.main.api.Initializable;
 import com.googlecode.fspotcloud.client.main.event.UserEvent;
+import com.googlecode.fspotcloud.client.main.event.UserEventHandler;
 import com.googlecode.fspotcloud.client.main.event.application.ApplicationEvent;
 import com.googlecode.fspotcloud.client.main.event.application.ApplicationType;
 import com.googlecode.fspotcloud.client.main.help.AboutAction;
@@ -76,7 +77,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
     }
 
     @Override
-    public void onEvent(UserEvent<?> e) {
+    public void onEvent(UserEvent<? extends UserEventHandler> e) {
         log.info("On application event of type " + e.getActionDef());
 
         switch ((ApplicationType) e.getActionDef()) {

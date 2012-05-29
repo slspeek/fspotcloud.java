@@ -33,15 +33,23 @@ public class LoginViewImpl extends Composite implements LoginView {
     private static LoginViewImplUiBinder uiBinder = GWT.create(LoginViewImplUiBinder.class);
     private LoginPresenter presenter;
     @UiField
-    LayoutPanel mainPanel;
-    @UiField
     TextBox userNameTextBox;
     @UiField
     PasswordTextBox passwordTextBox;
+    @UiField
+    Anchor googleLoginLink;
+    @UiField
+    Label statusLabel;
+    @UiField
+    PushButton login;
 
     @Inject
     public LoginViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
+        userNameTextBox.ensureDebugId("username");
+        googleLoginLink.ensureDebugId("google-login");
+        passwordTextBox.ensureDebugId("password");
+        login.ensureDebugId("login");
         log.info("Created " + this);
     }
 
@@ -51,13 +59,23 @@ public class LoginViewImpl extends Composite implements LoginView {
     }
 
     @Override
-    public HasText getUserNameField() {
-        return userNameTextBox;
+    public String getUserNameField() {
+        return userNameTextBox.getText();
     }
 
     @Override
-    public HasText getPasswordField() {
-        return passwordTextBox;
+    public String getPasswordField() {
+        return passwordTextBox.getText();
+    }
+
+    @Override
+    public void setStatusText(String text) {
+        statusLabel.setText(text);
+    }
+
+    @Override
+    public void setGoogleLoginHref(String href) {
+        googleLoginLink.setHref(href);
     }
 
     @Override

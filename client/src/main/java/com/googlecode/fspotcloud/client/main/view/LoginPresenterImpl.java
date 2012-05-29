@@ -25,6 +25,8 @@ import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.LoginView;
 import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
+import com.googlecode.fspotcloud.shared.main.GetUserInfo;
+import com.googlecode.fspotcloud.shared.main.UserInfo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.customware.gwt.dispatch.client.DispatchAsync;
@@ -47,6 +49,18 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
         this.view.setPresenter(this);
         panel.setWidget(view);
         view.focusUserNameField();
+        dispatch.execute(new GetUserInfo("FSpotCloud.html"),
+            new AsyncCallback<UserInfo>() {
+                @Override
+                public void onFailure(Throwable caught) {
+                    //To change body of implemented methods use File | Settings | File Templates.
+                }
+
+                @Override
+                public void onSuccess(UserInfo result) {
+                    view.setGoogleLoginHref(result.createLoginUrl());
+                }
+            });
     }
 
     @Override
@@ -66,8 +80,8 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
     }
 
     private void submitToServer() {
-        String userName = view.getUserNameField().getText();
-        String password = view.getPasswordField().getText();
+        String userName = view.getUserNameField();
+        String password = view.getPasswordField();
         AuthenticationAction auth = new AuthenticationAction(userName, password);
         dispatch.execute(auth,
             new AsyncCallback<AuthenticationResult>() {
@@ -75,11 +89,19 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
                 public void onFailure(Throwable caught) {
                     log.log(Level.WARNING, "Auth request could not be made",
                         caught);
+                    view.setStatusText(
+                        "An error occurred making the authentication request");
                 }
 
                 @Override
                 public void onSuccess(AuthenticationResult result) {
+                    log.info("Server said: " + result.getSuccess());
+
                     if (result.getSuccess()) {
+                        view.setStatusText("Logged in");
+                    } else {
+                        view.setStatusText(
+                            "Not a valid username and password combination");
                     }
                 }
             });

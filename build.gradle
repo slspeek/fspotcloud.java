@@ -27,7 +27,7 @@ allprojects {
 
     defaultTasks 'build'
     group = 'com.googlecode.fspotcloud'
-    version = '0.12-22g'
+    version = '0.12-23g'
 }
 
 subprojects {
