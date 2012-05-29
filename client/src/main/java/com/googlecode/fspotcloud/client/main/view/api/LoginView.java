@@ -25,9 +25,13 @@ import com.google.gwt.user.client.ui.IsWidget;
 public interface LoginView extends IsWidget {
     void setPresenter(LoginPresenter presenter);
 
-    public HasText getUserNameField();
+    public String getUserNameField();
 
-    public HasText getPasswordField();
+    public String getPasswordField();
+
+    public void setStatusText(String text);
+
+    public void setGoogleLoginHref(String href);
 
     public void focusUserNameField();
 

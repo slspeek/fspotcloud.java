@@ -14,22 +14,30 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.server.inject;
+package com.googlecode.fspotcloud.server.main.handler;
 
-import com.googlecode.fspotcloud.server.main.handler.AuthenticationHandler;
-import com.googlecode.fspotcloud.server.main.handler.GetTagTreeHandler;
-import com.googlecode.fspotcloud.server.main.handler.GetUserInfoHandler;
+import com.google.inject.Inject;
 import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
-import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
+import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
-import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
+import com.googlecode.fspotcloud.shared.main.UserInfo;
+import com.googlecode.fspotcloud.user.UserService;
+import net.customware.gwt.dispatch.server.ExecutionContext;
+import net.customware.gwt.dispatch.server.SimpleActionHandler;
+import net.customware.gwt.dispatch.shared.DispatchException;
 
 
-public class MainActionModule extends ActionHandlerModule {
+public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAction, AuthenticationResult> {
+    private final UserService userService;
+
+    @Inject
+    public AuthenticationHandler(UserService userService) {
+        this.userService = userService;
+    }
+
+
     @Override
-    protected void configureHandlers() {
-        bindHandler(GetUserInfo.class, GetUserInfoHandler.class);
-        bindHandler(GetTagTreeAction.class, GetTagTreeHandler.class);
-        bindHandler(AuthenticationAction.class, AuthenticationHandler.class);
+    public AuthenticationResult execute(AuthenticationAction action, ExecutionContext context) throws DispatchException {
+        return new AuthenticationResult(false);
     }
 }
