@@ -35,9 +35,9 @@ public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAct
         this.userService = userService;
     }
 
-
     @Override
-    public AuthenticationResult execute(AuthenticationAction action, ExecutionContext context) throws DispatchException {
+    public AuthenticationResult execute(AuthenticationAction action,
+        ExecutionContext context) throws DispatchException {
         return new AuthenticationResult(false);
     }
 }

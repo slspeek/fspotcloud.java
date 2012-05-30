@@ -47,9 +47,9 @@ public class DashboardPage {
 
     public void synchronize() throws InterruptedException {
         selenium.click("gwt-debug-update-button");
-        sleepShort(6);
+        sleepShort(2);
         open();
-        sleepShort(3);
+        sleepShort(2);
         open();
         sleepShort(3);
     }
@@ -59,9 +59,9 @@ public class DashboardPage {
         selenium.waitForPageToLoad("30000");
         selenium.click("gwt-debug-import-tag-button");
         open();
-        sleepShort(3);
+        sleepShort(2);
         open();
-        sleepShort(3);
+        sleepShort(2);
     }
 
     void removeAll() throws InterruptedException {
