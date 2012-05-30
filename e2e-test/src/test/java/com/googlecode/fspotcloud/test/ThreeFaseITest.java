@@ -52,7 +52,6 @@ public class ThreeFaseITest {
         assertTrue(selenium.isTextPresent("Macintosh"));
         assertTrue(selenium.isTextPresent("Furniture"));
 
-        sleepShort(2);
         photoPage.clickImage(0, 0);
         photoPage.assertPagingLabelSays(1, 5);
 
@@ -66,7 +65,6 @@ public class ThreeFaseITest {
         assertFalse(selenium.isTextPresent("Macintosh"));
         assertTrue(selenium.isTextPresent("Furniture"));
         //Assert something
-        sleepShort(2);
         photoPage.clickImage(0, 0);
         photoPage.assertPagingLabelSays(1, 9);
 
@@ -78,7 +76,6 @@ public class ThreeFaseITest {
         //Assert something
         assertTrue(selenium.isTextPresent("Macintosh"));
         assertTrue(selenium.isTextPresent("Furniture"));
-        sleepShort(2);
         photoPage.clickImage(0, 0);
         photoPage.assertPagingLabelSays(1, 5);
         //Less again

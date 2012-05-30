@@ -35,7 +35,8 @@ import net.customware.gwt.dispatch.server.Dispatch;
 
 public class LoginPresenterImpl extends AbstractActivity implements LoginView.LoginPresenter {
     private static final Logger log = Logger.getLogger(LoginPresenterImpl.class.getName());
-    public static final String AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST = "An error occurred making the authentication request";
+    public static final String AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST =
+        "An error occurred making the authentication request";
     public static final String LOGGED_IN = "Logged in";
     public static final String NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION = "Not a valid username and password combination";
     private final LoginView view;
@@ -92,8 +93,7 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
                 public void onFailure(Throwable caught) {
                     log.log(Level.WARNING, "Auth request could not be made",
                         caught);
-                    view.setStatusText(
-                            AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST);
+                    view.setStatusText(AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST);
                 }
 
                 @Override
@@ -103,8 +103,7 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
                     if (result.getSuccess()) {
                         view.setStatusText(LOGGED_IN);
                     } else {
-                        view.setStatusText(
-                                NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION);
+                        view.setStatusText(NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION);
                     }
                 }
             });

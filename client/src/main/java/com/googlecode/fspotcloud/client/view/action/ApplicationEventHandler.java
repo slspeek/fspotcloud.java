@@ -77,7 +77,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
     }
 
     @Override
-    public void onEvent(UserEvent<? extends UserEventHandler> e) {
+    public void onEvent(UserEvent<?extends UserEventHandler> e) {
         log.info("On application event of type " + e.getActionDef());
 
         switch ((ApplicationType) e.getActionDef()) {
