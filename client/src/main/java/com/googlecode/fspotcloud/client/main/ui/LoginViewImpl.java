@@ -98,12 +98,12 @@ public class LoginViewImpl extends Composite implements LoginView {
 
     @UiHandler("userNameTextBox")
     public void onUserNameKey(KeyUpEvent e) {
-        presenter.onUserFieldKeyUp(e);
+        presenter.onUserFieldKeyUp(e.getNativeKeyCode());
     }
 
     @UiHandler("passwordTextBox")
     public void onPasswordKey(KeyUpEvent e) {
-        presenter.onPasswordFieldKeyUp(e);
+        presenter.onPasswordFieldKeyUp(e.getNativeKeyCode());
     }
 
     interface LoginViewImplUiBinder extends UiBinder<Widget, LoginViewImpl> {

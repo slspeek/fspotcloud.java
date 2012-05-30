@@ -38,8 +38,8 @@ public interface LoginView extends IsWidget {
     public void focusPasswordField();
 
     interface LoginPresenter extends Activity {
-        public void onUserFieldKeyUp(KeyUpEvent e);
+        public void onUserFieldKeyUp(int keyCode);
 
-        public void onPasswordFieldKeyUp(KeyUpEvent e);
+        public void onPasswordFieldKeyUp(int keyCode);
     }
 }
