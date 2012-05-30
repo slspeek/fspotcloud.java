@@ -35,6 +35,9 @@ import net.customware.gwt.dispatch.server.Dispatch;
 
 public class LoginPresenterImpl extends AbstractActivity implements LoginView.LoginPresenter {
     private static final Logger log = Logger.getLogger(LoginPresenterImpl.class.getName());
+    public static final String AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST = "An error occurred making the authentication request";
+    public static final String LOGGED_IN = "Logged in";
+    public static final String NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION = "Not a valid username and password combination";
     private final LoginView view;
     private final DispatchAsync dispatch;
 
@@ -64,17 +67,17 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
     }
 
     @Override
-    public void onUserFieldKeyUp(KeyUpEvent e) {
-        log.info("Code: " + e.getNativeKeyCode());
+    public void onUserFieldKeyUp(int code) {
+        log.info("Code: " + code);
 
-        if (e.getNativeKeyCode() == 13) {
+        if (code == 13) {
             view.focusPasswordField();
         }
     }
 
     @Override
-    public void onPasswordFieldKeyUp(KeyUpEvent e) {
-        if (e.getNativeKeyCode() == 13) {
+    public void onPasswordFieldKeyUp(int code) {
+        if (code == 13) {
             submitToServer();
         }
     }
@@ -90,7 +93,7 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
                     log.log(Level.WARNING, "Auth request could not be made",
                         caught);
                     view.setStatusText(
-                        "An error occurred making the authentication request");
+                            AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST);
                 }
 
                 @Override
@@ -98,10 +101,10 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
                     log.info("Server said: " + result.getSuccess());
 
                     if (result.getSuccess()) {
-                        view.setStatusText("Logged in");
+                        view.setStatusText(LOGGED_IN);
                     } else {
                         view.setStatusText(
-                            "Not a valid username and password combination");
+                                NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION);
                     }
                 }
             });
