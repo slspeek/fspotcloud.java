@@ -36,11 +36,13 @@ public class UserEntity implements User, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     //@Column(unique = true)
     private String email;
     private String credentials;
     private String nickname;
     private String emailVerificationSecret;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date lastLoginTime;
     private boolean enabled;
 

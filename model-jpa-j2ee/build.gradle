@@ -71,7 +71,7 @@ task peerDatabaseDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
 }
 
 task modelTest(type: Test, dependsOn: [classes, unpackTest]) {
-    ignoreFailures = true
+    //ignoreFailures = true
     testClassesDir = file("$buildDir/model-test")
     classpath = sourceSets.test.runtimeClasspath
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv'] =

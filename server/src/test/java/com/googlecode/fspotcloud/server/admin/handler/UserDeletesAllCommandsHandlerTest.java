@@ -23,17 +23,14 @@ package com.googlecode.fspotcloud.server.admin.handler;
 import com.googlecode.botdispatch.model.api.Commands;
 import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllCommandsAction;
 import com.googlecode.fspotcloud.user.UserService;
+import javax.inject.Provider;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import javax.inject.Provider;
-
 import static org.mockito.Mockito.*;
-
+import org.mockito.MockitoAnnotations;
 
 /**
  * DOCUMENT ME!

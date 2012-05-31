@@ -20,15 +20,11 @@
 package com.googlecode.fspotcloud.model.jpa.user;
 
 import com.googlecode.fspotcloud.server.model.api.User;
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 
 /**
@@ -47,6 +43,7 @@ public class UserEntity implements User, Serializable {
     private String credentials;
     private String nickname;
     private String emailVerificationSecret;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date lastLoginTime;
     private boolean enabled;
 

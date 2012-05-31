@@ -16,18 +16,16 @@
  */
 package com.googlecode.fspotcloud.model.jpa.user;
 
+import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.simplejpadao.SimpleDAOGenIdImpl;
-
+import java.util.List;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
-import java.util.List;
-import java.util.logging.Logger;
-
-import static com.google.common.collect.Lists.newArrayList;
 
 
 public abstract class UserManagerBase<T extends User, U extends T>
@@ -42,8 +40,17 @@ public abstract class UserManagerBase<T extends User, U extends T>
     }
 
     protected void detach(User user) {
-        user.setUserGroups(newArrayList(user.getUserGroups()));
-        user.setPeers(newArrayList(user.getPeers()));
+        List<Long> uG = user.getUserGroups();
+
+        if (uG != null) {
+            user.setUserGroups(newArrayList(uG));
+        }
+
+        List<Long> peers = user.getPeers();
+
+        if (peers != null) {
+            user.setPeers(newArrayList(peers));
+        }
     }
 
     @Override

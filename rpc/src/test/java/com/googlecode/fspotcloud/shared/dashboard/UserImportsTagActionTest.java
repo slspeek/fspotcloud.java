@@ -21,10 +21,8 @@
 package com.googlecode.fspotcloud.shared.dashboard;
 
 import org.apache.commons.lang.SerializationUtils;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
-
+import org.junit.Test;
 
 /**
  * DOCUMENT ME!

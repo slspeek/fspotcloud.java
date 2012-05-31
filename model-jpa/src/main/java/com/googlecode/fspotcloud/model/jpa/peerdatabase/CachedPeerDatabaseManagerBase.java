@@ -21,14 +21,13 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import com.googlecode.simplejpadao.cacheddao.CachedSimpleDAONamedIdImpl;
-import net.sf.jsr107cache.Cache;
-
-import javax.inject.Inject;
-import javax.inject.Provider;
-import javax.persistence.EntityManager;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.persistence.EntityManager;
+import net.sf.jsr107cache.Cache;
 
 
 public abstract class CachedPeerDatabaseManagerBase<T extends PeerDatabase, U extends T>

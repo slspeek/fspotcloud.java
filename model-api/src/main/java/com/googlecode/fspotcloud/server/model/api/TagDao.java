@@ -18,7 +18,6 @@ package com.googlecode.fspotcloud.server.model.api;
 
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.simplejpadao.SimpleDAONamedId;
-
 import java.util.List;
 
 

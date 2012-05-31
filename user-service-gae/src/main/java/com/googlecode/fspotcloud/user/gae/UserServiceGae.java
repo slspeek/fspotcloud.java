@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.user.gae;
 
 import com.google.inject.Provider;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
