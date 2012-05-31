@@ -26,7 +26,7 @@ import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.control.callback.PeerMetaDataCallback;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.ImportManyTagsPhotosAction;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
@@ -50,7 +50,7 @@ public class UserSynchronizesPeerHandlerTest {
     @Test
     public void testNormalExecute(ControllerDispatchAsync dispatch,
         IAdminPermission adminPermission, TaskQueueDispatch taskQueueDispatch,
-        Tags tagManager, ArgumentCaptor<GetPeerMetaDataAction> actionCaptor,
+        TagDao tagManager, ArgumentCaptor<GetPeerMetaDataAction> actionCaptor,
         ArgumentCaptor<PeerMetaDataCallback> callbackCaptor,
         ArgumentCaptor<ImportManyTagsPhotosAction> taskActionCaptor)
         throws Exception {
@@ -74,7 +74,7 @@ public class UserSynchronizesPeerHandlerTest {
     @Test(expected = SecurityException.class)
     public void testUnAuthorizedExecute(ControllerDispatchAsync dispatch,
         IAdminPermission adminPermission, TaskQueueDispatch taskQueueDispatch,
-        Tags tagManager) throws Exception {
+        TagDao tagManager) throws Exception {
         doThrow(new SecurityException()).when(adminPermission)
             .checkAdminPermission();
 

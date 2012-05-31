@@ -25,9 +25,9 @@ import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.peer.GetPeerUpdateInstructionsAction;
 import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
 import com.googlecode.fspotcloud.shared.peer.TagData;
@@ -53,8 +53,8 @@ public class PeerMetaDataCallbackTest {
     PeerMetaDataCallback callback;
 
     @Test
-    public void testNormalExecute(PeerDatabases defaultPeer,
-        ControllerDispatchAsync dispatchAsync, Tags tagManager,
+    public void testNormalExecute(PeerDatabaseDao defaultPeer,
+        ControllerDispatchAsync dispatchAsync, TagDao tagManager,
         ArgumentCaptor<GetPeerUpdateInstructionsAction> actionCaptor,
         ArgumentCaptor<PeerUpdateInstructionsCallback> callbackCaptor)
         throws Exception {

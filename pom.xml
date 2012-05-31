@@ -10,7 +10,7 @@
     <prerequisites>
         <maven>3.0.0</maven>
     </prerequisites>
-    <description>Makes synchronizing your photos with the web easier.</description>
+    <description>Makes synchronizing your photoDao with the web easier.</description>
     <url>http://slspeek.github.com/FSpotCloudSite</url>
     <scm>
         <connection>scm:hg:https://java.fspotcloud.googlecode.com/hg/</connection>

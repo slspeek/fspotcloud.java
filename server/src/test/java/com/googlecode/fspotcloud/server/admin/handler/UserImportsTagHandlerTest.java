@@ -24,7 +24,7 @@ import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.control.callback.TagUpdateInstructionsCallback;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetTagUpdateInstructionsAction;
@@ -52,7 +52,7 @@ public class UserImportsTagHandlerTest {
     }
 
     @Test
-    public void testNormalExecute(Tags tagManager,
+    public void testNormalExecute(TagDao tagManager,
         ControllerDispatchAsync dispatchAsync,
         ArgumentCaptor<GetTagUpdateInstructionsAction> actionCaptor,
         ArgumentCaptor<TagUpdateInstructionsCallback> callbackCaptor)

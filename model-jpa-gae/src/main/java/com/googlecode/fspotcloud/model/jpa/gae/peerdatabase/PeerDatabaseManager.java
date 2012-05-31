@@ -21,14 +21,14 @@ import com.google.inject.Provider;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.CachedPeerDatabaseManagerBase;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseManagerBase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import net.sf.jsr107cache.Cache;
 
 
 public class PeerDatabaseManager extends CachedPeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity>
-    implements PeerDatabases {
+    implements PeerDatabaseDao {
     private static final String DEFAULT_PEER_ID = "1";
     private static final Logger log = Logger.getLogger(PeerDatabaseManagerBase.class.getName());
 

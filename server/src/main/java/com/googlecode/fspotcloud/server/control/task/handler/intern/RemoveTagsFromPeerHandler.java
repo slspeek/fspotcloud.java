@@ -21,7 +21,7 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatc
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsDeletedFromPeerAction;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
@@ -33,11 +33,11 @@ import javax.inject.Named;
 
 public class RemoveTagsFromPeerHandler extends AbstractBatchActionHandler<RemoveTagsDeletedFromPeerAction, TagRemovedFromPeer> {
     private final TaskQueueDispatch dispatchAsync;
-    private Tags tagManager;
+    private TagDao tagManager;
 
     @Inject
     public RemoveTagsFromPeerHandler(@Named("maxDelete")
-    int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Tags tagManager) {
+    int maxDeleteTicks, TaskQueueDispatch dispatchAsync, TagDao tagManager) {
         super(dispatchAsync, maxDeleteTicks);
         this.dispatchAsync = dispatchAsync;
         this.tagManager = tagManager;

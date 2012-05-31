@@ -20,7 +20,7 @@ import com.google.inject.Inject;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.callback.TagUpdateInstructionsCallback;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetTagUpdateInstructionsAction;
@@ -35,12 +35,12 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 public class UserImportsTagHandler extends SimpleActionHandler<UserImportsTagAction, VoidResult> {
     @Inject
     Logger log;
-    private final Tags tagManager;
+    private final TagDao tagManager;
     private final ControllerDispatchAsync dispatchAsync;
     private final IAdminPermission adminPermission;
 
     @Inject
-    public UserImportsTagHandler(Tags tagManager,
+    public UserImportsTagHandler(TagDao tagManager,
         ControllerDispatchAsync dispatchAsync, IAdminPermission adminPermission) {
         this.tagManager = tagManager;
         this.dispatchAsync = dispatchAsync;

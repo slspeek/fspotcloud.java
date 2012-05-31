@@ -26,9 +26,9 @@ import com.google.inject.name.Names;
 import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
 import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoManager;
 import com.googlecode.fspotcloud.model.jpa.gae.tag.TagManager;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import com.googlecode.fspotcloud.server.model.api.Photos;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
+import com.googlecode.fspotcloud.server.model.api.PhotoDao;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.simplejpadao.EntityModule;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,10 +53,10 @@ public class GaeModelGuiceBerryEnv extends GuiceBerryModule {
 class ModelModule extends AbstractModule {
     @Override
     protected void configure() {
-        bind(Photos.class).to(PhotoManager.class).in(Singleton.class);
-        bind(PeerDatabases.class).to(PeerDatabaseManager.class)
+        bind(PhotoDao.class).to(PhotoManager.class).in(Singleton.class);
+        bind(PeerDatabaseDao.class).to(PeerDatabaseManager.class)
             .in(Singleton.class);
-        bind(Tags.class).to(TagManager.class).in(Singleton.class);
+        bind(TagDao.class).to(TagManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete"))
             .toInstance(new Integer(100));
         install(new EntityModule("gae-test"));

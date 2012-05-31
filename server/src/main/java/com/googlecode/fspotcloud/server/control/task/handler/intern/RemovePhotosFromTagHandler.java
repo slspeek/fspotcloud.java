@@ -31,24 +31,24 @@ import javax.inject.Named;
 public class RemovePhotosFromTagHandler extends AbstractBatchActionHandler<RemovePhotosFromTagAction, String> {
     private final int MAX_DELETE_TICKS;
     private final TaskQueueDispatch dispatchAsync;
-    private final Photos photos;
-    private final Tags tagManager;
-    private final PeerDatabases peerDatabaseManager;
+    private final PhotoDao photoDao;
+    private final TagDao tagManager;
+    private final PeerDatabaseDao peerDatabaseManager;
 
     @Inject
     public RemovePhotosFromTagHandler(@Named("maxDelete")
-    int maxDeleteTicks, TaskQueueDispatch dispatchAsync, Photos photos,
-        Tags tagManager, PeerDatabases peerDatabaseManager) {
+    int maxDeleteTicks, TaskQueueDispatch dispatchAsync, PhotoDao photoDao,
+        TagDao tagManager, PeerDatabaseDao peerDatabaseManager) {
         super(dispatchAsync, maxDeleteTicks);
         MAX_DELETE_TICKS = maxDeleteTicks;
         this.dispatchAsync = dispatchAsync;
-        this.photos = photos;
+        this.photoDao = photoDao;
         this.tagManager = tagManager;
         this.peerDatabaseManager = peerDatabaseManager;
     }
 
     private void checkForDeletion(Tag tag, String deleteTagId, String key) {
-        Photo photo = photos.find(key);
+        Photo photo = photoDao.find(key);
 
         if (photo != null) {
             boolean moreImports = false;
@@ -68,7 +68,7 @@ public class RemovePhotosFromTagHandler extends AbstractBatchActionHandler<Remov
             }
 
             if (!moreImports) {
-                photos.delete(photo);
+                photoDao.delete(photo);
 
                 final TreeSet<PhotoInfo> cachedPhotoList = tag.getCachedPhotoList();
                 cachedPhotoList.remove(find(tag.getCachedPhotoList(), key));

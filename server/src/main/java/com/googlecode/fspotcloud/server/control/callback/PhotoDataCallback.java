@@ -31,18 +31,18 @@ import java.util.TreeSet;
 public class PhotoDataCallback implements SerializableAsyncCallback<PhotoDataResult> {
     private static final long serialVersionUID = 246810426240427570L;
     @Inject
-    private transient Photos photoManager;
+    private transient PhotoDao photoManager;
     @Inject
-    private transient Tags tagManager;
+    private transient TagDao tagManager;
     @Inject
-    private transient PeerDatabases peerDatabases;
+    private transient PeerDatabaseDao peerDatabaseDao;
 
-    public PhotoDataCallback(Photos photoManager, Tags tagManager,
-        PeerDatabases peerDatabases) {
+    public PhotoDataCallback(PhotoDao photoManager, TagDao tagManager,
+        PeerDatabaseDao peerDatabaseDao) {
         super();
         this.photoManager = photoManager;
         this.tagManager = tagManager;
-        this.peerDatabases = peerDatabases;
+        this.peerDatabaseDao = peerDatabaseDao;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class PhotoDataCallback implements SerializableAsyncCallback<PhotoDataRes
     }
 
     private void clearTreeCache() {
-        peerDatabases.resetCachedTagTree();
+        peerDatabaseDao.resetCachedTagTree();
     }
 
     private Photo recievePhoto(PhotoData photoData) {

@@ -22,9 +22,9 @@ import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.peer.db.Data;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import com.googlecode.fspotcloud.server.model.api.Photos;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
+import com.googlecode.fspotcloud.server.model.api.PhotoDao;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.*;
 import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagNode;
@@ -48,13 +48,13 @@ import org.testng.annotations.Test;
 public class PeerServerIntegrationTest {
     static final Logger log = Logger.getLogger(PeerServerIntegrationTest.class.getName());
     @Inject
-    Photos photos;
+    PhotoDao photoDao;
     @Inject
-    protected Tags tags;
+    protected TagDao tagDao;
     @Inject
     ControllerDispatchAsync controller;
     @Inject
-    PeerDatabases peers;
+    PeerDatabaseDao peers;
     @Inject
     Data data;
     @Inject
@@ -100,8 +100,8 @@ public class PeerServerIntegrationTest {
 
     @AfterMethod
     public void tearDown() throws Exception {
-        tags.deleteBulk(1000);
-        photos.deleteBulk(1000);
+        tagDao.deleteBulk(1000);
+        photoDao.deleteBulk(1000);
         peers.deleteBulk(1000);
         // Make this the call to TestNgGuiceBerry.tearDown as late as possible
         toTearDown.tearDown();
@@ -172,7 +172,7 @@ public class PeerServerIntegrationTest {
         setUpPeer();
         testImportAllTags();
         importTag("5");
-        photos.find("3");
+        photoDao.find("3");
     }
 
     @Test

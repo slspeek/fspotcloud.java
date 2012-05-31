@@ -17,8 +17,8 @@
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.server.model.tag.TreeBuilder;
 import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagNode;
@@ -34,19 +34,19 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 public class GetTagTreeHandler extends SimpleActionHandler<GetTagTreeAction, TagTreeResult> {
     @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(GetTagTreeHandler.class.getName());
-    private final PeerDatabases peerDatabases;
-    private final Tags tagManager;
+    private final PeerDatabaseDao peerDatabaseDao;
+    private final TagDao tagManager;
 
     @Inject
-    public GetTagTreeHandler(PeerDatabases peerDatabases, Tags tagManager) {
-        this.peerDatabases = peerDatabases;
+    public GetTagTreeHandler(PeerDatabaseDao peerDatabaseDao, TagDao tagManager) {
+        this.peerDatabaseDao = peerDatabaseDao;
         this.tagManager = tagManager;
     }
 
     @Override
     public TagTreeResult execute(GetTagTreeAction action,
         ExecutionContext context) throws DispatchException {
-        PeerDatabase p = peerDatabases.get();
+        PeerDatabase p = peerDatabaseDao.get();
 
         if (p.getCachedTagTree() != null) {
             log.info("Got the tree from cache HIT");
@@ -60,7 +60,7 @@ public class GetTagTreeHandler extends SimpleActionHandler<GetTagTreeAction, Tag
             List<TagNode> tree = builder.getPublicRoots();
             p.setCachedTagTree(tree);
             log.info("Builded, about to save");
-            peerDatabases.save(p);
+            peerDatabaseDao.save(p);
 
             return new TagTreeResult(tree);
         }

@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.server.admin.handler;
 import com.googlecode.botdispatch.model.api.Commands;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataAction;
 import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
@@ -39,7 +39,7 @@ public class GetMetaDataHandlerTest {
     @Mock
     Commands commandManager;
     @Mock
-    PeerDatabases defaultPeer;
+    PeerDatabaseDao defaultPeer;
     @Mock
     IAdminPermission adminPermission;
     PeerDatabase pd;

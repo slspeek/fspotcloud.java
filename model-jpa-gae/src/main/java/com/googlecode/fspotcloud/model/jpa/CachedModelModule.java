@@ -23,9 +23,9 @@ import com.googlecode.fspotcloud.model.jpa.gae.GaeCacheProvider;
 import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
 import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoManager;
 import com.googlecode.fspotcloud.model.jpa.gae.tag.TagManager;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import com.googlecode.fspotcloud.server.model.api.Photos;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
+import com.googlecode.fspotcloud.server.model.api.PhotoDao;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.simplejpadao.EntityModule;
 import net.sf.jsr107cache.Cache;
 
@@ -39,10 +39,10 @@ public class CachedModelModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(Photos.class).to(PhotoManager.class).in(Singleton.class);
-        bind(PeerDatabases.class).to(PeerDatabaseManager.class)
+        bind(PhotoDao.class).to(PhotoManager.class).in(Singleton.class);
+        bind(PeerDatabaseDao.class).to(PeerDatabaseManager.class)
             .in(Singleton.class);
-        bind(Tags.class).to(TagManager.class).in(Singleton.class);
+        bind(TagDao.class).to(TagManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete"))
             .toInstance(maxDelete);
         bind(Cache.class).toProvider(GaeCacheProvider.class); //.in(Singleton.class);

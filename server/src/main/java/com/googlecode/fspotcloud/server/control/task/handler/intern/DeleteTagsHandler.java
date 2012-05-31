@@ -17,7 +17,7 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTagsAction;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.logging.Logger;
@@ -30,10 +30,10 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 public class DeleteTagsHandler extends SimpleActionHandler<DeleteAllTagsAction, VoidResult> {
     private static final Logger log = Logger.getLogger(DeleteTagsHandler.class.getName());
     private final TaskQueueDispatch dispatchAsync;
-    private final Tags tagManager;
+    private final TagDao tagManager;
 
     @Inject
-    public DeleteTagsHandler(TaskQueueDispatch dispatchAsync, Tags tagManager) {
+    public DeleteTagsHandler(TaskQueueDispatch dispatchAsync, TagDao tagManager) {
         super();
         this.dispatchAsync = dispatchAsync;
         this.tagManager = tagManager;

@@ -21,7 +21,7 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
-import com.googlecode.fspotcloud.server.model.api.Photos;
+import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import javax.inject.Inject;
@@ -42,7 +42,7 @@ public class DeleteAllPhotosHandlerTest {
     private DeleteAllPhotosHandler instance;
 
     @Test
-    public void testExecuteWithRecursion(Photos photos,
+    public void testExecuteWithRecursion(PhotoDao photoDao,
         TaskQueueDispatch dispatch) throws Exception {
         DeleteAllPhotosAction action = new DeleteAllPhotosAction();
         ExecutionContext context = null;
@@ -50,23 +50,23 @@ public class DeleteAllPhotosHandlerTest {
         VoidResult result = instance.execute(action, context);
         assertEquals(expResult, result);
         verify(dispatch).execute(new DeleteAllPhotosAction());
-        verify(photos).deleteBulk(30);
-        verify(photos).isEmpty();
-        verifyNoMoreInteractions(dispatch, photos);
+        verify(photoDao).deleteBulk(30);
+        verify(photoDao).isEmpty();
+        verifyNoMoreInteractions(dispatch, photoDao);
     }
 
     @Test
-    public void testExecuteWithoutRecursion(Photos photos,
+    public void testExecuteWithoutRecursion(PhotoDao photoDao,
         TaskQueueDispatch dispatch) throws Exception {
-        when(photos.isEmpty()).thenReturn(Boolean.TRUE);
+        when(photoDao.isEmpty()).thenReturn(Boolean.TRUE);
 
         DeleteAllPhotosAction action = new DeleteAllPhotosAction();
         ExecutionContext context = null;
         VoidResult expResult = new VoidResult();
         VoidResult result = instance.execute(action, context);
         assertEquals(expResult, result);
-        verify(photos).deleteBulk(30);
-        verify(photos).isEmpty();
-        verifyNoMoreInteractions(dispatch, photos);
+        verify(photoDao).deleteBulk(30);
+        verify(photoDao).isEmpty();
+        verifyNoMoreInteractions(dispatch, photoDao);
     }
 }

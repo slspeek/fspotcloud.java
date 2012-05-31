@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.server.admin.handler;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
@@ -36,12 +36,12 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTagAction, VoidResult> {
     private static final Logger log = Logger.getLogger(UserUnImportsTagHandler.class.getName());
-    private final Tags tagManager;
+    private final TagDao tagManager;
     private final TaskQueueDispatch dispatchAsync;
     private final IAdminPermission adminPermission;
 
     @Inject
-    public UserUnImportsTagHandler(Tags tagManager,
+    public UserUnImportsTagHandler(TagDao tagManager,
         TaskQueueDispatch dispatchAsync, IAdminPermission adminPermission) {
         super();
         this.tagManager = tagManager;

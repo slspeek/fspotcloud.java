@@ -43,10 +43,10 @@ public class PhotoDataCallbackTest {
     private static final String DESCRIPTION = "description";
     private static final String PHOTO_ID = "1";
     private static final String TAG_ID = "fooMock";
-    Photos photoManager;
-    PeerDatabases peerDatabases;
+    PhotoDao photoManager;
+    PeerDatabaseDao peerDatabaseDao;
     PeerDatabase peer;
-    Tags tagManager;
+    TagDao tagManager;
     Photo photo1;
     PhotoDataResult result;
     PhotoData data;
@@ -58,8 +58,8 @@ public class PhotoDataCallbackTest {
 
     @Before
     public void setUp() throws Exception {
-        photoManager = mock(Photos.class);
-        tagManager = mock(Tags.class);
+        photoManager = mock(PhotoDao.class);
+        tagManager = mock(TagDao.class);
         photo1 = new PhotoEntity();
         tag1 = new TagEntity();
         tag1.setId(TAG_ID);
@@ -72,9 +72,10 @@ public class PhotoDataCallbackTest {
         when(photoManager.findOrNew(PHOTO_ID)).thenReturn(photo1);
         when(tagManager.find(TAG_ID)).thenReturn(tag1);
         peer = new PeerDatabaseEntity();
-        peerDatabases = mock(PeerDatabases.class);
-        when(peerDatabases.get()).thenReturn(peer);
-        callback = new PhotoDataCallback(photoManager, tagManager, peerDatabases);
+        peerDatabaseDao = mock(PeerDatabaseDao.class);
+        when(peerDatabaseDao.get()).thenReturn(peer);
+        callback = new PhotoDataCallback(photoManager, tagManager,
+                peerDatabaseDao);
     }
 
     @Test
@@ -101,6 +102,6 @@ public class PhotoDataCallbackTest {
         PhotoInfo info = tag1.getCachedPhotoList().first();
         assertEquals(PHOTO_ID, info.getId());
         assertEquals(VERSION, info.getVersion());
-        verify(peerDatabases).resetCachedTagTree();
+        verify(peerDatabaseDao).resetCachedTagTree();
     }
 }

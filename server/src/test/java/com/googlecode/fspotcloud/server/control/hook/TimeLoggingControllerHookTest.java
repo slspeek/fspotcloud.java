@@ -22,7 +22,7 @@ package com.googlecode.fspotcloud.server.control.hook;
 
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import java.util.Date;
 import javax.inject.Inject;
 import org.jukito.JukitoRunner;
@@ -43,7 +43,7 @@ public class TimeLoggingControllerHookTest {
     private PeerDatabase peer = new PeerDatabaseEntity();
 
     @Test
-    public void testPreprocess(PeerDatabases peers) {
+    public void testPreprocess(PeerDatabaseDao peers) {
         Date now = new Date();
         when(peers.get()).thenReturn(peer);
 

@@ -21,7 +21,7 @@
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import static com.google.common.collect.Lists.newArrayList;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.GetAdminTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
@@ -46,7 +46,7 @@ public class GetAdminTagTreeHandlerTest {
     private final GetAdminTagTreeAction action = new GetAdminTagTreeAction();
 
     @Test
-    public void testNormalExecuteNoTags(Tags tagManager,
+    public void testNormalExecuteNoTags(TagDao tagManager,
         IAdminPermission adminPermission) throws Exception {
         TagTreeResult result = handler.execute(action, null);
         verify(tagManager).getTags();
@@ -54,7 +54,7 @@ public class GetAdminTagTreeHandlerTest {
     }
 
     @Test
-    public void testNormalExecuteOneTags(Tags tagManager,
+    public void testNormalExecuteOneTags(TagDao tagManager,
         IAdminPermission adminPermission) throws Exception {
         List<TagNode> list = newArrayList();
         list.add(new TagNode("1"));
@@ -66,7 +66,7 @@ public class GetAdminTagTreeHandlerTest {
     }
 
     @Test(expected = SecurityException.class)
-    public void testUnAuthorizedExecute(Tags tagManager,
+    public void testUnAuthorizedExecute(TagDao tagManager,
         IAdminPermission adminPermission) throws Exception {
         doThrow(new SecurityException()).when(adminPermission)
             .checkAdminPermission();

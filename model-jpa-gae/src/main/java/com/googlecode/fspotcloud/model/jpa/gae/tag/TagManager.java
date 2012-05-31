@@ -18,7 +18,7 @@ package com.googlecode.fspotcloud.model.jpa.gae.tag;
 
 import com.googlecode.fspotcloud.model.jpa.tag.CachedTagManagerBase;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,7 +28,7 @@ import net.sf.jsr107cache.Cache;
 
 
 public class TagManager extends CachedTagManagerBase<Tag, TagEntity>
-    implements Tags {
+    implements TagDao {
     private static final Logger log = Logger.getLogger(TagManager.class.getName());
 
     @Inject

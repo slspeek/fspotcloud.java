@@ -29,7 +29,7 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotos
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsDeletedFromPeerAction;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
@@ -86,7 +86,7 @@ public class RemoveTagsFromPeerHandlerTest {
     }
 
     @Test
-    public void testExecute(TaskQueueDispatch dispatchAsync, Tags tagManager)
+    public void testExecute(TaskQueueDispatch dispatchAsync, TagDao tagManager)
         throws Exception {
         when(tagManager.find("1")).thenReturn(tag);
         when(tagManager.find("2")).thenReturn(tag2);
@@ -110,7 +110,7 @@ public class RemoveTagsFromPeerHandlerTest {
 
     @Test
     public void testExecuteNoRecursion(TaskQueueDispatch dispatchAsync,
-        Tags tagManager) throws Exception {
+        TagDao tagManager) throws Exception {
         when(tagManager.find("1")).thenReturn(tag);
         when(tagManager.find("2")).thenReturn(tag2);
         System.out.println("execute");
