@@ -31,7 +31,6 @@ import com.googlecode.fspotcloud.client.main.event.application.ApplicationEvent;
 import com.googlecode.fspotcloud.client.main.event.application.ApplicationType;
 import com.googlecode.fspotcloud.client.main.help.AboutAction;
 import com.googlecode.fspotcloud.client.main.help.HelpAction;
-import com.googlecode.fspotcloud.client.place.LoginPlace;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Zoom;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;

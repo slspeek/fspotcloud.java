@@ -23,16 +23,17 @@ import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import com.googlecode.simplejpadao.cacheddao.CachedSimpleDAONamedIdImpl;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.logging.Logger;
+import net.sf.jsr107cache.Cache;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import net.sf.jsr107cache.Cache;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedSet;
+import java.util.logging.Logger;
 
 
 public abstract class CachedTagManagerBase<T extends Tag, U extends T>

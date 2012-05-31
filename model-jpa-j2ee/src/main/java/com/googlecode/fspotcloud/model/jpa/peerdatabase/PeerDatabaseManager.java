@@ -19,6 +19,7 @@ package com.googlecode.fspotcloud.model.jpa.peerdatabase;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
+
 import javax.persistence.EntityManager;
 
 

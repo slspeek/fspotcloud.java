@@ -22,12 +22,13 @@ import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import com.googlecode.simplejpadao.cacheddao.CachedSimpleDAONamedIdImpl;
+import net.sf.jsr107cache.Cache;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import net.sf.jsr107cache.Cache;
 
 
 public abstract class CachedPhotoManagerBase<T extends Photo, U extends T>

@@ -18,11 +18,13 @@ package com.googlecode.fspotcloud.server.main.handler;
 
 import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.assertFalse;
 
 
 @RunWith(JukitoRunner.class)

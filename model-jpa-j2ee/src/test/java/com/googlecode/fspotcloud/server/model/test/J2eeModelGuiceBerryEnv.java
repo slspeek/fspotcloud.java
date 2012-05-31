@@ -23,9 +23,11 @@ import com.google.inject.name.Names;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseManager;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoManager;
 import com.googlecode.fspotcloud.model.jpa.tag.TagManager;
+import com.googlecode.fspotcloud.model.jpa.user.UserManager;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
+import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.simplejpadao.EntityModule;
 
 
@@ -45,6 +47,7 @@ class ModelModule extends AbstractModule {
         bind(PeerDatabaseDao.class).to(PeerDatabaseManager.class)
             .in(Singleton.class);
         bind(TagDao.class).to(TagManager.class).in(Singleton.class);
+        bind(UserDao.class).to(UserManager.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete"))
             .toInstance(new Integer(100));
         install(new EntityModule("derby-test"));

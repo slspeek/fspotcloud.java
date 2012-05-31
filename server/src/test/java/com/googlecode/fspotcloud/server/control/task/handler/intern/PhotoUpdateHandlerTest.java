@@ -24,17 +24,19 @@ import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.fspotcloud.shared.peer.PhotoDataResult;
 import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.ArrayList;
-import java.util.List;
 import net.customware.gwt.dispatch.shared.DispatchException;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
-import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 
 public class PhotoUpdateHandlerTest {

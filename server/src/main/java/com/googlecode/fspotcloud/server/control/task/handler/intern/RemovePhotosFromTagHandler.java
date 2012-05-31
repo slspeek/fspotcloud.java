@@ -21,11 +21,12 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotos
 import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import javax.inject.Inject;
-import javax.inject.Named;
 
 
 public class RemovePhotosFromTagHandler extends AbstractBatchActionHandler<RemovePhotosFromTagAction, String> {

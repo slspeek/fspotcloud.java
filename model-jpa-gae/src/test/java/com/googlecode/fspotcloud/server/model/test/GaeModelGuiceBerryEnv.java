@@ -26,9 +26,11 @@ import com.google.inject.name.Names;
 import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
 import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoManager;
 import com.googlecode.fspotcloud.model.jpa.gae.tag.TagManager;
+import com.googlecode.fspotcloud.model.jpa.gae.user.UserManager;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
+import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.simplejpadao.EntityModule;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,6 +59,7 @@ class ModelModule extends AbstractModule {
         bind(PeerDatabaseDao.class).to(PeerDatabaseManager.class)
             .in(Singleton.class);
         bind(TagDao.class).to(TagManager.class).in(Singleton.class);
+        bind(UserDao.class).to(UserManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete"))
             .toInstance(new Integer(100));
         install(new EntityModule("gae-test"));

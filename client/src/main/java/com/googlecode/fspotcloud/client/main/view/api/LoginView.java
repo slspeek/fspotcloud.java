@@ -17,8 +17,6 @@
 package com.googlecode.fspotcloud.client.main.view.api;
 
 import com.google.gwt.activity.shared.Activity;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.IsWidget;
 
 

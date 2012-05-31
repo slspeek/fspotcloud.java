@@ -20,21 +20,23 @@
  */
 package com.googlecode.fspotcloud.server.control.callback;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsDeletedFromPeerAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.TagUpdateAction;
 import com.googlecode.fspotcloud.shared.peer.PeerUpdateInstructionsResult;
 import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
 import com.googlecode.fspotcloud.shared.peer.TagUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.List;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.shared.Action;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+
+import javax.inject.Inject;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 

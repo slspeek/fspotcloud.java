@@ -19,7 +19,6 @@ package com.googlecode.fspotcloud.test;
 import com.google.guiceberry.junit4.GuiceBerryRule;
 import com.thoughtworks.selenium.Selenium;
 import javax.inject.Inject;
-import junit.framework.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 

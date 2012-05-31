@@ -21,7 +21,6 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.google.common.collect.ImmutableList;
-import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.name.Names;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
@@ -34,16 +33,19 @@ import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.Date;
-import java.util.List;
-import java.util.TreeSet;
-import javax.inject.Inject;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+import java.util.Date;
+import java.util.List;
+import java.util.TreeSet;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 /**

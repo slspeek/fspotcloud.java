@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-23</version>
+        <version>0.12-24</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>server-module-j2ee</artifactId>
-    <version>0.12-23</version>
+    <version>0.12-24</version>
     <name>Server J2EE Configuration</name>
     <description>Guice configuration for deployment on J2EE</description>
     <dependencies>
@@ -112,7 +112,7 @@
         <dependency>
             <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>user-service-openid</artifactId>
-            <version>0.12-23</version>
+            <version>0.12-24</version>
             <type>jar</type>
         </dependency>
     </dependencies>

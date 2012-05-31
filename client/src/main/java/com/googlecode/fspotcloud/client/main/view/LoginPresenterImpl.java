@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.activity.shared.AbstractActivity;
-import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -30,7 +29,6 @@ import com.googlecode.fspotcloud.shared.main.UserInfo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.customware.gwt.dispatch.client.DispatchAsync;
-import net.customware.gwt.dispatch.server.Dispatch;
 
 
 public class LoginPresenterImpl extends AbstractActivity implements LoginView.LoginPresenter {

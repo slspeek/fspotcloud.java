@@ -16,7 +16,6 @@
  */
 package com.googlecode.fspotcloud.client.main.view;
 
-import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.fspotcloud.client.main.view.api.LoginView;
@@ -29,19 +28,12 @@ import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.Result;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-import org.mockito.MockitoAnnotations;
-
-
+import static org.mockito.Mockito.*;
 @RunWith(JukitoRunner.class)
 public class LoginPresenterImplTest {
     public static final String SECRET = "Secret";

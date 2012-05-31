@@ -18,8 +18,9 @@ package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.base.Objects;
-import java.util.List;
 import net.customware.gwt.dispatch.shared.Result;
+
+import java.util.List;
 
 
 @GwtCompatible
