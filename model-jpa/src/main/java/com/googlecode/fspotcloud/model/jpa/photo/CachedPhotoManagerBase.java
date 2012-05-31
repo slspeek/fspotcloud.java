@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.model.jpa.photo;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.googlecode.fspotcloud.server.model.api.Photo;
-import com.googlecode.fspotcloud.server.model.api.Photos;
+import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import com.googlecode.simplejpadao.cacheddao.CachedSimpleDAONamedIdImpl;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import net.sf.jsr107cache.Cache;
 
 
 public abstract class CachedPhotoManagerBase<T extends Photo, U extends T>
-    extends CachedSimpleDAONamedIdImpl<Photo, U, String> implements Photos {
+    extends CachedSimpleDAONamedIdImpl<Photo, U, String> implements PhotoDao {
     @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(CachedPhotoManagerBase.class.getName());
     protected final Provider<EntityManager> entityManagerProvider;

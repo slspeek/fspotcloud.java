@@ -22,8 +22,8 @@ package com.googlecode.fspotcloud.server.main.handler;
 
 import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
@@ -48,7 +48,7 @@ public class GetTagTreeHandlerTest {
     private final GetTagTreeAction action = new GetTagTreeAction();
 
     @Test
-    public void testNormalExecuteNoTags(Tags tagManager, PeerDatabases peers)
+    public void testNormalExecuteNoTags(TagDao tagManager, PeerDatabaseDao peers)
         throws Exception {
         when(peers.get()).thenReturn(new PeerDatabaseEntity());
 
@@ -58,8 +58,8 @@ public class GetTagTreeHandlerTest {
     }
 
     @Test
-    public void testNormalExecuteOneUnimportedTags(Tags tagManager,
-        PeerDatabases peers) throws Exception {
+    public void testNormalExecuteOneUnimportedTags(TagDao tagManager,
+        PeerDatabaseDao peers) throws Exception {
         when(peers.get()).thenReturn(new PeerDatabaseEntity());
 
         List<TagNode> list = newArrayList();
@@ -73,8 +73,8 @@ public class GetTagTreeHandlerTest {
     }
 
     @Test
-    public void testNormalExecuteOneImportedTags(Tags tagManager,
-        PeerDatabases peers) throws Exception {
+    public void testNormalExecuteOneImportedTags(TagDao tagManager,
+        PeerDatabaseDao peers) throws Exception {
         when(peers.get()).thenReturn(new PeerDatabaseEntity());
 
         List<TagNode> list = newArrayList();
@@ -89,8 +89,8 @@ public class GetTagTreeHandlerTest {
     }
 
     @Test
-    public void testNormalExecuteCachehit(Tags tagManager, PeerDatabases peers)
-        throws Exception {
+    public void testNormalExecuteCachehit(TagDao tagManager,
+        PeerDatabaseDao peers) throws Exception {
         final PeerDatabaseEntity peerDatabaseEntity = new PeerDatabaseEntity();
 
         List<TagNode> list = newArrayList();

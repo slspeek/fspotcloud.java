@@ -14,27 +14,15 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.server.control.hook;
+package com.googlecode.fspotcloud.server.model.api;
 
-import com.google.inject.Inject;
-import com.googlecode.botdispatch.controller.callback.ControllerHook;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
+import com.googlecode.simplejpadao.SimpleDAONamedId;
 
 
-public class TimeLoggingControllerHook implements ControllerHook {
-    private final PeerDatabaseDao defaultPeer;
+public interface PeerDatabaseDao extends SimpleDAONamedId<PeerDatabase, String> {
+    PeerDatabase get();
 
-    @Inject
-    public TimeLoggingControllerHook(PeerDatabaseDao defaultPeer) {
-        super();
-        this.defaultPeer = defaultPeer;
-    }
+    void touchPeerContact();
 
-    @Override
-    public void preprocess(long id, byte[] result) {
-        PeerDatabase peer = defaultPeer.get();
-        peer.touchPeerContact();
-        defaultPeer.save(peer);
-    }
+    void resetCachedTagTree();
 }

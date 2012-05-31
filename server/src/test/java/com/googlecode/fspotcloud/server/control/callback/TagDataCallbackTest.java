@@ -19,9 +19,9 @@ package com.googlecode.fspotcloud.server.control.callback;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.peer.TagData;
 import com.googlecode.fspotcloud.shared.peer.TagDataResult;
 import java.io.ByteArrayOutputStream;
@@ -36,10 +36,10 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.*;
 public class TagDataCallbackTest {
-    Tags tagManager;
+    TagDao tagManager;
     Tag tag;
     PeerDatabase peer = new PeerDatabaseEntity();
-    PeerDatabases peers;
+    PeerDatabaseDao peers;
     TagDataCallback callback;
     final String TAGNAME = "Foo";
     final String TAGID = "FooID";
@@ -49,8 +49,8 @@ public class TagDataCallbackTest {
 
     @Before
     public void setUp() throws Exception {
-        tagManager = mock(Tags.class);
-        peers = mock(PeerDatabases.class);
+        tagManager = mock(TagDao.class);
+        peers = mock(PeerDatabaseDao.class);
         when(peers.get()).thenReturn(peer);
         tag = new TagEntity();
         tag.setId(TAGID);

@@ -18,7 +18,7 @@ package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTagsAction;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
@@ -33,11 +33,11 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 public class UserDeletesAllHandler extends SimpleActionHandler<UserDeletesAllAction, VoidResult> {
     private final TaskQueueDispatch dispatchAsync;
     private final IAdminPermission IAdminPermission;
-    private final PeerDatabases peerDatabaseManager;
+    private final PeerDatabaseDao peerDatabaseManager;
 
     @Inject
     public UserDeletesAllHandler(TaskQueueDispatch dispatchAsync,
-        IAdminPermission IAdminPermission, PeerDatabases peerDatabaseManager) {
+        IAdminPermission IAdminPermission, PeerDatabaseDao peerDatabaseManager) {
         super();
         this.dispatchAsync = dispatchAsync;
         this.IAdminPermission = IAdminPermission;

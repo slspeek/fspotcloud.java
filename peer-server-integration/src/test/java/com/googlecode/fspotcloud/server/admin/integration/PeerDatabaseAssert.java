@@ -22,7 +22,7 @@ package com.googlecode.fspotcloud.server.admin.integration;
  * and open the template in the editor.
  */
 import com.google.inject.Inject;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import java.util.logging.Logger;
 
 
@@ -35,7 +35,7 @@ public class PeerDatabaseAssert {
     @Inject
     Logger log;
     @Inject
-    PeerDatabases peers;
+    PeerDatabaseDao peers;
 
     public boolean isEmpty() {
         return peers.isEmpty();

@@ -22,7 +22,7 @@ package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTagsAction;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
@@ -41,7 +41,7 @@ public class UserDeletesAllHandlerTest {
 
     @Test
     public void testNormalExecute(TaskQueueDispatch dispatchAsync,
-        IAdminPermission IAdminPermission, PeerDatabases peerDatabaseManager)
+        IAdminPermission IAdminPermission, PeerDatabaseDao peerDatabaseManager)
         throws Exception {
         UserDeletesAllAction action = new UserDeletesAllAction();
         VoidResult result = handler.execute(action, null);
@@ -53,7 +53,7 @@ public class UserDeletesAllHandlerTest {
 
     @Test(expected = SecurityException.class)
     public void testUnAuthorizedExecute(TaskQueueDispatch dispatchAsync,
-        IAdminPermission iAdminPermission, PeerDatabases peerDatabaseManager)
+        IAdminPermission iAdminPermission, PeerDatabaseDao peerDatabaseManager)
         throws Exception {
         doThrow(new SecurityException()).when(iAdminPermission)
             .checkAdminPermission();

@@ -20,7 +20,7 @@ import com.google.guiceberry.junit4.GuiceBerryRule;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.Date;
@@ -38,7 +38,7 @@ public class TagManagerTest {
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
-    private Tags tagManager;
+    private TagDao tagManager;
 
     @After
     public void setUp() throws Exception {

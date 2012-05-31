@@ -47,10 +47,10 @@ public class J2eeIntegrationGuiceBerryEnv extends GuiceBerryModule {
     @Override
     public void configure() {
         super.configure();
-        System.setProperty("photo.dir.original", "//home/steven/Photos");
+        System.setProperty("photo.dir.original", "//home/steven/PhotoDao");
         System.setProperty("photo.dir.override",
             "" + System.getProperty("user.dir") +
-            "/../peer/src/test/resources/Photos");
+            "/../peer/src/test/resources/PhotoDao");
         bind(Integer.class).annotatedWith(Names.named("maxTicks"))
             .toInstance(new Integer(3));
         install(new MyAdminActionsModule());

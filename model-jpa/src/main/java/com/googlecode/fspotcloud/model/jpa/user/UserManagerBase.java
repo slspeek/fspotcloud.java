@@ -14,14 +14,14 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.model.jpa.tag;
+package com.googlecode.fspotcloud.model.jpa.user;
 
 import static com.google.common.collect.Lists.newArrayList;
-import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.TagDao;
+import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import com.googlecode.fspotcloud.shared.main.TagNode;
+import com.googlecode.simplejpadao.SimpleDAOGenIdImpl;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,50 +34,23 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 
-public abstract class TagManagerBase<T extends Tag, U extends T>
-    extends SimpleDAONamedIdImpl<Tag, U, String> implements TagDao {
-    private static final Logger log = Logger.getLogger(TagManagerBase.class.getName());
+public abstract class UserManagerBase<T extends User, U extends T>
+    extends SimpleDAOGenIdImpl<User, U, Long> implements UserDao {
+    private static final Logger log = Logger.getLogger(UserManagerBase.class.getName());
 
     @Inject
-    public TagManagerBase(Class<U> entityType,
+    public UserManagerBase(Class<U> entityType,
         Provider<EntityManager> emProvider, @Named("maxDelete")
     Integer maxDelete) {
         super(entityType, emProvider);
     }
 
-    @Override
-    public List<TagNode> getTags() {
-        List<TagNode> result = newArrayList();
-
-        for (Tag tag : findAll(1000)) {
-            TagNode node = new TagNode();
-            node.setId(tag.getId());
-            node.setImportIssued(tag.isImportIssued());
-            node.setParentId(tag.getParentId());
-            node.setTagName(tag.getTagName());
-            node.setCount(tag.getCount());
-
-            SortedSet<PhotoInfo> photoList = tag.getCachedPhotoList();
-
-            if (photoList != null) {
-                node.setCachedPhotoList(new PhotoInfoStore(photoList));
-            } else {
-                throw new IllegalStateException(
-                    "photoList field of Tag should not be null");
-            }
-
-            result.add(node);
-        }
-
-        return result;
+    protected void detach(User user) {
+        user.setUserGroups(newArrayList(user.getUserGroups()));
+        user.setPeers(newArrayList(user.getPeers()));
     }
 
-    @Override
-    public List<Tag> getImportedTags() {
-        return findAllWhere(1000, "importIssued = true");
-    }
+    protected abstract User newUser();
 
-    protected abstract Tag newTag();
-
-    protected abstract Class<?extends Tag> getEntityClass();
+    protected abstract Class<?extends User> getEntityClass();
 }

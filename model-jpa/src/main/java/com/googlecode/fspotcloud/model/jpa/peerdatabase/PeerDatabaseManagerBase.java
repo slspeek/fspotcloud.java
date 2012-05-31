@@ -17,7 +17,7 @@
 package com.googlecode.fspotcloud.model.jpa.peerdatabase;
 
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import java.util.Date;
@@ -30,7 +30,7 @@ import javax.persistence.EntityManager;
 
 public abstract class PeerDatabaseManagerBase<T extends PeerDatabase, U extends T>
     extends SimpleDAONamedIdImpl<PeerDatabase, U, String>
-    implements PeerDatabases {
+    implements PeerDatabaseDao {
     private static final String DEFAULT_PEER_ID = "1";
     private static final Logger log = Logger.getLogger(PeerDatabaseManagerBase.class.getName());
     private final Provider<EntityManager> entityManagerProvider;

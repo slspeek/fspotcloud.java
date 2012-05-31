@@ -16,7 +16,7 @@
  */
 package com.googlecode.fspotcloud.server.admin.handler;
 
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.server.model.tag.TreeBuilder;
 import com.googlecode.fspotcloud.shared.dashboard.GetAdminTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagNode;
@@ -34,11 +34,11 @@ public class GetAdminTagTreeHandler extends SimpleActionHandler<GetAdminTagTreeA
     @SuppressWarnings("unused")
     @Inject
     private Logger log;
-    private final Tags tagManager;
+    private final TagDao tagManager;
     private final IAdminPermission adminPermission;
 
     @Inject
-    public GetAdminTagTreeHandler(Tags tagManager,
+    public GetAdminTagTreeHandler(TagDao tagManager,
         IAdminPermission adminPermission) {
         this.tagManager = tagManager;
         this.adminPermission = adminPermission;

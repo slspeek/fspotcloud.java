@@ -47,11 +47,11 @@ public class RemovePhotosFromTagHandlerTest {
     @Mock
     TaskQueueDispatch dispatchAsync;
     @Mock
-    Photos photos;
+    PhotoDao photoDao;
     @Mock
-    Tags tagManager;
+    TagDao tagManager;
     @Mock
-    PeerDatabases peers;
+    PeerDatabaseDao peers;
     Tag tag;
     Tag tag3;
     @Captor
@@ -70,7 +70,7 @@ public class RemovePhotosFromTagHandlerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         handler = new RemovePhotosFromTagHandler(MAX_DELETE_TICKS,
-                dispatchAsync, photos, tagManager, peers);
+                dispatchAsync, photoDao, tagManager, peers);
         tag3 = new TagEntity();
         tag3.setId("3");
         tag3.setImportIssued(true);
@@ -90,8 +90,8 @@ public class RemovePhotosFromTagHandlerTest {
         tag.setCachedPhotoList(cached);
         when(tagManager.find(TAG_ID)).thenReturn(tag);
         when(tagManager.find("3")).thenReturn(tag3);
-        when(photos.find(ID_A)).thenReturn(photoA);
-        when(photos.find(ID_B)).thenReturn(photoB);
+        when(photoDao.find(ID_A)).thenReturn(photoA);
+        when(photoDao.find(ID_B)).thenReturn(photoB);
         when(peers.get()).thenReturn(peer);
     }
 
@@ -106,16 +106,16 @@ public class RemovePhotosFromTagHandlerTest {
         assertEquals(2, tag.getCachedPhotoList().size());
 
         handler.execute(new RemovePhotosFromTagAction(TAG_ID, idList), null);
-        verify(photos).delete(photoA);
-        verify(photos).find(ID_A);
+        verify(photoDao).delete(photoA);
+        verify(photoDao).find(ID_A);
         assertEquals(1, tag.getCachedPhotoList().size());
-        verifyNoMoreInteractions(photos);
+        verifyNoMoreInteractions(photoDao);
         verify(dispatchAsync).execute(nextCallCaptor.capture());
         assertEquals(TAG_ID, nextCallCaptor.getValue().getTagId());
         handler.execute(new RemovePhotosFromTagAction(TAG_ID, idList), null);
         verifyNoMoreInteractions(dispatchAsync);
-        verify(photos).find(ID_B);
-        verifyNoMoreInteractions(photos);
+        verify(photoDao).find(ID_B);
+        verifyNoMoreInteractions(photoDao);
         assertEquals(1, tag.getCachedPhotoList().size());
     }
 }

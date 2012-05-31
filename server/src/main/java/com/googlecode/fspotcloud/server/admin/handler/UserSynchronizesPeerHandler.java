@@ -22,7 +22,7 @@ import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.callback.PeerMetaDataCallback;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.ImportManyTagsPhotosAction;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
@@ -39,12 +39,12 @@ public class UserSynchronizesPeerHandler extends SimpleActionHandler<UserSynchro
     private final ControllerDispatchAsync dispatch;
     private final IAdminPermission adminPermission;
     private final TaskQueueDispatch taskQueueDispatch;
-    private final Tags tagManager;
+    private final TagDao tagManager;
 
     @Inject
     public UserSynchronizesPeerHandler(ControllerDispatchAsync dispatch,
         IAdminPermission adminPermission, TaskQueueDispatch taskQueueDispatch,
-        Tags tagManager) {
+        TagDao tagManager) {
         super();
         this.dispatch = dispatch;
         this.adminPermission = adminPermission;

@@ -17,7 +17,7 @@
 package com.googlecode.fspotcloud.model.jpa.tag;
 
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import com.googlecode.fspotcloud.shared.main.TagNode;
@@ -36,7 +36,7 @@ import net.sf.jsr107cache.Cache;
 
 
 public abstract class CachedTagManagerBase<T extends Tag, U extends T>
-    extends CachedSimpleDAONamedIdImpl<Tag, U, String> implements Tags {
+    extends CachedSimpleDAONamedIdImpl<Tag, U, String> implements TagDao {
     private static final Logger log = Logger.getLogger(CachedTagManagerBase.class.getName());
     private final Provider<EntityManager> emProvider;
     private final Integer maxDelete;

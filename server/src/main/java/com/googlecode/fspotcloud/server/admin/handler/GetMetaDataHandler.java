@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.server.admin.handler;
 import com.google.inject.Inject;
 import com.googlecode.botdispatch.model.api.Commands;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataAction;
 import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
@@ -31,12 +31,12 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 public class GetMetaDataHandler extends SimpleActionHandler<GetMetaDataAction, GetMetaDataResult> {
     private final Commands commandManager;
-    private final PeerDatabases defaultPeer;
+    private final PeerDatabaseDao defaultPeer;
     private final IAdminPermission adminPermission;
 
     @Inject
     public GetMetaDataHandler(Commands commandManager,
-        PeerDatabases defaultPeer, IAdminPermission IAdminPermission) {
+        PeerDatabaseDao defaultPeer, IAdminPermission IAdminPermission) {
         super();
         this.commandManager = commandManager;
         this.defaultPeer = defaultPeer;

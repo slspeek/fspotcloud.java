@@ -18,7 +18,7 @@ package com.googlecode.fspotcloud.server.main;
 
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
 import com.googlecode.fspotcloud.server.model.api.Photo;
-import com.googlecode.fspotcloud.server.model.api.Photos;
+import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.meterware.httpunit.GetMethodWebRequest;
 import com.meterware.httpunit.WebRequest;
 import com.meterware.httpunit.WebResponse;
@@ -50,11 +50,11 @@ public class ImageServletTest extends ServletTestCase {
 
     @Test
     public void testThumb() throws Exception {
-        Photos photos = mock(Photos.class);
+        PhotoDao photoDao = mock(PhotoDao.class);
         Photo photo = new PhotoEntity();
         photo.setId("1");
         photo.setThumb(THUMB);
-        when(photos.find("1")).thenReturn(photo);
+        when(photoDao.find("1")).thenReturn(photo);
 
         ServletUnitClient sc = sr.newClient();
         WebRequest request = new GetMethodWebRequest(
@@ -64,7 +64,7 @@ public class ImageServletTest extends ServletTestCase {
 
         InvocationContext ic = sc.newInvocation(request);
         ImageServlet servlet = (ImageServlet) ic.getServlet();
-        servlet.photoManager = photos;
+        servlet.photoManager = photoDao;
         servlet.service(ic.getRequest(), ic.getResponse());
 
         WebResponse response = ic.getServletResponse();
@@ -79,11 +79,11 @@ public class ImageServletTest extends ServletTestCase {
 
     @Test
     public void testNormalImage() throws Exception {
-        Photos photos = mock(Photos.class);
+        PhotoDao photoDao = mock(PhotoDao.class);
         Photo photo = new PhotoEntity();
         photo.setId("1");
         photo.setImage(THUMB);
-        when(photos.find("1")).thenReturn(photo);
+        when(photoDao.find("1")).thenReturn(photo);
 
         ServletUnitClient sc = sr.newClient();
         WebRequest request = new GetMethodWebRequest(
@@ -92,7 +92,7 @@ public class ImageServletTest extends ServletTestCase {
 
         InvocationContext ic = sc.newInvocation(request);
         ImageServlet servlet = (ImageServlet) ic.getServlet();
-        servlet.photoManager = photos;
+        servlet.photoManager = photoDao;
         servlet.service(ic.getRequest(), ic.getResponse());
 
         WebResponse response = ic.getServletResponse();

@@ -21,14 +21,14 @@ import com.google.inject.Provider;
 import com.googlecode.fspotcloud.model.jpa.photo.CachedPhotoManagerBase;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoManagerBase;
 import com.googlecode.fspotcloud.server.model.api.Photo;
-import com.googlecode.fspotcloud.server.model.api.Photos;
+import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import net.sf.jsr107cache.Cache;
 
 
 public class PhotoManager extends CachedPhotoManagerBase<Photo, PhotoEntity>
-    implements Photos {
+    implements PhotoDao {
     @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(PhotoManagerBase.class.getName());
 

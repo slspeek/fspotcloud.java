@@ -21,9 +21,9 @@ import com.google.inject.Inject;
 import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.peer.GetPeerUpdateInstructionsAction;
 import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
 import com.googlecode.fspotcloud.shared.peer.TagData;
@@ -37,9 +37,9 @@ public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaD
     @Inject
     Logger log;
     @Inject
-    private transient PeerDatabases defaultPeer;
+    private transient PeerDatabaseDao defaultPeer;
     @Inject
-    private transient Tags tagManager;
+    private transient TagDao tagManager;
     @Inject
     private transient ControllerDispatchAsync dispatchAsync;
 

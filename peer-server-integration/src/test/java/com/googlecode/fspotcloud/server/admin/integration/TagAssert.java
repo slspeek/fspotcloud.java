@@ -22,7 +22,7 @@ package com.googlecode.fspotcloud.server.admin.integration;
  * and open the template in the editor.
  */
 import com.google.inject.Inject;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import org.testng.Assert;
 
 
@@ -33,10 +33,10 @@ import org.testng.Assert;
 */
 public class TagAssert {
     @Inject
-    Tags tags;
+    TagDao tagDao;
 
     public void assertTagLoaded(String id) {
-        Assert.assertNotNull(tags.find(id));
+        Assert.assertNotNull(tagDao.find(id));
     }
 
     public void assertTagsLoaded(String... allIds) {
@@ -52,6 +52,6 @@ public class TagAssert {
     }
 
     public void verifyTagRemoved(String id) {
-        Assert.assertNull(tags.find(id));
+        Assert.assertNull(tagDao.find(id));
     }
 }

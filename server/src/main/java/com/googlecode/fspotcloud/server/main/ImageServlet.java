@@ -20,7 +20,7 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlecode.fspotcloud.server.model.api.Photo;
-import com.googlecode.fspotcloud.server.model.api.Photos;
+import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DateFormat;
@@ -43,7 +43,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ImageServlet extends HttpServlet {
     @VisibleForTesting
     @Inject
-    Photos photoManager;
+    PhotoDao photoManager;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)

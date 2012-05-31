@@ -37,9 +37,9 @@ import com.googlecode.fspotcloud.server.admin.handler.UserSynchronizesPeerHandle
 import com.googlecode.fspotcloud.server.admin.handler.UserUnImportsTagHandler;
 import com.googlecode.fspotcloud.server.control.task.inject.TaskActionsModule;
 import com.googlecode.fspotcloud.server.main.handler.GetTagTreeHandler;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
-import com.googlecode.fspotcloud.server.model.api.Photos;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
+import com.googlecode.fspotcloud.server.model.api.PhotoDao;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
@@ -57,10 +57,10 @@ public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
     @Override
     public void configure() {
         super.configure();
-        System.setProperty("photo.dir.original", "//home/steven/Photos");
+        System.setProperty("photo.dir.original", "//home/steven/PhotoDao");
         System.setProperty("photo.dir.override",
             "" + System.getProperty("user.dir") +
-            "/../peer/src/test/resources/Photos");
+            "/../peer/src/test/resources/PhotoDao");
         bind(Integer.class).annotatedWith(Names.named("maxTicks"))
             .toInstance(new Integer(3));
         install(new MyAdminActionsModule());
@@ -86,10 +86,10 @@ public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
 class MyModelModule extends AbstractModule {
     @Override
     protected void configure() {
-        bind(Photos.class).to(PhotoManager.class).in(Singleton.class);
-        bind(PeerDatabases.class).to(PeerDatabaseManager.class)
+        bind(PhotoDao.class).to(PhotoManager.class).in(Singleton.class);
+        bind(PeerDatabaseDao.class).to(PeerDatabaseManager.class)
             .in(Singleton.class);
-        bind(Tags.class).to(TagManager.class).in(Singleton.class);
+        bind(TagDao.class).to(TagManager.class).in(Singleton.class);
 
         bind(Integer.class).annotatedWith(Names.named("maxDelete"))
             .toInstance(new Integer(1));

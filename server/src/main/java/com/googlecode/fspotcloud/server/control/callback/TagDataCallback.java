@@ -18,9 +18,9 @@ package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.inject.Inject;
 import com.googlecode.botdispatch.SerializableAsyncCallback;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.peer.TagData;
 import com.googlecode.fspotcloud.shared.peer.TagDataResult;
 import java.util.logging.Level;
@@ -31,14 +31,15 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
     protected static final Logger log = Logger.getLogger(TagDataCallback.class.getName());
     private static final long serialVersionUID = 5342287706825285919L;
     @Inject
-    private transient Tags tagManager;
+    private transient TagDao tagManager;
     @Inject
-    private transient PeerDatabases peerDatabases;
+    private transient PeerDatabaseDao peerDatabaseDao;
 
-    public TagDataCallback(Tags tagManager, PeerDatabases peerDatabaseManager) {
+    public TagDataCallback(TagDao tagManager,
+        PeerDatabaseDao peerDatabaseManager) {
         super();
         this.tagManager = tagManager;
-        this.peerDatabases = peerDatabaseManager;
+        this.peerDatabaseDao = peerDatabaseManager;
     }
 
     @Override
@@ -61,7 +62,7 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
     }
 
     private void clearTreeCache() {
-        peerDatabases.resetCachedTagTree();
+        peerDatabaseDao.resetCachedTagTree();
     }
 
     private void recieveTag(TagData data, Tag tag) {

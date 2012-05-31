@@ -3,6 +3,7 @@ description = 'Model JPA Base'
 dependencies {
     compile project(':rpc')
     compile project(':model-api')
+    compile libs.guava
     compile libs.commons_lang
     compile libs.inject
     compile libs.guice
@@ -13,11 +14,7 @@ dependencies {
     compile libs.guice_servlet
     compile libs.simple_jpa_dao_impl
     compile libs.simple_jpa_dao_cached_dao
-    //testCompile libs.junit
-    //testCompile libs.mockito
-    //testCompile libs.guiceberry
-    //testCompile libs.guava_testlib
-    //testCompile "org.slf4j:slf4j-log4j12:1.6.4"
+
     compile(libs.servlet_spec) {
         provided: true
     }

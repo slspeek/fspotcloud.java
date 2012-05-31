@@ -20,7 +20,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
@@ -32,7 +32,7 @@ public class J2eeInjectorTest {
                     "FOO_BAR", "foo@bar"));
         AssertJUnit.assertNotNull(injector);
 
-        PeerDatabases defaultPeer = injector.getInstance(PeerDatabases.class);
+        PeerDatabaseDao defaultPeer = injector.getInstance(PeerDatabaseDao.class);
         PeerDatabase pd = defaultPeer.get();
         ControllerDispatchAsync controller = injector.getInstance(ControllerDispatchAsync.class);
         AssertJUnit.assertNotNull(controller);

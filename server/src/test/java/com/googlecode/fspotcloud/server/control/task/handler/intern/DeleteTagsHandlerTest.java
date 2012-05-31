@@ -17,7 +17,7 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTagsAction;
-import com.googlecode.fspotcloud.server.model.api.Tags;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
 import static org.junit.Assert.assertNotNull;
@@ -35,7 +35,7 @@ public class DeleteTagsHandlerTest {
     @Mock
     TaskQueueDispatch dispatchAsync;
     @Mock
-    Tags tagManager;
+    TagDao tagManager;
     @Captor
     ArgumentCaptor<DeleteAllTagsAction> newAction;
 

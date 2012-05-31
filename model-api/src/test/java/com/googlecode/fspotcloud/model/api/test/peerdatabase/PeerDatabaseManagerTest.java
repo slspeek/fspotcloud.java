@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.model.api.test.peerdatabase;
 import com.google.guiceberry.junit4.GuiceBerryRule;
 import com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabases;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class PeerDatabaseManagerTest {
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
-    private PeerDatabases manager;
+    private PeerDatabaseDao manager;
 
     @Before
     public void setUp() throws Exception {
