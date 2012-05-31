@@ -19,10 +19,9 @@ package com.googlecode.fspotcloud.peer.handlers;
 import com.googlecode.fspotcloud.peer.db.Data;
 import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
 import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
+import java.net.URL;
 import junit.framework.TestCase;
 import net.customware.gwt.dispatch.shared.DispatchException;
-
-import java.net.URL;
 
 
 public class GetPeerMetaDataHandlerTest extends TestCase {

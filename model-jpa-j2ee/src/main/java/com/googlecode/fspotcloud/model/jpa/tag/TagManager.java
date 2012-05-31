@@ -19,10 +19,9 @@ package com.googlecode.fspotcloud.model.jpa.tag;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.googlecode.fspotcloud.server.model.api.Tag;
-
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
-import java.util.logging.Logger;
 
 
 public class TagManager extends TagManagerBase<Tag, TagEntity> {

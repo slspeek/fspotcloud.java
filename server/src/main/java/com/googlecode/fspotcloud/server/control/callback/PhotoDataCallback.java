@@ -22,7 +22,6 @@ import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.peer.PhotoData;
 import com.googlecode.fspotcloud.shared.peer.PhotoDataResult;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

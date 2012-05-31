@@ -21,16 +21,14 @@
 package com.googlecode.fspotcloud.user.gae;
 
 import com.google.appengine.api.users.User;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.jukito.JukitoRunner;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import static org.mockito.Mockito.when;
 
 /**

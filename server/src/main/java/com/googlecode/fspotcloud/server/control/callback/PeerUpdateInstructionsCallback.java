@@ -22,7 +22,6 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsDe
 import com.googlecode.fspotcloud.server.control.task.actions.intern.TagUpdateAction;
 import com.googlecode.fspotcloud.shared.peer.PeerUpdateInstructionsResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

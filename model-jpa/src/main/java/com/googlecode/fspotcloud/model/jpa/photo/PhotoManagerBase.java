@@ -21,15 +21,13 @@ import com.google.inject.Provider;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
-
-import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
 
 
 public abstract class PhotoManagerBase<T extends Photo, U extends T>
     extends SimpleDAONamedIdImpl<Photo, U, String> implements PhotoDao {
-
     protected final Provider<EntityManager> entityManagerProvider;
 
     @Inject

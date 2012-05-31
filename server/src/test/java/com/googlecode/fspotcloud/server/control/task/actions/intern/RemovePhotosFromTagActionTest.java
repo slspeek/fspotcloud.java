@@ -16,14 +16,11 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
+import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.test.EqualsTest;
 import org.apache.commons.lang.SerializationUtils;
-import org.junit.Test;
-
-import static com.google.common.collect.Lists.newArrayList;
 import static org.junit.Assert.assertNotNull;
-
-
+import org.junit.Test;
 public class RemovePhotosFromTagActionTest extends EqualsTest<RemovePhotosFromTagAction> {
     @Test
     public void testSerialization() {

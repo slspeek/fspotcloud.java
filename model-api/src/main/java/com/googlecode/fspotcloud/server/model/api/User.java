@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.server.model.api;
 
 import com.googlecode.simplejpadao.HasSetKey;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

@@ -25,17 +25,15 @@ import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.TagNode;
-import org.junit.After;
-import org.junit.Rule;
-import org.junit.Test;
-
 import java.util.Date;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.logging.Logger;
-
+import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import org.junit.Rule;
+import org.junit.Test;
 
 
 public class UserManagerTest {
@@ -54,16 +52,14 @@ public class UserManagerTest {
 
     @Test
     public void testLogin() throws Exception {
-       // userManager.newPeristentEntity();
-         User user = userManager.newEntity();
-         user.setEmail(EMAIL);
+        // userManager.newPeristentEntity();
+        User user = userManager.newEntity();
+        user.setEmail(EMAIL);
         user.setCredentials(JSLINT);
         userManager.save(user);
-        
+
         user = null;
         user = userManager.tryToLogin(EMAIL, JSLINT);
         assertNotNull(user);
-                
-                 
     }
 }

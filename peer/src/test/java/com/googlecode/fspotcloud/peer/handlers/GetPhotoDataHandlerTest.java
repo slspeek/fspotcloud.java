@@ -22,10 +22,9 @@ import com.googlecode.fspotcloud.shared.peer.GetPhotoDataAction;
 import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.fspotcloud.shared.peer.PhotoData;
 import com.googlecode.fspotcloud.shared.peer.PhotoDataResult;
+import java.net.URL;
 import junit.framework.TestCase;
 import net.customware.gwt.dispatch.shared.DispatchException;
-
-import java.net.URL;
 
 
 public class GetPhotoDataHandlerTest extends TestCase {

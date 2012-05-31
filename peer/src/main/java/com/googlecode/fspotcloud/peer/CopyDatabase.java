@@ -16,11 +16,11 @@
  */
 package com.googlecode.fspotcloud.peer;
 
+import java.io.*;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
-import java.io.*;
-import java.util.logging.Logger;
 
 
 public class CopyDatabase implements Provider<String> {

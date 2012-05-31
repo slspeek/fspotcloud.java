@@ -17,15 +17,11 @@
 package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
-
+import static com.google.common.base.Objects.equal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static com.google.common.base.Objects.equal;
-
-
 @GwtCompatible
 public class TagNode implements Serializable {
     private int count;

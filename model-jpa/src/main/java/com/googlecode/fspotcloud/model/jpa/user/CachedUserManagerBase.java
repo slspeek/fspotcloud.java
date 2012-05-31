@@ -22,14 +22,13 @@ import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.simplejpadao.SimpleDAOGenIdImpl;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import com.googlecode.simplejpadao.cacheddao.CachedSimpleDAOGenIdImpl;
-import net.sf.jsr107cache.Cache;
-
+import java.util.List;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
-import java.util.List;
-import java.util.logging.Logger;
+import net.sf.jsr107cache.Cache;
 
 
 public abstract class CachedUserManagerBase<T extends User, U extends T>
@@ -40,11 +39,11 @@ public abstract class CachedUserManagerBase<T extends User, U extends T>
 
     @Inject
     public CachedUserManagerBase(Class<U> entityType,
-                                 Provider<EntityManager> emProvider,
-                                 @Named("maxDelete")
-                                 Integer maxDelete, Cache cache) {
+        Provider<EntityManager> emProvider,
+        @Named("maxDelete")
+    Integer maxDelete, Cache cache) {
         super(cache, entityType,
-                    new SimpleDAOGenIdImpl<User, U, Long>(entityType, emProvider));
+            new SimpleDAOGenIdImpl<User, U, Long>(entityType, emProvider));
         this.emProvider = emProvider;
         this.maxDelete = maxDelete;
     }
