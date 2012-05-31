@@ -20,7 +20,6 @@
  */
 package com.googlecode.fspotcloud.server.admin.handler;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.control.callback.PeerMetaDataCallback;
@@ -32,13 +31,16 @@ import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.List;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+
+import javax.inject.Inject;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 @RunWith(JukitoRunner.class)
 public class UserSynchronizesPeerHandlerTest {

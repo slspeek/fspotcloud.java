@@ -21,6 +21,7 @@ import com.google.inject.name.Names;
 import com.googlecode.fspotcloud.peer.CopyDatabase;
 import com.googlecode.fspotcloud.peer.ImageData;
 import com.googlecode.fspotcloud.peer.db.Data;
+
 import javax.inject.Singleton;
 
 

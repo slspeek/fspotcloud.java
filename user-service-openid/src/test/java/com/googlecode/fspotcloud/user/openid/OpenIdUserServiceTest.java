@@ -18,16 +18,18 @@ package com.googlecode.fspotcloud.user.openid;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
 import org.junit.After;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 @RunWith(JukitoRunner.class)
 public class OpenIdUserServiceTest {

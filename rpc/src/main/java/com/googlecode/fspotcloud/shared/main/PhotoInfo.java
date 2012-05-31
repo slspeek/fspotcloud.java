@@ -17,6 +17,7 @@
 package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
+
 import java.io.Serializable;
 import java.util.Date;
 

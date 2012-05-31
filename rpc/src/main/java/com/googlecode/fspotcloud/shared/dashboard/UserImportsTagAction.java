@@ -17,8 +17,9 @@
 package com.googlecode.fspotcloud.shared.dashboard;
 
 import com.google.common.annotations.GwtCompatible;
-import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Action;
+
+import java.io.Serializable;
 
 
 @GwtCompatible

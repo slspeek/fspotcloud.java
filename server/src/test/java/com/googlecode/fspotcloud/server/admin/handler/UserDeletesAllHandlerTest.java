@@ -27,11 +27,13 @@ import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 @RunWith(JukitoRunner.class)

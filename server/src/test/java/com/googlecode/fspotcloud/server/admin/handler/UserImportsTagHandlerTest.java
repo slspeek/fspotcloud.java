@@ -29,13 +29,15 @@ import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetTagUpdateInstructionsAction;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 @RunWith(JukitoRunner.class)
 public class UserImportsTagHandlerTest {

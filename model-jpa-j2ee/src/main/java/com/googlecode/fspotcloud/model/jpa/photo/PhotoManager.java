@@ -19,8 +19,9 @@ package com.googlecode.fspotcloud.model.jpa.photo;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.googlecode.fspotcloud.server.model.api.Photo;
-import java.util.logging.Logger;
+
 import javax.persistence.EntityManager;
+import java.util.logging.Logger;
 
 
 public class PhotoManager extends PhotoManagerBase<Photo, PhotoEntity> {

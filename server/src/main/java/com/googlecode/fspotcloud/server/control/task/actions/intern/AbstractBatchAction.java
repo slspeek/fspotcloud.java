@@ -17,10 +17,11 @@
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import net.customware.gwt.dispatch.shared.Action;
+
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
-import net.customware.gwt.dispatch.shared.Action;
 
 
 public abstract class AbstractBatchAction<T> implements Action<VoidResult>,

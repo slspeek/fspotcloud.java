@@ -31,18 +31,20 @@ import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
 import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
 import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
+import net.customware.gwt.dispatch.server.Dispatch;
+import net.customware.gwt.dispatch.shared.DispatchException;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import javax.inject.Inject;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.inject.Inject;
-import net.customware.gwt.dispatch.server.Dispatch;
-import net.customware.gwt.dispatch.shared.DispatchException;
+
 import static org.testng.AssertJUnit.*;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 
 public class PeerServerIntegrationTest {

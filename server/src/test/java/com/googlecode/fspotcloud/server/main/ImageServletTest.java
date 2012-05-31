@@ -26,11 +26,13 @@ import com.meterware.servletunit.InvocationContext;
 import com.meterware.servletunit.ServletRunner;
 import com.meterware.servletunit.ServletTestCase;
 import com.meterware.servletunit.ServletUnitClient;
-import java.io.InputStream;
-import java.util.Arrays;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.InputStream;
+import java.util.Arrays;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 public class ImageServletTest extends ServletTestCase {

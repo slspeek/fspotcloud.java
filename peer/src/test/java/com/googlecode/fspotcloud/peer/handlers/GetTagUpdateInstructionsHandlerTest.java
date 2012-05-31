@@ -22,12 +22,13 @@ import com.googlecode.fspotcloud.shared.peer.GetTagUpdateInstructionsAction;
 import com.googlecode.fspotcloud.shared.peer.PhotoRemovedFromTag;
 import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
 import com.googlecode.fspotcloud.shared.peer.TagUpdateInstructionsResult;
+import junit.framework.TestCase;
+import net.customware.gwt.dispatch.shared.DispatchException;
+
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.TreeSet;
-import junit.framework.TestCase;
-import net.customware.gwt.dispatch.shared.DispatchException;
 
 
 public class GetTagUpdateInstructionsHandlerTest extends TestCase {

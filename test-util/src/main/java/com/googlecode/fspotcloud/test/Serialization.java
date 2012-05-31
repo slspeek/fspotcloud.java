@@ -20,14 +20,16 @@
  */
 package com.googlecode.fspotcloud.test;
 
+import org.apache.commons.lang.SerializationUtils;
+
 import java.io.Serializable;
+
+import static org.junit.Assert.assertNotNull;
 
 /**
  *
  * @author steven
  */
-import org.apache.commons.lang.SerializationUtils;
-import static org.junit.Assert.assertNotNull;
 public class Serialization {
     public static <T> void testSerialization(T underTest) {
         byte[] data = SerializationUtils.serialize((Serializable) underTest);
