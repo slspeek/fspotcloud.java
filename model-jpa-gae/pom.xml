@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-24</version>
+        <version>0.12-25</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>model-jpa-gae</artifactId>
-    <version>0.12-24</version>
+    <version>0.12-25</version>
     <packaging>jar</packaging>
     <name>Model JPA GAE Implementation</name>
     <dependencies>
@@ -237,9 +237,9 @@
                             </systemPropertyVariables>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
                             </additionalClasspathElements>
                             <skip>false</skip>
+
                         </configuration>
                     </execution>
                     <execution>

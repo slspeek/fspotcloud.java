@@ -19,19 +19,14 @@ package com.googlecode.fspotcloud.model.api.test.user;
 import com.google.guiceberry.junit4.GuiceBerryRule;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv;
-import com.googlecode.fspotcloud.server.model.api.Tag;
-import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
-import com.googlecode.fspotcloud.shared.main.PhotoInfo;
-import com.googlecode.fspotcloud.shared.main.TagNode;
-import java.util.Date;
-import java.util.List;
-import java.util.TreeSet;
 import java.util.logging.Logger;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -40,10 +35,17 @@ public class UserManagerTest {
     private static final Logger log = Logger.getLogger(UserManagerTest.class.getName());
     public static final String EMAIL = "douglas@yahoo.com";
     public static final String JSLINT = "jslint";
+    public static final String IHATEPASSOWRDS = "ihatepassowrds";
+    public static final String RMS_FSF_ORG = "rms@fsf.org";
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
     private UserDao userManager;
+
+    @Before
+    public void assertEmpty() {
+        assertTrue(userManager.isEmpty());
+    }
 
     @After
     public void cleanUp() throws Exception {
@@ -53,13 +55,28 @@ public class UserManagerTest {
     @Test
     public void testLogin() throws Exception {
         // userManager.newPeristentEntity();
-        User user = userManager.newEntity();
+        User user;
+
+        user = userManager.newEntity(RMS_FSF_ORG);
+        user.setCredentials(IHATEPASSOWRDS);
+        userManager.save(user);
+
+        user = userManager.newEntity("foo");
         user.setEmail(EMAIL);
         user.setCredentials(JSLINT);
         userManager.save(user);
+        user = userManager.newEntity("foo");
+        user.setEmail(EMAIL);
+        user.setCredentials(JSLINT);
+        userManager.save(user);
+        assertEquals(2, userManager.count(10));
 
         user = null;
         user = userManager.tryToLogin(EMAIL, JSLINT);
+        assertNotNull(user);
+
+        user = null;
+        user = userManager.tryToLogin(RMS_FSF_ORG, IHATEPASSOWRDS);
         assertNotNull(user);
     }
 }

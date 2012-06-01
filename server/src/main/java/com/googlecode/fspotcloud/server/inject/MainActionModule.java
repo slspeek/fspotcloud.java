@@ -19,9 +19,11 @@ package com.googlecode.fspotcloud.server.inject;
 import com.googlecode.fspotcloud.server.main.handler.AuthenticationHandler;
 import com.googlecode.fspotcloud.server.main.handler.GetTagTreeHandler;
 import com.googlecode.fspotcloud.server.main.handler.GetUserInfoHandler;
+import com.googlecode.fspotcloud.server.main.handler.SignUpHandler;
 import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
+import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
 
@@ -31,5 +33,6 @@ public class MainActionModule extends ActionHandlerModule {
         bindHandler(GetUserInfo.class, GetUserInfoHandler.class);
         bindHandler(GetTagTreeAction.class, GetTagTreeHandler.class);
         bindHandler(AuthenticationAction.class, AuthenticationHandler.class);
+        bindHandler(SignUpAction.class, SignUpHandler.class);
     }
 }

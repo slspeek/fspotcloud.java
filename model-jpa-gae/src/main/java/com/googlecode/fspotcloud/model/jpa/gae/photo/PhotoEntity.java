@@ -25,7 +25,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 
 /**
@@ -44,9 +46,7 @@ public class PhotoEntity implements Photo, Serializable {
     private Boolean imageLoaded = false;
     private Boolean thumbLoaded = false;
     private Boolean fullsizeLoaded = false;
-    @Basic
     private Blob image;
-    @Lob
     private Blob thumb;
 
     @Override

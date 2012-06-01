@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.model.jpa.user;
 import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
-import com.googlecode.simplejpadao.SimpleDAOGenIdImpl;
+import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -29,7 +29,7 @@ import javax.persistence.EntityManager;
 
 
 public abstract class UserManagerBase<T extends User, U extends T>
-    extends SimpleDAOGenIdImpl<User, U, Long> implements UserDao {
+    extends SimpleDAONamedIdImpl<User, U, String> implements UserDao {
     private static final Logger log = Logger.getLogger(UserManagerBase.class.getName());
 
     @Inject
@@ -55,8 +55,8 @@ public abstract class UserManagerBase<T extends User, U extends T>
 
     @Override
     public User tryToLogin(String email, String credentials) {
-        List<User> tryToFind = findAllWhere(1, "email = ? AND credentials = ?",
-                email, credentials);
+        List<User> tryToFind = findAllWhere(1,
+                "id = '" + email + "' AND credentials = '" + credentials + "'");
 
         if (tryToFind.size() > 0) {
             return tryToFind.get(0);
@@ -65,7 +65,12 @@ public abstract class UserManagerBase<T extends User, U extends T>
         }
     }
 
-    protected abstract User newUser();
+    @Override
+    public User newEntity(String key) {
+        return newUser(key);
+    }
+
+    protected abstract User newUser(String email);
 
     protected abstract Class<?extends User> getEntityClass();
 }

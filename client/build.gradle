@@ -67,7 +67,8 @@ compileGwt {
 }
 
 gwtDevMode {
-    startupUrls = ["http://localhost:8080/Dashboard.html", "http://localhost:8080/FSpotCloud.html"]
+    startupUrls = ["http://localhost:8050/j2ee-e2e/FSpotCloud.html", "http://localhost:8080/Dashboard.html",
+            "http://localhost:8080/FSpotCloud.html"]
 }
 
 artifacts {

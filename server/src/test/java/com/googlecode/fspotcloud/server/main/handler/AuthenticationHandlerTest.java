@@ -23,6 +23,8 @@ import org.jukito.JukitoRunner;
 import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+
 @RunWith(JukitoRunner.class)
 public class AuthenticationHandlerTest {
     @Inject

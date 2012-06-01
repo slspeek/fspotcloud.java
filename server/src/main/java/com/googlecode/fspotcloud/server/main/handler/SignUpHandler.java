@@ -19,37 +19,35 @@ package com.googlecode.fspotcloud.server.main.handler;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
-import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
-import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
-import com.googlecode.fspotcloud.user.UserService;
+import com.googlecode.fspotcloud.shared.main.SignUpAction;
+import com.googlecode.fspotcloud.shared.main.SignUpResult;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 
-public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAction, AuthenticationResult> {
-    private final UserService userService;
+public class SignUpHandler extends SimpleActionHandler<SignUpAction, SignUpResult> {
     private final UserDao userDao;
 
     @Inject
-    public AuthenticationHandler(UserService userService, UserDao userDao) {
-        this.userService = userService;
+    public SignUpHandler(UserDao userDao) {
         this.userDao = userDao;
     }
 
     @Override
-    public AuthenticationResult execute(AuthenticationAction action,
-        ExecutionContext context) throws DispatchException {
-        User user = userDao.tryToLogin(action.getUserName(),
-                action.getPassword());
+    public SignUpResult execute(SignUpAction action, ExecutionContext context)
+        throws DispatchException {
+        User mayBeExisted = userDao.find(action.getEmail());
 
-        if (user != null) {
-            user.touchLastLoginTime();
+        if (mayBeExisted == null) {
+            User user = userDao.newEntity(action.getEmail());
+            user.setNickname(action.getNickname());
+            user.setCredentials(action.getPassword());
             userDao.save(user);
 
-            return new AuthenticationResult(true);
+            return new SignUpResult(true);
         }
 
-        return new AuthenticationResult(false);
+        return new SignUpResult(false);
     }
 }

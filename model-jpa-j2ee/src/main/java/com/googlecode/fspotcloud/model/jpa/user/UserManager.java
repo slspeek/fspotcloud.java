@@ -32,12 +32,12 @@ public class UserManager extends UserManagerBase<User, UserEntity> {
     }
 
     @Override
-    protected User newUser() {
-        return null; //To change body of implemented methods use File | Settings | File Templates.
+    protected User newUser(String email) {
+        return new UserEntity(email);
     }
 
     @Override
     protected Class<?extends User> getEntityClass() {
-        return null; //To change body of implemented methods use File | Settings | File Templates.
+        return UserEntity.class;
     }
 }

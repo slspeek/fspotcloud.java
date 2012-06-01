@@ -81,6 +81,11 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
         }
     }
 
+    @Override
+    public void login() {
+        submitToServer();
+    }
+
     private void submitToServer() {
         String userName = view.getUserNameField();
         String password = view.getPasswordField();
