@@ -56,7 +56,8 @@ public abstract class UserManagerBase<T extends User, U extends T>
     @Override
     public User tryToLogin(String email, String credentials) {
         List<User> tryToFind = findAllWhere(1,
-                "id = '" + email + "' AND credentials = '" + credentials + "'");
+                "c.id = '" + email + "' AND c.credentials = '" + credentials +
+                "'");
 
         if (tryToFind.size() > 0) {
             return tryToFind.get(0);

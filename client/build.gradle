@@ -49,7 +49,7 @@ task javascriptJar(type: Jar, dependsOn: compileGwt) {
 }
 
 compileGwt.dependsOn convertIcons, writeVersion
-
+gwtDevMode.dependsOn convertIcons, writeVersion
 test {
     doFirst()
     {
