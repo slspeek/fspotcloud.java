@@ -31,8 +31,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.when;
-
-
 @RunWith(JukitoRunner.class)
 public class SignUpHandlerTest {
     public static final String RMS_FSF_ORG = "rms@fsf.org";

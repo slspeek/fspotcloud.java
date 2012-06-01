@@ -34,6 +34,7 @@ public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.
     private static final Logger log = Logger.getLogger(SignUpPresenterImpl.class.getName());
     public static final String AN_ERROR_PROHIBITED_YOUR_SIGN_UP = "An error prohibited your sign-up";
     public static final String SIGNED_UP_SUCCESSFULLY = "Signed up successfully";
+    public static final String SIGN_UP_FAILED = "Sign up failed";
     private final SignUpView view;
     private final DispatchAsync dispatch;
 
@@ -80,7 +81,7 @@ public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.
                     if (result.getSuccess()) {
                         view.setStatusText(SIGNED_UP_SUCCESSFULLY);
                     } else {
-                        view.setStatusText("Sign up failed");
+                        view.setStatusText(SIGN_UP_FAILED);
                     }
                 }
             });
