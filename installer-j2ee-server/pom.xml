@@ -6,11 +6,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-24</version>
+        <version>0.12-25</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>installer-j2ee-server</artifactId>
-    <version>0.12-24</version>
+    <version>0.12-25</version>
     <name>Installer for the J2ee server</name>
 
     <packaging>jar</packaging>

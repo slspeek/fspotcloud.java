@@ -14,21 +14,36 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.shared.peer;
+package com.googlecode.fspotcloud.shared.main;
 
-import com.google.common.collect.ImmutableList;
-import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
-import java.util.List;
-import org.junit.Test;
+import com.google.common.annotations.GwtCompatible;
+import com.google.common.base.Objects;
+import net.customware.gwt.dispatch.shared.Result;
 
 
-public class GetPhotoDataActionTest {
-    private static final ImageSpecs SPECS = new ImageSpecs(1024, 768, 512, 378);
-    private static final List<String> keys = ImmutableList.of("1", "2");
-    GetPhotoDataAction action = new GetPhotoDataAction(SPECS, keys);
+@GwtCompatible
+public class SignUpResult implements Result {
+    private boolean success;
 
-    @Test
-    public void testSerialize2() throws Exception {
-        testSerialization(action);
+    public SignUpResult() {
+    }
+
+    public SignUpResult(boolean success) {
+        this.success = success;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof SignUpResult) {
+            SignUpResult other = (SignUpResult) obj;
+
+            return Objects.equal(other.success, getSuccess());
+        } else {
+            return false;
+        }
+    }
+
+    public boolean getSuccess() {
+        return success;
     }
 }

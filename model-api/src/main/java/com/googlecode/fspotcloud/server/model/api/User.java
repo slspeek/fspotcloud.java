@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public interface User extends HasSetKey<Long>, Serializable {
+public interface User extends HasSetKey<String>, Serializable {
     String getEmail();
 
     void setEmail(String email);

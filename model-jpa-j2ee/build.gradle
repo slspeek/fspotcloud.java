@@ -44,6 +44,14 @@ task unpackTest << {
     myTests = configurations.modelTests.files.iterator().next()
     ant.unjar(dest: "$buildDir/model-test", src: myTests)
 }
+task userDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
+
+    testClassesDir = file("$buildDir/dao-test")
+    classpath = sourceSets.test.runtimeClasspath
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv'] =
+        'com.googlecode.fspotcloud.server.model.test.UserGuiceBerryEnv'
+    testResultsDir file("${project.testResultsDir}/user")
+}
 
 task photoDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
 
@@ -71,7 +79,6 @@ task peerDatabaseDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
 }
 
 task modelTest(type: Test, dependsOn: [classes, unpackTest]) {
-    //ignoreFailures = true
     testClassesDir = file("$buildDir/model-test")
     classpath = sourceSets.test.runtimeClasspath
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv'] =
@@ -79,5 +86,5 @@ task modelTest(type: Test, dependsOn: [classes, unpackTest]) {
     testResultsDir file("${project.testResultsDir}/model")
 }
 
-check.dependsOn photoDaoTest, tagDaoTest, peerDatabaseDaoTest, modelTest
+check.dependsOn photoDaoTest, tagDaoTest, peerDatabaseDaoTest, modelTest, userDaoTest
 clean.dependsOn deleteDB

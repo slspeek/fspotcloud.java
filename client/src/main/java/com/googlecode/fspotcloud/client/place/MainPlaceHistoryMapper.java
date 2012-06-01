@@ -20,6 +20,6 @@ import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 
 
-@WithTokenizers({BasePlace.Tokenizer.class, SlideshowPlace.Tokenizer.class, LoginPlace.Tokenizer.class})
+@WithTokenizers({BasePlace.Tokenizer.class, SlideshowPlace.Tokenizer.class, LoginPlace.Tokenizer.class, SignUpPlace.Tokenizer.class})
 public interface MainPlaceHistoryMapper extends PlaceHistoryMapper {
 }

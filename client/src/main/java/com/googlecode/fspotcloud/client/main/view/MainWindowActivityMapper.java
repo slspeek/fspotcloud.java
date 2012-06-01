@@ -23,6 +23,7 @@ import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.IGlobalShortcutController;
 import com.googlecode.fspotcloud.client.main.IGlobalShortcutController.Mode;
 import com.googlecode.fspotcloud.client.main.view.api.LoginView;
+import com.googlecode.fspotcloud.client.main.view.api.SignUpView;
 import com.googlecode.fspotcloud.client.main.view.api.SingleViewActivityFactory;
 import com.googlecode.fspotcloud.client.main.view.api.TagPresenterFactory;
 import com.googlecode.fspotcloud.client.place.BasePlace;
@@ -40,18 +41,21 @@ public class MainWindowActivityMapper implements ActivityMapper {
     private final Navigator navigator;
     private final IGlobalShortcutController keyboard;
     private final LoginView.LoginPresenter loginPresenter;
+    private final SignUpView.SignUpPresenter signUpPresenter;
 
     @Inject
     public MainWindowActivityMapper(TagPresenterFactory tagPresenterFactory,
         SingleViewActivityFactory singleViewActivityFactory,
         Navigator navigator, IGlobalShortcutController keyboard,
-        LoginView.LoginPresenter loginPresenter) {
+        LoginView.LoginPresenter loginPresenter,
+        SignUpView.SignUpPresenter signUpPresenter) {
         super();
         this.singleViewActivityFactory = singleViewActivityFactory;
         this.tagPresenterFactory = tagPresenterFactory;
         this.navigator = navigator;
         this.keyboard = keyboard;
         this.loginPresenter = loginPresenter;
+        this.signUpPresenter = signUpPresenter;
     }
 
     @Override
@@ -62,6 +66,8 @@ public class MainWindowActivityMapper implements ActivityMapper {
         Activity activity = null;
 
         if (place instanceof SignUpPlace) {
+            activity = signUpPresenter;
+            keyboard.setMode(Mode.LOGIN);
         } else if (place instanceof LoginPlace) {
             activity = loginPresenter;
             keyboard.setMode(Mode.LOGIN);

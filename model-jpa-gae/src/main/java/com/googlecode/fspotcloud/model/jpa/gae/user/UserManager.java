@@ -18,25 +18,22 @@ package com.googlecode.fspotcloud.model.jpa.gae.user;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import com.googlecode.fspotcloud.model.jpa.photo.PhotoManagerBase;
-import com.googlecode.fspotcloud.model.jpa.user.CachedUserManagerBase;
-import com.googlecode.fspotcloud.server.model.api.Photo;
+import com.googlecode.fspotcloud.model.jpa.user.UserManagerBase;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
-import java.util.List;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
-import net.sf.jsr107cache.Cache;
 
 
-public class UserManager extends CachedUserManagerBase<User, UserEntity>
+public class UserManager extends UserManagerBase<User, UserEntity>
     implements UserDao {
-    @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(PhotoManagerBase.class.getName());
-
     @Inject
-    public UserManager(Provider<EntityManager> pmProvider, Cache cache) {
-        super(UserEntity.class, pmProvider, 1000, cache);
+    public UserManager(Provider<EntityManager> pmProvider) {
+        super(UserEntity.class, pmProvider, 1000);
+    }
+
+    @Override
+    protected User newUser(String email) {
+        return new UserEntity(email);
     }
 
     protected Class<?extends User> getEntityClass() {

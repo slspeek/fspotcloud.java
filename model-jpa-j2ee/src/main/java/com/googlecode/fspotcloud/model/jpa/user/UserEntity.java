@@ -23,8 +23,9 @@ import com.googlecode.fspotcloud.server.model.api.User;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 
 /**
@@ -35,11 +36,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class UserEntity implements User, Serializable {
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    Long id;
-    @Column(unique = true)
-    private String email;
+    String id; //email-address
     private String credentials;
     private String nickname;
     private String emailVerificationSecret;
@@ -47,12 +44,20 @@ public class UserEntity implements User, Serializable {
     private Date lastLoginTime;
     private boolean enabled;
 
+    //Persistence demands this
+    UserEntity() {
+    }
+
+    public UserEntity(String email) {
+        setEmail(email);
+    }
+
     public String getEmail() {
-        return email;
+        return getId();
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        setId(email);
     }
 
     public String getCredentials() {
@@ -135,12 +140,12 @@ public class UserEntity implements User, Serializable {
     }
 
     @Override
-    public void setId(Long aLong) {
+    public void setId(String aLong) {
         this.id = aLong;
     }
 
     @Override
-    public Long getId() {
+    public String getId() {
         return id;
     }
 }
