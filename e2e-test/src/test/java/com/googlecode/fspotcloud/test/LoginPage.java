@@ -20,6 +20,7 @@
  */
 package com.googlecode.fspotcloud.test;
 
+import com.googlecode.fspotcloud.client.main.view.LoginPresenterImpl;
 import com.googlecode.fspotcloud.client.main.view.SignUpPresenterImpl;
 import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
@@ -30,43 +31,42 @@ import static org.junit.Assert.assertEquals;
  *
  * @author steven
  */
-public class SignUpPage {
+public class LoginPage {
     @Inject
     Selenium selenium;
 
     public void open() {
-        selenium.open("/#SignUpPlace:");
+        selenium.open("/#LoginPlace:");
         selenium.waitForPageToLoad("30000");
     }
 
-    public void fillForm(String email, String credentials, String nickname)
+    public void fillForm(String email, String credentials)
         throws InterruptedException {
-        selenium.type("id=gwt-debug-nickname", nickname);
         selenium.type("id=gwt-debug-password", credentials);
-        selenium.type("id=gwt-debug-password-again", credentials);
-        selenium.type("id=gwt-debug-email", email);
+        selenium.type("id=gwt-debug-username", email);
     }
 
-    public void signUp() throws InterruptedException {
-        selenium.click("gwt-debug-sign-up");
+    public void login() throws InterruptedException {
+        selenium.click("gwt-debug-login");
         selenium.waitForPageToLoad("30000");
         sleepShort();
     }
 
     public void verifySuccess() {
-        assertEquals(SignUpPresenterImpl.SIGNED_UP_SUCCESSFULLY, getStatusText());
+        assertEquals(LoginPresenterImpl.LOGGED_IN, getStatusText());
     }
 
     private String getStatusText() {
-        return selenium.getText("//div[11]/div");
+        return selenium.getText("gwt-debug-status");
     }
 
     public void verifyFailure() {
-        assertEquals(SignUpPresenterImpl.SIGN_UP_FAILED, getStatusText());
+        assertEquals(LoginPresenterImpl.NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION,
+            getStatusText());
     }
 
     public void verifyError() {
-        assertEquals(SignUpPresenterImpl.AN_ERROR_PROHIBITED_YOUR_SIGN_UP,
+        assertEquals(LoginPresenterImpl.AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST,
             getStatusText());
     }
 }

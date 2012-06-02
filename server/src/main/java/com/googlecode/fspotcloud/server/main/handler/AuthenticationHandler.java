@@ -40,14 +40,17 @@ public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAct
     @Override
     public AuthenticationResult execute(AuthenticationAction action,
         ExecutionContext context) throws DispatchException {
-        User user = userDao.tryToLogin(action.getUserName(),
-                action.getPassword());
+        if (!"".equals(action.getUserName())) {
+            User user = userDao.find(action.getUserName());
 
-        if (user != null) {
-            user.touchLastLoginTime();
-            userDao.save(user);
+            if (user != null) {
+                if (action.getPassword().equals(user.getCredentials())) {
+                    user.touchLastLoginTime();
+                    userDao.save(user);
 
-            return new AuthenticationResult(true);
+                    return new AuthenticationResult(true);
+                }
+            }
         }
 
         return new AuthenticationResult(false);
