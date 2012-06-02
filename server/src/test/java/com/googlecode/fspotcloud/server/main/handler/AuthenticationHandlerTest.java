@@ -16,13 +16,20 @@
  */
 package com.googlecode.fspotcloud.server.main.handler;
 
+import com.googlecode.fspotcloud.model.jpa.user.UserEntity;
+import com.googlecode.fspotcloud.server.model.api.User;
+import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import javax.inject.Inject;
 import org.jukito.JukitoRunner;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
 
 @RunWith(JukitoRunner.class)
@@ -31,9 +38,51 @@ public class AuthenticationHandlerTest {
     AuthenticationHandler handler;
 
     @Test
-    public void testExecute() throws Exception {
+    public void testExecuteFailureAsUserNonexistent(UserDao userDao)
+        throws Exception {
         AuthenticationAction action = new AuthenticationAction("foo", "secret");
         AuthenticationResult result = handler.execute(action, null);
         assertFalse(result.getSuccess());
+        verify(userDao).find("foo");
+        verifyNoMoreInteractions(userDao);
+    }
+
+    @Test
+    public void testExecuteFailureWrongPassword(UserDao userDao)
+        throws Exception {
+        User user = new UserEntity("foo");
+        user.setCredentials("Set");
+        when(userDao.find("foo")).thenReturn(user);
+
+        AuthenticationAction action = new AuthenticationAction("foo", "secret");
+        AuthenticationResult result = handler.execute(action, null);
+        assertFalse(result.getSuccess());
+        verify(userDao).find("foo");
+        verifyNoMoreInteractions(userDao);
+    }
+
+    @Test
+    public void testExecuteFailureEmptyUsername(UserDao userDao)
+        throws Exception {
+        verifyNoMoreInteractions(userDao);
+
+        AuthenticationAction action = new AuthenticationAction("", "secret");
+        AuthenticationResult result = handler.execute(action, null);
+        assertFalse(result.getSuccess());
+        verifyNoMoreInteractions(userDao);
+    }
+
+    @Test
+    public void success(UserDao userDao) throws Exception {
+        User user = new UserEntity("foo");
+        user.setCredentials("secret");
+        when(userDao.find("foo")).thenReturn(user);
+
+        AuthenticationAction action = new AuthenticationAction("foo", "secret");
+        AuthenticationResult result = handler.execute(action, null);
+        assertTrue(result.getSuccess());
+        verify(userDao).find("foo");
+        verify(userDao).save(user);
+        verifyNoMoreInteractions(userDao);
     }
 }

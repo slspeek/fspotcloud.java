@@ -31,6 +31,7 @@ import com.googlecode.fspotcloud.server.admin.handler.UserImportsTagHandler;
 import com.googlecode.fspotcloud.server.admin.handler.UserSynchronizesPeerHandler;
 import com.googlecode.fspotcloud.server.admin.handler.UserUnImportsTagHandler;
 import com.googlecode.fspotcloud.server.control.task.inject.TaskActionsModule;
+import com.googlecode.fspotcloud.server.inject.MainActionModule;
 import com.googlecode.fspotcloud.server.main.handler.GetTagTreeHandler;
 import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
@@ -65,6 +66,7 @@ public class J2eeIntegrationGuiceBerryEnv extends GuiceBerryModule {
         install(new PeerActionsModule());
         install(new MyPeerModule());
         install(new LenientUserModule());
+        install(new MainActionModule());
     }
 }
 

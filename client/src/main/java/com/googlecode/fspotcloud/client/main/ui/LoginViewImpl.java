@@ -18,6 +18,7 @@ package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -50,6 +51,7 @@ public class LoginViewImpl extends Composite implements LoginView {
         googleLoginLink.ensureDebugId("google-login");
         passwordTextBox.ensureDebugId("password");
         login.ensureDebugId("login");
+        statusLabel.ensureDebugId("status");
         log.info("Created " + this);
     }
 
@@ -94,6 +96,11 @@ public class LoginViewImpl extends Composite implements LoginView {
                     passwordTextBox.setFocus(true);
                 }
             });
+    }
+
+    @UiHandler("login")
+    public void loginClicked(ClickEvent e) {
+        presenter.login();
     }
 
     @UiHandler("userNameTextBox")

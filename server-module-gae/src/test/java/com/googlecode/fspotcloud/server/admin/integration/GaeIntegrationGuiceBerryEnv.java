@@ -36,6 +36,7 @@ import com.googlecode.fspotcloud.server.admin.handler.UserImportsTagHandler;
 import com.googlecode.fspotcloud.server.admin.handler.UserSynchronizesPeerHandler;
 import com.googlecode.fspotcloud.server.admin.handler.UserUnImportsTagHandler;
 import com.googlecode.fspotcloud.server.control.task.inject.TaskActionsModule;
+import com.googlecode.fspotcloud.server.inject.MainActionModule;
 import com.googlecode.fspotcloud.server.main.handler.GetTagTreeHandler;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
@@ -77,6 +78,7 @@ public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
         install(new MyPeerModule());
         install(new LenientUserModule());
         bind(Cache.class).toProvider(GaeCacheProvider.class);
+        install(new MainActionModule());
 
         bind(TestWrapper.class).to(GaeLocalDatastoreTestWrapper.class);
     }

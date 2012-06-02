@@ -18,7 +18,6 @@ package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
 import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
-import com.thoughtworks.selenium.Selenium;
 import javax.inject.Inject;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -27,27 +26,49 @@ import org.junit.Test;
 
 
 public class SimpleSignUpITest {
+    public static final String RMS_FSF_ORG = "rms@fsf.org";
+    public static final String CREDENTIALS = "ihp";
+    public static final String MOOG_BB_ORG = "moog@bb.org";
+    public static final String NSA = "nsa";
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
-    SignUpPage page;
+    SignUpPage signUpPage;
+    @Inject
+    LoginPage loginPage;
 
     @Test
     public void signUp() throws Exception {
-        page.open();
-        page.fillForm("rms@fsf.org", "ihp", "rms");
-        page.signUp();
+        signUpPage.open();
+        signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS, "rms");
+        signUpPage.signUp();
         sleepShort(2);
-        page.verifySuccess();
-        page.open();
-        page.fillForm("rms@fsf.org", "ihp", "rms");
-        page.signUp();
-        page.verifyFailure();
+        signUpPage.verifySuccess();
+        signUpPage.open();
+        signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS, "rms");
+        signUpPage.signUp();
+        signUpPage.verifyFailure();
         sleepShort(2);
-        page.open();
-        page.fillForm("moog@bb.org", "nsa", "moog");
-        page.signUp();
+        signUpPage.open();
+        signUpPage.fillForm(MOOG_BB_ORG, NSA, "moog");
+        signUpPage.signUp();
         sleepShort(2);
-        page.verifySuccess();
+        signUpPage.verifySuccess();
+
+        loginPage.open();
+        loginPage.fillForm("", "");
+        loginPage.login();
+        sleepShort(2);
+        loginPage.verifyFailure();
+
+        loginPage.open();
+        loginPage.fillForm(MOOG_BB_ORG, NSA);
+        loginPage.login();
+        loginPage.verifySuccess();
+
+        loginPage.open();
+        loginPage.fillForm(RMS_FSF_ORG, CREDENTIALS);
+        loginPage.login();
+        loginPage.verifySuccess();
     }
 }
