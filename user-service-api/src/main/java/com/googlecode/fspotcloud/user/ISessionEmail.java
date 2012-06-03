@@ -14,19 +14,10 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.test;
+package com.googlecode.fspotcloud.user;
 
-import com.thoughtworks.selenium.Selenium;
-import javax.inject.Inject;
+public interface ISessionEmail {
+    String getEmail();
 
-
-public class NoLoginBot implements ILogin {
-    @Inject
-    Selenium selenium;
-
-    @Override
-    public void login() throws Exception {
-        selenium.open("/Dashboard.html");
-        selenium.waitForPageToLoad("30000");
-    }
+    void setEmail(String email);
 }

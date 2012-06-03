@@ -22,6 +22,7 @@ package com.googlecode.fspotcloud.user.openid;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.googlecode.fspotcloud.user.ISessionEmail;
 import com.googlecode.fspotcloud.user.UserService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +35,9 @@ import javax.servlet.http.HttpSession;
  * @author steven
 */
 public class OpenIdUserService implements UserService {
+    public static final String EMAIL = "email";
     @Inject
-    Provider<HttpSession> sessionProvider;
+    Provider<ISessionEmail> sessionEmailProvider;
     @Inject
     @AdminEmail
     String adminEmail;
@@ -67,14 +69,7 @@ public class OpenIdUserService implements UserService {
 
     @Override
     public String getEmail() {
-        HttpSession session = sessionProvider.get();
-        List<String> emails = (List<String>) session.getAttribute("email");
-
-        if ((emails != null) && !emails.isEmpty()) {
-            return emails.get(0);
-        } else {
-            return null;
-        }
+        return sessionEmailProvider.get().getEmail();
     }
 
     @Override

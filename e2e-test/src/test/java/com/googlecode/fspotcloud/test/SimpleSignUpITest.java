@@ -42,23 +42,19 @@ public class SimpleSignUpITest {
         signUpPage.open();
         signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS, "rms");
         signUpPage.signUp();
-        sleepShort(2);
         signUpPage.verifySuccess();
         signUpPage.open();
         signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS, "rms");
         signUpPage.signUp();
         signUpPage.verifyFailure();
-        sleepShort(2);
         signUpPage.open();
         signUpPage.fillForm(MOOG_BB_ORG, NSA, "moog");
         signUpPage.signUp();
-        sleepShort(2);
         signUpPage.verifySuccess();
 
         loginPage.open();
         loginPage.fillForm("", "");
         loginPage.login();
-        sleepShort(2);
         loginPage.verifyFailure();
 
         loginPage.open();

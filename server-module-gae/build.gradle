@@ -30,6 +30,7 @@ dependencies {
     testCompile libs.gae_testing
     testCompile libs.junit
     testCompile libs.test_ng
+    testCompile libs.mockito
 }
 
 task unpackTest << {

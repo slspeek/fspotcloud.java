@@ -21,11 +21,13 @@
 package com.googlecode.fspotcloud.user.gae;
 
 import com.google.appengine.api.users.User;
+import com.googlecode.fspotcloud.user.ISessionEmail;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.jukito.JukitoRunner;
 import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,6 +40,7 @@ import static org.mockito.Mockito.when;
 */
 @RunWith(JukitoRunner.class)
 public class UserServiceGaeTest {
+    public static final String FOO_FSF_ORG = "foo@fsf.org";
     @Inject
     UserServiceGae userService;
 
@@ -50,10 +53,26 @@ public class UserServiceGaeTest {
     }
 
     @Test
-    public void isUserLoggedIn(
+    public void isUserLoggedInGoogle(
         com.google.appengine.api.users.UserService delegate) {
         when(delegate.isUserLoggedIn()).thenReturn(Boolean.TRUE);
         Assert.assertTrue(userService.isUserLoggedIn());
+    }
+
+    @Test
+    public void isUserLoggedInRegular(ISessionEmail sessionEmail,
+        com.google.appengine.api.users.UserService delegate) {
+        when(delegate.isUserLoggedIn()).thenReturn(Boolean.FALSE);
+        when(sessionEmail.getEmail()).thenReturn(FOO_FSF_ORG);
+        Assert.assertTrue(userService.isUserLoggedIn());
+    }
+
+    @Test
+    public void emailInRegular(ISessionEmail sessionEmail,
+        com.google.appengine.api.users.UserService delegate) {
+        when(delegate.isUserLoggedIn()).thenReturn(Boolean.FALSE);
+        when(sessionEmail.getEmail()).thenReturn(FOO_FSF_ORG);
+        assertEquals(FOO_FSF_ORG, userService.getEmail());
     }
 
     @Test

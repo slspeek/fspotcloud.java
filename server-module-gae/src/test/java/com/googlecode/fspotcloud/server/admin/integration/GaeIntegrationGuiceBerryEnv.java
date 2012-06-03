@@ -47,13 +47,13 @@ import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
 import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
 import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
+import com.googlecode.fspotcloud.user.ISessionEmail;
 import com.googlecode.fspotcloud.user.LenientUserModule;
 import com.googlecode.simplejpadao.EntityModule;
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 import net.sf.jsr107cache.Cache;
-
-
+import static org.mockito.Mockito.mock;
 public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
     @Override
     public void configure() {
@@ -81,6 +81,7 @@ public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
         install(new MainActionModule());
 
         bind(TestWrapper.class).to(GaeLocalDatastoreTestWrapper.class);
+        bind(ISessionEmail.class).toInstance(mock(ISessionEmail.class));
     }
 }
 

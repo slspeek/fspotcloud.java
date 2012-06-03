@@ -16,12 +16,16 @@
  */
 package com.googlecode.fspotcloud.server.main.handler;
 
+import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
+import com.googlecode.fspotcloud.user.ISessionEmail;
 import com.googlecode.fspotcloud.user.UserService;
+import javax.inject.Provider;
+import javax.servlet.http.HttpSession;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
@@ -30,11 +34,14 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAction, AuthenticationResult> {
     private final UserService userService;
     private final UserDao userDao;
+    private final Provider<ISessionEmail> sessionEmailProvider;
 
     @Inject
-    public AuthenticationHandler(UserService userService, UserDao userDao) {
+    public AuthenticationHandler(UserService userService, UserDao userDao,
+        Provider<ISessionEmail> sessionEmailProvider) {
         this.userService = userService;
         this.userDao = userDao;
+        this.sessionEmailProvider = sessionEmailProvider;
     }
 
     @Override
@@ -47,6 +54,9 @@ public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAct
                 if (action.getPassword().equals(user.getCredentials())) {
                     user.touchLastLoginTime();
                     userDao.save(user);
+
+                    ISessionEmail sessionEmail = sessionEmailProvider.get();
+                    sessionEmail.setEmail(user.getEmail());
 
                     return new AuthenticationResult(true);
                 }

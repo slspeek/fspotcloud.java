@@ -9,6 +9,8 @@ configurations {
 dependencies {
     compile libs.inject
     compile libs.guice_servlet
+    compile libs.servlet_spec
+    compile libs.guava
     testCompile libs.junit
     testCompile libs.jukito
 }

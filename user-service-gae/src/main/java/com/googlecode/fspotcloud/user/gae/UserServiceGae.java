@@ -17,8 +17,11 @@
 package com.googlecode.fspotcloud.user.gae;
 
 import com.google.inject.Provider;
+import com.googlecode.fspotcloud.user.ISessionEmail;
+import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 public class UserServiceGae implements com.googlecode.fspotcloud.user.UserService {
@@ -26,6 +29,8 @@ public class UserServiceGae implements com.googlecode.fspotcloud.user.UserServic
     com.google.appengine.api.users.UserService delegate;
     @Inject
     Provider<HttpServletRequest> requestProvider;
+    @Inject
+    Provider<ISessionEmail> sessionEmailProvider;
 
     private String toAbsoluteURL(String url) {
         HttpServletRequest request = requestProvider.get();
@@ -52,20 +57,26 @@ public class UserServiceGae implements com.googlecode.fspotcloud.user.UserServic
 
     @Override
     public String getEmail() {
-        if (isUserLoggedIn()) {
+        if (delegate.isUserLoggedIn()) {
             return delegate.getCurrentUser().getEmail();
+        } else if (getSessionEmail() != null) {
+            return getSessionEmail();
         } else {
             return null;
         }
     }
 
+    private String getSessionEmail() {
+        return sessionEmailProvider.get().getEmail();
+    }
+
     @Override
     public boolean isUserLoggedIn() {
-        return delegate.isUserLoggedIn();
+        return delegate.isUserLoggedIn() || getSessionEmail() != null;
     }
 
     @Override
     public boolean isUserAdmin() {
-        return isUserLoggedIn() && delegate.isUserLoggedIn();
+        return isUserLoggedIn() && isUserLoggedIn();
     }
 }

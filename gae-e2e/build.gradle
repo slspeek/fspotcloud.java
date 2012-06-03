@@ -62,6 +62,7 @@ test {
     systemProperties['endpoint'] = "localhost:8080"
     systemProperties['peer.jar'] = "../peer/build/libs/peer-${version}.jar"
     include "com/googlecode/fspotcloud/test/LocalSuite.class"
+
     testLogging.showStandardStreams = true
 }
 
