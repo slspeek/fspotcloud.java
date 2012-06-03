@@ -16,15 +16,18 @@
  */
 package com.googlecode.fspotcloud.test;
 
-import com.google.inject.name.Names;
+import com.thoughtworks.selenium.Selenium;
+import javax.inject.Inject;
 
 
-public class J2eeWarGuiceBerryEnv extends SeleniumGuiceBerryEnv {
+public class RegularLoginBot implements ILogin {
+    @Inject
+    LoginPage loginPage;
+
     @Override
-    protected void configure() {
-        super.configure();
-        bind(ILogin.class).to(RegularLoginBot.class);
-        bind(String.class).annotatedWith(Names.named("baseUrl"))
-            .toInstance("http://localhost:8050/j2ee-e2e");
+    public void login() throws Exception {
+        loginPage.open();
+        loginPage.fillForm("rms@fsf.org", "ihp");
+        loginPage.login();
     }
 }

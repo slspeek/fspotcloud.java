@@ -12,4 +12,5 @@
 	<system-properties>
 		
 	</system-properties>
+    <sessions-enabled>true</sessions-enabled>
 </appengine-web-app>

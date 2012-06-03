@@ -16,7 +16,9 @@
  */
 package com.googlecode.fspotcloud.server.inject;
 
+import com.googlecode.fspotcloud.user.ISessionEmail;
 import com.googlecode.fspotcloud.user.LenientUserService;
+import com.googlecode.fspotcloud.user.SessionEmail;
 import com.googlecode.fspotcloud.user.UserService;
 import com.googlecode.fspotcloud.user.inject.AbstractUserModule;
 
@@ -27,5 +29,6 @@ public class LenientUserServiceModule extends AbstractUserModule {
         super.configureServlets();
         bind(UserService.class)
             .to((Class<?extends UserService>) LenientUserService.class);
+        bind(ISessionEmail.class).to(SessionEmail.class);
     }
 }

@@ -30,6 +30,7 @@ task unpackWar(dependsOn: ':prod-j2ee-war:assemble') << {
 
 task copyWar(dependsOn:  unpackWar, type: Copy) {
     ant.properties['bot.secret.userinput'] = "${bot_secret}".toString()
+    ant.properties['admin.email'] = "rms@fsf.org"
     from('build/exploded-war-raw') {
         include "**/properties.properties"
         filter(ExpandProperties, project: ant.project)
@@ -50,12 +51,7 @@ task peerStop(type: Exec) {
     ignoreExitValue = true
 }
 
-task removeSecurity(type: Exec, dependsOn: copyWar) {
-    commandLine "sed", "-i", "-e", "s/com.googlecode.fspotcloud.server.inject.J2eeGuiceServletConfig/com.googlecode.fspotcloud.server.inject.J2eeNoAuthGuiceServletConfig/",
-            "build/exploded/WEB-INF/web.xml"
-}
-
-tomcatRun.dependsOn removeSecurity
+tomcatRun.dependsOn copyWar
 
 
 [tomcatRun, tomcatStop]*.stopPort = 8060

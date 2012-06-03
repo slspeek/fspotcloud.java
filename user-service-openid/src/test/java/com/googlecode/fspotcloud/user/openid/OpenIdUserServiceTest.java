@@ -16,11 +16,9 @@
  */
 package com.googlecode.fspotcloud.user.openid;
 
-import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
-import java.util.List;
+import com.googlecode.fspotcloud.user.ISessionEmail;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
 import org.junit.After;
@@ -31,13 +29,14 @@ import org.junit.runner.RunWith;
 import static org.mockito.Mockito.when;
 @RunWith(JukitoRunner.class)
 public class OpenIdUserServiceTest {
+    public static final String FOO_BAR_COM = "foo@bar.com";
+    public static final String SLSPEEK_GMAIL_COM = "slspeek@gmail.com";
     @Inject
     OpenIdUserService instance;
 
     @Before
-    public void setUp(HttpSession session, HttpServletRequest request) {
-        List<String> emails = ImmutableList.of("foo@bar.com");
-        when(session.getAttribute("email")).thenReturn(emails);
+    public void setUp(ISessionEmail sessionEmail, HttpServletRequest request) {
+        when(sessionEmail.getEmail()).thenReturn(FOO_BAR_COM);
         when(request.getScheme()).thenReturn("http");
         when(request.getContextPath()).thenReturn("/context");
         when(request.getServerPort()).thenReturn(8080);
@@ -76,8 +75,8 @@ public class OpenIdUserServiceTest {
      * @param session DOCUMENT ME!
      */
     @Test
-    public void testGetEmailNull(HttpSession session) {
-        when(session.getAttribute("email")).thenReturn(null);
+    public void testGetEmailNull(ISessionEmail sessionEmail) {
+        when(sessionEmail.getEmail()).thenReturn(null);
 
         String expResult = null;
         String result = instance.getEmail();
@@ -86,7 +85,7 @@ public class OpenIdUserServiceTest {
 
     @Test
     public void testGetEmailFoo() {
-        String expResult = "foo@bar.com";
+        String expResult = FOO_BAR_COM;
         String result = instance.getEmail();
         assertEquals(expResult, result);
     }
@@ -119,9 +118,8 @@ public class OpenIdUserServiceTest {
      * @param session DOCUMENT ME!
      */
     @Test
-    public void testIsUserIsAdmin(HttpSession session) {
-        List<String> emails = ImmutableList.of("slspeek@gmail.com");
-        when(session.getAttribute("email")).thenReturn(emails);
+    public void testIsUserIsAdmin(ISessionEmail sessionEmail) {
+        when(sessionEmail.getEmail()).thenReturn(SLSPEEK_GMAIL_COM);
 
         boolean expResult = true;
         boolean result = instance.isUserAdmin();
@@ -130,9 +128,8 @@ public class OpenIdUserServiceTest {
 
     public static class Module extends JukitoModule {
         protected void configureTest() {
-            //install(new OpenIdUserModule());
             bind(String.class).annotatedWith(AdminEmail.class)
-                .toInstance("slspeek@gmail.com");
+                .toInstance(SLSPEEK_GMAIL_COM);
         }
     }
 }
