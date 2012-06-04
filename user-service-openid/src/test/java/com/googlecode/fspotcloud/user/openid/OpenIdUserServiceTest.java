@@ -53,8 +53,8 @@ public class OpenIdUserServiceTest {
     @Test
     public void testCreateLoginURL() {
         String destinationURL = "dest";
-        String expResult = "index.jsp?dest=http://localhost:8080/context/dest";
-        String result = instance.createLoginURL(destinationURL);
+        String expResult = "index.jsp?dest=http://localhost:8080/context/post-login";
+        String result = instance.getLoginURL();
         assertEquals(expResult, result);
     }
 
@@ -64,8 +64,8 @@ public class OpenIdUserServiceTest {
     @Test
     public void testCreateLogoutURL() {
         String destinationURL = "dest";
-        String expResult = "index.jsp?logout=true&dest=http://localhost:8080/context/dest";
-        String result = instance.createLogoutURL(destinationURL);
+        String expResult = "index.jsp?logout=true&dest=http://localhost:8080/context/FSpotCloud.html";
+        String result = instance.getLogoutURL();
         assertEquals(expResult, result);
     }
 

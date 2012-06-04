@@ -49,7 +49,11 @@ public class LoginPage {
     public void login() throws InterruptedException {
         selenium.click("gwt-debug-login");
         selenium.waitForPageToLoad("30000");
-        sleepShort();
+    }
+
+    public void clickGoogleLogin() throws InterruptedException {
+        selenium.click("gwt-debug-google-login");
+        selenium.waitForPageToLoad("30000");
     }
 
     public void verifySuccess() {

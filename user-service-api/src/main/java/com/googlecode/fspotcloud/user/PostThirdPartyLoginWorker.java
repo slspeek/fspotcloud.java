@@ -14,41 +14,8 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.googlecode.fspotcloud.user;
 
-
-/**
- * DOCUMENT ME!
- *
- * @author steven
-*/
-public class LenientUserService implements UserService {
-    @Override
-    public String getLoginURL() {
-        return "";
-    }
-
-    @Override
-    public String getLogoutURL() {
-        return "";
-    }
-
-    @Override
-    public String getEmail() {
-        return "";
-    }
-
-    @Override
-    public boolean isUserLoggedIn() {
-        return true;
-    }
-
-    @Override
-    public boolean isUserAdmin() {
-        return true;
-    }
+public interface PostThirdPartyLoginWorker {
+    void doWork();
 }

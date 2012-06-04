@@ -20,6 +20,7 @@
  */
 package com.googlecode.fspotcloud.shared.main;
 
+import java.util.Date;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -32,7 +33,8 @@ import org.junit.Test;
 public class UserInfoTest {
     /** Test of isLoggedIn method, of class UserInfo. */
     UserInfo instance = new UserInfo("foo@bar.com", true, true,
-            "index.jsp?dest=", "index.jsp?action=logout&dest=");
+            "index.jsp?dest=", "index.jsp?action=logout&dest=",
+            new Date(1234567), "GAE_LOGIN");
 
     @Test
     public void testIsLoggedIn() {
@@ -44,28 +46,28 @@ public class UserInfoTest {
     }
 
     /**
-     * Test of createLogoutUrl method, of class UserInfo.
+     * Test of getLogoutUrl method, of class UserInfo.
      */
     @Test
     public void testCreateLogoutUrl() {
-        System.out.println("createLogoutUrl");
+        System.out.println("getLogoutUrl");
 
         String dest = "dest";
         String expResult = "index.jsp?action=logout&dest=";
-        String result = instance.createLogoutUrl();
+        String result = instance.getLogoutUrl();
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of createLoginUrl method, of class UserInfo.
+     * Test of getLoginUrl method, of class UserInfo.
      */
     @Test
     public void testCreateLoginUrl() {
-        System.out.println("createLoginUrl");
+        System.out.println("getLoginUrl");
 
         String dest = "dest";
         String expResult = "index.jsp?dest=";
-        String result = instance.createLoginUrl();
+        String result = instance.getLoginUrl();
         assertEquals(expResult, result);
     }
 }

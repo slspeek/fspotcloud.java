@@ -14,41 +14,29 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.googlecode.fspotcloud.user;
 
+import com.google.common.annotations.VisibleForTesting;
+import java.io.IOException;
+import java.io.OutputStream;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-/**
- * DOCUMENT ME!
- *
- * @author steven
-*/
-public class LenientUserService implements UserService {
-    @Override
-    public String getLoginURL() {
-        return "";
-    }
 
-    @Override
-    public String getLogoutURL() {
-        return "";
-    }
-
-    @Override
-    public String getEmail() {
-        return "";
-    }
+@Singleton
+public class PostThirdPartyLoginServlet extends HttpServlet {
+    @VisibleForTesting
+    @Inject
+    PostThirdPartyLoginWorker worker;
 
     @Override
-    public boolean isUserLoggedIn() {
-        return true;
-    }
-
-    @Override
-    public boolean isUserAdmin() {
-        return true;
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+        worker.doWork();
+        response.sendRedirect("FSpotCloud.html");
     }
 }

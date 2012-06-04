@@ -19,7 +19,9 @@ package com.googlecode.fspotcloud.server.main.handler;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
+import com.googlecode.fspotcloud.user.LoginMetaData;
 import com.googlecode.fspotcloud.user.UserService;
+import javax.inject.Provider;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
@@ -27,19 +29,23 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 public class GetUserInfoHandler extends SimpleActionHandler<GetUserInfo, UserInfo> {
     private final UserService userService;
+    private final Provider<LoginMetaData> loginMetaDataProvider;
 
     @Inject
-    public GetUserInfoHandler(UserService userService) {
+    public GetUserInfoHandler(UserService userService,
+        Provider<LoginMetaData> loginMetaDataProvider) {
         this.userService = userService;
+        this.loginMetaDataProvider = loginMetaDataProvider;
     }
 
     @Override
     public UserInfo execute(GetUserInfo action, ExecutionContext context)
         throws DispatchException {
+        LoginMetaData metaData = loginMetaDataProvider.get();
         UserInfo info = new UserInfo(userService.getEmail(),
                 userService.isUserAdmin(), userService.isUserLoggedIn(),
-                userService.createLoginURL(action.getDestinationUrl()),
-                userService.createLogoutURL(action.getDestinationUrl()));
+                userService.getLoginURL(), userService.getLogoutURL(),
+                metaData.getLastTime(), String.valueOf(metaData.getLoginType()));
 
         return info;
     }

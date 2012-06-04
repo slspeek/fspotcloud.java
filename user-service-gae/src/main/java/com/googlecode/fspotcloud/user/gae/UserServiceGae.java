@@ -16,67 +16,26 @@
  */
 package com.googlecode.fspotcloud.user.gae;
 
-import com.google.inject.Provider;
-import com.googlecode.fspotcloud.user.ISessionEmail;
-import java.util.List;
+import com.googlecode.fspotcloud.user.UserServiceBase;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 
-public class UserServiceGae implements com.googlecode.fspotcloud.user.UserService {
+public class UserServiceGae extends UserServiceBase {
     @Inject
     com.google.appengine.api.users.UserService delegate;
-    @Inject
-    Provider<HttpServletRequest> requestProvider;
-    @Inject
-    Provider<ISessionEmail> sessionEmailProvider;
 
-    private String toAbsoluteURL(String url) {
-        HttpServletRequest request = requestProvider.get();
-        String result = request.getScheme() + "://" + request.getServerName() +
-            ":" + request.getServerPort() + request.getContextPath() + "/" +
-            url;
-
-        return result;
+    @Override
+    public String getLoginURL() {
+        return delegate.createLoginURL(getPostThirdPartyLoginURL());
     }
 
     @Override
-    public String createLoginURL(String string) {
-        string = toAbsoluteURL(string);
-
-        return delegate.createLoginURL(string);
-    }
-
-    @Override
-    public String createLogoutURL(String string) {
-        string = toAbsoluteURL(string);
-
-        return delegate.createLogoutURL(string);
-    }
-
-    @Override
-    public String getEmail() {
-        if (delegate.isUserLoggedIn()) {
-            return delegate.getCurrentUser().getEmail();
-        } else if (getSessionEmail() != null) {
-            return getSessionEmail();
-        } else {
-            return null;
-        }
-    }
-
-    private String getSessionEmail() {
-        return sessionEmailProvider.get().getEmail();
-    }
-
-    @Override
-    public boolean isUserLoggedIn() {
-        return delegate.isUserLoggedIn() || getSessionEmail() != null;
+    public String getLogoutURL() {
+        return delegate.createLogoutURL(getPostThirdPartyLogoutURL());
     }
 
     @Override
     public boolean isUserAdmin() {
-        return isUserLoggedIn() && isUserLoggedIn();
+        return delegate.isUserLoggedIn() && delegate.isUserAdmin();
     }
 }

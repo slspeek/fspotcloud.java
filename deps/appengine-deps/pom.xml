@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>deps</artifactId>
 		<groupId>com.googlecode.fspotcloud</groupId>
-		<version>0.12-27</version>
+		<version>0.12-28</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>appengine-deps</artifactId>
@@ -13,7 +13,7 @@
 	<name>Dependencies for AppEngine</name>
 	<dependencies>
 		<!--
-			jars from GAE's "lib/user" must be added as compile-time
+			jars from GAE's "lib/user" must be added as compile-metaData
 			dependencies, as described here in "Copying JARs" section:
 			http://code.google.com/appengine/docs/java/tools/ant.html
 		-->

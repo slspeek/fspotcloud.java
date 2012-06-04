@@ -17,15 +17,15 @@
 package com.googlecode.fspotcloud.user.inject;
 
 import com.google.inject.servlet.ServletModule;
-import com.googlecode.fspotcloud.user.AdminPermission;
-import com.googlecode.fspotcloud.user.IAdminPermission;
-import com.googlecode.fspotcloud.user.ISessionEmail;
-import com.googlecode.fspotcloud.user.SessionEmail;
+import com.google.inject.servlet.SessionScoped;
+import com.googlecode.fspotcloud.user.*;
 
 
 public class AbstractUserModule extends ServletModule {
     @Override
     protected void configureServlets() {
         bind(IAdminPermission.class).to(AdminPermission.class);
+        bind(LoginMetaData.class).in(SessionScoped.class);
+        bind(ILoginMetaDataUpdater.class).to(LoginMetaDataUpdater.class);
     }
 }

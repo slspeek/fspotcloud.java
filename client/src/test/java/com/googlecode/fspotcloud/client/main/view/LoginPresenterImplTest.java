@@ -55,7 +55,7 @@ public class LoginPresenterImplTest {
         verify(dispatch).execute(actionCaptor.capture(), captor.capture());
 
         GetUserInfo action = (GetUserInfo) actionCaptor.getValue();
-        assertEquals("FSpotCloud.html", action.getDestinationUrl());
+        assertEquals("post-login", action.getDestinationUrl());
         verify(loginView).setPresenter(presenter);
         verify(loginView).focusUserNameField();
         verify(panel).setWidget(loginView);

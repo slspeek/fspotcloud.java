@@ -21,9 +21,9 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.demo.DemoAction;
+import com.googlecode.fspotcloud.client.main.ClientLoginManager;
 import com.googlecode.fspotcloud.client.main.HideControlsAction;
 import com.googlecode.fspotcloud.client.main.TreeFocusAction;
-import com.googlecode.fspotcloud.client.main.UserInformation;
 import com.googlecode.fspotcloud.client.main.api.Initializable;
 import com.googlecode.fspotcloud.client.main.event.UserEvent;
 import com.googlecode.fspotcloud.client.main.event.UserEventHandler;
@@ -31,10 +31,12 @@ import com.googlecode.fspotcloud.client.main.event.application.ApplicationEvent;
 import com.googlecode.fspotcloud.client.main.event.application.ApplicationType;
 import com.googlecode.fspotcloud.client.main.help.AboutAction;
 import com.googlecode.fspotcloud.client.main.help.HelpAction;
+import com.googlecode.fspotcloud.client.place.LoginPlace;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Zoom;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
 import java.util.logging.Level;
@@ -53,7 +55,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
     private final EventBus eventBus;
     private final Navigator navigator;
     private final HideControlsAction hideControlsAction;
-    private final UserInformation userInformation;
+    private final ClientLoginManager clientLoginManager;
     private final PlaceGoTo placeGoTo;
 
     @Inject
@@ -61,7 +63,8 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
         DemoAction demoAction, HelpAction helpAction,
         TreeFocusAction treeFocusAction, HideControlsAction hideControlsAction,
         LoadNewLocationActionFactory locationFactory, Navigator navigator,
-        EventBus eventBus, UserInformation userInformation, PlaceGoTo placeGoTo) {
+        EventBus eventBus, ClientLoginManager clientLoginManager,
+        PlaceGoTo placeGoTo) {
         super();
         this.navigator = navigator;
         this.hideControlsAction = hideControlsAction;
@@ -71,7 +74,7 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
         this.treeFocusAction = treeFocusAction;
         this.aboutAction = aboutAction;
         this.eventBus = eventBus;
-        this.userInformation = userInformation;
+        this.clientLoginManager = clientLoginManager;
         this.placeGoTo = placeGoTo;
     }
 
@@ -121,27 +124,12 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
             break;
 
         case LOGIN:
-            userInformation.getUserInfoAsync(new GetUserInfo("FSpotCloud.html"),
-                new AsyncCallback<UserInfo>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        log.log(Level.SEVERE, "No user info ", caught);
-                    }
+            placeGoTo.goTo(new LoginPlace());
 
-                    @Override
-                    public void onSuccess(UserInfo result) {
-                        final String createLoginUrl = result.createLoginUrl();
-                        log.info("login url:" + createLoginUrl);
-                        Window.Location.replace(createLoginUrl);
-                    }
-                });
-
-
-            //placeGoTo.goTo(new LoginPlace());
             break;
 
         case LOGOUT:
-            userInformation.getUserInfoAsync(new GetUserInfo("FSpotCloud.html"),
+            clientLoginManager.getUserInfoAsync(new GetUserInfo("post-login"),
                 new AsyncCallback<UserInfo>() {
                     @Override
                     public void onFailure(Throwable caught) {
@@ -149,8 +137,23 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
                     }
 
                     @Override
-                    public void onSuccess(UserInfo result) {
-                        Window.Location.replace(result.createLogoutUrl());
+                    public void onSuccess(final UserInfo result) {
+                        clientLoginManager.logout(new AsyncCallback<VoidResult>() {
+                                @Override
+                                public void onFailure(Throwable caught) {
+                                    log.log(Level.SEVERE,
+                                        "An error prevented the server from logging of the user",
+                                        caught);
+                                }
+
+                                @Override
+                                public void onSuccess(VoidResult result2) {
+                                    if ("GAE_LOGIN".equals(
+                                                result.getLoginType())) {
+                                        Window.Location.replace(result.getLogoutUrl());
+                                    }
+                                }
+                            });
                     }
                 });
 

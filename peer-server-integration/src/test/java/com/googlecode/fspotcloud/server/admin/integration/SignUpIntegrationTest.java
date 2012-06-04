@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
+import org.junit.Ignore;
 import static org.testng.Assert.assertFalse;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertNull;
@@ -79,34 +80,5 @@ public class SignUpIntegrationTest {
         action = new SignUpAction(RMS_FSF_ORG1, "ihp", "rms");
         result = dispatch.execute(action);
         assertFalse(result.getSuccess());
-    }
-
-    @Test
-    public void signUpAndLogin() throws Exception {
-        SignUpAction action = new SignUpAction(RMS_FSF_ORG1, "ihp", "rms");
-        SignUpResult result = dispatch.execute(action);
-        action = new SignUpAction("abs@math.org", "ihp", "abs");
-        dispatch.execute(action);
-        action = new SignUpAction("ceil@math.org", "ihp", "ceil");
-        dispatch.execute(action);
-        action = new SignUpAction("sqt@math.org", "ihp", "square root");
-        dispatch.execute(action);
-
-        AuthenticationAction login = new AuthenticationAction(RMS_FSF_ORG, "ihp");
-
-        AuthenticationResult loggedIn = dispatch.execute(login);
-        assertTrue(loggedIn.getSuccess());
-
-        loggedIn = dispatch.execute(new AuthenticationAction("sqt@math.org",
-                    "ihp"));
-        assertTrue(loggedIn.getSuccess());
-
-        loggedIn = dispatch.execute(new AuthenticationAction("ceil@math.org",
-                    "ihp"));
-        assertTrue(loggedIn.getSuccess());
-
-        loggedIn = dispatch.execute(new AuthenticationAction("abs@math.org",
-                    "ihp"));
-        assertTrue(loggedIn.getSuccess());
     }
 }

@@ -44,20 +44,20 @@ public class MVPSetup {
     private final PlaceController placeController;
     private final Initializable keyboardHandler;
     private final EventHandlersSetup eventSetup;
-    private final UserInformation userInformation;
+    private final ClientLoginManager clientLoginManager;
 
     @Inject
     public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
         PlaceController placeController,
         IGlobalShortcutController keyboardHandler,
         EventHandlersSetup eventSetup, Resources resources,
-        UserInformation userInformation) {
+        ClientLoginManager clientLoginManager) {
         this.activityMapper = activityMapper;
         this.eventBus = eventBus;
         this.placeController = placeController;
         this.keyboardHandler = keyboardHandler;
         this.eventSetup = eventSetup;
-        this.userInformation = userInformation;
+        this.clientLoginManager = clientLoginManager;
         resources.style().ensureInjected();
     }
 
@@ -78,6 +78,6 @@ public class MVPSetup {
         RootLayoutPanel.get().add(appWidget);
         historyHandler.handleCurrentHistory();
         log.info("Setup finished");
-        userInformation.getAsync();
+        clientLoginManager.getAsync();
     }
 }

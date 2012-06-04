@@ -11,6 +11,7 @@ sourceSets {
 
 dependencies {
     compile project(':user-service-api')
+    compile project(':model-api')
     compile("org.openid4java:openid4java-consumer:0.9.6") {
         exclude module: 'guice'
     }
