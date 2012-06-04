@@ -14,41 +14,15 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.googlecode.fspotcloud.user;
+package com.googlecode.fspotcloud.shared.main;
+
+import com.google.common.annotations.GwtCompatible;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import net.customware.gwt.dispatch.shared.Action;
 
 
-/**
- * DOCUMENT ME!
- *
- * @author steven
-*/
-public class LenientUserService implements UserService {
-    @Override
-    public String getLoginURL() {
-        return "";
-    }
-
-    @Override
-    public String getLogoutURL() {
-        return "";
-    }
-
-    @Override
-    public String getEmail() {
-        return "";
-    }
-
-    @Override
-    public boolean isUserLoggedIn() {
-        return true;
-    }
-
-    @Override
-    public boolean isUserAdmin() {
-        return true;
+@GwtCompatible
+public class LogoutAction implements Action<VoidResult> {
+    public LogoutAction() {
     }
 }

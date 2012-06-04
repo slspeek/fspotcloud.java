@@ -14,44 +14,31 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.googlecode.fspotcloud.user.openid;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
-import com.googlecode.fspotcloud.user.ISessionEmail;
+import com.googlecode.fspotcloud.server.model.api.UserDao;
+import com.googlecode.fspotcloud.user.LoginMetaData;
+import com.googlecode.fspotcloud.user.LoginMetaDataUpdater;
+import com.googlecode.fspotcloud.user.PostThirdPartyLoginWorker;
 import com.googlecode.fspotcloud.user.UserService;
-import com.googlecode.fspotcloud.user.UserServiceBase;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.inject.Inject;
 
 
-/**
- * DOCUMENT ME!
- *
- * @author steven
-*/
-public class OpenIdUserService extends UserServiceBase {
+public class PostOpenIdLoginWorker implements PostThirdPartyLoginWorker {
     @Inject
-    @AdminEmail
-    String adminEmail;
+    private UserDao userDao;
+    @Inject
+    private LoginMetaDataUpdater metaDataUpdater;
+    @Inject
+    private UserService userService;
 
     @Override
-    public String getLoginURL() {
-        return "index.jsp?dest=" + getPostThirdPartyLoginURL();
-    }
+    public void doWork() {
+        String email = userService.getEmail();
 
-    @Override
-    public String getLogoutURL() {
-        return "index.jsp?logout=true&dest=" + getPostThirdPartyLogoutURL();
-    }
-
-    @Override
-    public boolean isUserAdmin() {
-        return adminEmail.equals(getEmail());
+        if (email != null) {
+            com.googlecode.fspotcloud.server.model.api.User user = userDao.findOrNew(email);
+            metaDataUpdater.doUpdate(user, LoginMetaData.Type.OPEN_ID_LOGIN);
+        }
     }
 }

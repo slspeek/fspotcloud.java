@@ -21,11 +21,13 @@ import com.google.inject.Injector;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
+import org.junit.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 
 public class J2eeInjectorTest {
+    @Ignore
     @Test
     public void testInjector() {
         Injector injector = Guice.createInjector(new J2eeTotalModule(10,

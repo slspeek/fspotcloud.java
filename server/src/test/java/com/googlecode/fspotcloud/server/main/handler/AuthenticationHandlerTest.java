@@ -21,8 +21,11 @@ import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
+import com.googlecode.fspotcloud.user.ILoginMetaDataUpdater;
+import com.googlecode.fspotcloud.user.LoginMetaData;
 import javax.inject.Inject;
 import org.jukito.JukitoRunner;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -71,7 +74,8 @@ public class AuthenticationHandlerTest {
     }
 
     @Test
-    public void success(UserDao userDao) throws Exception {
+    public void success(UserDao userDao, ILoginMetaDataUpdater updater)
+        throws Exception {
         User user = new UserEntity("foo");
         user.setCredentials("secret");
         when(userDao.find("foo")).thenReturn(user);
@@ -80,7 +84,7 @@ public class AuthenticationHandlerTest {
         AuthenticationResult result = handler.execute(action, null);
         assertTrue(result.getSuccess());
         verify(userDao).find("foo");
-        verify(userDao).save(user);
+        verify(updater).doUpdate(user, LoginMetaData.Type.REGULAR_LOGIN);
         verifyNoMoreInteractions(userDao);
     }
 }

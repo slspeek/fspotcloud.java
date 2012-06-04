@@ -4,7 +4,8 @@
 [INFO] Building GWT User interface and client logic 0.40-6.5.3
 [INFO] ------------------------------------------------------------------------
 Downloading: http://maven-google-plugin.googlecode.com/svn/maven2/org/apache/maven/plugins/maven-eclipse-plugin/maven-metadata.xml
-[WARNING] Could not transfer metadata org.apache.maven.plugins:maven-eclipse-plugin/maven-metadata.xml from/to maven-google-plugin-repository (http://maven-google-plugin.googlecode.com/svn/maven2): Access denied to: http://maven-google-plugin.googlecode.com/svn/maven2/org/apache/maven/plugins/maven-eclipse-plugin/maven-metadata.xml
+
+[WARNING] Could not transfer metadata org.apache.maven.plugins:maven-eclipse-plugin/maven-metadata.xml from/to maven-google-plugin-repository (http://maven-google-plugin.googlecode.com/svn/maven2): Access denied to: http://maven-google-plugin.googlecode.com/svn/maven2/org/apache/maven/plugins/maven-eclipse-plugin/maven-metadata.xml
 [INFO] 
 [INFO] --- maven-resources-plugin:2.4.3:resources (default-resources) @ client ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
@@ -1142,7 +1143,7 @@ Tests run: 75, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 1:06.943s
+[INFO] Total metaData: 1:06.943s
 [INFO] Finished at: Mon Aug 01 19:20:20 CEST 2011
 [INFO] Final Memory: 9M/104M
 [INFO] ------------------------------------------------------------------------

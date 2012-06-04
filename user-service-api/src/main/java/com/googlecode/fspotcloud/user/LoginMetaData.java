@@ -14,41 +14,30 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.googlecode.fspotcloud.user;
 
+import java.util.Date;
 
-/**
- * DOCUMENT ME!
- *
- * @author steven
-*/
-public class LenientUserService implements UserService {
-    @Override
-    public String getLoginURL() {
-        return "";
+
+public class LoginMetaData {
+    private Type loginType;
+    private Date lastTime;
+
+    public Type getLoginType() {
+        return loginType;
     }
 
-    @Override
-    public String getLogoutURL() {
-        return "";
+    public void setLoginType(Type loginType) {
+        this.loginType = loginType;
     }
 
-    @Override
-    public String getEmail() {
-        return "";
+    public Date getLastTime() {
+        return lastTime;
     }
 
-    @Override
-    public boolean isUserLoggedIn() {
-        return true;
+    public void setLastTime(Date lastTime) {
+        this.lastTime = lastTime;
     }
-
-    @Override
-    public boolean isUserAdmin() {
-        return true;
+    public enum Type {REGULAR_LOGIN, OPEN_ID_LOGIN, GAE_LOGIN;
     }
 }

@@ -2,6 +2,7 @@ description = 'User service App Engine'
 
 dependencies {
     compile project(':user-service-api')
+    compile project(':model-api')
     compile "com.google.appengine:appengine-api-1.0-sdk:${gae_version}"
     compile libs.inject
     compile libs.guice

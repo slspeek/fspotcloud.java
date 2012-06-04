@@ -16,12 +16,13 @@
  */
 package com.googlecode.fspotcloud.server.main.handler;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
+import com.googlecode.fspotcloud.shared.main.LogoutAction;
 import com.googlecode.fspotcloud.user.ILoginMetaDataUpdater;
 import com.googlecode.fspotcloud.user.ISessionEmail;
 import com.googlecode.fspotcloud.user.LoginMetaData;
@@ -32,41 +33,24 @@ import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 
-public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAction, AuthenticationResult> {
-    private final UserService userService;
-    private final UserDao userDao;
+public class LogoutHandler extends SimpleActionHandler<LogoutAction, VoidResult> {
     private final Provider<ISessionEmail> sessionEmailProvider;
     private final ILoginMetaDataUpdater loginMetaDataUpdater;
 
     @Inject
-    public AuthenticationHandler(UserService userService, UserDao userDao,
-        Provider<ISessionEmail> sessionEmailProvider,
+    public LogoutHandler(Provider<ISessionEmail> sessionEmailProvider,
         ILoginMetaDataUpdater loginMetaDataUpdater) {
-        this.userService = userService;
-        this.userDao = userDao;
         this.sessionEmailProvider = sessionEmailProvider;
         this.loginMetaDataUpdater = loginMetaDataUpdater;
     }
 
     @Override
-    public AuthenticationResult execute(AuthenticationAction action,
-        ExecutionContext context) throws DispatchException {
-        if (!"".equals(action.getUserName())) {
-            User user = userDao.find(action.getUserName());
+    public VoidResult execute(LogoutAction action, ExecutionContext context)
+        throws DispatchException {
+        ISessionEmail email = sessionEmailProvider.get();
+        email.setEmail(null);
+        loginMetaDataUpdater.clear();
 
-            if (user != null) {
-                if (action.getPassword().equals(user.getCredentials())) {
-                    loginMetaDataUpdater.doUpdate(user,
-                        LoginMetaData.Type.REGULAR_LOGIN);
-
-                    ISessionEmail sessionEmail = sessionEmailProvider.get();
-                    sessionEmail.setEmail(user.getEmail());
-
-                    return new AuthenticationResult(true);
-                }
-            }
-        }
-
-        return new AuthenticationResult(false);
+        return new VoidResult();
     }
 }

@@ -17,9 +17,9 @@
 package com.googlecode.fspotcloud.user;
 
 public interface UserService {
-    String createLoginURL(String destinationURL);
+    String getLogoutURL();
 
-    String createLogoutURL(String destinationURL);
+    String getLoginURL();
 
     String getEmail();
 

@@ -6,11 +6,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-27</version>
+        <version>0.12-28</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>installer-gae</artifactId>
-    <version>0.12-27</version>
+    <version>0.12-28</version>
     <name>Installer</name>
 
     <packaging>jar</packaging>
@@ -90,7 +90,7 @@
             </plugin>
 
 			<!-- prepare dependencies so that izpack jar tag to pickup at compile 
-				time -->
+				metaData -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>

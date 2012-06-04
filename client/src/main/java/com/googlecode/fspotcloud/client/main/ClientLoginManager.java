@@ -22,7 +22,9 @@ package com.googlecode.fspotcloud.client.main;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
+import com.googlecode.fspotcloud.shared.main.LogoutAction;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,12 +36,12 @@ import net.customware.gwt.dispatch.client.DispatchAsync;
  *
  * @author steven
 */
-public class UserInformation {
-    private static final Logger log = Logger.getLogger(UserInformation.class.getName());
+public class ClientLoginManager {
+    private static final Logger log = Logger.getLogger(ClientLoginManager.class.getName());
     private final DispatchAsync dispatch;
 
     @Inject
-    public UserInformation(DispatchAsync dispatch) {
+    public ClientLoginManager(DispatchAsync dispatch) {
         this.dispatch = dispatch;
     }
 
@@ -53,8 +55,7 @@ public class UserInformation {
 
                 @Override
                 public void onSuccess(UserInfo result) {
-                    log.info("User is " + result.isLoggedIn() +
-                        " with email: " + result.getEmail());
+                    log.info("User is " + result);
                 }
             });
     }
@@ -62,5 +63,9 @@ public class UserInformation {
     public void getUserInfoAsync(GetUserInfo info,
         AsyncCallback<UserInfo> callback) {
         dispatch.execute(info, callback);
+    }
+
+    public void logout(AsyncCallback<VoidResult> resultAsyncCallback) {
+        dispatch.execute(new LogoutAction(), resultAsyncCallback);
     }
 }

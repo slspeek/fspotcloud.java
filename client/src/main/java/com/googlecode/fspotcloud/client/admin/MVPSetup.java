@@ -25,7 +25,7 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.admin.view.DashboardPresenter;
-import com.googlecode.fspotcloud.client.main.UserInformation;
+import com.googlecode.fspotcloud.client.main.ClientLoginManager;
 import com.googlecode.fspotcloud.client.place.AdminPlaceHistoryMapper;
 import com.googlecode.fspotcloud.client.place.TagPlace;
 import java.util.logging.Logger;
@@ -37,16 +37,16 @@ public class MVPSetup {
     private final EventBus eventBus;
     private final PlaceController placeController;
     private final DashboardPresenter dashboard;
-    private final UserInformation userInformation;
+    private final ClientLoginManager clientLoginManager;
 
     @Inject
     public MVPSetup(EventBus eventBus, PlaceController placeController,
-        DashboardPresenter dashboard, UserInformation userInformation) {
+        DashboardPresenter dashboard, ClientLoginManager clientLoginManager) {
         super();
         this.eventBus = eventBus;
         this.placeController = placeController;
         this.dashboard = dashboard;
-        this.userInformation = userInformation;
+        this.clientLoginManager = clientLoginManager;
     }
 
     public void setup() {
@@ -65,7 +65,7 @@ public class MVPSetup {
         RootLayoutPanel.get().add(w);
         log.info("Setup finished");
 
-        //        userInformation.getUserInfoAsync(new GetUserInfo("Dashboard.html"), new AsyncCallback<UserInfo>() {
+        //        clientLoginManager.getUserInfoAsync(new GetUserInfo("Dashboard.html"), new AsyncCallback<UserInfo>() {
         //
         //            @Override
         //            public void onFailure(Throwable caught) {
@@ -74,7 +74,7 @@ public class MVPSetup {
         //            @Override
         //            public void onSuccess(UserInfo result) {
         //                if (!result.isAdmin()) {
-        //                    Window.Location.replace(result.createLoginUrl());
+        //                    Window.Location.replace(result.getLoginUrl());
         //                }
         //            }
         //        });

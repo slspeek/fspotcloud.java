@@ -51,7 +51,7 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
         this.view.setPresenter(this);
         panel.setWidget(view);
         view.focusUserNameField();
-        dispatch.execute(new GetUserInfo("FSpotCloud.html"),
+        dispatch.execute(new GetUserInfo("post-login"),
             new AsyncCallback<UserInfo>() {
                 @Override
                 public void onFailure(Throwable caught) {
@@ -60,7 +60,9 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
 
                 @Override
                 public void onSuccess(UserInfo result) {
-                    view.setGoogleLoginHref(result.createLoginUrl());
+                    String loginUrl = result.getLoginUrl();
+                    log.info("LoginURL: " + loginUrl);
+                    view.setGoogleLoginHref(loginUrl);
                 }
             });
     }

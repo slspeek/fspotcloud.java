@@ -35,7 +35,7 @@
 00:16:14,306 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 00:16:14,307 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 00:16:14,308 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-00:16:14,309 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+00:16:14,309 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 00:16:14,309 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 00:16:14,310 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 00:16:14,310 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -149,7 +149,7 @@
 00:16:14,408 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 00:16:14,408 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 00:16:14,408 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-00:16:14,408 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+00:16:14,408 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 00:16:14,408 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 00:16:14,408 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 00:16:14,408 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -270,7 +270,7 @@
 00:17:21,973 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@57ac3379
 00:17:21,975 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@59556d12
 00:17:21,975 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@59556d12
-00:17:21,976 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@466355dc
+00:17:21,976 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@466355dc
 00:17:21,976 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@466355dc
 00:17:21,977 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@456dfa45
 00:17:21,977 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@456dfa45
@@ -384,7 +384,7 @@
 00:17:22,063 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@57ac3379
 00:17:22,063 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@59556d12
 00:17:22,063 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@59556d12
-00:17:22,063 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@466355dc
+00:17:22,063 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@466355dc
 00:17:22,063 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@466355dc
 00:17:22,063 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@456dfa45
 00:17:22,063 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@456dfa45
@@ -505,7 +505,7 @@
 00:19:31,831 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 00:19:31,832 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 00:19:31,832 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-00:19:31,833 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+00:19:31,833 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 00:19:31,833 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 00:19:31,835 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 00:19:31,835 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -619,7 +619,7 @@
 00:19:31,922 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 00:19:31,922 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 00:19:31,922 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-00:19:31,922 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+00:19:31,922 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 00:19:31,922 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 00:19:31,922 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 00:19:31,922 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -921,7 +921,7 @@
 00:20:44,800 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@57ac3379
 00:20:44,801 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@59556d12
 00:20:44,801 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@59556d12
-00:20:44,802 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@466355dc
+00:20:44,802 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@466355dc
 00:20:44,803 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@466355dc
 00:20:44,804 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@456dfa45
 00:20:44,804 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@456dfa45
@@ -1035,7 +1035,7 @@
 00:20:44,889 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@57ac3379
 00:20:44,889 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@59556d12
 00:20:44,889 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@59556d12
-00:20:44,889 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@466355dc
+00:20:44,889 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@466355dc
 00:20:44,889 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@466355dc
 00:20:44,890 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@456dfa45
 00:20:44,890 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@456dfa45
@@ -1156,7 +1156,7 @@
 00:25:09,474 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 00:25:09,475 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 00:25:09,476 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-00:25:09,477 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+00:25:09,477 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 00:25:09,477 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 00:25:09,478 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 00:25:09,478 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -1270,7 +1270,7 @@
 00:25:09,563 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 00:25:09,563 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 00:25:09,563 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-00:25:09,563 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+00:25:09,563 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 00:25:09,563 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 00:25:09,563 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 00:25:09,563 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -1572,7 +1572,7 @@
 00:25:58,616 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:25:58,618 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:25:58,618 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:25:58,619 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:25:58,619 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:25:58,619 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:25:58,620 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:25:58,620 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -1686,7 +1686,7 @@
 00:25:58,701 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:25:58,701 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:25:58,701 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:25:58,701 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:25:58,701 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:25:58,701 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:25:58,701 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:25:58,702 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -1988,7 +1988,7 @@
 00:28:56,831 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@1664a9b
 00:28:56,835 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@25e3bbd7
 00:28:56,835 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@25e3bbd7
-00:28:56,839 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@5ae8a0cd
+00:28:56,839 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@5ae8a0cd
 00:28:56,839 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@5ae8a0cd
 00:28:56,842 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@3ebfbbe3
 00:28:56,842 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@3ebfbbe3
@@ -2102,7 +2102,7 @@
 00:28:57,086 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@1664a9b
 00:28:57,087 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@25e3bbd7
 00:28:57,087 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@25e3bbd7
-00:28:57,087 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@5ae8a0cd
+00:28:57,087 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@5ae8a0cd
 00:28:57,087 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@5ae8a0cd
 00:28:57,088 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@3ebfbbe3
 00:28:57,088 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@3ebfbbe3
@@ -2404,7 +2404,7 @@
 00:31:01,639 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@5d59054d
 00:31:01,644 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@1d6b6c55
 00:31:01,644 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@1d6b6c55
-00:31:01,647 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@62ac06d4
+00:31:01,647 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@62ac06d4
 00:31:01,648 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@62ac06d4
 00:31:01,651 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@5e89c116
 00:31:01,651 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@5e89c116
@@ -2518,7 +2518,7 @@
 00:31:01,902 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@5d59054d
 00:31:01,902 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@1d6b6c55
 00:31:01,902 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@1d6b6c55
-00:31:01,902 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@62ac06d4
+00:31:01,902 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@62ac06d4
 00:31:01,903 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@62ac06d4
 00:31:01,903 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@5e89c116
 00:31:01,903 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@5e89c116
@@ -2820,7 +2820,7 @@
 00:32:11,273 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@1ac2cf83
 00:32:11,278 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@1664a9b
 00:32:11,278 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@1664a9b
-00:32:11,281 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@98c5e67
+00:32:11,281 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@98c5e67
 00:32:11,282 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@98c5e67
 00:32:11,285 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@1531164
 00:32:11,285 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@1531164
@@ -2934,7 +2934,7 @@
 00:32:11,561 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@1ac2cf83
 00:32:11,561 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@1664a9b
 00:32:11,562 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@1664a9b
-00:32:11,562 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@98c5e67
+00:32:11,562 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@98c5e67
 00:32:11,563 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@98c5e67
 00:32:11,563 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@1531164
 00:32:11,563 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@1531164
@@ -3236,7 +3236,7 @@
 00:33:32,323 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@661736e
 00:33:32,325 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@45b34126
 00:33:32,325 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@45b34126
-00:33:32,326 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3e018c74
+00:33:32,326 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3e018c74
 00:33:32,326 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3e018c74
 00:33:32,327 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6b6d2702
 00:33:32,327 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6b6d2702
@@ -3350,7 +3350,7 @@
 00:33:32,420 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@661736e
 00:33:32,420 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@45b34126
 00:33:32,420 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@45b34126
-00:33:32,420 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3e018c74
+00:33:32,420 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3e018c74
 00:33:32,420 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3e018c74
 00:33:32,420 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6b6d2702
 00:33:32,420 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6b6d2702
@@ -3652,7 +3652,7 @@
 00:35:05,364 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:35:05,365 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:35:05,365 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:35:05,366 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:35:05,366 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:35:05,366 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:35:05,368 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:35:05,368 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -3766,7 +3766,7 @@
 00:35:05,451 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:35:05,451 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:35:05,451 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:35:05,451 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:35:05,451 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:35:05,451 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:35:05,451 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:35:05,452 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -4068,7 +4068,7 @@
 00:37:08,823 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@661736e
 00:37:08,825 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@45b34126
 00:37:08,825 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@45b34126
-00:37:08,826 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3e018c74
+00:37:08,826 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3e018c74
 00:37:08,826 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3e018c74
 00:37:08,827 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6b6d2702
 00:37:08,827 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6b6d2702
@@ -4182,7 +4182,7 @@
 00:37:08,909 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@661736e
 00:37:08,909 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@45b34126
 00:37:08,909 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@45b34126
-00:37:08,909 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3e018c74
+00:37:08,909 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3e018c74
 00:37:08,909 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3e018c74
 00:37:08,909 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6b6d2702
 00:37:08,910 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6b6d2702
@@ -4489,7 +4489,7 @@
 00:38:29,436 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@5c4e2f0a
 00:38:29,440 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@529c176c
 00:38:29,441 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@529c176c
-00:38:29,444 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@2c8c7d6
+00:38:29,444 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@2c8c7d6
 00:38:29,444 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@2c8c7d6
 00:38:29,447 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@2d42c778
 00:38:29,448 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@2d42c778
@@ -4603,7 +4603,7 @@
 00:38:29,696 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@5c4e2f0a
 00:38:29,696 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@529c176c
 00:38:29,696 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@529c176c
-00:38:29,696 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@2c8c7d6
+00:38:29,696 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@2c8c7d6
 00:38:29,697 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@2c8c7d6
 00:38:29,697 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@2d42c778
 00:38:29,697 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@2d42c778
@@ -4910,7 +4910,7 @@
 00:41:32,088 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@661736e
 00:41:32,089 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@45b34126
 00:41:32,089 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@45b34126
-00:41:32,090 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3e018c74
+00:41:32,090 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3e018c74
 00:41:32,090 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3e018c74
 00:41:32,091 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6b6d2702
 00:41:32,091 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6b6d2702
@@ -5024,7 +5024,7 @@
 00:41:32,173 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@661736e
 00:41:32,173 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@45b34126
 00:41:32,173 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@45b34126
-00:41:32,173 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3e018c74
+00:41:32,173 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3e018c74
 00:41:32,173 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3e018c74
 00:41:32,173 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6b6d2702
 00:41:32,173 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6b6d2702
@@ -5331,7 +5331,7 @@
 00:41:51,375 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@661736e
 00:41:51,377 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@45b34126
 00:41:51,377 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@45b34126
-00:41:51,378 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3e018c74
+00:41:51,378 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3e018c74
 00:41:51,378 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3e018c74
 00:41:51,379 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6b6d2702
 00:41:51,379 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6b6d2702
@@ -5445,7 +5445,7 @@
 00:41:51,463 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@661736e
 00:41:51,463 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@45b34126
 00:41:51,463 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@45b34126
-00:41:51,463 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3e018c74
+00:41:51,463 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3e018c74
 00:41:51,463 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3e018c74
 00:41:51,464 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6b6d2702
 00:41:51,464 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6b6d2702
@@ -5752,7 +5752,7 @@
 00:42:54,770 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 00:42:54,771 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 00:42:54,771 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-00:42:54,772 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+00:42:54,772 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 00:42:54,772 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 00:42:54,774 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 00:42:54,774 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -5866,7 +5866,7 @@
 00:42:54,856 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 00:42:54,856 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 00:42:54,856 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-00:42:54,856 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+00:42:54,856 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 00:42:54,856 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 00:42:54,857 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 00:42:54,857 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -6173,7 +6173,7 @@
 00:48:02,363 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@6c69d02b
 00:48:02,364 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@7aae3364
 00:48:02,364 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@7aae3364
-00:48:02,365 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@7ab2c6a6
+00:48:02,365 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@7ab2c6a6
 00:48:02,365 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@7ab2c6a6
 00:48:02,366 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@79ee2c2c
 00:48:02,366 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@79ee2c2c
@@ -6287,7 +6287,7 @@
 00:48:02,456 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@6c69d02b
 00:48:02,456 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@7aae3364
 00:48:02,456 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@7aae3364
-00:48:02,456 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@7ab2c6a6
+00:48:02,456 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@7ab2c6a6
 00:48:02,456 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@7ab2c6a6
 00:48:02,456 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@79ee2c2c
 00:48:02,456 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@79ee2c2c
@@ -6594,7 +6594,7 @@
 00:48:53,252 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:48:53,253 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:48:53,254 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:48:53,255 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:48:53,255 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:48:53,255 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:48:53,256 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:48:53,256 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -6708,7 +6708,7 @@
 00:48:53,338 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:48:53,338 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:48:53,338 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:48:53,339 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:48:53,339 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:48:53,339 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:48:53,339 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:48:53,339 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -7015,7 +7015,7 @@
 00:48:53,621 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:48:53,621 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:48:53,621 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:48:53,621 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:48:53,621 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:48:53,621 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:48:53,621 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:48:53,621 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -7322,7 +7322,7 @@
 00:49:24,731 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:49:24,732 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:49:24,732 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:49:24,733 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:49:24,733 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:49:24,734 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:49:24,735 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:49:24,735 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -7436,7 +7436,7 @@
 00:49:24,827 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:49:24,827 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:49:24,828 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:49:24,828 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:49:24,828 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:49:24,828 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:49:24,828 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:49:24,828 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -7559,7 +7559,7 @@
 00:49:24,982 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:49:24,982 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:49:24,982 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:49:24,982 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:49:24,982 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:49:24,982 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:49:24,982 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:49:24,982 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -7682,7 +7682,7 @@
 00:50:04,601 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:50:04,603 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:50:04,603 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:50:04,604 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:50:04,604 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:50:04,604 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:50:04,605 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:50:04,605 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -7796,7 +7796,7 @@
 00:50:04,686 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:50:04,686 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:50:04,686 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:50:04,686 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:50:04,686 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:50:04,686 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:50:04,686 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:50:04,687 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -8103,7 +8103,7 @@
 00:50:04,963 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:50:04,963 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:50:04,963 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:50:04,963 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:50:04,963 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:50:04,963 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:50:04,963 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:50:04,963 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -8410,7 +8410,7 @@
 00:52:13,760 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:52:13,761 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:52:13,761 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:52:13,762 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:52:13,762 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:52:13,762 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:52:13,763 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:52:13,764 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -8524,7 +8524,7 @@
 00:52:13,858 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:52:13,858 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:52:13,858 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:52:13,858 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:52:13,858 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:52:13,858 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:52:13,859 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:52:13,859 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -8831,7 +8831,7 @@
 00:52:14,159 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@7402d5a
 00:52:14,159 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@366782a9
 00:52:14,159 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@366782a9
-00:52:14,159 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@224c47db
+00:52:14,159 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@224c47db
 00:52:14,159 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@224c47db
 00:52:14,159 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@714ae2c1
 00:52:14,159 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@714ae2c1
@@ -9138,7 +9138,7 @@
 00:52:52,815 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 00:52:52,816 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 00:52:52,817 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-00:52:52,818 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+00:52:52,818 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 00:52:52,818 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 00:52:52,819 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 00:52:52,819 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -9252,7 +9252,7 @@
 00:52:52,904 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 00:52:52,904 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 00:52:52,904 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-00:52:52,904 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+00:52:52,904 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 00:52:52,904 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 00:52:52,904 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 00:52:52,905 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -9559,7 +9559,7 @@
 00:52:53,187 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 00:52:53,187 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 00:52:53,187 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-00:52:53,187 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+00:52:53,187 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 00:52:53,187 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 00:52:53,187 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 00:52:53,187 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -9866,7 +9866,7 @@
 00:53:17,508 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@57ac3379
 00:53:17,509 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@59556d12
 00:53:17,510 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@59556d12
-00:53:17,511 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@466355dc
+00:53:17,511 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@466355dc
 00:53:17,511 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@466355dc
 00:53:17,512 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@456dfa45
 00:53:17,512 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@456dfa45
@@ -9980,7 +9980,7 @@
 00:53:17,601 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@57ac3379
 00:53:17,601 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@59556d12
 00:53:17,601 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@59556d12
-00:53:17,602 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@466355dc
+00:53:17,602 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@466355dc
 00:53:17,602 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@466355dc
 00:53:17,602 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@456dfa45
 00:53:17,602 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@456dfa45
@@ -10287,7 +10287,7 @@
 00:53:17,890 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@57ac3379
 00:53:17,890 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@59556d12
 00:53:17,890 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@59556d12
-00:53:17,890 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@466355dc
+00:53:17,890 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@466355dc
 00:53:17,891 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@466355dc
 00:53:17,891 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@456dfa45
 00:53:17,891 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@456dfa45
@@ -10594,7 +10594,7 @@
 00:54:49,760 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@57ac3379
 00:54:49,762 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@59556d12
 00:54:49,762 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@59556d12
-00:54:49,763 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@466355dc
+00:54:49,763 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@466355dc
 00:54:49,763 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@466355dc
 00:54:49,765 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@456dfa45
 00:54:49,765 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@456dfa45
@@ -10708,7 +10708,7 @@
 00:54:49,851 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@57ac3379
 00:54:49,851 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@59556d12
 00:54:49,851 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@59556d12
-00:54:49,851 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@466355dc
+00:54:49,851 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@466355dc
 00:54:49,851 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@466355dc
 00:54:49,851 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@456dfa45
 00:54:49,851 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@456dfa45
@@ -11015,7 +11015,7 @@
 00:54:50,154 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@57ac3379
 00:54:50,154 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@59556d12
 00:54:50,154 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@59556d12
-00:54:50,154 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@466355dc
+00:54:50,154 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@466355dc
 00:54:50,154 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@466355dc
 00:54:50,155 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@456dfa45
 00:54:50,155 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@456dfa45
@@ -11322,7 +11322,7 @@
 01:00:49,279 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 01:00:49,281 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 01:00:49,281 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-01:00:49,282 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+01:00:49,282 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 01:00:49,282 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 01:00:49,283 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 01:00:49,283 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -11436,7 +11436,7 @@
 01:00:49,367 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 01:00:49,367 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 01:00:49,367 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-01:00:49,367 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+01:00:49,367 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 01:00:49,367 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 01:00:49,367 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 01:00:49,367 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827
@@ -11743,7 +11743,7 @@
 01:00:49,644 DEBUG BasicTypeRegistry:147 - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3e018c74
 01:00:49,644 DEBUG BasicTypeRegistry:147 - Adding type registration date -> org.hibernate.type.DateType@26659db7
 01:00:49,644 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Date -> org.hibernate.type.DateType@26659db7
-01:00:49,644 DEBUG BasicTypeRegistry:147 - Adding type registration time -> org.hibernate.type.TimeType@3d3cdaa
+01:00:49,644 DEBUG BasicTypeRegistry:147 - Adding type registration metaData -> org.hibernate.type.TimeType@3d3cdaa
 01:00:49,644 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@3d3cdaa
 01:00:49,644 DEBUG BasicTypeRegistry:147 - Adding type registration timestamp -> org.hibernate.type.TimestampType@6126f827
 01:00:49,644 DEBUG BasicTypeRegistry:147 - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6126f827

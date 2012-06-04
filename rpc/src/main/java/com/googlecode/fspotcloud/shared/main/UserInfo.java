@@ -23,6 +23,7 @@ package com.googlecode.fspotcloud.shared.main;
 import com.google.common.annotations.GwtCompatible;
 import com.google.gwt.user.client.rpc.IsSerializable;
 import java.io.Serializable;
+import java.util.Date;
 import net.customware.gwt.dispatch.shared.Result;
 
 
@@ -38,17 +39,25 @@ public class UserInfo implements Result, IsSerializable, Serializable {
     private boolean isLoggedId;
     private String logoutUrl;
     private String loginUrl;
+    private Date lastLoginTime;
+    private String loginType;
 
     public UserInfo(String email, boolean isAdmin, boolean isLoggedId,
-        String loginUrl, String logoutUrl) {
+        String loginUrl, String logoutUrl, Date loginTime, String loginType) {
         this.email = email;
         this.isAdmin = isAdmin;
         this.isLoggedId = isLoggedId;
         this.loginUrl = loginUrl;
         this.logoutUrl = logoutUrl;
+        lastLoginTime = loginTime;
+        this.loginType = loginType;
     }
 
     UserInfo() {
+    }
+
+    public String getLoginType() {
+        return loginType;
     }
 
     public String getEmail() {
@@ -63,11 +72,31 @@ public class UserInfo implements Result, IsSerializable, Serializable {
         return isLoggedId;
     }
 
-    public String createLogoutUrl() {
+    public String getLogoutUrl() {
         return logoutUrl;
     }
 
-    public String createLoginUrl() {
+    public String getLoginUrl() {
         return loginUrl;
+    }
+
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer();
+        sb.append("UserInfo");
+        sb.append("{email='").append(email).append('\'');
+        sb.append(", isAdmin=").append(isAdmin);
+        sb.append(", isLoggedId=").append(isLoggedId);
+        sb.append(", logoutUrl='").append(logoutUrl).append('\'');
+        sb.append(", loginUrl='").append(loginUrl).append('\'');
+        sb.append(", lastLoginTime=").append(lastLoginTime);
+        sb.append(", loginType='").append(loginType).append('\'');
+        sb.append('}');
+
+        return sb.toString();
     }
 }
