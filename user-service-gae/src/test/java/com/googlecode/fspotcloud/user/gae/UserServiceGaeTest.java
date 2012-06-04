@@ -53,13 +53,6 @@ public class UserServiceGaeTest {
     }
 
     @Test
-    public void isUserLoggedInGoogle(
-        com.google.appengine.api.users.UserService delegate) {
-        when(delegate.isUserLoggedIn()).thenReturn(Boolean.TRUE);
-        Assert.assertTrue(userService.isUserLoggedIn());
-    }
-
-    @Test
     public void isUserLoggedInRegular(ISessionEmail sessionEmail,
         com.google.appengine.api.users.UserService delegate) {
         when(delegate.isUserLoggedIn()).thenReturn(Boolean.FALSE);
@@ -78,17 +71,18 @@ public class UserServiceGaeTest {
     @Test
     public void createLoginURL(
         com.google.appengine.api.users.UserService delegate) {
-        when(delegate.createLoginURL("http://localhost:8080/context/later"))
+        when(delegate.createLoginURL("http://localhost:8080/context/post-login"))
             .thenReturn("url");
-        Assert.assertEquals("url", userService.createLoginURL("later"));
+        Assert.assertEquals("url", userService.getLoginURL());
     }
 
     @Test
     public void createLogoutURL(
         com.google.appengine.api.users.UserService delegate) {
-        when(delegate.createLogoutURL("http://localhost:8080/context/later"))
+        when(delegate.createLogoutURL(
+                "http://localhost:8080/context/FSpotCloud.html"))
             .thenReturn("url");
-        Assert.assertEquals("url", userService.createLogoutURL("later"));
+        Assert.assertEquals("url", userService.getLogoutURL());
     }
 
     @Test
@@ -96,16 +90,6 @@ public class UserServiceGaeTest {
         when(delegate.isUserLoggedIn()).thenReturn(Boolean.TRUE);
         when(delegate.isUserAdmin()).thenReturn(Boolean.TRUE);
         Assert.assertTrue(userService.isUserAdmin());
-    }
-
-    @Test
-    public void email(com.google.appengine.api.users.UserService delegate) {
-        when(delegate.isUserLoggedIn()).thenReturn(Boolean.TRUE);
-
-        User foo = new User("foo@bar.com", "");
-        when(delegate.getCurrentUser()).thenReturn(foo);
-
-        Assert.assertEquals(userService.getEmail(), "foo@bar.com");
     }
 
     @Test
