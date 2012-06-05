@@ -22,14 +22,8 @@ import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.IGlobalShortcutController;
 import com.googlecode.fspotcloud.client.main.IGlobalShortcutController.Mode;
-import com.googlecode.fspotcloud.client.main.view.api.LoginView;
-import com.googlecode.fspotcloud.client.main.view.api.SignUpView;
-import com.googlecode.fspotcloud.client.main.view.api.SingleViewActivityFactory;
-import com.googlecode.fspotcloud.client.main.view.api.TagPresenterFactory;
-import com.googlecode.fspotcloud.client.place.BasePlace;
-import com.googlecode.fspotcloud.client.place.LoginPlace;
-import com.googlecode.fspotcloud.client.place.SignUpPlace;
-import com.googlecode.fspotcloud.client.place.SlideshowPlace;
+import com.googlecode.fspotcloud.client.main.view.api.*;
+import com.googlecode.fspotcloud.client.place.*;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import java.util.logging.Logger;
 
@@ -42,13 +36,15 @@ public class MainWindowActivityMapper implements ActivityMapper {
     private final IGlobalShortcutController keyboard;
     private final LoginView.LoginPresenter loginPresenter;
     private final SignUpView.SignUpPresenter signUpPresenter;
+    private final UserAccountView.UserAccountPresenter userAccountActivity;
 
     @Inject
     public MainWindowActivityMapper(TagPresenterFactory tagPresenterFactory,
         SingleViewActivityFactory singleViewActivityFactory,
         Navigator navigator, IGlobalShortcutController keyboard,
         LoginView.LoginPresenter loginPresenter,
-        SignUpView.SignUpPresenter signUpPresenter) {
+        SignUpView.SignUpPresenter signUpPresenter,
+        UserAccountView.UserAccountPresenter userAccountActivity) {
         super();
         this.singleViewActivityFactory = singleViewActivityFactory;
         this.tagPresenterFactory = tagPresenterFactory;
@@ -56,6 +52,7 @@ public class MainWindowActivityMapper implements ActivityMapper {
         this.keyboard = keyboard;
         this.loginPresenter = loginPresenter;
         this.signUpPresenter = signUpPresenter;
+        this.userAccountActivity = userAccountActivity;
     }
 
     @Override
@@ -65,7 +62,10 @@ public class MainWindowActivityMapper implements ActivityMapper {
 
         Activity activity = null;
 
-        if (place instanceof SignUpPlace) {
+        if (place instanceof UserAccountPlace) {
+            activity = userAccountActivity;
+            keyboard.setMode(Mode.LOGIN);
+        } else if (place instanceof SignUpPlace) {
             activity = signUpPresenter;
             keyboard.setMode(Mode.LOGIN);
         } else if (place instanceof LoginPlace) {

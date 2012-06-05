@@ -17,11 +17,9 @@
 package com.googlecode.fspotcloud.user.openid;
 
 import com.googlecode.fspotcloud.server.model.api.UserDao;
-import com.googlecode.fspotcloud.user.LoginMetaData;
-import com.googlecode.fspotcloud.user.LoginMetaDataUpdater;
-import com.googlecode.fspotcloud.user.PostThirdPartyLoginWorker;
-import com.googlecode.fspotcloud.user.UserService;
+import com.googlecode.fspotcloud.user.*;
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 
 public class PostOpenIdLoginWorker implements PostThirdPartyLoginWorker {
@@ -30,11 +28,11 @@ public class PostOpenIdLoginWorker implements PostThirdPartyLoginWorker {
     @Inject
     private LoginMetaDataUpdater metaDataUpdater;
     @Inject
-    private UserService userService;
+    private Provider<ISessionEmail> sessionEmail;
 
     @Override
     public void doWork() {
-        String email = userService.getEmail();
+        String email = sessionEmail.get().getEmail();
 
         if (email != null) {
             com.googlecode.fspotcloud.server.model.api.User user = userDao.findOrNew(email);

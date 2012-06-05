@@ -17,45 +17,30 @@
 package com.googlecode.fspotcloud.user;
 
 import com.google.inject.Provider;
-import com.googlecode.fspotcloud.user.ISessionEmail;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 
 public abstract class UserServiceBase implements com.googlecode.fspotcloud.user.UserService {
     @Inject
-    Provider<HttpServletRequest> requestProvider;
+    Provider<LoginMetaData> loginMetaDataProvider;
     @Inject
-    Provider<ISessionEmail> sessionEmailProvider;
-
-    protected String toAbsoluteURL(String url) {
-        HttpServletRequest request = requestProvider.get();
-        String result = request.getScheme() + "://" + request.getServerName() +
-            ":" + request.getServerPort() + request.getContextPath() + "/" +
-            url;
-
-        return result;
-    }
-
-    private String getSessionEmail() {
-        return sessionEmailProvider.get().getEmail();
-    }
+    UrlUtil urlUtil;
 
     @Override
     public String getEmail() {
-        return getSessionEmail();
+        return loginMetaDataProvider.get().getEmail();
     }
 
     @Override
     public boolean isUserLoggedIn() {
-        return getSessionEmail() != null;
+        return getEmail() != null;
     }
 
     protected String getPostThirdPartyLoginURL() {
-        return toAbsoluteURL("post-login");
+        return urlUtil.toAbsoluteURL("post-login");
     }
 
     protected String getPostThirdPartyLogoutURL() {
-        return toAbsoluteURL("FSpotCloud.html");
+        return urlUtil.toAbsoluteURL("FSpotCloud.html");
     }
 }

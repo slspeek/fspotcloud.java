@@ -34,21 +34,16 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 
 public class LogoutHandler extends SimpleActionHandler<LogoutAction, VoidResult> {
-    private final Provider<ISessionEmail> sessionEmailProvider;
     private final ILoginMetaDataUpdater loginMetaDataUpdater;
 
     @Inject
-    public LogoutHandler(Provider<ISessionEmail> sessionEmailProvider,
-        ILoginMetaDataUpdater loginMetaDataUpdater) {
-        this.sessionEmailProvider = sessionEmailProvider;
+    public LogoutHandler(ILoginMetaDataUpdater loginMetaDataUpdater) {
         this.loginMetaDataUpdater = loginMetaDataUpdater;
     }
 
     @Override
     public VoidResult execute(LogoutAction action, ExecutionContext context)
         throws DispatchException {
-        ISessionEmail email = sessionEmailProvider.get();
-        email.setEmail(null);
         loginMetaDataUpdater.clear();
 
         return new VoidResult();

@@ -20,8 +20,8 @@
  */
 package com.googlecode.fspotcloud.user.gae;
 
-import com.google.appengine.api.users.User;
 import com.googlecode.fspotcloud.user.ISessionEmail;
+import com.googlecode.fspotcloud.user.LoginMetaData;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -43,9 +43,12 @@ public class UserServiceGaeTest {
     public static final String FOO_FSF_ORG = "foo@fsf.org";
     @Inject
     UserServiceGae userService;
+    @Inject
+    LoginMetaData metaData;
 
     @Before
     public void setUp(HttpSession session, HttpServletRequest request) {
+        metaData.setEmail(FOO_FSF_ORG);
         when(request.getScheme()).thenReturn("http");
         when(request.getContextPath()).thenReturn("/context");
         when(request.getServerPort()).thenReturn(8080);
@@ -53,18 +56,12 @@ public class UserServiceGaeTest {
     }
 
     @Test
-    public void isUserLoggedInRegular(ISessionEmail sessionEmail,
-        com.google.appengine.api.users.UserService delegate) {
-        when(delegate.isUserLoggedIn()).thenReturn(Boolean.FALSE);
-        when(sessionEmail.getEmail()).thenReturn(FOO_FSF_ORG);
+    public void isUserLoggedInRegular() {
         Assert.assertTrue(userService.isUserLoggedIn());
     }
 
     @Test
-    public void emailInRegular(ISessionEmail sessionEmail,
-        com.google.appengine.api.users.UserService delegate) {
-        when(delegate.isUserLoggedIn()).thenReturn(Boolean.FALSE);
-        when(sessionEmail.getEmail()).thenReturn(FOO_FSF_ORG);
+    public void emailInRegular() {
         assertEquals(FOO_FSF_ORG, userService.getEmail());
     }
 
@@ -73,7 +70,7 @@ public class UserServiceGaeTest {
         com.google.appengine.api.users.UserService delegate) {
         when(delegate.createLoginURL("http://localhost:8080/context/post-login"))
             .thenReturn("url");
-        Assert.assertEquals("url", userService.getLoginURL());
+        Assert.assertEquals("url", userService.getThirdPartyLoginURL());
     }
 
     @Test
@@ -82,7 +79,7 @@ public class UserServiceGaeTest {
         when(delegate.createLogoutURL(
                 "http://localhost:8080/context/FSpotCloud.html"))
             .thenReturn("url");
-        Assert.assertEquals("url", userService.getLogoutURL());
+        Assert.assertEquals("url", userService.getThirdPartyLogoutURL());
     }
 
     @Test
@@ -95,7 +92,7 @@ public class UserServiceGaeTest {
     @Test
     public void emailReturnsNull(
         com.google.appengine.api.users.UserService delegate) {
-        when(delegate.isUserLoggedIn()).thenReturn(Boolean.FALSE);
+        metaData.setEmail(null);
         Assert.assertNull(userService.getEmail());
     }
 }

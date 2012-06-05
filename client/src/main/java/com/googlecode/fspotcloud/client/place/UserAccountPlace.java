@@ -14,8 +14,31 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.user;
+package com.googlecode.fspotcloud.client.place;
 
-public interface ISessionEmail {
-    String getEmail();
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceTokenizer;
+
+
+public class UserAccountPlace extends Place {
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof UserAccountPlace) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static class Tokenizer implements PlaceTokenizer<UserAccountPlace> {
+        @Override
+        public UserAccountPlace getPlace(String token) {
+            return new UserAccountPlace();
+        }
+
+        @Override
+        public String getToken(UserAccountPlace place) {
+            return "";
+        }
+    }
 }

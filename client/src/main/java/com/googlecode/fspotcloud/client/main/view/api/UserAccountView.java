@@ -14,8 +14,21 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.user;
+package com.googlecode.fspotcloud.client.main.view.api;
 
-public interface ISessionEmail {
-    String getEmail();
+import com.google.gwt.activity.shared.Activity;
+import com.google.gwt.user.client.ui.IsWidget;
+
+
+public interface UserAccountView extends IsWidget {
+    void setEmail(String email);
+
+    void setLastLoginTime(String date);
+
+    void setNickname(String nickname);
+
+    void setPresenter(UserAccountPresenter presenter);
+
+    interface UserAccountPresenter extends Activity {
+    }
 }

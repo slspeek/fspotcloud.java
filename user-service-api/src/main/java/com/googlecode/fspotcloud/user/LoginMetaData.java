@@ -22,6 +22,15 @@ import java.util.Date;
 public class LoginMetaData {
     private Type loginType;
     private Date lastTime;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Type getLoginType() {
         return loginType;

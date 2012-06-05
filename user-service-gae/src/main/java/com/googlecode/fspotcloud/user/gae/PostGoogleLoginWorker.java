@@ -29,8 +29,6 @@ import javax.inject.Provider;
 
 public class PostGoogleLoginWorker implements PostThirdPartyLoginWorker {
     @Inject
-    private Provider<ISessionEmail> emailProvider;
-    @Inject
     private UserDao userDao;
     @Inject
     private LoginMetaDataUpdater metaDataUpdater;
@@ -45,9 +43,6 @@ public class PostGoogleLoginWorker implements PostThirdPartyLoginWorker {
             String email = gaeUser.getEmail();
             com.googlecode.fspotcloud.server.model.api.User user = userDao.findOrNew(email);
             metaDataUpdater.doUpdate(user, LoginMetaData.Type.GAE_LOGIN);
-
-            ISessionEmail sessionEmail = emailProvider.get();
-            sessionEmail.setEmail(email);
         }
     }
 }

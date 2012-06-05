@@ -18,37 +18,35 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.googlecode.fspotcloud.user;
+package com.googlecode.fspotcloud.test;
 
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.googlecode.fspotcloud.client.main.view.SignUpPresenterImpl;
+import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
+import com.thoughtworks.selenium.Selenium;
+import java.util.Date;
+import javax.inject.Inject;
+import static org.junit.Assert.assertEquals;
 
 /**
- * DOCUMENT ME!
  *
  * @author steven
-*/
-public class LenientUserService implements UserService {
-    @Override
-    public String getThirdPartyLoginURL() {
-        return "";
+ */
+public class UserAccountPage {
+    @Inject
+    Selenium selenium;
+
+    public void open() {
+        selenium.open("/#UserAccountPlace:");
+        selenium.waitForPageToLoad("30000");
     }
 
-    @Override
-    public String getThirdPartyLogoutURL() {
-        return "";
+    public void verifyEmail(String email) {
+        assertEquals(selenium.getText("gwt-debug-email"), email);
     }
 
-    @Override
-    public String getEmail() {
-        return "";
-    }
-
-    @Override
-    public boolean isUserLoggedIn() {
-        return true;
-    }
-
-    @Override
-    public boolean isUserAdmin() {
-        return true;
+    public Date getLastLogin() {
+        return DateTimeFormat.getFormat(DateTimeFormat.PredefinedFormat.DATE_TIME_LONG)
+                             .parse(selenium.getText("gwt-debug-last-login"));
     }
 }

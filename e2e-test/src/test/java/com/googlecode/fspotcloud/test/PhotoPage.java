@@ -51,6 +51,11 @@ public class PhotoPage {
         selenium.waitForPageToLoad("30000");
     }
 
+    public void logout() {
+        selenium.click("gwt-debug-logout");
+        selenium.waitForPageToLoad("30000");
+    }
+
     public void clickImage(int x, int y) {
         selenium.click("gwt-debug-image-view-" + x + "x" + y);
         selenium.waitForPageToLoad("30000");
