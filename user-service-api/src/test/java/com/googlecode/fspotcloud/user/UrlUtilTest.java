@@ -16,31 +16,33 @@
  */
 package com.googlecode.fspotcloud.user;
 
-import static com.google.common.collect.Lists.newArrayList;
-import java.util.List;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.jukito.JukitoRunner;
 import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 @RunWith(JukitoRunner.class)
-public class SessionEmailTest {
-    public static final String RMS_FSF_ORG = "rms@fsf.org";
-    public static final String EMAIL = "email";
+public class UrlUtilTest {
     @Inject
-    SessionEmail sessionEmail;
+    UrlUtil util;
     @Inject
-    HttpSession session;
+    HttpServletRequest request;
+
+    @Before
+    public void setUp(HttpServletRequest request) {
+        when(request.getScheme()).thenReturn("http");
+        when(request.getContextPath()).thenReturn("/context");
+        when(request.getServerPort()).thenReturn(8080);
+        when(request.getServerName()).thenReturn("localhost");
+    }
 
     @Test
-    public void testGetEmail() throws Exception {
-        when(session.getAttribute(EMAIL)).thenReturn(newArrayList(RMS_FSF_ORG));
-
-        String email = sessionEmail.getEmail();
-        assertEquals(RMS_FSF_ORG, email);
+    public void toAbsoluteURL() throws Exception {
+        String result = util.toAbsoluteURL("");
+        assertEquals("http://localhost:8080/context/", result);
     }
 }

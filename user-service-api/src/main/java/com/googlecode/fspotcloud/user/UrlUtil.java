@@ -16,6 +16,21 @@
  */
 package com.googlecode.fspotcloud.user;
 
-public interface ISessionEmail {
-    String getEmail();
+import com.google.inject.Provider;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
+
+public class UrlUtil {
+    @Inject
+    Provider<HttpServletRequest> requestProvider;
+
+    protected String toAbsoluteURL(String url) {
+        HttpServletRequest request = requestProvider.get();
+        String result = request.getScheme() + "://" + request.getServerName() +
+            ":" + request.getServerPort() + request.getContextPath() + "/" +
+            url;
+
+        return result;
+    }
 }

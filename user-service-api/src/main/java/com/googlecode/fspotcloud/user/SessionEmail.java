@@ -38,10 +38,4 @@ public class SessionEmail implements ISessionEmail {
             return null;
         }
     }
-
-    @Override
-    public void setEmail(String email) {
-        HttpSession session = sessionProvider.get();
-        session.setAttribute("email", newArrayList(email));
-    }
 }

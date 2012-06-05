@@ -32,6 +32,7 @@ public class LoginMetaDataUpdater implements ILoginMetaDataUpdater {
     public void doUpdate(User user, LoginMetaData.Type loginType) {
         LoginMetaData loginMetaData = loginMetaDataProvider.get();
         loginMetaData.setLastTime(user.getLastLoginTime());
+        loginMetaData.setEmail(user.getEmail());
         loginMetaData.setLoginType(loginType);
         user.touchLastLoginTime();
         userDao.save(user);
@@ -42,5 +43,6 @@ public class LoginMetaDataUpdater implements ILoginMetaDataUpdater {
         LoginMetaData loginMetaData = loginMetaDataProvider.get();
         loginMetaData.setLastTime(null);
         loginMetaData.setLoginType(null);
+        loginMetaData.setEmail(null);
     }
 }

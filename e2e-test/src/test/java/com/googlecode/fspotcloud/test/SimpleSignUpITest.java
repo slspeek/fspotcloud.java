@@ -36,6 +36,10 @@ public class SimpleSignUpITest {
     SignUpPage signUpPage;
     @Inject
     LoginPage loginPage;
+    @Inject
+    UserAccountPage userAccountPage;
+    @Inject
+    PhotoPage photoPage;
 
     @Test
     public void signUp() throws Exception {
@@ -66,5 +70,14 @@ public class SimpleSignUpITest {
         loginPage.fillForm(RMS_FSF_ORG, CREDENTIALS);
         loginPage.login();
         loginPage.verifySuccess();
+
+        userAccountPage.open();
+        userAccountPage.verifyEmail(RMS_FSF_ORG);
+
+        photoPage.open();
+        photoPage.logout();
+
+        userAccountPage.open();
+        userAccountPage.verifyEmail("");
     }
 }

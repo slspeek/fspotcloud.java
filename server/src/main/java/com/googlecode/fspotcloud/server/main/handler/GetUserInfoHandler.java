@@ -44,8 +44,9 @@ public class GetUserInfoHandler extends SimpleActionHandler<GetUserInfo, UserInf
         LoginMetaData metaData = loginMetaDataProvider.get();
         UserInfo info = new UserInfo(userService.getEmail(),
                 userService.isUserAdmin(), userService.isUserLoggedIn(),
-                userService.getLoginURL(), userService.getLogoutURL(),
-                metaData.getLastTime(), String.valueOf(metaData.getLoginType()));
+                userService.getThirdPartyLoginURL(),
+                userService.getThirdPartyLogoutURL(), metaData.getLastTime(),
+                String.valueOf(metaData.getLoginType()));
 
         return info;
     }

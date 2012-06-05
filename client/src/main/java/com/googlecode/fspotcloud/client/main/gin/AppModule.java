@@ -63,6 +63,9 @@ public class AppModule extends AbstractGinModule {
         bind(LoginView.LoginPresenter.class).to(LoginPresenterImpl.class);
         bind(SignUpView.class).to(SignUpViewImpl.class);
         bind(SignUpView.SignUpPresenter.class).to(SignUpPresenterImpl.class);
+        bind(UserAccountView.class).to(UserAccountViewImpl.class);
+        bind(UserAccountView.UserAccountPresenter.class)
+            .to(UserAccountPresenterImpl.class);
 
         bind(PlaceCalculator.class);
         bind(PlaceGoTo.class).to(PlaceGoToImpl.class);

@@ -18,6 +18,7 @@ package com.googlecode.fspotcloud.user.openid;
 
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.user.ISessionEmail;
+import com.googlecode.fspotcloud.user.LoginMetaData;
 import javax.servlet.http.HttpServletRequest;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
@@ -33,10 +34,12 @@ public class OpenIdUserServiceTest {
     public static final String SLSPEEK_GMAIL_COM = "slspeek@gmail.com";
     @Inject
     OpenIdUserService instance;
+    @Inject
+    LoginMetaData metaData;
 
     @Before
-    public void setUp(ISessionEmail sessionEmail, HttpServletRequest request) {
-        when(sessionEmail.getEmail()).thenReturn(FOO_BAR_COM);
+    public void setUp(HttpServletRequest request) {
+        metaData.setEmail(FOO_BAR_COM);
         when(request.getScheme()).thenReturn("http");
         when(request.getContextPath()).thenReturn("/context");
         when(request.getServerPort()).thenReturn(8080);
@@ -54,7 +57,7 @@ public class OpenIdUserServiceTest {
     public void testCreateLoginURL() {
         String destinationURL = "dest";
         String expResult = "index.jsp?dest=http://localhost:8080/context/post-login";
-        String result = instance.getLoginURL();
+        String result = instance.getThirdPartyLoginURL();
         assertEquals(expResult, result);
     }
 
@@ -65,7 +68,7 @@ public class OpenIdUserServiceTest {
     public void testCreateLogoutURL() {
         String destinationURL = "dest";
         String expResult = "index.jsp?logout=true&dest=http://localhost:8080/context/FSpotCloud.html";
-        String result = instance.getLogoutURL();
+        String result = instance.getThirdPartyLogoutURL();
         assertEquals(expResult, result);
     }
 
@@ -76,7 +79,7 @@ public class OpenIdUserServiceTest {
      */
     @Test
     public void testGetEmailNull(ISessionEmail sessionEmail) {
-        when(sessionEmail.getEmail()).thenReturn(null);
+        metaData.setEmail(null);
 
         String expResult = null;
         String result = instance.getEmail();
@@ -104,7 +107,7 @@ public class OpenIdUserServiceTest {
      * Test of isUserAdmin method, of class OpenIdUserService.
      */
     @Test
-    public void testIsUserAdmin() {
+    public void testIsNotUserAdmin() {
         System.out.println("isUserAdmin");
 
         boolean expResult = false;
@@ -118,8 +121,8 @@ public class OpenIdUserServiceTest {
      * @param session DOCUMENT ME!
      */
     @Test
-    public void testIsUserIsAdmin(ISessionEmail sessionEmail) {
-        when(sessionEmail.getEmail()).thenReturn(SLSPEEK_GMAIL_COM);
+    public void testIsUserAdmin() {
+        metaData.setEmail(SLSPEEK_GMAIL_COM);
 
         boolean expResult = true;
         boolean result = instance.isUserAdmin();

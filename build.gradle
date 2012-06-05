@@ -27,7 +27,9 @@ allprojects {
 
     defaultTasks 'build'
     group = 'com.googlecode.fspotcloud'
-    version = '0.12-28g'
+    version = '0.12-29g'
+
+
 }
 
 subprojects {
@@ -79,6 +81,10 @@ subprojects {
 
             }
         }
+    }
+
+    test {
+        jvmArgs "-XX:MaxPermSize=256m"
     }
 
     repositories {

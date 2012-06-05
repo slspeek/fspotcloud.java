@@ -35,16 +35,13 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAction, AuthenticationResult> {
     private final UserService userService;
     private final UserDao userDao;
-    private final Provider<ISessionEmail> sessionEmailProvider;
     private final ILoginMetaDataUpdater loginMetaDataUpdater;
 
     @Inject
     public AuthenticationHandler(UserService userService, UserDao userDao,
-        Provider<ISessionEmail> sessionEmailProvider,
         ILoginMetaDataUpdater loginMetaDataUpdater) {
         this.userService = userService;
         this.userDao = userDao;
-        this.sessionEmailProvider = sessionEmailProvider;
         this.loginMetaDataUpdater = loginMetaDataUpdater;
     }
 
@@ -58,9 +55,6 @@ public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAct
                 if (action.getPassword().equals(user.getCredentials())) {
                     loginMetaDataUpdater.doUpdate(user,
                         LoginMetaData.Type.REGULAR_LOGIN);
-
-                    ISessionEmail sessionEmail = sessionEmailProvider.get();
-                    sessionEmail.setEmail(user.getEmail());
 
                     return new AuthenticationResult(true);
                 }

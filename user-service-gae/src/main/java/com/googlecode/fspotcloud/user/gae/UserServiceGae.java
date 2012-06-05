@@ -25,12 +25,12 @@ public class UserServiceGae extends UserServiceBase {
     com.google.appengine.api.users.UserService delegate;
 
     @Override
-    public String getLoginURL() {
+    public String getThirdPartyLoginURL() {
         return delegate.createLoginURL(getPostThirdPartyLoginURL());
     }
 
     @Override
-    public String getLogoutURL() {
+    public String getThirdPartyLogoutURL() {
         return delegate.createLogoutURL(getPostThirdPartyLogoutURL());
     }
 

@@ -41,12 +41,12 @@ public class OpenIdUserService extends UserServiceBase {
     String adminEmail;
 
     @Override
-    public String getLoginURL() {
+    public String getThirdPartyLoginURL() {
         return "index.jsp?dest=" + getPostThirdPartyLoginURL();
     }
 
     @Override
-    public String getLogoutURL() {
+    public String getThirdPartyLogoutURL() {
         return "index.jsp?logout=true&dest=" + getPostThirdPartyLogoutURL();
     }
 
