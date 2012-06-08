@@ -18,7 +18,6 @@ package com.googlecode.fspotcloud.user;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.jukito.JukitoRunner;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;

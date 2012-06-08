@@ -20,6 +20,7 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.googlecode.fspotcloud.client.view.action.api.ActionDef;
+
 import java.util.logging.Logger;
 
 

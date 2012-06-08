@@ -20,7 +20,6 @@
  */
 package com.googlecode.fspotcloud.user.gae;
 
-import com.googlecode.fspotcloud.user.ISessionEmail;
 import com.googlecode.fspotcloud.user.LoginMetaData;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;

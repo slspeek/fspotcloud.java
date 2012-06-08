@@ -17,7 +17,6 @@
 package com.googlecode.fspotcloud.user.openid;
 
 import com.googlecode.fspotcloud.user.ISessionEmail;
-import com.googlecode.fspotcloud.user.PostThirdPartyLoginServlet;
 import com.googlecode.fspotcloud.user.PostThirdPartyLoginWorker;
 import com.googlecode.fspotcloud.user.SessionEmail;
 import com.googlecode.fspotcloud.user.inject.AbstractUserModule;

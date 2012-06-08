@@ -25,14 +25,11 @@ import com.googlecode.fspotcloud.user.ILoginMetaDataUpdater;
 import com.googlecode.fspotcloud.user.LoginMetaData;
 import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 @RunWith(JukitoRunner.class)
 public class AuthenticationHandlerTest {
     @Inject

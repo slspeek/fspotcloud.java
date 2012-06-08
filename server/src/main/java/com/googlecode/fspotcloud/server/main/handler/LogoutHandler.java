@@ -17,17 +17,9 @@
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.google.inject.Inject;
-import com.googlecode.fspotcloud.server.model.api.User;
-import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
-import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
-import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.shared.main.LogoutAction;
 import com.googlecode.fspotcloud.user.ILoginMetaDataUpdater;
-import com.googlecode.fspotcloud.user.ISessionEmail;
-import com.googlecode.fspotcloud.user.LoginMetaData;
-import com.googlecode.fspotcloud.user.UserService;
-import javax.inject.Provider;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;

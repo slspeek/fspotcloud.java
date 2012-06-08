@@ -18,7 +18,6 @@ package com.googlecode.fspotcloud.user;
 
 import com.google.common.annotations.VisibleForTesting;
 import java.io.IOException;
-import java.io.OutputStream;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.servlet.ServletException;

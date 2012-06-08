@@ -18,6 +18,7 @@ package com.googlecode.fspotcloud.client.view.action;
 
 import com.googlecode.fspotcloud.client.view.action.api.ShortcutHandler;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;

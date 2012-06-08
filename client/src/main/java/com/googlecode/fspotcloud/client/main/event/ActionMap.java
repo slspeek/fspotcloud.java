@@ -18,6 +18,7 @@ package com.googlecode.fspotcloud.client.main.event;
 
 import com.googlecode.fspotcloud.client.view.action.api.ActionDef;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
+
 import java.util.List;
 
 

@@ -7,6 +7,7 @@
       <class>com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity</class>
       <class>com.googlecode.fspotcloud.model.jpa.tag.TagEntity</class>
       <class>com.googlecode.fspotcloud.model.jpa.user.UserEntity</class>
+      <class>com.googlecode.fspotcloud.model.jpa.usergroup.UserGroupEntity</class>
     <properties>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.connection.username" value="model"/>

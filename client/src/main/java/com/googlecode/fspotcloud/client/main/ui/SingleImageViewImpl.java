@@ -31,6 +31,7 @@ import com.googlecode.fspotcloud.client.main.view.api.ButtonPanelView;
 import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
 import com.googlecode.fspotcloud.client.main.view.api.SingleImageView;
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
+
 import java.util.logging.Logger;
 
 
