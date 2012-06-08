@@ -16,19 +16,20 @@
  */
 package com.googlecode.fspotcloud.model.jpa.gae.user;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.googlecode.fspotcloud.model.jpa.user.UserManagerBase;
 import com.googlecode.fspotcloud.server.model.api.User;
-import com.googlecode.fspotcloud.server.model.api.UserDao;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Provider;
 import javax.persistence.EntityManager;
 
 
-public class UserManager extends UserManagerBase<User, UserEntity>
-    implements UserDao {
+public class UserManager extends UserManagerBase<User, UserEntity> {
     @Inject
-    public UserManager(Provider<EntityManager> pmProvider) {
-        super(UserEntity.class, pmProvider, 1000);
+    public UserManager(Provider<EntityManager> emProvider,
+        @Named("maxDelete")
+    Integer maxDelete) {
+        super(UserEntity.class, emProvider, maxDelete);
     }
 
     @Override
@@ -36,6 +37,7 @@ public class UserManager extends UserManagerBase<User, UserEntity>
         return new UserEntity(email);
     }
 
+    @Override
     protected Class<?extends User> getEntityClass() {
         return UserEntity.class;
     }

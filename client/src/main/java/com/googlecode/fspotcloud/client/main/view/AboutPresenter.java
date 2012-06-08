@@ -25,6 +25,7 @@ import com.googlecode.fspotcloud.client.main.help.HelpContentGenerator;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.view.api.PopupView;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
+
 import javax.inject.Named;
 
 

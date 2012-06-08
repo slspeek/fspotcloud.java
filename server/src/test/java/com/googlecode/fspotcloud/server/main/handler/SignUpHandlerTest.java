@@ -19,8 +19,6 @@ package com.googlecode.fspotcloud.server.main.handler;
 import com.googlecode.fspotcloud.model.jpa.user.UserEntity;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
-import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
-import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
 import javax.inject.Inject;

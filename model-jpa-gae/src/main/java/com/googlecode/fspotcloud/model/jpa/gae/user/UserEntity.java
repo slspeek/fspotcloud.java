@@ -19,8 +19,10 @@
  */
 package com.googlecode.fspotcloud.model.jpa.gae.user;
 
+import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.server.model.api.User;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -43,6 +45,7 @@ public class UserEntity implements User, Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date lastLoginTime;
     private boolean enabled;
+    private ArrayList<Long> grantedUserGroups = newArrayList();
 
     //Persistence demands this
     UserEntity() {
@@ -85,38 +88,18 @@ public class UserEntity implements User, Serializable {
     }
 
     @Override
-    public List<Long> getPeers() {
-        return null; //To change body of implemented methods use File | Settings | File Templates.
+    public List<Long> getGrantedUserGroups() {
+        return grantedUserGroups;
     }
 
     @Override
-    public void setPeers(List<Long> peers) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public List<Long> getUserGroups() {
-        return null; //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void setUserGroups(List<Long> userGroups) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public Type getUserType() {
-        return null; //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void setUserType(Type userType) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void setGrantedUserGroups(List<Long> userGroups) {
+        this.grantedUserGroups = newArrayList(userGroups);
     }
 
     @Override
     public Date getLastLoginTime() {
-        return lastLoginTime; //To change body of implemented methods use File | Settings | File Templates.
+        return lastLoginTime;
     }
 
     @Override

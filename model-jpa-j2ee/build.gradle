@@ -2,8 +2,9 @@ description = 'Model JPA J2EE Implementation'
 
 configurations {
     daoTests
+    genidDaoTests
     modelTests
-    testCompile.extendsFrom(daoTests, modelTests)
+    testCompile.extendsFrom(genidDaoTests, daoTests, modelTests)
     testRuntime
 }
 
@@ -30,6 +31,7 @@ dependencies {
     testCompile libs.guava_testlib
     testCompile "org.slf4j:slf4j-log4j12:1.6.4"
     daoTests libs.simple_jpa_dao_namedid_test
+    genidDaoTests libs.simple_jpa_dao_genid_test
     modelTests files("../model-api/build/libs/model-api-${version}-tests.jar")
 }
 task deleteDB(type: Delete) {
@@ -37,6 +39,9 @@ task deleteDB(type: Delete) {
 }
 
 task unpackTest << {
+    mkdir "$buildDir/genid-dao-test"
+    myTests = configurations.genidDaoTests.files.iterator().next()
+    ant.unjar(dest: "$buildDir/genid-dao-test", src: myTests)
     mkdir "$buildDir/dao-test"
     myTests = configurations.daoTests.files.iterator().next()
     ant.unjar(dest: "$buildDir/dao-test", src: myTests)
@@ -51,6 +56,15 @@ task userDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.server.model.test.UserGuiceBerryEnv'
     testResultsDir file("${project.testResultsDir}/user")
+}
+
+task userGroupDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
+
+    testClassesDir = file("$buildDir/genid-dao-test")
+    classpath = sourceSets.test.runtimeClasspath
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv'] =
+        'com.googlecode.fspotcloud.server.model.test.UserGroupGuiceBerryEnv'
+    testResultsDir file("${project.testResultsDir}/usergroup")
 }
 
 task photoDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
@@ -86,5 +100,5 @@ task modelTest(type: Test, dependsOn: [classes, unpackTest]) {
     testResultsDir file("${project.testResultsDir}/model")
 }
 
-check.dependsOn photoDaoTest, tagDaoTest, peerDatabaseDaoTest, modelTest, userDaoTest
+check.dependsOn photoDaoTest, tagDaoTest, peerDatabaseDaoTest, modelTest, userDaoTest, userGroupDaoTest
 clean.dependsOn deleteDB

@@ -39,17 +39,9 @@ public interface User extends HasSetKey<String>, Serializable {
 
     void setEnabled(boolean enabled);
 
-    List<Long> getPeers();
+    List<Long> getGrantedUserGroups();
 
-    void setPeers(List<Long> peers);
-
-    List<Long> getUserGroups();
-
-    void setUserGroups(List<Long> userGroups);
-
-    Type getUserType();
-
-    void setUserType(Type userType);
+    void setGrantedUserGroups(List<Long> userGroups);
 
     Date getLastLoginTime();
 
@@ -60,6 +52,4 @@ public interface User extends HasSetKey<String>, Serializable {
     String emailVerificationSecret();
 
     void setEmailVerificationSecret(String secret);
-    enum Type {GOOGLE_USER, REGULAR_USER;
-    }
 }

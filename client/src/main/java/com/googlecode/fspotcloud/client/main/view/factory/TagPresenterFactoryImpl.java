@@ -23,6 +23,7 @@ import com.googlecode.fspotcloud.client.main.view.api.*;
 import com.googlecode.fspotcloud.client.main.view.api.TagView.TagPresenter;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView.TreePresenter;
 import com.googlecode.fspotcloud.client.place.BasePlace;
+
 import java.util.logging.Logger;
 
 

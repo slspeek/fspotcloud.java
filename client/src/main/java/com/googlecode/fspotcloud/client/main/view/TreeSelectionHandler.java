@@ -23,6 +23,7 @@ import com.googlecode.fspotcloud.client.main.view.api.TreeSelectionHandlerInterf
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import com.googlecode.fspotcloud.shared.main.TagNode;
+
 import java.util.logging.Logger;
 
 

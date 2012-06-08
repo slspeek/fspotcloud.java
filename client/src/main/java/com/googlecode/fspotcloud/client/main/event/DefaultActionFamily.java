@@ -20,6 +20,7 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.googlecode.fspotcloud.client.view.action.api.ActionGroup;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;

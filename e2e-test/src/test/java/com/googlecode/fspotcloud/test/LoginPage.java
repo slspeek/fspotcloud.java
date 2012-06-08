@@ -21,10 +21,10 @@
 package com.googlecode.fspotcloud.test;
 
 import com.googlecode.fspotcloud.client.main.view.LoginPresenterImpl;
-import com.googlecode.fspotcloud.client.main.view.SignUpPresenterImpl;
-import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
+
 import javax.inject.Inject;
+
 import static org.junit.Assert.assertEquals;
 
 /**

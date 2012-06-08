@@ -40,16 +40,10 @@ public abstract class UserManagerBase<T extends User, U extends T>
     }
 
     protected void detach(User user) {
-        List<Long> uG = user.getUserGroups();
+        List<Long> uG = user.getGrantedUserGroups();
 
         if (uG != null) {
-            user.setUserGroups(newArrayList(uG));
-        }
-
-        List<Long> peers = user.getPeers();
-
-        if (peers != null) {
-            user.setPeers(newArrayList(peers));
+            user.setGrantedUserGroups(newArrayList(uG));
         }
     }
 

@@ -16,7 +16,6 @@
  */
 package com.googlecode.fspotcloud.client.main.view;
 
-import com.google.common.base.Objects;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -24,15 +23,11 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.ClientLoginManager;
-import com.googlecode.fspotcloud.client.main.view.api.SignUpView;
 import com.googlecode.fspotcloud.client.main.view.api.UserAccountView;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
-import com.googlecode.fspotcloud.shared.main.SignUpAction;
-import com.googlecode.fspotcloud.shared.main.SignUpResult;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
-import java.util.logging.Level;
+
 import java.util.logging.Logger;
-import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class UserAccountPresenterImpl extends AbstractActivity implements UserAccountView.UserAccountPresenter {

@@ -34,6 +34,7 @@ libs = [
         simple_jpa_dao_impl: "com.googlecode.simple-jpa-dao:dao-impl:${simple_jpa_dao_version}",
         simple_jpa_dao_cached_dao: "com.googlecode.simple-jpa-dao:cached-dao:${simple_jpa_dao_version}",
         simple_jpa_dao_namedid_test: "com.googlecode.simple-jpa-dao:dao-namedid-test:${simple_jpa_dao_version}",
+        simple_jpa_dao_genid_test: "com.googlecode.simple-jpa-dao:dao-genid-test:${simple_jpa_dao_version}",
         task_dispatch_dispatch_api:   "com.googlecode.taskqueue-dispatch:dispatch-api:${taskqueue_dispatch_version}",
         jukito: "org.jukito:jukito:1.1",
         test_ng: "org.testng:testng:6.1.1",

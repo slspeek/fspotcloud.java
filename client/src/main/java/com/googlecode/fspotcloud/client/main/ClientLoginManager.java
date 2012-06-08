@@ -26,9 +26,10 @@ import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.LogoutAction;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
+import net.customware.gwt.dispatch.client.DispatchAsync;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 /**

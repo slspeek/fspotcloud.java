@@ -16,7 +16,6 @@
  */
 package com.googlecode.fspotcloud.user;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import java.util.List;

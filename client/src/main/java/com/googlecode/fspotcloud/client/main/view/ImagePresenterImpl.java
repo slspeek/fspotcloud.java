@@ -25,6 +25,7 @@ import com.googlecode.fspotcloud.client.main.shared.ZoomViewEvent;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.view.api.ImageView;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+
 import java.util.logging.Logger;
 
 
