@@ -14,14 +14,38 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.googlecode.fspotcloud.test;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
+import com.thoughtworks.selenium.Selenium;
+import javax.inject.Inject;
 
 
-@RunWith(Suite.class)
-//@Suite.SuiteClasses({UserGroupITest.class})
-@Suite.SuiteClasses({SimpleSignUpITest.class, UserGroupITest.class, DashboardITest.class, ApplicationActionsITest.class, TabularITest.class, IntersectionDeleteITest.class, DeleteITest.class, TagRenamingITest.class, DeleteITest.class, ThreeFaseITest.class})
-public class LocalSuite {
+/**
+ *
+ * @author steven
+ */
+public class EditUserGroupPage {
+    @Inject
+    Selenium selenium;
+
+    public void open(Long id) {
+        selenium.open("/#EditUserGroupPlace:" + id);
+        selenium.waitForPageToLoad("30000");
+    }
+
+    public void fill(String name, String description)
+        throws InterruptedException {
+        sleepShort();
+        selenium.type("id=gwt-debug-name", name);
+        selenium.type("id=gwt-debug-description", description);
+    }
+
+    public void save() {
+        selenium.click("gwt-debug-save");
+    }
 }
