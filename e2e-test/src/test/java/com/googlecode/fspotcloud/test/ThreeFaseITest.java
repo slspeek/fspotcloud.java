@@ -18,13 +18,11 @@ package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
 import com.thoughtworks.selenium.Selenium;
-import org.junit.Rule;
-import org.junit.Test;
-
 import javax.inject.Inject;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import org.junit.Rule;
+import org.junit.Test;
 
 
 public class ThreeFaseITest {

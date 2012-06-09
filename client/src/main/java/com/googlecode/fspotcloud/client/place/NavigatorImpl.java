@@ -26,7 +26,6 @@ import com.googlecode.fspotcloud.client.place.api.PlaceWhere;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import com.googlecode.fspotcloud.shared.main.TagNode;
-
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;

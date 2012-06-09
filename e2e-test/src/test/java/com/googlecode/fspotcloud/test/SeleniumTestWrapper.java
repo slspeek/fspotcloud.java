@@ -20,7 +20,6 @@ import com.google.common.testing.TearDown;
 import com.google.common.testing.TearDownAccepter;
 import com.google.guiceberry.TestWrapper;
 import com.thoughtworks.selenium.Selenium;
-
 import javax.inject.Inject;
 
 

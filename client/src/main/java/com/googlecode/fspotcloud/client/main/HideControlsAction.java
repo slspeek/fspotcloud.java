@@ -20,7 +20,6 @@ import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.IGlobalShortcutController.Mode;
 import com.googlecode.fspotcloud.client.main.ui.TagViewImpl;
 import com.googlecode.fspotcloud.client.main.view.api.TagView;
-
 import java.util.logging.Logger;
 
 

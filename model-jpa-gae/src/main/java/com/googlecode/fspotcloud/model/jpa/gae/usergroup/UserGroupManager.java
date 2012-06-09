@@ -18,9 +18,7 @@ package com.googlecode.fspotcloud.model.jpa.gae.usergroup;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import com.googlecode.fspotcloud.model.jpa.user.UserEntity;
 import com.googlecode.fspotcloud.model.jpa.usergroup.UserGroupManagerBase;
-import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
 import javax.persistence.EntityManager;

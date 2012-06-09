@@ -19,7 +19,6 @@ package com.googlecode.fspotcloud.client.main;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.googlecode.fspotcloud.client.main.gin.AppGinjector;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

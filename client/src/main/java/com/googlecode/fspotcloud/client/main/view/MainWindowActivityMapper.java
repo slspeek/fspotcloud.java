@@ -25,7 +25,6 @@ import com.googlecode.fspotcloud.client.main.IGlobalShortcutController.Mode;
 import com.googlecode.fspotcloud.client.main.view.api.*;
 import com.googlecode.fspotcloud.client.place.*;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
-
 import java.util.logging.Logger;
 
 
@@ -38,6 +37,8 @@ public class MainWindowActivityMapper implements ActivityMapper {
     private final LoginView.LoginPresenter loginPresenter;
     private final SignUpView.SignUpPresenter signUpPresenter;
     private final UserAccountView.UserAccountPresenter userAccountActivity;
+    private final MyUserGroupsView.MyUserGroupsPresenter myUserGroupsPresenter;
+    private final EditUserGroupView.EditUserGroupPresenter editUserGroupPresenter;
 
     @Inject
     public MainWindowActivityMapper(TagPresenterFactory tagPresenterFactory,
@@ -45,7 +46,9 @@ public class MainWindowActivityMapper implements ActivityMapper {
         Navigator navigator, IGlobalShortcutController keyboard,
         LoginView.LoginPresenter loginPresenter,
         SignUpView.SignUpPresenter signUpPresenter,
-        UserAccountView.UserAccountPresenter userAccountActivity) {
+        UserAccountView.UserAccountPresenter userAccountActivity,
+        MyUserGroupsView.MyUserGroupsPresenter myUserGroupsPresenter,
+        EditUserGroupView.EditUserGroupPresenter editUserGroupPresenter) {
         super();
         this.singleViewActivityFactory = singleViewActivityFactory;
         this.tagPresenterFactory = tagPresenterFactory;
@@ -54,6 +57,8 @@ public class MainWindowActivityMapper implements ActivityMapper {
         this.loginPresenter = loginPresenter;
         this.signUpPresenter = signUpPresenter;
         this.userAccountActivity = userAccountActivity;
+        this.myUserGroupsPresenter = myUserGroupsPresenter;
+        this.editUserGroupPresenter = editUserGroupPresenter;
     }
 
     @Override
@@ -68,6 +73,13 @@ public class MainWindowActivityMapper implements ActivityMapper {
             keyboard.setMode(Mode.LOGIN);
         } else if (place instanceof SignUpPlace) {
             activity = signUpPresenter;
+            keyboard.setMode(Mode.LOGIN);
+        } else if (place instanceof MyUserGroupsPlace) {
+            activity = myUserGroupsPresenter;
+            keyboard.setMode(Mode.LOGIN);
+        } else if (place instanceof EditUserGroupPlace) {
+            activity = editUserGroupPresenter;
+            editUserGroupPresenter.setId(((EditUserGroupPlace) place).getUserGroupId());
             keyboard.setMode(Mode.LOGIN);
         } else if (place instanceof LoginPlace) {
             activity = loginPresenter;

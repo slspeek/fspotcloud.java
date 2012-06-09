@@ -29,5 +29,10 @@ public class MainActionModule extends ActionHandlerModule {
         bindHandler(AuthenticationAction.class, AuthenticationHandler.class);
         bindHandler(SignUpAction.class, SignUpHandler.class);
         bindHandler(LogoutAction.class, LogoutHandler.class);
+        bindHandler(GetMyUserGroupsAction.class, GetMyUserGroupsHandler.class);
+        bindHandler(NewUserGroupAction.class, NewUserGroupHandler.class);
+        bindHandler(DeleteUserGroupAction.class, DeleteUserGroupHandler.class);
+        bindHandler(GetUserGroupAction.class, GetUserGroupHandler.class);
+        bindHandler(SaveUserGroupAction.class, SaveUserGroupHandler.class);
     }
 }
