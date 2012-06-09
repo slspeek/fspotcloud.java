@@ -53,6 +53,9 @@ public class MyUserGroupsViewImpl extends Composite implements MyUserGroupsView 
     @Inject
     public MyUserGroupsViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
+        newButton.ensureDebugId("new-button");
+        editButton.ensureDebugId("edit-button");
+        deleteButton.ensureDebugId("delete-button");
 
         // Create name column.
         TextColumn<UserGroupInfo> nameColumn = new TextColumn<UserGroupInfo>() {

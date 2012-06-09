@@ -4,9 +4,9 @@
 	<ui:with type="com.googlecode.fspotcloud.client.main.ui.Resources" field="res"></ui:with>
 	<g:LayoutPanel >
 		<g:layer top="0%" height="10%" right="0%" width="100%">
-			      <g:HTML><center><h1>My Usergroups</h1></center></g:HTML>
+		  <g:HTML><center><h1>My Usergroups</h1></center></g:HTML>
 		</g:layer>
-		<g:layer left="30%" width="60%">
+		<g:layer top="40%" height="50%" left="30%" width="60%">
             <c:CellTable ui:field="table"></c:CellTable>
 		</g:layer>
         <g:layer top="80%" height="40px" left="30%" width="10%">
