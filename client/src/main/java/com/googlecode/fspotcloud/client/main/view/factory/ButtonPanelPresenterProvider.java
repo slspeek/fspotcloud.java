@@ -29,7 +29,6 @@ import com.googlecode.fspotcloud.client.main.view.api.ButtonPanelView.ButtonPane
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonPresenterFactory;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonView;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
-
 import java.util.logging.Logger;
 
 

@@ -25,7 +25,6 @@ import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Direction;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Unit;
 import com.googlecode.fspotcloud.client.place.api.Slideshow;
-
 import java.util.logging.Logger;
 
 

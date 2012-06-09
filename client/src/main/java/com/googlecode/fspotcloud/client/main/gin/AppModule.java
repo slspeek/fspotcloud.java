@@ -66,6 +66,12 @@ public class AppModule extends AbstractGinModule {
         bind(UserAccountView.class).to(UserAccountViewImpl.class);
         bind(UserAccountView.UserAccountPresenter.class)
             .to(UserAccountPresenterImpl.class);
+        bind(MyUserGroupsView.class).to(MyUserGroupsViewImpl.class);
+        bind(MyUserGroupsView.MyUserGroupsPresenter.class)
+            .to(MyUserGroupsPresenterImpl.class);
+        bind(EditUserGroupView.class).to(EditUserGroupViewImpl.class);
+        bind(EditUserGroupView.EditUserGroupPresenter.class)
+            .to(EditUserGroupPresenterImpl.class);
 
         bind(PlaceCalculator.class);
         bind(PlaceGoTo.class).to(PlaceGoToImpl.class);

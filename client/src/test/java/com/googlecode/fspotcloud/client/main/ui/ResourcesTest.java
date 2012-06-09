@@ -17,11 +17,10 @@
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.googlecode.fspotcloud.client.view.action.KeyDispatcher;
+import java.util.logging.Logger;
 import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
-
-import java.util.logging.Logger;
 
 
 public class ResourcesTest extends TestCase {

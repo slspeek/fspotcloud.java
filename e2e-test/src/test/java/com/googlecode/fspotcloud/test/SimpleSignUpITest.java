@@ -17,10 +17,9 @@
 package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
+import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
-
-import javax.inject.Inject;
 
 
 public class SimpleSignUpITest {

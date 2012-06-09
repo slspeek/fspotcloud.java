@@ -26,10 +26,9 @@ import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
-import net.customware.gwt.dispatch.client.DispatchAsync;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class LoginPresenterImpl extends AbstractActivity implements LoginView.LoginPresenter {

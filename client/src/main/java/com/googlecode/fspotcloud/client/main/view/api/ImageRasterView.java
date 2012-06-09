@@ -19,7 +19,6 @@ package com.googlecode.fspotcloud.client.main.view.api;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.googlecode.fspotcloud.client.main.api.Initializable;
-
 import java.util.List;
 
 

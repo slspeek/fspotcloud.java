@@ -28,7 +28,6 @@ import com.googlecode.fspotcloud.client.place.api.PlaceWhere;
 import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 public class NavigatorImplTest extends TestCase {

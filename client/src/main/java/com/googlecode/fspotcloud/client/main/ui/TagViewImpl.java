@@ -33,7 +33,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.googlecode.fspotcloud.client.main.view.api.*;
-
 import java.util.logging.Logger;
 
 

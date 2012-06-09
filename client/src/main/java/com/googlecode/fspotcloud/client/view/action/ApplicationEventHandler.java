@@ -39,7 +39,6 @@ import com.googlecode.fspotcloud.client.view.action.api.LoadNewLocationActionFac
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

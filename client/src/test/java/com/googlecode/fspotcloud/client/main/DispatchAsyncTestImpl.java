@@ -23,12 +23,11 @@ import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
+import java.util.Date;
+import java.util.List;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.Result;
-
-import java.util.Date;
-import java.util.List;
 
 
 public class DispatchAsyncTestImpl implements DispatchAsync {
