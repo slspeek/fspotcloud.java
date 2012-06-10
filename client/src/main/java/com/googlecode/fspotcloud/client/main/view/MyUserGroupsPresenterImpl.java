@@ -23,6 +23,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.MyUserGroupsView;
 import com.googlecode.fspotcloud.client.place.EditUserGroupPlace;
+import com.googlecode.fspotcloud.client.place.ManageUsersPlace;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.*;
@@ -50,6 +51,10 @@ public class MyUserGroupsPresenterImpl extends AbstractActivity implements MyUse
         panel.setWidget(view);
 
         // view.setData(newArrayList(new UserGroupInfo("foo", "Uh foo")));
+        refreshData();
+    }
+
+    private void refreshData() {
         dispatch.execute(new GetMyUserGroupsAction(),
             new AsyncCallback<GetMyUserGroupsResult>() {
                 @Override
@@ -78,6 +83,7 @@ public class MyUserGroupsPresenterImpl extends AbstractActivity implements MyUse
                 @Override
                 public void onSuccess(VoidResult result) {
                     log.info("New User group added");
+                    refreshData();
                 }
             });
         log.info("New User group requested");
@@ -99,10 +105,20 @@ public class MyUserGroupsPresenterImpl extends AbstractActivity implements MyUse
                     @Override
                     public void onSuccess(VoidResult result) {
                         log.info("Delete call returned from server");
+                        refreshData();
                     }
                 });
         } else {
             log.info("Nothing selected");
+        }
+    }
+
+    @Override
+    public void manageUsers() {
+        UserGroupInfo info = view.getSelected();
+
+        if (info != null) {
+            placeGoTo.goTo(new ManageUsersPlace(info.getId()));
         }
     }
 

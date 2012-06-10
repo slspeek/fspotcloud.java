@@ -16,11 +16,12 @@
  */
 package com.googlecode.fspotcloud.model.jpa.user;
 
-import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -40,10 +41,10 @@ public abstract class UserManagerBase<T extends User, U extends T>
     }
 
     protected void detach(User user) {
-        List<Long> uG = user.getGrantedUserGroups();
+        Set<Long> uG = user.getGrantedUserGroups();
 
         if (uG != null) {
-            user.setGrantedUserGroups(newArrayList(uG));
+            user.setGrantedUserGroups(newHashSet(uG));
         }
     }
 

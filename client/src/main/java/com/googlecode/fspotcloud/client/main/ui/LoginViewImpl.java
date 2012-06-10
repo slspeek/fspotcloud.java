@@ -43,6 +43,8 @@ public class LoginViewImpl extends Composite implements LoginView {
     Label statusLabel;
     @UiField
     PushButton login;
+    @UiField
+    PushButton signUp;
 
     @Inject
     public LoginViewImpl() {
@@ -101,6 +103,11 @@ public class LoginViewImpl extends Composite implements LoginView {
     @UiHandler("login")
     public void loginClicked(ClickEvent e) {
         presenter.login();
+    }
+
+    @UiHandler("signUp")
+    public void signUpClicked(ClickEvent e) {
+        presenter.signUp();
     }
 
     @UiHandler("userNameTextBox")

@@ -4,21 +4,21 @@
 	<ui:with type="com.googlecode.fspotcloud.client.main.ui.Resources" field="res"></ui:with>
 	<g:LayoutPanel >
 		<g:layer top="0%" height="10%" right="0%" width="100%">
-		  <g:HTML><center><h1>My Usergroups</h1></center></g:HTML>
+		  <g:HTML><center><h1>Usergroups: manage users</h1></center></g:HTML>
 		</g:layer>
-		<g:layer top="40%" height="50%" left="30%" width="60%">
+        <g:layer top="10%" height="40px" left="30%" width="20%">
+            <g:Label ui:field="userGroupName"></g:Label>
+        </g:layer>
+		<g:layer top="0%" height="70%" left="30%" width="60%">
             <c:CellTable ui:field="table"></c:CellTable>
 		</g:layer>
         <g:layer top="80%" height="40px" left="30%" width="10%">
-            <g:PushButton ui:field="newButton">New user group</g:PushButton>
+            <g:TextBox ui:field="emailTextBox"></g:TextBox>
         </g:layer>
         <g:layer top="80%" height="40px" left="45%" width="10%">
-            <g:PushButton ui:field="editButton">Edit</g:PushButton>
+            <g:PushButton ui:field="newButton">Add user</g:PushButton>
         </g:layer>
         <g:layer top="80%" height="40px" left="60%" width="10%">
-            <g:PushButton ui:field="manageButton">Manage users</g:PushButton>
-        </g:layer>
-        <g:layer top="80%" height="40px" left="75%" width="10%">
             <g:PushButton ui:field="deleteButton">Delete</g:PushButton>
         </g:layer>
 	</g:LayoutPanel>

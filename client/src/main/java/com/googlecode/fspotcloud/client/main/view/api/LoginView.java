@@ -41,5 +41,7 @@ public interface LoginView extends IsWidget {
         public void onPasswordFieldKeyUp(int keyCode);
 
         void login();
+
+        void signUp();
     }
 }

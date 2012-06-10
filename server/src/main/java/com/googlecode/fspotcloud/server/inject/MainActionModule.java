@@ -34,5 +34,7 @@ public class MainActionModule extends ActionHandlerModule {
         bindHandler(DeleteUserGroupAction.class, DeleteUserGroupHandler.class);
         bindHandler(GetUserGroupAction.class, GetUserGroupHandler.class);
         bindHandler(SaveUserGroupAction.class, SaveUserGroupHandler.class);
+        bindHandler(GrantUserAction.class, GrantUserHandler.class);
+        bindHandler(RevokeUserAction.class, RevokeUserHandler.class);
     }
 }

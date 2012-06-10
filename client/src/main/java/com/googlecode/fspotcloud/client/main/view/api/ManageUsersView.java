@@ -18,24 +18,26 @@ package com.googlecode.fspotcloud.client.main.view.api;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
 import java.util.List;
+import java.util.Set;
 
 
-public interface MyUserGroupsView extends IsWidget {
-    void setPresenter(MyUserGroupsPresenter presenter);
+public interface ManageUsersView extends IsWidget {
+    void setPresenter(ManageUsersPresenter presenter);
 
-    void setData(List<UserGroupInfo> data);
+    void setData(Set<String> data);
 
-    UserGroupInfo getSelected();
+    String getSelected();
 
-    interface MyUserGroupsPresenter extends Activity {
-        void newUserGroup();
+    String getNewEmail();
+
+    void setUserGroupName(String name);
+
+    interface ManageUsersPresenter extends Activity {
+        void newUser();
 
         void delete();
 
-        void manageUsers();
-
-        void edit();
+        void setId(Long id);
     }
 }

@@ -4,19 +4,28 @@
 	<ui:with type="com.googlecode.fspotcloud.client.main.ui.Resources" field="res"></ui:with>
 	<g:LayoutPanel styleName="{res.style.tagView}">
 		<g:layer top="0%" height="20%" right="0%" width="100%">
-			      <g:HTML><center><h1>Login</h1></center></g:HTML>
+	       <g:HTML><center><h1>Login</h1></center></g:HTML>
 		</g:layer>
+        <g:layer top="27%" height="5%" left="20%" width="40%">
+            <g:Label >Email</g:Label>
+        </g:layer>
 		<g:layer top="25%" height="5%" left="30%" width="40%">
              <g:TextBox ui:field="userNameTextBox"></g:TextBox>
 		</g:layer>
+        <g:layer top="52%" height="5%" left="20%" width="40%">
+            <g:Label >Password</g:Label>
+        </g:layer>
         <g:layer top="50%" height="5%" left="30%" width="40%">
              <g:PasswordTextBox ui:field="passwordTextBox"></g:PasswordTextBox>
         </g:layer>
         <g:layer top="60%" height="5%" left="30%" width="40%">
             <g:Label ui:field="statusLabel">Please login</g:Label>
         </g:layer>
-        <g:layer top="70%" height="5%" left="30%" width="40%">
+        <g:layer top="70%" height="5%" left="30%" width="10%">
             <g:PushButton ui:field="login">Login</g:PushButton>
+        </g:layer>
+        <g:layer top="70%" height="5%" left="50%" width="10%">
+            <g:PushButton ui:field="signUp">Sign up</g:PushButton>
         </g:layer>
         <g:layer top="80%" height="5%" left="30%" width="40%">
             <g:Anchor ui:field="googleLoginLink">Login using a Google account</g:Anchor>

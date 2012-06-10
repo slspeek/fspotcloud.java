@@ -39,7 +39,7 @@ public class SignUpHandlerTest {
     @Before
     public void setUp(UserDao userDao) throws Exception {
         user = new UserEntity(RMS_FSF_ORG);
-        when(userDao.newEntity(RMS_FSF_ORG)).thenReturn(user);
+        when(userDao.findOrNew(RMS_FSF_ORG)).thenReturn(user);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class SignUpHandlerTest {
 
     @Test
     public void userExists(UserDao userDao) throws Exception {
-        when(userDao.find(RMS_FSF_ORG)).thenReturn(user);
+        user.setRegistered(true);
 
         SignUpAction action = new SignUpAction(RMS_FSF_ORG, "np", "rms");
         SignUpResult result = handler.execute(action, null);

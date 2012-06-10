@@ -20,13 +20,21 @@ import javax.inject.Inject;
 
 
 public class RegularLoginBot implements ILogin {
+    public static final String RMS_FSF_ORG = "rms@fsf.org";
+    public static final String CREDENTIALS = "ihp";
     @Inject
     LoginPage loginPage;
+    @Inject
+    SignUpPage signUpPage;
 
     @Override
     public void login() throws Exception {
+        signUpPage.open();
+        signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS, "rms");
+        signUpPage.signUp();
+        signUpPage.verifySuccess();
         loginPage.open();
-        loginPage.fillForm("rms@fsf.org", "ihp");
+        loginPage.fillForm(RMS_FSF_ORG, CREDENTIALS);
         loginPage.login();
     }
 }

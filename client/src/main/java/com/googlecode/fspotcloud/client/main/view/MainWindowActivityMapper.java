@@ -39,6 +39,7 @@ public class MainWindowActivityMapper implements ActivityMapper {
     private final UserAccountView.UserAccountPresenter userAccountActivity;
     private final MyUserGroupsView.MyUserGroupsPresenter myUserGroupsPresenter;
     private final EditUserGroupView.EditUserGroupPresenter editUserGroupPresenter;
+    private final ManageUsersView.ManageUsersPresenter manageUsersPresenter;
 
     @Inject
     public MainWindowActivityMapper(TagPresenterFactory tagPresenterFactory,
@@ -48,7 +49,8 @@ public class MainWindowActivityMapper implements ActivityMapper {
         SignUpView.SignUpPresenter signUpPresenter,
         UserAccountView.UserAccountPresenter userAccountActivity,
         MyUserGroupsView.MyUserGroupsPresenter myUserGroupsPresenter,
-        EditUserGroupView.EditUserGroupPresenter editUserGroupPresenter) {
+        EditUserGroupView.EditUserGroupPresenter editUserGroupPresenter,
+        ManageUsersView.ManageUsersPresenter manageUsersPresenter) {
         super();
         this.singleViewActivityFactory = singleViewActivityFactory;
         this.tagPresenterFactory = tagPresenterFactory;
@@ -59,6 +61,7 @@ public class MainWindowActivityMapper implements ActivityMapper {
         this.userAccountActivity = userAccountActivity;
         this.myUserGroupsPresenter = myUserGroupsPresenter;
         this.editUserGroupPresenter = editUserGroupPresenter;
+        this.manageUsersPresenter = manageUsersPresenter;
     }
 
     @Override
@@ -73,6 +76,10 @@ public class MainWindowActivityMapper implements ActivityMapper {
             keyboard.setMode(Mode.LOGIN);
         } else if (place instanceof SignUpPlace) {
             activity = signUpPresenter;
+            keyboard.setMode(Mode.LOGIN);
+        } else if (place instanceof ManageUsersPlace) {
+            activity = manageUsersPresenter;
+            manageUsersPresenter.setId(((ManageUsersPlace) place).getUserGroupId());
             keyboard.setMode(Mode.LOGIN);
         } else if (place instanceof MyUserGroupsPlace) {
             activity = myUserGroupsPresenter;

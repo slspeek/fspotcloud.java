@@ -14,28 +14,32 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.client.main.view.api;
+package com.googlecode.fspotcloud.client.place;
 
-import com.google.gwt.activity.shared.Activity;
-import com.google.gwt.user.client.ui.IsWidget;
-import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
-import java.util.List;
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceTokenizer;
 
 
-public interface MyUserGroupsView extends IsWidget {
-    void setPresenter(MyUserGroupsPresenter presenter);
+public class ManageUsersPlace extends Place {
+    private Long userGroupId;
 
-    void setData(List<UserGroupInfo> data);
+    public ManageUsersPlace(Long userGroupId) {
+        this.userGroupId = userGroupId;
+    }
 
-    UserGroupInfo getSelected();
+    public Long getUserGroupId() {
+        return userGroupId;
+    }
 
-    interface MyUserGroupsPresenter extends Activity {
-        void newUserGroup();
+    public static class Tokenizer implements PlaceTokenizer<ManageUsersPlace> {
+        @Override
+        public ManageUsersPlace getPlace(String token) {
+            return new ManageUsersPlace(Long.parseLong(token));
+        }
 
-        void delete();
-
-        void manageUsers();
-
-        void edit();
+        @Override
+        public String getToken(ManageUsersPlace place) {
+            return place.getUserGroupId().toString();
+        }
     }
 }

@@ -19,12 +19,12 @@
  */
 package com.googlecode.fspotcloud.model.jpa.gae.user;
 
-import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.User;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
@@ -34,7 +34,7 @@ import javax.persistence.Temporal;
  * DOCUMENT ME!
  *
  * @author slspeek@gmail.com
-*/
+ */
 @Entity
 public class UserEntity implements User, Serializable {
     @Id
@@ -45,7 +45,8 @@ public class UserEntity implements User, Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date lastLoginTime;
     private boolean enabled;
-    private ArrayList<Long> grantedUserGroups = newArrayList();
+    private HashSet<Long> grantedUserGroups = newHashSet();
+    private boolean registered = false;
 
     //Persistence demands this
     UserEntity() {
@@ -53,6 +54,14 @@ public class UserEntity implements User, Serializable {
 
     public UserEntity(String email) {
         setEmail(email);
+    }
+
+    public boolean hasRegistered() {
+        return registered;
+    }
+
+    public void setRegistered(boolean registered) {
+        this.registered = registered;
     }
 
     public String getEmail() {
@@ -88,13 +97,13 @@ public class UserEntity implements User, Serializable {
     }
 
     @Override
-    public List<Long> getGrantedUserGroups() {
+    public Set<Long> getGrantedUserGroups() {
         return grantedUserGroups;
     }
 
     @Override
-    public void setGrantedUserGroups(List<Long> userGroups) {
-        this.grantedUserGroups = newArrayList(userGroups);
+    public void setGrantedUserGroups(Set<Long> userGroups) {
+        this.grantedUserGroups = newHashSet(userGroups);
     }
 
     @Override

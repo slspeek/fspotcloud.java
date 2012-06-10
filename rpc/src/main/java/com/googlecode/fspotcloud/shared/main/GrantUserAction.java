@@ -14,28 +14,31 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.client.main.view.api;
+package com.googlecode.fspotcloud.shared.main;
 
-import com.google.gwt.activity.shared.Activity;
-import com.google.gwt.user.client.ui.IsWidget;
-import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
-import java.util.List;
+import com.google.common.annotations.GwtCompatible;
+import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import net.customware.gwt.dispatch.shared.Action;
 
 
-public interface MyUserGroupsView extends IsWidget {
-    void setPresenter(MyUserGroupsPresenter presenter);
+@GwtCompatible
+public class GrantUserAction implements Action<VoidResult> {
+    private String email;
+    private Long userGroupId;
 
-    void setData(List<UserGroupInfo> data);
+    public GrantUserAction(String email, Long userGroupId) {
+        this.email = email;
+        this.userGroupId = userGroupId;
+    }
 
-    UserGroupInfo getSelected();
+    public GrantUserAction() {
+    }
 
-    interface MyUserGroupsPresenter extends Activity {
-        void newUserGroup();
+    public String getEmail() {
+        return email;
+    }
 
-        void delete();
-
-        void manageUsers();
-
-        void edit();
+    public Long getUserGroupId() {
+        return userGroupId;
     }
 }

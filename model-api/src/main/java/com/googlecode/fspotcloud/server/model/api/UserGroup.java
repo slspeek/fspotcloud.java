@@ -17,7 +17,7 @@
 package com.googlecode.fspotcloud.server.model.api;
 
 import com.googlecode.simplejpadao.HasKey;
-import java.util.List;
+import java.util.Set;
 
 
 public interface UserGroup extends HasKey<Long>, IsOwned {
@@ -29,7 +29,7 @@ public interface UserGroup extends HasKey<Long>, IsOwned {
 
     String getDescription();
 
-    List<String> getGrantedUsers();
+    Set<String> getGrantedUsers();
 
-    void setGrantedUsers(List<String> users);
+    void setGrantedUsers(Set<String> users);
 }
