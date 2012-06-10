@@ -29,32 +29,23 @@ import static org.junit.Assert.assertTrue;
  *
  * @author steven
  */
-public class MyUserGroupsPage {
+public class ManageUsersPage {
     @Inject
     Selenium selenium;
 
-    public void open() {
-        selenium.open("/#MyUserGroupsPlace:");
-        selenium.waitForPageToLoad("30000");
-    }
+    public void newUser(String email) {
+        fillEmail(email);
 
-    public void newUserGroup() {
         selenium.click("gwt-debug-new-button");
         selenium.waitForPageToLoad("30000");
     }
 
-    public void deleteUserGroup() {
+    public void fillEmail(String email) {
+        selenium.type("gwt-debug-email", email);
+    }
+
+    public void deleteUser() {
         selenium.click("gwt-debug-delete-button");
-        selenium.waitForPageToLoad("30000");
-    }
-
-    public void manageUserGroup() {
-        selenium.click("gwt-debug-manage-button");
-        selenium.waitForPageToLoad("30000");
-    }
-
-    public void editUserGroup() {
-        selenium.click("gwt-debug-edit-button");
         selenium.waitForPageToLoad("30000");
     }
 

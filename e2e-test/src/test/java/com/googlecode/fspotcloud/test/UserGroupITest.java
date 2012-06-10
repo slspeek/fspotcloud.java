@@ -23,39 +23,42 @@ import org.junit.Test;
 
 
 public class UserGroupITest {
-    public static final String RMS_FSF_ORG = "gnu@fsf.org";
-    public static final String CREDENTIALS = "ihp";
+    public static final String LINUS_KERNEL_ORG = "linus@kernel.org";
+    public static final String JEFF_GOOGLE_COM = "jeff@google.com";
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
-    @Inject
-    SignUpPage signUpPage;
-    @Inject
-    LoginPage loginPage;
     @Inject
     MyUserGroupsPage myUserGroupsPage;
     @Inject
     EditUserGroupPage editUserGroupPage;
+    @Inject
+    ILogin login;
+    @Inject
+    ManageUsersPage manageUsersPage;
 
     @Test
     public void createAndEditUserGroup() throws Exception {
-        signUpPage.open();
-        signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS, "rms");
-        signUpPage.signUp();
-        signUpPage.verifySuccess();
-        loginPage.open();
-        loginPage.fillForm(RMS_FSF_ORG, CREDENTIALS);
-        loginPage.login();
-        loginPage.verifySuccess();
-
+        login.login();
         myUserGroupsPage.open();
         myUserGroupsPage.newUserGroup();
-        editUserGroupPage.open(1L);
+        myUserGroupsPage.selectFirstRow();
+        myUserGroupsPage.editUserGroup();
+
         editUserGroupPage.fill("GNU Friends",
             "My friends from all over the world");
         editUserGroupPage.save();
         myUserGroupsPage.open();
         myUserGroupsPage.verifyText("My friends from all over the world");
         myUserGroupsPage.selectFirstRow();
+        myUserGroupsPage.manageUserGroup();
+        manageUsersPage.newUser(JEFF_GOOGLE_COM);
+        manageUsersPage.newUser(LINUS_KERNEL_ORG);
+        manageUsersPage.fillEmail("");
+        manageUsersPage.verifyText(LINUS_KERNEL_ORG);
+        manageUsersPage.selectFirstRow();
+        manageUsersPage.deleteUser();
+        manageUsersPage.verifyTextNotPresent(JEFF_GOOGLE_COM);
+
         myUserGroupsPage.deleteUserGroup();
         myUserGroupsPage.verifyTextNotPresent(
             "My friends from all over the world");

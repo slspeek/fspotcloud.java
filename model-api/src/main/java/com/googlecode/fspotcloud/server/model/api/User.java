@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.server.model.api;
 import com.googlecode.simplejpadao.HasSetKey;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 
 public interface User extends HasSetKey<String>, Serializable {
@@ -39,9 +39,9 @@ public interface User extends HasSetKey<String>, Serializable {
 
     void setEnabled(boolean enabled);
 
-    List<Long> getGrantedUserGroups();
+    Set<Long> getGrantedUserGroups();
 
-    void setGrantedUserGroups(List<Long> userGroups);
+    void setGrantedUserGroups(Set<Long> userGroups);
 
     Date getLastLoginTime();
 
@@ -52,4 +52,8 @@ public interface User extends HasSetKey<String>, Serializable {
     String emailVerificationSecret();
 
     void setEmailVerificationSecret(String secret);
+
+    boolean hasRegistered();
+
+    void setRegistered(boolean registered);
 }

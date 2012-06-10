@@ -22,6 +22,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.LoginView;
+import com.googlecode.fspotcloud.client.place.SignUpPlace;
+import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
@@ -39,11 +41,14 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
     public static final String NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION = "Not a valid username and password combination";
     private final LoginView view;
     private final DispatchAsync dispatch;
+    private final PlaceGoTo placeGoTo;
 
     @Inject
-    public LoginPresenterImpl(LoginView loginView, DispatchAsync dispatch) {
+    public LoginPresenterImpl(LoginView loginView, DispatchAsync dispatch,
+        PlaceGoTo placeGoTo) {
         this.view = loginView;
         this.dispatch = dispatch;
+        this.placeGoTo = placeGoTo;
     }
 
     @Override
@@ -86,6 +91,11 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
     @Override
     public void login() {
         submitToServer();
+    }
+
+    @Override
+    public void signUp() {
+        placeGoTo.goTo(new SignUpPlace());
     }
 
     private void submitToServer() {

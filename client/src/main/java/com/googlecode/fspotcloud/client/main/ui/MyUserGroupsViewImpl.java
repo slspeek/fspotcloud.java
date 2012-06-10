@@ -49,6 +49,8 @@ public class MyUserGroupsViewImpl extends Composite implements MyUserGroupsView 
     PushButton editButton;
     @UiField
     PushButton deleteButton;
+    @UiField
+    PushButton manageButton;
 
     @Inject
     public MyUserGroupsViewImpl() {
@@ -56,6 +58,7 @@ public class MyUserGroupsViewImpl extends Composite implements MyUserGroupsView 
         newButton.ensureDebugId("new-button");
         editButton.ensureDebugId("edit-button");
         deleteButton.ensureDebugId("delete-button");
+        manageButton.ensureDebugId("manage-button");
 
         // Create name column.
         TextColumn<UserGroupInfo> nameColumn = new TextColumn<UserGroupInfo>() {
@@ -99,6 +102,12 @@ public class MyUserGroupsViewImpl extends Composite implements MyUserGroupsView 
     @UiHandler("deleteButton")
     public void onDeleteButton(ClickEvent event) {
         presenter.delete();
+    }
+
+    @UiHandler("manageButton")
+    public void onManageButton(ClickEvent event) {
+        presenter.manageUsers();
+        ;
     }
 
     @Override

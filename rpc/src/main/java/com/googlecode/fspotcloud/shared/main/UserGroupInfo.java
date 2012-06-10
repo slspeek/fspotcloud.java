@@ -21,9 +21,11 @@
 package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
+import static com.google.common.collect.Sets.newHashSet;
 import com.google.gwt.user.client.rpc.IsSerializable;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import net.customware.gwt.dispatch.shared.Result;
 
 
@@ -37,7 +39,7 @@ public class UserGroupInfo implements Result, IsSerializable, Serializable {
     private Long id;
     private String name;
     private String description;
-    private ArrayList<String> grantedUsers;
+    private HashSet<String> grantedUsers;
 
     public UserGroupInfo(Long id, String name, String description) {
         this.name = name;
@@ -52,12 +54,12 @@ public class UserGroupInfo implements Result, IsSerializable, Serializable {
         return id;
     }
 
-    public ArrayList<String> getGrantedUsers() {
+    public Set<String> getGrantedUsers() {
         return grantedUsers;
     }
 
-    public void setGrantedUsers(ArrayList<String> grantedUsers) {
-        this.grantedUsers = grantedUsers;
+    public void setGrantedUsers(Set<String> grantedUsers) {
+        this.grantedUsers = newHashSet(grantedUsers);
     }
 
     public String getDescription() {

@@ -57,6 +57,7 @@ public class GetUserGroupHandler extends SimpleActionHandler<GetUserGroupAction,
     private UserGroupInfo get(UserGroup group) {
         UserGroupInfo info = new UserGroupInfo(group.getId(), group.getName(),
                 group.getDescription());
+        info.setGrantedUsers(group.getGrantedUsers());
 
         return info;
     }

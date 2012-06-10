@@ -19,11 +19,11 @@
  */
 package com.googlecode.fspotcloud.model.jpa.usergroup;
 
-import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,7 +45,7 @@ public class UserGroupEntity implements UserGroup, Serializable {
     @Basic
     private String owner;
     @Basic
-    private ArrayList<String> grantedUsers;
+    private HashSet<String> grantedUsers = newHashSet();
     @Basic
     private String name;
     @Basic
@@ -68,13 +68,13 @@ public class UserGroupEntity implements UserGroup, Serializable {
     }
 
     @Override
-    public List<String> getGrantedUsers() {
+    public Set<String> getGrantedUsers() {
         return grantedUsers;
     }
 
     @Override
-    public void setGrantedUsers(List<String> users) {
-        this.grantedUsers = newArrayList(users);
+    public void setGrantedUsers(Set<String> users) {
+        this.grantedUsers = newHashSet(users);
     }
 
     @Override

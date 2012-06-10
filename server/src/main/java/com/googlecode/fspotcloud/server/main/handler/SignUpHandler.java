@@ -37,17 +37,17 @@ public class SignUpHandler extends SimpleActionHandler<SignUpAction, SignUpResul
     @Override
     public SignUpResult execute(SignUpAction action, ExecutionContext context)
         throws DispatchException {
-        User mayBeExisted = userDao.find(action.getEmail());
+        User mayBeExisted = userDao.findOrNew(action.getEmail());
 
-        if (mayBeExisted == null) {
-            User user = userDao.newEntity(action.getEmail());
-            user.setNickname(action.getNickname());
-            user.setCredentials(action.getPassword());
-            userDao.save(user);
+        if (!mayBeExisted.hasRegistered()) {
+            mayBeExisted.setNickname(action.getNickname());
+            mayBeExisted.setCredentials(action.getPassword());
+            mayBeExisted.setRegistered(true);
+            userDao.save(mayBeExisted);
 
             return new SignUpResult(true);
+        } else {
+            return new SignUpResult(false);
         }
-
-        return new SignUpResult(false);
     }
 }
