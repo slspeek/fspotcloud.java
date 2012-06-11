@@ -14,36 +14,33 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.model.jpa.tag;
+package com.googlecode.fspotcloud.server.main.handler;
 
-import static com.google.common.collect.Lists.newArrayList;
+import com.google.inject.Inject;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
-import com.googlecode.fspotcloud.shared.main.PhotoInfo;
-import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
-import com.googlecode.fspotcloud.shared.main.TagNode;
-import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
-import java.util.List;
+import com.googlecode.fspotcloud.server.model.api.UserGroup;
+import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
+import com.googlecode.fspotcloud.shared.main.*;
+import com.googlecode.fspotcloud.user.UserService;
 import java.util.SortedSet;
-import java.util.logging.Logger;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Provider;
-import javax.persistence.EntityManager;
+import net.customware.gwt.dispatch.server.ExecutionContext;
+import net.customware.gwt.dispatch.server.SimpleActionHandler;
+import net.customware.gwt.dispatch.shared.DispatchException;
 
 
-public abstract class TagManagerBase<T extends Tag, U extends T>
-    extends SimpleDAONamedIdImpl<Tag, U, String> implements TagDao {
-    private static final Logger log = Logger.getLogger(TagManagerBase.class.getName());
+public class GetTagNodeHandler extends SimpleActionHandler<GetTagNodeAction, TagNodeResult> {
+    private final TagDao tagDao;
 
     @Inject
-    public TagManagerBase(Class<U> entityType,
-        Provider<EntityManager> emProvider, @Named("maxDelete")
-    Integer maxDelete) {
-        super(entityType, emProvider);
+    public GetTagNodeHandler(TagDao tagDao) {
+        this.tagDao = tagDao;
     }
 
-    public static TagNode getTagNode(Tag tag) {
+    @Override
+    public TagNodeResult execute(GetTagNodeAction action,
+        ExecutionContext context) throws DispatchException {
+        Tag tag = tagDao.find(action.getTagId());
         TagNode node = new TagNode();
         node.setId(tag.getId());
         node.setImportIssued(tag.isImportIssued());
@@ -62,27 +59,6 @@ public abstract class TagManagerBase<T extends Tag, U extends T>
 
         node.setApprovedUserGroups(tag.getApprovedUserGroups());
 
-        return node;
+        return new TagNodeResult(node); //To change body of implemented methods use File | Settings | File Templates.
     }
-
-    @Override
-    public List<TagNode> getTags() {
-        List<TagNode> result = newArrayList();
-
-        for (Tag tag : findAll(1000)) {
-            TagNode node = getTagNode(tag);
-            result.add(node);
-        }
-
-        return result;
-    }
-
-    @Override
-    public List<Tag> getImportedTags() {
-        return findAllWhere(1000, "importIssued = true");
-    }
-
-    protected abstract Tag newTag();
-
-    protected abstract Class<?extends Tag> getEntityClass();
 }

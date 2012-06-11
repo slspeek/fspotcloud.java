@@ -36,5 +36,8 @@ public class MainActionModule extends ActionHandlerModule {
         bindHandler(SaveUserGroupAction.class, SaveUserGroupHandler.class);
         bindHandler(GrantUserAction.class, GrantUserHandler.class);
         bindHandler(RevokeUserAction.class, RevokeUserHandler.class);
+        bindHandler(ApproveTagAction.class, ApproveTagHandler.class);
+        bindHandler(RevokeTagAction.class, RevokeTagHandler.class);
+        bindHandler(GetTagNodeAction.class, GetTagNodeHandler.class);
     }
 }

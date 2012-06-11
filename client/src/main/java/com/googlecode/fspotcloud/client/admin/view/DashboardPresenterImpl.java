@@ -16,6 +16,9 @@
  */
 package com.googlecode.fspotcloud.client.admin.view;
 
+import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.admin.ui.DashboardViewFactory;
 import com.googlecode.fspotcloud.client.admin.view.api.DashboardView;
@@ -23,13 +26,13 @@ import com.googlecode.fspotcloud.client.main.view.api.TreeView;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView.TreePresenter;
 
 
-public class DashboardPresenter implements com.googlecode.fspotcloud.client.admin.view.api.DashboardView.DashboardPresenter {
+public class DashboardPresenterImpl extends AbstractActivity implements com.googlecode.fspotcloud.client.admin.view.api.DashboardView.DashboardPresenter {
     private final DashboardViewFactory dashboardViewFactory;
     private final TreeView.TreePresenter treePresenter;
     private final GlobalActionsPresenter globalActionsPresenter;
 
     @Inject
-    public DashboardPresenter(DashboardViewFactory dashboardViewFactory,
+    public DashboardPresenterImpl(DashboardViewFactory dashboardViewFactory,
         TreePresenter treePresenter,
         GlobalActionsPresenter globalActionsPresenter) {
         super();
@@ -46,5 +49,10 @@ public class DashboardPresenter implements com.googlecode.fspotcloud.client.admi
     public void init() {
         treePresenter.init();
         globalActionsPresenter.init();
+    }
+
+    @Override
+    public void start(AcceptsOneWidget panel, EventBus eventBus) {
+        panel.setWidget(getView());
     }
 }

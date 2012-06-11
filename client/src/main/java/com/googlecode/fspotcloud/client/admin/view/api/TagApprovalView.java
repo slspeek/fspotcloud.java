@@ -14,12 +14,32 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.client.place;
+package com.googlecode.fspotcloud.client.admin.view.api;
 
-import com.google.gwt.place.shared.PlaceHistoryMapper;
-import com.google.gwt.place.shared.WithTokenizers;
+import com.google.gwt.activity.shared.Activity;
+import com.google.gwt.user.client.ui.IsWidget;
+import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
+import java.util.Set;
 
 
-@WithTokenizers({TagApprovalPlace.Tokenizer.class, TagPlace.Tokenizer.class})
-public interface AdminPlaceHistoryMapper extends PlaceHistoryMapper {
+public interface TagApprovalView extends IsWidget {
+    void setPresenter(TagApprovalPresenter presenter);
+
+    void setApprovedGroups(Set<UserGroupInfo> approvedGroups);
+
+    void setOtherGroups(Set<UserGroupInfo> approvedGroups);
+
+    void setTagName(String name);
+
+    UserGroupInfo getApprovedSelected();
+
+    UserGroupInfo getOtherSelected();
+
+    interface TagApprovalPresenter extends Activity {
+        void remove();
+
+        void approve();
+
+        void setTagId(String tagId);
+    }
 }

@@ -73,7 +73,7 @@ public class OpenIdUserServiceTest {
     }
 
     /**
-     * Test of getEmail method, of class OpenIdUserService.
+     * Test of getTagId method, of class OpenIdUserService.
      *
      * @param session DOCUMENT ME!
      */

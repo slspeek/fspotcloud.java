@@ -14,12 +14,24 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.client.place;
+package com.googlecode.fspotcloud.shared.main;
 
-import com.google.gwt.place.shared.PlaceHistoryMapper;
-import com.google.gwt.place.shared.WithTokenizers;
+import com.google.common.annotations.GwtCompatible;
+import net.customware.gwt.dispatch.shared.Action;
 
 
-@WithTokenizers({TagApprovalPlace.Tokenizer.class, TagPlace.Tokenizer.class})
-public interface AdminPlaceHistoryMapper extends PlaceHistoryMapper {
+@GwtCompatible
+public class GetTagNodeAction implements Action<TagNodeResult> {
+    private String tagId;
+
+    public GetTagNodeAction(String tagId) {
+        this.tagId = tagId;
+    }
+
+    public GetTagNodeAction() {
+    }
+
+    public String getTagId() {
+        return tagId;
+    }
 }

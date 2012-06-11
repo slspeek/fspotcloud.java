@@ -31,7 +31,7 @@
         <developer>
             <id>slspeek</id>
             <name>Steven L. Speek</name>
-            <email>slspeek@gmail.com</email>
+            <tagId>slspeek@gmail.com</tagId>
             <roles>
                 <role>Project Manager</role>
                 <role>Architect</role>
@@ -307,7 +307,7 @@
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
-                <artifactId>dashboard-maven-plugin</artifactId>
+                <artifactId>dashboardImpl-maven-plugin</artifactId>
                 <version>1.0.0-beta-1</version>
             </plugin>
         </plugins>

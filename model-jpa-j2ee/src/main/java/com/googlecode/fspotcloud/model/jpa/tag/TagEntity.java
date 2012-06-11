@@ -19,9 +19,12 @@
  */
 package com.googlecode.fspotcloud.model.jpa.tag;
 
+import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.TreeSet;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -50,8 +53,22 @@ public class TagEntity implements Serializable, Tag {
     @Lob //@Column(columnDefinition = "BLOB")
 
     private byte[] photoListData = SerializationUtils.serialize(new TreeSet<PhotoInfo>());
+    @Basic
+    private HashSet<Long> approvedUserGroups = newHashSet();
 
     public TagEntity() {
+    }
+
+    public HashSet<Long> getApprovedUserGroups() {
+        return approvedUserGroups;
+    }
+
+    public void setApprovedUserGroups(Set<Long> approvedUserGroups) {
+        if (approvedUserGroups != null) {
+            this.approvedUserGroups = newHashSet(approvedUserGroups);
+        } else {
+            this.approvedUserGroups = newHashSet();
+        }
     }
 
     public void setId(String id) {

@@ -19,6 +19,7 @@ package com.googlecode.fspotcloud.server.model.api;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.simplejpadao.HasSetKey;
 import java.io.Serializable;
+import java.util.Set;
 import java.util.TreeSet;
 
 
@@ -46,4 +47,8 @@ public interface Tag extends HasSetKey<String>, Serializable {
     void setImportIssued(boolean importIssued);
 
     boolean isImportIssued();
+
+    void setApprovedUserGroups(Set<Long> keySet);
+
+    Set<Long> getApprovedUserGroups();
 }
