@@ -16,6 +16,7 @@
  */
 package com.googlecode.fspotcloud.user;
 
+import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
 import javax.inject.Inject;
@@ -34,6 +35,8 @@ public class LoginMetaDataUpdater implements ILoginMetaDataUpdater {
         loginMetaData.setLastTime(user.getLastLoginTime());
         loginMetaData.setEmail(user.getEmail());
         loginMetaData.setLoginType(loginType);
+        loginMetaData.setGrantedUserGroups(newHashSet(
+                user.getGrantedUserGroups()));
         user.touchLastLoginTime();
         userDao.save(user);
     }

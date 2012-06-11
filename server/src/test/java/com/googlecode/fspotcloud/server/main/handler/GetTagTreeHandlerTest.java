@@ -21,9 +21,11 @@
 package com.googlecode.fspotcloud.server.main.handler;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
+import com.googlecode.fspotcloud.server.model.tag.IUserGroupHelper;
 import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
@@ -45,6 +47,8 @@ import static org.mockito.Mockito.*;
 public class GetTagTreeHandlerTest {
     @Inject
     GetTagTreeHandler handler;
+    @Inject
+    IUserGroupHelper helper;
     private final GetTagTreeAction action = new GetTagTreeAction();
 
     @Test
@@ -76,6 +80,7 @@ public class GetTagTreeHandlerTest {
     public void testNormalExecuteOneImportedTags(TagDao tagManager,
         PeerDatabaseDao peers) throws Exception {
         when(peers.get()).thenReturn(new PeerDatabaseEntity());
+        when(helper.getVisibleTagIds()).thenReturn(newHashSet("1"));
 
         List<TagNode> list = newArrayList();
         final TagNode tagNode = new TagNode("1");
@@ -91,6 +96,8 @@ public class GetTagTreeHandlerTest {
     @Test
     public void testNormalExecuteCachehit(TagDao tagManager,
         PeerDatabaseDao peers) throws Exception {
+        when(helper.getVisibleTagIds()).thenReturn(newHashSet("1"));
+
         final PeerDatabaseEntity peerDatabaseEntity = new PeerDatabaseEntity();
 
         List<TagNode> list = newArrayList();

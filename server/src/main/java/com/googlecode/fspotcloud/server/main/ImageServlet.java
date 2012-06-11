@@ -17,10 +17,13 @@
 package com.googlecode.fspotcloud.server.main;
 
 import com.google.common.annotations.VisibleForTesting;
+import static com.google.common.collect.Sets.newHashSet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
+import com.googlecode.fspotcloud.server.model.tag.IUserGroupHelper;
+import com.googlecode.fspotcloud.user.UserService;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DateFormat;
@@ -44,6 +47,10 @@ public class ImageServlet extends HttpServlet {
     @VisibleForTesting
     @Inject
     PhotoDao photoManager;
+    @Inject
+    IUserGroupHelper userGroupHelper;
+    @Inject
+    UserService userService;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -51,13 +58,17 @@ public class ImageServlet extends HttpServlet {
         String id = request.getParameter("id");
         boolean thumb = (request.getParameter("thumb") != null);
         Photo photo = photoManager.find(id);
-        byte[] imageData = thumb ? photo.getThumb() : photo.getImage();
-        response.setContentType("image/jpeg");
-        setCacheExpireDate(response, 3600 * 24 * 365);
 
-        OutputStream out = response.getOutputStream();
-        out.write(imageData);
-        out.close();
+        if (userService.isUserAdmin() ||
+                userGroupHelper.containsOneOf(newHashSet(photo.getTagList()))) {
+            byte[] imageData = thumb ? photo.getThumb() : photo.getImage();
+            response.setContentType("image/jpeg");
+            setCacheExpireDate(response, 3600 * 24 * 365);
+
+            OutputStream out = response.getOutputStream();
+            out.write(imageData);
+            out.close();
+        }
     }
 
     public static void setCacheExpireDate(HttpServletResponse response,

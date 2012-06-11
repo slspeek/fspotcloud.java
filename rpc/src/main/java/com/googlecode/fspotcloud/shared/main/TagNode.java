@@ -43,6 +43,16 @@ public class TagNode implements Serializable {
     public TagNode() {
     }
 
+    public TagNode(TagNode node) {
+        this.id = node.getId();
+        this.count = node.getCount();
+        this.description = node.getDescription();
+        this.importIssued = node.isImportIssued();
+        this.tagName = node.getTagName();
+        this.cachedPhotoList = node.getCachedPhotoList();
+        this.approvedUserGroups = node.getApprovedUserGroups();
+    }
+
     public TagNode(String id) {
         this(id, null);
     }

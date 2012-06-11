@@ -19,6 +19,7 @@ package com.googlecode.fspotcloud.server.main.handler;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
+import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.RevokeTagAction;
@@ -52,6 +53,15 @@ public class RevokeTagHandler extends SimpleActionHandler<RevokeTagAction, VoidR
         approvedGroups.remove(action.getUserGroupId());
         tag.setApprovedUserGroups(approvedGroups);
         tagDao.save(tag);
+
+        UserGroup userGroup = userGroupDao.find(action.getUserGroupId());
+
+        if (userGroup != null) {
+            Set<String> approvedTags = userGroup.getApprovedTagIds();
+            approvedTags.remove(action.getTagId());
+            userGroup.setApprovedTagIds(approvedTags);
+            userGroupDao.save(userGroup);
+        }
 
         return new VoidResult();
     }
