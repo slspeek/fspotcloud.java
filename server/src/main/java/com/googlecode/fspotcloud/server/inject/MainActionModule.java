@@ -17,6 +17,8 @@
 package com.googlecode.fspotcloud.server.inject;
 
 import com.googlecode.fspotcloud.server.main.handler.*;
+import com.googlecode.fspotcloud.server.model.tag.IUserGroupHelper;
+import com.googlecode.fspotcloud.server.model.tag.UserGroupHelper;
 import com.googlecode.fspotcloud.shared.main.*;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 
@@ -39,5 +41,7 @@ public class MainActionModule extends ActionHandlerModule {
         bindHandler(ApproveTagAction.class, ApproveTagHandler.class);
         bindHandler(RevokeTagAction.class, RevokeTagHandler.class);
         bindHandler(GetTagNodeAction.class, GetTagNodeHandler.class);
+
+        bind(IUserGroupHelper.class).to(UserGroupHelper.class);
     }
 }

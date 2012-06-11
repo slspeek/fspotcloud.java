@@ -30,9 +30,12 @@ public class TabularITest {
     Selenium selenium;
     @Inject
     PhotoPage photoPage;
+    @Inject
+    ILogin login;
 
     @Test
     public void testTabular() throws Exception {
+        login.login();
         photoPage.open();
         photoPage.clickImage(4, 0);
         photoPage.clickImage(0, 0);

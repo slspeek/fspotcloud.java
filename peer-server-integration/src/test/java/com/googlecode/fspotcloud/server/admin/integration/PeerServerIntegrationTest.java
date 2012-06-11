@@ -39,6 +39,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
+import org.junit.Ignore;
 import static org.testng.AssertJUnit.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -115,6 +116,7 @@ public class PeerServerIntegrationTest {
         assertTrue(result.getTree().isEmpty());
     }
 
+    @Ignore
     @Test
     public void getTagTreeAfterOneSynchronize() throws Exception {
         peerInfo.printPeers();

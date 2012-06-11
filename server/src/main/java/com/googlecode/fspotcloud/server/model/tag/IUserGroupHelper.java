@@ -14,28 +14,20 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.server.model.api;
+package com.googlecode.fspotcloud.server.model.tag;
 
-import com.googlecode.simplejpadao.HasKey;
 import java.util.Set;
 
 
-public interface UserGroup extends HasKey<Long>, IsOwned {
-    static Long PUBLIC = Long.MIN_VALUE;
+/**
+ * Created with IntelliJ IDEA.
+ * User: steven
+ * Date: 11-6-12
+ * Time: 17:42
+ * To change this template use File | Settings | File Templates.
+ */
+public interface IUserGroupHelper {
+    Set<String> getVisibleTagIds();
 
-    void setName(String name);
-
-    String getName();
-
-    void setDescription(String description);
-
-    String getDescription();
-
-    Set<String> getGrantedUsers();
-
-    void setGrantedUsers(Set<String> users);
-
-    Set<String> getApprovedTagIds();
-
-    void setApprovedTagIds(Set<String> tagIds);
+    boolean containsOneOf(Set<String> tagIds);
 }

@@ -16,9 +16,13 @@
  */
 package com.googlecode.fspotcloud.server.main;
 
+import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
+import com.googlecode.fspotcloud.server.model.tag.IUserGroupHelper;
+import com.googlecode.fspotcloud.user.UserService;
 import com.meterware.httpunit.GetMethodWebRequest;
 import com.meterware.httpunit.WebRequest;
 import com.meterware.httpunit.WebResponse;
@@ -54,7 +58,14 @@ public class ImageServletTest extends ServletTestCase {
         Photo photo = new PhotoEntity();
         photo.setId("1");
         photo.setThumb(THUMB);
+        photo.setTagList(newArrayList("a"));
         when(photoDao.find("1")).thenReturn(photo);
+
+        IUserGroupHelper helper = mock(IUserGroupHelper.class);
+        when(helper.containsOneOf(newHashSet("a"))).thenReturn(true);
+
+        UserService service = mock(UserService.class);
+        when(service.isUserAdmin()).thenReturn(true);
 
         ServletUnitClient sc = sr.newClient();
         WebRequest request = new GetMethodWebRequest(
@@ -65,6 +76,8 @@ public class ImageServletTest extends ServletTestCase {
         InvocationContext ic = sc.newInvocation(request);
         ImageServlet servlet = (ImageServlet) ic.getServlet();
         servlet.photoManager = photoDao;
+        servlet.userGroupHelper = helper;
+        servlet.userService = service;
         servlet.service(ic.getRequest(), ic.getResponse());
 
         WebResponse response = ic.getServletResponse();
@@ -83,7 +96,14 @@ public class ImageServletTest extends ServletTestCase {
         Photo photo = new PhotoEntity();
         photo.setId("1");
         photo.setImage(THUMB);
+        photo.setTagList(newArrayList("a"));
         when(photoDao.find("1")).thenReturn(photo);
+
+        IUserGroupHelper helper = mock(IUserGroupHelper.class);
+        when(helper.containsOneOf(newHashSet("a"))).thenReturn(true);
+
+        UserService service = mock(UserService.class);
+        when(service.isUserAdmin()).thenReturn(true);
 
         ServletUnitClient sc = sr.newClient();
         WebRequest request = new GetMethodWebRequest(
@@ -93,6 +113,8 @@ public class ImageServletTest extends ServletTestCase {
         InvocationContext ic = sc.newInvocation(request);
         ImageServlet servlet = (ImageServlet) ic.getServlet();
         servlet.photoManager = photoDao;
+        servlet.userGroupHelper = helper;
+        servlet.userService = service;
         servlet.service(ic.getRequest(), ic.getResponse());
 
         WebResponse response = ic.getServletResponse();

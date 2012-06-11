@@ -32,7 +32,6 @@ public class RegularLoginBot implements ILogin {
         signUpPage.open();
         signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS, "rms");
         signUpPage.signUp();
-        signUpPage.verifySuccess();
         loginPage.open();
         loginPage.fillForm(RMS_FSF_ORG, CREDENTIALS);
         loginPage.login();

@@ -50,6 +50,8 @@ public class UserGroupEntity implements UserGroup, Serializable {
     private String name;
     @Basic
     private String description;
+    @Basic
+    private HashSet<String> approvedTags = newHashSet();
 
     public String getName() {
         return name;
@@ -75,6 +77,20 @@ public class UserGroupEntity implements UserGroup, Serializable {
     @Override
     public void setGrantedUsers(Set<String> users) {
         this.grantedUsers = newHashSet(users);
+    }
+
+    @Override
+    public Set<String> getApprovedTagIds() {
+        return approvedTags;
+    }
+
+    @Override
+    public void setApprovedTagIds(Set<String> tagIds) {
+        if (tagIds != null) {
+            approvedTags = newHashSet(tagIds);
+        } else {
+            approvedTags = newHashSet();
+        }
     }
 
     @Override

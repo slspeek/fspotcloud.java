@@ -16,13 +16,25 @@
  */
 package com.googlecode.fspotcloud.user;
 
+import static com.google.common.collect.Sets.newHashSet;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class LoginMetaData {
     private Type loginType;
     private Date lastTime;
     private String email;
+    private HashSet<Long> grantedUserGroups = newHashSet();
+
+    public HashSet<Long> getGrantedUserGroups() {
+        return grantedUserGroups;
+    }
+
+    public void setGrantedUserGroups(HashSet<Long> grantedUserGroups) {
+        this.grantedUserGroups = grantedUserGroups;
+    }
 
     public String getEmail() {
         return email;
