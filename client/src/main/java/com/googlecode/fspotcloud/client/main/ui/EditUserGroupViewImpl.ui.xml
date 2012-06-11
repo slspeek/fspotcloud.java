@@ -18,6 +18,9 @@
         <g:layer top="25%" height="5%" left="40%" width="40%">
             <g:TextBox ui:field="descriptionTextBox"></g:TextBox>
         </g:layer>
+        <g:layer top="35%" height="5%" left="50%" width="60%">
+            <g:CheckBox ui:field="publicCheckBox">Viewable for everybody</g:CheckBox>
+        </g:layer>
         <g:layer top="55%" height="5%" left="10%" width="30%">
             <g:Label ui:field="statusLabel"></g:Label>
         </g:layer>

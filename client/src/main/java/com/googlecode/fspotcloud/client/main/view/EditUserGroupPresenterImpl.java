@@ -55,6 +55,7 @@ public class EditUserGroupPresenterImpl extends AbstractActivity implements Edit
         log.info("Saved called!");
         userGroupInfo.setName(view.getName());
         userGroupInfo.setDescription(view.getDescription());
+        userGroupInfo.setPublic(view.getIsPublic());
         dispatch.execute(new SaveUserGroupAction(userGroupInfo),
             new AsyncCallback<VoidResult>() {
                 @Override
@@ -85,6 +86,7 @@ public class EditUserGroupPresenterImpl extends AbstractActivity implements Edit
                     userGroupInfo = result.getInfo();
                     view.setName(result.getInfo().getName());
                     view.setDescription(result.getInfo().getDescription());
+                    view.setIsPublic(result.getInfo().isPublic());
                 }
             });
     }

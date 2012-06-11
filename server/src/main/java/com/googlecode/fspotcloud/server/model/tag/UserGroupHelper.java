@@ -21,6 +21,7 @@ import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
 import com.googlecode.fspotcloud.user.LoginMetaData;
 import com.googlecode.fspotcloud.user.UserService;
+import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -34,7 +35,7 @@ public class UserGroupHelper implements IUserGroupHelper {
 
     @Override
     public Set<String> getVisibleTagIds() {
-        Set<String> grantedTags = newHashSet();
+        Set<String> grantedTags = getPublicTags();
         Set<Long> userGroupIds = metaData.get().getGrantedUserGroups();
 
         for (Long id : userGroupIds) {
@@ -59,5 +60,17 @@ public class UserGroupHelper implements IUserGroupHelper {
         }
 
         return false;
+    }
+
+    private Set<String> getPublicTags() {
+        Set<String> publicTags = newHashSet();
+        List<UserGroup> publicUserGroups = userGroupDao.findAllWhere(1000,
+                "isPublic = true");
+
+        for (UserGroup pGroup : publicUserGroups) {
+            publicTags.addAll(pGroup.getApprovedTagIds());
+        }
+
+        return publicTags;
     }
 }

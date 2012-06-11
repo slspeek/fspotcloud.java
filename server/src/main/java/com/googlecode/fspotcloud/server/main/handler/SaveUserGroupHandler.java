@@ -49,6 +49,7 @@ public class SaveUserGroupHandler extends SimpleActionHandler<SaveUserGroupActio
             if (userName.equals(userGroup.getOwner())) {
                 userGroup.setName(action.getInfoToSave().getName());
                 userGroup.setDescription(action.getInfoToSave().getDescription());
+                userGroup.setPublic(action.getInfoToSave().isPublic());
                 userGroupDao.save(userGroup);
             }
         }

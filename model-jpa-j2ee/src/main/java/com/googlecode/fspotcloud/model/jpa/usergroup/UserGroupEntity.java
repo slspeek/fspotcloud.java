@@ -52,6 +52,16 @@ public class UserGroupEntity implements UserGroup, Serializable {
     private String description;
     @Basic
     private HashSet<String> approvedTags = newHashSet();
+    @Basic
+    private boolean isPublic = false;
+
+    public boolean isPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(boolean aPublic) {
+        isPublic = aPublic;
+    }
 
     public String getName() {
         return name;
