@@ -18,10 +18,13 @@ package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
 import static com.google.common.base.Objects.equal;
+import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Sets.newHashSet;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 
 @GwtCompatible
@@ -34,7 +37,8 @@ public class TagNode implements Serializable {
     private String parentId;
     private String tagName;
     private PhotoInfoStore cachedPhotoList = new PhotoInfoStore(Collections.EMPTY_LIST);
-    private List<TagNode> children = new ArrayList<TagNode>();
+    private List<TagNode> children = newArrayList();
+    private Set<Long> approvedUserGroups = newHashSet();
 
     public TagNode() {
     }
@@ -46,6 +50,14 @@ public class TagNode implements Serializable {
     public TagNode(String id, String parentId) {
         this.id = id;
         this.parentId = parentId;
+    }
+
+    public Set<Long> getApprovedUserGroups() {
+        return approvedUserGroups;
+    }
+
+    public void setApprovedUserGroups(Set<Long> approvedUserGroups) {
+        this.approvedUserGroups = approvedUserGroups;
     }
 
     public String getId() {

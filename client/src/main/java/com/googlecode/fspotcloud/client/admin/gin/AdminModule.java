@@ -23,13 +23,13 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.inject.Singleton;
 import com.googlecode.fspotcloud.client.admin.ui.DashboardViewImpl;
 import com.googlecode.fspotcloud.client.admin.ui.GlobalActionsViewImpl;
+import com.googlecode.fspotcloud.client.admin.ui.TagApprovalViewImpl;
 import com.googlecode.fspotcloud.client.admin.ui.TagDetailsViewImpl;
 import com.googlecode.fspotcloud.client.admin.view.AdminTreePresenterImpl;
+import com.googlecode.fspotcloud.client.admin.view.DashboardPresenterImpl;
+import com.googlecode.fspotcloud.client.admin.view.TagApprovalPresenterImpl;
 import com.googlecode.fspotcloud.client.admin.view.TagDetailsActivityMapper;
-import com.googlecode.fspotcloud.client.admin.view.api.DashboardView;
-import com.googlecode.fspotcloud.client.admin.view.api.GlobalActionsView;
-import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsActivityFactory;
-import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsView;
+import com.googlecode.fspotcloud.client.admin.view.api.*;
 import com.googlecode.fspotcloud.client.data.DataManager;
 import com.googlecode.fspotcloud.client.data.DataManagerImpl;
 import com.googlecode.fspotcloud.client.main.gin.PlaceControllerProvider;
@@ -51,6 +51,8 @@ public class AdminModule extends AbstractGinModule {
         bind(TagDetailsView.class).to(TagDetailsViewImpl.class)
             .in(Singleton.class);
         bind(DashboardView.class).to(DashboardViewImpl.class).in(Singleton.class);
+        bind(DashboardView.DashboardPresenter.class)
+            .to(DashboardPresenterImpl.class);
         bind(GlobalActionsView.class).to(GlobalActionsViewImpl.class)
             .in(Singleton.class);
         bind(DataManager.class).to(DataManagerImpl.class).in(Singleton.class);
@@ -63,5 +65,9 @@ public class AdminModule extends AbstractGinModule {
             .in(Singleton.class);
         bind(TreeView.class).to(TreeViewImpl.class).in(Singleton.class);
         bind(TimerInterface.class).to(TimerImpl.class);
+
+        bind(TagApprovalView.class).to(TagApprovalViewImpl.class);
+        bind(TagApprovalView.TagApprovalPresenter.class)
+            .to(TagApprovalPresenterImpl.class);
     }
 }

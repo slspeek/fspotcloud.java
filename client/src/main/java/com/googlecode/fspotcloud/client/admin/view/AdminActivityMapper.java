@@ -19,35 +19,29 @@ package com.googlecode.fspotcloud.client.admin.view;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
-import com.google.inject.Inject;
-import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsActivityFactory;
-import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsView;
+import com.googlecode.fspotcloud.client.admin.view.api.DashboardView;
+import com.googlecode.fspotcloud.client.admin.view.api.TagApprovalView;
+import com.googlecode.fspotcloud.client.place.TagApprovalPlace;
 import com.googlecode.fspotcloud.client.place.TagPlace;
-import java.util.logging.Logger;
+import javax.inject.Inject;
 
 
-public class TagDetailsActivityMapper implements ActivityMapper {
-    private static final Logger log = Logger.getLogger(TagDetailsActivityMapper.class.getName());
-    private final TagDetailsActivityFactory tagDetailsActivityFactory;
-
+public class AdminActivityMapper implements ActivityMapper {
     @Inject
-    public TagDetailsActivityMapper(
-        TagDetailsActivityFactory tagDetailsActivityFactory) {
-        super();
-        this.tagDetailsActivityFactory = tagDetailsActivityFactory;
-    }
+    private TagApprovalView.TagApprovalPresenter approvalPresenter;
+    @Inject
+    private DashboardView.DashboardPresenter dashboardPresenter;
 
     @Override
     public Activity getActivity(Place place) {
-        log.info("getActivity: " + place);
-
-        TagDetailsView.TagDetailsPresenter activity = null;
-
         if (place instanceof TagPlace) {
-            activity = tagDetailsActivityFactory.get((TagPlace) place);
-            activity.init();
+            return dashboardPresenter;
+        } else if (place instanceof TagApprovalPlace) {
+            approvalPresenter.setTagId(((TagApprovalPlace) place).getTagId());
+
+            return approvalPresenter;
         }
 
-        return activity;
+        return null; //To change body of implemented methods use File | Settings | File Templates.
     }
 }

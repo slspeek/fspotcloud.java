@@ -16,16 +16,21 @@
  */
 package com.googlecode.fspotcloud.client.admin;
 
+import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
-import com.googlecode.fspotcloud.client.admin.view.DashboardPresenter;
+import com.googlecode.fspotcloud.client.admin.view.AdminActivityMapper;
+import com.googlecode.fspotcloud.client.admin.view.DashboardPresenterImpl;
 import com.googlecode.fspotcloud.client.main.ClientLoginManager;
+import com.googlecode.fspotcloud.client.main.ui.HasOneWidgetAdapter;
 import com.googlecode.fspotcloud.client.place.AdminPlaceHistoryMapper;
 import com.googlecode.fspotcloud.client.place.TagPlace;
 import java.util.logging.Logger;
@@ -33,24 +38,31 @@ import java.util.logging.Logger;
 
 public class MVPSetup {
     private static final Logger log = Logger.getLogger(MVPSetup.class.getName());
+    private final DockLayoutPanel appWidget = new DockLayoutPanel(Style.Unit.PX);
     private final Place defaultPlace = new TagPlace("1");
     private final EventBus eventBus;
     private final PlaceController placeController;
-    private final DashboardPresenter dashboard;
+    private final DashboardPresenterImpl dashboardImpl;
     private final ClientLoginManager clientLoginManager;
+    private final AdminActivityMapper mapper;
 
     @Inject
     public MVPSetup(EventBus eventBus, PlaceController placeController,
-        DashboardPresenter dashboard, ClientLoginManager clientLoginManager) {
+        DashboardPresenterImpl dashboardImpl,
+        ClientLoginManager clientLoginManager, AdminActivityMapper mapper) {
         super();
         this.eventBus = eventBus;
         this.placeController = placeController;
-        this.dashboard = dashboard;
+        this.dashboardImpl = dashboardImpl;
         this.clientLoginManager = clientLoginManager;
+        this.mapper = mapper;
     }
 
     public void setup() {
         log.info("Admin setup");
+
+        ActivityManager activityManager = new ActivityManager(mapper, eventBus);
+        activityManager.setDisplay(new HasOneWidgetAdapter(appWidget));
 
         AdminPlaceHistoryMapper historyMapper = GWT.create(AdminPlaceHistoryMapper.class);
         PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
@@ -59,10 +71,10 @@ public class MVPSetup {
         log.info("Just before handleCurrentHistory()");
         historyHandler.handleCurrentHistory();
 
-        dashboard.init();
+        dashboardImpl.init();
 
-        Widget w = dashboard.getView().asWidget();
-        RootLayoutPanel.get().add(w);
+        //Widget w = dashboardImpl.getView().asWidget();
+        RootLayoutPanel.get().add(appWidget);
         log.info("Setup finished");
 
         //        clientLoginManager.getUserInfoAsync(new GetUserInfo("Dashboard.html"), new AsyncCallback<UserInfo>() {

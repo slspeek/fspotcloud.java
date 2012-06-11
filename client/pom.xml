@@ -10,7 +10,7 @@
     <artifactId>client</artifactId>
     <packaging>jar</packaging>
     <name>GWT client</name>
-    <description>The user interface and the dashboard</description>
+    <description>The user interface and the dashboardImpl</description>
     <dependencies>
         <dependency>
             <groupId>com.googlecode.fspotcloud</groupId>
@@ -194,7 +194,7 @@
                     <logLevel>INFO</logLevel>
                     <compileTargets>
                         <value>com.googlecode.fspotcloud.FSpotCloud</value>
-                        <value>com.googlecode.fspotcloud.dashboard</value>
+                        <value>com.googlecode.fspotcloud.dashboardImpl</value>
                     </compileTargets>
                     <extraJvmArgs>-Xmx512m</extraJvmArgs>
                     <runTarget>http://localhost:8080/Dashboard.html</runTarget>
@@ -240,7 +240,7 @@
                     <!-- This must point to your GWT modules! -->
                     <compileTargets>
                         <value>fspotcloud.FSpotCloud</value>
-                        <value>fspotcloud.dashboard</value>
+                        <value>fspotcloud.dashboardImpl</value>
                     </compileTargets>
                     <extraJvmArgs>-Xmx512m</extraJvmArgs>
                     <runTarget>/FSpotCloud.html</runTarget>

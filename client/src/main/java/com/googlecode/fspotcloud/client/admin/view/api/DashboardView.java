@@ -16,6 +16,7 @@
  */
 package com.googlecode.fspotcloud.client.admin.view.api;
 
+import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
 
@@ -25,7 +26,7 @@ public interface DashboardView extends IsWidget {
 
     HasOneWidget getTagDetailsContainer();
 
-    interface DashboardPresenter {
+    interface DashboardPresenter extends Activity {
         DashboardView getView();
 
         void init();
