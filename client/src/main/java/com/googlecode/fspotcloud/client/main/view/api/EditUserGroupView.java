@@ -31,6 +31,10 @@ public interface EditUserGroupView extends IsWidget {
 
     String getDescription();
 
+    void setIsPublic(boolean isPublic);
+
+    boolean getIsPublic();
+
     interface EditUserGroupPresenter extends Activity {
         void save();
 

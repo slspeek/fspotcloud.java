@@ -40,11 +40,14 @@ public class UserGroupInfo implements Result, IsSerializable, Serializable {
     private String name;
     private String description;
     private HashSet<String> grantedUsers;
+    private boolean isPublic;
 
-    public UserGroupInfo(Long id, String name, String description) {
+    public UserGroupInfo(Long id, String name, String description,
+        boolean aPublic) {
         this.name = name;
         this.description = description;
         this.id = id;
+        isPublic = aPublic;
     }
 
     UserGroupInfo() {
@@ -89,5 +92,13 @@ public class UserGroupInfo implements Result, IsSerializable, Serializable {
         sb.append('}');
 
         return sb.toString();
+    }
+
+    public void setPublic(boolean isPublic) {
+        this.isPublic = isPublic;
+    }
+
+    public boolean isPublic() {
+        return isPublic;
     }
 }

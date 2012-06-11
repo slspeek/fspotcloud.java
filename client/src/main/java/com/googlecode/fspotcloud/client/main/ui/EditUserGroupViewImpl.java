@@ -40,6 +40,8 @@ public class EditUserGroupViewImpl extends Composite
     Label statusLabel;
     @UiField
     PushButton save;
+    @UiField
+    CheckBox publicCheckBox;
 
     @Inject
     public EditUserGroupViewImpl() {
@@ -73,6 +75,16 @@ public class EditUserGroupViewImpl extends Composite
     @Override
     public String getDescription() {
         return descriptionTextBox.getText();
+    }
+
+    @Override
+    public void setIsPublic(boolean isPublic) {
+        publicCheckBox.setValue(isPublic);
+    }
+
+    @Override
+    public boolean getIsPublic() {
+        return publicCheckBox.getValue();
     }
 
     @UiHandler("save")

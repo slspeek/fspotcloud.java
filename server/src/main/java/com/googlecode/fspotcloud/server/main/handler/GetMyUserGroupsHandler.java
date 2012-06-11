@@ -63,7 +63,7 @@ public class GetMyUserGroupsHandler extends SimpleActionHandler<GetMyUserGroupsA
 
     private UserGroupInfo get(UserGroup group) {
         UserGroupInfo info = new UserGroupInfo(group.getId(), group.getName(),
-                group.getDescription());
+                group.getDescription(), group.isPublic());
 
         return info;
     }

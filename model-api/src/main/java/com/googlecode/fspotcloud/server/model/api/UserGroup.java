@@ -38,4 +38,8 @@ public interface UserGroup extends HasKey<Long>, IsOwned {
     Set<String> getApprovedTagIds();
 
     void setApprovedTagIds(Set<String> tagIds);
+
+    boolean isPublic();
+
+    void setPublic(boolean isPublic);
 }
