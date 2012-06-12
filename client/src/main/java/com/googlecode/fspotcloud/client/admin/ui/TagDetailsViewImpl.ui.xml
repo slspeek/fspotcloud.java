@@ -75,6 +75,14 @@
 						<g:Button ui:field="importTagButton">Import label</g:Button>
 					</td>
 				</tr>
+                <tr>
+                    <td>
+                        <g:Label styleName="{style.property-label}">Approve usergroups</g:Label>
+                    </td>
+                    <td>
+                        <g:Button ui:field="manageAccessButton">Manage access</g:Button>
+                    </td>
+                </tr>
 			</tbody>
 		</table>
 	</g:HTMLPanel>

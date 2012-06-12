@@ -23,7 +23,9 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsView;
 import com.googlecode.fspotcloud.client.data.DataManager;
+import com.googlecode.fspotcloud.client.place.TagApprovalPlace;
 import com.googlecode.fspotcloud.client.place.TagPlace;
+import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
@@ -40,14 +42,16 @@ public class TagDetailsActivity extends AbstractActivity implements TagDetailsVi
     private TagNode tagNode;
     private final DataManager dataManager;
     private final DispatchAsync dispatch;
+    private final PlaceGoTo placeGoTo;
 
     public TagDetailsActivity(TagDetailsView tagDetailsView, TagPlace tagPlace,
-        DataManager dataManager, DispatchAsync dispatch) {
+                              DataManager dataManager, DispatchAsync dispatch, PlaceGoTo placeGoTo) {
         super();
         this.tagDetailsView = tagDetailsView;
         this.tagPlace = tagPlace;
         this.dataManager = dataManager;
         this.dispatch = dispatch;
+        this.placeGoTo = placeGoTo;
     }
 
     @Override
@@ -93,6 +97,11 @@ public class TagDetailsActivity extends AbstractActivity implements TagDetailsVi
                     }
                 });
         }
+    }
+
+    @Override
+    public void manageAccess() {
+        placeGoTo.goTo(new TagApprovalPlace(tagNode.getId()));
     }
 
     private void populateView() {

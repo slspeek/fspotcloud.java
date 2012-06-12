@@ -48,6 +48,7 @@ public class EditUserGroupViewImpl extends Composite
         initWidget(uiBinder.createAndBindUi(this));
         nameTextBox.ensureDebugId("name");
         descriptionTextBox.ensureDebugId("description");
+        publicCheckBox.ensureDebugId("public-checkbox");
         save.ensureDebugId("save");
         log.info("Created " + this);
     }

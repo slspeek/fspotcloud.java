@@ -20,36 +20,52 @@
  */
 package com.googlecode.fspotcloud.test;
 
-import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
+
 import javax.inject.Inject;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
  * @author steven
  */
-public class EditUserGroupPage {
+public class TagApprovalPage {
     @Inject
     Selenium selenium;
 
-    public void open(Long id) {
-        selenium.open("/#EditUserGroupPlace:" + id);
+    public void open(String tagId) {
+        selenium.open("/#TagApprovalPlace:" +tagId);
         selenium.waitForPageToLoad("30000");
     }
 
-    public void fill(String name, String description)
-        throws InterruptedException {
-        sleepShort();
-        selenium.type("id=gwt-debug-name", name);
-        selenium.type("id=gwt-debug-description", description);
+    public void selectTopGroupOnTheRight() {
+        selenium.click("//div[5]/table/tbody/tr/td/div");
     }
 
-    public void save() {
-        selenium.click("gwt-debug-save");
+    public void selectSecondGroupOnTheRight() {
+        selenium.click("//tr[2]/td");
     }
 
-    public void togglePublic() {
-        selenium.click("id=gwt-debug-public-checkbox-input");
+    public void selectThirdGroupOnTheRight() {
+        selenium.click("//tr[3]/td/div");
+
+    }
+
+    public void approveUserGroup() {
+        selenium.click("gwt-debug-approve-button");
+        selenium.waitForPageToLoad("30000");
+    }
+
+    public void removeUserGroup() {
+        selenium.click("gwt-debug-remove-button");
+        selenium.waitForPageToLoad("30000");
+    }
+
+    public void selectTopGroupOnTheLeft() {
+
+        selenium.click("//tr[2]/td/div");
+
     }
 }

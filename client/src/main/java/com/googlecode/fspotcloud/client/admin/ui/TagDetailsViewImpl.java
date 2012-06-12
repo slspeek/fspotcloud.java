@@ -39,11 +39,14 @@ public class TagDetailsViewImpl extends Composite implements TagDetailsView {
     Label tagLoadedCountValueLabel;
     @UiField
     Button importTagButton;
+    @UiField
+    Button manageAccessButton;
     private TagDetailsPresenter presenter;
 
     public TagDetailsViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
         importTagButton.ensureDebugId("import-tag-button");
+        manageAccessButton.ensureDebugId("manage-access-button");
     }
 
     @Override
@@ -74,6 +77,11 @@ public class TagDetailsViewImpl extends Composite implements TagDetailsView {
     @UiHandler("importTagButton")
     public void onImportClicked(ClickEvent event) {
         presenter.importTag();
+    }
+
+    @UiHandler("manageAccessButton")
+    public void onManageAccessClicked(ClickEvent event) {
+        presenter.manageAccess();
     }
 
     @Override
