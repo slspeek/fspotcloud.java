@@ -45,7 +45,7 @@ public class TagDetailsActivity extends AbstractActivity implements TagDetailsVi
     private final PlaceGoTo placeGoTo;
 
     public TagDetailsActivity(TagDetailsView tagDetailsView, TagPlace tagPlace,
-                              DataManager dataManager, DispatchAsync dispatch, PlaceGoTo placeGoTo) {
+        DataManager dataManager, DispatchAsync dispatch, PlaceGoTo placeGoTo) {
         super();
         this.tagDetailsView = tagDetailsView;
         this.tagPlace = tagPlace;

@@ -1,14 +1,30 @@
+/*
+ * Copyright 2010-2012 Steven L. Speek.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 package com.googlecode.fspotcloud.test;
-
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
 import com.thoughtworks.selenium.Selenium;
+import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
 
-import javax.inject.Inject;
 
-public class PrivateAccessITest {    public static final String JEFF_GOOGLE_COM = "jeff@google.com";
+public class PrivateAccessITest {
+    public static final String JEFF_GOOGLE_COM = "jeff@google.com";
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
@@ -21,11 +37,16 @@ public class PrivateAccessITest {    public static final String JEFF_GOOGLE_COM 
     MyUserGroupsPage myUserGroupsPage;
     @Inject
     EditUserGroupPage editUserGroupPage;
-    @Inject private ManageUsersPage manageUsersPage;
-    @Inject private PhotoPage photoPage;
-    @Inject private LoginPage loginPage;
-    @Inject private SignUpPage signUpPage;
-    @Inject private UserAccountPage userAccountPage;
+    @Inject
+    private ManageUsersPage manageUsersPage;
+    @Inject
+    private PhotoPage photoPage;
+    @Inject
+    private LoginPage loginPage;
+    @Inject
+    private SignUpPage signUpPage;
+    @Inject
+    private UserAccountPage userAccountPage;
 
     @Test
     public void testAccess() throws Exception {
@@ -39,7 +60,7 @@ public class PrivateAccessITest {    public static final String JEFF_GOOGLE_COM 
         myUserGroupsPage.editUserGroup();
 
         editUserGroupPage.fill("GNU Friends",
-                "My friends from all over the world");
+            "My friends from all over the world");
         editUserGroupPage.save();
         myUserGroupsPage.open();
         myUserGroupsPage.selectFirstRow();
@@ -47,7 +68,6 @@ public class PrivateAccessITest {    public static final String JEFF_GOOGLE_COM 
         manageUsersPage.newUser(JEFF_GOOGLE_COM);
         dashboardPage.open();
         dashboardPage.manageApprovalForTag("1");
-
 
         tagApprovalPage.selectTopGroupOnTheRight();
         tagApprovalPage.approveUserGroup();
@@ -65,8 +85,8 @@ public class PrivateAccessITest {    public static final String JEFF_GOOGLE_COM 
         loginPage.verifySuccess();
         userAccountPage.open();
         photoPage.open();
-        photoPage.clickImage(0,0);
-        photoPage.assertPagingLabelSays(1,9);
+        photoPage.clickImage(0, 0);
+        photoPage.assertPagingLabelSays(1, 9);
         photoPage.logout();
         dashboardPage.loginAndOpen();
         myUserGroupsPage.open();
@@ -78,11 +98,7 @@ public class PrivateAccessITest {    public static final String JEFF_GOOGLE_COM 
         photoPage.logout();
         userAccountPage.open();
         photoPage.open();
-        photoPage.clickImage(0,0);
-        photoPage.assertPagingLabelSays(1,9);
-
-
-
-
+        photoPage.clickImage(0, 0);
+        photoPage.assertPagingLabelSays(1, 9);
     }
 }

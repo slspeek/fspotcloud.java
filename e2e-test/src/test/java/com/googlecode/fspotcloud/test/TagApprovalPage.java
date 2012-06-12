@@ -21,9 +21,7 @@
 package com.googlecode.fspotcloud.test;
 
 import com.thoughtworks.selenium.Selenium;
-
 import javax.inject.Inject;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -36,7 +34,7 @@ public class TagApprovalPage {
     Selenium selenium;
 
     public void open(String tagId) {
-        selenium.open("/#TagApprovalPlace:" +tagId);
+        selenium.open("/#TagApprovalPlace:" + tagId);
         selenium.waitForPageToLoad("30000");
     }
 
@@ -50,7 +48,6 @@ public class TagApprovalPage {
 
     public void selectThirdGroupOnTheRight() {
         selenium.click("//tr[3]/td/div");
-
     }
 
     public void approveUserGroup() {
@@ -64,8 +61,6 @@ public class TagApprovalPage {
     }
 
     public void selectTopGroupOnTheLeft() {
-
         selenium.click("//tr[2]/td/div");
-
     }
 }

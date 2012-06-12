@@ -17,12 +17,14 @@
 package com.googlecode.fspotcloud.user;
 
 import static com.google.common.collect.Sets.newHashSet;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 
-public class LoginMetaData {
+public class LoginMetaData implements Serializable {
     private Type loginType;
     private Date lastTime;
     private String email;
