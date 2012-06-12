@@ -48,8 +48,8 @@ public class DashboardPage {
     public void manageUsergroups() {
         selenium.click("gwt-debug-manage-groups-button");
         selenium.waitForPageToLoad("30000");
-
     }
+
     public void synchronize() throws InterruptedException {
         selenium.click("gwt-debug-update-button");
         sleepShort(2);

@@ -28,11 +28,14 @@ import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class TagDetailsActivityFactoryImpl implements TagDetailsActivityFactory {
-    @Inject private TagDetailsView tagDetailsView;
-    @Inject private  DataManager dataManager;
-    @Inject private DispatchAsync dispatch;
-    @Inject private PlaceGoTo placeGoTo;
-
+    @Inject
+    private TagDetailsView tagDetailsView;
+    @Inject
+    private DataManager dataManager;
+    @Inject
+    private DispatchAsync dispatch;
+    @Inject
+    private PlaceGoTo placeGoTo;
 
     @Override
     public TagDetailsPresenter get(TagPlace place) {

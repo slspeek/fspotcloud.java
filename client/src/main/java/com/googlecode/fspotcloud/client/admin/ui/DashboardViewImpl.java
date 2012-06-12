@@ -37,10 +37,8 @@ public class DashboardViewImpl extends Composite implements DashboardView {
     SimplePanel tagDetailsViewContainer;
     GlobalActionsView globalActionsView;
     TreeView treeView;
-
     @UiField
     PushButton toPhotos;
-
     @UiField
     PushButton manageGroups;
 
