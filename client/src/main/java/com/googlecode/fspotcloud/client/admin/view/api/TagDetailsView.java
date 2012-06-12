@@ -42,6 +42,8 @@ public interface TagDetailsView extends IsWidget {
     interface TagDetailsPresenter extends Activity {
         void importTag();
 
+        void manageAccess();
+
         void init();
     }
 }

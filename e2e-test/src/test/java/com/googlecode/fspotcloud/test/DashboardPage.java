@@ -45,6 +45,11 @@ public class DashboardPage {
         open();
     }
 
+    public void manageUsergroups() {
+        selenium.click("gwt-debug-manage-groups-button");
+        selenium.waitForPageToLoad("30000");
+
+    }
     public void synchronize() throws InterruptedException {
         selenium.click("gwt-debug-update-button");
         sleepShort(2);
@@ -62,6 +67,12 @@ public class DashboardPage {
         sleepShort(2);
         open();
         sleepShort(2);
+    }
+
+    public void manageApprovalForTag(String id) throws InterruptedException {
+        selenium.open("/Dashboard.html#TagPlace:" + id);
+        selenium.waitForPageToLoad("30000");
+        selenium.click("gwt-debug-manage-access-button");
     }
 
     void removeAll() throws InterruptedException {

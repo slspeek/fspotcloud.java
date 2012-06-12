@@ -17,13 +17,13 @@
 package com.googlecode.fspotcloud.client.admin.ui;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HasOneWidget;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.*;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.admin.view.api.DashboardView;
 import com.googlecode.fspotcloud.client.admin.view.api.GlobalActionsView;
@@ -38,12 +38,20 @@ public class DashboardViewImpl extends Composite implements DashboardView {
     GlobalActionsView globalActionsView;
     TreeView treeView;
 
+    @UiField
+    PushButton toPhotos;
+
+    @UiField
+    PushButton manageGroups;
+
     @Inject
     public DashboardViewImpl(TreeView treeView,
         GlobalActionsView globalActionsView) {
         this.treeView = treeView;
         this.globalActionsView = globalActionsView;
         initWidget(uiBinder.createAndBindUi(this));
+        toPhotos.ensureDebugId("to-photos-button");
+        manageGroups.ensureDebugId("manage-groups-button");
     }
 
     @UiFactory
@@ -59,6 +67,16 @@ public class DashboardViewImpl extends Composite implements DashboardView {
     @UiFactory
     public TreeViewImpl getTreeView() {
         return (TreeViewImpl) treeView;
+    }
+
+    @UiHandler("toPhotos")
+    public void toPhotosClicked(ClickEvent e) {
+        Window.Location.replace("FSpotCloud.html");
+    }
+
+    @UiHandler("manageGroups")
+    public void manageGroupsClicked(ClickEvent e) {
+        Window.Location.replace("FSpotCloud.html#MyUserGroupsPlace:");
     }
 
     interface DashboardViewImplUiBinder extends UiBinder<Widget, DashboardViewImpl> {

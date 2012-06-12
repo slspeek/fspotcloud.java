@@ -14,6 +14,10 @@
 		.main {
 			background: #98EFFF;
 			}
+        .footer {
+            background: #5CB3FF;
+
+        }
 	</ui:style>
 	<g:DockLayoutPanel unit='PX'>
 		<g:north size="30">
@@ -33,8 +37,14 @@
 				</g:center>
 			</g:SplitLayoutPanel>
 		</g:center>
-		<g:south size='20'>
+		<g:south size='100'>
+            <g:LayoutPanel styleName="{style.footer}">
+                <g:layer left="33%" width="100px" top="0%" height="30px"><g:PushButton ui:field="toPhotos">To photos</g:PushButton></g:layer>
+                <g:layer top="0%" width="100px" left="60%" height="50px"><g:PushButton ui:field="manageGroups">Manage usergroups</g:PushButton></g:layer>
+                <g:layer bottom="0%" height="20">
 			<g:HTML><center>&copy; 2010-2012 Steven L. Speek</center></g:HTML>
+                </g:layer>
+            </g:LayoutPanel>
 		</g:south>
 	</g:DockLayoutPanel>
 </ui:UiBinder> 
