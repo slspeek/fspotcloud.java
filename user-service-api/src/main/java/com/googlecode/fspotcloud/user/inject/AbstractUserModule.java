@@ -25,7 +25,8 @@ public class AbstractUserModule extends ServletModule {
     @Override
     protected void configureServlets() {
         bind(IAdminPermission.class).to(AdminPermission.class);
-        bind(LoginMetaData.class).in(SessionScoped.class);
+        bind(ILoginMetaData.class).to(LoginMetaData.class);
+        //bind(LoginMetaData.class).in(SessionScoped.class);
         //bind(LoginMetaData.class).toProvider(LoginMetaDataProvider.class);
         bind(ILoginMetaDataUpdater.class).to(LoginMetaDataUpdater.class);
     }

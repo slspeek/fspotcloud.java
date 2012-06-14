@@ -22,9 +22,8 @@ import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.fspotcloud.user.ILoginMetaDataUpdater;
 import com.googlecode.fspotcloud.user.LoginMetaData;
 import com.googlecode.fspotcloud.user.PostThirdPartyLoginWorker;
-
-import javax.inject.Inject;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 
 
 public class PostGoogleLoginWorker implements PostThirdPartyLoginWorker {
@@ -43,6 +42,7 @@ public class PostGoogleLoginWorker implements PostThirdPartyLoginWorker {
 
         if (gaeUser != null) {
             log.info("User is logged on");
+
             String email = gaeUser.getEmail();
             com.googlecode.fspotcloud.server.model.api.User user = userDao.findOrNew(email);
             metaDataUpdater.doUpdate(user, LoginMetaData.Type.GAE_LOGIN);

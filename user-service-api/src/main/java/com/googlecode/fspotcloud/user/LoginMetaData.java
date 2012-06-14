@@ -17,63 +17,81 @@
 package com.googlecode.fspotcloud.user;
 
 import static com.google.common.collect.Sets.newHashSet;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 
-public class LoginMetaData implements Serializable {
-    private Type loginType;
-    private Date lastTime;
-    private String email;
-    private HashSet<Long> grantedUserGroups = newHashSet();
+public class LoginMetaData implements ILoginMetaData {
+    public static final String GRANTED_GROUPS = "granted-groups";
+    public static final String EMAIL_FIELD = "email-field";
+    public static final String LOGIN_TYPE = "login-type";
+    public static final String LAST_SEEN = "last-seen";
+    @Inject
+    private HttpSession session;
 
+    @Override
     public HashSet<Long> getGrantedUserGroups() {
-        return grantedUserGroups;
+        HashSet<Long> result = (HashSet<Long>) session.getAttribute(GRANTED_GROUPS);
+
+        if (result == null) {
+            result = newHashSet();
+        }
+
+        return result;
     }
 
+    @Override
     public void setGrantedUserGroups(HashSet<Long> grantedUserGroups) {
-        this.grantedUserGroups = grantedUserGroups;
+        session.setAttribute(GRANTED_GROUPS, grantedUserGroups);
     }
 
+    @Override
     public String getEmail() {
+        String email = (String) session.getAttribute(EMAIL_FIELD);
+
         return email;
     }
 
+    @Override
     public void setEmail(String email) {
-        this.email = email;
+        session.setAttribute(EMAIL_FIELD, email);
     }
 
+    @Override
     public Type getLoginType() {
-        return loginType;
+        return (Type) session.getAttribute(LOGIN_TYPE);
     }
 
+    @Override
     public void setLoginType(Type loginType) {
-        this.loginType = loginType;
+        session.setAttribute(LOGIN_TYPE, loginType);
     }
 
+    @Override
     public Date getLastTime() {
-        return lastTime;
+        return (Date) session.getAttribute(LAST_SEEN);
     }
 
+    @Override
     public void setLastTime(Date lastTime) {
-        this.lastTime = lastTime;
-    }
-    public enum Type {REGULAR_LOGIN, OPEN_ID_LOGIN, GAE_LOGIN;
+        session.setAttribute(LAST_SEEN, lastTime);
     }
 
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer();
         sb.append("LoginMetaData");
-        sb.append("{loginType=").append(loginType);
-        sb.append(", lastTime=").append(lastTime);
-        sb.append(", email='").append(email).append('\'');
-        sb.append(", grantedUserGroups=").append(grantedUserGroups);
+        sb.append("{loginType=").append(getLoginType());
+        sb.append(", lastTime=").append(getLastTime());
+        sb.append(", email='").append(getEmail()).append('\'');
+        sb.append(", grantedUserGroups=").append(getGrantedUserGroups());
         sb.append("}@");
         sb.append(super.toString());
+
         return sb.toString();
     }
 }

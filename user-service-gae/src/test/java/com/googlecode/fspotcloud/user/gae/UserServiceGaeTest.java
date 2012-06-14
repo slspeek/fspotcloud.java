@@ -20,6 +20,7 @@
  */
 package com.googlecode.fspotcloud.user.gae;
 
+import com.googlecode.fspotcloud.user.ILoginMetaData;
 import com.googlecode.fspotcloud.user.LoginMetaData;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -43,11 +44,11 @@ public class UserServiceGaeTest {
     @Inject
     UserServiceGae userService;
     @Inject
-    LoginMetaData metaData;
+    ILoginMetaData metaData;
 
     @Before
     public void setUp(HttpSession session, HttpServletRequest request) {
-        metaData.setEmail(FOO_FSF_ORG);
+        when(metaData.getEmail()).thenReturn(FOO_FSF_ORG);
         when(request.getScheme()).thenReturn("http");
         when(request.getContextPath()).thenReturn("/context");
         when(request.getServerPort()).thenReturn(8080);
@@ -91,7 +92,7 @@ public class UserServiceGaeTest {
     @Test
     public void emailReturnsNull(
         com.google.appengine.api.users.UserService delegate) {
-        metaData.setEmail(null);
+        when(metaData.getEmail()).thenReturn(null);
         Assert.assertNull(userService.getEmail());
     }
 }
