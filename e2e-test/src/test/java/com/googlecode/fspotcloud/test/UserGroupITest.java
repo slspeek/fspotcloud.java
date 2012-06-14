@@ -24,7 +24,7 @@ import org.junit.Test;
 
 public class UserGroupITest {
     public static final String LINUS_KERNEL_ORG = "linus@kernel.org";
-    public static final String JEFF_GOOGLE_COM = "jeff@google.com";
+    public static final String JEFF_GOOGLE_COM = "jeff@example.com";
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject

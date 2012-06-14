@@ -17,14 +17,13 @@
 package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
+import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
 import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
-
-
 public class PrivateAccessITest {
-    public static final String JEFF_GOOGLE_COM = "jeff@google.com";
+    public static final String JEFF_GOOGLE_COM = "jeff@example.com";
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
@@ -98,6 +97,7 @@ public class PrivateAccessITest {
         photoPage.logout();
         userAccountPage.open();
         photoPage.open();
+        sleepShort();
         photoPage.clickImage(0, 0);
         photoPage.assertPagingLabelSays(1, 9);
     }

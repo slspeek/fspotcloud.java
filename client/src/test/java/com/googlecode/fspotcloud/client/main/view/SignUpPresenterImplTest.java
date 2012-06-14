@@ -34,7 +34,7 @@ import static org.mockito.Mockito.*;
 public class SignUpPresenterImplTest {
     public static final String SECRET = "Secret";
     public static final String ADMIN = "Admin";
-    public static final String RMS_FSF_ORG = "rms@fsf.org";
+    public static final String RMS_FSF_ORG = "rms@example.com";
     public static final String RMS = "RMS";
     @Inject
     SignUpPresenterImpl presenter;

@@ -40,15 +40,17 @@ public class GaeTotalModule extends AbstractModule {
     public static final Integer MAX_COMMAND_DELETE = new Integer(300);
     private String botSecret;
     private final int maxTicks;
+    private final String fromAddress;
 
-    public GaeTotalModule(int maxTicks, String botSecret) {
+    public GaeTotalModule(int maxTicks, String botSecret, String fromAddress) {
         this.maxTicks = maxTicks;
         this.botSecret = botSecret;
+        this.fromAddress = fromAddress;
     }
 
     @Override
     protected void configure() {
-        install(new ServerTotalModule(maxTicks, botSecret));
+        install(new ServerTotalModule(maxTicks, botSecret, fromAddress));
         install(new CachedModelModule(maxTicks));
         install(new TaskQueueDispatchModule());
         install(new TaskQueueDispatchServletModule());

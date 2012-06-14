@@ -34,7 +34,7 @@ public class UserManagerTest {
     public static final String EMAIL = "douglas@yahoo.com";
     public static final String JSLINT = "jslint";
     public static final String IHATEPASSOWRDS = "ihatepassowrds";
-    public static final String RMS_FSF_ORG = "rms@fsf.org";
+    public static final String RMS_FSF_ORG = "rms@example.com";
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject

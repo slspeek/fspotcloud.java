@@ -23,7 +23,7 @@ import org.junit.Test;
 
 
 public class SimpleSignUpITest {
-    public static final String RMS_FSF_ORG = "rms@fsf.org";
+    public static final String RMS_FSF_ORG = "rms@example.com";
     public static final String CREDENTIALS = "ihp";
     public static final String MOOG_BB_ORG = "moog@bb.org";
     public static final String NSA = "nsa";

@@ -25,6 +25,9 @@ import com.google.inject.name.Names;
 import com.googlecode.botdispatch.controller.inject.ControllerServletModule;
 import com.googlecode.fspotcloud.server.control.task.inject.TaskActionsModule;
 import com.googlecode.fspotcloud.server.control.task.inject.TaskModule;
+import com.googlecode.fspotcloud.server.mail.FromAddress;
+import com.googlecode.fspotcloud.server.mail.IMail;
+import com.googlecode.fspotcloud.server.mail.Mailer;
 
 
 /**
@@ -34,11 +37,14 @@ import com.googlecode.fspotcloud.server.control.task.inject.TaskModule;
 */
 public class ServerTotalModule extends AbstractModule {
     private final int maxTicks;
-    private String botSecret;
 
-    public ServerTotalModule(int maxTicks, String botSecret) {
+    private String botSecret;
+    private String fromAddress;
+
+    public ServerTotalModule(int maxTicks, String botSecret, String fromAddress) {
         this.maxTicks = maxTicks;
         this.botSecret = botSecret;
+        this.fromAddress = fromAddress;
     }
 
     @Override
@@ -46,6 +52,8 @@ public class ServerTotalModule extends AbstractModule {
         install(new AdminActionsModule());
         bind(Integer.class).annotatedWith(Names.named("maxTicks"))
             .toInstance(new Integer(maxTicks));
+        bind(String.class).annotatedWith(FromAddress.class).toInstance(fromAddress);
+        bind(IMail.class).to(Mailer.class);
         install(new ServerServletModule());
         install(new ControllerServletModule(botSecret));
         install(new ServerControllerModule());

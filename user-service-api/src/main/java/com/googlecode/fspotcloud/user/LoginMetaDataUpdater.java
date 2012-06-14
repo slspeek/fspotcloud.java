@@ -21,9 +21,13 @@ import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
 import javax.inject.Inject;
 import javax.inject.Provider;
+import java.util.HashSet;
+import java.util.logging.Logger;
 
 
 public class LoginMetaDataUpdater implements ILoginMetaDataUpdater {
+    @Inject
+    Logger log;
     @Inject
     private UserDao userDao;
     @Inject
@@ -32,6 +36,7 @@ public class LoginMetaDataUpdater implements ILoginMetaDataUpdater {
     @Override
     public void doUpdate(User user, LoginMetaData.Type loginType) {
         LoginMetaData loginMetaData = loginMetaDataProvider.get();
+
         loginMetaData.setLastTime(user.getLastLoginTime());
         loginMetaData.setEmail(user.getEmail());
         loginMetaData.setLoginType(loginType);
@@ -39,6 +44,7 @@ public class LoginMetaDataUpdater implements ILoginMetaDataUpdater {
                 user.getGrantedUserGroups()));
         user.touchLastLoginTime();
         userDao.save(user);
+        log.info("doUpdate on:" + loginMetaData);
     }
 
     @Override
@@ -47,5 +53,8 @@ public class LoginMetaDataUpdater implements ILoginMetaDataUpdater {
         loginMetaData.setLastTime(null);
         loginMetaData.setLoginType(null);
         loginMetaData.setEmail(null);
+        HashSet<Long> userGroups = newHashSet();
+        loginMetaData.setGrantedUserGroups(userGroups);
+        log.info("clear on:" + loginMetaData);
     }
 }
