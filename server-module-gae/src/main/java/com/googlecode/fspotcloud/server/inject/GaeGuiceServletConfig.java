@@ -35,7 +35,8 @@ public class GaeGuiceServletConfig extends GuiceServletContextListener {
                     "100"));
         String botSecret = p.getProperty("fspotcloud.bot.secret");
         String fromAddress = p.getProperty("fspotcloud.from.address");
-        Injector i = Guice.createInjector(new GaeTotalModule(maxTicks, botSecret, fromAddress));
+        Injector i = Guice.createInjector(new GaeTotalModule(maxTicks,
+                    botSecret, fromAddress));
 
         return i;
     }

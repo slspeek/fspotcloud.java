@@ -16,31 +16,34 @@
  */
 package com.googlecode.fspotcloud.user;
 
-import com.google.inject.Provider;
-import javax.inject.Inject;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.HashSet;
 
 
-public abstract class UserServiceBase implements com.googlecode.fspotcloud.user.UserService {
-    @Inject
-    Provider<ILoginMetaData> loginMetaDataProvider;
-    @Inject
-    UrlUtil urlUtil;
+/**
+ * Created with IntelliJ IDEA.
+ * User: steven
+ * Date: 14-6-12
+ * Time: 18:40
+ * To change this template use File | Settings | File Templates.
+ */
+public interface ILoginMetaData extends Serializable {
+    HashSet<Long> getGrantedUserGroups();
 
-    @Override
-    public String getEmail() {
-        return loginMetaDataProvider.get().getEmail();
-    }
+    void setGrantedUserGroups(HashSet<Long> grantedUserGroups);
 
-    @Override
-    public boolean isUserLoggedIn() {
-        return getEmail() != null;
-    }
+    String getEmail();
 
-    protected String getPostThirdPartyLoginURL() {
-        return urlUtil.toAbsoluteURL("post-login");
-    }
+    void setEmail(String email);
 
-    protected String getPostThirdPartyLogoutURL() {
-        return urlUtil.toAbsoluteURL("FSpotCloud.html");
+    Type getLoginType();
+
+    void setLoginType(Type loginType);
+
+    Date getLastTime();
+
+    void setLastTime(Date lastTime);
+    public enum Type {REGULAR_LOGIN, OPEN_ID_LOGIN, GAE_LOGIN;
     }
 }

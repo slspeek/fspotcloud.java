@@ -17,6 +17,7 @@
 package com.googlecode.fspotcloud.user.openid;
 
 import com.google.inject.Inject;
+import com.googlecode.fspotcloud.user.ILoginMetaData;
 import com.googlecode.fspotcloud.user.ISessionEmail;
 import com.googlecode.fspotcloud.user.LoginMetaData;
 import javax.servlet.http.HttpServletRequest;
@@ -35,11 +36,11 @@ public class OpenIdUserServiceTest {
     @Inject
     OpenIdUserService instance;
     @Inject
-    LoginMetaData metaData;
+    ILoginMetaData metaData;
 
     @Before
     public void setUp(HttpServletRequest request) {
-        metaData.setEmail(FOO_BAR_COM);
+        when(metaData.getEmail()).thenReturn(FOO_BAR_COM);
         when(request.getScheme()).thenReturn("http");
         when(request.getContextPath()).thenReturn("/context");
         when(request.getServerPort()).thenReturn(8080);
@@ -79,7 +80,7 @@ public class OpenIdUserServiceTest {
      */
     @Test
     public void testGetEmailNull(ISessionEmail sessionEmail) {
-        metaData.setEmail(null);
+        when(metaData.getEmail()).thenReturn(null);
 
         String expResult = null;
         String result = instance.getEmail();
@@ -122,7 +123,7 @@ public class OpenIdUserServiceTest {
      */
     @Test
     public void testIsUserAdmin() {
-        metaData.setEmail(SLSPEEK_GMAIL_COM);
+        when(metaData.getEmail()).thenReturn(SLSPEEK_GMAIL_COM);
 
         boolean expResult = true;
         boolean result = instance.isUserAdmin();

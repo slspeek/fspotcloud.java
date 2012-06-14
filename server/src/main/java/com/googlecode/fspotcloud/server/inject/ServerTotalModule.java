@@ -37,7 +37,6 @@ import com.googlecode.fspotcloud.server.mail.Mailer;
 */
 public class ServerTotalModule extends AbstractModule {
     private final int maxTicks;
-
     private String botSecret;
     private String fromAddress;
 
@@ -52,7 +51,8 @@ public class ServerTotalModule extends AbstractModule {
         install(new AdminActionsModule());
         bind(Integer.class).annotatedWith(Names.named("maxTicks"))
             .toInstance(new Integer(maxTicks));
-        bind(String.class).annotatedWith(FromAddress.class).toInstance(fromAddress);
+        bind(String.class).annotatedWith(FromAddress.class)
+            .toInstance(fromAddress);
         bind(IMail.class).to(Mailer.class);
         install(new ServerServletModule());
         install(new ControllerServletModule(botSecret));

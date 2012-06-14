@@ -19,10 +19,10 @@ package com.googlecode.fspotcloud.user;
 import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
-import javax.inject.Inject;
-import javax.inject.Provider;
 import java.util.HashSet;
 import java.util.logging.Logger;
+import javax.inject.Inject;
+import javax.inject.Provider;
 
 
 public class LoginMetaDataUpdater implements ILoginMetaDataUpdater {
@@ -53,6 +53,7 @@ public class LoginMetaDataUpdater implements ILoginMetaDataUpdater {
         loginMetaData.setLastTime(null);
         loginMetaData.setLoginType(null);
         loginMetaData.setEmail(null);
+
         HashSet<Long> userGroups = newHashSet();
         loginMetaData.setGrantedUserGroups(userGroups);
         log.info("clear on:" + loginMetaData);

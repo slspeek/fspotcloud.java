@@ -48,6 +48,7 @@ public class SignUpHandler extends SimpleActionHandler<SignUpAction, SignUpResul
             mayBeExisted.setRegistered(true);
             userDao.save(mayBeExisted);
             mailer.send(action.getEmail(), "Hi", "Hello mail!");
+
             return new SignUpResult(true);
         } else {
             return new SignUpResult(false);

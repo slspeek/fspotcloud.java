@@ -23,7 +23,7 @@ import org.junit.Test;
 
 
 public class UserGroupITest {
-    public static final String LINUS_KERNEL_ORG = "linus@kernel.org";
+    public static final String LINUS_KERNEL_ORG = "linus@example.com";
     public static final String JEFF_GOOGLE_COM = "jeff@example.com";
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
@@ -57,7 +57,7 @@ public class UserGroupITest {
         manageUsersPage.verifyText(LINUS_KERNEL_ORG);
         manageUsersPage.selectFirstRow();
         manageUsersPage.deleteUser();
-        manageUsersPage.verifyTextNotPresent(JEFF_GOOGLE_COM);
+        manageUsersPage.verifyTextNotPresent(LINUS_KERNEL_ORG);
 
         myUserGroupsPage.deleteUserGroup();
         myUserGroupsPage.verifyTextNotPresent(
