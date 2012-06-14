@@ -28,6 +28,7 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 public class LogoutHandler extends SimpleActionHandler<LogoutAction, VoidResult> {
     private final ILoginMetaDataUpdater loginMetaDataUpdater;
 
+
     @Inject
     public LogoutHandler(ILoginMetaDataUpdater loginMetaDataUpdater) {
         this.loginMetaDataUpdater = loginMetaDataUpdater;

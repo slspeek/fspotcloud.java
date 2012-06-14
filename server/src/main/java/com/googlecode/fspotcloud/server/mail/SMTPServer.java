@@ -1,3 +1,5 @@
+package com.googlecode.fspotcloud.server.mail;
+
 /*
  * Copyright 2010-2012 Steven L. Speek.
  * This program is free software; you can redistribute it and/or
@@ -14,19 +16,21 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.user.inject;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-import com.google.inject.servlet.ServletModule;
-import com.google.inject.servlet.SessionScoped;
-import com.googlecode.fspotcloud.user.*;
+import com.google.inject.BindingAnnotation;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
-public class AbstractUserModule extends ServletModule {
-    @Override
-    protected void configureServlets() {
-        bind(IAdminPermission.class).to(AdminPermission.class);
-        bind(LoginMetaData.class).in(SessionScoped.class);
-        //bind(LoginMetaData.class).toProvider(LoginMetaDataProvider.class);
-        bind(ILoginMetaDataUpdater.class).to(LoginMetaDataUpdater.class);
-    }
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+@BindingAnnotation
+@Target({FIELD, PARAMETER, METHOD})
+@Retention(RUNTIME)
+public @interface SMTPServer {
 }

@@ -20,7 +20,7 @@ import javax.inject.Inject;
 
 
 public class RegularLoginBot implements ILogin {
-    public static final String RMS_FSF_ORG = "rms@fsf.org";
+    public static final String RMS_FSF_ORG = "rms@example.com";
     public static final String CREDENTIALS = "ihp";
     @Inject
     LoginPage loginPage;

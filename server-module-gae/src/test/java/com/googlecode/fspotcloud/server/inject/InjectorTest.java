@@ -38,7 +38,7 @@ public class InjectorTest {
             "true");
 
         Injector injector = Guice.createInjector(new GaeTotalModule(10,
-                    "FOO_SECRET"));
+                    "FOO_SECRET", fromAddress));
         AssertJUnit.assertNotNull(injector);
 
         PeerDatabaseDao defaultPeer = injector.getInstance(PeerDatabaseDao.class);

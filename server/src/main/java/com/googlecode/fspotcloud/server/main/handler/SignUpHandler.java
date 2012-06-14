@@ -17,6 +17,7 @@
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.google.inject.Inject;
+import com.googlecode.fspotcloud.server.mail.IMail;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
@@ -28,10 +29,12 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 public class SignUpHandler extends SimpleActionHandler<SignUpAction, SignUpResult> {
     private final UserDao userDao;
+    private final IMail mailer;
 
     @Inject
-    public SignUpHandler(UserDao userDao) {
+    public SignUpHandler(UserDao userDao, IMail mailer) {
         this.userDao = userDao;
+        this.mailer = mailer;
     }
 
     @Override
@@ -44,7 +47,7 @@ public class SignUpHandler extends SimpleActionHandler<SignUpAction, SignUpResul
             mayBeExisted.setCredentials(action.getPassword());
             mayBeExisted.setRegistered(true);
             userDao.save(mayBeExisted);
-
+            mailer.send(action.getEmail(), "Hi", "Hello mail!");
             return new SignUpResult(true);
         } else {
             return new SignUpResult(false);

@@ -45,7 +45,7 @@ public class J2eeTotalModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        install(new ServerTotalModule(maxTicks, botSecret));
+        install(new ServerTotalModule(maxTicks, botSecret, adminEmail));
         install(new ModelModule(maxTicks));
         install(new TaskQueueDispatchDirectModule());
         install(new OpenIdUserModule(adminEmail));

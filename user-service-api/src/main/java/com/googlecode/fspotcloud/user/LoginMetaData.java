@@ -63,4 +63,17 @@ public class LoginMetaData implements Serializable {
     }
     public enum Type {REGULAR_LOGIN, OPEN_ID_LOGIN, GAE_LOGIN;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer();
+        sb.append("LoginMetaData");
+        sb.append("{loginType=").append(loginType);
+        sb.append(", lastTime=").append(lastTime);
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", grantedUserGroups=").append(grantedUserGroups);
+        sb.append("}@");
+        sb.append(super.toString());
+        return sb.toString();
+    }
 }

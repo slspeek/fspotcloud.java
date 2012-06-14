@@ -39,7 +39,7 @@ public class LoginMetaDataUpdaterTest {
     @Test
     public void testDoUpdate() throws Exception {
         Date lastTime = new Date(987654321);
-        User user = new UserEntity("rms@fsf.org");
+        User user = new UserEntity("rms@example.com");
         user.setLastLoginTime(lastTime);
         updater.doUpdate(user, LoginMetaData.Type.GAE_LOGIN);
 

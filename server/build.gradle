@@ -19,6 +19,7 @@ dependencies {
     provided libs.servlet_spec
 //    compile libs.servlet_spec
     compile libs.guava
+    compile libs.javamail
 
     testCompile project(':model-jpa-j2ee')
     testCompile project(':test-util')
