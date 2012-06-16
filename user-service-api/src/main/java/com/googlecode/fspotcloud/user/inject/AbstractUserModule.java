@@ -16,18 +16,18 @@
  */
 package com.googlecode.fspotcloud.user.inject;
 
+import com.google.inject.AbstractModule;
 import com.google.inject.servlet.ServletModule;
-import com.google.inject.servlet.SessionScoped;
 import com.googlecode.fspotcloud.user.*;
+import javax.inject.Singleton;
 
 
-public class AbstractUserModule extends ServletModule {
-    @Override
-    protected void configureServlets() {
+public class AbstractUserModule extends AbstractModule {
+    protected void configure() {
         bind(IAdminPermission.class).to(AdminPermission.class);
         bind(ILoginMetaData.class).to(LoginMetaData.class);
-        //bind(LoginMetaData.class).in(SessionScoped.class);
-        //bind(LoginMetaData.class).toProvider(LoginMetaDataProvider.class);
         bind(ILoginMetaDataUpdater.class).to(LoginMetaDataUpdater.class);
+        bind(String.class).annotatedWith(ServerAddress.class)
+            .toProvider(ServerAddressProvider.class).in(Singleton.class);
     }
 }

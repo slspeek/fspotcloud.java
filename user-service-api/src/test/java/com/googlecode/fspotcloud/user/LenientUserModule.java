@@ -20,7 +20,9 @@
  */
 package com.googlecode.fspotcloud.user;
 
+import com.google.inject.AbstractModule;
 import com.googlecode.fspotcloud.user.inject.AbstractUserModule;
+import com.googlecode.fspotcloud.user.inject.ServerAddress;
 
 
 /**
@@ -28,10 +30,14 @@ import com.googlecode.fspotcloud.user.inject.AbstractUserModule;
  *
  * @author steven
 */
-public class LenientUserModule extends AbstractUserModule {
+public class LenientUserModule extends AbstractModule {
     @Override
-    protected void configureServlets() {
-        super.configureServlets();
+    protected void configure() {
         bind(UserService.class).to(LenientUserService.class);
+        bind(IAdminPermission.class).to(AdminPermission.class);
+        bind(ILoginMetaData.class).to(LoginMetaData.class);
+        bind(ILoginMetaDataUpdater.class).to(LoginMetaDataUpdater.class);
+        bind(String.class).annotatedWith(ServerAddress.class)
+            .toInstance("http://localhost:8080/context");
     }
 }

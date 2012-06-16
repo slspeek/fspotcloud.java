@@ -20,7 +20,6 @@ import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
 import com.googlecode.fspotcloud.user.LoginMetaData;
-import com.googlecode.fspotcloud.user.UserService;
 import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;

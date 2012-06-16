@@ -27,11 +27,6 @@ import org.testng.annotations.Test;
 
 
 public class InjectorTest {
-    @BeforeClass
-    public void load() {
-    }
-
-    @Ignore
     @Test
     public void testInjector() {
         System.setProperty("appengine.orm.disable.duplicate.emf.exception",

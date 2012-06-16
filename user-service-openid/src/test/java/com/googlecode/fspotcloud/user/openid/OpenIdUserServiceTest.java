@@ -19,7 +19,7 @@ package com.googlecode.fspotcloud.user.openid;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.user.ILoginMetaData;
 import com.googlecode.fspotcloud.user.ISessionEmail;
-import com.googlecode.fspotcloud.user.LoginMetaData;
+import com.googlecode.fspotcloud.user.inject.ServerAddress;
 import javax.servlet.http.HttpServletRequest;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
@@ -37,15 +37,6 @@ public class OpenIdUserServiceTest {
     OpenIdUserService instance;
     @Inject
     ILoginMetaData metaData;
-
-    @Before
-    public void setUp(HttpServletRequest request) {
-        when(metaData.getEmail()).thenReturn(FOO_BAR_COM);
-        when(request.getScheme()).thenReturn("http");
-        when(request.getContextPath()).thenReturn("/context");
-        when(request.getServerPort()).thenReturn(8080);
-        when(request.getServerName()).thenReturn("localhost");
-    }
 
     @After
     public void tearDown() {
@@ -89,6 +80,8 @@ public class OpenIdUserServiceTest {
 
     @Test
     public void testGetEmailFoo() {
+        when(metaData.getEmail()).thenReturn(FOO_BAR_COM);
+
         String expResult = FOO_BAR_COM;
         String result = instance.getEmail();
         assertEquals(expResult, result);
@@ -99,6 +92,8 @@ public class OpenIdUserServiceTest {
      */
     @Test
     public void testIsUserLoggedIn() {
+        when(metaData.getEmail()).thenReturn(FOO_BAR_COM);
+
         boolean expResult = true;
         boolean result = instance.isUserLoggedIn();
         assertEquals(expResult, result);
@@ -134,6 +129,8 @@ public class OpenIdUserServiceTest {
         protected void configureTest() {
             bind(String.class).annotatedWith(AdminEmail.class)
                 .toInstance(SLSPEEK_GMAIL_COM);
+            bind(String.class).annotatedWith(ServerAddress.class)
+                .toInstance("http://localhost:8080/context");
         }
     }
 }

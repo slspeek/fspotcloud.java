@@ -23,7 +23,6 @@ import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.ApproveTagAction;
-import com.googlecode.fspotcloud.shared.main.RevokeTagAction;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 import java.util.Set;
 import net.customware.gwt.dispatch.server.ExecutionContext;

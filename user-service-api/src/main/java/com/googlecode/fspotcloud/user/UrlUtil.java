@@ -16,20 +16,18 @@
  */
 package com.googlecode.fspotcloud.user;
 
-import com.google.inject.Provider;
+import com.googlecode.fspotcloud.user.inject.ServerAddress;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
+import javax.inject.Provider;
 
 
 public class UrlUtil {
     @Inject
-    Provider<HttpServletRequest> requestProvider;
+    @ServerAddress
+    Provider<String> serverAddressProvider;
 
     protected String toAbsoluteURL(String url) {
-        HttpServletRequest request = requestProvider.get();
-        String result = request.getScheme() + "://" + request.getServerName() +
-            ":" + request.getServerPort() + request.getContextPath() + "/" +
-            url;
+        String result = serverAddressProvider.get() + "/" + url;
 
         return result;
     }

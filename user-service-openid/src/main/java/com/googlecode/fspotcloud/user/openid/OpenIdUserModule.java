@@ -30,8 +30,8 @@ public class OpenIdUserModule extends AbstractUserModule {
     }
 
     @Override
-    protected void configureServlets() {
-        super.configureServlets();
+    protected void configure() {
+        super.configure();
         bind(String.class).annotatedWith(AdminEmail.class).toInstance(adminEmail);
         bind(com.googlecode.fspotcloud.user.UserService.class)
             .to(com.googlecode.fspotcloud.user.openid.OpenIdUserService.class);

@@ -27,7 +27,6 @@ import org.testng.annotations.Test;
 
 
 public class J2eeInjectorTest {
-    @Ignore
     @Test
     public void testInjector() {
         Injector injector = Guice.createInjector(new J2eeTotalModule(10,
