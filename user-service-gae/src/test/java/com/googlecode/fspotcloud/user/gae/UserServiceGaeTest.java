@@ -21,10 +21,11 @@
 package com.googlecode.fspotcloud.user.gae;
 
 import com.googlecode.fspotcloud.user.ILoginMetaData;
-import com.googlecode.fspotcloud.user.LoginMetaData;
+import com.googlecode.fspotcloud.user.inject.ServerAddress;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
@@ -47,12 +48,8 @@ public class UserServiceGaeTest {
     ILoginMetaData metaData;
 
     @Before
-    public void setUp(HttpSession session, HttpServletRequest request) {
+    public void setUp() {
         when(metaData.getEmail()).thenReturn(FOO_FSF_ORG);
-        when(request.getScheme()).thenReturn("http");
-        when(request.getContextPath()).thenReturn("/context");
-        when(request.getServerPort()).thenReturn(8080);
-        when(request.getServerName()).thenReturn("localhost");
     }
 
     @Test
@@ -94,5 +91,12 @@ public class UserServiceGaeTest {
         com.google.appengine.api.users.UserService delegate) {
         when(metaData.getEmail()).thenReturn(null);
         Assert.assertNull(userService.getEmail());
+    }
+
+    public static class Module extends JukitoModule {
+        protected void configureTest() {
+            bind(String.class).annotatedWith(ServerAddress.class)
+                .toInstance("http://localhost:8080/context");
+        }
     }
 }

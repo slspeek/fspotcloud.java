@@ -17,9 +17,11 @@
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.guiceberry.GuiceBerryModule;
+import com.google.guiceberry.TestScoped;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
+import com.google.inject.servlet.SessionScoped;
 import com.googlecode.botdispatch.controller.inject.LocalControllerModule;
 import com.googlecode.fspotcloud.model.jpa.ModelModule;
 import com.googlecode.fspotcloud.peer.CopyDatabase;
@@ -32,6 +34,8 @@ import com.googlecode.fspotcloud.server.admin.handler.UserSynchronizesPeerHandle
 import com.googlecode.fspotcloud.server.admin.handler.UserUnImportsTagHandler;
 import com.googlecode.fspotcloud.server.control.task.inject.TaskActionsModule;
 import com.googlecode.fspotcloud.server.inject.MainActionModule;
+import com.googlecode.fspotcloud.server.mail.IMail;
+import com.googlecode.fspotcloud.server.mail.Mailer;
 import com.googlecode.fspotcloud.server.main.handler.GetTagTreeHandler;
 import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
@@ -41,7 +45,9 @@ import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.fspotcloud.user.ISessionEmail;
 import com.googlecode.fspotcloud.user.LenientUserModule;
+import com.googlecode.fspotcloud.user.SessionEmail;
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
+import javax.servlet.http.HttpSession;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 import static org.mockito.Mockito.mock;
 public class J2eeIntegrationGuiceBerryEnv extends GuiceBerryModule {
@@ -67,7 +73,10 @@ public class J2eeIntegrationGuiceBerryEnv extends GuiceBerryModule {
         install(new MyPeerModule());
         install(new LenientUserModule());
         install(new MainActionModule());
-        bind(ISessionEmail.class).toInstance(mock(ISessionEmail.class));
+        bind(ISessionEmail.class).to(SessionEmail.class);
+        bind(IMail.class).toInstance(mock(IMail.class));
+        bind(HttpSession.class).to(FakeHttpServletSession.class)
+            .in(TestScoped.class);
     }
 }
 

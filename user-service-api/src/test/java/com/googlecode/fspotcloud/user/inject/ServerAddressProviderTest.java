@@ -14,16 +14,10 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.user;
+package com.googlecode.fspotcloud.user.inject;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Module;
-import com.googlecode.fspotcloud.user.inject.ServerAddress;
-import com.googlecode.fspotcloud.user.inject.ServerAddressProvider;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.servlet.http.HttpServletRequest;
-import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -31,21 +25,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.when;
 @RunWith(JukitoRunner.class)
-public class UrlUtilTest {
+public class ServerAddressProviderTest {
     @Inject
-    UrlUtil util;
+    ServerAddressProvider provider;
 
-    @Test
-    public void toAbsoluteURL() throws Exception {
-        String result = util.toAbsoluteURL("my-part");
-        assertEquals("http://localhost:8080/context/my-part", result);
+    @Before
+    public void setUp(HttpServletRequest request) throws Exception {
+        when(request.getScheme()).thenReturn("http");
+        when(request.getContextPath()).thenReturn("/context");
+        when(request.getServerPort()).thenReturn(8080);
+        when(request.getServerName()).thenReturn("localhost");
     }
 
-    public static class Module extends JukitoModule {
-        @Override
-        protected void configureTest() {
-            bind(String.class).annotatedWith(ServerAddress.class)
-                .toInstance("http://localhost:8080/context");
-        }
+    @Test
+    public void testName() throws Exception {
+        assertEquals("http://localhost:8080/context", provider.get());
     }
 }

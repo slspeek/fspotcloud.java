@@ -14,29 +14,22 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.client.main.view.api;
+package com.googlecode.fspotcloud.user.inject;
 
-import com.google.gwt.activity.shared.Activity;
-import com.google.gwt.user.client.ui.IsWidget;
-import java.util.Set;
+import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.servlet.http.HttpServletRequest;
 
 
-public interface ManageUsersView extends IsWidget {
-    void setPresenter(ManageUsersPresenter presenter);
+public class ServerAddressProvider implements Provider<String> {
+    @Inject
+    Provider<HttpServletRequest> requestProvider;
 
-    void setData(Set<String> data);
+    public String get() {
+        HttpServletRequest request = requestProvider.get();
+        String result = request.getScheme() + "://" + request.getServerName() +
+            ":" + request.getServerPort() + request.getContextPath();
 
-    String getSelected();
-
-    String getNewEmail();
-
-    void setUserGroupName(String name);
-
-    interface ManageUsersPresenter extends Activity {
-        void newUser();
-
-        void delete();
-
-        void setId(Long id);
+        return result;
     }
 }

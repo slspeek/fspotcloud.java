@@ -1,0 +1,62 @@
+import org.apache.tools.ant.filters.ExpandProperties
+
+description = 'Integration testing for prod-j2ee-war'
+
+findbugsTest.enabled = false;
+
+dependencies {
+    testCompile project(':server-module-j2ee')
+    testCompile libs.guava_testlib
+    testCompile libs.guiceberry
+    testCompile libs.jetty
+    testCompile libs.junit
+}
+
+task unpackWar(dependsOn: ':prod-j2ee-war:assemble') << {
+    mkdir "$buildDir/exploded-war-raw"
+    mkdir "$buildDir/exploded"
+    myTests = file("../prod-j2ee-war/build/libs/prod-j2ee-war-${version}.war")
+    ant.unjar(dest: "$buildDir/exploded-war-raw/", src: myTests)
+}
+
+task copyWar(dependsOn:  unpackWar, type: Copy) {
+    ant.properties['bot.secret.userinput'] = "${bot_secret}".toString()
+    ant.properties['admin.email'] = "rms@example.com"
+    from('build/exploded-war-raw') {
+        include "**/properties.properties"
+        filter(ExpandProperties, project: ant.project)
+    }
+    from('build/exploded-war-raw') {
+        exclude "**/properties.properties"
+    }
+    from ('src/test/resources') {
+       include 'WEB-INF/web.xml'
+    }
+    into 'build/exploded'
+}
+
+task peerStop(type: Exec) {
+    commandLine "telnet", "localhost", "4444"
+    ignoreExitValue = true
+}
+
+test {
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
+        'com.googlecode.fspotcloud.test.IntegrationGuiceBerryEnv'
+    systemProperties['bot.secret'] = bot_secret
+    systemProperties['endpoint'] = "localhost:8050/j2ee-e2e"
+    systemProperties['peer.jar'] = "../peer/build/libs/peer-${version}.jar"
+    testLogging.showStandardStreams = true
+}
+
+test.dependsOn copyWar, ":peer:assemble"
+
+test << {
+    println "Stopping peer"
+    peerStop.execute()
+}
+
+task deleteDB(type: Delete) {
+    delete '../MODELJPA', 'runtime', 'derby.log', "MODELJPA"
+}
+clean.dependsOn deleteDB, peerStop

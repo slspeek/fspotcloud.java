@@ -16,19 +16,21 @@
  */
 package com.googlecode.fspotcloud.server.inject;
 
-import com.googlecode.fspotcloud.user.ISessionEmail;
-import com.googlecode.fspotcloud.user.LenientUserService;
-import com.googlecode.fspotcloud.user.SessionEmail;
-import com.googlecode.fspotcloud.user.UserService;
-import com.googlecode.fspotcloud.user.inject.AbstractUserModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.servlet.GuiceServletContextListener;
+import com.googlecode.fspotcloud.server.main.PropertiesLoader;
+import java.util.Properties;
 
 
-public class LenientUserServiceModule extends AbstractUserModule {
+public class TestServerGuiceServletConfig extends GuiceServletContextListener {
+    public static Injector INJECTOR;
+
     @Override
-    protected void configureServlets() {
-        super.configureServlets();
-        bind(UserService.class)
-            .to((Class<?extends UserService>) LenientUserService.class);
-        bind(ISessionEmail.class).to(SessionEmail.class);
+    protected Injector getInjector() {
+        INJECTOR = Guice.createInjector(new J2eeTotalModule(10, "VERY_GRADLE",
+                    "sls"));
+
+        return INJECTOR;
     }
 }

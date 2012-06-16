@@ -22,8 +22,7 @@ package com.googlecode.fspotcloud.test;
 
 import com.thoughtworks.selenium.Selenium;
 import javax.inject.Inject;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+
 
 /**
  *

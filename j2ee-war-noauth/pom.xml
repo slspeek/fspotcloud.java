@@ -156,7 +156,7 @@
                             </includes>
                             <testClassesDirectory>${project.build.directory}/e2e-tests</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.test.J2eeWarGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.test.IntegrationGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>
                                  <bot.secret>${bot.secret}</bot.secret>
                                 <peer.jar>../peer/target/peer-${project.version}-jar-with-dependencies.jar</peer.jar>
                                 <endpoint>localhost:8080/j2ee-war-noauth</endpoint>

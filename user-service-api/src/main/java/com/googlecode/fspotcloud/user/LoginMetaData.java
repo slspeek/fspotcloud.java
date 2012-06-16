@@ -17,10 +17,8 @@
 package com.googlecode.fspotcloud.user;
 
 import static com.google.common.collect.Sets.newHashSet;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Set;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
