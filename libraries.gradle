@@ -7,7 +7,6 @@ libs = [
         guice_servlet: "com.google.inject.extensions:guice-servlet:${guice_version}",
         guiceberry: "com.google.guiceberry:guiceberry:3.1.0",
         javamail: "javax.mail:mail:1.4",
-        jetty: ['jetty:jetty:6.0.2', 'jetty:jetty-util:6.0.2'],
         jdo_api: "javax.jdo:jdo-api:3.0",
         jta: "javax.transaction:jta:1.1",
         commons_lang: "commons-lang:commons-lang:2.6",
@@ -21,6 +20,7 @@ libs = [
         gwt_test_utils: "com.googlecode.gwt-test-utils:gwt-test-utils:0.38",
         hibernate_all: ["org.hibernate:hibernate-core:${hibernate_version}",
                 "javassist:javassist:3.12.0.GA",
+               // "org.hibernate:hibernate-validator-annotation-processor:4.1.0.Final",
                 "org.hibernate:hibernate-entitymanager:${hibernate_version}"],
         servlet_spec: dependencies.create("org.apache.geronimo.specs:geronimo-servlet_2.5_spec:1.2") {
             transitive = false
@@ -40,5 +40,12 @@ libs = [
         task_dispatch_dispatch_api:   "com.googlecode.taskqueue-dispatch:dispatch-api:${taskqueue_dispatch_version}",
         jukito: "org.jukito:jukito:1.1",
         test_ng: "org.testng:testng:6.1.1",
-        http_unit: "httpunit:httpunit:1.7"
+         tomcat: ["org.apache.tomcat:catalina:${tomcatVersion}",
+            "org.apache.tomcat:coyote:${tomcatVersion}",
+            "org.apache.tomcat:juli:${tomcatVersion}",
+            "org.apache.tomcat:jasper:${tomcatVersion}"],
+        http_unit: "httpunit:httpunit:1.7",
+        validation_api: 'javax.validation:validation-api:1.0.0.GA' ,
+        jetty: ["org.mortbay.jetty:jetty:${jetty_version}", "org.mortbay.jetty:jetty-util:${jetty_version}"]
+
 ]

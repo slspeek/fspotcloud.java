@@ -3,6 +3,11 @@ description = 'F-SpotCloud Server J2EE Configuration'
 configurations {
     integrationTest
     testCompile.extendsFrom(integrationTest)
+    provided
+}
+
+sourceSets {
+    main { compileClasspath += configurations.provided }
 }
 
 findbugsTest.enabled = false
@@ -12,10 +17,11 @@ dependencies {
     compile project(':user-service-api')
     compile project(':user-service-openid')
     compile project(':model-jpa-j2ee')
-    compile project(path: ':user-service-api', configuration: 'testFixtures')
+    compile project(path: ':user-service-api', configuration: 'testFixtures')   //FIXME
     compile("com.googlecode.bot-dispatch:command-jpa-j2ee:${bot_dispatch_version}")
     compile("com.googlecode.taskqueue-dispatch:direct:${taskqueue_dispatch_version}")
 
+    provided libs.servlet_spec
     testCompile project(':peer')
     testCompile project(':test-util')
     testCompile project(path: ':peer-server-integration', configuration: 'testCompile')
@@ -23,6 +29,7 @@ dependencies {
     testCompile libs.guava_testlib
     testCompile libs.junit
     testCompile libs.test_ng
+
     integrationTest files("../peer-server-integration/build/libs/peer-server-integration-${version}-tests.jar")
 }
 

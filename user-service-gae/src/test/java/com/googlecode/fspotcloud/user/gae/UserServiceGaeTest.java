@@ -23,8 +23,6 @@ package com.googlecode.fspotcloud.user.gae;
 import com.googlecode.fspotcloud.user.ILoginMetaData;
 import com.googlecode.fspotcloud.user.inject.ServerAddress;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
 import org.junit.Assert;

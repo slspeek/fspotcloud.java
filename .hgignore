@@ -1,5 +1,7 @@
 syntax: glob
 fspotcloud.iws
+*/tomcat.*
+tomcat.*
 */.project
 .project
 .classpath

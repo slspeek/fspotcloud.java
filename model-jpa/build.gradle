@@ -1,5 +1,13 @@
 description = 'Model JPA Base'
 
+configurations {
+    provided
+}
+
+sourceSets {
+    main { compileClasspath += configurations.provided }
+}
+
 dependencies {
     compile project(':rpc')
     compile project(':model-api')
@@ -15,7 +23,5 @@ dependencies {
     compile libs.simple_jpa_dao_impl
     compile libs.simple_jpa_dao_cached_dao
 
-    compile(libs.servlet_spec) {
-        provided: true
-    }
+    provided libs.servlet_spec
 }

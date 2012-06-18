@@ -55,7 +55,6 @@ import com.googlecode.fspotcloud.user.LenientUserModule;
 import com.googlecode.fspotcloud.user.SessionEmail;
 import com.googlecode.simplejpadao.EntityModule;
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
 import net.sf.jsr107cache.Cache;

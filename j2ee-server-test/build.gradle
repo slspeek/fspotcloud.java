@@ -6,10 +6,18 @@ findbugsTest.enabled = false;
 
 dependencies {
     testCompile project(':server-module-j2ee')
+    testCompile project(path: ':e2e-test', configuration: 'testCompile')
     testCompile libs.guava_testlib
     testCompile libs.guiceberry
-    testCompile libs.jetty
     testCompile libs.junit
+    testCompile libs.jetty
+
+    //testCompile libs.validation_api
+}
+
+task unpackTest(dependsOn: ':e2e-test:packageTests') << {
+//    myTests = file("../e2e-test/build/libs/e2e-test-${version}-tests.jar")
+//    ant.unjar(dest: "$buildDir/classes/test", src: myTests)
 }
 
 task unpackWar(dependsOn: ':prod-j2ee-war:assemble') << {
@@ -19,7 +27,7 @@ task unpackWar(dependsOn: ':prod-j2ee-war:assemble') << {
     ant.unjar(dest: "$buildDir/exploded-war-raw/", src: myTests)
 }
 
-task copyWar(dependsOn:  unpackWar, type: Copy) {
+task copyWar(dependsOn: unpackWar, type: Copy) {
     ant.properties['bot.secret.userinput'] = "${bot_secret}".toString()
     ant.properties['admin.email'] = "rms@example.com"
     from('build/exploded-war-raw') {
@@ -28,9 +36,10 @@ task copyWar(dependsOn:  unpackWar, type: Copy) {
     }
     from('build/exploded-war-raw') {
         exclude "**/properties.properties"
+        //exclude "WEB-INF/lib/*"
     }
-    from ('src/test/resources') {
-       include 'WEB-INF/web.xml'
+    from('src/test/resources') {
+        include 'WEB-INF/web.xml'
     }
     into 'build/exploded'
 }
@@ -44,12 +53,14 @@ test {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.test.IntegrationGuiceBerryEnv'
     systemProperties['bot.secret'] = bot_secret
-    systemProperties['endpoint'] = "localhost:8050/j2ee-e2e"
+    systemProperties['endpoint'] = "localhost:8000"
     systemProperties['peer.jar'] = "../peer/build/libs/peer-${version}.jar"
     testLogging.showStandardStreams = true
+    include "com/googlecode/fspotcloud/test/DashboardITest.class"
+    ignoreFailures = true
 }
 
-test.dependsOn copyWar, ":peer:assemble"
+test.dependsOn unpackTest, copyWar, ":peer:assemble"
 
 test << {
     println "Stopping peer"

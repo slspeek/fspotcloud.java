@@ -16,6 +16,10 @@
  */
 package com.googlecode.fspotcloud.server.admin.integration;
 
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  * Copyright 2005 Joe Walker
@@ -32,10 +36,6 @@ package com.googlecode.fspotcloud.server.admin.integration;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
