@@ -7,10 +7,7 @@ apply plugin: 'tomcat'
 findbugsTest.enabled = false;
 
 dependencies {
-    tomcat "org.apache.tomcat:catalina:${tomcatVersion}",
-            "org.apache.tomcat:coyote:${tomcatVersion}",
-            "org.apache.tomcat:juli:${tomcatVersion}",
-            "org.apache.tomcat:jasper:${tomcatVersion}"
+    tomcat libs.tomcat
 
     testCompile project(path: ':e2e-test', configuration: 'testCompile')
     testCompile "org.seleniumhq.selenium:selenium:2.0b3"

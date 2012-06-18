@@ -1,8 +1,16 @@
 description = 'User service api'
 
 configurations {
+    provided
     testFixtures {
         extendsFrom testRuntime
+    }
+}
+
+sourceSets {
+    main { compileClasspath += configurations.provided }
+    test { compileClasspath += configurations.provided
+           runtimeClasspath += compileClasspath
     }
 }
 
@@ -10,7 +18,7 @@ dependencies {
     compile project(':model-api')
     compile libs.inject
     compile libs.guice_servlet
-    compile libs.servlet_spec
+    provided libs.servlet_spec
     compile libs.guava
     testCompile project(":model-jpa-j2ee")
     testCompile libs.junit

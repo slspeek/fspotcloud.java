@@ -16,20 +16,15 @@
  */
 package com.googlecode.fspotcloud.user;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Module;
 import com.googlecode.fspotcloud.user.inject.ServerAddress;
-import com.googlecode.fspotcloud.user.inject.ServerAddressProvider;
 import javax.inject.Inject;
-import javax.inject.Singleton;
-import javax.servlet.http.HttpServletRequest;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.Mockito.when;
+
+
 @RunWith(JukitoRunner.class)
 public class UrlUtilTest {
     @Inject

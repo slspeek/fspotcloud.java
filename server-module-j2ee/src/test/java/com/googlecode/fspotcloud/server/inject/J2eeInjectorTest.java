@@ -21,7 +21,6 @@ import com.google.inject.Injector;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
-import org.junit.Ignore;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 

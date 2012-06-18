@@ -15,7 +15,7 @@
     </filter-mapping>
 	<!-- Servlets -->
     <listener>
-        <listener-class>com.googlecode.fspotcloud.server.inject.TestServerGuiceServletConfig</listener-class>
+        <listener-class>com.googlecode.fspotcloud.test.TestServerGuiceServletConfig</listener-class>
     </listener>
 	<!-- Default page to serve -->
     <welcome-file-list>

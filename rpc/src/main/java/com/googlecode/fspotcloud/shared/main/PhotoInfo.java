@@ -17,6 +17,7 @@
 package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
+import com.google.common.collect.ComparisonChain;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -117,16 +118,8 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
     }
 
     public int compareTo(PhotoInfo o) {
-        Date otherDate = o.getDate();
-        final int dateComparison = this.date.compareTo(otherDate);
-
-        if (dateComparison == 0) {
-            String otherId = o.getId();
-
-            return id.compareTo(otherId);
-        } else {
-            return dateComparison;
-        }
+        return ComparisonChain.start().compare(date, o.date).compare(id, o.id)
+                              .result();
     }
 
     public String toString() {

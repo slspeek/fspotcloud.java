@@ -21,7 +21,6 @@
 package com.googlecode.fspotcloud.user;
 
 import com.google.inject.AbstractModule;
-import com.googlecode.fspotcloud.user.inject.AbstractUserModule;
 import com.googlecode.fspotcloud.user.inject.ServerAddress;
 
 

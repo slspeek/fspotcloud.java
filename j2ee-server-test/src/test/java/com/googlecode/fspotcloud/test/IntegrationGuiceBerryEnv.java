@@ -17,25 +17,36 @@
 package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.GuiceBerryEnvMain;
-import com.google.guiceberry.GuiceBerryModule;
-import com.googlecode.fspotcloud.server.inject.J2eeTotalModule;
+import com.google.inject.name.Names;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 
-public class IntegrationGuiceBerryEnv extends GuiceBerryModule {
+public class IntegrationGuiceBerryEnv extends SeleniumGuiceBerryEnv {
+    public static final int PORT = 8000;
+
     @Override
     protected void configure() {
         super.configure();
-        //install(new GuiceBerryModule());
         bind(GuiceBerryEnvMain.class).to(ServerStarter.class);
-        install(new J2eeTotalModule(10, "VERY_GRADLE", "slspeek@gmail.com"));
+        bind(String.class).annotatedWith(Names.named("baseUrl"))
+            .toInstance("http://localhost:8000");
+        bind(ILogin.class).to(RegularLoginBot.class);
     }
 
     private static final class ServerStarter implements GuiceBerryEnvMain {
-        private FscServer server = new FscServer(8020);
+        private FscServer server;
 
         public void run() {
             // Starting a server should never be done in a @Provides method
-            // (or inside Provider's get).
+            try {
+                server = new FscServer(PORT); // (or inside Provider's get).
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+
             server.start();
         }
     }

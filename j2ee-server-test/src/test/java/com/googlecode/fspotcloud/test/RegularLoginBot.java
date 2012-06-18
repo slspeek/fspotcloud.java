@@ -14,23 +14,26 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.server.inject;
+package com.googlecode.fspotcloud.test;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.servlet.GuiceServletContextListener;
-import com.googlecode.fspotcloud.server.main.PropertiesLoader;
-import java.util.Properties;
+import javax.inject.Inject;
 
 
-public class TestServerGuiceServletConfig extends GuiceServletContextListener {
-    public static Injector INJECTOR;
+public class RegularLoginBot implements ILogin {
+    public static final String RMS_FSF_ORG = "rms@example.com";
+    public static final String CREDENTIALS = "ihp";
+    @Inject
+    LoginPage loginPage;
+    @Inject
+    SignUpPage signUpPage;
 
     @Override
-    protected Injector getInjector() {
-        INJECTOR = Guice.createInjector(new J2eeTotalModule(10, "VERY_GRADLE",
-                    "sls"));
-
-        return INJECTOR;
+    public void login() throws Exception {
+        signUpPage.open();
+        signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS, "rms");
+        signUpPage.signUp();
+        loginPage.open();
+        loginPage.fillForm(RMS_FSF_ORG, CREDENTIALS);
+        loginPage.login();
     }
 }

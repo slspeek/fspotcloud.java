@@ -14,19 +14,22 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.user.inject;
+package com.googlecode.fspotcloud.test;
 
-import com.google.inject.AbstractModule;
-import com.googlecode.fspotcloud.user.*;
-import javax.inject.Singleton;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.Module;
+import com.google.inject.servlet.GuiceServletContextListener;
 
 
-public class AbstractUserModule extends AbstractModule {
-    protected void configure() {
-        bind(IAdminPermission.class).to(AdminPermission.class);
-        bind(ILoginMetaData.class).to(LoginMetaData.class);
-        bind(ILoginMetaDataUpdater.class).to(LoginMetaDataUpdater.class);
-        bind(String.class).annotatedWith(ServerAddress.class)
-            .toProvider(ServerAddressProvider.class).in(Singleton.class);
+public class TestServerGuiceServletConfig extends GuiceServletContextListener {
+    public static Injector INJECTOR;
+    public static Module MODULE;
+
+    @Override
+    protected Injector getInjector() {
+        INJECTOR = Guice.createInjector(MODULE);
+
+        return INJECTOR;
     }
 }

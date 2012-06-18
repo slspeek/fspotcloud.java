@@ -14,19 +14,29 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-package com.googlecode.fspotcloud.user.inject;
+package com.googlecode.fspotcloud.test;
 
-import com.google.inject.AbstractModule;
-import com.googlecode.fspotcloud.user.*;
-import javax.inject.Singleton;
+import com.google.guiceberry.junit4.GuiceBerryRule;
+import javax.inject.Inject;
+import org.junit.Rule;
+import org.junit.Test;
 
 
-public class AbstractUserModule extends AbstractModule {
-    protected void configure() {
-        bind(IAdminPermission.class).to(AdminPermission.class);
-        bind(ILoginMetaData.class).to(LoginMetaData.class);
-        bind(ILoginMetaDataUpdater.class).to(LoginMetaDataUpdater.class);
-        bind(String.class).annotatedWith(ServerAddress.class)
-            .toProvider(ServerAddressProvider.class).in(Singleton.class);
+public class DashboardITest {
+    @Rule
+    public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
+    @Inject
+    PeerRunner peerRunner;
+    @Inject
+    DashboardPage dashboardPage;
+
+    @Test
+    public void testImportFurniture() throws Exception {
+        peerRunner.startPeer("../peer/src/test/resources/photos.db");
+        dashboardPage.loginAndOpen();
+        dashboardPage.synchronize();
+        dashboardPage.open();
+        dashboardPage.toggleImportForTagId("1"); //Furniture
+        peerRunner.stopPeer();
     }
 }

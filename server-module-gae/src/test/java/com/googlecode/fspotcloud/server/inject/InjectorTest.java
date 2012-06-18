@@ -20,9 +20,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
-import org.junit.Ignore;
 import org.testng.AssertJUnit;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
