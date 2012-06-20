@@ -25,7 +25,7 @@ task unpackWar(dependsOn: ':prod-j2ee-war:assemble') << {
     ant.unjar(dest: "$buildDir/exploded-war-raw/", src: myTests)
 }
 
-task copyWar(dependsOn:  unpackWar, type: Copy) {
+task copyWar(dependsOn: unpackWar, type: Copy) {
     ant.properties['bot.secret.userinput'] = "${bot_secret}".toString()
     ant.properties['admin.email'] = "rms@example.com"
     from('build/exploded-war-raw') {
@@ -66,7 +66,7 @@ test {
     systemProperties['bot.secret'] = bot_secret
     systemProperties['endpoint'] = "localhost:8050/j2ee-e2e"
     systemProperties['peer.jar'] = "../peer/build/libs/peer-${version}.jar"
-    include "com/googlecode/fspotcloud/test/LocalSuite.class"
+    include "com/googlecode/fspotcloud/test/ShortSuite.class"
     testLogging.showStandardStreams = true
 }
 

@@ -1,15 +1,14 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-35</version>
+        <version>0.12-36</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>model-jpa</artifactId>
-    <version>0.12-35</version>
+    <version>0.12-36</version>
     <packaging>jar</packaging>
     <name>Model JPA Base</name>
     <dependencies>
@@ -66,7 +65,8 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-        </dependency><!-- Hibernate gives you a choice of bytecode providers between cglib and javassist -->
+        </dependency>
+        <!-- Hibernate gives you a choice of bytecode providers between cglib and javassist -->
         <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
@@ -187,7 +187,7 @@
                         <version>1.1.4</version>
                     </dependency>
                 </dependencies>
-            </plugin>	
+            </plugin>
         </plugins>
     </build>
     <repositories>

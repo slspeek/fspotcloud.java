@@ -16,6 +16,7 @@ dependencies {
     compile project(':peer-rpc')
     compile libs.bot_dispatch_controller
     compile libs.task_dispatch_dispatch_api
+    compile libs.simple_blobstore_api
     provided libs.servlet_spec
 //    compile libs.servlet_spec
     compile libs.guava

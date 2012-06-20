@@ -26,18 +26,18 @@ task initDirs << {
     mkdir "${buildDir}/assemble/izpack/dependency"
 }
 
-task copyFiles(type:Copy, dependsOn: initDirs) {
+task copyFiles(type: Copy, dependsOn: initDirs) {
     from "src/izpack"
     into "${buildDir}/assemble/izpack"
 }
 
-task copyPeer(type: Copy, dependsOn:  ':peer:jar') {
+task copyPeer(type: Copy, dependsOn: ':peer:jar') {
     from "../peer/build/libs/peer-${version}.jar"
     into "${buildDir}/assemble/izpack/dependency"
     rename "peer-${version}.jar", "peer-jar-with-dependencies.jar"
 }
 
-task unpackWar(dependsOn:  ':prod-gae-war:war') << {
+task unpackWar(dependsOn: ':prod-gae-war:war') << {
     myWar = file("../prod-gae-war/build/libs/prod-gae-war-${version}.war")
     ant.unjar(dest: "${buildDir}/assemble/izpack/war", src: myWar)
 }

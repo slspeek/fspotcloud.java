@@ -52,11 +52,11 @@ compileGwt.dependsOn convertIcons, writeVersion
 gwtDevMode.dependsOn convertIcons, writeVersion
 test {
     doFirst()
-    {
-        exclude '**/*GwtTest*'
-        //testLogging.showStandardStreams = true
-        jvmArgs '-Xmx256m', '-XX:+HeapDumpOnOutOfMemoryError'
-    }
+            {
+                exclude '**/*GwtTest*'
+                //testLogging.showStandardStreams = true
+                jvmArgs '-Xmx256m', '-XX:+HeapDumpOnOutOfMemoryError'
+            }
 }
 
 gwtModules = ['com.googlecode.fspotcloud.FSpotCloud', 'com.googlecode.fspotcloud.dashboard']

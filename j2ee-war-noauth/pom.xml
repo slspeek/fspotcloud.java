@@ -4,7 +4,7 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-35</version>
+        <version>0.12-36</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>j2ee-war-noauth</artifactId>
@@ -147,7 +147,7 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-<!--                            XXX: excludes-element really needed -->
+                            <!--                            XXX: excludes-element really needed -->
                             <excludes>
                                 <exclude>none</exclude>
                             </excludes>
@@ -156,13 +156,16 @@
                             </includes>
                             <testClassesDirectory>${project.build.directory}/e2e-tests</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.test.IntegrationGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>
-                                 <bot.secret>${bot.secret}</bot.secret>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>
+                                    com.googlecode.fspotcloud.test.IntegrationGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv>
+                                <bot.secret>${bot.secret}</bot.secret>
                                 <peer.jar>../peer/target/peer-${project.version}-jar-with-dependencies.jar</peer.jar>
                                 <endpoint>localhost:8080/j2ee-war-noauth</endpoint>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
                             <!--<testFailureIgnore>true</testFailureIgnore>-->
                         </configuration>
@@ -266,14 +269,14 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.6</version>
                 <executions>
-                     <execution>
+                    <execution>
                         <id>remove-database-files</id>
                         <phase>clean</phase>
                         <configuration>
                             <target>
-                                <delete dir="${project.basedir}/MODELJPA" />
-                                <delete file="${project.basedir}/derby.log" />
-                                <delete dir="${project.basedir}/runtime" />
+                                <delete dir="${project.basedir}/MODELJPA"/>
+                                <delete file="${project.basedir}/derby.log"/>
+                                <delete dir="${project.basedir}/runtime"/>
                             </target>
                         </configuration>
                         <goals>

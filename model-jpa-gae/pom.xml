@@ -1,15 +1,14 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-35</version>
+        <version>0.12-36</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>model-jpa-gae</artifactId>
-    <version>0.12-35</version>
+    <version>0.12-36</version>
     <packaging>jar</packaging>
     <name>Model JPA GAE Implementation</name>
     <dependencies>
@@ -59,7 +58,7 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava-testlib</artifactId>
         </dependency>
-      
+
         <dependency>
             <groupId>javax.transaction</groupId>
             <artifactId>jta</artifactId>
@@ -129,7 +128,7 @@
             <artifactId>appengine-api-stubs</artifactId>
             <version>1.6.0</version>
             <scope>test</scope>
-        </dependency> 
+        </dependency>
         <dependency>
             <groupId>com.googlecode.simple-jpa-dao</groupId>
             <artifactId>dao-namedid-test</artifactId>
@@ -147,7 +146,7 @@
                 <configuration>
                     <log4jConfiguration>${project.build.directory}/classes/log4j.properties</log4jConfiguration>
                     <verbose>true</verbose>
-					<!-- Make sure this path contains your persistent classes! -->
+                    <!-- Make sure this path contains your persistent classes! -->
                     <mappingIncludes>com/googlecode/fspotcloud/model/**/*.class</mappingIncludes>
                     <verbose>true</verbose>
                     <enhancerName>ASM</enhancerName>
@@ -231,12 +230,16 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <testClassesDirectory>${project.build.directory}/additionaltests/model</testClassesDirectory>
+                            <testClassesDirectory>${project.build.directory}/additionaltests/model
+                            </testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.model.test.GaeModelGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv>
+                                    com.googlecode.fspotcloud.server.model.test.GaeModelGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
                             <skip>false</skip>
 
@@ -251,10 +254,13 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.model.test.gae.TagGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                    com.googlecode.fspotcloud.server.model.test.gae.TagGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
                             <reportsDirectory>${project.build.directory}/surefire-reports/tag</reportsDirectory>
                         </configuration>
@@ -268,10 +274,13 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.model.test.gae.PhotoGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                    com.googlecode.fspotcloud.server.model.test.gae.PhotoGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
                             <reportsDirectory>${project.build.directory}/surefire-reports/photo</reportsDirectory>
                         </configuration>
@@ -285,12 +294,16 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/dao</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.model.test.gae.PeerDatabaseGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
+                                    com.googlecode.fspotcloud.server.model.test.gae.PeerDatabaseGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
-                            <reportsDirectory>${project.build.directory}/surefire-reports/peerdatabase</reportsDirectory>
+                            <reportsDirectory>${project.build.directory}/surefire-reports/peerdatabase
+                            </reportsDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -302,7 +315,7 @@
             <id>fspotcloud-maven-legacy</id>
             <url>http://maven.fspotcloud.googlecode.com/hg/repo</url>
         </repository>
-         <repository>
+        <repository>
             <id>fspotcloud-maven</id>
             <name>fspotcloud-maven</name>
             <url>http://fspotcloud-maven.googlecode.com/svn/maven/repository</url>

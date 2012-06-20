@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-35</version>
+        <version>0.12-36</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>server-module-gae</artifactId>
-    <version>0.12-35</version>
+    <version>0.12-36</version>
     <name>Server GAE Configuration</name>
     <description>Guice configuration for deployment on GAE</description>
     <dependencies>
@@ -26,7 +26,7 @@
             <artifactId>guice-deps</artifactId>
             <type>pom</type>
         </dependency>
-       	<!-- Test scope -->
+        <!-- Test scope -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>peer</artifactId>
@@ -38,7 +38,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-		<!-- GAE libraries for local testing as described here: http://code.google.com/appengine/docs/java/howto/unittesting.html -->
+        <!-- GAE libraries for local testing as described here: http://code.google.com/appengine/docs/java/howto/unittesting.html -->
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-stubs</artifactId>
@@ -170,12 +170,15 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.admin.integration.GaeIntegrationGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
+                                    com.googlecode.fspotcloud.server.admin.integration.GaeIntegrationGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
-                              
+
                         </configuration>
                     </execution>
                 </executions>

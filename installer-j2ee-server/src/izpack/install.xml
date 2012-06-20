@@ -32,7 +32,7 @@
         <res id="HTMLInfoPanel.readme" src="Readme.html"/>
     </resources>
     <variables>
-        <variable name="tomcat.version" value="@{tomcat.version}" />
+        <variable name="tomcat.version" value="@{tomcat.version}"/>
     </variables>
 
     <panels>
@@ -55,21 +55,29 @@
             <file src="Licence.txt" targetdir="$INSTALL_PATH"/>
             <file src="apache-tomcat-${tomcat.version}" targetdir="$INSTALL_PATH"/>
             <fileset dir="war" targetdir="$INSTALL_PATH/apache-tomcat-${tomcat.version}/webapps/ROOT"/>
-            <executable type="bin" stage="never" targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/catalina.sh"
+            <executable type="bin" stage="never"
+                        targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/catalina.sh"
                         os="unix"/>
-            <executable type="bin" stage="never" targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/digest.sh"
+            <executable type="bin" stage="never"
+                        targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/digest.sh"
                         os="unix"/>
-            <executable type="bin" stage="never" targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/setclasspath.sh"
+            <executable type="bin" stage="never"
+                        targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/setclasspath.sh"
                         os="unix"/>
-            <executable type="bin" stage="never" targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/shutdown.sh"
+            <executable type="bin" stage="never"
+                        targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/shutdown.sh"
                         os="unix"/>
-            <executable type="bin" stage="never" targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/startup.sh"
+            <executable type="bin" stage="never"
+                        targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/startup.sh"
                         os="unix"/>
-            <executable type="bin" stage="never" targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/tool-wrapper.sh"
+            <executable type="bin" stage="never"
+                        targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/tool-wrapper.sh"
                         os="unix"/>
-            <executable type="bin" stage="never" targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/version.sh"
+            <executable type="bin" stage="never"
+                        targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/bin/version.sh"
                         os="unix"/>
-            <parsable targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/webapps/ROOT/WEB-INF/classes/properties.properties" />
+            <parsable
+                    targetfile="$INSTALL_PATH/apache-tomcat-${tomcat.version}/webapps/ROOT/WEB-INF/classes/properties.properties"/>
         </pack>
     </packs>
 

@@ -5,11 +5,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-35</version>
+        <version>0.12-36</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>server-module-j2ee</artifactId>
-    <version>0.12-35</version>
+    <version>0.12-36</version>
     <name>Server J2EE Configuration</name>
     <description>Guice configuration for deployment on J2EE</description>
     <dependencies>
@@ -29,7 +29,7 @@
             <artifactId>guice-deps</artifactId>
             <type>pom</type>
         </dependency>
-       	<!-- Test scope -->
+        <!-- Test scope -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -112,7 +112,7 @@
         <dependency>
             <groupId>com.googlecode.fspotcloud</groupId>
             <artifactId>user-service-openid</artifactId>
-            <version>0.12-35</version>
+            <version>0.12-36</version>
             <type>jar</type>
         </dependency>
     </dependencies>
@@ -128,9 +128,9 @@
                         <phase>process-test-resources</phase>
                         <configuration>
                             <target>
-                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true" />
-                                <delete dir="${project.basedir}/runtime" includeemptydirs="true" />
-                                <delete file="${project.basedir}/derby.log" />
+                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true"/>
+                                <delete dir="${project.basedir}/runtime" includeemptydirs="true"/>
+                                <delete file="${project.basedir}/derby.log"/>
                             </target>
                         </configuration>
                         <goals>
@@ -142,9 +142,9 @@
                         <phase>clean</phase>
                         <configuration>
                             <target>
-                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true" />
-                                <delete dir="${project.basedir}/runtime" includeemptydirs="true" />
-                                <delete file="${project.basedir}/derby.log" />
+                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true"/>
+                                <delete dir="${project.basedir}/runtime" includeemptydirs="true"/>
+                                <delete file="${project.basedir}/derby.log"/>
                             </target>
                         </configuration>
                         <goals>
@@ -189,10 +189,13 @@
                         <configuration>
                             <testClassesDirectory>${project.build.directory}/additionaltests/</testClassesDirectory>
                             <systemPropertyVariables>
-                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>com.googlecode.fspotcloud.server.admin.integration.J2eeIntegrationGuiceBerryEnv</GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
+                                <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
+                                    com.googlecode.fspotcloud.server.admin.integration.J2eeIntegrationGuiceBerryEnv
+                                </GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/test-classes</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/test-classes
+                                </additionalClasspathElement>
                             </additionalClasspathElements>
                             <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
