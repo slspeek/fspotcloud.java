@@ -27,7 +27,7 @@ allprojects {
 
     defaultTasks 'build'
     group = 'com.googlecode.fspotcloud'
-    version = '0.12-35g'
+    version = '0.12-36g'
 
 
 }
@@ -108,11 +108,13 @@ subprojects {
 
 task javadoc(type: Javadoc) {
     source subprojects.collect {project ->
-        project.sourceSets.main.allJava }
+        project.sourceSets.main.allJava
+    }
     destinationDir = new File(buildDir, 'javadoc')
     // Might need a classpath
     classpath = files(subprojects.collect {project ->
-        project.sourceSets.main.compileClasspath})
+        project.sourceSets.main.compileClasspath
+    })
 }
 
 

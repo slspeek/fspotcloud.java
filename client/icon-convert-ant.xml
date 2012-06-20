@@ -1,22 +1,24 @@
 <project name="icon-convert">
-	<property name="icon.size" value="48x48" />
-	<taskdef resource="net/sf/antcontrib/antcontrib.properties" />
-	<target name="convert-all">
-		<echo>Convert all</echo>
-		<antcall target="convert">
-			<param name="icon" value="Fullscreen" />
-		</antcall>
-		<foreach list="ToggleButtons,Fullscreen,Play,Stop,Dashboard,Slower,Faster,Next,Back,Demo,License,Author,2x2,3x3,4x4,5x5,ToggleTabular,Help,ProjectSite,Maven,Proton,Home,End,AddColumn,RemoveColumn,AddRow,RemoveRow,Reset,TreeFocus" param="icon" target="convert" />
-	</target>
-	<target name="convert">
-		<echo message="${icon}">
-		</echo>
-		<exec failonerror="true" executable="/usr/bin/convert">
-			<arg value="-geometry" />
-			<arg value="${icon.size}" />
-			<arg value="src/main/resources/images/originals/${icon}.png" />
-			<arg value="target/${project.artifactId}-${project.version}/images/${icon}.png" />
-		</exec>
-	</target>
+    <property name="icon.size" value="48x48"/>
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+    <target name="convert-all">
+        <echo>Convert all</echo>
+        <antcall target="convert">
+            <param name="icon" value="Fullscreen"/>
+        </antcall>
+        <foreach
+                list="ToggleButtons,Fullscreen,Play,Stop,Dashboard,Slower,Faster,Next,Back,Demo,License,Author,2x2,3x3,4x4,5x5,ToggleTabular,Help,ProjectSite,Maven,Proton,Home,End,AddColumn,RemoveColumn,AddRow,RemoveRow,Reset,TreeFocus"
+                param="icon" target="convert"/>
+    </target>
+    <target name="convert">
+        <echo message="${icon}">
+        </echo>
+        <exec failonerror="true" executable="/usr/bin/convert">
+            <arg value="-geometry"/>
+            <arg value="${icon.size}"/>
+            <arg value="src/main/resources/images/originals/${icon}.png"/>
+            <arg value="target/${project.artifactId}-${project.version}/images/${icon}.png"/>
+        </exec>
+    </target>
 
 </project>

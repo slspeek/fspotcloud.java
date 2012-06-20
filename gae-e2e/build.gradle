@@ -61,7 +61,7 @@ test {
     systemProperties['bot.secret'] = bot_secret
     systemProperties['endpoint'] = "localhost:8080"
     systemProperties['peer.jar'] = "../peer/build/libs/peer-${version}.jar"
-    include "com/googlecode/fspotcloud/test/LocalSuite.class"
+    include "com/googlecode/fspotcloud/test/ShortSuite.class"
 
     testLogging.showStandardStreams = true
 }

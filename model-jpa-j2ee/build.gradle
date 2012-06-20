@@ -24,7 +24,7 @@ dependencies {
     compile libs.jdo_api
     compile libs.guice_servlet
 
-    testCompile project(path:":model-api", configuration: "testCompile")
+    testCompile project(path: ":model-api", configuration: "testCompile")
     testCompile libs.guiceberry
     testCompile libs.junit
     testCompile libs.mockito

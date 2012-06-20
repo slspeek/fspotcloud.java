@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-	<parent>
-		<artifactId>deps</artifactId>
-		<groupId>com.googlecode.fspotcloud</groupId>
-		<version>0.12-35</version>
-	</parent>
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.googlecode.fspotcloud.deps</groupId>
-	<artifactId>servlet-deps</artifactId>
-	<packaging>pom</packaging>
-	<name>Dependencies for Servlets</name>
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-servlet_2.5_spec</artifactId>
-			<version>1.2</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+    <parent>
+        <artifactId>deps</artifactId>
+        <groupId>com.googlecode.fspotcloud</groupId>
+        <version>0.12-36</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.googlecode.fspotcloud.deps</groupId>
+    <artifactId>servlet-deps</artifactId>
+    <packaging>pom</packaging>
+    <name>Dependencies for Servlets</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-servlet_2.5_spec</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
 

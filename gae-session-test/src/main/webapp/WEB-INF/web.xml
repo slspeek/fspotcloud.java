@@ -5,9 +5,9 @@
 
 <web-app>
     <servlet>
-    <servlet-name>session-test</servlet-name>
-    <servlet-class>org.session.TestServlet</servlet-class>
-  </servlet>
+        <servlet-name>session-test</servlet-name>
+        <servlet-class>org.session.TestServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>session-test</servlet-name>
         <url-pattern>/</url-pattern>

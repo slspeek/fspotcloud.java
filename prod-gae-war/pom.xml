@@ -4,7 +4,7 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-35</version>
+        <version>0.12-36</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>prod-gae-war</artifactId>
@@ -42,7 +42,8 @@
                 <executions>
                     <execution>
                         <id>unpack</id>
-                        <phase>compile</phase> <!-- strange hack, to have it done earlier in the lifecycle -->
+                        <phase>compile</phase>
+                        <!-- strange hack, to have it done earlier in the lifecycle -->
                         <goals>
                             <goal>unpack</goal>
                         </goals>
@@ -61,7 +62,7 @@
                 <groupId>net.kindleit</groupId>
                 <artifactId>maven-gae-plugin</artifactId>
                 <configuration>
-                    <splitJars />
+                    <splitJars/>
                 </configuration>
             </plugin>
             <plugin>

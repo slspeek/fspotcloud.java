@@ -34,16 +34,16 @@ task peerStop(type: Exec) {
 }
 
 task peerRun2(dependsOn: 'classes') << {
-    ant.java(fork:true, classname: 'com.googlecode.fspotcloud.peer.Main', failonerror: true) {
+    ant.java(fork: true, classname: 'com.googlecode.fspotcloud.peer.Main', failonerror: true) {
         classpath {
             path(path: sourceSets.main.runtimeClasspath.asPath)
         }
-        arg(value:'-Ddb')
+        arg(value: '-Ddb')
         arg(value: 'src/test/resources/photos.db')
         arg(value: '-Dendpoint')
         arg(value: "localhost:8080")
         arg(value: '-Dbot.secret')
-        arg(value:  "${bot_secret}")
+        arg(value: "${bot_secret}")
         arg(value: '-Dpause')
         arg(value: '2')
         arg(value: '-Dphoto.dir.original')

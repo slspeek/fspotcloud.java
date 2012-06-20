@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <datastore-indexes
-    autoGenerate="true">
-    <datastore-index kind="PhotoEntity" ancestor="false" >
+        autoGenerate="true">
+    <datastore-index kind="PhotoEntity" ancestor="false">
         <property name="imageLoaded" direction="asc"/>
         <property name="tagList" direction="asc"/>
         <property name="date" direction="asc"/>

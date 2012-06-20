@@ -5,7 +5,7 @@
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>fspotcloud</artifactId>
     <packaging>pom</packaging>
-    <version>0.12-35</version>
+    <version>0.12-36</version>
     <name>F-Spot Cloud Java Edition</name>
     <prerequisites>
         <maven>3.0.0</maven>
@@ -97,9 +97,9 @@
                         <phase>process-test-resources</phase>
                         <configuration>
                             <target>
-                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true" />
-                                <delete dir="${project.basedir}/runtime" includeemptydirs="true" />
-                                <delete file="${project.basedir}/derby.log" />
+                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true"/>
+                                <delete dir="${project.basedir}/runtime" includeemptydirs="true"/>
+                                <delete file="${project.basedir}/derby.log"/>
                             </target>
                         </configuration>
                         <goals>
@@ -111,9 +111,9 @@
                         <phase>clean</phase>
                         <configuration>
                             <target>
-                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true" />
-                                <delete dir="${project.basedir}/runtime" includeemptydirs="true" />
-                                <delete file="${project.basedir}/derby.log" />
+                                <delete dir="${project.basedir}/MODELJPA" includeemptydirs="true"/>
+                                <delete dir="${project.basedir}/runtime" includeemptydirs="true"/>
+                                <delete file="${project.basedir}/derby.log"/>
                             </target>
                         </configuration>
                         <goals>
@@ -360,7 +360,7 @@
                 <version>${project.version}</version>
                 <type>pom</type>
             </dependency>
-            
+
             <dependency>
                 <groupId>com.googlecode.fspotcloud.deps</groupId>
                 <artifactId>xmlrpc-server-deps</artifactId>
@@ -392,7 +392,7 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>model-jpa-gae</artifactId>
                 <version>${project.version}</version>
-            </dependency>            
+            </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>peer-server-integration</artifactId>
@@ -408,7 +408,7 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>server-module-gae</artifactId>
                 <version>${project.version}</version>
-            </dependency> 
+            </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>server-module-j2ee</artifactId>
@@ -421,7 +421,7 @@
                 <type>test-jar</type>
             </dependency>
 
-            
+
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>model-jpa</artifactId>
@@ -519,15 +519,15 @@
             <dependency>
                 <groupId>org.openid4java</groupId>
                 <artifactId>openid4java-consumer</artifactId>
-        <!--artifactId>openid4java-server</artifactId-->
-        <!--artifactId>openid4java-infocard</artifactId-->
-        <!--artifactId>openid4java-xri</artifactId-->
-        <!--artifactId>openid4java</artifactId-->
-        <!--artifactId>openid4java-full</artifactId-->
+                <!--artifactId>openid4java-server</artifactId-->
+                <!--artifactId>openid4java-infocard</artifactId-->
+                <!--artifactId>openid4java-xri</artifactId-->
+                <!--artifactId>openid4java</artifactId-->
+                <!--artifactId>openid4java-full</artifactId-->
                 <version>0.9.6</version>
                 <type>pom</type>
             </dependency>
-<!--            bot dispatch-->
+            <!--            bot dispatch-->
             <dependency>
                 <groupId>com.googlecode.bot-dispatch</groupId>
                 <artifactId>controller</artifactId>
@@ -620,14 +620,15 @@
                 <version>1.1</version>
                 <scope>test</scope>
             </dependency>
-              <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
+            <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
 
-        
+
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
                 <version>${hibernate.version}</version>
-            </dependency><!-- Hibernate gives you a choice of bytecode providers between cglib and javassist -->
+            </dependency>
+            <!-- Hibernate gives you a choice of bytecode providers between cglib and javassist -->
             <dependency>
                 <groupId>javassist</groupId>
                 <artifactId>javassist</artifactId>
@@ -639,7 +640,7 @@
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>${hibernate.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.apache.derby</groupId>
                 <artifactId>derby</artifactId>
@@ -660,9 +661,9 @@
                 <artifactId>derbytools</artifactId>
                 <version>${derby.version}</version>
             </dependency>
-            
+
         </dependencies>
-        
+
     </dependencyManagement>
     <distributionManagement>
         <site>
@@ -714,7 +715,7 @@
                                 <version>1.0.2</version>
                             </docletArtifact>
                             <doclet>com.google.doclava.Doclava</doclet>
-							<!-- | bootclasspath required by Sun's JVM -->
+                            <!-- | bootclasspath required by Sun's JVM -->
                             <bootclasspath>${sun.boot.class.path}</bootclasspath>
                             <additionalparam>
                                 -quiet
@@ -763,6 +764,6 @@
                 <module>peer-rpc</module>
                 <module>installer</module>
             </modules>
-        </profile>     
+        </profile>
     </profiles>
 </project>

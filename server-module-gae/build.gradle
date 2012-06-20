@@ -16,6 +16,7 @@ dependencies {
         exclude(module: 'gwt-user')
     }
     compile libs.servlet_spec
+    compile libs.simple_blobstore_gae
 
     testCompile project(':peer')
     testCompile project(':user-service-api')

@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <project
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-35</version>
+        <version>0.12-36</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>installer-gae</artifactId>
-    <version>0.12-35</version>
+    <version>0.12-36</version>
     <name>Installer</name>
 
     <packaging>jar</packaging>
@@ -57,7 +57,7 @@
 
         <plugins>
 
-			<!-- configure the compiler to use 1.5 -->
+            <!-- configure the compiler to use 1.5 -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -67,7 +67,7 @@
                 </configuration>
             </plugin>
 
-			<!-- copy other checked resource into staging area, expected by install.xml -->
+            <!-- copy other checked resource into staging area, expected by install.xml -->
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.1</version>
@@ -81,7 +81,7 @@
                         <configuration>
                             <tasks>
                                 <copy todir="${staging.dir}">
-                                    <fileset dir="${basedir}/src/izpack" />
+                                    <fileset dir="${basedir}/src/izpack"/>
                                 </copy>
                             </tasks>
                         </configuration>
@@ -89,8 +89,8 @@
                 </executions>
             </plugin>
 
-			<!-- prepare dependencies so that izpack jar tag to pickup at compile 
-				metaData -->
+            <!-- prepare dependencies so that izpack jar tag to pickup at compile
+                   metaData -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -104,7 +104,8 @@
                         </goals>
                         <configuration>
                             <stripVersion>true</stripVersion>
-                            <excludeGroupIds>org.codehaus.izpack</excludeGroupIds> <!-- dont want standalone compiler -->
+                            <excludeGroupIds>org.codehaus.izpack</excludeGroupIds>
+                            <!-- dont want standalone compiler -->
                             <outputDirectory>${staging.dir}/dependency</outputDirectory>
                         </configuration>
                     </execution>

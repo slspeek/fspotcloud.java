@@ -1,39 +1,41 @@
 /*
  * Copyright 2010-2012 Steven L. Speek.
- * This program is free software; you can redistribute it and/or
+ * This program is free software; you can redistribute it
+                and/or
  * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
+ * as published by the Free
+                Software Foundation; either version 2
  * of the License, or any later version.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * This program is
+                distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied
+                warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public
+                License for more details.
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ * along
+                with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330,
+                Boston, MA 02111-1307, USA.
  *
  */
+            
 package com.googlecode.fspotcloud.test;
 
-import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.servlet.GuiceFilter;
 import com.googlecode.fspotcloud.server.inject.J2eeTotalModule;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import javax.servlet.ServletContext;
 import org.mortbay.jetty.Server;
-import org.mortbay.jetty.handler.ResourceHandler;
 import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.DefaultServlet;
 import org.mortbay.jetty.webapp.WebAppContext;
-import org.mortbay.resource.FileResource;
-import org.mortbay.resource.Resource;
 
 
 public class FscServer {

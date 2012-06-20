@@ -4,7 +4,7 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-35</version>
+        <version>0.12-36</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>e2e-test</artifactId>
@@ -65,9 +65,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <skip>true</skip> 
+                    <skip>true</skip>
                 </configuration>
-                
+
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

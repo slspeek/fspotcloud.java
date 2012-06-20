@@ -1,25 +1,36 @@
 /*
  * Copyright 2010-2012 Steven L. Speek.
- * This program is free software; you can redistribute it and/or
+ * This program is free software; you can redistribute it
+                and/or
  * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
+ * as published by the Free
+                Software Foundation; either version 2
  * of the License, or any later version.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * This program is
+                distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied
+                warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public
+                License for more details.
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ * along
+                with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330,
+                Boston, MA 02111-1307, USA.
  *
  */
+            
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
 
 /*
  * Copyright 2005 Joe Walker
@@ -36,13 +47,11 @@ import java.util.Map;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-
 
 /**
  * For the benefit of anyone that wants to create a fake HttpSession
  * that doesn't do anything other than not be null.
+ *
  * @author Joe Walker [joe at getahead dot ltd dot uk]
  */
 public class FakeHttpServletSession implements HttpSession {
@@ -75,6 +84,7 @@ public class FakeHttpServletSession implements HttpSession {
 
     /**
      * Setup the creation time
+     *
      * @param id The new session id
      */
     public FakeHttpServletSession(String id) {

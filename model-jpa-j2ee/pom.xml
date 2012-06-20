@@ -4,11 +4,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-35</version>
+        <version>0.12-36</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>model-jpa-j2ee</artifactId>
-    <version>0.12-35</version>
+    <version>0.12-36</version>
     <packaging>jar</packaging>
     <name>Model JPA J2EE Implementation</name>
     <dependencies>
