@@ -31,7 +31,7 @@ import com.googlecode.botdispatch.model.api.Commands;
 import com.googlecode.botdispatch.model.command.CommandManager;
 import com.googlecode.fspotcloud.model.jpa.ModelModule;
 import com.googlecode.fspotcloud.user.openid.OpenIdUserModule;
-import com.googlecode.simpleblobstore.J2eeSimpleBlobstoreModule;
+import com.googlecode.simpleblobstore.j2ee.J2eeSimpleBlobstoreModule;
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
 
 
