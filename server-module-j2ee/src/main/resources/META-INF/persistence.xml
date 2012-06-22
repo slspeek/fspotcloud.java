@@ -10,7 +10,7 @@
         <class>com.googlecode.fspotcloud.model.jpa.tag.TagEntity</class>
         <class>com.googlecode.fspotcloud.model.jpa.user.UserEntity</class>
         <class>com.googlecode.fspotcloud.model.jpa.usergroup.UserGroupEntity</class>
-        <class>com.googlecode.simpleblobstore.BlobEntity</class>
+        <class>com.googlecode.simpleblobstore.j2ee.BlobEntity</class>
         <properties>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.connection.username" value="model"/>
