@@ -22,38 +22,22 @@
  *
  */
             
-package com.googlecode.fspotcloud.server.model.api;
+package com.googlecode.fspotcloud.server.image;
 
-import com.googlecode.simplejpadao.HasSetKey;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import com.googlecode.fspotcloud.server.model.api.Photo;
 
 
-public interface Photo extends HasSetKey<String>, Serializable {
-    void setId(String name);
+/**
+ * Created with IntelliJ IDEA.
+ * User: steven
+ * Date: 22-6-12
+ * Time: 20:32
+ * To change this template use File | Settings | File Templates.
+ */
+public interface ImageHelper {
+    byte[] getImage(Photo photo, Type type);
 
-    void setDescription(String description);
-
-    String getDescription();
-
-    void setTagList(List<String> tagList);
-
-    List<String> getTagList();
-
-    void setDate(Date date);
-
-    Date getDate();
-
-    String getImageBlobKey();
-
-    void setImageBlobKey(String key);
-
-    void setThumbBlobKey(String key);
-
-    String getThumbBlobKey();
-
-    String getFullsizeImageBlobKey();
-
-    void setFullsizeImageBlobKey(String key);
+    void saveImage(Photo photo, Type type, byte[] imageData);
+    enum Type {THUMB, NORMAL, FULLSIZE;
+    }
 }

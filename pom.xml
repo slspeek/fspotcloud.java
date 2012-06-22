@@ -5,7 +5,7 @@
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>fspotcloud</artifactId>
     <packaging>pom</packaging>
-    <version>0.12-36</version>
+    <version>0.12-37</version>
     <name>F-Spot Cloud Java Edition</name>
     <prerequisites>
         <maven>3.0.0</maven>

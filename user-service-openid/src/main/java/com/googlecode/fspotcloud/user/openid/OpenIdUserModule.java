@@ -24,7 +24,9 @@
             
 package com.googlecode.fspotcloud.user.openid;
 
+import com.google.inject.servlet.ServletModule;
 import com.googlecode.fspotcloud.user.ISessionEmail;
+import com.googlecode.fspotcloud.user.PostThirdPartyLoginServlet;
 import com.googlecode.fspotcloud.user.PostThirdPartyLoginWorker;
 import com.googlecode.fspotcloud.user.SessionEmail;
 import com.googlecode.fspotcloud.user.inject.AbstractUserModule;
@@ -45,5 +47,14 @@ public class OpenIdUserModule extends AbstractUserModule {
             .to(com.googlecode.fspotcloud.user.openid.OpenIdUserService.class);
         bind(ISessionEmail.class).to(SessionEmail.class);
         bind(PostThirdPartyLoginWorker.class).to(PostOpenIdLoginWorker.class);
+        install(new USerServletModule());
+    }
+
+    private class USerServletModule extends ServletModule {
+        @Override
+        protected void configureServlets() {
+            super.configureServlets();
+            serve("/post-login").with(PostThirdPartyLoginServlet.class);
+        }
     }
 }

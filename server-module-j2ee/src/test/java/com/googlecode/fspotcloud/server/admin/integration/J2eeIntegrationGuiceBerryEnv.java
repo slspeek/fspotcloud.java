@@ -40,6 +40,8 @@ import com.googlecode.fspotcloud.server.admin.handler.UserImportsTagHandler;
 import com.googlecode.fspotcloud.server.admin.handler.UserSynchronizesPeerHandler;
 import com.googlecode.fspotcloud.server.admin.handler.UserUnImportsTagHandler;
 import com.googlecode.fspotcloud.server.control.task.inject.TaskActionsModule;
+import com.googlecode.fspotcloud.server.image.ImageHelper;
+import com.googlecode.fspotcloud.server.image.ImageHelperImpl;
 import com.googlecode.fspotcloud.server.inject.MainActionModule;
 import com.googlecode.fspotcloud.server.mail.IMail;
 import com.googlecode.fspotcloud.server.main.handler.GetTagTreeHandler;
@@ -52,6 +54,7 @@ import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.fspotcloud.user.ISessionEmail;
 import com.googlecode.fspotcloud.user.LenientUserModule;
 import com.googlecode.fspotcloud.user.SessionEmail;
+import com.googlecode.simpleblobstore.j2ee.J2eeSimpleBlobstoreModule;
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
 import javax.servlet.http.HttpSession;
 import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
@@ -80,9 +83,11 @@ public class J2eeIntegrationGuiceBerryEnv extends GuiceBerryModule {
         install(new LenientUserModule());
         install(new MainActionModule());
         bind(ISessionEmail.class).to(SessionEmail.class);
+        bind(ImageHelper.class).to(ImageHelperImpl.class);
         bind(IMail.class).toInstance(mock(IMail.class));
         bind(HttpSession.class).to(FakeHttpServletSession.class)
             .in(TestScoped.class);
+        install(new J2eeSimpleBlobstoreModule());
     }
 }
 

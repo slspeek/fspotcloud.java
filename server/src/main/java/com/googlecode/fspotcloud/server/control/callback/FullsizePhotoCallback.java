@@ -26,6 +26,7 @@ package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.inject.Inject;
 import com.googlecode.botdispatch.SerializableAsyncCallback;
+import com.googlecode.fspotcloud.server.image.ImageHelper;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.shared.peer.FullsizePhotoResult;
@@ -38,11 +39,11 @@ public class FullsizePhotoCallback implements SerializableAsyncCallback<Fullsize
     @Inject
     private transient PhotoDao photoManager;
     @Inject
-    private transient BlobService blobService;
+    private transient ImageHelper imageHelper;
 
-    public FullsizePhotoCallback(PhotoDao photoManager, BlobService blobService) {
+    public FullsizePhotoCallback(PhotoDao photoManager, ImageHelper imageHelper) {
         this.photoManager = photoManager;
-        this.blobService = blobService;
+        this.imageHelper = imageHelper;
     }
 
     @Override
@@ -53,9 +54,7 @@ public class FullsizePhotoCallback implements SerializableAsyncCallback<Fullsize
     public void onSuccess(FullsizePhotoResult fullsizePhotoResult) {
         Photo photo = photoManager.find(fullsizePhotoResult.getPhotoId());
         byte[] image = fullsizePhotoResult.getFullsizeImageData();
-        BlobKey key = blobService.save("img/jpeg", image);
-        photo.setFullsizeImageBlobKey(key.getKeyString());
-        photo.setFullsizeLoaded(true);
+        imageHelper.saveImage(photo, ImageHelper.Type.FULLSIZE, image);
         photoManager.save(photo);
     }
 }
