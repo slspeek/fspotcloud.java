@@ -26,7 +26,7 @@ package com.googlecode.fspotcloud.server.inject;
 
 import com.google.inject.servlet.ServletModule;
 import com.googlecode.fspotcloud.server.cron.CronServlet;
-import com.googlecode.fspotcloud.server.main.ImageServlet;
+import com.googlecode.fspotcloud.server.image.ImageServlet;
 import net.customware.gwt.dispatch.server.guice.GuiceStandardDispatchServlet;
 
 

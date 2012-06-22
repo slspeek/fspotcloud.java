@@ -26,6 +26,7 @@ package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.inject.Inject;
 import com.googlecode.botdispatch.SerializableAsyncCallback;
+import com.googlecode.fspotcloud.server.image.ImageHelper;
 import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.peer.PhotoData;
@@ -41,14 +42,17 @@ public class PhotoDataCallback implements SerializableAsyncCallback<PhotoDataRes
     @Inject
     private transient PhotoDao photoManager;
     @Inject
+    private transient ImageHelper imageHelper;
+    @Inject
     private transient TagDao tagManager;
     @Inject
     private transient PeerDatabaseDao peerDatabaseDao;
 
-    public PhotoDataCallback(PhotoDao photoManager, TagDao tagManager,
-        PeerDatabaseDao peerDatabaseDao) {
+    public PhotoDataCallback(PhotoDao photoManager, ImageHelper imageHelper,
+        TagDao tagManager, PeerDatabaseDao peerDatabaseDao) {
         super();
         this.photoManager = photoManager;
+        this.imageHelper = imageHelper;
         this.tagManager = tagManager;
         this.peerDatabaseDao = peerDatabaseDao;
     }
@@ -86,10 +90,9 @@ public class PhotoDataCallback implements SerializableAsyncCallback<PhotoDataRes
         photo.setDescription(desc);
         photo.setDate(date);
         photo.setTagList(tags);
-        photo.setImage(imageData);
-        photo.setThumb(thumbData);
-        photo.setImageLoaded(true);
-        photo.setThumbLoaded(true);
+
+        imageHelper.saveImage(photo, ImageHelper.Type.NORMAL, imageData);
+        imageHelper.saveImage(photo, ImageHelper.Type.THUMB, imageData);
 
         for (String tagId : tags) {
             Tag tag = tagManager.find(tagId);

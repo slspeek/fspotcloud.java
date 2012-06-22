@@ -22,7 +22,7 @@
  *
  */
             
-package com.googlecode.fspotcloud.server.main;
+package com.googlecode.fspotcloud.server.image;
 
 import com.google.common.annotations.VisibleForTesting;
 import static com.google.common.collect.Sets.newHashSet;
@@ -58,6 +58,8 @@ public class ImageServlet extends HttpServlet {
     @Inject
     PhotoDao photoManager;
     @Inject
+    ImageHelper imageHelper;
+    @Inject
     IUserGroupHelper userGroupHelper;
     @Inject
     UserService userService;
@@ -69,6 +71,7 @@ public class ImageServlet extends HttpServlet {
         throws ServletException, IOException {
         String id = request.getParameter("id");
         boolean thumb = (request.getParameter("thumb") != null);
+        boolean fullSize = (request.getParameter("fs") != null);
         Photo photo = photoManager.find(id);
 
         if (userService.isUserAdmin() ||
@@ -76,12 +79,12 @@ public class ImageServlet extends HttpServlet {
             byte[] imageData;
 
             if (thumb) {
-                imageData = photo.getThumb();
-            } else if (photo.isFullsizeLoaded()) {
-                imageData = blobService.fetchData(new BlobKey(
-                            photo.getFullsizeImageBlobKey()));
+                imageData = imageHelper.getImage(photo, ImageHelper.Type.THUMB);
+            } else if (fullSize) {
+                imageData = imageHelper.getImage(photo,
+                        ImageHelper.Type.FULLSIZE);
             } else {
-                imageData = photo.getImage();
+                imageData = imageHelper.getImage(photo, ImageHelper.Type.NORMAL);
             }
 
             response.setContentType("image/jpeg");

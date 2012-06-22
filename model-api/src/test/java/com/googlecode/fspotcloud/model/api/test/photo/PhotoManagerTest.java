@@ -92,9 +92,9 @@ public class PhotoManagerTest {
     @Test
     public void testGetOrNew() {
         Photo photo = photoManager.findOrNew(TEST_ID);
-        assertEquals(Boolean.FALSE, photo.isFullsizeLoaded());
-        assertEquals(Boolean.FALSE, photo.isImageLoaded());
-        assertEquals(Boolean.FALSE, photo.isThumbLoaded());
+        assertNull(photo.getFullsizeImageBlobKey());
+        assertNull(photo.getImageBlobKey());
+        assertNull(photo.getThumbBlobKey());
         assertNotNull(photo.getTagList());
 
         if (photoManager.find(TEST_ID) != null) {
@@ -168,12 +168,10 @@ public class PhotoManagerTest {
 
         Photo photo = photoManager.findOrNew(TEST_ID);
         photo.setId(TEST_ID);
-        photo.setImage(image);
         photoManager.save(photo);
         photo = null;
 
         photo = photoManager.find(TEST_ID);
-        assertTrue(Arrays.equals(image, photo.getImage()));
 
         //photoManager.delete(TEST_ID);
     }

@@ -34,7 +34,6 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Temporal;
 
 
@@ -46,21 +45,30 @@ import javax.persistence.Temporal;
 @Entity
 public class PhotoEntity implements Photo, Serializable {
     @Id
-    private String name;
+    private String id;
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
     private ArrayList<String> tagList = new ArrayList<String>();
-    private Boolean imageLoaded = false;
-    private Boolean thumbLoaded = false;
-    private Boolean fullsizeLoaded = false;
     private String fullsizeImageBlobKey;
-    @Lob //@Column(columnDefinition = "BLOB")
+    private String imageBlobKey;
+    private String thumbBlobKey;
 
-    private byte[] image;
-    @Lob //@Column(columnDefinition = "BLOB")
+    public String getImageBlobKey() {
+        return imageBlobKey;
+    }
 
-    private byte[] thumb;
+    public void setImageBlobKey(String imageBlobKey) {
+        this.imageBlobKey = imageBlobKey;
+    }
+
+    public String getThumbBlobKey() {
+        return thumbBlobKey;
+    }
+
+    public void setThumbBlobKey(String thumbBlobKey) {
+        this.thumbBlobKey = thumbBlobKey;
+    }
 
     public String getFullsizeImageBlobKey() {
         return fullsizeImageBlobKey;
@@ -72,12 +80,12 @@ public class PhotoEntity implements Photo, Serializable {
 
     @Override
     public void setId(String name) {
-        this.name = name;
+        this.id = name;
     }
 
     @Override
     public String getId() {
-        return name;
+        return id;
     }
 
     @Override
@@ -108,64 +116,5 @@ public class PhotoEntity implements Photo, Serializable {
     @Override
     public Date getDate() {
         return date;
-    }
-
-    @Override
-    public void setImageLoaded(Boolean imageLoaded) {
-        this.imageLoaded = imageLoaded;
-    }
-
-    @Override
-    public Boolean isImageLoaded() {
-        return imageLoaded;
-    }
-
-    @Override
-    public void setThumbLoaded(Boolean thumbLoaded) {
-        this.thumbLoaded = thumbLoaded;
-    }
-
-    @Override
-    public Boolean isThumbLoaded() {
-        return thumbLoaded;
-    }
-
-    @Override
-    public void setFullsizeLoaded(Boolean fullsizeLoaded) {
-        this.fullsizeLoaded = fullsizeLoaded;
-    }
-
-    @Override
-    public Boolean isFullsizeLoaded() {
-        return fullsizeLoaded;
-    }
-
-    @Override
-    public void setExifData(String data) {
-    }
-
-    @Override
-    public String getExifData() {
-        return null;
-    }
-
-    @Override
-    public void setThumb(byte[] thumb) {
-        this.thumb = thumb;
-    }
-
-    @Override
-    public byte[] getThumb() {
-        return thumb;
-    }
-
-    @Override
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
-    @Override
-    public byte[] getImage() {
-        return image;
     }
 }
