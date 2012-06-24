@@ -32,7 +32,6 @@ import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.server.model.tag.IUserGroupHelper;
 import com.googlecode.fspotcloud.user.UserService;
-import com.googlecode.simpleblobstore.BlobKey;
 import com.googlecode.simpleblobstore.BlobService;
 import java.io.IOException;
 import java.io.OutputStream;

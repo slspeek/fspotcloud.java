@@ -29,8 +29,6 @@ import java.util.Date;
 import java.util.SortedSet;
 import static org.junit.Assert.*;
 import org.junit.Test;
-
-
 public class PhotoInfoStoreTest {
     private SortedSet<PhotoInfo> set;
 

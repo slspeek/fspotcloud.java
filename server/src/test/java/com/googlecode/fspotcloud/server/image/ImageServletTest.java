@@ -24,29 +24,11 @@
             
 package com.googlecode.fspotcloud.server.image;
 
-import static com.google.common.collect.Lists.newArrayList;
-import static com.google.common.collect.Sets.newHashSet;
-import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
-import com.googlecode.fspotcloud.server.image.ImageServlet;
-import com.googlecode.fspotcloud.server.model.api.Photo;
-import com.googlecode.fspotcloud.server.model.api.PhotoDao;
-import com.googlecode.fspotcloud.server.model.tag.IUserGroupHelper;
-import com.googlecode.fspotcloud.user.UserService;
-import com.meterware.httpunit.GetMethodWebRequest;
-import com.meterware.httpunit.WebRequest;
-import com.meterware.httpunit.WebResponse;
-import com.meterware.servletunit.InvocationContext;
 import com.meterware.servletunit.ServletRunner;
 import com.meterware.servletunit.ServletTestCase;
-import com.meterware.servletunit.ServletUnitClient;
-import java.io.InputStream;
-import java.util.Arrays;
-import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+
+
 public class ImageServletTest extends ServletTestCase {
     private byte[] THUMB = new byte[] { 1, 2, 3 };
     ServletRunner sr;

@@ -40,7 +40,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;

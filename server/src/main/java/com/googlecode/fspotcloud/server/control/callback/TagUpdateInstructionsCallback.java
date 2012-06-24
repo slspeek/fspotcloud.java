@@ -70,9 +70,9 @@ public class TagUpdateInstructionsCallback implements SerializableAsyncCallback<
 
         RemovePhotosFromTagAction photoRemove = new RemovePhotosFromTagAction(tagId,
                 photoIds);
-        log.info("Before " + photoRemove);
+        log.info("PhotoRemove to be executed: " + photoRemove);
         dispatchAsync.execute(photoRemove);
-        log.info("2 Before " + photoUpdate);
+        log.info("PhotoUpdate to be executed: " + photoUpdate);
         dispatchAsync.execute(photoUpdate);
     }
 }

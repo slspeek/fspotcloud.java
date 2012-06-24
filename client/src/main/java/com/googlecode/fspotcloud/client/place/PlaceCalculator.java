@@ -26,6 +26,7 @@ package com.googlecode.fspotcloud.client.place;
 
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Zoom;
+
 import java.util.logging.Logger;
 
 

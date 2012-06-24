@@ -32,6 +32,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.fspotcloud.client.main.view.api.SlideshowView;
+
 import java.util.logging.Logger;
 
 

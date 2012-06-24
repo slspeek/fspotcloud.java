@@ -54,7 +54,8 @@ public class SignUpIntegrationTest {
     @BeforeMethod
     public void setUp(Method m) throws SQLException {
         // Make this the call to TestNgGuiceBerry.setUp as early as possible
-        toTearDown = TestNgGuiceBerry.setUp(this, m, EmptyGuiceBerryEnv.class);
+        toTearDown = TestNgGuiceBerry.setUp(this, m,
+                NoAuthPlaceHolderIntegrationModule.class);
 
         userDao.deleteBulk(100);
         assertTrue(userDao.isEmpty());

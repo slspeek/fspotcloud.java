@@ -40,6 +40,7 @@ import com.googlecode.fspotcloud.client.main.ClientLoginManager;
 import com.googlecode.fspotcloud.client.main.ui.HasOneWidgetAdapter;
 import com.googlecode.fspotcloud.client.place.AdminPlaceHistoryMapper;
 import com.googlecode.fspotcloud.client.place.TagPlace;
+
 import java.util.logging.Logger;
 
 

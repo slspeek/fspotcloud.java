@@ -31,6 +31,7 @@ import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsActivityFactory;
 import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsView;
 import com.googlecode.fspotcloud.client.place.TagPlace;
+
 import java.util.logging.Logger;
 
 

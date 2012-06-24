@@ -39,9 +39,10 @@ import com.googlecode.fspotcloud.client.place.BasePlace;
 import com.googlecode.fspotcloud.client.place.TagPlace;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.main.TagNode;
+
+import javax.inject.Provider;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.inject.Provider;
 
 
 public class AdminTreePresenterImpl implements TreeView.TreePresenter,

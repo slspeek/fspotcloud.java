@@ -35,8 +35,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
-
-
 public abstract class UserManagerBase<T extends User, U extends T>
     extends SimpleDAONamedIdImpl<User, U, String> implements UserDao {
     private static final Logger log = Logger.getLogger(UserManagerBase.class.getName());

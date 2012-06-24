@@ -76,4 +76,14 @@ public abstract class AbstractBatchAction<T> implements Action<VoidResult>,
 
         return hash;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer();
+        sb.append("AbstractBatchAction");
+        sb.append("{workLoad=").append(workLoad);
+        sb.append('}');
+
+        return sb.toString();
+    }
 }

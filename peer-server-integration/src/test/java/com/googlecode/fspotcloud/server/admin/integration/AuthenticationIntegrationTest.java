@@ -27,14 +27,18 @@ package com.googlecode.fspotcloud.server.admin.integration;
 import com.google.common.testing.TearDown;
 import com.google.guiceberry.testng.TestNgGuiceBerry;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
+import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
+import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
+import com.googlecode.fspotcloud.user.UserService;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.Dispatch;
-import static org.testng.Assert.assertFalse;
+import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -43,18 +47,20 @@ import org.testng.annotations.Test;
 
 public class AuthenticationIntegrationTest {
     static final Logger log = Logger.getLogger(AuthenticationIntegrationTest.class.getName());
-    public static final String RMS_FSF_ORG1 = "rms@example.com";
-    public static final String RMS_FSF_ORG = RMS_FSF_ORG1;
+    public static final String RMS_FSF_ORG = "rms@example.com";
     private TearDown toTearDown;
     @Inject
     UserDao userDao;
     @Inject
     Dispatch dispatch;
+    @Inject
+    UserService userService;
 
     @BeforeMethod
     public void setUp(Method m) throws SQLException {
         // Make this the call to TestNgGuiceBerry.setUp as early as possible
-        toTearDown = TestNgGuiceBerry.setUp(this, m, EmptyGuiceBerryEnv.class);
+        toTearDown = TestNgGuiceBerry.setUp(this, m,
+                PlaceHolderIntegrationModule.class);
 
         userDao.deleteBulk(100);
         assertTrue(userDao.isEmpty());
@@ -67,19 +73,16 @@ public class AuthenticationIntegrationTest {
     }
 
     @Test
-    public void signUp() throws Exception {
-        SignUpAction action = new SignUpAction(RMS_FSF_ORG1, "ihp", "rms");
+    public void signUpAndLogin() throws Exception {
+        SignUpAction action = new SignUpAction(RMS_FSF_ORG, "ihp", "rms");
         SignUpResult result = dispatch.execute(action);
         assertTrue(result.getSuccess());
-    }
 
-    @Test
-    public void signUpTwice() throws Exception {
-        SignUpAction action = new SignUpAction(RMS_FSF_ORG1, "ihp", "rms");
-        SignUpResult result = dispatch.execute(action);
-        assertTrue(result.getSuccess());
-        action = new SignUpAction(RMS_FSF_ORG1, "ihp", "rms");
-        result = dispatch.execute(action);
-        assertFalse(result.getSuccess());
+        AuthenticationAction authenticationAction = new AuthenticationAction(RMS_FSF_ORG,
+                "ihp");
+        AuthenticationResult authenticationResult = dispatch.execute(authenticationAction);
+        assertTrue(authenticationResult.getSuccess());
+        assertEquals(RMS_FSF_ORG, userService.getEmail());
+        Assert.assertTrue(userService.isUserAdmin());
     }
 }

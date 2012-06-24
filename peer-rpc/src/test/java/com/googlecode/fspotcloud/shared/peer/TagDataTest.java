@@ -27,8 +27,6 @@ package com.googlecode.fspotcloud.shared.peer;
 import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-
-
 public class TagDataTest {
     private static final int COUNT = 10;
     private static final String PARENT = "2";

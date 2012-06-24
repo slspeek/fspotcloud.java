@@ -28,128 +28,42 @@ import com.google.guiceberry.GuiceBerryModule;
 import com.google.guiceberry.TestScoped;
 import com.google.guiceberry.TestWrapper;
 import com.google.inject.AbstractModule;
-import com.google.inject.Singleton;
-import com.google.inject.name.Names;
-import com.google.inject.servlet.SessionScoped;
+import com.google.inject.Module;
+import com.google.inject.util.Modules;
 import com.googlecode.botdispatch.controller.inject.LocalControllerModule;
-import com.googlecode.fspotcloud.model.jpa.CachedModelModule;
-import com.googlecode.fspotcloud.model.jpa.gae.GaeCacheProvider;
-import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
-import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoManager;
-import com.googlecode.fspotcloud.model.jpa.gae.tag.TagManager;
-import com.googlecode.fspotcloud.peer.CopyDatabase;
-import com.googlecode.fspotcloud.peer.ImageData;
-import com.googlecode.fspotcloud.peer.db.Data;
-import com.googlecode.fspotcloud.peer.inject.PeerActionsModule;
-import com.googlecode.fspotcloud.server.admin.handler.UserDeletesAllHandler;
-import com.googlecode.fspotcloud.server.admin.handler.UserImportsTagHandler;
-import com.googlecode.fspotcloud.server.admin.handler.UserSynchronizesPeerHandler;
-import com.googlecode.fspotcloud.server.admin.handler.UserUnImportsTagHandler;
-import com.googlecode.fspotcloud.server.control.task.inject.TaskActionsModule;
-import com.googlecode.fspotcloud.server.image.ImageHelper;
-import com.googlecode.fspotcloud.server.image.ImageHelperImpl;
-import com.googlecode.fspotcloud.server.inject.MainActionModule;
+import com.googlecode.fspotcloud.server.inject.GaeTotalModule;
 import com.googlecode.fspotcloud.server.mail.IMail;
-import com.googlecode.fspotcloud.server.main.handler.GetTagTreeHandler;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
-import com.googlecode.fspotcloud.server.model.api.PhotoDao;
-import com.googlecode.fspotcloud.server.model.api.TagDao;
-import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
-import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
-import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
-import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
-import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
-import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
-import com.googlecode.fspotcloud.user.ISessionEmail;
-import com.googlecode.fspotcloud.user.LenientUserModule;
-import com.googlecode.fspotcloud.user.SessionEmail;
-import com.googlecode.simpleblobstore.gae.GaeSimpleBlobstoreModule;
-import com.googlecode.simplejpadao.EntityModule;
-import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
+import com.googlecode.fspotcloud.user.inject.ServerAddress;
+import com.googlecode.fspotcloud.user.openid.OpenIdUserModule;
 import javax.servlet.http.HttpSession;
-import net.customware.gwt.dispatch.server.guice.ActionHandlerModule;
-import net.sf.jsr107cache.Cache;
 import static org.mockito.Mockito.mock;
 public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
     @Override
-    public void configure() {
+    protected void configure() {
         super.configure();
         System.setProperty("photo.dir.original", "//home/steven/PhotoDao");
         System.setProperty("photo.dir.override",
             "" + System.getProperty("user.dir") +
             "/../peer/src/test/resources/PhotoDao");
-        bind(Integer.class).annotatedWith(Names.named("maxTicks"))
-            .toInstance(new Integer(3));
-        install(new MyAdminActionsModule());
-        install(new CachedModelModule(1));
-        //install(new MyModelModule());
-        bind(ImageSpecs.class).annotatedWith(Names.named("defaultImageSpecs"))
-            .toInstance(new ImageSpecs(1024, 768, 512, 378));
-        bind(Integer.class).annotatedWith(Names.named("maxPhotoTicks"))
-            .toInstance(2);
-        install(new LocalControllerModule());
-        install(new TaskQueueDispatchDirectModule());
-        install(new TaskActionsModule());
-        install(new PeerActionsModule());
-        install(new MyPeerModule());
-        install(new LenientUserModule());
-        bind(Cache.class).toProvider(GaeCacheProvider.class);
-        install(new MainActionModule());
 
+        Module firstOverride = Modules.override(new GaeTotalModule(3, "",
+                    "rms@example.com"))
+                                      .with(new OpenIdUserModule(
+                    "rms@example.com"), new LocalControllerModule());
+        Module secondOverride = Modules.override(firstOverride)
+                                       .with(new ModuleOverrides());
+        install(secondOverride);
         bind(TestWrapper.class).to(GaeLocalDatastoreTestWrapper.class);
-        bind(ISessionEmail.class).to(SessionEmail.class);
-        bind(IMail.class).toInstance(mock(IMail.class));
-        bind(ImageHelper.class).to(ImageHelperImpl.class);
-
-        bind(HttpSession.class).to(FakeHttpServletSession.class)
-            .in(TestScoped.class);
-        bindScope(SessionScoped.class, testScope);
-        install(new GaeSimpleBlobstoreModule());
     }
-}
 
-
-class MyModelModule extends AbstractModule {
-    @Override
-    protected void configure() {
-        bind(PhotoDao.class).to(PhotoManager.class).in(Singleton.class);
-        bind(PeerDatabaseDao.class).to(PeerDatabaseManager.class)
-            .in(Singleton.class);
-        bind(TagDao.class).to(TagManager.class).in(Singleton.class);
-
-        bind(Integer.class).annotatedWith(Names.named("maxDelete"))
-            .toInstance(new Integer(1));
-        install(new EntityModule("gae"));
-    }
-}
-
-
-class MyAdminActionsModule extends ActionHandlerModule {
-    @Override
-    protected void configureHandlers() {
-        bindHandler(UserDeletesAllAction.class, UserDeletesAllHandler.class);
-        bindHandler(UserImportsTagAction.class, UserImportsTagHandler.class);
-        bindHandler(UserUnImportsTagAction.class, UserUnImportsTagHandler.class);
-        bindHandler(UserSynchronizesPeerAction.class,
-            UserSynchronizesPeerHandler.class);
-        bindHandler(GetTagTreeAction.class, GetTagTreeHandler.class);
-    }
-}
-
-
-class MyPeerModule extends AbstractModule {
-    protected void configure() {
-        bind(Data.class).in(Singleton.class);
-        bind(ImageData.class);
-        bind(String.class).annotatedWith(Names.named("JDBC URL"))
-            .toProvider(CopyDatabase.class).in(Singleton.class);
-        bind(String.class).annotatedWith(Names.named("DatabasePath"))
-            .toInstance(System.getProperty("db",
-                System.getProperty("user.dir") +
-                "/../peer/src/test/resources/photos.db"));
-        bind(String.class).annotatedWith(Names.named("WorkDir"))
-            .toInstance(System.getProperty("user.dir"));
-        bind(Integer.class).annotatedWith(Names.named("stop port"))
-            .toInstance(Integer.valueOf(System.getProperty("stop.port", "4444")));
+    private static class ModuleOverrides extends AbstractModule {
+        @Override
+        public void configure() {
+            bind(IMail.class).toInstance(mock(IMail.class));
+            bind(HttpSession.class).to(FakeHttpServletSession.class)
+                .in(TestScoped.class);
+            bind(String.class).annotatedWith(ServerAddress.class)
+                .toInstance("http://localhost");
+        }
     }
 }
