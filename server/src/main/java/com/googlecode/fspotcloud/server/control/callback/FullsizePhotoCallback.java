@@ -30,8 +30,6 @@ import com.googlecode.fspotcloud.server.image.ImageHelper;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.shared.peer.FullsizePhotoResult;
-import com.googlecode.simpleblobstore.BlobKey;
-import com.googlecode.simpleblobstore.BlobService;
 
 
 public class FullsizePhotoCallback implements SerializableAsyncCallback<FullsizePhotoResult> {

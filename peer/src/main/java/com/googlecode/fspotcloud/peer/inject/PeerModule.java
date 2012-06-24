@@ -45,7 +45,7 @@ public class PeerModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(Data.class);
+        bind(Data.class).in(Singleton.class);
         bind(ImageData.class);
         bind(String.class).annotatedWith(Names.named("JDBC URL"))
             .toProvider(CopyDatabase.class).in(Singleton.class);

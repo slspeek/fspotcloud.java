@@ -241,8 +241,7 @@ public class Data {
                     photoDirectoryOverride);
         }
 
-        log.info("URL-String: " + url + " override: " + photoDirectoryOverride);
-
+        //log.info("URL-String: " + url + " override: " + photoDirectoryOverride);
         return url;
     }
 

@@ -38,8 +38,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
-
-
 public abstract class TagManagerBase<T extends Tag, U extends T>
     extends SimpleDAONamedIdImpl<Tag, U, String> implements TagDao {
     private static final Logger log = Logger.getLogger(TagManagerBase.class.getName());

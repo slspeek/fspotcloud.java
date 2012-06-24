@@ -37,6 +37,7 @@ import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import java.util.List;
+import java.util.logging.Logger;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
@@ -44,6 +45,8 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 
 public class UserSynchronizesPeerHandler extends SimpleActionHandler<UserSynchronizesPeerAction, VoidResult> {
+    @Inject
+    private Logger log;
     private final ControllerDispatchAsync dispatch;
     private final IAdminPermission adminPermission;
     private final TaskQueueDispatch taskQueueDispatch;
@@ -69,8 +72,11 @@ public class UserSynchronizesPeerHandler extends SimpleActionHandler<UserSynchro
             GetPeerMetaDataAction metaAction = new GetPeerMetaDataAction();
             PeerMetaDataCallback callback = new PeerMetaDataCallback();
             dispatch.execute(metaAction, callback);
+
+            final List<String> importTagIds = getImportTagIds();
+            log.info("before import many tags photos " + importTagIds);
             taskQueueDispatch.execute(new ImportManyTagsPhotosAction(
-                    getImportTagIds()));
+                    importTagIds));
         } catch (Exception e) {
             throw new ActionException(e);
         }

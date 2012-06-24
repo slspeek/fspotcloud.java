@@ -31,6 +31,7 @@ import com.googlecode.fspotcloud.client.admin.view.api.DashboardView;
 import com.googlecode.fspotcloud.client.admin.view.api.TagApprovalView;
 import com.googlecode.fspotcloud.client.place.TagApprovalPlace;
 import com.googlecode.fspotcloud.client.place.TagPlace;
+
 import javax.inject.Inject;
 
 

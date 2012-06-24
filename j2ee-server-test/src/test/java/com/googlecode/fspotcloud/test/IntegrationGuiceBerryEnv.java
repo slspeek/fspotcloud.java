@@ -26,6 +26,7 @@ package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.GuiceBerryEnvMain;
 import com.google.inject.name.Names;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 

@@ -33,6 +33,7 @@ import com.googlecode.fspotcloud.client.main.event.navigation.NavigationType;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Direction;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Unit;
+
 import java.util.logging.Logger;
 
 

@@ -36,6 +36,7 @@ import com.googlecode.fspotcloud.client.main.view.api.SlideshowView;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonPresenterFactory;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonView;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
+
 import java.util.logging.Logger;
 
 

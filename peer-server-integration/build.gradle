@@ -6,6 +6,11 @@ dependencies {
     testCompile project(':peer')
     testCompile project(':test-util')
     testCompile project(':rpc')
+    testCompile("com.googlecode.taskqueue-dispatch:direct:${taskqueue_dispatch_version}") {
+        exclude(module: 'gwt-user')
+    }
+    testCompile project(":user-service-openid")
+    testCompile project(path: ':user-service-api', configuration: 'testFixtures')
     testCompile libs.test_ng
     testCompile libs.mockito
     testCompile libs.guava_testlib

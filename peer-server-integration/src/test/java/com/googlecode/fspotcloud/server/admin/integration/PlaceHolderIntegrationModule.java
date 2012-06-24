@@ -25,11 +25,26 @@
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.guiceberry.GuiceBerryModule;
+import com.google.guiceberry.TestScoped;
+import com.google.inject.AbstractModule;
+import com.google.inject.util.Modules;
+import com.googlecode.fspotcloud.user.openid.OpenIdUserModule;
+import javax.servlet.http.HttpSession;
 
 
-public class EmptyGuiceBerryEnv extends GuiceBerryModule {
+public class PlaceHolderIntegrationModule extends GuiceBerryModule {
+    public static final String RMS_FSF_ORG = "rms@example.com";
+
     @Override
     public void configure() {
         super.configure();
+        install(Modules.override(new CommonIntegrationModule(),
+                new OpenIdUserModule(RMS_FSF_ORG)).with(new AbstractModule() {
+                @Override
+                protected void configure() {
+                    bind(HttpSession.class).to(FakeHttpServletSession.class)
+                        .in(TestScoped.class);
+                }
+            }));
     }
 }

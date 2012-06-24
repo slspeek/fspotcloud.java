@@ -28,6 +28,7 @@ import com.google.gwt.i18n.client.NumberFormat;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.shared.SlideshowStatusEvent;
 import com.googlecode.fspotcloud.client.main.view.api.SlideshowView;
+
 import java.util.logging.Logger;
 
 

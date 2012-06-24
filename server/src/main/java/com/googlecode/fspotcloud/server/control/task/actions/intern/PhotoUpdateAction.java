@@ -34,4 +34,8 @@ public class PhotoUpdateAction extends AbstractBatchAction<PhotoUpdate> {
     public PhotoUpdateAction(List<PhotoUpdate> updates) {
         super(updates);
     }
+
+    public String toString() {
+        return "PhotoUpdateAction{super='" + super.toString() + "'}";
+    }
 }

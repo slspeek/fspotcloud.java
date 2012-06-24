@@ -44,10 +44,13 @@ task unpackTest << {
 }
 
 test {
-    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv'] =
-        'com.googlecode.fspotcloud.server.admin.integration.J2eeIntegrationGuiceBerryEnv'
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.NoAuthPlaceHolderIntegrationModule'] =
+        'com.googlecode.fspotcloud.server.admin.integration.J2eeNoAuthIntegrationIntegrationModule'
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.PlaceHolderIntegrationModule'] =
+        'com.googlecode.fspotcloud.server.admin.integration.J2eeIntegrationIntegrationModule'
     testLogging.showStandardStreams = true
-    ignoreFailures = true
+    //ignoreFailures = true
+    exclude 'com/googlecode/fspotcloud/server/admin/integration/PeerServerIntegrationHardCasesTest.class'
 }
 
 test.dependsOn(unpackTest)

@@ -24,7 +24,6 @@
             
 package com.googlecode.fspotcloud.client.admin.view;
 
-import static com.google.common.collect.Sets.newHashSet;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -34,9 +33,12 @@ import com.googlecode.fspotcloud.client.admin.view.api.TagApprovalView;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.*;
+import net.customware.gwt.dispatch.client.DispatchAsync;
+
 import java.util.Set;
 import java.util.logging.Logger;
-import net.customware.gwt.dispatch.client.DispatchAsync;
+
+import static com.google.common.collect.Sets.newHashSet;
 
 
 public class TagApprovalPresenterImpl extends AbstractActivity implements TagApprovalView.TagApprovalPresenter {

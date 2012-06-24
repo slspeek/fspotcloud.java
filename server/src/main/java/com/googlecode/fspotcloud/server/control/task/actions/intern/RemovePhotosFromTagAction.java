@@ -67,4 +67,15 @@ public class RemovePhotosFromTagAction extends AbstractBatchAction<String> {
 
         return hash;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer();
+        sb.append("RemovePhotosFromTagAction");
+        sb.append("{super='").append(super.toString()).append("' tagId='")
+          .append(tagId).append('\'');
+        sb.append('}');
+
+        return sb.toString();
+    }
 }

@@ -35,8 +35,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-
 public class UserManagerTest {
     private static final Logger log = Logger.getLogger(UserManagerTest.class.getName());
     public static final String EMAIL = "douglas@yahoo.com";

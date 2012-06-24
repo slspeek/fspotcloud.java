@@ -27,8 +27,6 @@ package com.googlecode.fspotcloud.shared.peer;
 import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-
-
 public class GetPeerMetaDataActionTest {
     GetPeerMetaDataAction action = new GetPeerMetaDataAction();
 

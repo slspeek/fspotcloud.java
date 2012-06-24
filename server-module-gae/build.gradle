@@ -18,6 +18,7 @@ dependencies {
     compile libs.servlet_spec
     compile libs.simple_blobstore_gae
 
+    testCompile project(':user-service-openid')
     testCompile project(':peer')
     testCompile project(':user-service-api')
     testCompile project(':test-util')
@@ -40,11 +41,16 @@ task unpackTest << {
 }
 
 test {
-    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv'] =
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.NoAuthPlaceHolderIntegrationModule'] =
+        'com.googlecode.fspotcloud.server.admin.integration.GaeNoAuthIntegrationIntegrationModule'
+    systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.PlaceHolderIntegrationModule'] =
         'com.googlecode.fspotcloud.server.admin.integration.GaeIntegrationGuiceBerryEnv'
+    //include 'com/googlecode/fspotcloud/server/admin/integration/AuthenticationIntegrationTest.class'
     testLogging.showStandardStreams = true
     //ignoreFailures = true
+     //exclude 'com/googlecode/fspotcloud/server/admin/integration/PeerServerIntegrationHardCasesTest.class'
 }
+
 
 test.dependsOn(unpackTest)
 test.useTestNG()

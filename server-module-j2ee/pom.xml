@@ -190,7 +190,7 @@
                             <testClassesDirectory>${project.build.directory}/additionaltests/</testClassesDirectory>
                             <systemPropertyVariables>
                                 <GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
-                                    com.googlecode.fspotcloud.server.admin.integration.J2eeIntegrationGuiceBerryEnv
+                                    com.googlecode.fspotcloud.server.admin.integration.J2eeNoAuthIntegrationIntegrationModule
                                 </GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.EmptyGuiceBerryEnv>
                             </systemPropertyVariables>
                             <additionalClasspathElements>

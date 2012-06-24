@@ -27,6 +27,7 @@ package com.googlecode.fspotcloud.client.main.view;
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.googlecode.fspotcloud.shared.main.TagNode;
+
 import java.util.logging.Logger;
 
 
