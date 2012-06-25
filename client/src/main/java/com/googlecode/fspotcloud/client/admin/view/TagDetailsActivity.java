@@ -38,10 +38,9 @@ import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.TagNode;
-import net.customware.gwt.dispatch.client.DispatchAsync;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class TagDetailsActivity extends AbstractActivity implements TagDetailsView.TagDetailsPresenter {

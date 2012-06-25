@@ -24,6 +24,7 @@
             
 package com.googlecode.fspotcloud.shared.peer;
 
+import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 
@@ -61,5 +62,10 @@ public class TagData extends BusinessBase implements Serializable {
 
     public int getCount() {
         return count;
+    }
+
+    public String toString() {
+        return Objects.toStringHelper(this).add("id", tagId).add("name", name)
+                      .add("#", count).toString();
     }
 }

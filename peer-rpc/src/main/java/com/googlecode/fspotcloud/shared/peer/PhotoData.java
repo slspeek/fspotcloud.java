@@ -24,6 +24,8 @@
             
 package com.googlecode.fspotcloud.shared.peer;
 
+import com.google.common.base.Objects;
+import com.google.common.base.Strings;
 import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 import java.util.Date;
@@ -51,7 +53,7 @@ public class PhotoData extends BusinessBase implements Serializable {
         byte[] imageData, byte[] thumbData, List<String> tagList, int version) {
         super();
         this.photoId = photoId;
-        this.description = description;
+        this.description = description.trim();
         this.date = date;
         this.imageData = imageData;
         this.thumbData = thumbData;
@@ -85,5 +87,13 @@ public class PhotoData extends BusinessBase implements Serializable {
 
     public List<String> getTagList() {
         return tagList;
+    }
+
+    public String toString() {
+        return Objects.toStringHelper(this).add("v", version).add("id", photoId)
+                      .add("desc", description).add("date", date)
+                      .add("image len", imageData.length)
+                      .add("thumb len", thumbData.length).add("tags", tagList)
+                      .toString();
     }
 }

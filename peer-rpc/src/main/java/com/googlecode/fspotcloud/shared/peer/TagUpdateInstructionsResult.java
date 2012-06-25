@@ -24,6 +24,7 @@
             
 package com.googlecode.fspotcloud.shared.peer;
 
+import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 import java.util.List;
@@ -51,5 +52,10 @@ public class TagUpdateInstructionsResult extends BusinessBase implements Result,
 
     public List<PhotoUpdate> getToBoUpdated() {
         return toBoUpdated;
+    }
+
+    public String toString() {
+        return Objects.toStringHelper(this).add("deletes", toBoRemovedFromTag)
+                      .add("updates", toBoUpdated).toString();
     }
 }

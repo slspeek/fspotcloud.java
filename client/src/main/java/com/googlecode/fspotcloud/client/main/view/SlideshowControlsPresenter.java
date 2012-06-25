@@ -26,7 +26,6 @@ package com.googlecode.fspotcloud.client.main.view;
 
 import com.googlecode.fspotcloud.client.main.view.api.ButtonPanelView;
 import com.googlecode.fspotcloud.client.main.view.api.SlideshowView;
-
 import java.util.logging.Logger;
 
 

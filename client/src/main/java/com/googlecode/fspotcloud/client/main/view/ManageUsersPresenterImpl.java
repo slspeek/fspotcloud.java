@@ -35,9 +35,8 @@ import com.googlecode.fspotcloud.shared.main.GetUserGroupAction;
 import com.googlecode.fspotcloud.shared.main.GetUserGroupResult;
 import com.googlecode.fspotcloud.shared.main.GrantUserAction;
 import com.googlecode.fspotcloud.shared.main.RevokeUserAction;
-import net.customware.gwt.dispatch.client.DispatchAsync;
-
 import java.util.logging.Logger;
+import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class ManageUsersPresenterImpl extends AbstractActivity implements ManageUsersView.ManageUsersPresenter {

@@ -4,11 +4,11 @@
     <parent>
         <artifactId>fspotcloud</artifactId>
         <groupId>com.googlecode.fspotcloud</groupId>
-        <version>0.12-37</version>
+        <version>0.12-38</version>
     </parent>
     <groupId>com.googlecode.fspotcloud</groupId>
     <artifactId>model-api</artifactId>
-    <version>0.12-37</version>
+    <version>0.12-38</version>
     <packaging>jar</packaging>
     <name>Model API</name>
     <dependencies>
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>com.googlecode.fspotcloud.deps</groupId>
             <artifactId>guice-deps</artifactId>
-            <version>0.12-37</version>
+            <version>0.12-38</version>
             <type>pom</type>
         </dependency>
         <dependency>

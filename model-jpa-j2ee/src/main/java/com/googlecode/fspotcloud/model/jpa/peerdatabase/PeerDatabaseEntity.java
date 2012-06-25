@@ -30,6 +30,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.persistence.*;
 import org.apache.commons.lang.SerializationUtils;
 
@@ -60,7 +61,6 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable {
     @Lob
     byte[] cachedTagTreeData; // = EMPTY_BYTE_ARRAY;
     @Basic
-    private boolean cachedTagTreeNull = true;
     private transient ArrayList<TagNode> cachedTagTree = null;
 
     public PeerDatabaseEntity() {
@@ -167,5 +167,31 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable {
         }
 
         return cachedTagTree;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer();
+        sb.append("PeerDatabaseEntity");
+        sb.append("{name='").append(name).append('\'');
+        sb.append(", peerName='").append(peerName).append('\'');
+        sb.append(", peerLastContact=").append(peerLastContact);
+        sb.append(", peerPhotoCount=").append(peerPhotoCount);
+        sb.append(", tagCount=").append(tagCount);
+        sb.append(", photoCount=").append(photoCount);
+        sb.append(", thumbDimension='").append(thumbDimension).append('\'');
+        sb.append(", imageDimension='").append(imageDimension).append('\'');
+
+        if (cachedTagTreeData != null) {
+            sb.append(", cachedTagTreeDATA=")
+              .append(SerializationUtils.deserialize(cachedTagTreeData));
+        }
+
+        sb.append(", (cachedTagTreeData == null)= ")
+          .append(cachedTagTreeData == null);
+        sb.append(", cachedTagTree=").append(cachedTagTree);
+        sb.append(", @ (" + super.toString() + ") }");
+
+        return sb.toString();
     }
 }

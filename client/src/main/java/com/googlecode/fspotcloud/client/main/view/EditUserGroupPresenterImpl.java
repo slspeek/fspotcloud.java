@@ -35,9 +35,8 @@ import com.googlecode.fspotcloud.shared.main.GetUserGroupAction;
 import com.googlecode.fspotcloud.shared.main.GetUserGroupResult;
 import com.googlecode.fspotcloud.shared.main.SaveUserGroupAction;
 import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
-import net.customware.gwt.dispatch.client.DispatchAsync;
-
 import java.util.logging.Logger;
+import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class EditUserGroupPresenterImpl extends AbstractActivity implements EditUserGroupView.EditUserGroupPresenter {

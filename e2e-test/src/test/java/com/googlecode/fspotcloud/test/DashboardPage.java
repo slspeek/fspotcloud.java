@@ -28,11 +28,9 @@
  */
 package com.googlecode.fspotcloud.test;
 
-import com.thoughtworks.selenium.Selenium;
-
-import javax.inject.Inject;
-
 import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
+import com.thoughtworks.selenium.Selenium;
+import javax.inject.Inject;
 
 
 /**

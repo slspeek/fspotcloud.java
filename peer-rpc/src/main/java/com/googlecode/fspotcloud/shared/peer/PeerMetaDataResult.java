@@ -24,6 +24,7 @@
             
 package com.googlecode.fspotcloud.shared.peer;
 
+import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Result;
@@ -49,5 +50,10 @@ public class PeerMetaDataResult extends BusinessBase implements Result,
 
     public int getPhotoCount() {
         return photoCount;
+    }
+
+    public String toString() {
+        return Objects.toStringHelper(this).add("#tag", tagCount)
+                      .add("#photo", photoCount).toString();
     }
 }

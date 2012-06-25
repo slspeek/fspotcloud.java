@@ -31,6 +31,8 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
+
+
 public class PhotoDataTest {
     private static final int VERSION = 17;
     private static final byte[] IMAGE_DATA = new byte[] { 0, 1 };

@@ -4,7 +4,9 @@ description = 'Selenium testing for prod-j2ee-war'
 
 apply plugin: 'tomcat'
 
-findbugsTest.enabled = false;
+if ("${release}" == "true") {
+findbugsTest.enabled = false
+}
 
 dependencies {
     tomcat libs.tomcat
@@ -66,7 +68,11 @@ test {
     systemProperties['bot.secret'] = bot_secret
     systemProperties['endpoint'] = "localhost:8050/j2ee-e2e"
     systemProperties['peer.jar'] = "../peer/build/libs/peer-${version}.jar"
-    include "com/googlecode/fspotcloud/test/ShortSuite.class"
+    if ("${release}" == "true") {
+        include "com/googlecode/fspotcloud/test/LocalSuite.class"
+    } else {
+        include "com/googlecode/fspotcloud/test/ShortSuite.class"
+    }
     testLogging.showStandardStreams = true
 }
 

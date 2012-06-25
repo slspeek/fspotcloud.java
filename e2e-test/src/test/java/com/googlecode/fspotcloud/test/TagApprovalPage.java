@@ -29,7 +29,6 @@
 package com.googlecode.fspotcloud.test;
 
 import com.thoughtworks.selenium.Selenium;
-
 import javax.inject.Inject;
 
 

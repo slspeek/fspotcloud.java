@@ -24,6 +24,7 @@
             
 package com.googlecode.fspotcloud.shared.peer;
 
+import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 
@@ -40,5 +41,10 @@ public class PhotoRemovedFromTag extends BusinessBase implements Serializable {
 
     public String getPhotoId() {
         return photoId;
+    }
+
+    public String toString() {
+        return Objects.toStringHelper("PhotoRemove").add("id", photoId)
+                      .toString();
     }
 }

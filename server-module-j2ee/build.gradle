@@ -9,8 +9,9 @@ configurations {
 sourceSets {
     main { compileClasspath += configurations.provided }
 }
-
+if ("${release}" == "true") {
 findbugsTest.enabled = false
+}
 
 dependencies {
     compile project(':server')
@@ -49,8 +50,7 @@ test {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.server.admin.integration.PlaceHolderIntegrationModule'] =
         'com.googlecode.fspotcloud.server.admin.integration.J2eeIntegrationIntegrationModule'
     testLogging.showStandardStreams = true
-    //ignoreFailures = true
-    exclude 'com/googlecode/fspotcloud/server/admin/integration/PeerServerIntegrationHardCasesTest.class'
+    //include 'com/googlecode/fspotcloud/server/admin/integration/PeerServerIntegrationHardCasesTest.class'
 }
 
 test.dependsOn(unpackTest)

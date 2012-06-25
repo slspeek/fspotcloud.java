@@ -24,6 +24,7 @@
             
 package com.googlecode.fspotcloud.shared.peer;
 
+import com.google.common.base.Objects;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
@@ -53,5 +54,10 @@ public class GetTagUpdateInstructionsAction extends BusinessBase
 
     public SortedSet<PhotoInfo> getPhotosOnServer() {
         return photosOnServer;
+    }
+
+    public String toString() {
+        return Objects.toStringHelper(this).add("tag", tagId)
+                      .add("photosOnServer", photosOnServer).toString();
     }
 }

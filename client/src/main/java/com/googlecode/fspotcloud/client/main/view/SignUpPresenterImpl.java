@@ -33,10 +33,9 @@ import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.SignUpView;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
-import net.customware.gwt.dispatch.client.DispatchAsync;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.SignUpPresenter {

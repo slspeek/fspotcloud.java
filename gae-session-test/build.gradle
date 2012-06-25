@@ -4,7 +4,6 @@ apply plugin: 'gae'
 apply plugin: 'war'
 
 System.properties['appengine.sdk.root'] = System.properties['user.home'] + "/appengine-java-sdk-${gae_version}"
-findbugsTest.enabled = false;
 
 gae {
     stopKey = 'STOP'
