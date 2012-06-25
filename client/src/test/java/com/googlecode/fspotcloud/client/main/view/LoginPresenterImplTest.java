@@ -31,18 +31,16 @@ import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
+import javax.inject.Inject;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.Result;
 import org.jukito.JukitoRunner;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
-
-import javax.inject.Inject;
-
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 @RunWith(JukitoRunner.class)
 public class LoginPresenterImplTest {

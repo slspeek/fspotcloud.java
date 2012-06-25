@@ -39,7 +39,6 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.MyUserGroupsView;
 import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
-
 import java.util.List;
 import java.util.logging.Logger;
 

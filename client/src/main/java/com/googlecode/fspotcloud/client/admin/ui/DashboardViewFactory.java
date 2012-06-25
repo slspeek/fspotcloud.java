@@ -29,7 +29,6 @@ import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.admin.view.TagDetailsActivityMapper;
 import com.googlecode.fspotcloud.client.admin.view.api.DashboardView;
 import com.googlecode.fspotcloud.client.main.ui.ViewFactory;
-
 import java.util.logging.Logger;
 
 

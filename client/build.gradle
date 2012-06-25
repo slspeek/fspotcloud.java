@@ -1,8 +1,9 @@
 description = 'GWT client'
 
 apply plugin: 'gwt2'
-
+if ("${release}" == "true") {
 [findbugsMain, findbugsTest]*.enabled = false
+}
 
 configurations {
     javascript

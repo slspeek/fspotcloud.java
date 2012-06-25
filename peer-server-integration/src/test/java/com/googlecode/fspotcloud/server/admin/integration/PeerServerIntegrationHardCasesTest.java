@@ -31,6 +31,7 @@ import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 import net.customware.gwt.dispatch.shared.DispatchException;
 import static org.testng.AssertJUnit.*;
 import org.testng.annotations.AfterMethod;
@@ -77,26 +78,24 @@ public class PeerServerIntegrationHardCasesTest extends PeerServerEnvironment {
     public void getTagTreeAfterOneSynchronize() throws Exception {
         TagTreeResult result = fetchTagTree();
         assertTrue(result.getTree().isEmpty());
-
+        Logger.getAnonymousLogger().info("Start");
         synchronizePeer();
-        peerInfo.printPeers();
+        Logger.getAnonymousLogger().info("Fetch tree");
         result = fetchTagTree();
         //As nothing is imported yet
         assertTrue(result.getTree().isEmpty());
-
+        Logger.getAnonymousLogger().info("Import tag 3");
         importTag("3");
+        Logger.getAnonymousLogger().info("Fetch tree");
         result = fetchTagTree();
 
         TagNode mac = result.getTree().get(0);
         assertEquals("Mac", mac.getTagName());
 
         setPeerTestDatabase("photos_smaller.db");
-        log.info("Before sync Got");
+        Logger.getAnonymousLogger().info("Synchronize again");
         synchronizePeer();
-
-        peerInfo.printPeers();
-        //peers.resetCachedTagTree();
-        peerInfo.printPeers();
+        Logger.getAnonymousLogger().info("Fetch tree last time");
         result = fetchTagTree();
         mac = result.getTree().get(0);
         assertEquals("Macintosh", mac.getTagName());

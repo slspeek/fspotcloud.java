@@ -29,10 +29,9 @@ import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.SelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
 import com.googlecode.fspotcloud.shared.main.TagNode;
-
-import javax.inject.Provider;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.inject.Provider;
 
 
 public class TagTreeModel implements TreeViewModel {

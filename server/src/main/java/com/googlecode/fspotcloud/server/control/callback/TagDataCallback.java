@@ -62,8 +62,6 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
             Tag tag = tagManager.findOrNew(keyName);
             recieveTag(data, tag);
             tagManager.save(tag);
-
-            //updateTagPhotos(tag);
         }
 
         clearTreeCache();

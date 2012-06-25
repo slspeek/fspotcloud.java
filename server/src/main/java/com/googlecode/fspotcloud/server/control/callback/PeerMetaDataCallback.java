@@ -62,11 +62,11 @@ public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaD
         int count = result.getPhotoCount();
         int tagCount = result.getTagCount();
         PeerDatabase p = defaultPeer.get();
-        dispatchAsync.execute(new GetPeerUpdateInstructionsAction(getTagData()),
-            new PeerUpdateInstructionsCallback());
         p.setPeerPhotoCount(count);
         p.setTagCount(tagCount);
         defaultPeer.save(p);
+        dispatchAsync.execute(new GetPeerUpdateInstructionsAction(getTagData()),
+            new PeerUpdateInstructionsCallback());
     }
 
     @Override

@@ -54,10 +54,17 @@ public abstract class PeerDatabaseManagerBase<T extends PeerDatabase, U extends 
         T peer;
         peer = getInstance();
 
+        //log.info("get returns: " + peer);
         return peer;
     }
 
-    private T getInstance() {
+    @Override
+    public void save(PeerDatabase entity) {
+        //log.info("saving " + entity);
+        super.save(entity);
+    }
+
+    private synchronized T getInstance() {
         EntityManager pm = entityManagerProvider.get();
         pm.getTransaction().begin();
 
@@ -65,7 +72,6 @@ public abstract class PeerDatabaseManagerBase<T extends PeerDatabase, U extends 
         peerDatabase = (T) pm.find(getEntityClass(), DEFAULT_PEER_ID);
 
         if (peerDatabase == null) {
-            log.info("Default peer not found, creating one.");
             peerDatabase = newInstance();
             peerDatabase.setId(DEFAULT_PEER_ID);
             peerDatabase.setPeerPhotoCount(0);
@@ -95,9 +101,7 @@ public abstract class PeerDatabaseManagerBase<T extends PeerDatabase, U extends 
         if (tree != null) {
             dp.setCachedTagTree(null);
             save(dp);
-            log.info(this + "RESET Tree was:" + tree);
-
-            //log.info(this + "AFTER SAVE AFTER RESET (should be null) " + get().getCachedTagTree());
+            log.info("TagTree RESET (was:" + tree + ")");
         }
     }
 

@@ -24,6 +24,7 @@
             
 package com.googlecode.fspotcloud.shared.peer;
 
+import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Action;
@@ -33,4 +34,8 @@ public class GetPeerMetaDataAction extends BusinessBase implements Action<PeerMe
     Serializable {
     @BusinessKey
     private static final long serialVersionUID = 3730836943695700527L;
+
+    public String toString() {
+        return Objects.toStringHelper(this).toString();
+    }
 }

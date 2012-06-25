@@ -32,7 +32,6 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.view.TagCell;
 import com.googlecode.fspotcloud.shared.main.TagNode;
-
 import java.util.logging.Logger;
 
 

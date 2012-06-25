@@ -46,8 +46,8 @@ public class ImageData {
         }
 
         String[] command = getCommand(url, width, height);
-        log.info("About to run: " + Arrays.asList(command));
 
+        //log.info("About to run: " + Arrays.asList(command));
         Process convert = Runtime.getRuntime().exec(command);
         InputStream in = convert.getInputStream();
         BufferedInputStream bis = new BufferedInputStream(in);

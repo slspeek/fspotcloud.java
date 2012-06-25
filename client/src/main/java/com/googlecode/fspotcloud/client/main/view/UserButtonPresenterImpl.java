@@ -31,7 +31,6 @@ import com.googlecode.fspotcloud.client.main.view.api.UserButtonView;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonViewFactory;
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
-
 import java.util.logging.Logger;
 
 

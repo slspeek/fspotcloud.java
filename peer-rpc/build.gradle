@@ -1,7 +1,8 @@
 description = 'peer-rpc'
 
-
+if ("${release}" == "true") {
 checkstyleMain.ignoreFailures = false
+}
 
 dependencies {
     compile project(':rpc')

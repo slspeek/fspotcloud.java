@@ -39,7 +39,6 @@ import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
 import com.googlecode.fspotcloud.client.main.view.api.ImageView;
 import com.googlecode.fspotcloud.client.main.view.api.ImageViewFactory;
 import com.googlecode.fspotcloud.client.main.view.factory.ImageViewFactoryImpl;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;

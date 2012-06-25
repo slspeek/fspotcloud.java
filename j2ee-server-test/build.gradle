@@ -2,8 +2,6 @@ import org.apache.tools.ant.filters.ExpandProperties
 
 description = 'Integration testing for prod-j2ee-war'
 
-findbugsTest.enabled = false;
-
 dependencies {
     testCompile project(':server-module-j2ee')
     testCompile project(path: ':e2e-test', configuration: 'testCompile')
@@ -11,8 +9,6 @@ dependencies {
     testCompile libs.guiceberry
     testCompile libs.junit
     testCompile libs.jetty
-
-    //testCompile libs.validation_api
 }
 
 task unpackTest(dependsOn: ':e2e-test:packageTests') << {

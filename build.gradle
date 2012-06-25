@@ -27,7 +27,7 @@ allprojects {
 
     defaultTasks 'build'
     group = 'com.googlecode.fspotcloud'
-    version = '0.12-37g'
+    version = '0.12-38g'
 
 
 }
@@ -37,25 +37,10 @@ subprojects {
         jalopy
     }
     apply plugin: 'java'
-    apply plugin: 'jdepend'
-    apply plugin: 'findbugs'
-    apply plugin: 'checkstyle'
-
 
     sourceCompatibility = 1.6
     targetCompatibility = 1.6
     //ext.libs = libs
-    checkstyle {
-        configFile = file("../config/checkstyle/checkstyle.xml")
-    }
-
-    [checkstyleMain, checkstyleTest]*.ignoreFailures = true
-    findbugs {
-        ignoreFailures = true
-    }
-
-    findbugsTest.enabled = false
-    checkstyleTest.enabled = false
 
     dependencies {
         jalopy 'jalopy:jalopy-ant:0.1-1.5b5', 'jalopy:jalopy:1.5rc3'
@@ -82,7 +67,24 @@ subprojects {
             }
         }
     }
+    if ("${release}" == "true") {
+        apply plugin: 'jdepend'
+        apply plugin: 'findbugs'
+        apply plugin: 'checkstyle'
+        checkstyle {
+            configFile = file("../config/checkstyle/checkstyle.xml")
+        }
 
+        [checkstyleMain, checkstyleTest]*.ignoreFailures = true
+        findbugs {
+            ignoreFailures = true
+        }
+
+        findbugsTest.enabled = false
+        checkstyleTest.enabled = false
+        check.dependsOn jalopy
+
+    }
     test {
         jvmArgs "-XX:MaxPermSize=256m"
     }
@@ -103,7 +105,7 @@ subprojects {
         mavenLocal()
     }
 
-    check.dependsOn jalopy
+
 }
 
 task javadoc(type: Javadoc) {

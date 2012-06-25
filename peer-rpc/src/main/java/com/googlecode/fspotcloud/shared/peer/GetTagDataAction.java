@@ -24,6 +24,7 @@
             
 package com.googlecode.fspotcloud.shared.peer;
 
+import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 import java.util.List;
@@ -42,5 +43,9 @@ public class GetTagDataAction extends BusinessBase implements Action<TagDataResu
 
     public List<String> getTagIdList() {
         return tagIdList;
+    }
+
+    public String toString() {
+        return Objects.toStringHelper(this).add("tags", tagIdList).toString();
     }
 }

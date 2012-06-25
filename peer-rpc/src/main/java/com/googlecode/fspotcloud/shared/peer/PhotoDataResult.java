@@ -24,6 +24,7 @@
             
 package com.googlecode.fspotcloud.shared.peer;
 
+import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
 import java.io.Serializable;
 import java.util.List;
@@ -43,5 +44,10 @@ public class PhotoDataResult extends BusinessBase implements Result,
 
     public List<PhotoData> getPhotoDataList() {
         return photoDataList;
+    }
+
+    public String toString() {
+        return Objects.toStringHelper(this).add("photos", photoDataList)
+                      .toString();
     }
 }
