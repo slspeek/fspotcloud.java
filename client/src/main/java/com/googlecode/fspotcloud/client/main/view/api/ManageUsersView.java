@@ -46,5 +46,7 @@ public interface ManageUsersView extends IsWidget {
         void delete();
 
         void setId(Long id);
+
+        void myUsergroupsButton();
     }
 }

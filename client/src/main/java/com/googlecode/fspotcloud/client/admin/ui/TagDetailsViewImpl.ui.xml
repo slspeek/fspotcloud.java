@@ -1,27 +1,13 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
              xmlns:g="urn:import:com.google.gwt.user.client.ui">
-    <ui:style>
-        .header-label {
-        font-size: 125%;
-        text-align: center;
-        background: #66BDFF;
-        }
-
-        .property-label {
-        background: #66BDFF;
-        }
-
-        .property-value {
-        background: #70C7FF;
-        }
-    </ui:style>
+    <ui:with type="com.googlecode.fspotcloud.client.admin.ui.AdminResources" field="res"></ui:with>
     <g:HTMLPanel>
         <table>
             <theader>
                 <tr>
                     <td colspan="2">
-                        <g:Label styleName="{style.header-label}" ui:field="headerLabel">Label
+                        <g:Label styleName="{res.style.headerLabel}" ui:field="headerLabel">Label
                             details
                         </g:Label>
                     </td>
@@ -30,47 +16,47 @@
             <tbody>
                 <tr>
                     <td>
-                        <g:Label styleName="{style.property-label}">Name</g:Label>
+                        <g:Label styleName="{res.style.propertyLabel}">Name</g:Label>
                     </td>
                     <td>
-                        <g:Label styleName="{style.property-value}" ui:field="tagNameValueLabel"></g:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <g:Label styleName="{style.property-label}">Description</g:Label>
-                    </td>
-                    <td>
-                        <g:Label styleName="{style.property-value}" ui:field="tagDescriptionValueLabel"></g:Label>
+                        <g:Label styleName="{res.style.propertyValue}" ui:field="tagNameValueLabel"></g:Label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <g:Label styleName="{style.property-label}">Import was requested</g:Label>
+                        <g:Label styleName="{res.style.propertyLabel}">Description</g:Label>
                     </td>
                     <td>
-                        <g:Label styleName="{style.property-value}" ui:field="tagImportIssuedValueLabel"></g:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <g:Label styleName="{style.property-label}">Number of photos in this label</g:Label>
-                    </td>
-                    <td>
-                        <g:Label styleName="{style.property-value}" ui:field="tagCountValueLabel"></g:Label>
+                        <g:Label styleName="{res.style.propertyValue}" ui:field="tagDescriptionValueLabel"></g:Label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <g:Label styleName="{style.property-label}">Number of photos loaded</g:Label>
+                        <g:Label styleName="{res.style.propertyLabel}">Import was requested</g:Label>
                     </td>
                     <td>
-                        <g:Label styleName="{style.property-value}" ui:field="tagLoadedCountValueLabel"></g:Label>
+                        <g:Label styleName="{res.style.propertyValue}" ui:field="tagImportIssuedValueLabel"></g:Label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <g:Label styleName="{style.property-label}">Request import of this label</g:Label>
+                        <g:Label styleName="{res.style.propertyLabel}">Number of photos in this label</g:Label>
+                    </td>
+                    <td>
+                        <g:Label styleName="{res.style.propertyValue}" ui:field="tagCountValueLabel"></g:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <g:Label styleName="{res.style.propertyLabel}">Number of photos loaded</g:Label>
+                    </td>
+                    <td>
+                        <g:Label styleName="{res.style.propertyValue}" ui:field="tagLoadedCountValueLabel"></g:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <g:Label styleName="{res.style.propertyLabel}">Request import of this label</g:Label>
                     </td>
                     <td>
                         <g:Button ui:field="importTagButton">Import label</g:Button>
@@ -78,7 +64,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <g:Label styleName="{style.property-label}">Approve usergroups</g:Label>
+                        <g:Label styleName="{res.style.propertyLabel}">Approve usergroups</g:Label>
                     </td>
                     <td>
                         <g:Button ui:field="manageAccessButton">Manage access</g:Button>

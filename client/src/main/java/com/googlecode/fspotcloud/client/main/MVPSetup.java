@@ -34,6 +34,7 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.inject.Inject;
+import com.googlecode.fspotcloud.client.admin.ui.AdminResources;
 import com.googlecode.fspotcloud.client.main.api.Initializable;
 import com.googlecode.fspotcloud.client.main.ui.HasOneWidgetAdapter;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
@@ -59,7 +60,7 @@ public class MVPSetup {
         PlaceController placeController,
         IGlobalShortcutController keyboardHandler,
         EventHandlersSetup eventSetup, Resources resources,
-        ClientLoginManager clientLoginManager) {
+        AdminResources adminResources, ClientLoginManager clientLoginManager) {
         this.activityMapper = activityMapper;
         this.eventBus = eventBus;
         this.placeController = placeController;
@@ -67,6 +68,7 @@ public class MVPSetup {
         this.eventSetup = eventSetup;
         this.clientLoginManager = clientLoginManager;
         resources.style().ensureInjected();
+        adminResources.style().ensureInjected();
     }
 
     public void setup() {

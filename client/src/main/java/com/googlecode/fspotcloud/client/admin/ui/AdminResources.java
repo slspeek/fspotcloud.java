@@ -22,32 +22,53 @@
  *
  */
             
-package com.googlecode.fspotcloud.client.main.view.api;
+package com.googlecode.fspotcloud.client.admin.ui;
 
-import com.google.gwt.activity.shared.Activity;
-import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.resources.client.ClientBundle;
+import com.google.gwt.resources.client.CssResource;
 
 
-public interface EditUserGroupView extends IsWidget {
-    void setPresenter(EditUserGroupPresenter presenter);
+public interface AdminResources extends ClientBundle {
+    @Source("admin.css")
+    Style style();
 
-    void setName(String name);
+    public interface Style extends CssResource {
+        String editUsergroup();
 
-    String getName();
+        String editUsergroupHeader();
 
-    void setDescription(String description);
+        String manageUsers();
 
-    String getDescription();
+        String usergroupName();
 
-    void setIsPublic(boolean isPublic);
+        String myUsergroups();
 
-    boolean getIsPublic();
+        String myUsergroupsTable();
 
-    interface EditUserGroupPresenter extends Activity {
-        void save();
+        String button();
 
-        void setId(Long id);
+        String tree();
 
-        void cancel();
+        String main();
+
+        String footer();
+
+        String titleLabel();
+
+        String importedTag();
+
+        String headerLabel();
+
+        String propertyLabel();
+
+        String propertyValue();
+
+        String labelDetails();
+
+        String tableLayout();
+
+        String tableLayoutLayer();
+
+        String tableHeader();
     }
 }

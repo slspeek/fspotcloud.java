@@ -30,6 +30,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.ManageUsersView;
+import com.googlecode.fspotcloud.client.place.MyUserGroupsPlace;
+import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.GetUserGroupAction;
 import com.googlecode.fspotcloud.shared.main.GetUserGroupResult;
@@ -44,11 +46,14 @@ public class ManageUsersPresenterImpl extends AbstractActivity implements Manage
     private final ManageUsersView view;
     private final DispatchAsync dispatch;
     private Long userGroupId;
+    private final PlaceGoTo placeGoTo;
 
     @Inject
-    public ManageUsersPresenterImpl(ManageUsersView view, DispatchAsync dispatch) {
+    public ManageUsersPresenterImpl(ManageUsersView view,
+        DispatchAsync dispatch, PlaceGoTo placeGoTo) {
         this.view = view;
         this.dispatch = dispatch;
+        this.placeGoTo = placeGoTo;
     }
 
     @Override
@@ -99,6 +104,11 @@ public class ManageUsersPresenterImpl extends AbstractActivity implements Manage
         userGroupId = id;
 
         refreshData();
+    }
+
+    @Override
+    public void myUsergroupsButton() {
+        placeGoTo.goTo(new MyUserGroupsPlace());
     }
 
     private void refreshData() {

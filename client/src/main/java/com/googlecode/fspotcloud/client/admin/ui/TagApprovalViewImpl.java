@@ -62,6 +62,8 @@ public class TagApprovalViewImpl extends Composite implements TagApprovalView {
     @UiField
     PushButton approveButton;
     @UiField
+    PushButton dashboardButton;
+    @UiField
     Label tagName;
 
     @Inject
@@ -129,6 +131,11 @@ public class TagApprovalViewImpl extends Composite implements TagApprovalView {
     @UiHandler("removeButton")
     public void removeButton(ClickEvent event) {
         presenter.remove();
+    }
+
+    @UiHandler("dashboardButton")
+    public void dashboardButton(ClickEvent event) {
+        presenter.dashboard();
     }
 
     @Override

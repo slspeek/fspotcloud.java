@@ -34,6 +34,7 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.inject.Inject;
+import com.googlecode.fspotcloud.client.admin.ui.AdminResources;
 import com.googlecode.fspotcloud.client.admin.view.AdminActivityMapper;
 import com.googlecode.fspotcloud.client.admin.view.DashboardPresenterImpl;
 import com.googlecode.fspotcloud.client.main.ClientLoginManager;
@@ -56,13 +57,15 @@ public class MVPSetup {
     @Inject
     public MVPSetup(EventBus eventBus, PlaceController placeController,
         DashboardPresenterImpl dashboardImpl,
-        ClientLoginManager clientLoginManager, AdminActivityMapper mapper) {
+        ClientLoginManager clientLoginManager, AdminActivityMapper mapper,
+        AdminResources adminResources) {
         super();
         this.eventBus = eventBus;
         this.placeController = placeController;
         this.dashboardImpl = dashboardImpl;
         this.clientLoginManager = clientLoginManager;
         this.mapper = mapper;
+        adminResources.style().ensureInjected();
     }
 
     public void setup() {
