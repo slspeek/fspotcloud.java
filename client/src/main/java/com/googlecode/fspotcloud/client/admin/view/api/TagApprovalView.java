@@ -49,5 +49,7 @@ public interface TagApprovalView extends IsWidget {
         void approve();
 
         void setTagId(String tagId);
+
+        void dashboard();
     }
 }

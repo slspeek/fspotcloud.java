@@ -56,6 +56,8 @@ public class ManageUsersViewImpl extends Composite implements ManageUsersView {
     @UiField
     PushButton deleteButton;
     @UiField
+    PushButton myUsergroupsButton;
+    @UiField
     Label userGroupName;
 
     @Inject
@@ -80,8 +82,7 @@ public class ManageUsersViewImpl extends Composite implements ManageUsersView {
         // Connect the table to the data provider.
         dataProvider.addDataDisplay(table);
         table.setSelectionModel(selectionModel);
-
-        log.info("Created " + this);
+        table.setPageSize(25);
     }
 
     @UiHandler("newButton")
@@ -92,6 +93,11 @@ public class ManageUsersViewImpl extends Composite implements ManageUsersView {
     @UiHandler("deleteButton")
     public void onDeleteButton(ClickEvent event) {
         presenter.delete();
+    }
+
+    @UiHandler("myUsergroupsButton")
+    public void onMyUsergroupsButton(ClickEvent event) {
+        presenter.myUsergroupsButton();
     }
 
     @Override

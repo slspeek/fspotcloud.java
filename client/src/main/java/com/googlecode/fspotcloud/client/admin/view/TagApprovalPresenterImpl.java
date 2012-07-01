@@ -31,6 +31,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.admin.view.api.TagApprovalView;
+import com.googlecode.fspotcloud.client.place.TagPlace;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.*;
@@ -140,6 +141,11 @@ public class TagApprovalPresenterImpl extends AbstractActivity implements TagApp
     public void setTagId(String tagId) {
         this.tagId = tagId;
         refreshTagNode(tagId);
+    }
+
+    @Override
+    public void dashboard() {
+        placeGoTo.goTo(new TagPlace(tagId));
     }
 
     private void refreshTagNode(String tagId) {

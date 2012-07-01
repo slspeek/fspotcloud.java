@@ -3,32 +3,16 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              xmlns:main="urn:import:com.googlecode.fspotcloud.client.main.ui"
              xmlns:admin="urn:import:com.googlecode.fspotcloud.client.admin.ui">
-    <ui:style>
-        .title-label {
-        text-align: center;
-        font-size:200%;
-        background: #5CB3FF;
-        }
-        .tree {
-        background: #7AD1FF;
-        }
-        .main {
-        background: #98EFFF;
-        }
-        .footer {
-        background: #5CB3FF;
-
-        }
-    </ui:style>
+    <ui:with type="com.googlecode.fspotcloud.client.admin.ui.AdminResources" field="res"></ui:with>
     <g:DockLayoutPanel unit='PX'>
         <g:north size="30">
-            <g:Label styleName="{style.title-label}" ui:field="titleLabel" text="F-Spot Cloud Dashboard">
+            <g:Label styleName="{res.style.titleLabel}" ui:field="titleLabel" text="F-Spot Cloud Dashboard">
             </g:Label>
         </g:north>
         <g:center>
-            <g:SplitLayoutPanel styleName="{style.main}" ui:field="horizontalSplitPanel">
+            <g:SplitLayoutPanel styleName="{res.style.main}" ui:field="horizontalSplitPanel">
                 <g:west size="250">
-                    <main:TreeViewImpl styleName="{style.tree}" ui:field="treeView"></main:TreeViewImpl>
+                    <main:TreeViewImpl styleName="{res.style.tree}" ui:field="treeView"></main:TreeViewImpl>
                 </g:west>
                 <g:center>
                     <g:HorizontalPanel>
@@ -39,7 +23,7 @@
             </g:SplitLayoutPanel>
         </g:center>
         <g:south size='100'>
-            <g:LayoutPanel styleName="{style.footer}">
+            <g:LayoutPanel styleName="{res.style.footer}">
                 <g:layer left="33%" width="100px" top="0%" height="30px">
                     <g:PushButton ui:field="toPhotos">To photos</g:PushButton>
                 </g:layer>

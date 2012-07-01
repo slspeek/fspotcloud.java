@@ -30,6 +30,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.EditUserGroupView;
+import com.googlecode.fspotcloud.client.place.MyUserGroupsPlace;
+import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.GetUserGroupAction;
 import com.googlecode.fspotcloud.shared.main.GetUserGroupResult;
@@ -44,12 +46,14 @@ public class EditUserGroupPresenterImpl extends AbstractActivity implements Edit
     private final EditUserGroupView view;
     private final DispatchAsync dispatch;
     private UserGroupInfo userGroupInfo;
+    private final PlaceGoTo placeGoTo;
 
     @Inject
     public EditUserGroupPresenterImpl(EditUserGroupView view,
-        DispatchAsync dispatch) {
+        DispatchAsync dispatch, PlaceGoTo placeGoTo) {
         this.view = view;
         this.dispatch = dispatch;
+        this.placeGoTo = placeGoTo;
     }
 
     @Override
@@ -75,6 +79,7 @@ public class EditUserGroupPresenterImpl extends AbstractActivity implements Edit
                 public void onSuccess(VoidResult result) {
                     log.info(
                         "Successfull return from save user group server call");
+                    placeGoTo.goTo(new MyUserGroupsPlace());
                 }
             });
     }
@@ -97,5 +102,10 @@ public class EditUserGroupPresenterImpl extends AbstractActivity implements Edit
                     view.setIsPublic(result.getInfo().isPublic());
                 }
             });
+    }
+
+    @Override
+    public void cancel() {
+        placeGoTo.goTo(new MyUserGroupsPlace());
     }
 }

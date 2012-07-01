@@ -31,6 +31,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.Widget;
@@ -59,6 +60,8 @@ public class MyUserGroupsViewImpl extends Composite implements MyUserGroupsView 
     PushButton deleteButton;
     @UiField
     PushButton manageButton;
+    @UiField
+    PushButton dashboardButton;
 
     @Inject
     public MyUserGroupsViewImpl() {
@@ -93,8 +96,7 @@ public class MyUserGroupsViewImpl extends Composite implements MyUserGroupsView 
         // Connect the table to the data provider.
         dataProvider.addDataDisplay(table);
         table.setSelectionModel(selectionModel);
-
-        log.info("Created " + this);
+        table.setPageSize(25);
     }
 
     @UiHandler("newButton")
@@ -116,6 +118,11 @@ public class MyUserGroupsViewImpl extends Composite implements MyUserGroupsView 
     public void onManageButton(ClickEvent event) {
         presenter.manageUsers();
         ;
+    }
+
+    @UiHandler("dashboardButton")
+    public void onDashboardButton(ClickEvent event) {
+        Window.Location.replace("Dashboard.html");
     }
 
     @Override

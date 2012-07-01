@@ -49,6 +49,8 @@ public class EditUserGroupViewImpl extends Composite
     @UiField
     PushButton save;
     @UiField
+    PushButton cancel;
+    @UiField
     CheckBox publicCheckBox;
 
     @Inject
@@ -99,6 +101,11 @@ public class EditUserGroupViewImpl extends Composite
     @UiHandler("save")
     public void onSaveClicked(ClickEvent e) {
         presenter.save();
+    }
+
+    @UiHandler("cancel")
+    public void onCancelClicked(ClickEvent e) {
+        presenter.cancel();
     }
 
     interface EditUserGroupBinder extends UiBinder<Widget, EditUserGroupViewImpl> {
