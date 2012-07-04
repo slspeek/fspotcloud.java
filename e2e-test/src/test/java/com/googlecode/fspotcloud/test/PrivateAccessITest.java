@@ -78,7 +78,7 @@ public class PrivateAccessITest {
         dashboardPage.open();
         dashboardPage.manageApprovalForTag("1");
 
-        tagApprovalPage.selectTopGroupOnTheRight();
+        tagApprovalPage.selectTopDeniedGroup();
         tagApprovalPage.approveUserGroup();
         photoPage.open();
         photoPage.logout();
