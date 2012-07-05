@@ -34,7 +34,7 @@ public class J2eeNoAuthIntegrationIntegrationModule
     @Override
     public void configure() {
         super.configure();
-        install(new ModelModule(3));
+        install(new ModelModule(3, "derby"));
         bind(Commands.class).to(CommandManager.class).in(Singleton.class);
         install(new J2eeSimpleBlobstoreModule());
     }

@@ -35,9 +35,8 @@ import com.googlecode.fspotcloud.client.place.ManageUsersPlace;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.*;
-import net.customware.gwt.dispatch.client.DispatchAsync;
-
 import java.util.logging.Logger;
+import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class MyUserGroupsPresenterImpl extends AbstractActivity implements MyUserGroupsView.MyUserGroupsPresenter {

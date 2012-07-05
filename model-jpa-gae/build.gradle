@@ -33,6 +33,7 @@ dependencies {
         exclude group: "javax.transaction"
     }
     compile "com.google.appengine.orm:datanucleus-appengine:1.0.4.1"
+    compile libs.simple_blobstore_gae
 
     runtime 'com.google.appengine:datanucleus-jpa:1.1.5'
     runtime 'com.google.appengine:geronimo-jpa_3.0_spec:1.1.1'
@@ -44,6 +45,7 @@ dependencies {
     testCompile libs.guava_testlib
     testCompile libs.guiceberry
     testCompile libs.gae_testing
+    testRuntime libs.servlet_spec
 
 
     daoTests libs.simple_jpa_dao_namedid_test

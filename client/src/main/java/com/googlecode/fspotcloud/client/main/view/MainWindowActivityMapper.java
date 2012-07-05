@@ -33,7 +33,6 @@ import com.googlecode.fspotcloud.client.main.IGlobalShortcutController.Mode;
 import com.googlecode.fspotcloud.client.main.view.api.*;
 import com.googlecode.fspotcloud.client.place.*;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
-
 import java.util.logging.Logger;
 
 

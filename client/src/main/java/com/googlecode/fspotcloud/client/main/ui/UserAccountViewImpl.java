@@ -32,7 +32,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.UserAccountView;
-
 import java.util.logging.Logger;
 
 

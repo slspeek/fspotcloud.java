@@ -28,14 +28,12 @@ import com.google.inject.Singleton;
 import com.googlecode.botdispatch.model.api.Commands;
 import com.googlecode.botdispatch.model.command.CommandManager;
 import com.googlecode.fspotcloud.model.jpa.ModelModule;
-import com.googlecode.simpleblobstore.j2ee.J2eeSimpleBlobstoreModule;
 public class J2eeIntegrationIntegrationModule
     extends PlaceHolderIntegrationModule {
     @Override
     public void configure() {
         super.configure();
-        install(new ModelModule(3));
+        install(new ModelModule(3, "derby"));
         bind(Commands.class).to(CommandManager.class).in(Singleton.class);
-        install(new J2eeSimpleBlobstoreModule());
     }
 }

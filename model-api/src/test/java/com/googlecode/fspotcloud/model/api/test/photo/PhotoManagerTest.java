@@ -37,7 +37,6 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.Assert.*;
 
@@ -156,39 +155,4 @@ public class PhotoManagerTest {
         assertEquals(abc, photo.getTagList());
     }
 
-    @Test
-    public void saveAndLoad2kImage() {
-        byte[] image = new byte[2000];
-        testSavingAndLoading(image);
-    }
-
-    @Test
-    public void saveAndLoad10kImage() {
-        byte[] image = new byte[10000];
-        testSavingAndLoading(image);
-    }
-
-    private void testSavingAndLoading(byte[] image) {
-        (new Random()).nextBytes(image);
-
-        Photo photo = photoManager.findOrNew(TEST_ID);
-        photo.setId(TEST_ID);
-        photoManager.save(photo);
-        photo = null;
-
-        photo = photoManager.find(TEST_ID);
-
-        //photoManager.delete(TEST_ID);
-    }
-
-    @Test
-    public void saveAndLoad400kImage() {
-        byte[] image = new byte[400000];
-        testSavingAndLoading(image);
-    }
-
-    public void saveAndLoad2MImage() {
-        byte[] image = new byte[2000000];
-        testSavingAndLoading(image);
-    }
 }

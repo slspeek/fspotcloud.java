@@ -29,10 +29,8 @@
 package com.googlecode.fspotcloud.test;
 
 import com.thoughtworks.selenium.Selenium;
-import org.junit.Assert;
-
 import javax.inject.Inject;
-
+import org.junit.Assert;
 import static org.junit.Assert.fail;
 
 /**

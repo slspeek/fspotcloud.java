@@ -29,16 +29,14 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.fspotcloud.client.main.view.api.SignUpView;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
+import javax.inject.Inject;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import org.jukito.JukitoRunner;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
-
-import javax.inject.Inject;
-
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 @RunWith(JukitoRunner.class)
 public class SignUpPresenterImplTest {

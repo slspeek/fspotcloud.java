@@ -40,7 +40,6 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.admin.view.api.TagApprovalView;
 import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
-
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;

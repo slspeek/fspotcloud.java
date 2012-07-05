@@ -37,9 +37,8 @@ import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.PlaceWhere;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.RequestFullsizeImageAction;
-import net.customware.gwt.dispatch.client.DispatchAsync;
-
 import java.util.logging.Logger;
+import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class RasterEventHandler implements RasterEvent.Handler,

@@ -25,7 +25,6 @@
 package com.googlecode.fspotcloud.test;
 
 import com.google.inject.Inject;
-
 import java.io.IOException;
 
 
