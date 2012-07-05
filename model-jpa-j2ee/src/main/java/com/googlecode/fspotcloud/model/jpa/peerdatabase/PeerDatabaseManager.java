@@ -24,25 +24,17 @@
             
 package com.googlecode.fspotcloud.model.jpa.peerdatabase;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
-import javax.persistence.EntityManager;
 
 
 public class PeerDatabaseManager extends PeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity> {
-    @Inject
-    public PeerDatabaseManager(Provider<EntityManager> entityManagerProvider) {
-        super(PeerDatabaseEntity.class, entityManagerProvider);
-    }
-
     @Override
     protected PeerDatabase newInstance() {
         return new PeerDatabaseEntity();
     }
 
     @Override
-    protected Class<?extends PeerDatabase> getEntityClass() {
+    public Class<PeerDatabaseEntity> getEntityType() {
         return PeerDatabaseEntity.class;
     }
 }

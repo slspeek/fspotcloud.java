@@ -24,8 +24,6 @@
             
 package com.googlecode.fspotcloud.server.admin.integration;
 
-import com.google.guiceberry.GuiceBerryModule;
-import com.google.guiceberry.TestScoped;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 import com.google.inject.util.Modules;
@@ -42,7 +40,7 @@ import com.googlecode.fspotcloud.server.mail.FromAddress;
 import com.googlecode.fspotcloud.server.mail.IMail;
 import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
-import javax.servlet.http.HttpSession;
+
 import static org.mockito.Mockito.mock;
 public class CommonIntegrationModule extends AbstractModule {
     public static final String SLSPEEK_GMAIL_COM = "slspeek@gmail.com";

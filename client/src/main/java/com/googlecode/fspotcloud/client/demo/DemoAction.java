@@ -36,6 +36,7 @@ import com.googlecode.fspotcloud.client.main.view.DemoPresenter;
 import com.googlecode.fspotcloud.client.view.action.KeyDispatcher;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
 import com.googlecode.fspotcloud.client.view.action.api.UserActionFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;

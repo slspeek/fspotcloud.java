@@ -33,14 +33,15 @@ import com.googlecode.fspotcloud.model.jpa.gae.user.UserManager;
 import com.googlecode.fspotcloud.server.model.test.GaeLocalDatastoreTestWrapper;
 import com.googlecode.simplejpadao.EntityModule;
 import com.googlecode.simplejpadao.SimpleDAONamedId;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.sf.jsr107cache.Cache;
 import net.sf.jsr107cache.CacheException;
 import net.sf.jsr107cache.CacheFactory;
 import net.sf.jsr107cache.CacheManager;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class UserGuiceBerryEnv extends GuiceBerryModule {

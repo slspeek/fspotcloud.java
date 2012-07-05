@@ -24,29 +24,20 @@
             
 package com.googlecode.fspotcloud.model.jpa.user;
 
-import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
+
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Provider;
-import javax.persistence.EntityManager;
+
+import static com.google.common.collect.Sets.newHashSet;
 
 
 public abstract class UserManagerBase<T extends User, U extends T>
     extends SimpleDAONamedIdImpl<User, U, String> implements UserDao {
     private static final Logger log = Logger.getLogger(UserManagerBase.class.getName());
-
-    @Inject
-    public UserManagerBase(Class<U> entityType,
-        Provider<EntityManager> emProvider, @Named("maxDelete")
-    Integer maxDelete) {
-        super(entityType, emProvider);
-    }
 
     protected void detach(User user) {
         Set<Long> uG = user.getGrantedUserGroups();
@@ -75,6 +66,4 @@ public abstract class UserManagerBase<T extends User, U extends T>
     }
 
     protected abstract User newUser(String email);
-
-    protected abstract Class<?extends User> getEntityClass();
 }

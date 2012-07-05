@@ -29,6 +29,7 @@ import com.google.guiceberry.TestScoped;
 import com.google.inject.AbstractModule;
 import com.google.inject.util.Modules;
 import com.googlecode.fspotcloud.user.openid.OpenIdUserModule;
+
 import javax.servlet.http.HttpSession;
 
 

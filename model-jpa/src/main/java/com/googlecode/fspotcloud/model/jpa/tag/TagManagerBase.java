@@ -24,32 +24,23 @@
             
 package com.googlecode.fspotcloud.model.jpa.tag;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
+
 import java.util.List;
 import java.util.SortedSet;
 import java.util.logging.Logger;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Provider;
-import javax.persistence.EntityManager;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 
 public abstract class TagManagerBase<T extends Tag, U extends T>
     extends SimpleDAONamedIdImpl<Tag, U, String> implements TagDao {
     private static final Logger log = Logger.getLogger(TagManagerBase.class.getName());
-
-    @Inject
-    public TagManagerBase(Class<U> entityType,
-        Provider<EntityManager> emProvider, @Named("maxDelete")
-    Integer maxDelete) {
-        super(entityType, emProvider);
-    }
 
     public static TagNode getTagNode(Tag tag) {
         TagNode node = new TagNode();
@@ -91,6 +82,4 @@ public abstract class TagManagerBase<T extends Tag, U extends T>
     }
 
     protected abstract Tag newTag();
-
-    protected abstract Class<?extends Tag> getEntityClass();
 }

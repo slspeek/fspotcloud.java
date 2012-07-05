@@ -32,6 +32,7 @@ import com.googlecode.fspotcloud.peer.ImageData;
 import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.fspotcloud.shared.peer.PhotoData;
 import com.googlecode.fspotcloud.shared.peer.TagData;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;

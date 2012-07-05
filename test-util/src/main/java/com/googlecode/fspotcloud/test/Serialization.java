@@ -28,8 +28,10 @@
  */
 package com.googlecode.fspotcloud.test;
 
-import java.io.Serializable;
 import org.apache.commons.lang.SerializationUtils;
+
+import java.io.Serializable;
+
 import static org.junit.Assert.assertNotNull;
 
 /**

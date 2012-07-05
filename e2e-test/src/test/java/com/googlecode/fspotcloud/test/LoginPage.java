@@ -30,7 +30,9 @@ package com.googlecode.fspotcloud.test;
 
 import com.googlecode.fspotcloud.client.main.view.LoginPresenterImpl;
 import com.thoughtworks.selenium.Selenium;
+
 import javax.inject.Inject;
+
 import static org.junit.Assert.assertEquals;
 
 /**

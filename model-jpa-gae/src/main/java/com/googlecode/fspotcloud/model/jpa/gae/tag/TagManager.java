@@ -24,27 +24,18 @@
             
 package com.googlecode.fspotcloud.model.jpa.gae.tag;
 
-import com.googlecode.fspotcloud.model.jpa.tag.CachedTagManagerBase;
+import com.googlecode.fspotcloud.model.jpa.tag.TagManagerBase;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
-import java.util.logging.Logger;
+
 import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Provider;
-import javax.persistence.EntityManager;
-import net.sf.jsr107cache.Cache;
+import java.util.logging.Logger;
 
 
-public class TagManager extends CachedTagManagerBase<Tag, TagEntity>
-    implements TagDao {
+public class TagManager extends TagManagerBase<Tag, TagEntity> implements TagDao {
     private static final Logger log = Logger.getLogger(TagManager.class.getName());
-
     @Inject
-    public TagManager(Provider<EntityManager> pmProvider,
-        @Named("maxDelete")
-    Integer maxDelete, Cache cache) {
-        super(TagEntity.class, pmProvider, maxDelete, cache);
-    }
+    TagManagerBase<Tag, TagEntity> delegate;
 
     @Override
     protected Tag newTag() {
@@ -52,7 +43,7 @@ public class TagManager extends CachedTagManagerBase<Tag, TagEntity>
     }
 
     @Override
-    protected Class<?extends Tag> getEntityClass() {
+    public Class<TagEntity> getEntityType() {
         return TagEntity.class;
     }
 }

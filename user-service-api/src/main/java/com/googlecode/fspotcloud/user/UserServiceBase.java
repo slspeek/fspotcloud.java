@@ -25,6 +25,7 @@
 package com.googlecode.fspotcloud.user;
 
 import com.google.inject.Provider;
+
 import javax.inject.Inject;
 
 

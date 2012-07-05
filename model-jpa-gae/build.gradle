@@ -80,10 +80,12 @@ task userGroupDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
         'com.googlecode.fspotcloud.server.model.test.gae.UserGroupGuiceBerryEnv'
     testResultsDir file("${project.testResultsDir}/usergroup")
 }
-
+test {
+    testLogging.showStandardStreams = true
+}
 
 task photoDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
-
+    testLogging.showStandardStreams = true
     testClassesDir = file("$buildDir/dao-test")
     classpath = sourceSets.test.runtimeClasspath
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv'] =

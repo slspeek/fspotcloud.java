@@ -28,19 +28,25 @@ import com.google.appengine.api.memcache.jsr107cache.GCacheFactory;
 import com.google.guiceberry.GuiceBerryModule;
 import com.google.guiceberry.TestWrapper;
 import com.google.inject.Provides;
+import com.google.inject.TypeLiteral;
 import com.google.inject.name.Names;
+import com.googlecode.fspotcloud.model.jpa.gae.photo.CachedPhotoManager;
+import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoEntity;
 import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoManager;
+import com.googlecode.fspotcloud.model.jpa.photo.PhotoManagerBase;
+import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.test.GaeLocalDatastoreTestWrapper;
 import com.googlecode.simplejpadao.EntityModule;
 import com.googlecode.simplejpadao.SimpleDAONamedId;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.sf.jsr107cache.Cache;
 import net.sf.jsr107cache.CacheException;
 import net.sf.jsr107cache.CacheFactory;
 import net.sf.jsr107cache.CacheManager;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class PhotoGuiceBerryEnv extends GuiceBerryModule {
@@ -51,7 +57,9 @@ public class PhotoGuiceBerryEnv extends GuiceBerryModule {
         bind(Integer.class).annotatedWith(Names.named("maxDelete"))
             .toInstance(new Integer(100));
         install(new EntityModule("gae-test"));
-        bind(SimpleDAONamedId.class).to(PhotoManager.class);
+        bind(SimpleDAONamedId.class).to(CachedPhotoManager.class);
+        bind(new TypeLiteral<PhotoManagerBase<Photo, PhotoEntity>>() {
+            }).to(PhotoManager.class);
     }
 
     @Provides

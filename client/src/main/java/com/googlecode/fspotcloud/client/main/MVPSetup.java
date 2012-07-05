@@ -41,6 +41,7 @@ import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.view.MainWindowActivityMapper;
 import com.googlecode.fspotcloud.client.place.BasePlace;
 import com.googlecode.fspotcloud.client.place.MainPlaceHistoryMapper;
+
 import java.util.logging.Logger;
 
 

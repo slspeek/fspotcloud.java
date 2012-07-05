@@ -27,6 +27,7 @@ package com.googlecode.fspotcloud.client.place.api;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
+
 import java.util.List;
 
 

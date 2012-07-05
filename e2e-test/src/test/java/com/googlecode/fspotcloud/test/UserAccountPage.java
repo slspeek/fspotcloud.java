@@ -30,8 +30,10 @@ package com.googlecode.fspotcloud.test;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.thoughtworks.selenium.Selenium;
-import java.util.Date;
+
 import javax.inject.Inject;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 /**

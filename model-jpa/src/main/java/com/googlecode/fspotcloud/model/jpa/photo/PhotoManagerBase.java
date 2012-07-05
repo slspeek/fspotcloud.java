@@ -24,33 +24,20 @@
             
 package com.googlecode.fspotcloud.model.jpa.photo;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
+
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.EntityManager;
 
 
 public abstract class PhotoManagerBase<T extends Photo, U extends T>
     extends SimpleDAONamedIdImpl<Photo, U, String> implements PhotoDao {
-    protected final Provider<EntityManager> entityManagerProvider;
-
-    @Inject
-    public PhotoManagerBase(Class<U> entityType,
-        Provider<EntityManager> emProvider) {
-        super(entityType, emProvider);
-        this.entityManagerProvider = emProvider;
-    }
-
     protected void detach(Photo photo) {
         List<String> tagList = photo.getTagList();
         photo.setTagList(new ArrayList<String>(tagList));
     }
 
     protected abstract Photo newPhoto();
-
-    protected abstract Class<?extends Photo> getEntityClass();
 }

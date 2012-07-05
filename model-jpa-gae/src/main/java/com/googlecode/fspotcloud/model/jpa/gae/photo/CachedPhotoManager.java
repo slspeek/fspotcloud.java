@@ -22,20 +22,33 @@
  *
  */
             
-package com.googlecode.fspotcloud.model.jpa.usergroup;
+package com.googlecode.fspotcloud.model.jpa.gae.photo;
 
-import com.googlecode.fspotcloud.server.model.api.UserGroup;
-import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
+import com.google.inject.Inject;
+import com.googlecode.fspotcloud.model.jpa.photo.CachedPhotoManagerBase;
+import com.googlecode.fspotcloud.model.jpa.photo.PhotoManagerBase;
+import com.googlecode.fspotcloud.server.model.api.Photo;
+import com.googlecode.fspotcloud.server.model.api.PhotoDao;
+import com.googlecode.simplejpadao.AbstractDAO;
 
 
-public class UserGroupManager extends UserGroupManagerBase<UserGroup, UserGroupEntity>
-    implements UserGroupDao {
+public class CachedPhotoManager extends CachedPhotoManagerBase<Photo, PhotoEntity>
+    implements PhotoDao {
+    @Inject
+    PhotoManagerBase<Photo, PhotoEntity> delegate;
+
     @Override
-    protected UserGroup newUserGroup() {
-        return new UserGroupEntity();
+    protected Photo newPhoto() {
+        return new PhotoEntity();
     }
 
-    public Class<UserGroupEntity> getEntityType() {
-        return UserGroupEntity.class;
+    @Override
+    public Class<PhotoEntity> getEntityType() {
+        return PhotoEntity.class;
+    }
+
+    @Override
+    public AbstractDAO<Photo, String> getDelegate() {
+        return delegate;
     }
 }

@@ -25,12 +25,14 @@
 package com.googlecode.fspotcloud.model.jpa.gae.peerdatabase;
 
 import com.google.inject.Inject;
+import com.googlecode.fspotcloud.model.jpa.peerdatabase.CachedPeerDatabaseManagerBase;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseManagerBase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
+import com.googlecode.simplejpadao.AbstractDAO;
 
 
-public class PeerDatabaseManager extends PeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity>
+public class CachedPeerDatabaseManager extends CachedPeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity>
     implements PeerDatabaseDao {
     @Inject
     PeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity> delegate;
@@ -43,5 +45,10 @@ public class PeerDatabaseManager extends PeerDatabaseManagerBase<PeerDatabase, P
     @Override
     public Class<PeerDatabaseEntity> getEntityType() {
         return PeerDatabaseEntity.class;
+    }
+
+    @Override
+    public AbstractDAO<PeerDatabase, String> getDelegate() {
+        return delegate;
     }
 }

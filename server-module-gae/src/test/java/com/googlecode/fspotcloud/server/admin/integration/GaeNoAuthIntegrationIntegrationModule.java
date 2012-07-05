@@ -30,7 +30,6 @@ import com.googlecode.botdispatch.model.api.Commands;
 import com.googlecode.botdispatch.model.jpa.gae.command.CommandManager;
 import com.googlecode.fspotcloud.model.jpa.CachedModelModule;
 import com.googlecode.simpleblobstore.gae.GaeSimpleBlobstoreModule;
-import static org.mockito.Mockito.mock;
 public class GaeNoAuthIntegrationIntegrationModule
     extends NoAuthPlaceHolderIntegrationModule {
     @Override
