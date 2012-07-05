@@ -32,7 +32,6 @@ import com.googlecode.fspotcloud.client.main.event.UserEventHandler;
 import com.googlecode.fspotcloud.client.main.event.about.AboutEvent;
 import com.googlecode.fspotcloud.client.main.event.about.AboutType;
 import com.googlecode.fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
-
 import java.util.logging.Logger;
 
 

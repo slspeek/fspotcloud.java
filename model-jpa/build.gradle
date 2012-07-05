@@ -22,6 +22,6 @@ dependencies {
     compile libs.guice_servlet
     compile libs.simple_jpa_dao_impl
     compile libs.simple_jpa_dao_cached_dao
-
+    compile libs.simple_blobstore_api
     provided libs.servlet_spec
 }

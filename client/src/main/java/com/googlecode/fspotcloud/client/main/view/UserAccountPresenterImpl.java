@@ -34,7 +34,6 @@ import com.googlecode.fspotcloud.client.main.ClientLoginManager;
 import com.googlecode.fspotcloud.client.main.view.api.UserAccountView;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
-
 import java.util.logging.Logger;
 
 

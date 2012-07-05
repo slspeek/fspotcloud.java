@@ -25,7 +25,6 @@
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.junit.client.GWTTestCase;
-
 import java.util.logging.Logger;
 
 

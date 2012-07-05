@@ -33,7 +33,6 @@ import com.google.inject.assistedinject.Assisted;
 import com.googlecode.fspotcloud.client.main.event.UserEvent;
 import com.googlecode.fspotcloud.client.main.event.UserEventHandler;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
-
 import java.util.logging.Logger;
 
 

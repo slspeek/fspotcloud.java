@@ -25,40 +25,15 @@
 package com.googlecode.fspotcloud.server.model.test;
 
 import com.google.guiceberry.GuiceBerryModule;
-import com.google.inject.AbstractModule;
-import com.google.inject.Singleton;
-import com.google.inject.name.Names;
-import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseManager;
-import com.googlecode.fspotcloud.model.jpa.photo.PhotoManager;
-import com.googlecode.fspotcloud.model.jpa.tag.TagManager;
-import com.googlecode.fspotcloud.model.jpa.user.UserManager;
-import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
-import com.googlecode.fspotcloud.server.model.api.PhotoDao;
-import com.googlecode.fspotcloud.server.model.api.TagDao;
-import com.googlecode.fspotcloud.server.model.api.UserDao;
-import com.googlecode.simplejpadao.EntityModule;
+import com.googlecode.fspotcloud.model.jpa.ModelModule;
 
 
 public class J2eeModelGuiceBerryEnv extends GuiceBerryModule {
     @Override
     protected void configure() {
         super.configure();
-        install(new ModelModule());
+        install(new ModelModule(100, "derby-test"));
     }
 }
 
 
-class ModelModule extends AbstractModule {
-    @Override
-    protected void configure() {
-        bind(PhotoDao.class).to(PhotoManager.class).in(Singleton.class);
-        bind(PeerDatabaseDao.class).to(PeerDatabaseManager.class)
-            .in(Singleton.class);
-        bind(TagDao.class).to(TagManager.class).in(Singleton.class);
-        bind(UserDao.class).to(UserManager.class);
-        bind(Integer.class).annotatedWith(Names.named("maxDelete"))
-            .toInstance(new Integer(100));
-        install(new EntityModule("derby-test"));
-        System.out.println("Test J2EE ModelModule configured.");
-    }
-}

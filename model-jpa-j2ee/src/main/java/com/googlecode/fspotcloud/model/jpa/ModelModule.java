@@ -33,14 +33,18 @@ import com.googlecode.fspotcloud.model.jpa.tag.TagManager;
 import com.googlecode.fspotcloud.model.jpa.user.UserManager;
 import com.googlecode.fspotcloud.model.jpa.usergroup.UserGroupManager;
 import com.googlecode.fspotcloud.server.model.api.*;
+import com.googlecode.simpleblobstore.j2ee.J2eeSimpleBlobstoreModule;
 import com.googlecode.simplejpadao.EntityModule;
 
 
 public class ModelModule extends AbstractModule {
-    private int maxDelete;
 
-    public ModelModule(int maxDelete) {
+    private int maxDelete;
+    private final String persistenceUnit;
+
+    public ModelModule(int maxDelete, String persistenceUnit) {
         this.maxDelete = maxDelete;
+        this.persistenceUnit = persistenceUnit;
     }
 
     @Override
@@ -53,6 +57,7 @@ public class ModelModule extends AbstractModule {
         bind(UserGroupDao.class).to(UserGroupManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete"))
             .toInstance(maxDelete);
-        install(new EntityModule("derby"));
+        install(new J2eeSimpleBlobstoreModule());
+        install(new EntityModule(persistenceUnit));
     }
 }

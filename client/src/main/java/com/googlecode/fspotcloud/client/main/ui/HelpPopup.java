@@ -34,7 +34,6 @@ import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.PopupView;
-
 import java.util.logging.Logger;
 
 

@@ -23,6 +23,7 @@ dependencies {
     compile libs.gwt_dispatch
     compile libs.jdo_api
     compile libs.guice_servlet
+    compile libs.simple_blobstore_j2ee
 
     testCompile project(path: ":model-api", configuration: "testCompile")
     testCompile libs.guiceberry

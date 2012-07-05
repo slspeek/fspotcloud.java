@@ -44,15 +44,18 @@ import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseManagerBase;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoManagerBase;
 import com.googlecode.fspotcloud.model.jpa.tag.TagManagerBase;
 import com.googlecode.fspotcloud.server.model.api.*;
+import com.googlecode.simpleblobstore.gae.GaeSimpleBlobstoreModule;
 import com.googlecode.simplejpadao.EntityModule;
 import net.sf.jsr107cache.Cache;
 
 
 public class CachedModelModule extends AbstractModule {
-    private int maxDelete;
+    private final int maxDelete;
+    private final String persistenceUnit;
 
-    public CachedModelModule(int maxDelete) {
+    public CachedModelModule(int maxDelete, String persistenceUnit) {
         this.maxDelete = maxDelete;
+        this.persistenceUnit = persistenceUnit;
     }
 
     @Override
@@ -73,6 +76,7 @@ public class CachedModelModule extends AbstractModule {
         bind(Integer.class).annotatedWith(Names.named("maxDelete"))
             .toInstance(maxDelete);
         bind(Cache.class).toProvider(GaeCacheProvider.class); //.in(Singleton.class);
-        install(new EntityModule("gae"));
+        install(new GaeSimpleBlobstoreModule());
+        install(new EntityModule(persistenceUnit));
     }
 }

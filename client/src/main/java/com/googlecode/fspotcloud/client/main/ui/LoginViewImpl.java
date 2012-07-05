@@ -34,7 +34,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.LoginView;
-
 import java.util.logging.Logger;
 
 
