@@ -24,11 +24,13 @@
             
 package com.googlecode.fspotcloud.shared.main;
 
-import static com.google.common.collect.Sets.newTreeSet;
+import org.junit.Test;
+
 import java.util.Date;
 import java.util.SortedSet;
+
+import static com.google.common.collect.Sets.newTreeSet;
 import static org.junit.Assert.*;
-import org.junit.Test;
 
 
 public class PhotoInfoStoreTest {

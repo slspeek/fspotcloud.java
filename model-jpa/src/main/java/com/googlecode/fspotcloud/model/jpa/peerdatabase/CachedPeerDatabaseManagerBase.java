@@ -27,15 +27,12 @@ package com.googlecode.fspotcloud.model.jpa.peerdatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.shared.main.TagNode;
-import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import com.googlecode.simplejpadao.cacheddao.CachedSimpleDAONamedIdImpl;
+
+import javax.persistence.EntityManager;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.inject.Inject;
-import javax.inject.Provider;
-import javax.persistence.EntityManager;
-import net.sf.jsr107cache.Cache;
 
 
 public abstract class CachedPeerDatabaseManagerBase<T extends PeerDatabase, U extends T>
@@ -43,16 +40,6 @@ public abstract class CachedPeerDatabaseManagerBase<T extends PeerDatabase, U ex
     implements PeerDatabaseDao {
     private static final String DEFAULT_PEER_ID = "1";
     private static final Logger log = Logger.getLogger(CachedPeerDatabaseManagerBase.class.getName());
-    private final Provider<EntityManager> entityManagerProvider;
-
-    @Inject
-    public CachedPeerDatabaseManagerBase(Class<U> entityType, Cache cache,
-        Provider<EntityManager> entityManagerProvider) {
-        super(entityType, cache,
-            new SimpleDAONamedIdImpl<PeerDatabase, U, String>(entityType,
-                entityManagerProvider));
-        this.entityManagerProvider = entityManagerProvider;
-    }
 
     public T get() {
         T peer;
@@ -66,7 +53,7 @@ public abstract class CachedPeerDatabaseManagerBase<T extends PeerDatabase, U ex
         pm.getTransaction().begin();
 
         T peerDatabase;
-        peerDatabase = (T) pm.find(getEntityClass(), DEFAULT_PEER_ID);
+        peerDatabase = (T) pm.find(getEntityType(), DEFAULT_PEER_ID);
 
         if (peerDatabase == null) {
             log.info("Default peer not found, creating one.");
@@ -102,6 +89,4 @@ public abstract class CachedPeerDatabaseManagerBase<T extends PeerDatabase, U ex
     }
 
     protected abstract T newInstance();
-
-    protected abstract Class<?extends PeerDatabase> getEntityClass();
 }

@@ -35,7 +35,9 @@ import com.googlecode.fspotcloud.server.inject.GaeTotalModule;
 import com.googlecode.fspotcloud.server.mail.IMail;
 import com.googlecode.fspotcloud.user.inject.ServerAddress;
 import com.googlecode.fspotcloud.user.openid.OpenIdUserModule;
+
 import javax.servlet.http.HttpSession;
+
 import static org.mockito.Mockito.mock;
 public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
     @Override

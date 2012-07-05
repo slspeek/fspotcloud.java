@@ -39,6 +39,7 @@ import com.google.inject.assistedinject.Assisted;
 import com.googlecode.fspotcloud.client.main.view.api.ImageView;
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
 import com.reveregroup.gwt.imagepreloader.FitImage;
+
 import java.util.logging.Logger;
 
 

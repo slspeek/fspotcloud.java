@@ -29,6 +29,7 @@
 package com.googlecode.fspotcloud.test;
 
 import com.thoughtworks.selenium.Selenium;
+
 import javax.inject.Inject;
 
 
@@ -54,7 +55,6 @@ public class TagApprovalPage {
 
     public void selectThirdGroupOnTheRight() {
         selenium.click("//tr[3]/td/div");
-
     }
 
     public void approveUserGroup() {

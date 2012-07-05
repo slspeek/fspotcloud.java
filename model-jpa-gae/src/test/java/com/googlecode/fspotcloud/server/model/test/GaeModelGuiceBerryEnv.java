@@ -30,22 +30,33 @@ import com.google.guiceberry.TestWrapper;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
+import com.google.inject.TypeLiteral;
 import com.google.inject.name.Names;
+import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.CachedPeerDatabaseManager;
+import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
+import com.googlecode.fspotcloud.model.jpa.gae.photo.CachedPhotoManager;
+import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoEntity;
 import com.googlecode.fspotcloud.model.jpa.gae.photo.PhotoManager;
+import com.googlecode.fspotcloud.model.jpa.gae.tag.CachedTagManager;
+import com.googlecode.fspotcloud.model.jpa.gae.tag.TagEntity;
 import com.googlecode.fspotcloud.model.jpa.gae.tag.TagManager;
 import com.googlecode.fspotcloud.model.jpa.gae.user.UserManager;
 import com.googlecode.fspotcloud.model.jpa.gae.usergroup.UserGroupManager;
+import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseManagerBase;
+import com.googlecode.fspotcloud.model.jpa.photo.PhotoManagerBase;
+import com.googlecode.fspotcloud.model.jpa.tag.TagManagerBase;
 import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.simplejpadao.EntityModule;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.sf.jsr107cache.Cache;
 import net.sf.jsr107cache.CacheException;
 import net.sf.jsr107cache.CacheFactory;
 import net.sf.jsr107cache.CacheManager;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class GaeModelGuiceBerryEnv extends GuiceBerryModule {
@@ -61,10 +72,16 @@ public class GaeModelGuiceBerryEnv extends GuiceBerryModule {
 class ModelModule extends AbstractModule {
     @Override
     protected void configure() {
-        bind(PhotoDao.class).to(PhotoManager.class).in(Singleton.class);
-        bind(PeerDatabaseDao.class).to(PeerDatabaseManager.class)
+        bind(new TypeLiteral<PhotoManagerBase<Photo, PhotoEntity>>() {
+            }).to(PhotoManager.class);
+        bind(new TypeLiteral<TagManagerBase<Tag, TagEntity>>() {
+            }).to(TagManager.class);
+        bind(new TypeLiteral<PeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity>>() {
+            }).to(PeerDatabaseManager.class);
+        bind(PhotoDao.class).to(CachedPhotoManager.class).in(Singleton.class);
+        bind(PeerDatabaseDao.class).to(CachedPeerDatabaseManager.class)
             .in(Singleton.class);
-        bind(TagDao.class).to(TagManager.class).in(Singleton.class);
+        bind(TagDao.class).to(CachedTagManager.class).in(Singleton.class);
         bind(UserDao.class).to(UserManager.class).in(Singleton.class);
         bind(UserGroupDao.class).to(UserGroupManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete"))

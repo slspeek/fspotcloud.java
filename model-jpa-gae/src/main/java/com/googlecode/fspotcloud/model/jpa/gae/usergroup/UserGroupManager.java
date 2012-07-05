@@ -24,27 +24,24 @@
             
 package com.googlecode.fspotcloud.model.jpa.gae.usergroup;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.googlecode.fspotcloud.model.jpa.usergroup.UserGroupManagerBase;
 import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
-import javax.persistence.EntityManager;
 
 
 public class UserGroupManager extends UserGroupManagerBase<UserGroup, UserGroupEntity>
     implements UserGroupDao {
-    @Inject
-    public UserGroupManager(Provider<EntityManager> pmProvider) {
-        super(UserGroupEntity.class, pmProvider, 1000);
-    }
-
     @Override
     protected UserGroup newUserGroup() {
         return new UserGroupEntity();
     }
 
     protected Class<?extends UserGroup> getEntityClass() {
+        return UserGroupEntity.class;
+    }
+
+    @Override
+    public Class<UserGroupEntity> getEntityType() {
         return UserGroupEntity.class;
     }
 }

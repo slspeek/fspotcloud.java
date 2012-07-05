@@ -25,6 +25,7 @@
 package com.googlecode.fspotcloud.user;
 
 import com.googlecode.fspotcloud.user.inject.ServerAddress;
+
 import javax.inject.Inject;
 import javax.inject.Provider;
 

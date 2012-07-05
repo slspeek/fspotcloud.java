@@ -29,9 +29,10 @@ import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.admin.view.api.GlobalActionsView;
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
 import com.googlecode.fspotcloud.shared.dashboard.*;
+import net.customware.gwt.dispatch.client.DispatchAsync;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPresenter {

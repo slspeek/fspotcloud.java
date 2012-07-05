@@ -24,13 +24,15 @@
             
 package com.googlecode.fspotcloud.user;
 
-import static com.google.common.collect.Lists.newArrayList;
-import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 @RunWith(JukitoRunner.class)
 public class SessionEmailTest {

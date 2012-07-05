@@ -27,26 +27,13 @@ package com.googlecode.fspotcloud.model.jpa.usergroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
 import com.googlecode.simplejpadao.SimpleDAOGenIdImpl;
+
 import java.util.logging.Logger;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Provider;
-import javax.persistence.EntityManager;
 
 
 public abstract class UserGroupManagerBase<T extends UserGroup, U extends T>
     extends SimpleDAOGenIdImpl<UserGroup, U, Long> implements UserGroupDao {
     private static final Logger log = Logger.getLogger(UserGroupManagerBase.class.getName());
-
-    @Inject
-    public UserGroupManagerBase(Class<U> entityType,
-        Provider<EntityManager> emProvider, @Named("maxDelete")
-    Integer maxDelete) {
-        super(entityType, emProvider);
-    }
-
-    protected void detach(UserGroup user) {
-    }
 
     @Override
     public UserGroup newEntity() {
@@ -54,6 +41,4 @@ public abstract class UserGroupManagerBase<T extends UserGroup, U extends T>
     }
 
     protected abstract UserGroup newUserGroup();
-
-    protected abstract Class<?extends UserGroup> getEntityClass();
 }

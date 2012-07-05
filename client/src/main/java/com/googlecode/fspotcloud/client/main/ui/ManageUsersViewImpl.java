@@ -36,6 +36,7 @@ import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.ManageUsersView;
+
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;

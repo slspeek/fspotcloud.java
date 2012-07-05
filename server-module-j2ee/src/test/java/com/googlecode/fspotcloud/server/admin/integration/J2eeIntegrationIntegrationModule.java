@@ -29,7 +29,6 @@ import com.googlecode.botdispatch.model.api.Commands;
 import com.googlecode.botdispatch.model.command.CommandManager;
 import com.googlecode.fspotcloud.model.jpa.ModelModule;
 import com.googlecode.simpleblobstore.j2ee.J2eeSimpleBlobstoreModule;
-import static org.mockito.Mockito.mock;
 public class J2eeIntegrationIntegrationModule
     extends PlaceHolderIntegrationModule {
     @Override

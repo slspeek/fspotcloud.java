@@ -30,6 +30,7 @@ import com.google.gwt.user.client.Event.NativePreviewEvent;
 import com.google.gwt.user.client.Event.NativePreviewHandler;
 import com.googlecode.fspotcloud.client.main.api.Initializable;
 import com.googlecode.fspotcloud.client.view.action.api.ShortcutHandler;
+
 import java.util.Map;
 import java.util.logging.Logger;
 

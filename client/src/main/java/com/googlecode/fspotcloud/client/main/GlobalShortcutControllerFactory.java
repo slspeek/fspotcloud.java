@@ -30,10 +30,11 @@ import com.googlecode.fspotcloud.client.main.event.ActionMap;
 import com.googlecode.fspotcloud.client.view.action.KeyDispatcher;
 import com.googlecode.fspotcloud.client.view.action.api.ShortcutHandler;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
-import java.util.HashMap;
-import java.util.Map;
+
 import javax.inject.Inject;
 import javax.inject.Provider;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class GlobalShortcutControllerFactory implements Provider<GlobalShortcutController> {

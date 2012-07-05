@@ -74,6 +74,7 @@ task photoDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.simplejpadao.test.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.server.model.test.PhotoGuiceBerryEnv'
     testResultsDir file("${project.testResultsDir}/photo")
+
 }
 
 task tagDaoTest(type: Test, dependsOn: [classes, unpackTest]) {
@@ -102,3 +103,4 @@ task modelTest(type: Test, dependsOn: [classes, unpackTest]) {
 
 check.dependsOn photoDaoTest, tagDaoTest, peerDatabaseDaoTest, modelTest, userDaoTest, userGroupDaoTest
 clean.dependsOn deleteDB
+

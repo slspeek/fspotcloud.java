@@ -24,33 +24,21 @@
             
 package com.googlecode.fspotcloud.model.jpa.photo;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
-import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import com.googlecode.simplejpadao.cacheddao.CachedSimpleDAONamedIdImpl;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import net.sf.jsr107cache.Cache;
 
 
 public abstract class CachedPhotoManagerBase<T extends Photo, U extends T>
     extends CachedSimpleDAONamedIdImpl<Photo, U, String> implements PhotoDao {
     @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(CachedPhotoManagerBase.class.getName());
-    protected final Provider<EntityManager> entityManagerProvider;
-
-    @Inject
-    public CachedPhotoManagerBase(Class<U> entityType, Cache cache,
-        Provider<EntityManager> emProvider) {
-        super(entityType, cache,
-            new SimpleDAONamedIdImpl<Photo, U, String>(entityType, emProvider));
-        this.entityManagerProvider = emProvider;
-    }
 
     private void detach(Photo photo) {
         List<String> tagList = photo.getTagList();
@@ -62,7 +50,7 @@ public abstract class CachedPhotoManagerBase<T extends Photo, U extends T>
         EntityManager em = entityManagerProvider.get();
         em.getTransaction().begin();
 
-        Photo attachted = em.find(getEntityClass(), key);
+        Photo attachted = em.find(getEntityType(), key);
 
         if (attachted != null) {
             detach(attachted);
@@ -80,7 +68,7 @@ public abstract class CachedPhotoManagerBase<T extends Photo, U extends T>
 
         try {
             Query query = em.createQuery("select c from " +
-                    getEntityClass().getName() + " AS c");
+                    getEntityType().getName() + " AS c");
             query.setMaxResults(max);
 
             @SuppressWarnings("unchecked")
@@ -103,6 +91,4 @@ public abstract class CachedPhotoManagerBase<T extends Photo, U extends T>
     }
 
     protected abstract Photo newPhoto();
-
-    protected abstract Class<?extends Photo> getEntityClass();
 }

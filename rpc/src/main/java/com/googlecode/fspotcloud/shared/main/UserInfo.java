@@ -30,9 +30,10 @@ package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.gwt.user.client.rpc.IsSerializable;
+import net.customware.gwt.dispatch.shared.Result;
+
 import java.io.Serializable;
 import java.util.Date;
-import net.customware.gwt.dispatch.shared.Result;
 
 
 /**

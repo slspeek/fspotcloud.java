@@ -22,35 +22,36 @@
  *
  */
             
-package com.googlecode.fspotcloud.user;
+package com.googlecode.fspotcloud.model.jpa.gae.tag;
 
-import com.googlecode.fspotcloud.user.inject.ServerAddress;
-import org.jukito.JukitoModule;
-import org.jukito.JukitoRunner;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.googlecode.fspotcloud.model.jpa.tag.CachedTagManagerBase;
+import com.googlecode.fspotcloud.model.jpa.tag.TagManagerBase;
+import com.googlecode.fspotcloud.server.model.api.Tag;
+import com.googlecode.fspotcloud.server.model.api.TagDao;
+import com.googlecode.simplejpadao.AbstractDAO;
 
 import javax.inject.Inject;
+import java.util.logging.Logger;
 
-import static org.junit.Assert.assertEquals;
 
-
-@RunWith(JukitoRunner.class)
-public class UrlUtilTest {
+public class CachedTagManager extends CachedTagManagerBase<Tag, TagEntity>
+    implements TagDao {
+    private static final Logger log = Logger.getLogger(CachedTagManager.class.getName());
     @Inject
-    UrlUtil util;
+    TagManagerBase<Tag, TagEntity> delegate;
 
-    @Test
-    public void toAbsoluteURL() throws Exception {
-        String result = util.toAbsoluteURL("my-part");
-        assertEquals("http://localhost:8080/context/my-part", result);
+    @Override
+    protected Tag newTag() {
+        return new TagEntity();
     }
 
-    public static class Module extends JukitoModule {
-        @Override
-        protected void configureTest() {
-            bind(String.class).annotatedWith(ServerAddress.class)
-                .toInstance("http://localhost:8080/context");
-        }
+    @Override
+    public Class<TagEntity> getEntityType() {
+        return TagEntity.class;
+    }
+
+    @Override
+    public AbstractDAO<Tag, String> getDelegate() {
+        return delegate;
     }
 }

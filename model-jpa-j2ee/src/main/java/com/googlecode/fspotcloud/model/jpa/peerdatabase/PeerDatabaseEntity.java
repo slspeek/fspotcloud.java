@@ -26,13 +26,13 @@ package com.googlecode.fspotcloud.model.jpa.peerdatabase;
 
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.shared.main.TagNode;
+import org.apache.commons.lang.SerializationUtils;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
-import javax.persistence.*;
-import org.apache.commons.lang.SerializationUtils;
 
 
 /**

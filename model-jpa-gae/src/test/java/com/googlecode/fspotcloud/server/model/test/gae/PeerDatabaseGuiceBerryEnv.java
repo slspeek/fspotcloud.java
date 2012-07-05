@@ -28,19 +28,25 @@ import com.google.appengine.api.memcache.jsr107cache.GCacheFactory;
 import com.google.guiceberry.GuiceBerryModule;
 import com.google.guiceberry.TestWrapper;
 import com.google.inject.Provides;
+import com.google.inject.TypeLiteral;
 import com.google.inject.name.Names;
+import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.CachedPeerDatabaseManager;
+import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.model.jpa.gae.peerdatabase.PeerDatabaseManager;
+import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseManagerBase;
+import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.test.GaeLocalDatastoreTestWrapper;
 import com.googlecode.simplejpadao.EntityModule;
 import com.googlecode.simplejpadao.SimpleDAONamedId;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.sf.jsr107cache.Cache;
 import net.sf.jsr107cache.CacheException;
 import net.sf.jsr107cache.CacheFactory;
 import net.sf.jsr107cache.CacheManager;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class PeerDatabaseGuiceBerryEnv extends GuiceBerryModule {
@@ -51,7 +57,9 @@ public class PeerDatabaseGuiceBerryEnv extends GuiceBerryModule {
         bind(Integer.class).annotatedWith(Names.named("maxDelete"))
             .toInstance(new Integer(100));
         install(new EntityModule("gae-test"));
-        bind(SimpleDAONamedId.class).to(PeerDatabaseManager.class);
+        bind(SimpleDAONamedId.class).to(CachedPeerDatabaseManager.class);
+        bind(new TypeLiteral<PeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity>>() {
+            }).to(PeerDatabaseManager.class);
     }
 
     @Provides
