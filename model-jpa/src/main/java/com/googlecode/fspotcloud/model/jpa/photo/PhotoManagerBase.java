@@ -24,32 +24,30 @@
             
 package com.googlecode.fspotcloud.model.jpa.photo;
 
+import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.simpleblobstore.BlobKey;
 import com.googlecode.simpleblobstore.BlobService;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
-
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.google.common.collect.Lists.newArrayList;
+import javax.inject.Inject;
 
 
 public abstract class PhotoManagerBase<T extends Photo, U extends T>
     extends SimpleDAONamedIdImpl<Photo, U, String> implements PhotoDao {
-
-
     @Inject
     private BlobService blobService;
+
     @Override
     protected void preDelete(Photo entity) {
         String imageKey = entity.getImageBlobKey();
         String thumbKey = entity.getThumbBlobKey();
         String fullsize = entity.getFullsizeImageBlobKey();
         List<String> keys = newArrayList(imageKey, thumbKey, fullsize);
-        for (String key: keys) {
+
+        for (String key : keys) {
             removeByKey(key);
         }
     }

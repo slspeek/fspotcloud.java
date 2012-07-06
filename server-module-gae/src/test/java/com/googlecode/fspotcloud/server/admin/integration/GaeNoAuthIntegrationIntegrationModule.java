@@ -29,6 +29,8 @@ import com.google.inject.Singleton;
 import com.googlecode.botdispatch.model.api.Commands;
 import com.googlecode.botdispatch.model.jpa.gae.command.CommandManager;
 import com.googlecode.fspotcloud.model.jpa.CachedModelModule;
+
+
 public class GaeNoAuthIntegrationIntegrationModule
     extends NoAuthPlaceHolderIntegrationModule {
     @Override
@@ -37,7 +39,6 @@ public class GaeNoAuthIntegrationIntegrationModule
         System.setProperty("appengine.orm.disable.duplicate.emf.exception",
             "true");
         install(new CachedModelModule(3, "gae"));
-        //install(new GaeSimpleBlobstoreModule());
         bind(Commands.class).to(CommandManager.class).in(Singleton.class);
 
         bind(TestWrapper.class).to(GaeLocalDatastoreTestWrapper.class);

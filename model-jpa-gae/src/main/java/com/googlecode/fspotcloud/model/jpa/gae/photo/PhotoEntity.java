@@ -28,14 +28,14 @@
 package com.googlecode.fspotcloud.model.jpa.gae.photo;
 
 import com.googlecode.fspotcloud.server.model.api.Photo;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 
 /**
@@ -48,6 +48,7 @@ public class PhotoEntity implements Photo, Serializable {
     @Id
     private String id;
     private String description;
+    @Column(nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
     private ArrayList<String> tagList = new ArrayList<String>();

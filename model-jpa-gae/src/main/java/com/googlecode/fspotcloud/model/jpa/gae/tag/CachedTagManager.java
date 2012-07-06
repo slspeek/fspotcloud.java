@@ -29,9 +29,8 @@ import com.googlecode.fspotcloud.model.jpa.tag.TagManagerBase;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.simplejpadao.AbstractDAO;
-
-import javax.inject.Inject;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 
 
 public class CachedTagManager extends CachedTagManagerBase<Tag, TagEntity>

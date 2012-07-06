@@ -27,17 +27,15 @@
  */
 package com.googlecode.fspotcloud.model.jpa.user;
 
+import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.User;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
-import static com.google.common.collect.Sets.newHashSet;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 
 /**

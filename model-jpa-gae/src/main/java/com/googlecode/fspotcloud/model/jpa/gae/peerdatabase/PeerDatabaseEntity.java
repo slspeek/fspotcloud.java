@@ -27,16 +27,12 @@ package com.googlecode.fspotcloud.model.jpa.gae.peerdatabase;
 import com.google.appengine.api.datastore.Blob;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.shared.main.TagNode;
-import org.apache.commons.lang.SerializationUtils;
-
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.*;
+import org.apache.commons.lang.SerializationUtils;
 
 
 /**
@@ -49,6 +45,7 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable {
     private String id;
     @Basic
     private String peerName;
+    @Column(nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date peerLastContact;
     @Basic

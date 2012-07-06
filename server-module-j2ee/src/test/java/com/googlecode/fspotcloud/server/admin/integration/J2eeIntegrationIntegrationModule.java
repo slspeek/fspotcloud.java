@@ -28,6 +28,8 @@ import com.google.inject.Singleton;
 import com.googlecode.botdispatch.model.api.Commands;
 import com.googlecode.botdispatch.model.command.CommandManager;
 import com.googlecode.fspotcloud.model.jpa.ModelModule;
+
+
 public class J2eeIntegrationIntegrationModule
     extends PlaceHolderIntegrationModule {
     @Override

@@ -35,5 +35,3 @@ public class J2eeModelGuiceBerryEnv extends GuiceBerryModule {
         install(new ModelModule(100, "derby-test"));
     }
 }
-
-

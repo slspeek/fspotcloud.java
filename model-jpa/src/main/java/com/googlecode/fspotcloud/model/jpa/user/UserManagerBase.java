@@ -24,15 +24,13 @@
             
 package com.googlecode.fspotcloud.model.jpa.user;
 
+import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
-
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
-
-import static com.google.common.collect.Sets.newHashSet;
 
 
 public abstract class UserManagerBase<T extends User, U extends T>

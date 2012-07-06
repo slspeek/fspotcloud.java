@@ -38,7 +38,6 @@ import com.googlecode.simplejpadao.EntityModule;
 
 
 public class ModelModule extends AbstractModule {
-
     private int maxDelete;
     private final String persistenceUnit;
 

@@ -26,15 +26,14 @@ package com.googlecode.fspotcloud.model.jpa.gae;
 
 import com.google.appengine.api.memcache.jsr107cache.GCacheFactory;
 import com.google.inject.Provider;
-import net.sf.jsr107cache.Cache;
-import net.sf.jsr107cache.CacheException;
-import net.sf.jsr107cache.CacheFactory;
-import net.sf.jsr107cache.CacheManager;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.sf.jsr107cache.Cache;
+import net.sf.jsr107cache.CacheException;
+import net.sf.jsr107cache.CacheFactory;
+import net.sf.jsr107cache.CacheManager;
 
 
 public class GaeCacheProvider implements Provider<Cache> {

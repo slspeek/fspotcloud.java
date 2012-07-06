@@ -26,9 +26,8 @@ package com.googlecode.fspotcloud.user;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-
-import javax.servlet.http.HttpSession;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 
 public class SessionEmail implements ISessionEmail {

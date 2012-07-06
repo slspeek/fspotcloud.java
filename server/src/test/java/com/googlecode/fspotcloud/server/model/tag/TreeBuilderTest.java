@@ -26,12 +26,10 @@ package com.googlecode.fspotcloud.server.model.tag;
 
 import com.google.common.collect.ImmutableList;
 import com.googlecode.fspotcloud.shared.main.TagNode;
+import java.util.List;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 
 public class TreeBuilderTest {

@@ -24,6 +24,7 @@
             
 package com.googlecode.fspotcloud.server.mail;
 
+import java.util.Properties;
 import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -32,7 +33,6 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Properties;
 
 
 public class Mailer implements IMail {

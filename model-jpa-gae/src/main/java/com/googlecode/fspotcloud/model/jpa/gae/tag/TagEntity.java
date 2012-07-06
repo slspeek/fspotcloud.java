@@ -28,19 +28,17 @@
 package com.googlecode.fspotcloud.model.jpa.gae.tag;
 
 import com.google.appengine.api.datastore.Blob;
+import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
-import org.apache.commons.lang.SerializationUtils;
-
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
-
-import static com.google.common.collect.Sets.newHashSet;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import org.apache.commons.lang.SerializationUtils;
 
 
 /**

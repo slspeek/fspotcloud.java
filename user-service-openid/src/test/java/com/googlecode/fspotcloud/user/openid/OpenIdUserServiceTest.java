@@ -31,10 +31,9 @@ import com.googlecode.fspotcloud.user.inject.ServerAddress;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
 import org.junit.After;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 @RunWith(JukitoRunner.class)
 public class OpenIdUserServiceTest {

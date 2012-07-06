@@ -30,15 +30,13 @@ import com.google.inject.Inject;
 import com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
-import org.junit.After;
-import org.junit.Rule;
-import org.junit.Test;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
+import org.junit.After;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.Test;
 
 
 public class PhotoManagerTest {
@@ -154,5 +152,4 @@ public class PhotoManagerTest {
         photo = photoManager.find(TEST_ID);
         assertEquals(abc, photo.getTagList());
     }
-
 }

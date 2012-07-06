@@ -28,11 +28,10 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
-
-import javax.persistence.EntityManager;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
 
 
 public abstract class PeerDatabaseManagerBase<T extends PeerDatabase, U extends T>

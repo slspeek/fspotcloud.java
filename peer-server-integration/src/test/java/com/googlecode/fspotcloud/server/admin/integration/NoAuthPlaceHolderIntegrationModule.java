@@ -27,7 +27,6 @@ package com.googlecode.fspotcloud.server.admin.integration;
 import com.google.guiceberry.GuiceBerryModule;
 import com.google.guiceberry.TestScoped;
 import com.googlecode.fspotcloud.user.LenientUserModule;
-
 import javax.servlet.http.HttpSession;
 
 

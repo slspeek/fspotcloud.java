@@ -24,15 +24,13 @@
             
 package com.googlecode.fspotcloud.server.main.handler;
 
-import com.googlecode.fspotcloud.shared.main.TagNode;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 import static com.google.common.collect.Sets.newHashSet;
+import com.googlecode.fspotcloud.shared.main.TagNode;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 public class TagTreeHelper {

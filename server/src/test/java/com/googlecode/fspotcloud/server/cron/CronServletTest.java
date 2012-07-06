@@ -36,7 +36,6 @@ import net.customware.gwt.dispatch.server.Dispatch;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 public class CronServletTest extends ServletTestCase {

@@ -31,14 +31,12 @@ import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.simpleblobstore.BlobKey;
 import com.googlecode.simpleblobstore.BlobService;
-import org.junit.After;
-import org.junit.Rule;
-import org.junit.Test;
-
 import java.util.Random;
-
+import org.junit.After;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import org.junit.Rule;
+import org.junit.Test;
 
 
 public class PhotoManagerBlobsTest {
@@ -50,16 +48,16 @@ public class PhotoManagerBlobsTest {
     @Inject
     private BlobService blobService;
 
-
     @After
     public void cleanUp() {
         photoManager.deleteBulk(100);
     }
 
     private String saveBlob(int size) {
-        byte[] data =  new byte[size];
+        byte[] data = new byte[size];
         (new Random()).nextBytes(data);
-        return blobService.save("application",data).getKeyString();
+
+        return blobService.save("application", data).getKeyString();
     }
 
     @Test
@@ -100,5 +98,4 @@ public class PhotoManagerBlobsTest {
         photoManager.deleteByKey(TEST_ID);
         assertNull(blobService.fetchData(new BlobKey(blobKey)));
     }
-
 }

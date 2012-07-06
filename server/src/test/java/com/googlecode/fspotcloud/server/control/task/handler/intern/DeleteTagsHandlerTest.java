@@ -28,15 +28,14 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTag
 import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
 import net.customware.gwt.dispatch.shared.DispatchException;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
+import org.mockito.MockitoAnnotations;
 
 
 public class DeleteTagsHandlerTest {
