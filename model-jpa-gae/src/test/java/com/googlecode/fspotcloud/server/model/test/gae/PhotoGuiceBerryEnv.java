@@ -40,5 +40,4 @@ public class PhotoGuiceBerryEnv extends GuiceBerryModule {
         install(new CachedModelModule(100, "gae-test"));
         bind(SimpleDAONamedId.class).to(CachedPhotoManager.class);
     }
-
 }

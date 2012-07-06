@@ -29,14 +29,12 @@
 package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
+import static com.google.common.collect.Sets.newHashSet;
 import com.google.gwt.user.client.rpc.IsSerializable;
-import net.customware.gwt.dispatch.shared.Result;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
-import static com.google.common.collect.Sets.newHashSet;
+import net.customware.gwt.dispatch.shared.Result;
 
 
 /**

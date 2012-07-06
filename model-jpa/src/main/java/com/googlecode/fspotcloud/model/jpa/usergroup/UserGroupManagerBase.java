@@ -27,7 +27,6 @@ package com.googlecode.fspotcloud.model.jpa.usergroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
 import com.googlecode.simplejpadao.SimpleDAOGenIdImpl;
-
 import java.util.logging.Logger;
 
 

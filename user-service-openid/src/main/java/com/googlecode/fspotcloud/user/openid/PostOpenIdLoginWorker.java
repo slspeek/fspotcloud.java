@@ -29,7 +29,6 @@ import com.googlecode.fspotcloud.user.ISessionEmail;
 import com.googlecode.fspotcloud.user.LoginMetaData;
 import com.googlecode.fspotcloud.user.LoginMetaDataUpdater;
 import com.googlecode.fspotcloud.user.PostThirdPartyLoginWorker;
-
 import javax.inject.Inject;
 import javax.inject.Provider;
 

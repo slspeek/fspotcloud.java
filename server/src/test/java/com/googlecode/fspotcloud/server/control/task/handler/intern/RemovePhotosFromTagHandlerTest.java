@@ -25,6 +25,7 @@
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.google.common.collect.ImmutableList;
+import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
@@ -32,21 +33,18 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotos
 import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
+import java.util.Date;
+import java.util.List;
+import java.util.TreeSet;
 import net.customware.gwt.dispatch.shared.DispatchException;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.util.Date;
-import java.util.List;
-import java.util.TreeSet;
-
-import static com.google.common.collect.Lists.newArrayList;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
+import org.mockito.MockitoAnnotations;
 
 
 public class RemovePhotosFromTagHandlerTest {

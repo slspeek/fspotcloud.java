@@ -11,10 +11,13 @@ buildscript {
             url "http://fspotcloud-maven.googlecode.com/svn/maven/repository"
 
         }
+        maven {
+            url "http://localhost:9090/nexus/content/groups/public"
+        }
     }
 
     dependencies {
-        classpath 'bmuschko:gradle-gae-plugin:0.5.4'
+        classpath 'bmuschko:gradle-gae-plugin:0.7.3'
         classpath 'bmuschko:gradle-tomcat-plugin:0.9.1'
         classpath 'desource:gradle-gwt-plugin:0.3'
     }
@@ -25,11 +28,8 @@ allprojects {
     apply plugin: 'idea'
     apply plugin: 'eclipse'
 
-    defaultTasks 'build'
     group = 'com.googlecode.fspotcloud'
     version = '0.7-alpha-01'
-
-
 }
 
 subprojects {
@@ -90,7 +90,13 @@ subprojects {
     }
 
     repositories {
-        mavenCentral()
+        maven {
+            url "http://maven.fspotcloud.googlecode.com/hg/repo"
+        }
+
+        maven {
+            url "http://localhost:9090/nexus/content/groups/public"
+        }
         maven {
             url "http://fspotcloud-maven.googlecode.com/svn/maven/repository"
         }
@@ -102,6 +108,7 @@ subprojects {
         maven {
             url "http://www.datanucleus.org/downloads/maven2"
         }
+        mavenCentral()
         mavenLocal()
     }
 

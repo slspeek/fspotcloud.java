@@ -31,12 +31,11 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.TagUpdateAct
 import com.googlecode.fspotcloud.shared.peer.GetTagDataAction;
 import com.googlecode.fspotcloud.shared.peer.TagUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 
 public class TagUpdateHandler extends AbstractBatchActionHandler<TagUpdateAction, TagUpdate> {

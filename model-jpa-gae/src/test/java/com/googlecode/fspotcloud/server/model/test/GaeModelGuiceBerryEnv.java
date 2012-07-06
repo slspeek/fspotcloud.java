@@ -37,4 +37,3 @@ public class GaeModelGuiceBerryEnv extends GuiceBerryModule {
         install(new CachedModelModule(100, "gae-test"));
     }
 }
-

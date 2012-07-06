@@ -25,7 +25,6 @@
 package com.googlecode.fspotcloud.model.jpa.tag;
 
 import com.googlecode.fspotcloud.server.model.api.Tag;
-
 import java.util.logging.Logger;
 
 

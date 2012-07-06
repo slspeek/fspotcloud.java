@@ -25,14 +25,12 @@
 package com.googlecode.fspotcloud.user;
 
 import com.googlecode.fspotcloud.user.inject.ServerAddress;
+import javax.inject.Inject;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import javax.inject.Inject;
-
-import static org.junit.Assert.assertEquals;
 
 
 @RunWith(JukitoRunner.class)

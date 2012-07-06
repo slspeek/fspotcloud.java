@@ -10,9 +10,9 @@ findbugsTest.enabled = false;
 gae {
     stopKey = 'STOP'
     disableUpdateCheck = true
-    daemon = true
     warDir = file('build/exploded');
 }
+gaeRun.daemon = server_daemon
 
 dependencies {
     testCompile project(path: ':e2e-test', configuration: 'testCompile')

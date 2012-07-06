@@ -31,16 +31,14 @@ import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.TagNode;
-import org.junit.After;
-import org.junit.Rule;
-import org.junit.Test;
-
 import java.util.Date;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.logging.Logger;
-
+import org.junit.After;
 import static org.junit.Assert.assertEquals;
+import org.junit.Rule;
+import org.junit.Test;
 
 
 public class TagManagerTest {

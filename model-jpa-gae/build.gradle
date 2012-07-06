@@ -32,7 +32,7 @@ dependencies {
     compile('org.datanucleus:datanucleus-core:1.1.5') {
         exclude group: "javax.transaction"
     }
-    compile "com.google.appengine.orm:datanucleus-appengine:1.0.4.1"
+    compile "com.google.appengine.orm:datanucleus-appengine:1.0.10"
     compile libs.simple_blobstore_gae
 
     runtime 'com.google.appengine:datanucleus-jpa:1.1.5'

@@ -29,6 +29,8 @@ import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
+
+
 public class ApplicationActionsITest {
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);

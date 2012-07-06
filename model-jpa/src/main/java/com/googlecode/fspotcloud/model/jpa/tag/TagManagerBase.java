@@ -24,18 +24,16 @@
             
 package com.googlecode.fspotcloud.model.jpa.tag;
 
+import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
-
 import java.util.List;
 import java.util.SortedSet;
 import java.util.logging.Logger;
-
-import static com.google.common.collect.Lists.newArrayList;
 
 
 public abstract class TagManagerBase<T extends Tag, U extends T>

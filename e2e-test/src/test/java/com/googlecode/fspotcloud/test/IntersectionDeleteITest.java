@@ -30,6 +30,8 @@ import com.thoughtworks.selenium.Selenium;
 import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
+
+
 public class IntersectionDeleteITest {
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);

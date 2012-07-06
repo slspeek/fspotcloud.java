@@ -75,7 +75,7 @@ public class PrivateAccessITest {
         manageUsersPage.newUser(JEFF_GOOGLE_COM);
         dashboardPage.open();
         dashboardPage.manageApprovalForTag("1");
-
+        sleepShort();
         tagApprovalPage.selectTopDeniedGroup();
         tagApprovalPage.approveUserGroup();
         photoPage.open();
