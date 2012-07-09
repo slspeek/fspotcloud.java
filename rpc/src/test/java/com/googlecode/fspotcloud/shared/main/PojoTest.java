@@ -24,7 +24,6 @@
             
 package com.googlecode.fspotcloud.shared.main;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.impl.PojoClassFactory;
 import com.openpojo.validation.PojoValidator;
@@ -33,9 +32,12 @@ import com.openpojo.validation.rule.impl.NoNestedClassRule;
 import com.openpojo.validation.rule.impl.NoPublicFieldsRule;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 
 public class PojoTest {

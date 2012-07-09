@@ -23,6 +23,7 @@ dependencies {
 }
 
 task initDirs << {
+    println "Maven repo: ${maven_repo}"
     mkdir "${buildDir}/assemble/izpack/dependency"
 }
 
@@ -43,8 +44,8 @@ task unpackWar(dependsOn: ':prod-gae-war:war') << {
 }
 
 task unpackGAESDK << {
-    myTests = configurations.appengine_sdk.files.iterator().next()
-    ant.unzip(dest: "${buildDir}/assemble/izpack", src: myTests)
+    sdk = configurations.appengine_sdk.files.iterator().next()
+    ant.unjar(dest: "${buildDir}/assemble/izpack", src: sdk)
 }
 
 izPackCreateInstaller.dependsOn copyFiles, copyPeer, unpackWar, unpackGAESDK

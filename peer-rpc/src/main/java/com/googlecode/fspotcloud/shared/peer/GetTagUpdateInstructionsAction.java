@@ -27,9 +27,10 @@ package com.googlecode.fspotcloud.shared.peer;
 import com.google.common.base.Objects;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.openpojo.business.annotation.BusinessKey;
+import net.customware.gwt.dispatch.shared.Action;
+
 import java.io.Serializable;
 import java.util.SortedSet;
-import net.customware.gwt.dispatch.shared.Action;
 
 
 public class GetTagUpdateInstructionsAction extends BusinessBase

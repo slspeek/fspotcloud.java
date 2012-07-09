@@ -31,12 +31,14 @@ import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.simpleblobstore.BlobKey;
 import com.googlecode.simpleblobstore.BlobService;
-import java.util.Random;
 import org.junit.After;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.util.Random;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 
 public class PhotoManagerBlobsTest {

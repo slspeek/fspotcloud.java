@@ -26,8 +26,9 @@ package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
-import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Action;
+
+import java.io.Serializable;
 
 
 public class GetPeerMetaDataAction extends BusinessBase implements Action<PeerMetaDataResult>,

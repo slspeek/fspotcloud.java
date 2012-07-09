@@ -2,7 +2,7 @@ description = 'GWT client'
 
 apply plugin: 'gwt2'
 if ("${release}" == "true") {
-[findbugsMain, findbugsTest]*.enabled = false
+    [findbugsMain, findbugsTest]*.enabled = false
 }
 
 configurations {
@@ -49,16 +49,12 @@ task javascriptJar(type: Jar, dependsOn: compileGwt) {
             "${rootDir}/client/src/main/resources"
 }
 
+test {
+    exclude '**/*GwtTest*'
+    jvmArgs '-Xmx256m', '-XX:+HeapDumpOnOutOfMemoryError'
+}
 compileGwt.dependsOn convertIcons, writeVersion
 gwtDevMode.dependsOn convertIcons, writeVersion
-test {
-    doFirst()
-            {
-                exclude '**/*GwtTest*'
-                //testLogging.showStandardStreams = true
-                jvmArgs '-Xmx256m', '-XX:+HeapDumpOnOutOfMemoryError'
-            }
-}
 
 gwtModules = ['com.googlecode.fspotcloud.FSpotCloud', 'com.googlecode.fspotcloud.dashboard']
 
@@ -68,8 +64,11 @@ compileGwt {
 }
 
 gwtDevMode {
-    startupUrls = ["http://localhost:8050/j2ee-e2e/FSpotCloud.html", "http://localhost:8080/Dashboard.html",
-            "http://localhost:8080/FSpotCloud.html"]
+    startupUrls = ["http://localhost:8080/FSpotCloud.html",
+            "http://localhost:8050/j2ee-e2e/FSpotCloud.html",
+            "http://localhost:8080/Dashboard.html",
+            "http://localhost:8050/j2ee-e2e/Dashboard.html"
+            ]
 }
 
 artifacts {

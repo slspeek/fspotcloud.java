@@ -25,8 +25,9 @@
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
-import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Action;
+
+import java.io.Serializable;
 
 
 public class DeleteAllPhotosAction implements Action<VoidResult>,
