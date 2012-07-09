@@ -24,13 +24,15 @@
             
 package com.googlecode.fspotcloud.user.inject;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 @RunWith(JukitoRunner.class)
 public class ServerAddressProviderTest {

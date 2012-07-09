@@ -24,9 +24,10 @@
             
 package com.googlecode.fspotcloud.shared.peer;
 
+import org.junit.Test;
+
 import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
 import static org.junit.Assert.assertEquals;
-import org.junit.Test;
 
 
 public class TagDataTest {

@@ -26,9 +26,10 @@ package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
+import net.customware.gwt.dispatch.shared.Action;
+
 import java.io.Serializable;
 import java.util.List;
-import net.customware.gwt.dispatch.shared.Action;
 
 
 public class GetPhotoDataAction extends BusinessBase implements Action<PhotoDataResult>,

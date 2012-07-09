@@ -26,6 +26,7 @@ package com.googlecode.fspotcloud.user.inject;
 
 import com.google.inject.AbstractModule;
 import com.googlecode.fspotcloud.user.*;
+
 import javax.inject.Singleton;
 
 

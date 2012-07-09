@@ -27,6 +27,7 @@ package com.googlecode.fspotcloud.server.image;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.simpleblobstore.BlobKey;
 import com.googlecode.simpleblobstore.BlobService;
+
 import javax.inject.Inject;
 
 

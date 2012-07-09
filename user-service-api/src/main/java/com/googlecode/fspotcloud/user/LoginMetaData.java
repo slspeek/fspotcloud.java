@@ -24,11 +24,12 @@
             
 package com.googlecode.fspotcloud.user;
 
-import static com.google.common.collect.Sets.newHashSet;
-import java.util.Date;
-import java.util.HashSet;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
+import java.util.HashSet;
+
+import static com.google.common.collect.Sets.newHashSet;
 
 
 public class LoginMetaData implements ILoginMetaData {

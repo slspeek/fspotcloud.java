@@ -14,12 +14,13 @@ buildscript {
         maven {
             url "http://localhost:9090/nexus/content/groups/public"
         }
+        mavenLocal()
     }
 
     dependencies {
         classpath 'bmuschko:gradle-gae-plugin:0.7.3'
         classpath 'bmuschko:gradle-tomcat-plugin:0.9.1'
-        classpath 'desource:gradle-gwt-plugin:0.3'
+        classpath 'desource:gradle-gwt-plugin:0.3-SNAPSHOT'
     }
 }
 
@@ -91,39 +92,16 @@ subprojects {
 
     repositories {
         maven {
-            url "http://maven.fspotcloud.googlecode.com/hg/repo"
+            url maven_repo
+            artifactUrls "http://fspotcloud-maven.googlecode.com/svn/maven/repository",
+                    "http://maven.fspotcloud.googlecode.com/hg/repo",
+                    "http://maven-gae-plugin.googlecode.com/svn/repository",
+                    "http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/",
+                    "http://www.datanucleus.org/downloads/maven2"
         }
-
-        maven {
-            url "http://localhost:9090/nexus/content/groups/public"
-        }
-        maven {
-            url "http://fspotcloud-maven.googlecode.com/svn/maven/repository"
-        }
-        maven { url "http://maven-gae-plugin.googlecode.com/svn/repository"}
-
-        maven {
-            url "http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/"
-        }
-        maven {
-            url "http://www.datanucleus.org/downloads/maven2"
-        }
-        mavenCentral()
         mavenLocal()
     }
 
-
-}
-
-task javadoc(type: Javadoc) {
-    source subprojects.collect {project ->
-        project.sourceSets.main.allJava
-    }
-    destinationDir = new File(buildDir, 'javadoc')
-    // Might need a classpath
-    classpath = files(subprojects.collect {project ->
-        project.sourceSets.main.compileClasspath
-    })
 }
 
 

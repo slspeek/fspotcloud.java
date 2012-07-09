@@ -29,10 +29,11 @@ import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
 import com.googlecode.fspotcloud.user.LoginMetaData;
 import com.googlecode.fspotcloud.user.UserService;
-import javax.inject.Provider;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import javax.inject.Provider;
 
 
 public class GetUserInfoHandler extends SimpleActionHandler<GetUserInfo, UserInfo> {

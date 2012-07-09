@@ -25,9 +25,11 @@
 package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.collect.ImmutableList;
-import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
-import java.util.List;
 import org.junit.Test;
+
+import java.util.List;
+
+import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
 
 
 public class GetPhotoDataActionTest {

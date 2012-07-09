@@ -40,6 +40,7 @@ import com.googlecode.fspotcloud.server.mail.FromAddress;
 import com.googlecode.fspotcloud.server.mail.IMail;
 import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
+
 import static org.mockito.Mockito.mock;
 public class CommonIntegrationModule extends AbstractModule {
     public static final String SLSPEEK_GMAIL_COM = "slspeek@gmail.com";

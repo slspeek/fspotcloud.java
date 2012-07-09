@@ -31,11 +31,12 @@ import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import javax.inject.Inject;
 
 
 public class UserDeletesAllHandler extends SimpleActionHandler<UserDeletesAllAction, VoidResult> {
