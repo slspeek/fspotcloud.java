@@ -25,8 +25,7 @@
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.google.inject.Inject;
-import com.googlecode.fspotcloud.server.model.api.UserGroup;
-import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
+import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.DeleteUserGroupAction;
 import com.googlecode.fspotcloud.user.UserService;
@@ -34,30 +33,54 @@ import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
+import java.util.Set;
+
 
 public class DeleteUserGroupHandler extends SimpleActionHandler<DeleteUserGroupAction, VoidResult> {
-    private final UserGroupDao userGroupDao;
-    private final UserService userService;
-
     @Inject
-    public DeleteUserGroupHandler(UserGroupDao userGroupDao,
-        UserService userService) {
-        this.userGroupDao = userGroupDao;
-        this.userService = userService;
-    }
+    private UserGroupDao userGroupDao;
+    @Inject
+    private UserService userService;
+    @Inject
+    private UserDao userDao;
+    @Inject
+    private TagDao tagDao;
 
     @Override
     public VoidResult execute(DeleteUserGroupAction action,
         ExecutionContext context) throws DispatchException {
         if (userService.isUserLoggedIn()) {
             String userName = userService.getEmail();
-            UserGroup newGroup = userGroupDao.find(action.getId());
-
-            if (userName.equals(newGroup.getOwner())) {
-                userGroupDao.delete(newGroup);
+            final Long id = action.getId();
+            UserGroup group = userGroupDao.find(id);
+            if (userName.equals(group.getOwner())) {
+                doDelete(group, id);
             }
         }
-
         return new VoidResult();
+    }
+
+    private void doDelete(UserGroup group, Long id) {
+        Set<String> grantedUsers = group.getGrantedUsers();
+        for (String userEmail: grantedUsers) {
+            User user = userDao.find(userEmail);
+            if (user != null) {
+                Set<Long> grantedGroups = user.getGrantedUserGroups();
+                grantedGroups.remove(id);
+                user.setGrantedUserGroups(grantedGroups);
+                userDao.save(user);
+            }
+        }
+        Set<String> tags = group.getApprovedTagIds();
+        for (String tagId: tags) {
+            Tag tag = tagDao.find(tagId);
+            if (tag != null) {
+                Set<Long> grantedGroups = tag.getApprovedUserGroups();
+                grantedGroups.remove(id);
+                tag.setApprovedUserGroups(grantedGroups);
+                tagDao.save(tag);
+            }
+        }
+        userGroupDao.delete(group);
     }
 }

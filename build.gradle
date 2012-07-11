@@ -30,7 +30,7 @@ allprojects {
     apply plugin: 'eclipse'
 
     group = 'com.googlecode.fspotcloud'
-    version = '0.7-alpha-01'
+    version = '0.7-alpha-02'
 }
 
 subprojects {
