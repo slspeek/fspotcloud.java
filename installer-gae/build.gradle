@@ -39,12 +39,12 @@ task copyPeer(type: Copy, dependsOn: ':peer:jar') {
 }
 
 task unpackWar(dependsOn: ':prod-gae-war:war') << {
-    myWar = file("../prod-gae-war/build/libs/prod-gae-war-${version}.war")
+    def myWar = file("../prod-gae-war/build/libs/prod-gae-war-${version}.war")
     ant.unjar(dest: "${buildDir}/assemble/izpack/war", src: myWar)
 }
 
 task unpackGAESDK << {
-    sdk = configurations.appengine_sdk.files.iterator().next()
+    def sdk = configurations.appengine_sdk.files.iterator().next()
     ant.unjar(dest: "${buildDir}/assemble/izpack", src: sdk)
 }
 

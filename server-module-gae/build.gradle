@@ -7,16 +7,16 @@ dependencies {
     compile project(':server')
     compile project(':model-jpa-gae')
     compile project(':user-service-gae')
-    compile libs.inject
-    compile libs.guice
+    compile ext.libs.inject
+    compile ext.libs.guice
     compile("com.googlecode.taskqueue-dispatch:dispatch:${taskqueue_dispatch_version}") {
         exclude(module: 'gwt-user')
     }
     compile("com.googlecode.bot-dispatch:command-jpa-gae:${bot_dispatch_version}") {
         exclude(module: 'gwt-user')
     }
-    compile libs.servlet_spec
-    compile libs.simple_blobstore_gae
+    compile ext.libs.servlet_spec
+    compile ext.libs.simple_blobstore_gae
 
     testCompile project(':user-service-openid')
     testCompile project(':peer')
@@ -27,16 +27,16 @@ dependencies {
     testCompile("com.googlecode.taskqueue-dispatch:direct:${taskqueue_dispatch_version}") {
         exclude(module: 'gwt-user')
     }
-    testCompile libs.guiceberry
-    testCompile libs.guava_testlib
-    testCompile libs.gae_testing
-    testCompile libs.junit
-    testCompile libs.test_ng
-    testCompile libs.mockito
+    testCompile ext.libs.guiceberry
+    testCompile ext.libs.guava_testlib
+    testCompile ext.libs.gae_testing
+    testCompile ext.libs.junit
+    testCompile ext.libs.test_ng
+    testCompile ext.libs.mockito
 }
 
 task unpackTest << {
-    myTests = file("../peer-server-integration/build/libs/peer-server-integration-${version}-tests.jar")
+    def myTests = file("../peer-server-integration/build/libs/peer-server-integration-${version}-tests.jar")
     ant.unjar(dest: "$buildDir/classes/test", src: myTests)
 }
 

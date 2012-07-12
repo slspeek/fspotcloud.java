@@ -9,21 +9,21 @@ findbugsTest.enabled = false
 }
 
 dependencies {
-    tomcat libs.tomcat
+    tomcat ext.libs.tomcat
 
     testCompile project(path: ':e2e-test', configuration: 'testCompile')
     testCompile "org.seleniumhq.selenium:selenium:2.0b3"
     testCompile "org.seleniumhq.selenium.client-drivers:selenium-java-client-driver:1.0.2"
-    testCompile libs.guiceberry
-    testCompile libs.guava_testlib
-    testCompile libs.junit
-    testCompile libs.guice
+    testCompile ext.libs.guiceberry
+    testCompile ext.libs.guava_testlib
+    testCompile ext.libs.junit
+    testCompile ext.libs.guice
 }
 
 task unpackWar(dependsOn: ':prod-j2ee-war:assemble') << {
     mkdir "$buildDir/exploded-war-raw"
     mkdir "$buildDir/exploded"
-    myTests = file("../prod-j2ee-war/build/libs/prod-j2ee-war-${version}.war")
+    def myTests = file("../prod-j2ee-war/build/libs/prod-j2ee-war-${version}.war")
     ant.unjar(dest: "$buildDir/exploded-war-raw/", src: myTests)
 }
 
@@ -41,7 +41,7 @@ task copyWar(dependsOn: unpackWar, type: Copy) {
 }
 
 task unpackTest(dependsOn: ':e2e-test:packageTests') << {
-    myTests = file("../e2e-test/build/libs/e2e-test-${version}-tests.jar")
+    def myTests = file("../e2e-test/build/libs/e2e-test-${version}-tests.jar")
     ant.unjar(dest: "$buildDir/classes/test", src: myTests)
 }
 
