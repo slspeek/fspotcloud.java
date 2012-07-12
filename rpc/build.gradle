@@ -4,14 +4,14 @@ configurations {
     sources
 }
 dependencies {
-    compile libs.gwt_servlet
-    compile libs.gwt_dispatch
-    compile libs.guava
-    compile libs.guava_gwt
+    compile ext.libs.gwt_servlet
+    compile ext.libs.gwt_dispatch
+    compile ext.libs.guava
+    compile ext.libs.guava_gwt
 
-    testCompile libs.junit
-    testCompile libs.commons_lang
-    testCompile libs.openpojo
+    testCompile ext.libs.junit
+    testCompile ext.libs.commons_lang
+    testCompile ext.libs.openpojo
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

@@ -13,6 +13,6 @@ gae {
 }
 
 dependencies {
-    compile libs.servlet_spec
+    compile ext.libs.servlet_spec
 }
 

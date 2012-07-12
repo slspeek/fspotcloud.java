@@ -32,12 +32,12 @@ task copyFiles(type: Copy, dependsOn: initDirs) {
 }
 
 task unpackWar(dependsOn: [':prod-j2ee-war:war', 'unpackTomcatDistribution']) << {
-    myWar = file("../prod-j2ee-war/build/libs/prod-j2ee-war-${version}.war")
+    def myWar = file("../prod-j2ee-war/build/libs/prod-j2ee-war-${version}.war")
     ant.unjar(dest: "${buildDir}/assemble/izpack/war", src: myWar)
 }
 
 task unpackTomcatDistribution << {
-    myTests = configurations.apache_tomcat.files.iterator().next()
+    def myTests = configurations.apache_tomcat.files.iterator().next()
     ant.unzip(dest: "${buildDir}/assemble/izpack", src: myTests)
 }
 

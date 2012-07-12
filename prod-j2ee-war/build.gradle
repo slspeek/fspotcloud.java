@@ -8,7 +8,7 @@ dependencies {
 }
 
 task unpackJavascript(dependsOn: ':client:javascriptJar') << {
-    myTests = file("../client/build/libs/client-${version}-javascript.jar")
+    def myTests = file("../client/build/libs/client-${version}-javascript.jar")
     ant.unjar(dest: "$buildDir/javascript/", src: myTests)
 }
 

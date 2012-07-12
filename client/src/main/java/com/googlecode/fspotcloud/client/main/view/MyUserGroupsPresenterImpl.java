@@ -35,8 +35,9 @@ import com.googlecode.fspotcloud.client.place.ManageUsersPlace;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.*;
-import java.util.logging.Logger;
 import net.customware.gwt.dispatch.client.DispatchAsync;
+
+import java.util.logging.Logger;
 
 
 public class MyUserGroupsPresenterImpl extends AbstractActivity implements MyUserGroupsView.MyUserGroupsPresenter {
@@ -82,14 +83,14 @@ public class MyUserGroupsPresenterImpl extends AbstractActivity implements MyUse
     @Override
     public void newUserGroup() {
         dispatch.execute(new NewUserGroupAction(),
-            new AsyncCallback<VoidResult>() {
+            new AsyncCallback<GetUserGroupResult>() {
                 @Override
                 public void onFailure(Throwable caught) {
                     //To change body of implemented methods use File | Settings | File Templates.
                 }
 
                 @Override
-                public void onSuccess(VoidResult result) {
+                public void onSuccess(GetUserGroupResult result) {
                     log.info("New User group added");
                     refreshData();
                 }

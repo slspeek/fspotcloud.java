@@ -21,34 +21,36 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
-import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import com.googlecode.fspotcloud.shared.main.GetUserGroupResult;
 import com.googlecode.fspotcloud.shared.main.NewUserGroupAction;
+import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
 import com.googlecode.fspotcloud.user.UserService;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
 
-public class NewUserGroupHandler extends SimpleActionHandler<NewUserGroupAction, VoidResult> {
+public class NewUserGroupHandler extends SimpleActionHandler<NewUserGroupAction, GetUserGroupResult> {
     private final UserGroupDao userGroupDao;
     private final UserService userService;
 
     @Inject
     public NewUserGroupHandler(UserGroupDao userGroupDao,
-        UserService userService) {
+                               UserService userService) {
         this.userGroupDao = userGroupDao;
         this.userService = userService;
     }
 
     @Override
-    public VoidResult execute(NewUserGroupAction action,
-        ExecutionContext context) throws DispatchException {
+    public GetUserGroupResult execute(NewUserGroupAction action,
+                                      ExecutionContext context) throws DispatchException {
+        UserGroupInfo info = null;
         if (userService.isUserLoggedIn()) {
             String userName = userService.getEmail();
             UserGroup newGroup = userGroupDao.newEntity();
@@ -56,8 +58,8 @@ public class NewUserGroupHandler extends SimpleActionHandler<NewUserGroupAction,
             newGroup.setDescription("No description");
             newGroup.setName("New group");
             userGroupDao.save(newGroup);
+            info = GetUserGroupHandler.get(newGroup);
         }
-
-        return new VoidResult();
+        return new GetUserGroupResult(info);
     }
 }

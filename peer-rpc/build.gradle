@@ -6,10 +6,10 @@ checkstyleMain.ignoreFailures = false
 
 dependencies {
     compile project(':rpc')
-    compile libs.gwt_servlet
-    compile libs.guava
-    compile libs.openpojo
+    compile ext.libs.gwt_servlet
+    compile ext.libs.guava
+    compile ext.libs.openpojo
 
-    testCompile libs.junit
+    testCompile ext.libs.junit
     testCompile project(":test-util")
 }
