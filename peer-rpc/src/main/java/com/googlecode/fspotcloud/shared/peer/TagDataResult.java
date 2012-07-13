@@ -26,10 +26,9 @@ package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
-import net.customware.gwt.dispatch.shared.Result;
-
 import java.io.Serializable;
 import java.util.List;
+import net.customware.gwt.dispatch.shared.Result;
 
 
 public class TagDataResult extends BusinessBase implements Result,

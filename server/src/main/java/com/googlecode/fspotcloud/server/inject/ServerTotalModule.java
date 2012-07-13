@@ -38,6 +38,7 @@ import com.googlecode.fspotcloud.server.image.ImageHelperImpl;
 import com.googlecode.fspotcloud.server.mail.FromAddress;
 import com.googlecode.fspotcloud.server.mail.IMail;
 import com.googlecode.fspotcloud.server.mail.Mailer;
+import com.googlecode.fspotcloud.server.mail.SMTPServer;
 
 
 /**
@@ -49,11 +50,14 @@ public class ServerTotalModule extends AbstractModule {
     private final int maxTicks;
     private String botSecret;
     private String fromAddress;
+    private String smtpServer;
 
-    public ServerTotalModule(int maxTicks, String botSecret, String fromAddress) {
+    public ServerTotalModule(int maxTicks, String botSecret,
+        String fromAddress, String smtpServer) {
         this.maxTicks = maxTicks;
         this.botSecret = botSecret;
         this.fromAddress = fromAddress;
+        this.smtpServer = smtpServer;
     }
 
     @Override
@@ -63,6 +67,8 @@ public class ServerTotalModule extends AbstractModule {
             .toInstance(new Integer(maxTicks));
         bind(String.class).annotatedWith(FromAddress.class)
             .toInstance(fromAddress);
+        bind(String.class).annotatedWith(SMTPServer.class).toInstance(smtpServer);
+
         bind(IMail.class).to(Mailer.class);
         bind(ImageHelper.class).to(ImageHelperImpl.class);
         install(new ServerServletModule());

@@ -28,15 +28,14 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.servlet.GuiceFilter;
 import com.googlecode.fspotcloud.server.inject.J2eeTotalModule;
-import org.mortbay.jetty.Server;
-import org.mortbay.jetty.servlet.Context;
-import org.mortbay.jetty.servlet.DefaultServlet;
-import org.mortbay.jetty.webapp.WebAppContext;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import org.mortbay.jetty.Server;
+import org.mortbay.jetty.servlet.Context;
+import org.mortbay.jetty.servlet.DefaultServlet;
+import org.mortbay.jetty.webapp.WebAppContext;
 
 
 public class FscServer {
@@ -66,7 +65,8 @@ public class FscServer {
     }
 
     protected Module getFscModule() {
-        return new J2eeTotalModule(10, "VERY_GRADLE", "slspeek@gmail.com");
+        return new J2eeTotalModule(10, "VERY_GRADLE", "slspeek@gmail.com",
+            "smtp.xs4all.nl");
     }
 
     public Injector start() {

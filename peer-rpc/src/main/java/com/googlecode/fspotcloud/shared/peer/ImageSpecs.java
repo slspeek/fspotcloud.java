@@ -25,7 +25,6 @@
 package com.googlecode.fspotcloud.shared.peer;
 
 import com.openpojo.business.annotation.BusinessKey;
-
 import java.io.Serializable;
 
 

@@ -24,15 +24,11 @@
             
 package com.googlecode.fspotcloud.shared.dashboard;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import java.util.Date;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
-
+import org.junit.Before;
+import org.junit.Test;
 public class GetMetaDataResultTest {
     GetMetaDataResult result;
 

@@ -53,6 +53,6 @@ test {
     //include 'com/googlecode/fspotcloud/server/admin/integration/PeerServerIntegrationHardCasesTest.class'
 }
 
-test.dependsOn(unpackTest)
+test.dependsOn unpackTest, deleteDB
 test.useTestNG()
 clean.dependsOn deleteDB

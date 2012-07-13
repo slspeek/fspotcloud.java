@@ -28,13 +28,11 @@
  */
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
+import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
 import com.googlecode.fspotcloud.test.EqualsTest;
 import org.jukito.JukitoRunner;
 import org.junit.runner.RunWith;
-
-import static com.google.common.collect.Lists.newArrayList;
-
 
 /**
  * @author steven

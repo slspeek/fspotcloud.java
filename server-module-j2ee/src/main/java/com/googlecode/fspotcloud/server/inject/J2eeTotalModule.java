@@ -44,16 +44,20 @@ public class J2eeTotalModule extends AbstractModule {
     private final int maxTicks;
     private final String botSecret;
     private final String adminEmail;
+    private String smtpServer;
 
-    public J2eeTotalModule(int maxTicks, String botSecret, String adminEmail) {
+    public J2eeTotalModule(int maxTicks, String botSecret, String adminEmail,
+        String smtpServer) {
         this.maxTicks = maxTicks;
         this.botSecret = botSecret;
         this.adminEmail = adminEmail;
+        this.smtpServer = smtpServer;
     }
 
     @Override
     protected void configure() {
-        install(new ServerTotalModule(maxTicks, botSecret, adminEmail));
+        install(new ServerTotalModule(maxTicks, botSecret, adminEmail,
+                smtpServer));
         install(new ModelModule(maxTicks, "derby"));
         install(new TaskQueueDispatchDirectModule());
         install(new OpenIdUserModule(adminEmail));

@@ -28,22 +28,17 @@ import com.google.common.testing.TearDown;
 import com.google.guiceberry.testng.TestNgGuiceBerry;
 import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.main.*;
+import java.lang.reflect.Method;
+import java.sql.SQLException;
+import javax.inject.Inject;
+import static org.testng.AssertJUnit.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import javax.inject.Inject;
-import java.lang.reflect.Method;
-import java.sql.SQLException;
-
-import static org.testng.AssertJUnit.*;
-
-
 public class UserGroupLifecycleTest extends PeerServerEnvironment {
     public static final String TAG_ID_3 = "3";
     public static final String RMS_EXAMPLE_COM = "rms@example.com";
     private TearDown toTearDown;
-
     @Inject
     Fixture fixture;
     @Inject
@@ -57,20 +52,15 @@ public class UserGroupLifecycleTest extends PeerServerEnvironment {
         toTearDown = TestNgGuiceBerry.setUp(this, m,
                 NoAuthPlaceHolderIntegrationModule.class);
 
-
-
+        userDao.deleteBulk(100);
+        assertTrue(userDao.isEmpty());
     }
 
     @AfterMethod
     public void tearDown() throws Exception {
-
-
-
         // Make this the call to TestNgGuiceBerry.tearDown as late as possible
         toTearDown.tearDown();
     }
-
-
 
     @Test
     public void testCreationAndTagApproval() throws Exception {
@@ -99,7 +89,7 @@ public class UserGroupLifecycleTest extends PeerServerEnvironment {
 
         SignUpAction action = new SignUpAction(RMS_EXAMPLE_COM, "ihp", "rms");
         SignUpResult result = dispatch.execute(action);
-        //assertTrue(result.getSuccess());     ?j2ee-mail
+        assertTrue(result.getSuccess());
 
         GetUserGroupResult r = dispatch.execute(new NewUserGroupAction());
         Long id = r.getInfo().getId();

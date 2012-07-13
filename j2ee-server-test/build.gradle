@@ -46,6 +46,7 @@ task peerStop(type: Exec) {
 }
 
 test {
+
     systemProperties['GuiceBerryEnvSelectorOverride_com.googlecode.fspotcloud.test.EmptyGuiceBerryEnv'] =
         'com.googlecode.fspotcloud.test.IntegrationGuiceBerryEnv'
     systemProperties['bot.secret'] = bot_secret

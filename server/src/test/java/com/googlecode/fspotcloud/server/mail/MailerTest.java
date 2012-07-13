@@ -22,22 +22,33 @@
  *
  */
             
-package com.googlecode.fspotcloud.shared.peer;
+package com.googlecode.fspotcloud.server.mail;
 
-import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
-import static org.junit.Assert.assertEquals;
+import java.util.logging.Logger;
+import javax.inject.Inject;
+import org.jukito.JukitoModule;
+import org.jukito.JukitoRunner;
 import org.junit.Test;
-public class GetPeerMetaDataActionTest {
-    GetPeerMetaDataAction action = new GetPeerMetaDataAction();
+import org.junit.runner.RunWith;
+
+
+@RunWith(JukitoRunner.class)
+public class MailerTest {
+    @Inject
+    private Mailer mailer;
 
     @Test
-    public void testSerialize() throws Exception {
-        testSerialization(action);
+    public void testSend() throws Exception {
+        mailer.send("slspeek@gmail.com", "Hi", "Hi Steven");
+        Logger.getAnonymousLogger().info("Mail to steven@localhost send");
     }
 
-    @Test
-    public void testSerializEquals() throws Exception {
-        GetPeerMetaDataAction second = new GetPeerMetaDataAction();
-        assertEquals(second, action);
+    public static class Module extends JukitoModule {
+        protected void configureTest() {
+            bind(String.class).annotatedWith(FromAddress.class)
+                .toInstance("slspeek@gmail.com");
+            bind(String.class).annotatedWith(SMTPServer.class)
+                .toInstance("smtp.xs4all.nl");
+        }
     }
 }

@@ -30,18 +30,14 @@ import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
 import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
 import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
+import java.lang.reflect.Method;
+import java.sql.SQLException;
 import net.customware.gwt.dispatch.shared.DispatchException;
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.lang.reflect.Method;
-import java.sql.SQLException;
-
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
-
-
 public class PeerServerIntegrationTest extends PeerServerEnvironment {
     private TearDown toTearDown;
 

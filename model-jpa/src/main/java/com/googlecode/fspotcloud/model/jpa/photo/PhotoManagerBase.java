@@ -33,8 +33,6 @@ import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
-
-
 public abstract class PhotoManagerBase<T extends Photo, U extends T>
     extends SimpleDAONamedIdImpl<Photo, U, String> implements PhotoDao {
     @Inject

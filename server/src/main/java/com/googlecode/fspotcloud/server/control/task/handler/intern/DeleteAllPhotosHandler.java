@@ -28,12 +28,11 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPho
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
-
-import javax.inject.Inject;
-import java.util.logging.Logger;
 
 
 public class DeleteAllPhotosHandler extends SimpleActionHandler<DeleteAllPhotosAction, VoidResult> {

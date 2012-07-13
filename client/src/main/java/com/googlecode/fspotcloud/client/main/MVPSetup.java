@@ -38,6 +38,7 @@ import com.googlecode.fspotcloud.client.admin.ui.AdminResources;
 import com.googlecode.fspotcloud.client.main.api.Initializable;
 import com.googlecode.fspotcloud.client.main.ui.HasOneWidgetAdapter;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
+import com.googlecode.fspotcloud.client.main.ui.UserPagesResources;
 import com.googlecode.fspotcloud.client.main.view.MainWindowActivityMapper;
 import com.googlecode.fspotcloud.client.place.BasePlace;
 import com.googlecode.fspotcloud.client.place.MainPlaceHistoryMapper;
@@ -60,7 +61,8 @@ public class MVPSetup {
         PlaceController placeController,
         IGlobalShortcutController keyboardHandler,
         EventHandlersSetup eventSetup, Resources resources,
-        AdminResources adminResources, ClientLoginManager clientLoginManager) {
+        AdminResources adminResources, ClientLoginManager clientLoginManager,
+        UserPagesResources userPagesResources) {
         this.activityMapper = activityMapper;
         this.eventBus = eventBus;
         this.placeController = placeController;
@@ -69,6 +71,7 @@ public class MVPSetup {
         this.clientLoginManager = clientLoginManager;
         resources.style().ensureInjected();
         adminResources.style().ensureInjected();
+        userPagesResources.style().ensureInjected();
     }
 
     public void setup() {

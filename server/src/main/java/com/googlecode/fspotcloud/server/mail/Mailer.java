@@ -24,6 +24,8 @@
             
 package com.googlecode.fspotcloud.server.mail;
 
+import java.util.Properties;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -32,21 +34,25 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Properties;
 
 
 public class Mailer implements IMail {
     private String fromAddress;
+    private String smtpServer;
 
     @Inject
     public Mailer(@FromAddress
-    String fromAddress) {
+    String fromAddress, @SMTPServer
+    String smtpServer) {
         this.fromAddress = fromAddress;
+        this.smtpServer = smtpServer;
     }
 
     @Override
     public void send(String recipient, String subject, String body) {
         Properties props = new Properties();
+        props.setProperty("mail.smtp.host", smtpServer);
+
         Session session = Session.getDefaultInstance(props, null);
 
         try {
@@ -58,9 +64,11 @@ public class Mailer implements IMail {
             msg.setText(body);
             Transport.send(msg);
         } catch (AddressException e) {
-            // ...
+            e.printStackTrace();
+            Logger.getAnonymousLogger().info(e.getLocalizedMessage());
         } catch (MessagingException e) {
-            // ...
+            e.printStackTrace();
+            Logger.getAnonymousLogger().info(e.getLocalizedMessage());
         }
     }
 }

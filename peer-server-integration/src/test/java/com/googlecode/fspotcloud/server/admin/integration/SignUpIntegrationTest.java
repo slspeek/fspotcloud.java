@@ -29,20 +29,16 @@ import com.google.guiceberry.testng.TestNgGuiceBerry;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
-import net.customware.gwt.dispatch.server.Dispatch;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import javax.inject.Inject;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.logging.Logger;
-
+import javax.inject.Inject;
+import net.customware.gwt.dispatch.server.Dispatch;
 import static org.testng.Assert.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
-
-
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 public class SignUpIntegrationTest {
     static final Logger log = Logger.getLogger(SignUpIntegrationTest.class.getName());
     public static final String RMS_FSF_ORG1 = "rms@example.com";

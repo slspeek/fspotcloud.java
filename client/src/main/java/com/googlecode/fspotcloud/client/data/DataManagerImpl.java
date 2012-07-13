@@ -36,8 +36,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import net.customware.gwt.dispatch.client.DispatchAsync;
-
-
 public class DataManagerImpl implements DataManager {
     private static final Logger log = Logger.getLogger(DataManagerImpl.class.getName());
     private final IndexingUtil indexingUtil;
