@@ -28,7 +28,6 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.googlecode.fspotcloud.server.main.PropertiesLoader;
-
 import java.util.Properties;
 
 
@@ -44,8 +43,9 @@ public class J2eeGuiceServletConfig extends GuiceServletContextListener {
                     "100"));
         String adminEmail = p.getProperty("fspotcloud.admin.email");
         String botSecret = p.getProperty("fspotcloud.bot.secret");
+        String smtpServer = p.getProperty("fspotcloud.smtp.server");
         Injector i = Guice.createInjector(new J2eeTotalModule(maxTicks,
-                    botSecret, adminEmail));
+                    botSecret, adminEmail, smtpServer));
 
         return i;
     }

@@ -28,6 +28,8 @@
  */
 package com.googlecode.fspotcloud.server.main.handler;
 
+import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
@@ -35,17 +37,13 @@ import com.googlecode.fspotcloud.server.model.tag.IUserGroupHelper;
 import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
-import org.jukito.JukitoRunner;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import javax.inject.Inject;
 import java.util.List;
-
-import static com.google.common.collect.Lists.newArrayList;
-import static com.google.common.collect.Sets.newHashSet;
+import javax.inject.Inject;
+import org.jukito.JukitoRunner;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
 
 /**

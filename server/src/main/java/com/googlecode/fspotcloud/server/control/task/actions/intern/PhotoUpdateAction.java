@@ -25,7 +25,6 @@
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
 import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
-
 import java.util.List;
 
 

@@ -26,9 +26,8 @@ package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
-import net.customware.gwt.dispatch.shared.Result;
-
 import java.io.Serializable;
+import net.customware.gwt.dispatch.shared.Result;
 
 
 public class FullsizePhotoResult extends BusinessBase implements Result,

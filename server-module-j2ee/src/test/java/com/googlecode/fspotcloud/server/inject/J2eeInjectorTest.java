@@ -37,7 +37,7 @@ public class J2eeInjectorTest {
     @Test
     public void testInjector() {
         Injector injector = Guice.createInjector(new J2eeTotalModule(10,
-                    "FOO_BAR", "foo@bar"));
+                    "FOO_BAR", "foo@bar", ""));
         AssertJUnit.assertNotNull(injector);
 
         PeerDatabaseDao defaultPeer = injector.getInstance(PeerDatabaseDao.class);

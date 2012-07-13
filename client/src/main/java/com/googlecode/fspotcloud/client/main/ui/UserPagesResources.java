@@ -22,22 +22,29 @@
  *
  */
             
-package com.googlecode.fspotcloud.shared.peer;
+package com.googlecode.fspotcloud.client.main.ui;
 
-import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
-public class GetPeerMetaDataActionTest {
-    GetPeerMetaDataAction action = new GetPeerMetaDataAction();
+import com.google.gwt.resources.client.ClientBundle;
+import com.google.gwt.resources.client.CssResource;
 
-    @Test
-    public void testSerialize() throws Exception {
-        testSerialization(action);
-    }
 
-    @Test
-    public void testSerializEquals() throws Exception {
-        GetPeerMetaDataAction second = new GetPeerMetaDataAction();
-        assertEquals(second, action);
+public interface UserPagesResources extends ClientBundle {
+    @Source("user-pages.css")
+    Style style();
+
+    public interface Style extends CssResource {
+        String textBox();
+
+        String anchor();
+
+        String label();
+
+        String statusLabel();
+
+        String titleLabel();
+
+        String button();
+
+        String userPage();
     }
 }

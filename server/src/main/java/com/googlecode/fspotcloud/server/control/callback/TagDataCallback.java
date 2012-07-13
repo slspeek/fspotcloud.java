@@ -31,7 +31,6 @@ import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.peer.TagData;
 import com.googlecode.fspotcloud.shared.peer.TagDataResult;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

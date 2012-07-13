@@ -49,6 +49,7 @@ public class GaeTotalModule extends AbstractModule {
     private String botSecret;
     private final int maxTicks;
     private final String fromAddress;
+    private String smtpServer;
 
     public GaeTotalModule(int maxTicks, String botSecret, String fromAddress) {
         this.maxTicks = maxTicks;
@@ -58,7 +59,7 @@ public class GaeTotalModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        install(new ServerTotalModule(maxTicks, botSecret, fromAddress));
+        install(new ServerTotalModule(maxTicks, botSecret, fromAddress, ""));
         install(new CachedModelModule(maxTicks, "gae"));
         install(new TaskQueueDispatchModule());
         install(new TaskQueueDispatchServletModule());

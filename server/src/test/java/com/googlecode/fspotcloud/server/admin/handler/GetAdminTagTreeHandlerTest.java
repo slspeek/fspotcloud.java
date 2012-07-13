@@ -28,20 +28,18 @@
  */
 package com.googlecode.fspotcloud.server.admin.handler;
 
+import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.GetAdminTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
+import java.util.List;
+import javax.inject.Inject;
 import org.jukito.JukitoRunner;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import javax.inject.Inject;
-import java.util.List;
-
-import static com.google.common.collect.Lists.newArrayList;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**

@@ -25,13 +25,9 @@
 package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.collect.ImmutableList;
-import org.junit.Test;
-
-import java.util.List;
-
 import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
-
-
+import java.util.List;
+import org.junit.Test;
 public class GetPhotoDataActionTest {
     private static final ImageSpecs SPECS = new ImageSpecs(1024, 768, 512, 378);
     private static final List<String> keys = ImmutableList.of("1", "2");

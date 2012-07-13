@@ -28,14 +28,12 @@
  */
 package com.googlecode.fspotcloud.user;
 
+import javax.inject.Inject;
 import org.jukito.JukitoRunner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import javax.inject.Inject;
-
 import static org.mockito.Mockito.when;
 
 /**

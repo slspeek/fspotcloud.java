@@ -25,6 +25,7 @@
 package com.googlecode.fspotcloud.server.image;
 
 import com.google.common.annotations.VisibleForTesting;
+import static com.google.common.collect.Sets.newHashSet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlecode.fspotcloud.server.model.api.Photo;
@@ -32,11 +33,6 @@ import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.server.model.tag.IUserGroupHelper;
 import com.googlecode.fspotcloud.user.UserService;
 import com.googlecode.simpleblobstore.BlobService;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DateFormat;
@@ -45,9 +41,10 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import static com.google.common.collect.Sets.newHashSet;
-
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /*
  * Courtesy to Felipe Gaucho
