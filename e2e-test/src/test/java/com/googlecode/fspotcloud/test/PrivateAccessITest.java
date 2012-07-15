@@ -31,7 +31,7 @@ import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
 public class PrivateAccessITest {
-    public static final String JEFF_GOOGLE_COM = "jeff@example.com";
+    public static final String JEFF_GOOGLE_COM = "slspeek@gmail.com";
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject

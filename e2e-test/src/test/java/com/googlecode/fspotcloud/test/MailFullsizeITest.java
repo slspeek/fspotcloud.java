@@ -29,22 +29,30 @@ import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
-
-
-public class ApplicationActionsITest {
+public class MailFullsizeITest {
+    private static String SLS = "slspeek@gmail.com";
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
-    PhotoPage photoPage;
+    private PeerRunner peerRunner;
+    @Inject
+    private LoginPage loginPage;
+    @Inject
+    private PhotoPage photoPage;
+    @Inject
+    private SignUpPage signUpPage;
 
     @Test
-    public void showPopups() throws Exception {
+    public void testMailImageToLeadDeveloper() throws Exception {
+        peerRunner.startPeer("../peer/src/test/resources/photos.db");
+        loginPage.open();
+        loginPage.fillForm(SLS, SLS);
+        loginPage.login();
+        loginPage.verifySuccess();
         photoPage.open();
-        photoPage.about();
-        sleepShort();
-        photoPage.about();
-        photoPage.help();
-        sleepShort();
-        photoPage.help();
+        photoPage.clickImage(0, 0);
+        photoPage.mailFullsize();
+        sleepShort(20);
+        peerRunner.stopPeer();
     }
 }
