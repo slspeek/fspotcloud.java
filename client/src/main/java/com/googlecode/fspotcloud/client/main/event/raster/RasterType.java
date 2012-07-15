@@ -28,7 +28,7 @@ import com.google.gwt.event.dom.client.KeyCodes;
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;
 import com.googlecode.fspotcloud.client.view.action.api.ActionDef;
 public enum RasterType implements ActionDef {
-    ADD_COLUMN("add_colum", "Add column", "Adds one column to raster",
+    ADD_COLUMN("add-colum", "Add column", "Adds one column to raster",
         new KeyStroke('C'), null), 
     ADD_ROW("add-row", "Add row", "Adds one row to raster", new KeyStroke('R'),
         null), 
@@ -48,7 +48,7 @@ public enum RasterType implements ActionDef {
         new KeyStroke('4'), null), 
     SET_RASTER_5x5("5x5", "5x5", "Sets the raster to 5 x 5",
         new KeyStroke('5'), null), 
-    MAIL_FULLSIZE("Mail fullsize", "Mail fullsize",
+    MAIL_FULLSIZE("mail-fullsize", "Mail fullsize",
         "Mail the high resolution version of the image to you",
         new KeyStroke('8'), null);
     private final KeyStroke key;

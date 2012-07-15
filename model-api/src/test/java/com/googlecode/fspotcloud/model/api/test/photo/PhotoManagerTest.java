@@ -37,6 +37,8 @@ import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.Test;
+
+
 public class PhotoManagerTest {
     public static final String TEST_ID = "1";
     @Rule

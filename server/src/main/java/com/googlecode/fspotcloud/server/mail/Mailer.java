@@ -26,14 +26,12 @@ package com.googlecode.fspotcloud.server.mail;
 
 import java.util.Properties;
 import java.util.logging.Logger;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
 import javax.inject.Inject;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.mail.util.ByteArrayDataSource;
 
 
 public class Mailer implements IMail {
@@ -62,6 +60,50 @@ public class Mailer implements IMail {
                 new InternetAddress(recipient));
             msg.setSubject(subject);
             msg.setText(body);
+            Transport.send(msg);
+        } catch (AddressException e) {
+            e.printStackTrace();
+            Logger.getAnonymousLogger().info(e.getLocalizedMessage());
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            Logger.getAnonymousLogger().info(e.getLocalizedMessage());
+        }
+    }
+
+    @Override
+    public void send(String recipient, String subject, String body,
+        byte[] attachment) {
+        Properties props = new Properties();
+        props.setProperty("mail.smtp.host", smtpServer);
+
+        Session session = Session.getDefaultInstance(props, null);
+
+        try {
+            Message msg = new MimeMessage(session);
+            msg.setFrom(new InternetAddress(fromAddress));
+            msg.addRecipient(Message.RecipientType.TO,
+                new InternetAddress(recipient));
+            msg.setSubject(subject);
+
+            // create the message part
+            MimeBodyPart messageBodyPart = new MimeBodyPart();
+
+            //fill message
+            messageBodyPart.setText(body);
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart);
+
+            // Part two is attachment
+            messageBodyPart = new MimeBodyPart();
+
+            DataSource source = new ByteArrayDataSource(attachment, "image/jpeg");
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName("image.jpg");
+            multipart.addBodyPart(messageBodyPart);
+
+            // Put parts in message
+            msg.setContent(multipart);
             Transport.send(msg);
         } catch (AddressException e) {
             e.printStackTrace();

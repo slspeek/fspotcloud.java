@@ -40,6 +40,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import org.apache.commons.lang.SerializationUtils;
 
+
 /**
  * Represents a Label in F-Spot
  */

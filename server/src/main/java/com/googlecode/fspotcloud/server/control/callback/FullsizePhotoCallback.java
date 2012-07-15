@@ -27,6 +27,7 @@ package com.googlecode.fspotcloud.server.control.callback;
 import com.google.inject.Inject;
 import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.fspotcloud.server.image.ImageHelper;
+import com.googlecode.fspotcloud.server.mail.IMail;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.shared.peer.FullsizePhotoResult;
@@ -38,8 +39,13 @@ public class FullsizePhotoCallback implements SerializableAsyncCallback<Fullsize
     private transient PhotoDao photoManager;
     @Inject
     private transient ImageHelper imageHelper;
+    @Inject
+    private transient IMail mailer;
+    private String caller;
 
-    public FullsizePhotoCallback(PhotoDao photoManager, ImageHelper imageHelper) {
+    public FullsizePhotoCallback(String caller, PhotoDao photoManager,
+        ImageHelper imageHelper) {
+        this.caller = caller;
         this.photoManager = photoManager;
         this.imageHelper = imageHelper;
     }
@@ -50,9 +56,13 @@ public class FullsizePhotoCallback implements SerializableAsyncCallback<Fullsize
 
     @Override
     public void onSuccess(FullsizePhotoResult fullsizePhotoResult) {
-        Photo photo = photoManager.find(fullsizePhotoResult.getPhotoId());
+        final String imageId = fullsizePhotoResult.getPhotoId();
+        Photo photo = photoManager.find(imageId);
         byte[] image = fullsizePhotoResult.getFullsizeImageData();
         imageHelper.saveImage(photo, ImageHelper.Type.FULLSIZE, image);
         photoManager.save(photo);
+        mailer.send(caller, "Your requested image: " + imageId,
+            "Dear " + caller + ",\nYour requested image: " + imageId +
+            " is in the attachment", image);
     }
 }

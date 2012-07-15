@@ -43,6 +43,8 @@ import org.mockito.Captor;
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
+
+
 public class PhotoUpdateHandlerTest {
     private static final int MAX_PHOTO_TICKS = 3;
     PhotoUpdateHandler handler;

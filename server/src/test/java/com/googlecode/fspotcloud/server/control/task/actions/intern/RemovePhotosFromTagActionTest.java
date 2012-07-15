@@ -29,6 +29,8 @@ import com.googlecode.fspotcloud.test.EqualsTest;
 import org.apache.commons.lang.SerializationUtils;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
+
+
 public class RemovePhotosFromTagActionTest extends EqualsTest<RemovePhotosFromTagAction> {
     @Test
     public void testSerialization() {

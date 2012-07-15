@@ -27,9 +27,14 @@ package com.googlecode.fspotcloud.server.main.handler;
 import com.google.inject.Inject;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.callback.FullsizePhotoCallback;
+import com.googlecode.fspotcloud.server.image.ImageHelper;
+import com.googlecode.fspotcloud.server.mail.IMail;
+import com.googlecode.fspotcloud.server.model.api.Photo;
+import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.RequestFullsizeImageAction;
 import com.googlecode.fspotcloud.shared.peer.GetFullsizePhotoAction;
+import com.googlecode.fspotcloud.user.UserService;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
@@ -37,13 +42,38 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 public class RequestFullsizeImageHandler extends SimpleActionHandler<RequestFullsizeImageAction, VoidResult> {
     @Inject
-    ControllerDispatchAsync controllerAsyc;
+    private ControllerDispatchAsync controllerAsyc;
+    @Inject
+    private PhotoDao photoDao;
+    @Inject
+    private ImageHelper imageHelper;
+    @Inject
+    private UserService userService;
+    @Inject
+    private IMail mailer;
 
     @Override
     public VoidResult execute(RequestFullsizeImageAction action,
         ExecutionContext context) throws DispatchException {
-        controllerAsyc.execute(new GetFullsizePhotoAction(action.getImageId()),
-            new FullsizePhotoCallback(null, null));
+        if (userService.isUserLoggedIn()) {
+            final String caller = userService.getEmail();
+            final String imageId = action.getImageId();
+            final Photo photo = photoDao.find(imageId);
+
+            if (photo != null) {
+                byte[] fsImage = imageHelper.getImage(photo,
+                        ImageHelper.Type.FULLSIZE);
+
+                if (fsImage != null) {
+                    mailer.send(caller, "Your requested image: " + imageId,
+                        "Dear " + caller + ",\nYour requested image: " +
+                        imageId + " is in the attachment", fsImage);
+                } else {
+                    controllerAsyc.execute(new GetFullsizePhotoAction(imageId),
+                        new FullsizePhotoCallback(caller, null, null));
+                }
+            }
+        }
 
         return new VoidResult();
     }

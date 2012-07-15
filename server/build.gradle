@@ -33,7 +33,7 @@ dependencies {
 }
 
 test {
-    exclude 'com.googlecode.fspotcloud.server.mail.MailerTest.class'
+    exclude 'com/googlecode/fspotcloud/server/mail/MailerTest.class'
 }
 
 

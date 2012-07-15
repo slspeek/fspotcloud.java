@@ -38,6 +38,8 @@ import com.googlecode.fspotcloud.shared.main.*;
 import java.util.Set;
 import java.util.logging.Logger;
 import net.customware.gwt.dispatch.client.DispatchAsync;
+
+
 public class TagApprovalPresenterImpl extends AbstractActivity implements TagApprovalView.TagApprovalPresenter {
     private static final Logger log = Logger.getLogger(TagApprovalPresenterImpl.class.getName());
     private final TagApprovalView view;

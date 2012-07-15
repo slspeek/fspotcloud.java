@@ -31,6 +31,8 @@ import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
+
+
 public abstract class UserManagerBase<T extends User, U extends T>
     extends SimpleDAONamedIdImpl<User, U, String> implements UserDao {
     private static final Logger log = Logger.getLogger(UserManagerBase.class.getName());

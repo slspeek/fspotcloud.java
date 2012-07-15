@@ -32,6 +32,8 @@ import java.util.TreeSet;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+
 public class PhotoInfoTest {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
     Date longAgo;

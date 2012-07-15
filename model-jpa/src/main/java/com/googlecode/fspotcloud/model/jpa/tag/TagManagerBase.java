@@ -34,6 +34,8 @@ import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.logging.Logger;
+
+
 public abstract class TagManagerBase<T extends Tag, U extends T>
     extends SimpleDAONamedIdImpl<Tag, U, String> implements TagDao {
     private static final Logger log = Logger.getLogger(TagManagerBase.class.getName());

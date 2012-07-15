@@ -34,6 +34,7 @@ import com.googlecode.fspotcloud.test.EqualsTest;
 import org.jukito.JukitoRunner;
 import org.junit.runner.RunWith;
 
+
 /**
  * @author steven
  */

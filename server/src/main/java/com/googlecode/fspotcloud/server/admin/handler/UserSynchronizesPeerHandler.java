@@ -42,6 +42,8 @@ import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+
 public class UserSynchronizesPeerHandler extends SimpleActionHandler<UserSynchronizesPeerAction, VoidResult> {
     @Inject
     private Logger log;
