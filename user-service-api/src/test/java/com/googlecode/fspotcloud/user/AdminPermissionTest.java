@@ -28,12 +28,14 @@
  */
 package com.googlecode.fspotcloud.user;
 
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
 import static org.mockito.Mockito.when;
 
 /**
@@ -55,18 +57,18 @@ public class AdminPermissionTest {
     }
 
     /**
-     * Test of chechAdminPermission method, of class AdminPermission.
+     * Test of checkAdminPermission method, of class AdminPermission.
      *
      * @param mock DOCUMENT ME!
      */
     @Test
-    public void testChechAdminPermission(UserService mock) {
+    public void testCheckAdminPermission(UserService mock) {
         when(mock.isUserAdmin()).thenReturn(Boolean.TRUE);
         instance.checkAdminPermission();
     }
 
     @Test(expected = SecurityException.class)
-    public void testChechAdminPermissionNotInRole(UserService mock) {
+    public void testCheckAdminPermissionNotInRole(UserService mock) {
         when(mock.isUserAdmin()).thenReturn(Boolean.FALSE);
         instance.checkAdminPermission();
     }

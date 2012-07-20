@@ -26,12 +26,12 @@ package com.googlecode.fspotcloud.user.gae;
 
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.inject.Provides;
-import com.google.inject.servlet.ServletModule;
 import com.googlecode.fspotcloud.user.ISessionEmail;
 import com.googlecode.fspotcloud.user.PostThirdPartyLoginServlet;
 import com.googlecode.fspotcloud.user.PostThirdPartyLoginWorker;
 import com.googlecode.fspotcloud.user.SessionEmail;
 import com.googlecode.fspotcloud.user.inject.AbstractUserModule;
+import com.googlecode.fspotcloud.user.inject.AbstractUserServletModule;
 
 
 public class UserModuleGae extends AbstractUserModule {
@@ -43,7 +43,7 @@ public class UserModuleGae extends AbstractUserModule {
             .to(com.googlecode.fspotcloud.user.gae.UserServiceGae.class);
         bind(ISessionEmail.class).to(SessionEmail.class);
         bind(PostThirdPartyLoginWorker.class).to(PostGoogleLoginWorker.class);
-        install(new USerServletModule());
+        install(new UserServletModule());
     }
 
     @Provides
@@ -51,7 +51,7 @@ public class UserModuleGae extends AbstractUserModule {
         return UserServiceFactory.getUserService();
     }
 
-    private class USerServletModule extends ServletModule {
+    private class UserServletModule extends AbstractUserServletModule {
         @Override
         protected void configureServlets() {
             super.configureServlets();

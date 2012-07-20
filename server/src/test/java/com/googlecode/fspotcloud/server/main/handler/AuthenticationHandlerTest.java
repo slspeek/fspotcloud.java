@@ -31,12 +31,14 @@ import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.user.ILoginMetaDataUpdater;
 import com.googlecode.fspotcloud.user.LoginMetaData;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 @RunWith(JukitoRunner.class)
 public class AuthenticationHandlerTest {
@@ -83,6 +85,7 @@ public class AuthenticationHandlerTest {
         throws Exception {
         User user = new UserEntity("foo");
         user.setCredentials("secret");
+        user.setEnabled(true);
         when(userDao.find("foo")).thenReturn(user);
 
         AuthenticationAction action = new AuthenticationAction("foo", "secret");

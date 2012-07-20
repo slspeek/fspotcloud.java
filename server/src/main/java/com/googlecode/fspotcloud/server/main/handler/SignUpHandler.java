@@ -21,41 +21,56 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.main.handler;
 
-import com.google.inject.Inject;
 import com.googlecode.fspotcloud.server.mail.IMail;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
+import com.googlecode.fspotcloud.user.emailconfirmation.ConfirmationMailGenerator;
+import com.googlecode.fspotcloud.user.emailconfirmation.SecretGenerator;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
+import javax.inject.Inject;
+
 
 public class SignUpHandler extends SimpleActionHandler<SignUpAction, SignUpResult> {
-    private final UserDao userDao;
-    private final IMail mailer;
+    @Inject
+    private  UserDao userDao;
+    @Inject
+    private  IMail mailer;
+    @Inject
+    private  ConfirmationMailGenerator confirmationMailGenerator;
+    @Inject private SecretGenerator secretGenerator;
+
 
     @Inject
-    public SignUpHandler(UserDao userDao, IMail mailer) {
+    public SignUpHandler(UserDao userDao, IMail mailer, ConfirmationMailGenerator confirmationMailGenerator) {
         this.userDao = userDao;
         this.mailer = mailer;
+        this.confirmationMailGenerator = confirmationMailGenerator;
     }
 
     @Override
     public SignUpResult execute(SignUpAction action, ExecutionContext context)
-        throws DispatchException {
-        User mayBeExisted = userDao.findOrNew(action.getEmail());
+            throws DispatchException {
+        final String email = action.getEmail();
+        User mayBeExisted = userDao.findOrNew(email);
 
         if (!mayBeExisted.hasRegistered()) {
+            String emailConfirmationSecret = secretGenerator.getSecret(email);
             mayBeExisted.setNickname(action.getNickname());
             mayBeExisted.setCredentials(action.getPassword());
+            mayBeExisted.setEmailVerificationSecret(emailConfirmationSecret);
             mayBeExisted.setRegistered(true);
             userDao.save(mayBeExisted);
-            mailer.send(action.getEmail(), "Hi", "Hello mail!");
+
+            String confirmationMail = confirmationMailGenerator.getMailBody(email, emailConfirmationSecret);
+            mailer.send(email, "F-Spot Cloud email confirmation", confirmationMail);
 
             return new SignUpResult(true);
         } else {
