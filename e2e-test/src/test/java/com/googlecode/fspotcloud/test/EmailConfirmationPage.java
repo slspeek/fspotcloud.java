@@ -22,21 +22,34 @@
  *
  */
             
-package com.googlecode.fspotcloud.user.inject;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.googlecode.fspotcloud.test;
 
-import com.google.inject.AbstractModule;
-import com.googlecode.fspotcloud.user.*;
-import com.googlecode.fspotcloud.user.emailconfirmation.SecretGenerator;
-import com.googlecode.fspotcloud.user.emailconfirmation.TestSecretGenerator;
+import com.thoughtworks.selenium.Selenium;
+
+import javax.inject.Inject;
+
+import static junit.framework.Assert.assertTrue;
 
 
-public class AbstractUserModule extends AbstractModule {
-    protected void configure() {
-        bind(IAdminPermission.class).to(AdminPermission.class);
-        bind(ILoginMetaData.class).to(LoginMetaData.class);
-        bind(ILoginMetaDataUpdater.class).to(LoginMetaDataUpdater.class);
-        bind(String.class).annotatedWith(ServerAddress.class)
-            .toProvider(ServerAddressProvider.class);
-        bind(SecretGenerator.class).to(TestSecretGenerator.class);
+/**
+ * @author steven
+ */
+public class EmailConfirmationPage {
+    @Inject
+    Selenium selenium;
+
+    public EmailConfirmationPage open(String email) {
+        selenium.open("/confirm?email="+email +"&secret=thiswillgetharder");
+        selenium.waitForPageToLoad("30000");
+        return this;
+    }
+
+    public void success() {
+        String body = selenium.getBodyText();
+        assertTrue(body.contains("Success"));
     }
 }

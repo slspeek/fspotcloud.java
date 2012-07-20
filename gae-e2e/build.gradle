@@ -12,7 +12,7 @@ gae {
     disableUpdateCheck = true
     warDir = file('build/exploded');
 }
-gaeRun.daemon = server_daemon
+gaeRun.daemon = Boolean.parseBoolean(server_daemon)
 
 dependencies {
     testCompile project(path: ':e2e-test', configuration: 'testCompile')

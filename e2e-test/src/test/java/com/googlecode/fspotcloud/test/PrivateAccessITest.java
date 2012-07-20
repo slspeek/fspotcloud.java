@@ -25,13 +25,15 @@
 package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
-import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
-import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
+
+import javax.inject.Inject;
+
+import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 public class PrivateAccessITest {
-    public static final String JEFF_GOOGLE_COM = "slspeek@gmail.com";
+    public static final String SLSPEEK_GMAIL_COM = "slspeek@gmail.com";
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject
@@ -54,6 +56,8 @@ public class PrivateAccessITest {
     private SignUpPage signUpPage;
     @Inject
     private UserAccountPage userAccountPage;
+    @Inject
+    private EmailConfirmationPage emailConfirmationPage;
 
     @Test
     public void testAccess() throws Exception {
@@ -72,7 +76,7 @@ public class PrivateAccessITest {
         myUserGroupsPage.open();
         myUserGroupsPage.selectFirstRow();
         myUserGroupsPage.manageUserGroup();
-        manageUsersPage.newUser(JEFF_GOOGLE_COM);
+        manageUsersPage.newUser(SLSPEEK_GMAIL_COM);
         dashboardPage.open();
         dashboardPage.manageApprovalForTag("1");
         sleepShort();
@@ -82,12 +86,13 @@ public class PrivateAccessITest {
         photoPage.logout();
         userAccountPage.open();
         signUpPage.open();
-        signUpPage.fillForm(JEFF_GOOGLE_COM, JEFF_GOOGLE_COM, "Jeff");
+        signUpPage.fillForm(SLSPEEK_GMAIL_COM, SLSPEEK_GMAIL_COM, "Jeff");
         signUpPage.signUp();
         signUpPage.verifySuccess();
+        emailConfirmationPage.open(SLSPEEK_GMAIL_COM).success();
         photoPage.open();
         loginPage.open();
-        loginPage.fillForm(JEFF_GOOGLE_COM, JEFF_GOOGLE_COM);
+        loginPage.fillForm(SLSPEEK_GMAIL_COM, SLSPEEK_GMAIL_COM);
         loginPage.login();
         loginPage.verifySuccess();
         userAccountPage.open();
