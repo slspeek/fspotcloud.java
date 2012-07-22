@@ -38,6 +38,8 @@ public interface TreeView extends IsWidget {
 
     void requestFocus();
 
+    void setUserInfo(String info);
+
     interface TreePresenter extends Initializable {
         void setPlace(BasePlace place);
     }

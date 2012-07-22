@@ -53,6 +53,8 @@ public class LoginViewImpl extends Composite implements LoginView {
     PushButton login;
     @UiField
     PushButton signUp;
+    @UiField
+    PushButton cancel;
 
     @Inject
     public LoginViewImpl() {
@@ -61,6 +63,7 @@ public class LoginViewImpl extends Composite implements LoginView {
         googleLoginLink.ensureDebugId("google-login");
         passwordTextBox.ensureDebugId("password");
         login.ensureDebugId("login");
+        cancel.ensureDebugId("cancel");
         statusLabel.ensureDebugId("status");
         log.info("Created " + this);
     }
@@ -116,6 +119,11 @@ public class LoginViewImpl extends Composite implements LoginView {
     @UiHandler("signUp")
     public void signUpClicked(ClickEvent e) {
         presenter.signUp();
+    }
+
+    @UiHandler("cancel")
+    public void onCancel(ClickEvent e) {
+        presenter.cancel();
     }
 
     @UiHandler("userNameTextBox")

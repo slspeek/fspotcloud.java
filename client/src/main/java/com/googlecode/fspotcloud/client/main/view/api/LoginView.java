@@ -51,5 +51,7 @@ public interface LoginView extends IsWidget {
         void login();
 
         void signUp();
+
+        void cancel();
     }
 }

@@ -41,7 +41,7 @@ public class RegularLoginBot implements ILogin {
     @Override
     public void login() throws Exception {
         signUpPage.open();
-        signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS, "rms");
+        signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS);
         signUpPage.signUp();
         emailConfirmationPage.open(RMS_FSF_ORG).success();
         loginPage.open();

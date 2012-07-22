@@ -182,6 +182,8 @@ public interface Resources extends ClientBundle {
 
         String treeBlock();
 
+        String userInfoLabel();
+
         String helpCategory();
 
         String helpDescription();

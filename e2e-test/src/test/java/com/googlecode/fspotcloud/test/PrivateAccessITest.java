@@ -86,15 +86,13 @@ public class PrivateAccessITest {
         photoPage.logout();
         userAccountPage.open();
         signUpPage.open();
-        signUpPage.fillForm(SLSPEEK_GMAIL_COM, SLSPEEK_GMAIL_COM, "Jeff");
+        signUpPage.fillForm(SLSPEEK_GMAIL_COM, SLSPEEK_GMAIL_COM);
         signUpPage.signUp();
-        signUpPage.verifySuccess();
         emailConfirmationPage.open(SLSPEEK_GMAIL_COM).success();
         photoPage.open();
         loginPage.open();
         loginPage.fillForm(SLSPEEK_GMAIL_COM, SLSPEEK_GMAIL_COM);
         loginPage.login();
-        loginPage.verifySuccess();
         userAccountPage.open();
         photoPage.open();
         photoPage.clickImage(0, 0);

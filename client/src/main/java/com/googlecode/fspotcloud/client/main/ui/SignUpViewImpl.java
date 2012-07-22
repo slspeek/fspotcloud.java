@@ -43,8 +43,6 @@ public class SignUpViewImpl extends Composite implements SignUpView {
     @UiField
     TextBox emailTextBox;
     @UiField
-    TextBox nickTextBox;
-    @UiField
     PasswordTextBox passwordTextBox;
     @UiField
     PasswordTextBox passwordAgainTextBox;
@@ -52,15 +50,18 @@ public class SignUpViewImpl extends Composite implements SignUpView {
     Label statusLabel;
     @UiField
     PushButton signUp;
+    @UiField
+    PushButton cancel;
 
     @Inject
     public SignUpViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
         emailTextBox.ensureDebugId("email");
-        nickTextBox.ensureDebugId("nickname");
+
         passwordAgainTextBox.ensureDebugId("password-again");
         passwordTextBox.ensureDebugId("password");
         signUp.ensureDebugId("sign-up");
+        cancel.ensureDebugId("cancel");
         log.info("Created " + this);
     }
 
@@ -84,10 +85,6 @@ public class SignUpViewImpl extends Composite implements SignUpView {
         return passwordAgainTextBox.getText();
     }
 
-    @Override
-    public String getNicknameField() {
-        return nickTextBox.getText();
-    }
 
     @Override
     public void setStatusText(String text) {
@@ -97,6 +94,11 @@ public class SignUpViewImpl extends Composite implements SignUpView {
     @UiHandler("signUp")
     public void onPush(ClickEvent e) {
         presenter.signUp();
+    }
+
+    @UiHandler("cancel")
+    public void onCancel(ClickEvent e) {
+        presenter.cancel();
     }
 
     @Override
