@@ -61,9 +61,6 @@ public class LoginPage {
         selenium.waitForPageToLoad("30000");
     }
 
-    public void verifySuccess() {
-        assertEquals(LoginPresenterImpl.LOGGED_IN, getStatusText());
-    }
 
     private String getStatusText() {
         return selenium.getText("gwt-debug-status");

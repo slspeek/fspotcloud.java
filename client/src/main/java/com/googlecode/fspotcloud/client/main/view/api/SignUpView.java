@@ -37,13 +37,13 @@ public interface SignUpView extends IsWidget {
 
     public String getPasswordAgainField();
 
-    public String getNicknameField();
-
     void setStatusText(String text);
 
     public void focusEmailField();
 
     interface SignUpPresenter extends Activity {
         void signUp();
+
+        void cancel();
     }
 }

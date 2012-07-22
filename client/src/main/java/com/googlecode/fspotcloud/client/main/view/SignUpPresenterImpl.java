@@ -31,25 +31,30 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.SignUpView;
+import com.googlecode.fspotcloud.client.place.BasePlace;
+import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
+import net.customware.gwt.dispatch.client.DispatchAsync;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.SignUpPresenter {
     private static final Logger log = Logger.getLogger(SignUpPresenterImpl.class.getName());
-    public static final String AN_ERROR_PROHIBITED_YOUR_SIGN_UP = "An error prohibited your sign-up";
-    public static final String SIGNED_UP_SUCCESSFULLY = "Signed up successfully";
-    public static final String SIGN_UP_FAILED = "Sign up failed";
+    public static final String AN_ERROR_PROHIBITED_YOUR_SIGN_UP = "An error prohibited your sign-up.";
+    public static final String SIGNED_UP_SUCCESSFULLY = "Signed up successfully, please check your email for the account-confirmation mail.";
+    public static final String SIGN_UP_FAILED = "Sign up failed.";
     private final SignUpView view;
     private final DispatchAsync dispatch;
+    private final PlaceGoTo placeGoTo;
 
     @Inject
-    public SignUpPresenterImpl(SignUpView view, DispatchAsync dispatch) {
+    public SignUpPresenterImpl(SignUpView view, DispatchAsync dispatch, PlaceGoTo placeGoTo) {
         this.view = view;
         this.dispatch = dispatch;
+        this.placeGoTo = placeGoTo;
     }
 
     @Override
@@ -67,12 +72,17 @@ public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.
             view.setStatusText("Passwords do not match");
         } else {
             String email = view.getEmailField();
-            String nickname = view.getNicknameField();
+            String nickname = "";
             SignUpAction action = new SignUpAction(email, password, nickname);
             send(action);
         }
 
         log.info("Sign-up!");
+    }
+
+    @Override
+    public void cancel() {
+        placeGoTo.goTo(new BasePlace("latest", "latest"));
     }
 
     private void send(SignUpAction action) {
@@ -88,6 +98,7 @@ public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.
                 public void onSuccess(SignUpResult result) {
                     if (result.getSuccess()) {
                         view.setStatusText(SIGNED_UP_SUCCESSFULLY);
+
                     } else {
                         view.setStatusText(SIGN_UP_FAILED);
                     }

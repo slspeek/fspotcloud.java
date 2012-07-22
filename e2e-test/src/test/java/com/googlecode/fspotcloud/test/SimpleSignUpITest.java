@@ -25,9 +25,10 @@
 package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
-import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
+
+import javax.inject.Inject;
 
 
 public class SimpleSignUpITest {
@@ -49,15 +50,15 @@ public class SimpleSignUpITest {
     @Test
     public void signUp() throws Exception {
         signUpPage.open();
-        signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS, "rms");
+        signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS);
         signUpPage.signUp();
         signUpPage.verifySuccess();
         signUpPage.open();
-        signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS, "rms");
+        signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS);
         signUpPage.signUp();
         signUpPage.verifyFailure();
         signUpPage.open();
-        signUpPage.fillForm(MOOG_BB_ORG, NSA, "moog");
+        signUpPage.fillForm(MOOG_BB_ORG, NSA);
         signUpPage.signUp();
         signUpPage.verifySuccess();
 
@@ -69,12 +70,10 @@ public class SimpleSignUpITest {
         loginPage.open();
         loginPage.fillForm(MOOG_BB_ORG, NSA);
         loginPage.login();
-        loginPage.verifySuccess();
 
         loginPage.open();
         loginPage.fillForm(RMS_FSF_ORG, CREDENTIALS);
         loginPage.login();
-        loginPage.verifySuccess();
 
         userAccountPage.open();
         userAccountPage.verifyEmail(RMS_FSF_ORG);

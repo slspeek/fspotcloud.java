@@ -29,14 +29,16 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.fspotcloud.client.main.view.api.SignUpView;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 @RunWith(JukitoRunner.class)
 public class SignUpPresenterImplTest {
@@ -52,7 +54,6 @@ public class SignUpPresenterImplTest {
         when(signUpView.getPasswordField()).thenReturn(SECRET);
         when(signUpView.getPasswordAgainField()).thenReturn(SECRET);
         when(signUpView.getEmailField()).thenReturn(RMS_FSF_ORG);
-        when(signUpView.getNicknameField()).thenReturn(RMS);
     }
 
     @Test
@@ -72,7 +73,6 @@ public class SignUpPresenterImplTest {
         throws Exception {
         presenter.signUp();
         verify(signUpView).getEmailField();
-        verify(signUpView).getNicknameField();
         verify(signUpView).getPasswordField();
         verify(signUpView).getPasswordAgainField();
 

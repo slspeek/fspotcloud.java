@@ -54,7 +54,7 @@ public class TreePresenterImplTest extends TestCase {
     }
 
     public void testConstructor() {
-        presenter = new TreePresenterImpl(treeView, dataManager, model, handler);
+        presenter = new TreePresenterImpl(treeView, dataManager, model, handler, null);
         assertNotNull(presenter);
     }
 

@@ -30,15 +30,17 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.LoginView;
+import com.googlecode.fspotcloud.client.place.BasePlace;
 import com.googlecode.fspotcloud.client.place.SignUpPlace;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
+import net.customware.gwt.dispatch.client.DispatchAsync;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class LoginPresenterImpl extends AbstractActivity implements LoginView.LoginPresenter {
@@ -106,6 +108,11 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
         placeGoTo.goTo(new SignUpPlace());
     }
 
+    @Override
+    public void cancel() {
+        placeGoTo.goTo(new BasePlace("latest", "latest"));
+    }
+
     private void submitToServer() {
         String userName = view.getUserNameField();
         String password = view.getPasswordField();
@@ -125,6 +132,7 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
 
                     if (result.getSuccess()) {
                         view.setStatusText(LOGGED_IN);
+                        cancel();
                     } else {
                         view.setStatusText(NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION);
                     }

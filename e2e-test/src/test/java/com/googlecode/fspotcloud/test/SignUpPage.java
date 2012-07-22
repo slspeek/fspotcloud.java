@@ -29,9 +29,11 @@
 package com.googlecode.fspotcloud.test;
 
 import com.googlecode.fspotcloud.client.main.view.SignUpPresenterImpl;
-import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
+
 import javax.inject.Inject;
+
+import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -46,9 +48,8 @@ public class SignUpPage {
         selenium.waitForPageToLoad("30000");
     }
 
-    public void fillForm(String email, String credentials, String nickname)
+    public void fillForm(String email, String credentials)
         throws InterruptedException {
-        selenium.type("id=gwt-debug-nickname", nickname);
         selenium.type("id=gwt-debug-password", credentials);
         selenium.type("id=gwt-debug-password-again", credentials);
         selenium.type("id=gwt-debug-email", email);
@@ -65,7 +66,7 @@ public class SignUpPage {
     }
 
     private String getStatusText() {
-        return selenium.getText("//div[11]/div");
+        return selenium.getText("id=gwt-debug-status");
     }
 
     public void verifyFailure() {

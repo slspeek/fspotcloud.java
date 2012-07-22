@@ -29,14 +29,15 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTree;
 import com.google.gwt.user.cellview.client.TreeNode;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ResizeComposite;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.TreeViewModel;
 import com.googlecode.fspotcloud.client.main.view.CustomCellTree;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView;
-import java.util.logging.Logger;
 
+import java.util.logging.Logger;
 
 public class TreeViewImpl extends ResizeComposite implements TreeView {
     private static final Logger log = Logger.getLogger(TreeViewImpl.class.getName());
@@ -44,9 +45,12 @@ public class TreeViewImpl extends ResizeComposite implements TreeView {
     CellTree cellTree;
     @UiField
     ScrollPanel tagTreeViewPanel;
+    @UiField
+    Label userInfoLabel;
 
     public TreeViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
+        userInfoLabel.ensureDebugId("user-info-label");
         log.info("Created.");
     }
 
@@ -71,6 +75,11 @@ public class TreeViewImpl extends ResizeComposite implements TreeView {
         if (cellTree != null) {
             cellTree.setFocus(true);
         }
+    }
+
+    @Override
+    public void setUserInfo(String info) {
+        userInfoLabel.setText(info);
     }
 
     interface TreeViewImplUiBinder extends UiBinder<Widget, TreeViewImpl> {

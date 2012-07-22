@@ -115,6 +115,16 @@
   border-width: 1px;
 }
 
+.userInfoLabel {
+	background-color: treeColor;
+	color: foregroundColor;
+  border-style: solid;
+  border-color: borderColor;
+  border-collapse: collapse;
+  border-width: 1px;
+
+}
+
 .footerBlock {
 	background-color: darkColor;
 	color: foregroundColor;
