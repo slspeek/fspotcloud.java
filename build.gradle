@@ -25,14 +25,17 @@ allprojects {
     apply plugin: 'eclipse'
 
     group = 'com.googlecode.fspotcloud'
-    version = '0.8-alpha-03'
+    version = '0.8-alpha-04'
     project.ext {
         libs = [
                 bot_dispatch_bot: "com.googlecode.bot-dispatch:bot:${bot_dispatch_version}",
                 bot_dispatch_controller: "com.googlecode.bot-dispatch:controller:${bot_dispatch_version}",
+                bot_dispatch_api: "com.googlecode.bot-dispatch:bot-dispatch-api:${bot_dispatch_version}",
+                bot_dispatch_command_api: "com.googlecode.bot-dispatch:command-api:${bot_dispatch_version}",
                 inject: "javax.inject:javax.inject:1",
                 junit: "junit:junit:4.10",
                 guice: "com.google.inject:guice:${guice_version}",
+                guice_assisted_inject: "com.google.inject.extensions:guice-assistedinject:${guice_version}",
                 guice_servlet: "com.google.inject.extensions:guice-servlet:${guice_version}",
                 guiceberry: "com.google.guiceberry:guiceberry:3.1.0",
                 javamail: "javax.mail:mail:1.4",
@@ -66,6 +69,7 @@ allprojects {
                 simple_jpa_dao_cached_dao: "com.googlecode.simple-jpa-dao:cached-dao:${simple_jpa_dao_version}",
                 simple_jpa_dao_namedid_test: "com.googlecode.simple-jpa-dao:dao-namedid-test:${simple_jpa_dao_version}",
                 simple_jpa_dao_genid_test: "com.googlecode.simple-jpa-dao:dao-genid-test:${simple_jpa_dao_version}",
+                simple_jpa_dao_base_test: "com.googlecode.simple-jpa-dao:dao-base-test:${simple_jpa_dao_version}",
                 task_dispatch_dispatch_api: "com.googlecode.taskqueue-dispatch:dispatch-api:${taskqueue_dispatch_version}",
                 jukito: "org.jukito:jukito:1.1",
                 test_ng: "org.testng:testng:6.1.1",

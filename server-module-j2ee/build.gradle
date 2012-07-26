@@ -22,7 +22,10 @@ dependencies {
     compile("com.googlecode.bot-dispatch:command-jpa-j2ee:${bot_dispatch_version}")
     compile("com.googlecode.taskqueue-dispatch:direct:${taskqueue_dispatch_version}")
     compile ext.libs.simple_blobstore_j2ee
-
+    compile("com.googlecode.bot-dispatch:command-jpa:${bot_dispatch_version}") {
+        exclude(module: 'gwt-user')
+    }
+    compile ext.libs.bot_dispatch_command_api
     provided ext.libs.servlet_spec
     testCompile project(':peer')
     testCompile project(':test-util')

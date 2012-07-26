@@ -15,6 +15,8 @@ dependencies {
     compile project(':user-service-api')
     compile project(':peer-rpc')
     compile ext.libs.bot_dispatch_controller
+    compile ext.libs.bot_dispatch_api
+    compile ext.libs.bot_dispatch_command_api
     compile ext.libs.task_dispatch_dispatch_api
     compile ext.libs.simple_blobstore_api
     provided ext.libs.servlet_spec
