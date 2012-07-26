@@ -19,6 +19,7 @@ dependencies {
     compile project(':model-jpa')
     compile "com.google.appengine:appengine-api-1.0-sdk:${gae_version}"
     compile "com.google.appengine:appengine-jsr107cache:${gae_version}"
+    compile "net.sf.jsr107cache:jsr107cache:1.1"
     compile ext.libs.commons_lang
     compile ext.libs.inject
     compile ext.libs.guice
