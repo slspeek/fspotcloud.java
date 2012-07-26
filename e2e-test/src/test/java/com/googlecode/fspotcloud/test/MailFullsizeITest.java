@@ -25,10 +25,12 @@
 package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
-import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
-import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
+
+import javax.inject.Inject;
+
+import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 public class MailFullsizeITest {
     private static String SLS = "slspeek@gmail.com";
     @Rule
@@ -48,7 +50,6 @@ public class MailFullsizeITest {
         loginPage.open();
         loginPage.fillForm(SLS, SLS);
         loginPage.login();
-        loginPage.verifySuccess();
         photoPage.open();
         photoPage.clickImage(0, 0);
         photoPage.mailFullsize();
