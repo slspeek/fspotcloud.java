@@ -29,7 +29,7 @@
                                        ui:field="passwordAgainTextBox"></g:PasswordTextBox>
                 </g:layer>
                 <g:layer top="60%" height="8%" left="0%" width="100%">
-                    <g:Label addStyleNames="{res.style.label}" ui:field="statusLabel">Please fill in the fields
+                    <g:Label addStyleNames="{res.style.statusLabel}" ui:field="statusLabel">Please fill in the fields
                     </g:Label>
                 </g:layer>
                 <g:layer bottom="0%" height="12%" left="0%" width="20%">

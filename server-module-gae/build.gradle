@@ -9,12 +9,17 @@ dependencies {
     compile project(':user-service-gae')
     compile ext.libs.inject
     compile ext.libs.guice
+    compile ext.libs.guice_assisted_inject
     compile("com.googlecode.taskqueue-dispatch:dispatch:${taskqueue_dispatch_version}") {
         exclude(module: 'gwt-user')
     }
     compile("com.googlecode.bot-dispatch:command-jpa-gae:${bot_dispatch_version}") {
         exclude(module: 'gwt-user')
     }
+    compile("com.googlecode.bot-dispatch:command-jpa:${bot_dispatch_version}") {
+        exclude(module: 'gwt-user')
+    }
+    compile ext.libs.bot_dispatch_command_api
     compile ext.libs.servlet_spec
     compile ext.libs.simple_blobstore_gae
 

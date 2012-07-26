@@ -32,7 +32,7 @@ dependencies {
     testCompile ext.libs.guava_testlib
     testCompile "org.slf4j:slf4j-log4j12:1.6.4"
     daoTests ext.libs.simple_jpa_dao_namedid_test
-    genidDaoTests ext.libs.simple_jpa_dao_genid_test
+    genidDaoTests ext.libs.simple_jpa_dao_genid_test, ext.libs.simple_jpa_dao_base_test
     modelTests files("../model-api/build/libs/model-api-${version}-tests.jar")
 }
 task deleteDB(type: Delete) {

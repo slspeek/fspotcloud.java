@@ -49,7 +49,7 @@ dependencies {
     testRuntime ext.libs.servlet_spec
 
 
-    daoTests ext.libs.simple_jpa_dao_namedid_test
+    daoTests ext.libs.simple_jpa_dao_namedid_test, ext.libs.simple_jpa_dao_base_test
     genidDaoTests ext.libs.simple_jpa_dao_genid_test
     modelTests files("../model-api/build/libs/model-api-${version}-tests.jar")
 }
