@@ -37,8 +37,6 @@ import java.util.Iterator;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-
 public class RemoveTagsFromPeerHandler extends AbstractBatchActionHandler<RemoveTagsDeletedFromPeerAction, TagRemovedFromPeer> {
     private final TaskQueueDispatch dispatchAsync;
     private TagDao tagManager;

@@ -4,7 +4,7 @@ description = 'Selenium testing for prod-j2ee-war'
 
 apply plugin: 'tomcat'
 
-if ("${release}" == "true") {
+if ("${analysis}" == "true") {
 findbugsTest.enabled = false
 }
 
@@ -68,7 +68,7 @@ test {
     systemProperties['bot.secret'] = bot_secret
     systemProperties['endpoint'] = "localhost:8050/j2ee-e2e"
     systemProperties['peer.jar'] = "../peer/build/libs/peer-${version}.jar"
-    if ("${release}" == "true") {
+    if ("${all_tests}" == "true") {
         include "com/googlecode/fspotcloud/test/LocalSuite.class"
     } else {
         include "com/googlecode/fspotcloud/test/ShortSuite.class"

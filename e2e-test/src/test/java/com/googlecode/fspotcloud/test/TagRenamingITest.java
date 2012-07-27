@@ -30,8 +30,6 @@ import javax.inject.Inject;
 import static org.junit.Assert.assertTrue;
 import org.junit.Rule;
 import org.junit.Test;
-
-
 public class TagRenamingITest {
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);

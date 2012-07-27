@@ -73,7 +73,7 @@ public class PhotoPage {
     }
 
     public void assertImageHasId(int x, int y, String id) {
-        Assert.assertEquals("image?id=" + id + "&thumb",
+        Assert.assertEquals("image?id=" + id + "&thumb=true",
             selenium.getAttribute("//*[@id=\"gwt-debug-image-view-" + x + "x" +
                 y + "\"]@src"));
     }

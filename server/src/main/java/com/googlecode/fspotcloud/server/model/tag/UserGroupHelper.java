@@ -32,8 +32,6 @@ import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Provider;
-
-
 public class UserGroupHelper implements IUserGroupHelper {
     @Inject
     private Provider<LoginMetaData> metaData;

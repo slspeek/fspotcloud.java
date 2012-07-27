@@ -32,7 +32,6 @@ import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
 import javax.inject.Inject;
 
-
 /**
  * @author steven
  */

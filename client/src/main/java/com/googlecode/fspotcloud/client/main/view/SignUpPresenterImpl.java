@@ -35,10 +35,9 @@ import com.googlecode.fspotcloud.client.place.BasePlace;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
-import net.customware.gwt.dispatch.client.DispatchAsync;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.SignUpPresenter {
@@ -51,7 +50,8 @@ public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.
     private final PlaceGoTo placeGoTo;
 
     @Inject
-    public SignUpPresenterImpl(SignUpView view, DispatchAsync dispatch, PlaceGoTo placeGoTo) {
+    public SignUpPresenterImpl(SignUpView view, DispatchAsync dispatch,
+        PlaceGoTo placeGoTo) {
         this.view = view;
         this.dispatch = dispatch;
         this.placeGoTo = placeGoTo;
@@ -98,7 +98,6 @@ public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.
                 public void onSuccess(SignUpResult result) {
                     if (result.getSuccess()) {
                         view.setStatusText(SIGNED_UP_SUCCESSFULLY);
-
                     } else {
                         view.setStatusText(SIGN_UP_FAILED);
                     }

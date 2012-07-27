@@ -31,8 +31,6 @@ import java.util.HashSet;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Provider;
-
-
 public class LoginMetaDataUpdater implements ILoginMetaDataUpdater {
     @Inject
     Logger log;

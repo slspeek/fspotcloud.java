@@ -46,6 +46,9 @@ public class SimpleSignUpITest {
     UserAccountPage userAccountPage;
     @Inject
     PhotoPage photoPage;
+    @Inject
+    EmailConfirmationPage emailConfirmationPage;
+
 
     @Test
     public void signUp() throws Exception {
@@ -53,6 +56,7 @@ public class SimpleSignUpITest {
         signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS);
         signUpPage.signUp();
         signUpPage.verifySuccess();
+        emailConfirmationPage.open(RMS_FSF_ORG).success();
         signUpPage.open();
         signUpPage.fillForm(RMS_FSF_ORG, CREDENTIALS);
         signUpPage.signUp();
@@ -61,6 +65,7 @@ public class SimpleSignUpITest {
         signUpPage.fillForm(MOOG_BB_ORG, NSA);
         signUpPage.signUp();
         signUpPage.verifySuccess();
+        emailConfirmationPage.open(MOOG_BB_ORG).success();
 
         loginPage.open();
         loginPage.fillForm("", "");

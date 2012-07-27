@@ -38,8 +38,6 @@ import com.googlecode.fspotcloud.shared.peer.TagData;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-
 public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaDataResult> {
     private static final long serialVersionUID = 1851403859917750767L;
     @Inject

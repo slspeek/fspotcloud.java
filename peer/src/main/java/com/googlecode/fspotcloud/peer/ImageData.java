@@ -71,7 +71,8 @@ public class ImageData {
         int returnValue = convert.waitFor();
 
         if (returnValue != 0) {
-            throw new RuntimeException("convert returned an error code: " + returnValue);
+            throw new RuntimeException("convert returned an error code: " +
+                returnValue);
         }
 
         byte[] data = bas.toByteArray();

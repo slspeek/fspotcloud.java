@@ -61,7 +61,6 @@ public class LoginPage {
         selenium.waitForPageToLoad("30000");
     }
 
-
     private String getStatusText() {
         return selenium.getText("gwt-debug-status");
     }

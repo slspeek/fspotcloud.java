@@ -33,8 +33,6 @@ import org.apache.commons.lang.SerializationUtils;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-
-
 public class PhotoUpdateActionTest extends EqualsTest<PhotoUpdateAction> {
     PhotoUpdateAction action;
 

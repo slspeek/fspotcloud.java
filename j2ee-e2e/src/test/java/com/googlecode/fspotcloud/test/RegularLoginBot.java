@@ -37,7 +37,6 @@ public class RegularLoginBot implements ILogin {
     @Inject
     private EmailConfirmationPage emailConfirmationPage;
 
-
     @Override
     public void login() throws Exception {
         signUpPage.open();

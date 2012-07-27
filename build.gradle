@@ -127,7 +127,7 @@ subprojects {
             }
         }
     }
-    if ("${release}" == "true") {
+    if ("${analysis}" == "true") {
         apply plugin: 'jdepend'
         apply plugin: 'findbugs'
         apply plugin: 'checkstyle'
@@ -142,25 +142,30 @@ subprojects {
 
         findbugsTest.enabled = false
         checkstyleTest.enabled = false
+
+
+    }
+
+
+    if ("${run_jalopy}" == "true") {
         check.dependsOn jalopy
-
-    }
-    test {
-        jvmArgs "-XX:MaxPermSize=256m"
     }
 
-    repositories {
-        maven {
-            url maven_repo
-            artifactUrls "http://fspotcloud-maven.googlecode.com/svn/maven/repository",
-                    "http://maven.fspotcloud.googlecode.com/hg/repo",
-                    "http://maven-gae-plugin.googlecode.com/svn/repository",
-                    "http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/",
-                    "http://www.datanucleus.org/downloads/maven2"
+        test {
+            jvmArgs "-XX:MaxPermSize=256m"
         }
-        mavenLocal()
+
+        repositories {
+            maven {
+                url maven_repo
+                artifactUrls "http://fspotcloud-maven.googlecode.com/svn/maven/repository",
+                        "http://maven.fspotcloud.googlecode.com/hg/repo",
+                        "http://maven-gae-plugin.googlecode.com/svn/repository",
+                        "http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/",
+                        "http://www.datanucleus.org/downloads/maven2"
+            }
+            mavenLocal()
+        }
+
     }
-
-}
-
 

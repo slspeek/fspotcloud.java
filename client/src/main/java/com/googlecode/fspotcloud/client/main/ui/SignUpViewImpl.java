@@ -57,12 +57,11 @@ public class SignUpViewImpl extends Composite implements SignUpView {
     public SignUpViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
         emailTextBox.ensureDebugId("email");
-
         passwordAgainTextBox.ensureDebugId("password-again");
         passwordTextBox.ensureDebugId("password");
         signUp.ensureDebugId("sign-up");
         cancel.ensureDebugId("cancel");
-        log.info("Created " + this);
+        statusLabel.ensureDebugId("status");
     }
 
     @Override
@@ -84,7 +83,6 @@ public class SignUpViewImpl extends Composite implements SignUpView {
     public String getPasswordAgainField() {
         return passwordAgainTextBox.getText();
     }
-
 
     @Override
     public void setStatusText(String text) {

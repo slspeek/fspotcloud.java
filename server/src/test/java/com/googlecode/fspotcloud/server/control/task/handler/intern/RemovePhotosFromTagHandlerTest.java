@@ -45,8 +45,6 @@ import org.mockito.Captor;
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
-
-
 public class RemovePhotosFromTagHandlerTest {
     private static final String ID_B = "B";
     private static final String ID_A = "A";

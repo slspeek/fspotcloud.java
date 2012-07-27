@@ -36,8 +36,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.TreeViewModel;
 import com.googlecode.fspotcloud.client.main.view.CustomCellTree;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView;
-
 import java.util.logging.Logger;
+
 
 public class TreeViewImpl extends ResizeComposite implements TreeView {
     private static final Logger log = Logger.getLogger(TreeViewImpl.class.getName());

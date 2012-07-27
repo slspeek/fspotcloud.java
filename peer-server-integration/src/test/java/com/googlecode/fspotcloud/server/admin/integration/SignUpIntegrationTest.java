@@ -39,8 +39,6 @@ import static org.testng.AssertJUnit.assertTrue;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-
 public class SignUpIntegrationTest {
     static final Logger log = Logger.getLogger(SignUpIntegrationTest.class.getName());
     public static final String RMS_FSF_ORG1 = "rms@example.com";

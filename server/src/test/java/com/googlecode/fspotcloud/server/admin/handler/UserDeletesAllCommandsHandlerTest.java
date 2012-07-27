@@ -40,7 +40,6 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 
-
 /**
  * DOCUMENT ME!
  *

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-
+            
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.googlecode.fspotcloud.server.mail.IMail;
@@ -31,25 +31,25 @@ import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
 import com.googlecode.fspotcloud.user.emailconfirmation.ConfirmationMailGenerator;
 import com.googlecode.fspotcloud.user.emailconfirmation.SecretGenerator;
+import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
-import javax.inject.Inject;
-
 
 public class SignUpHandler extends SimpleActionHandler<SignUpAction, SignUpResult> {
     @Inject
-    private  UserDao userDao;
+    private UserDao userDao;
     @Inject
-    private  IMail mailer;
+    private IMail mailer;
     @Inject
-    private  ConfirmationMailGenerator confirmationMailGenerator;
-    @Inject private SecretGenerator secretGenerator;
+    private ConfirmationMailGenerator confirmationMailGenerator;
+    @Inject
+    private SecretGenerator secretGenerator;
 
-
     @Inject
-    public SignUpHandler(UserDao userDao, IMail mailer, ConfirmationMailGenerator confirmationMailGenerator) {
+    public SignUpHandler(UserDao userDao, IMail mailer,
+        ConfirmationMailGenerator confirmationMailGenerator) {
         this.userDao = userDao;
         this.mailer = mailer;
         this.confirmationMailGenerator = confirmationMailGenerator;
@@ -57,7 +57,7 @@ public class SignUpHandler extends SimpleActionHandler<SignUpAction, SignUpResul
 
     @Override
     public SignUpResult execute(SignUpAction action, ExecutionContext context)
-            throws DispatchException {
+        throws DispatchException {
         final String email = action.getEmail();
         User mayBeExisted = userDao.findOrNew(email);
 
@@ -69,8 +69,10 @@ public class SignUpHandler extends SimpleActionHandler<SignUpAction, SignUpResul
             mayBeExisted.setRegistered(true);
             userDao.save(mayBeExisted);
 
-            String confirmationMail = confirmationMailGenerator.getMailBody(email, emailConfirmationSecret);
-            mailer.send(email, "F-Spot Cloud email confirmation", confirmationMail);
+            String confirmationMail = confirmationMailGenerator.getMailBody(email,
+                    emailConfirmationSecret);
+            mailer.send(email, "F-Spot Cloud email confirmation",
+                confirmationMail);
 
             return new SignUpResult(true);
         } else {
