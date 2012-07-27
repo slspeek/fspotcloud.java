@@ -33,26 +33,25 @@ import com.googlecode.fspotcloud.server.admin.integration.FakeHttpRequest;
 import com.googlecode.fspotcloud.server.admin.integration.FakeHttpServletSession;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.testng.AssertJUnit;
+import org.testng.annotations.Test;
 
 
 public class J2eeInjectorTest {
     @Test
     public void testInjector() {
-        Injector injector = Guice.createInjector(Modules.override(new J2eeTotalModule(10,
-                    "FOO_BAR", "foo@bar", "")).with(new AbstractModule() {
+        Injector injector = Guice.createInjector(Modules.override(
+                    new J2eeTotalModule(10, "FOO_BAR", "foo@bar", "")).with(new AbstractModule() {
+                    @Override
+                    protected void configure() {
+                        bind(HttpSession.class).to(FakeHttpServletSession.class);
 
-            @Override
-            protected void configure() {
-                bind(HttpSession.class).to(FakeHttpServletSession.class);
+                        bind(HttpServletRequest.class).to(FakeHttpRequest.class);
+                    }
+                }));
 
-                bind(HttpServletRequest.class).to(FakeHttpRequest.class);
-            }
-        }));
         AssertJUnit.assertNotNull(injector);
 
         PeerDatabaseDao defaultPeer = injector.getInstance(PeerDatabaseDao.class);

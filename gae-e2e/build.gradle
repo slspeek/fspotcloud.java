@@ -4,7 +4,7 @@ description = 'Selenium testing of prod-gae-war'
 
 apply plugin: 'gae'
 System.properties['appengine.sdk.root'] = System.properties['user.home'] + "/appengine-java-sdk-${gae_version}"
-if ("${release}" == "true") {
+if ("${analysis}" == "true") {
 findbugsTest.enabled = false;
 }
 gae {
@@ -63,7 +63,8 @@ test {
     systemProperties['bot.secret'] = bot_secret
     systemProperties['endpoint'] = "localhost:8080"
     systemProperties['peer.jar'] = "../peer/build/libs/peer-${version}.jar"
-    if ("${release}" == "true") {
+    println "All tests: ${all_tests}"
+    if ("${all_tests}" == "true") {
         include "com/googlecode/fspotcloud/test/LocalSuite.class"
     } else {
     include "com/googlecode/fspotcloud/test/ShortSuite.class"

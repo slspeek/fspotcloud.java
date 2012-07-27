@@ -29,11 +29,8 @@
 package com.googlecode.fspotcloud.test;
 
 import com.thoughtworks.selenium.Selenium;
-
 import javax.inject.Inject;
-
 import static junit.framework.Assert.assertTrue;
-
 
 /**
  * @author steven
@@ -43,8 +40,9 @@ public class EmailConfirmationPage {
     Selenium selenium;
 
     public EmailConfirmationPage open(String email) {
-        selenium.open("/confirm?email="+email +"&secret=thiswillgetharder");
+        selenium.open("/confirm?email=" + email + "&secret=thiswillgetharder");
         selenium.waitForPageToLoad("30000");
+
         return this;
     }
 

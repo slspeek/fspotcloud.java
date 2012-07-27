@@ -1,6 +1,6 @@
 description = 'peer-rpc'
 
-if ("${release}" == "true") {
+if ("${analysis}" == "true") {
 checkstyleMain.ignoreFailures = false
 }
 

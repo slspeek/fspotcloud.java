@@ -37,8 +37,6 @@ import java.util.Iterator;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-
 public class PhotoUpdateHandler extends AbstractBatchActionHandler<PhotoUpdateAction, PhotoUpdate> {
     private final int MAX_PHOTO_TICKS;
     private final ControllerDispatchAsync controllerDispatch;

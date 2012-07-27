@@ -37,8 +37,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import org.junit.Rule;
 import org.junit.Test;
-
-
 public class PhotoManagerBlobsTest {
     public static final String TEST_ID = "1";
     @Rule

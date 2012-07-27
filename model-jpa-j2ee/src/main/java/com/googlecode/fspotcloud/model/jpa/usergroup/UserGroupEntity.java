@@ -38,7 +38,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
-
 /**
  * DOCUMENT ME!
  *

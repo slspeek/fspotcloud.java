@@ -57,7 +57,8 @@ public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAct
             User user = userDao.find(action.getUserName());
 
             if (user != null) {
-                if (user.getEnabled() && action.getPassword().equals(user.getCredentials())) {
+                if (user.getEnabled() &&
+                        action.getPassword().equals(user.getCredentials())) {
                     loginMetaDataUpdater.doUpdate(user,
                         LoginMetaData.Type.REGULAR_LOGIN);
 

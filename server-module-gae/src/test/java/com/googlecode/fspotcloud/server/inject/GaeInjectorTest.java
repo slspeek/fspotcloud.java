@@ -32,11 +32,10 @@ import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.admin.integration.FakeHttpRequest;
 import com.googlecode.fspotcloud.server.admin.integration.FakeHttpServletSession;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.testng.AssertJUnit;
+import org.testng.annotations.Test;
 
 
 public class GaeInjectorTest {
@@ -45,16 +44,16 @@ public class GaeInjectorTest {
         System.setProperty("appengine.orm.disable.duplicate.emf.exception",
             "true");
 
-        Injector injector = Guice.createInjector(Modules.override(new GaeTotalModule(10,
-                "FOO_SECRET", "SLS")).with(new AbstractModule() {
+        Injector injector = Guice.createInjector(Modules.override(
+                    new GaeTotalModule(10, "FOO_SECRET", "SLS")).with(new AbstractModule() {
+                    @Override
+                    protected void configure() {
+                        bind(HttpSession.class).to(FakeHttpServletSession.class);
 
-            @Override
-            protected void configure() {
-                bind(HttpSession.class).to(FakeHttpServletSession.class);
+                        bind(HttpServletRequest.class).to(FakeHttpRequest.class);
+                    }
+                }));
 
-                bind(HttpServletRequest.class).to(FakeHttpRequest.class);
-            }
-        }));
         AssertJUnit.assertNotNull(injector);
 
         PeerDatabaseDao defaultPeer = injector.getInstance(PeerDatabaseDao.class);

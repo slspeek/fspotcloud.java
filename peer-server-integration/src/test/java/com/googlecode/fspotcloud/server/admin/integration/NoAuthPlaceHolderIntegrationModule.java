@@ -29,7 +29,6 @@ import com.google.guiceberry.TestScoped;
 import com.google.inject.servlet.RequestScoped;
 import com.google.inject.servlet.SessionScoped;
 import com.googlecode.fspotcloud.user.LenientUserModule;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 

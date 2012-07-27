@@ -9,7 +9,7 @@ configurations {
 sourceSets {
     main { compileClasspath += configurations.provided }
 }
-if ("${release}" == "true") {
+if ("${analysis}" == "true") {
 findbugsTest.enabled = false
 }
 
