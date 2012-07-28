@@ -46,7 +46,7 @@ task unpackTest(dependsOn: ':e2e-test:packageTests') << {
 }
 
 task peerStop(type: Exec) {
-    commandLine "telnet", "localhost", "4444"
+    commandLine "telnet", "localhost", "5555"
     ignoreExitValue = true
 }
 
@@ -67,6 +67,7 @@ test {
         'com.googlecode.fspotcloud.test.J2eeWarGuiceBerryEnv'
     systemProperties['bot.secret'] = bot_secret
     systemProperties['endpoint'] = "localhost:8050/j2ee-e2e"
+    systemProperties['stop.port'] = "5555"
     systemProperties['peer.jar'] = "../peer/build/libs/peer-${version}.jar"
     if ("${all_tests}" == "true") {
         include "com/googlecode/fspotcloud/test/LocalSuite.class"

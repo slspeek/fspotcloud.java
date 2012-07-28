@@ -51,6 +51,7 @@
             <file src="Readme.html" targetdir="$INSTALL_PATH"/>
             <file src="Licence.txt" targetdir="$INSTALL_PATH"/>
             <file src="peer-jar-with-dependencies.jar" targetdir="$INSTALL_PATH"/>
+            <file src="logging.properties" targetdir="$INSTALL_PATH"/>
             <file src="peer.sh" targetdir="$INSTALL_PATH"/>
             <parsable targetfile="$INSTALL_PATH/peer.sh"/>
             <executable type="bin" stage="never" targetfile="$INSTALL_PATH/peer.sh"
