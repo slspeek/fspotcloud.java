@@ -61,6 +61,7 @@
             <file src="Licence.txt" targetdir="$INSTALL_PATH"/>
             <file src="Deployment.html" targetdir="$INSTALL_PATH"/>
             <file src="dependency/peer-jar-with-dependencies.jar" targetdir="$INSTALL_PATH"/>
+            <file src="logging.properties" targetdir="$INSTALL_PATH"/>
             <file src="appengine-java-sdk-@{gae.version}" targetdir="$INSTALL_PATH"/>
             <file src="war" targetdir="$INSTALL_PATH"/>
             <executable type="bin" stage="never"

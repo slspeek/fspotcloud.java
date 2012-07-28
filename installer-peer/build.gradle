@@ -33,7 +33,12 @@ task copyPeer(type: Copy, dependsOn: ':peer:jar') {
     rename "peer-${version}.jar", "peer-jar-with-dependencies.jar"
 }
 
-izPackCreateInstaller.dependsOn copyFiles, copyPeer
+task copyLoggingProperties(type: Copy) {
+    from "../peer/src/main/resources/logging.properties"
+    into "${buildDir}/assemble/izpack/"
+}
+
+izPackCreateInstaller.dependsOn copyFiles, copyPeer, copyLoggingProperties
 
 izpack {
     baseDir = file("$buildDir/assemble/izpack")

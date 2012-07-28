@@ -38,6 +38,11 @@ task copyPeer(type: Copy, dependsOn: ':peer:jar') {
     rename "peer-${version}.jar", "peer-jar-with-dependencies.jar"
 }
 
+task copyLoggingProperties(type: Copy) {
+    from "../peer/src/main/resources/logging.properties"
+    into "${buildDir}/assemble/izpack/"
+}
+
 task unpackWar(dependsOn: ':prod-gae-war:war') << {
     def myWar = file("../prod-gae-war/build/libs/prod-gae-war-${version}.war")
     ant.unjar(dest: "${buildDir}/assemble/izpack/war", src: myWar)
@@ -48,7 +53,7 @@ task unpackGAESDK << {
     ant.unjar(dest: "${buildDir}/assemble/izpack", src: sdk)
 }
 
-izPackCreateInstaller.dependsOn copyFiles, copyPeer, unpackWar, unpackGAESDK
+izPackCreateInstaller.dependsOn copyFiles, copyPeer, copyLoggingProperties, unpackWar, unpackGAESDK
 
 izpack {
     baseDir = file("$buildDir/assemble/izpack")
