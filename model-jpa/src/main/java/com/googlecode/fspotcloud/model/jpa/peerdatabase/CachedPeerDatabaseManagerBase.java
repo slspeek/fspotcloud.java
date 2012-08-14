@@ -21,22 +21,23 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa.peerdatabase;
 
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.simplejpadao.cacheddao.CachedSimpleDAONamedIdImpl;
+
+import javax.persistence.EntityManager;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
 
 
 public abstract class CachedPeerDatabaseManagerBase<T extends PeerDatabase, U extends T>
-    extends CachedSimpleDAONamedIdImpl<PeerDatabase, U, String>
-    implements PeerDatabaseDao {
+        extends CachedSimpleDAONamedIdImpl<PeerDatabase, U, String>
+        implements PeerDatabaseDao {
     private static final String DEFAULT_PEER_ID = "1";
     private static final Logger log = Logger.getLogger(CachedPeerDatabaseManagerBase.class.getName());
 

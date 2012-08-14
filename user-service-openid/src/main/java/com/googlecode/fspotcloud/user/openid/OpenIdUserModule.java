@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.user.openid;
 
 import com.googlecode.fspotcloud.user.ISessionEmail;
@@ -44,7 +44,7 @@ public class OpenIdUserModule extends AbstractUserModule {
         super.configure();
         bind(String.class).annotatedWith(AdminEmail.class).toInstance(adminEmail);
         bind(com.googlecode.fspotcloud.user.UserService.class)
-            .to(com.googlecode.fspotcloud.user.openid.OpenIdUserService.class);
+                .to(com.googlecode.fspotcloud.user.openid.OpenIdUserService.class);
         bind(ISessionEmail.class).to(SessionEmail.class);
         bind(PostThirdPartyLoginWorker.class).to(PostOpenIdLoginWorker.class);
         install(new UserServletModule());

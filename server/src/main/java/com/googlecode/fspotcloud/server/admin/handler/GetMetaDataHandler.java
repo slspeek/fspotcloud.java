@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.google.inject.Inject;
@@ -44,7 +44,7 @@ public class GetMetaDataHandler extends SimpleActionHandler<GetMetaDataAction, G
 
     @Inject
     public GetMetaDataHandler(Commands commandManager,
-        PeerDatabaseDao defaultPeer, IAdminPermission IAdminPermission) {
+                              PeerDatabaseDao defaultPeer, IAdminPermission IAdminPermission) {
         super();
         this.commandManager = commandManager;
         this.defaultPeer = defaultPeer;
@@ -53,7 +53,7 @@ public class GetMetaDataHandler extends SimpleActionHandler<GetMetaDataAction, G
 
     @Override
     public GetMetaDataResult execute(GetMetaDataAction action,
-        ExecutionContext context) throws DispatchException {
+                                     ExecutionContext context) throws DispatchException {
         adminPermission.checkAdminPermission();
 
         GetMetaDataResult dataInfo = new GetMetaDataResult();

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.shared.EventBus;
@@ -37,12 +37,13 @@ import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.PlaceWhere;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.RequestFullsizeImageAction;
-import java.util.logging.Logger;
 import net.customware.gwt.dispatch.client.DispatchAsync;
+
+import java.util.logging.Logger;
 
 
 public class RasterEventHandler implements RasterEvent.Handler,
-    Initializable {
+        Initializable {
     private static final Logger log = Logger.getLogger(RasterEventHandler.class.getName());
     private final Navigator navigator;
     private final EventBus eventBus;
@@ -51,7 +52,7 @@ public class RasterEventHandler implements RasterEvent.Handler,
 
     @Inject
     public RasterEventHandler(Navigator navigator, EventBus eventBus,
-        DispatchAsync dispatch, PlaceWhere placeWhere) {
+                              DispatchAsync dispatch, PlaceWhere placeWhere) {
         this.navigator = navigator;
         this.eventBus = eventBus;
         this.dispatch = dispatch;
@@ -61,63 +62,63 @@ public class RasterEventHandler implements RasterEvent.Handler,
     @Override
     public void onEvent(UserEvent e) {
         switch ((RasterType) e.getActionDef()) {
-        case ADD_COLUMN:
-            navigator.increaseRasterWidth(1);
+            case ADD_COLUMN:
+                navigator.increaseRasterWidth(1);
 
-            break;
+                break;
 
-        case REMOVE_COLUMN:
-            navigator.increaseRasterWidth(-1);
+            case REMOVE_COLUMN:
+                navigator.increaseRasterWidth(-1);
 
-            break;
+                break;
 
-        case ADD_ROW:
-            navigator.increaseRasterHeight(1);
+            case ADD_ROW:
+                navigator.increaseRasterHeight(1);
 
-            break;
+                break;
 
-        case REMOVE_ROW:
-            navigator.increaseRasterHeight(-1);
+            case REMOVE_ROW:
+                navigator.increaseRasterHeight(-1);
 
-            break;
+                break;
 
-        case SET_RASTER_2x2:
-            navigator.setRasterDimension(2, 2);
+            case SET_RASTER_2x2:
+                navigator.setRasterDimension(2, 2);
 
-            break;
+                break;
 
-        case SET_RASTER_3x3:
-            navigator.setRasterDimension(3, 3);
+            case SET_RASTER_3x3:
+                navigator.setRasterDimension(3, 3);
 
-            break;
+                break;
 
-        case SET_RASTER_4x4:
-            navigator.setRasterDimension(4, 4);
+            case SET_RASTER_4x4:
+                navigator.setRasterDimension(4, 4);
 
-            break;
+                break;
 
-        case SET_RASTER_5x5:
-            navigator.setRasterDimension(5, 5);
+            case SET_RASTER_5x5:
+                navigator.setRasterDimension(5, 5);
 
-            break;
+                break;
 
-        case TOGGLE_TABULAR_VIEW:
-            navigator.toggleRasterView();
+            case TOGGLE_TABULAR_VIEW:
+                navigator.toggleRasterView();
 
-            break;
+                break;
 
-        case SET_DEFAULT_RASTER:
-            navigator.resetRasterSize();
+            case SET_DEFAULT_RASTER:
+                navigator.resetRasterSize();
 
-            break;
+                break;
 
-        case MAIL_FULLSIZE:
-            mailFullsize();
+            case MAIL_FULLSIZE:
+                mailFullsize();
 
-            break;
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
     }
 
@@ -128,17 +129,17 @@ public class RasterEventHandler implements RasterEvent.Handler,
             BasePlace basePlace = (BasePlace) place;
             String id = basePlace.getPhotoId();
             dispatch.execute(new RequestFullsizeImageAction(id),
-                new AsyncCallback<VoidResult>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        log.info("Fullsize failed on server");
-                    }
+                    new AsyncCallback<VoidResult>() {
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            log.info("Fullsize failed on server");
+                        }
 
-                    @Override
-                    public void onSuccess(VoidResult result) {
-                        log.info("Fullsize succeed on server");
-                    }
-                });
+                        @Override
+                        public void onSuccess(VoidResult result) {
+                            log.info("Fullsize succeed on server");
+                        }
+                    });
         }
     }
 

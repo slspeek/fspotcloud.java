@@ -21,11 +21,12 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.googlecode.fspotcloud.client.main.view.api.ButtonPanelView;
 import com.googlecode.fspotcloud.client.main.view.api.SlideshowView;
+
 import java.util.logging.Logger;
 
 
@@ -36,8 +37,8 @@ public class SlideshowControlsPresenter implements ButtonPanelView.ButtonPanelPr
     private final ButtonPanelView view;
 
     public SlideshowControlsPresenter(
-        SlideshowView.SlideshowPresenter slideshowPresenter,
-        ButtonPanelView view) {
+            SlideshowView.SlideshowPresenter slideshowPresenter,
+            ButtonPanelView view) {
         super();
         this.slideshowPresenter = slideshowPresenter;
         this.view = view;

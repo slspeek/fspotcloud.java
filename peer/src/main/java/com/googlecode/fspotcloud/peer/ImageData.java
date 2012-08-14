@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.peer;
 
 import java.awt.*;
@@ -36,7 +36,7 @@ public class ImageData {
     private static final Logger log = Logger.getLogger(ImageData.class.getName());
 
     public byte[] getScaledImageData(String url, Dimension size)
-        throws Exception {
+            throws Exception {
         int width = (int) size.width;
         int height = (int) size.height;
 
@@ -72,7 +72,7 @@ public class ImageData {
 
         if (returnValue != 0) {
             throw new RuntimeException("convert returned an error code: " +
-                returnValue);
+                    returnValue);
         }
 
         byte[] data = bas.toByteArray();

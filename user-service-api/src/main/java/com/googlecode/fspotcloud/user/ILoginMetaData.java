@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.user;
 
 import java.io.Serializable;
@@ -52,6 +52,8 @@ public interface ILoginMetaData extends Serializable {
     Date getLastTime();
 
     void setLastTime(Date lastTime);
-    public enum Type {REGULAR_LOGIN, OPEN_ID_LOGIN, GAE_LOGIN;
+
+    public enum Type {
+        REGULAR_LOGIN, OPEN_ID_LOGIN, GAE_LOGIN;
     }
 }

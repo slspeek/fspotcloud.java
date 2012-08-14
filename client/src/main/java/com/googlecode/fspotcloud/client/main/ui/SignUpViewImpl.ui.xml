@@ -4,7 +4,7 @@
     <ui:with type="com.googlecode.fspotcloud.client.main.ui.UserPagesResources" field="res"></ui:with>
     <g:LayoutPanel addStyleNames="{res.style.userPage}">
         <g:layer top="5%" height="90%" width="92%" left="4%">
-            <g:LayoutPanel >
+            <g:LayoutPanel>
                 <g:layer top="0%" height="14%" width="100%" left="0%">
                     <g:Label addStyleNames="{res.style.titleLabel}">F-Spot Cloud Native Sign Up</g:Label>
                 </g:layer>

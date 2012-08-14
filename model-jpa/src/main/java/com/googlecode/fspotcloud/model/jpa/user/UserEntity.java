@@ -21,21 +21,23 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /**
  *
  */
 package com.googlecode.fspotcloud.model.jpa.user;
 
-import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.User;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
+
+import static com.google.common.collect.Sets.newHashSet;
 
 /**
  * DOCUMENT ME!
@@ -115,12 +117,12 @@ public class UserEntity implements User, Serializable {
 
     @Override
     public Date getLastLoginTime() {
-        return lastLoginTime;
+        return new Date(lastLoginTime.getTime());
     }
 
     @Override
-    public void setLastLoginTime(Date loginTime) {
-        this.lastLoginTime = loginTime;
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = new Date(lastLoginTime.getTime());
     }
 
     @Override

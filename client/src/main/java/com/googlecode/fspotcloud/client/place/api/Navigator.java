@@ -21,12 +21,13 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.place.api;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
+
 import java.util.List;
 
 
@@ -34,19 +35,19 @@ public interface Navigator {
     void goAsync(Direction direction, Unit step);
 
     void canGoAsync(Direction direction, Unit step,
-        AsyncCallback<Boolean> callback);
+                    AsyncCallback<Boolean> callback);
 
     void getPageCountAsync(String tagId, int pageSize,
-        AsyncCallback<Integer> callback);
+                           AsyncCallback<Integer> callback);
 
     void getPageAsync(String tagId, int pageSize, int pageNumber,
-        AsyncCallback<List<PhotoInfo>> callback);
+                      AsyncCallback<List<PhotoInfo>> callback);
 
     void getPageAsync(String tagId, String photoId, int pageSize,
-        AsyncCallback<List<PhotoInfo>> callback);
+                      AsyncCallback<List<PhotoInfo>> callback);
 
     void getPageRelativePositionAsync(String tagId, String photoId,
-        int pageSize, AsyncCallback<Integer[]> callback);
+                                      int pageSize, AsyncCallback<Integer[]> callback);
 
     void toggleZoomViewAsync(String tagId, String photoId);
 
@@ -75,10 +76,16 @@ public interface Navigator {
     void zoom(Zoom direction);
 
     void unslideshow();
-    enum Direction {BACKWARD, FORWARD;
+
+    enum Direction {
+        BACKWARD, FORWARD;
     }
-    enum Unit {BORDER, PAGE, ROW, SINGLE;
+
+    enum Unit {
+        BORDER, PAGE, ROW, SINGLE;
     }
-    enum Zoom {IN, OUT;
+
+    enum Zoom {
+        IN, OUT;
     }
 }

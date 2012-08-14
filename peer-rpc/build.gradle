@@ -1,7 +1,7 @@
 description = 'peer-rpc'
 
 if ("${analysis}" == "true") {
-checkstyleMain.ignoreFailures = false
+    checkstyleMain.ignoreFailures = false
 }
 
 dependencies {

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view.factory;
 
 import com.google.inject.Inject;
@@ -36,7 +36,7 @@ import com.googlecode.fspotcloud.client.place.BasePlace;
 
 
 public class SingleImageViewActivityFactoryImpl
-    implements SingleViewActivityFactory {
+        implements SingleViewActivityFactory {
     private final ImageRasterPresenterFactory imageRasterPresenterFactory;
     private final SingleImageViewImpl singleImageView;
     @SuppressWarnings("unused")
@@ -44,9 +44,9 @@ public class SingleImageViewActivityFactoryImpl
 
     @Inject
     public SingleImageViewActivityFactoryImpl(
-        ImageRasterPresenterFactory imageRasterPresenterFactory,
-        SingleImageViewImpl singleImageView,
-        SlideshowControlsPresenter controlsPresenter) {
+            ImageRasterPresenterFactory imageRasterPresenterFactory,
+            SingleImageViewImpl singleImageView,
+            SlideshowControlsPresenter controlsPresenter) {
         super();
         this.controlsPresenter = controlsPresenter;
         this.imageRasterPresenterFactory = imageRasterPresenterFactory;

@@ -21,15 +21,13 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.main.handler;
 
-import static com.google.common.collect.Lists.newArrayList;
-import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
@@ -37,13 +35,17 @@ import com.googlecode.fspotcloud.server.model.tag.IUserGroupHelper;
 import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
-import java.util.List;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Sets.newHashSet;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 /**
@@ -61,7 +63,7 @@ public class GetTagTreeHandlerTest {
 
     @Test
     public void testNormalExecuteNoTags(TagDao tagManager, PeerDatabaseDao peers)
-        throws Exception {
+            throws Exception {
         when(peers.get()).thenReturn(new PeerDatabaseEntity());
 
         TagTreeResult result = handler.execute(action, null);
@@ -71,7 +73,7 @@ public class GetTagTreeHandlerTest {
 
     @Test
     public void testNormalExecuteOneUnimportedTags(TagDao tagManager,
-        PeerDatabaseDao peers) throws Exception {
+                                                   PeerDatabaseDao peers) throws Exception {
         when(peers.get()).thenReturn(new PeerDatabaseEntity());
 
         List<TagNode> list = newArrayList();
@@ -86,7 +88,7 @@ public class GetTagTreeHandlerTest {
 
     @Test
     public void testNormalExecuteOneImportedTags(TagDao tagManager,
-        PeerDatabaseDao peers) throws Exception {
+                                                 PeerDatabaseDao peers) throws Exception {
         when(peers.get()).thenReturn(new PeerDatabaseEntity());
         when(helper.getVisibleTagIds()).thenReturn(newHashSet("1"));
 
@@ -103,7 +105,7 @@ public class GetTagTreeHandlerTest {
 
     @Test
     public void testNormalExecuteCachehit(TagDao tagManager,
-        PeerDatabaseDao peers) throws Exception {
+                                          PeerDatabaseDao peers) throws Exception {
         when(helper.getVisibleTagIds()).thenReturn(newHashSet("1"));
 
         final PeerDatabaseEntity peerDatabaseEntity = new PeerDatabaseEntity();

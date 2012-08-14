@@ -21,15 +21,18 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
-import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
-import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
+
+import javax.inject.Inject;
+
+import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
+
 public class IntersectionDeleteITest {
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);

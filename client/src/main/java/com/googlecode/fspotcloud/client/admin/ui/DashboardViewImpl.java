@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.admin.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -52,7 +52,7 @@ public class DashboardViewImpl extends Composite implements DashboardView {
 
     @Inject
     public DashboardViewImpl(TreeView treeView,
-        GlobalActionsView globalActionsView) {
+                             GlobalActionsView globalActionsView) {
         this.treeView = treeView;
         this.globalActionsView = globalActionsView;
         initWidget(uiBinder.createAndBindUi(this));

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.user.inject;
 
 import com.google.inject.AbstractModule;
@@ -36,7 +36,7 @@ public class AbstractUserModule extends AbstractModule {
         bind(ILoginMetaData.class).to(LoginMetaData.class);
         bind(ILoginMetaDataUpdater.class).to(LoginMetaDataUpdater.class);
         bind(String.class).annotatedWith(ServerAddress.class)
-            .toProvider(ServerAddressProvider.class);
+                .toProvider(ServerAddressProvider.class);
         bind(SecretGenerator.class).to(TestSecretGenerator.class);
     }
 }

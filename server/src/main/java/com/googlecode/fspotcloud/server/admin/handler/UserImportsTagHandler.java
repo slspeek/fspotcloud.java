@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.google.inject.Inject;
@@ -33,11 +33,12 @@ import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetTagUpdateInstructionsAction;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-import java.util.logging.Logger;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import java.util.logging.Logger;
 
 
 public class UserImportsTagHandler extends SimpleActionHandler<UserImportsTagAction, VoidResult> {
@@ -49,7 +50,7 @@ public class UserImportsTagHandler extends SimpleActionHandler<UserImportsTagAct
 
     @Inject
     public UserImportsTagHandler(TagDao tagManager,
-        ControllerDispatchAsync dispatchAsync, IAdminPermission adminPermission) {
+                                 ControllerDispatchAsync dispatchAsync, IAdminPermission adminPermission) {
         this.tagManager = tagManager;
         this.dispatchAsync = dispatchAsync;
         this.adminPermission = adminPermission;
@@ -57,7 +58,7 @@ public class UserImportsTagHandler extends SimpleActionHandler<UserImportsTagAct
 
     @Override
     public VoidResult execute(UserImportsTagAction action,
-        ExecutionContext context) throws DispatchException {
+                              ExecutionContext context) throws DispatchException {
         //The permission cannot be checked for this handle is also used internally
         //adminPermission.chechAdminPermission();
         try {

@@ -21,10 +21,11 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.data;
 
 import com.googlecode.fspotcloud.shared.main.TagNode;
+
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -35,7 +36,7 @@ public class IndexingUtil {
     private static final Logger log = Logger.getLogger(IndexingUtil.class.getName());
 
     public void rebuildTagNodeIndex(Map<String, TagNode> tagNodeIndex,
-        List<TagNode> tagTreeData) {
+                                    List<TagNode> tagTreeData) {
         tagNodeIndex.clear();
 
         for (TagNode root : tagTreeData) {

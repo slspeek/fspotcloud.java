@@ -21,16 +21,18 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.test;
 
-import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
+
 import javax.inject.Inject;
+
+import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 
 /**
  * @author steven
@@ -45,7 +47,7 @@ public class EditUserGroupPage {
     }
 
     public void fill(String name, String description)
-        throws InterruptedException {
+            throws InterruptedException {
         sleepShort();
         selenium.type("id=gwt-debug-name", name);
         selenium.type("id=gwt-debug-description", description);

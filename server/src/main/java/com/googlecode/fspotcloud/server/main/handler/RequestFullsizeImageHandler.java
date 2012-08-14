@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.google.inject.Inject;
@@ -54,7 +54,7 @@ public class RequestFullsizeImageHandler extends SimpleActionHandler<RequestFull
 
     @Override
     public VoidResult execute(RequestFullsizeImageAction action,
-        ExecutionContext context) throws DispatchException {
+                              ExecutionContext context) throws DispatchException {
         if (userService.isUserLoggedIn()) {
             final String caller = userService.getEmail();
             final String imageId = action.getImageId();
@@ -66,11 +66,11 @@ public class RequestFullsizeImageHandler extends SimpleActionHandler<RequestFull
 
                 if (fsImage != null) {
                     mailer.send(caller, "Your requested image: " + imageId,
-                        "Dear " + caller + ",\nYour requested image: " +
-                        imageId + " is in the attachment", fsImage);
+                            "Dear " + caller + ",\nYour requested image: " +
+                                    imageId + " is in the attachment", fsImage);
                 } else {
                     controllerAsyc.execute(new GetFullsizePhotoAction(imageId),
-                        new FullsizePhotoCallback(caller, null, null));
+                            new FullsizePhotoCallback(caller, null, null));
                 }
             }
         }

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.guiceberry.GuiceBerryModule;
@@ -31,6 +31,7 @@ import com.google.inject.servlet.RequestScoped;
 import com.google.inject.servlet.SessionScoped;
 import com.google.inject.util.Modules;
 import com.googlecode.fspotcloud.user.openid.OpenIdUserModule;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -43,14 +44,14 @@ public class PlaceHolderIntegrationModule extends GuiceBerryModule {
         super.configure();
         install(Modules.override(new CommonIntegrationModule(),
                 new OpenIdUserModule(RMS_FSF_ORG)).with(new AbstractModule() {
-                @Override
-                protected void configure() {
-                    bind(HttpSession.class).to(FakeHttpServletSession.class)
+            @Override
+            protected void configure() {
+                bind(HttpSession.class).to(FakeHttpServletSession.class)
                         .in(TestScoped.class);
-                    bind(HttpServletRequest.class).to(FakeHttpRequest.class);
-                    bindScope(RequestScoped.class, testScope);
-                    bindScope(SessionScoped.class, testScope);
-                }
-            }));
+                bind(HttpServletRequest.class).to(FakeHttpRequest.class);
+                bindScope(RequestScoped.class, testScope);
+                bindScope(SessionScoped.class, testScope);
+            }
+        }));
     }
 }

@@ -5,7 +5,7 @@ description = 'Selenium testing for prod-j2ee-war'
 apply plugin: 'tomcat'
 
 if ("${analysis}" == "true") {
-findbugsTest.enabled = false
+    findbugsTest.enabled = false
 }
 
 dependencies {

@@ -21,11 +21,12 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
-import java.sql.SQLException;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import java.sql.SQLException;
 
 
 public class Fixture extends PeerServerEnvironment {

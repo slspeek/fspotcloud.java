@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.event.slideshow;
 
 import com.google.gwt.resources.client.ImageResource;
@@ -37,7 +37,7 @@ public class SlideshowMapBuilder extends AbstractActionMap {
 
     @Inject
     public SlideshowMapBuilder(UserActionFactory userActionFactory,
-        Resources resources) {
+                               Resources resources) {
         super(userActionFactory, "Slideshow");
         this.resources = resources;
     }

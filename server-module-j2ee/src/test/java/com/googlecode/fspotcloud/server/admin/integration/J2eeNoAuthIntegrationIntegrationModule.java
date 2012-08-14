@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.inject.Singleton;
@@ -32,7 +32,7 @@ import com.googlecode.simpleblobstore.j2ee.J2eeSimpleBlobstoreModule;
 
 
 public class J2eeNoAuthIntegrationIntegrationModule
-    extends NoAuthPlaceHolderIntegrationModule {
+        extends NoAuthPlaceHolderIntegrationModule {
     @Override
     public void configure() {
         super.configure();

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.admin.view;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -41,8 +41,8 @@ public class DashboardPresenterImpl extends AbstractActivity implements com.goog
 
     @Inject
     public DashboardPresenterImpl(DashboardViewFactory dashboardViewFactory,
-        TreePresenter treePresenter,
-        GlobalActionsPresenter globalActionsPresenter) {
+                                  TreePresenter treePresenter,
+                                  GlobalActionsPresenter globalActionsPresenter) {
         super();
         this.dashboardViewFactory = dashboardViewFactory;
         this.treePresenter = treePresenter;

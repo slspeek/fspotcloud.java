@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.google.inject.Inject;
@@ -42,14 +42,14 @@ public class GetUserGroupHandler extends SimpleActionHandler<GetUserGroupAction,
 
     @Inject
     public GetUserGroupHandler(UserService userService,
-        UserGroupDao userGroupDao) {
+                               UserGroupDao userGroupDao) {
         this.userService = userService;
         this.userGroupDao = userGroupDao;
     }
 
     @Override
     public GetUserGroupResult execute(GetUserGroupAction action,
-        ExecutionContext context) throws DispatchException {
+                                      ExecutionContext context) throws DispatchException {
         if (userService.isUserLoggedIn()) {
             String userName = userService.getEmail();
             UserGroup userGroup = userGroupDao.find(action.getId());

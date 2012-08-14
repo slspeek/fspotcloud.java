@@ -21,18 +21,19 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
+import net.customware.gwt.dispatch.shared.Result;
+
 import java.io.Serializable;
 import java.util.List;
-import net.customware.gwt.dispatch.shared.Result;
 
 
 public class TagDataResult extends BusinessBase implements Result,
-    Serializable {
+        Serializable {
     private static final long serialVersionUID = 4359780265493816575L;
     @BusinessKey
     private List<TagData> tagDataList;

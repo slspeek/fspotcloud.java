@@ -21,16 +21,18 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.test;
 
 import com.googlecode.fspotcloud.client.main.view.LoginPresenterImpl;
 import com.thoughtworks.selenium.Selenium;
+
 import javax.inject.Inject;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -46,7 +48,7 @@ public class LoginPage {
     }
 
     public void fillForm(String email, String credentials)
-        throws InterruptedException {
+            throws InterruptedException {
         selenium.type("id=gwt-debug-password", credentials);
         selenium.type("id=gwt-debug-username", email);
     }
@@ -67,11 +69,11 @@ public class LoginPage {
 
     public void verifyFailure() {
         assertEquals(LoginPresenterImpl.NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION,
-            getStatusText());
+                getStatusText());
     }
 
     public void verifyError() {
         assertEquals(LoginPresenterImpl.AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST,
-            getStatusText());
+                getStatusText());
     }
 }

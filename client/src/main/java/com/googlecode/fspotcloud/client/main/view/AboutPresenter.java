@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.inject.Inject;
@@ -33,6 +33,7 @@ import com.googlecode.fspotcloud.client.main.help.HelpContentGenerator;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.view.api.PopupView;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
+
 import javax.inject.Named;
 
 
@@ -46,9 +47,9 @@ public class AboutPresenter implements PopupView.PopupPresenter {
 
     @Inject
     public AboutPresenter(IGlobalShortcutController globalShortcutController,
-        @Named("about")
-    AbstractActionMap actions, HelpContentGenerator generator,
-        PopupView popupView, Resources resources) {
+                          @Named("about")
+                          AbstractActionMap actions, HelpContentGenerator generator,
+                          PopupView popupView, Resources resources) {
         this.actions = actions;
         actions.buildMap();
         this.globalShortcutController = globalShortcutController;
@@ -77,7 +78,7 @@ public class AboutPresenter implements PopupView.PopupPresenter {
     private String getAboutGroup(ActionMap group) {
         for (UserAction shortcut : group.allActions()) {
             helptext += ("<tr><td>" + generator.getHelpText(shortcut) +
-            "</td></tr>");
+                    "</td></tr>");
         }
 
         return helptext;

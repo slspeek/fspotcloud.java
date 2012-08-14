@@ -21,10 +21,9 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.shared.peer;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.impl.PojoClassFactory;
 import com.openpojo.validation.PojoValidator;
@@ -36,9 +35,13 @@ import com.openpojo.validation.rule.impl.NoPublicFieldsRule;
 import com.openpojo.validation.test.impl.BusinessIdentityTester;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+
 public class PojoTest {
     // Configured for expectation, so we know when a class gets added or removed.
     private static final int EXPECTED_CLASS_COUNT = 15;
@@ -47,7 +50,7 @@ public class PojoTest {
     private static final String POJO_PACKAGE = "com.googlecode.fspotcloud.shared.peer.rpc.actions";
     private List<PojoClass> pojoClasses;
     private PojoValidator pojoValidator;
-    private Class<?>[] POJO_CLASSES = new Class<?>[] {
+    private Class<?>[] POJO_CLASSES = new Class<?>[]{
             GetPeerUpdateInstructionsAction.class, GetPeerMetaDataAction.class,
             TagData.class, ImageSpecs.class, GetPhotoDataAction.class,
             GetTagDataAction.class, PeerUpdateInstructionsResult.class,
@@ -56,8 +59,8 @@ public class PojoTest {
             TagDataResult.class, TagRemovedFromPeer.class, TagUpdate.class,
             TagUpdateInstructionsResult.class,
             GetTagUpdateInstructionsAction.class,
-        //FullsizePhotoResult.class
-        };
+            //FullsizePhotoResult.class
+    };
 
     @Before
     public void setup() {
@@ -87,7 +90,7 @@ public class PojoTest {
     @Test
     public void ensureExpectedPojoCount() {
         Affirm.affirmEquals("Classes added / removed?", EXPECTED_CLASS_COUNT,
-            pojoClasses.size());
+                pojoClasses.size());
     }
 
     @Test

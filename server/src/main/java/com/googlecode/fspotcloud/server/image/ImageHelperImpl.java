@@ -21,12 +21,13 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.image;
 
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.simpleblobstore.BlobKey;
 import com.googlecode.simpleblobstore.BlobService;
+
 import javax.inject.Inject;
 
 
@@ -60,23 +61,23 @@ public class ImageHelperImpl implements ImageHelper {
         final String keyString = key.getKeyString();
 
         switch (type) {
-        case FULLSIZE:
-            photo.setFullsizeImageBlobKey(keyString);
+            case FULLSIZE:
+                photo.setFullsizeImageBlobKey(keyString);
 
-            break;
+                break;
 
-        case NORMAL:
-            photo.setImageBlobKey(keyString);
+            case NORMAL:
+                photo.setImageBlobKey(keyString);
 
-            break;
+                break;
 
-        case THUMB:
-            photo.setThumbBlobKey(keyString);
+            case THUMB:
+                photo.setThumbBlobKey(keyString);
 
-            break;
+                break;
 
-        default:
-            throw new IllegalStateException("Unknown image type");
+            default:
+                throw new IllegalStateException("Unknown image type");
         }
     }
 
@@ -84,23 +85,23 @@ public class ImageHelperImpl implements ImageHelper {
         String result;
 
         switch (type) {
-        case FULLSIZE:
-            result = photo.getFullsizeImageBlobKey();
+            case FULLSIZE:
+                result = photo.getFullsizeImageBlobKey();
 
-            break;
+                break;
 
-        case NORMAL:
-            result = photo.getImageBlobKey();
+            case NORMAL:
+                result = photo.getImageBlobKey();
 
-            break;
+                break;
 
-        case THUMB:
-            result = photo.getThumbBlobKey();
+            case THUMB:
+                result = photo.getThumbBlobKey();
 
-            break;
+                break;
 
-        default:
-            throw new IllegalStateException("Unknown image type");
+            default:
+                throw new IllegalStateException("Unknown image type");
         }
 
         return result;

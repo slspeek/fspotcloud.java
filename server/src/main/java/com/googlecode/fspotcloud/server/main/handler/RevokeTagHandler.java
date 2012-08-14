@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.google.inject.Inject;
@@ -32,10 +32,11 @@ import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.RevokeTagAction;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-import java.util.Set;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import java.util.Set;
 
 
 public class RevokeTagHandler extends SimpleActionHandler<RevokeTagAction, VoidResult> {
@@ -45,7 +46,7 @@ public class RevokeTagHandler extends SimpleActionHandler<RevokeTagAction, VoidR
 
     @Inject
     public RevokeTagHandler(UserGroupDao userGroupDao, TagDao tagDao,
-        IAdminPermission adminPermission) {
+                            IAdminPermission adminPermission) {
         this.userGroupDao = userGroupDao;
         this.tagDao = tagDao;
         this.adminPermission = adminPermission;
@@ -53,7 +54,7 @@ public class RevokeTagHandler extends SimpleActionHandler<RevokeTagAction, VoidR
 
     @Override
     public VoidResult execute(RevokeTagAction action, ExecutionContext context)
-        throws DispatchException {
+            throws DispatchException {
         adminPermission.checkAdminPermission();
 
         Tag tag = tagDao.findOrNew(action.getTagId());

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.inject;
 
 import com.google.inject.AbstractModule;
@@ -47,7 +47,7 @@ public class J2eeTotalModule extends AbstractModule {
     private String smtpServer;
 
     public J2eeTotalModule(int maxTicks, String botSecret, String adminEmail,
-        String smtpServer) {
+                           String smtpServer) {
         this.maxTicks = maxTicks;
         this.botSecret = botSecret;
         this.adminEmail = adminEmail;
@@ -63,6 +63,6 @@ public class J2eeTotalModule extends AbstractModule {
         install(new OpenIdUserModule(adminEmail));
         bind(Commands.class).to(CommandManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxCommandDelete"))
-            .toInstance(MAX_COMMAND_DELETE);
+                .toInstance(MAX_COMMAND_DELETE);
     }
 }

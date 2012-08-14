@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa.gae.photo;
 
 import com.google.inject.Inject;
@@ -31,7 +31,7 @@ import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 
 
 public class PhotoManager extends PhotoManagerBase<Photo, PhotoEntity>
-    implements PhotoDao {
+        implements PhotoDao {
     @Inject
     PhotoManagerBase<Photo, PhotoEntity> delegate;
 

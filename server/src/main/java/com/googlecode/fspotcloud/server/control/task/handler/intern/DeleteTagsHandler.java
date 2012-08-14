@@ -21,18 +21,19 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllTagsAction;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.logging.Logger;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import javax.inject.Inject;
+import java.util.logging.Logger;
 
 
 public class DeleteTagsHandler extends SimpleActionHandler<DeleteAllTagsAction, VoidResult> {
@@ -49,7 +50,7 @@ public class DeleteTagsHandler extends SimpleActionHandler<DeleteAllTagsAction, 
 
     @Override
     public VoidResult execute(DeleteAllTagsAction action,
-        ExecutionContext context) throws DispatchException {
+                              ExecutionContext context) throws DispatchException {
         log.info("Delete tags entered");
         tagManager.deleteBulk(30);
 

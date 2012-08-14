@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.common.testing.TearDown;
@@ -33,17 +33,20 @@ import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
 import com.googlecode.fspotcloud.user.UserService;
-import java.lang.reflect.Method;
-import java.sql.SQLException;
-import java.util.logging.Logger;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.Dispatch;
 import org.testng.Assert;
-import static org.testng.Assert.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import javax.inject.Inject;
+import java.lang.reflect.Method;
+import java.sql.SQLException;
+import java.util.logging.Logger;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
+
 public class AuthenticationIntegrationTest {
     static final Logger log = Logger.getLogger(AuthenticationIntegrationTest.class.getName());
     public static final String RMS_FSF_ORG = "rms@example.com";

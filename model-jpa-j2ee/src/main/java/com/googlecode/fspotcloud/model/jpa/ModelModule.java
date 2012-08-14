@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa;
 
 import com.google.inject.AbstractModule;
@@ -50,12 +50,12 @@ public class ModelModule extends AbstractModule {
     protected void configure() {
         bind(PhotoDao.class).to(PhotoManager.class).in(Singleton.class);
         bind(PeerDatabaseDao.class).to(PeerDatabaseManager.class)
-            .in(Singleton.class);
+                .in(Singleton.class);
         bind(TagDao.class).to(TagManager.class).in(Singleton.class);
         bind(UserDao.class).to(UserManager.class).in(Singleton.class);
         bind(UserGroupDao.class).to(UserGroupManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete"))
-            .toInstance(maxDelete);
+                .toInstance(maxDelete);
         install(new J2eeSimpleBlobstoreModule());
         install(new EntityModule(persistenceUnit));
     }

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.api.test.peerdatabase;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
@@ -29,13 +29,16 @@ import com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 import com.googlecode.fspotcloud.shared.main.TagNode;
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
 public class PeerDatabaseManagerTest {
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);

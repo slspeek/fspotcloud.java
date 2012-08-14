@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.googlecode.fspotcloud.model.jpa.user.UserEntity;
@@ -31,13 +31,16 @@ import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.user.ILoginMetaDataUpdater;
 import com.googlecode.fspotcloud.user.LoginMetaData;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
+
 @RunWith(JukitoRunner.class)
 public class AuthenticationHandlerTest {
     @Inject
@@ -45,7 +48,7 @@ public class AuthenticationHandlerTest {
 
     @Test
     public void testExecuteFailureAsUserNonexistent(UserDao userDao)
-        throws Exception {
+            throws Exception {
         AuthenticationAction action = new AuthenticationAction("foo", "secret");
         AuthenticationResult result = handler.execute(action, null);
         assertFalse(result.getSuccess());
@@ -55,7 +58,7 @@ public class AuthenticationHandlerTest {
 
     @Test
     public void testExecuteFailureWrongPassword(UserDao userDao)
-        throws Exception {
+            throws Exception {
         User user = new UserEntity("foo");
         user.setCredentials("Set");
         when(userDao.find("foo")).thenReturn(user);
@@ -69,7 +72,7 @@ public class AuthenticationHandlerTest {
 
     @Test
     public void testExecuteFailureEmptyUsername(UserDao userDao)
-        throws Exception {
+            throws Exception {
         verifyNoMoreInteractions(userDao);
 
         AuthenticationAction action = new AuthenticationAction("", "secret");
@@ -80,7 +83,7 @@ public class AuthenticationHandlerTest {
 
     @Test
     public void success(UserDao userDao, ILoginMetaDataUpdater updater)
-        throws Exception {
+            throws Exception {
         User user = new UserEntity("foo");
         user.setCredentials("secret");
         user.setEnabled(true);

@@ -5,7 +5,7 @@ description = 'Selenium testing of prod-gae-war'
 apply plugin: 'gae'
 System.properties['appengine.sdk.root'] = System.properties['user.home'] + "/appengine-java-sdk-${gae_version}"
 if ("${analysis}" == "true") {
-findbugsTest.enabled = false;
+    findbugsTest.enabled = false;
 }
 gae {
     stopKey = 'STOP'
@@ -68,7 +68,7 @@ test {
     if ("${all_tests}" == "true") {
         include "com/googlecode/fspotcloud/test/LocalSuite.class"
     } else {
-    include "com/googlecode/fspotcloud/test/ShortSuite.class"
+        include "com/googlecode/fspotcloud/test/ShortSuite.class"
     }
 
     testLogging.showStandardStreams = true

@@ -21,36 +21,37 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.event.raster;
 
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;
 import com.googlecode.fspotcloud.client.view.action.api.ActionDef;
+
 public enum RasterType implements ActionDef {
     ADD_COLUMN("add-colum", "Add column", "Adds one column to raster",
-        new KeyStroke('C'), null), 
+            new KeyStroke('C'), null),
     ADD_ROW("add-row", "Add row", "Adds one row to raster", new KeyStroke('R'),
-        null), 
+            null),
     REMOVE_COLUMN("remove-column", "Remove column",
-        "Removes one column from the raster", new KeyStroke('X'), null), 
+            "Removes one column from the raster", new KeyStroke('X'), null),
     REMOVE_ROW("remove-row", "Remove row", "Removes one row from the raster",
-        new KeyStroke('E'), null), 
+            new KeyStroke('E'), null),
     SET_DEFAULT_RASTER("reset", "Reset raster", "Resets raster to defaults",
-        new KeyStroke('0'), null), 
+            new KeyStroke('0'), null),
     TOGGLE_TABULAR_VIEW("raster", "Toggle raster", "Toggle tabular viewing",
-        new KeyStroke(KeyCodes.KEY_SHIFT), new KeyStroke((int) '1')), 
+            new KeyStroke(KeyCodes.KEY_SHIFT), new KeyStroke((int) '1')),
     SET_RASTER_2x2("2x2", "2x2", "Sets the raster to 2 x 2",
-        new KeyStroke('2'), null), 
+            new KeyStroke('2'), null),
     SET_RASTER_3x3("3x3", "3x3", "Sets the raster to 3 x 3",
-        new KeyStroke('3'), null), 
+            new KeyStroke('3'), null),
     SET_RASTER_4x4("4x4", "4x4", "Sets the raster to 4 x 4",
-        new KeyStroke('4'), null), 
+            new KeyStroke('4'), null),
     SET_RASTER_5x5("5x5", "5x5", "Sets the raster to 5 x 5",
-        new KeyStroke('5'), null), 
+            new KeyStroke('5'), null),
     MAIL_FULLSIZE("mail-fullsize", "Mail fullsize",
-        "Mail the high resolution version of the image to you",
-        new KeyStroke('8'), null);
+            "Mail the high resolution version of the image to you",
+            new KeyStroke('8'), null);
     private final KeyStroke key;
     private final KeyStroke alternateKey;
     private final String caption;
@@ -58,7 +59,7 @@ public enum RasterType implements ActionDef {
     private final String description;
 
     private RasterType(String id, String caption, String description,
-        KeyStroke key, KeyStroke alternateKey) {
+                       KeyStroke key, KeyStroke alternateKey) {
         this.key = key;
         this.alternateKey = alternateKey;
         this.caption = caption;

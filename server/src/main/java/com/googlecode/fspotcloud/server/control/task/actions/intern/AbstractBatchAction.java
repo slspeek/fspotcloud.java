@@ -21,18 +21,19 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
+import net.customware.gwt.dispatch.shared.Action;
+
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
-import net.customware.gwt.dispatch.shared.Action;
 
 
 public abstract class AbstractBatchAction<T> implements Action<VoidResult>,
-    Serializable {
+        Serializable {
     List<T> workLoad;
 
     public AbstractBatchAction(List<T> workLoad) {
@@ -61,7 +62,7 @@ public abstract class AbstractBatchAction<T> implements Action<VoidResult>,
 
         if (this.workLoad != other.workLoad &&
                 (this.workLoad == null ||
-                !this.workLoad.equals(other.workLoad))) {
+                        !this.workLoad.equals(other.workLoad))) {
             return false;
         }
 
@@ -72,7 +73,7 @@ public abstract class AbstractBatchAction<T> implements Action<VoidResult>,
     public int hashCode() {
         int hash = 7;
         hash = 71 * hash +
-            (this.workLoad != null ? this.workLoad.hashCode() : 0);
+                (this.workLoad != null ? this.workLoad.hashCode() : 0);
 
         return hash;
     }

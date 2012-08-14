@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.admin;
 
 import com.google.gwt.activity.shared.ActivityManager;
@@ -41,6 +41,7 @@ import com.googlecode.fspotcloud.client.main.ClientLoginManager;
 import com.googlecode.fspotcloud.client.main.ui.HasOneWidgetAdapter;
 import com.googlecode.fspotcloud.client.place.AdminPlaceHistoryMapper;
 import com.googlecode.fspotcloud.client.place.TagPlace;
+
 import java.util.logging.Logger;
 
 
@@ -56,9 +57,9 @@ public class MVPSetup {
 
     @Inject
     public MVPSetup(EventBus eventBus, PlaceController placeController,
-        DashboardPresenterImpl dashboardImpl,
-        ClientLoginManager clientLoginManager, AdminActivityMapper mapper,
-        AdminResources adminResources) {
+                    DashboardPresenterImpl dashboardImpl,
+                    ClientLoginManager clientLoginManager, AdminActivityMapper mapper,
+                    AdminResources adminResources) {
         super();
         this.eventBus = eventBus;
         this.placeController = placeController;

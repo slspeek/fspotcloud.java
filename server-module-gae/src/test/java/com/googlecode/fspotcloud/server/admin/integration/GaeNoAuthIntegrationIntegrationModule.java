@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.guiceberry.TestWrapper;
@@ -32,12 +32,12 @@ import com.googlecode.fspotcloud.model.jpa.CachedModelModule;
 
 
 public class GaeNoAuthIntegrationIntegrationModule
-    extends NoAuthPlaceHolderIntegrationModule {
+        extends NoAuthPlaceHolderIntegrationModule {
     @Override
     public void configure() {
         super.configure();
         System.setProperty("appengine.orm.disable.duplicate.emf.exception",
-            "true");
+                "true");
         install(new CachedModelModule(3, "gae"));
         bind(Commands.class).to(CommandManager.class).in(Singleton.class);
 

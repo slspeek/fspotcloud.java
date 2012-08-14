@@ -21,11 +21,11 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.inject;
 
 import com.google.inject.AbstractModule;
@@ -53,7 +53,7 @@ public class ServerTotalModule extends AbstractModule {
     private String smtpServer;
 
     public ServerTotalModule(int maxTicks, String botSecret,
-        String fromAddress, String smtpServer) {
+                             String fromAddress, String smtpServer) {
         this.maxTicks = maxTicks;
         this.botSecret = botSecret;
         this.fromAddress = fromAddress;
@@ -64,9 +64,9 @@ public class ServerTotalModule extends AbstractModule {
     protected void configure() {
         install(new AdminActionsModule());
         bind(Integer.class).annotatedWith(Names.named("maxTicks"))
-            .toInstance(new Integer(maxTicks));
+                .toInstance(new Integer(maxTicks));
         bind(String.class).annotatedWith(FromAddress.class)
-            .toInstance(fromAddress);
+                .toInstance(fromAddress);
         bind(String.class).annotatedWith(SMTPServer.class).toInstance(smtpServer);
 
         bind(IMail.class).to(Mailer.class);

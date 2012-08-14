@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.demo;
 
 import com.google.gwt.user.client.Timer;
@@ -36,6 +36,7 @@ import com.googlecode.fspotcloud.client.main.view.DemoPresenter;
 import com.googlecode.fspotcloud.client.view.action.KeyDispatcher;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
 import com.googlecode.fspotcloud.client.view.action.api.UserActionFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -52,8 +53,8 @@ public class DemoAction implements Runnable {
 
     @Inject
     public DemoAction(DemoStepFactory factory,
-        UserActionFactory shortcutFactory, ActionFamily actions,
-        Provider<DemoPresenter> demoPresenterProvider) {
+                      UserActionFactory shortcutFactory, ActionFamily actions,
+                      Provider<DemoPresenter> demoPresenterProvider) {
         this.factory = factory;
         this.actions = actions;
         this.shortcutFactory = shortcutFactory;
@@ -69,7 +70,7 @@ public class DemoAction implements Runnable {
         addStep(raster.get(RasterType.SET_RASTER_4x4), 4000);
         addStep(raster.get(RasterType.ADD_COLUMN), 1000);
         addStep(raster.get(RasterType.ADD_COLUMN), 4000,
-            "You can do this again and again");
+                "You can do this again and again");
         addStep(raster.get(RasterType.TOGGLE_TABULAR_VIEW), 2000);
 
         ActionMap navigation = actions.get("Navigation");
@@ -83,7 +84,7 @@ public class DemoAction implements Runnable {
         addStep(raster.get(RasterType.SET_DEFAULT_RASTER), 4000);
         addStep(application.get(ApplicationType.TOGGLE_HELP), 5000);
         addStep(application.get(ApplicationType.TOGGLE_HELP), 1000,
-            "Again to hide the help.");
+                "Again to hide the help.");
     }
 
     private void addStep(UserAction shortcut, int pause) {
@@ -92,15 +93,15 @@ public class DemoAction implements Runnable {
     }
 
     private void addStep(UserAction shortcut, int pause,
-        String descriptionOverride) {
+                         String descriptionOverride) {
         DemoStep step = factory.getDemoStep(shortcutFactory.get(
-                    shortcut.getId(),
-                    shortcut.getCaption(),
-                    descriptionOverride,
-                    shortcut.getKey(),
-                    shortcut.getAlternateKey(),
-                    shortcut.getIcon(),
-                    shortcut.getEventProvider()), pause);
+                shortcut.getId(),
+                shortcut.getCaption(),
+                descriptionOverride,
+                shortcut.getKey(),
+                shortcut.getAlternateKey(),
+                shortcut.getIcon(),
+                shortcut.getEventProvider()), pause);
         demo.add(step);
     }
 
@@ -117,11 +118,11 @@ public class DemoAction implements Runnable {
             demoPresenter.show();
 
             Timer hideTimer = new Timer() {
-                    @Override
-                    public void run() {
-                        demoPresenter.hide();
-                    }
-                };
+                @Override
+                public void run() {
+                    demoPresenter.hide();
+                }
+            };
 
             hideTimer.schedule(step.pauseTime());
         } else {
@@ -132,11 +133,11 @@ public class DemoAction implements Runnable {
             demoPresenter.show();
 
             Timer hideTimer = new Timer() {
-                    @Override
-                    public void run() {
-                        demoPresenter.hide();
-                    }
-                };
+                @Override
+                public void run() {
+                    demoPresenter.hide();
+                }
+            };
 
             hideTimer.schedule(3000);
             stepPointer = -1;

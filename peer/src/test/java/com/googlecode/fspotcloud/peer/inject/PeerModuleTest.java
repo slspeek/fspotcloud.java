@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.peer.inject;
 
 import com.google.inject.Guice;
@@ -36,12 +36,12 @@ public class PeerModuleTest extends TestCase {
         final String workDir = System.getProperty("user.dir");
         final String db = System.getProperty("db",
                 System.getProperty("user.dir") +
-                "/src/test/resources/photos.db");
+                        "/src/test/resources/photos.db");
         final int stopPort = Integer.valueOf(System.getProperty("stop.port",
-                    "4444"));
+                "4444"));
 
         Injector injector = Guice.createInjector(new PeerModule(db, workDir,
-                    stopPort), new PeerActionsModule(), new BotModule());
+                stopPort), new PeerActionsModule(), new BotModule());
         assertNotNull(injector);
 
         Bot bot = injector.getInstance(Bot.class);

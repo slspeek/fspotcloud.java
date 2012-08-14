@@ -21,11 +21,11 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.user.openid;
 
 import com.google.inject.Guice;
@@ -50,6 +50,6 @@ public class OpenIdUserModuleTest {
     @Test
     public void testConfigure() {
         Injector injector = Guice.createInjector(new OpenIdUserModule(
-                    "foo@bar.org"));
+                "foo@bar.org"));
     }
 }

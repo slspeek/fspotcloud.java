@@ -21,19 +21,21 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.model.jpa.peerdatabase;
 
 import com.google.common.collect.Lists;
 import com.googlecode.fspotcloud.shared.main.TagNode;
+import org.junit.Test;
+
 import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import org.junit.Test;
 
 /**
  * DOCUMENT ME!

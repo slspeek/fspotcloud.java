@@ -21,17 +21,18 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.shared.dashboard;
 
 import com.google.common.annotations.GwtCompatible;
-import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Action;
+
+import java.io.Serializable;
 
 
 @GwtCompatible
 public class UserImportsTagAction implements Action<VoidResult>,
-    Serializable {
+        Serializable {
     private String tagId;
 
     public UserImportsTagAction(String tagId) {
@@ -62,7 +63,7 @@ public class UserImportsTagAction implements Action<VoidResult>,
         final UserImportsTagAction other = (UserImportsTagAction) obj;
 
         if ((this.tagId == null) ? (other.tagId != null)
-                                     : !this.tagId.equals(other.tagId)) {
+                : !this.tagId.equals(other.tagId)) {
             return false;
         }
 

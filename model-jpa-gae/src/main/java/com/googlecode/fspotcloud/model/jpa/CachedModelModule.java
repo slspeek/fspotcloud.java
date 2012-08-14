@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa;
 
 import com.google.inject.AbstractModule;
@@ -61,20 +61,20 @@ public class CachedModelModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(new TypeLiteral<PhotoManagerBase<Photo, PhotoEntity>>() {
-            }).to(PhotoManager.class);
+        }).to(PhotoManager.class);
         bind(new TypeLiteral<TagManagerBase<Tag, TagEntity>>() {
-            }).to(TagManager.class);
+        }).to(TagManager.class);
         bind(new TypeLiteral<PeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity>>() {
-            }).to(PeerDatabaseManager.class);
+        }).to(PeerDatabaseManager.class);
 
         bind(PhotoDao.class).to(CachedPhotoManager.class).in(Singleton.class);
         bind(PeerDatabaseDao.class).to(CachedPeerDatabaseManager.class)
-            .in(Singleton.class);
+                .in(Singleton.class);
         bind(TagDao.class).to(CachedTagManager.class).in(Singleton.class);
         bind(UserDao.class).to(UserManager.class).in(Singleton.class);
         bind(UserGroupDao.class).to(UserGroupManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxDelete"))
-            .toInstance(maxDelete);
+                .toInstance(maxDelete);
         bind(Cache.class).toProvider(GaeCacheProvider.class); //.in(Singleton.class);
         install(new GaeSimpleBlobstoreModule());
         install(new EntityModule(persistenceUnit));

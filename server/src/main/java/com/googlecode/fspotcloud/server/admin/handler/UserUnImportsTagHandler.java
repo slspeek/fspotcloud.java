@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.google.inject.Inject;
@@ -33,13 +33,14 @@ import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 
 public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTagAction, VoidResult> {
@@ -50,7 +51,7 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
 
     @Inject
     public UserUnImportsTagHandler(TagDao tagManager,
-        TaskQueueDispatch dispatchAsync, IAdminPermission adminPermission) {
+                                   TaskQueueDispatch dispatchAsync, IAdminPermission adminPermission) {
         super();
         this.tagManager = tagManager;
         this.dispatchAsync = dispatchAsync;
@@ -59,7 +60,7 @@ public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTa
 
     @Override
     public VoidResult execute(UserUnImportsTagAction action,
-        ExecutionContext context) throws DispatchException {
+                              ExecutionContext context) throws DispatchException {
         log.info("Executing: " + action.getTagId());
         adminPermission.checkAdminPermission();
 

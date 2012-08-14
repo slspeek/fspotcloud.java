@@ -21,20 +21,23 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa.photo;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.server.model.api.Photo;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.simpleblobstore.BlobKey;
 import com.googlecode.simpleblobstore.BlobService;
 import com.googlecode.simplejpadao.SimpleDAONamedIdImpl;
+
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
+
+import static com.google.common.collect.Lists.newArrayList;
+
 public abstract class PhotoManagerBase<T extends Photo, U extends T>
-    extends SimpleDAONamedIdImpl<Photo, U, String> implements PhotoDao {
+        extends SimpleDAONamedIdImpl<Photo, U, String> implements PhotoDao {
     @Inject
     private BlobService blobService;
 

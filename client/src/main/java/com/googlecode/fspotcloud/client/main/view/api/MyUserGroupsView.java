@@ -21,12 +21,13 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view.api;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
+
 import java.util.List;
 
 

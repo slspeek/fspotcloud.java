@@ -21,10 +21,9 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemoveTagsDeletedFromPeerAction;
@@ -33,17 +32,21 @@ import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.Iterator;
-import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Iterator;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+
 public class RemoveTagsFromPeerHandler extends AbstractBatchActionHandler<RemoveTagsDeletedFromPeerAction, TagRemovedFromPeer> {
     private final TaskQueueDispatch dispatchAsync;
     private TagDao tagManager;
 
     @Inject
     public RemoveTagsFromPeerHandler(@Named("maxDelete")
-    int maxDeleteTicks, TaskQueueDispatch dispatchAsync, TagDao tagManager) {
+                                     int maxDeleteTicks, TaskQueueDispatch dispatchAsync, TagDao tagManager) {
         super(dispatchAsync, maxDeleteTicks);
         this.dispatchAsync = dispatchAsync;
         this.tagManager = tagManager;
@@ -51,7 +54,7 @@ public class RemoveTagsFromPeerHandler extends AbstractBatchActionHandler<Remove
 
     @Override
     public void doWork(AbstractBatchAction<TagRemovedFromPeer> action,
-        Iterator<TagRemovedFromPeer> workLoad) {
+                       Iterator<TagRemovedFromPeer> workLoad) {
         TagRemovedFromPeer tagInfo = workLoad.next();
         Tag tag = tagManager.find(tagInfo.getTagId());
         List<String> idList = newArrayList();

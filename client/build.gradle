@@ -68,7 +68,7 @@ gwtDevMode {
             "http://localhost:8050/j2ee-e2e/FSpotCloud.html",
             "http://localhost:8080/Dashboard.html",
             "http://localhost:8050/j2ee-e2e/Dashboard.html"
-            ]
+    ]
 }
 
 artifacts {

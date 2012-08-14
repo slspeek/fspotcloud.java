@@ -21,41 +21,42 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.Iterator;
-import javax.inject.Inject;
-import javax.inject.Named;
 import net.customware.gwt.dispatch.server.ActionHandler;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.standard.GenericUtils;
 import net.customware.gwt.dispatch.shared.DispatchException;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.Iterator;
+
 
 public abstract class AbstractBatchActionHandler<V extends AbstractBatchAction<T>, T>
-    implements ActionHandler<V, VoidResult> {
+        implements ActionHandler<V, VoidResult> {
     private final TaskQueueDispatch dispatchAsync;
     protected final int MAX_DATA_TICKS;
 
     @Inject
     public AbstractBatchActionHandler(TaskQueueDispatch dispatchAsync,
-        @Named("maxTicks")
-    int MAX_DATA_TICKS) {
+                                      @Named("maxTicks")
+                                      int MAX_DATA_TICKS) {
         super();
         this.dispatchAsync = dispatchAsync;
         this.MAX_DATA_TICKS = MAX_DATA_TICKS;
     }
 
     public abstract void doWork(AbstractBatchAction<T> action,
-        Iterator<T> workLoad);
+                                Iterator<T> workLoad);
 
     @Override
     public VoidResult execute(V action, ExecutionContext ec)
-        throws DispatchException {
+            throws DispatchException {
         Iterator<T> it = action.iterator();
 
         for (int i = 0; (i < MAX_DATA_TICKS) && it.hasNext(); i++) {
@@ -76,6 +77,6 @@ public abstract class AbstractBatchActionHandler<V extends AbstractBatchAction<T
 
     @Override
     public void rollback(V a, VoidResult r, ExecutionContext ec)
-        throws DispatchException {
+            throws DispatchException {
     }
 }

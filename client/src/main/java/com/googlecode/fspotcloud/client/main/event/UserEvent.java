@@ -21,13 +21,14 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.event;
 
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.googlecode.fspotcloud.client.view.action.api.ActionDef;
+
 import java.util.logging.Logger;
 
 
@@ -38,7 +39,7 @@ public class UserEvent<H extends UserEventHandler> extends GwtEvent<H> {
 
     @Inject
     public UserEvent(@Assisted
-    ActionDef actionDef) {
+                     ActionDef actionDef) {
         this.actionDef = actionDef;
     }
 

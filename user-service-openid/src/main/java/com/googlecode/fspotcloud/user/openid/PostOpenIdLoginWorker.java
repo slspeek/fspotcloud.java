@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.user.openid;
 
 import com.googlecode.fspotcloud.server.model.api.UserDao;
@@ -29,6 +29,7 @@ import com.googlecode.fspotcloud.user.ISessionEmail;
 import com.googlecode.fspotcloud.user.LoginMetaData;
 import com.googlecode.fspotcloud.user.LoginMetaDataUpdater;
 import com.googlecode.fspotcloud.user.PostThirdPartyLoginWorker;
+
 import javax.inject.Inject;
 import javax.inject.Provider;
 

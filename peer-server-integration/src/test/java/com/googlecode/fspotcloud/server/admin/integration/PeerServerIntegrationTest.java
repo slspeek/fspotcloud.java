@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.common.testing.TearDown;
@@ -30,14 +30,17 @@ import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
 import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
 import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
-import java.lang.reflect.Method;
-import java.sql.SQLException;
 import net.customware.gwt.dispatch.shared.DispatchException;
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.lang.reflect.Method;
+import java.sql.SQLException;
+
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
+
 public class PeerServerIntegrationTest extends PeerServerEnvironment {
     private TearDown toTearDown;
 
@@ -162,6 +165,6 @@ public class PeerServerIntegrationTest extends PeerServerEnvironment {
         assertPCLoaded();
         unImportTag("4");
         photoInfo.assertPhotosRemoved("17", "18", "19", "20", "21", "22", "23",
-            "24", "25", "26", "27", "28", "9", "11");
+                "24", "25", "26", "27", "28", "9", "11");
     }
 }

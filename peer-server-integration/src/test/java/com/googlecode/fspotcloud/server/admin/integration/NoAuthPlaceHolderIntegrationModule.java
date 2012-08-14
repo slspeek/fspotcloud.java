@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.guiceberry.GuiceBerryModule;
@@ -29,6 +29,7 @@ import com.google.guiceberry.TestScoped;
 import com.google.inject.servlet.RequestScoped;
 import com.google.inject.servlet.SessionScoped;
 import com.googlecode.fspotcloud.user.LenientUserModule;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -42,7 +43,7 @@ public class NoAuthPlaceHolderIntegrationModule extends GuiceBerryModule {
         install(new CommonIntegrationModule());
         install(new LenientUserModule());
         bind(HttpSession.class).to(FakeHttpServletSession.class)
-            .in(TestScoped.class);
+                .in(TestScoped.class);
         bind(HttpServletRequest.class).to(FakeHttpRequest.class);
         bindScope(RequestScoped.class, testScope);
         bindScope(SessionScoped.class, testScope);

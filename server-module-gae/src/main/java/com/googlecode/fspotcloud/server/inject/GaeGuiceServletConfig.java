@@ -21,13 +21,14 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.inject;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.googlecode.fspotcloud.server.main.PropertiesLoader;
+
 import java.util.Properties;
 
 
@@ -39,12 +40,12 @@ public class GaeGuiceServletConfig extends GuiceServletContextListener {
         System.setProperty("java.util.logging.config.file", "logging.properties");
 
         int maxTicks = Integer.valueOf(p.getProperty(
-                    "fspotcloud.max.data.ticks",
-                    "100"));
+                "fspotcloud.max.data.ticks",
+                "100"));
         String botSecret = p.getProperty("fspotcloud.bot.secret");
         String fromAddress = p.getProperty("fspotcloud.from.address");
         Injector i = Guice.createInjector(new GaeTotalModule(maxTicks,
-                    botSecret, fromAddress));
+                botSecret, fromAddress));
 
         return i;
     }

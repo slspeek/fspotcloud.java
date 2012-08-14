@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main;
 
 import com.googlecode.fspotcloud.client.main.api.Initializable;
@@ -29,6 +29,8 @@ import com.googlecode.fspotcloud.client.main.api.Initializable;
 
 public interface IGlobalShortcutController extends Initializable {
     void setMode(Mode mode);
-    enum Mode {ABOUT, SLIDESHOW, TAG_VIEW, TREE_VIEW, LOGIN;
+
+    enum Mode {
+        ABOUT, SLIDESHOW, TAG_VIEW, TREE_VIEW, LOGIN;
     }
 }

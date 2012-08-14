@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
 import java.util.List;
@@ -53,7 +53,7 @@ public class RemovePhotosFromTagAction extends AbstractBatchAction<String> {
         final RemovePhotosFromTagAction other = (RemovePhotosFromTagAction) obj;
 
         if ((this.tagId == null) ? (other.tagId != null)
-                                     : !this.tagId.equals(other.tagId)) {
+                : !this.tagId.equals(other.tagId)) {
             return false;
         }
 
@@ -73,7 +73,7 @@ public class RemovePhotosFromTagAction extends AbstractBatchAction<String> {
         final StringBuffer sb = new StringBuffer();
         sb.append("RemovePhotosFromTagAction");
         sb.append("{super='").append(super.toString()).append("' tagId='")
-          .append(tagId).append('\'');
+                .append(tagId).append('\'');
         sb.append('}');
 
         return sb.toString();

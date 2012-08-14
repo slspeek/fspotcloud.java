@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.shared.EventBus;
@@ -47,12 +47,13 @@ import com.googlecode.fspotcloud.client.view.action.api.LoadNewLocationActionFac
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class ApplicationEventHandler implements ApplicationEvent.Handler,
-    Initializable {
+        Initializable {
     private static final Logger log = Logger.getLogger(ApplicationEventHandler.class.getName());
     private final DemoAction demoAction;
     private final AboutAction aboutAction;
@@ -68,11 +69,11 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
 
     @Inject
     public ApplicationEventHandler(AboutAction aboutAction,
-        DemoAction demoAction, HelpAction helpAction,
-        TreeFocusAction treeFocusAction, HideControlsAction hideControlsAction,
-        LoadNewLocationActionFactory locationFactory, Navigator navigator,
-        EventBus eventBus, ClientLoginManager clientLoginManager,
-        PlaceGoTo placeGoTo) {
+                                   DemoAction demoAction, HelpAction helpAction,
+                                   TreeFocusAction treeFocusAction, HideControlsAction hideControlsAction,
+                                   LoadNewLocationActionFactory locationFactory, Navigator navigator,
+                                   EventBus eventBus, ClientLoginManager clientLoginManager,
+                                   PlaceGoTo placeGoTo) {
         super();
         this.navigator = navigator;
         this.hideControlsAction = hideControlsAction;
@@ -87,89 +88,89 @@ public class ApplicationEventHandler implements ApplicationEvent.Handler,
     }
 
     @Override
-    public void onEvent(UserEvent<?extends UserEventHandler> e) {
+    public void onEvent(UserEvent<? extends UserEventHandler> e) {
         log.info("On application event of type " + e.getActionDef());
 
         switch ((ApplicationType) e.getActionDef()) {
-        case START_DEMO:
-            demoAction.run();
+            case START_DEMO:
+                demoAction.run();
 
-            break;
+                break;
 
-        case HIDE_CONTROLS:
-            hideControlsAction.run();
+            case HIDE_CONTROLS:
+                hideControlsAction.run();
 
-            break;
+                break;
 
-        case TOGGLE_HELP:
-            helpAction.run();
+            case TOGGLE_HELP:
+                helpAction.run();
 
-            break;
+                break;
 
-        case TREE_FOCUS:
-            treeFocusAction.run();
+            case TREE_FOCUS:
+                treeFocusAction.run();
 
-            break;
+                break;
 
-        case DASHBOARD:
-            dashboardAction.run();
+            case DASHBOARD:
+                dashboardAction.run();
 
-            break;
+                break;
 
-        case ABOUT:
-            aboutAction.run();
+            case ABOUT:
+                aboutAction.run();
 
-            break;
+                break;
 
-        case ZOOM_IN:
-            navigator.zoom(Zoom.IN);
+            case ZOOM_IN:
+                navigator.zoom(Zoom.IN);
 
-            break;
+                break;
 
-        case ZOOM_OUT:
-            navigator.zoom(Zoom.OUT);
+            case ZOOM_OUT:
+                navigator.zoom(Zoom.OUT);
 
-            break;
+                break;
 
-        case LOGIN:
-            placeGoTo.goTo(new LoginPlace());
+            case LOGIN:
+                placeGoTo.goTo(new LoginPlace());
 
-            break;
+                break;
 
-        case LOGOUT:
-            clientLoginManager.getUserInfoAsync(new GetUserInfo("post-login"),
-                new AsyncCallback<UserInfo>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        log.log(Level.SEVERE, "No user info ", caught);
-                    }
+            case LOGOUT:
+                clientLoginManager.getUserInfoAsync(new GetUserInfo("post-login"),
+                        new AsyncCallback<UserInfo>() {
+                            @Override
+                            public void onFailure(Throwable caught) {
+                                log.log(Level.SEVERE, "No user info ", caught);
+                            }
 
-                    @Override
-                    public void onSuccess(final UserInfo result) {
-                        clientLoginManager.logout(new AsyncCallback<VoidResult>() {
-                                @Override
-                                public void onFailure(Throwable caught) {
-                                    log.log(Level.SEVERE,
-                                        "An error prevented the server from logging of the user",
-                                        caught);
-                                }
-
-                                @Override
-                                public void onSuccess(VoidResult result2) {
-                                    if ("GAE_LOGIN".equals(
-                                                result.getLoginType())) {
-                                        Window.Location.replace(result.getLogoutUrl());
+                            @Override
+                            public void onSuccess(final UserInfo result) {
+                                clientLoginManager.logout(new AsyncCallback<VoidResult>() {
+                                    @Override
+                                    public void onFailure(Throwable caught) {
+                                        log.log(Level.SEVERE,
+                                                "An error prevented the server from logging of the user",
+                                                caught);
                                     }
-                                }
-                            });
-                    }
-                });
+
+                                    @Override
+                                    public void onSuccess(VoidResult result2) {
+                                        if ("GAE_LOGIN".equals(
+                                                result.getLoginType())) {
+                                            Window.Location.replace(result.getLogoutUrl());
+                                        }
+                                    }
+                                });
+                            }
+                        });
 
 
-            break;
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
     }
 

@@ -21,17 +21,18 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa.peerdatabase;
 
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.shared.main.TagNode;
+import org.apache.commons.lang.SerializationUtils;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
-import org.apache.commons.lang.SerializationUtils;
 
 
 /**
@@ -183,11 +184,11 @@ public class PeerDatabaseEntity implements PeerDatabase, Serializable {
 
         if (cachedTagTreeData != null) {
             sb.append(", cachedTagTreeDATA=")
-              .append(SerializationUtils.deserialize(cachedTagTreeData));
+                    .append(SerializationUtils.deserialize(cachedTagTreeData));
         }
 
         sb.append(", (cachedTagTreeData == null)= ")
-          .append(cachedTagTreeData == null);
+                .append(cachedTagTreeData == null);
         sb.append(", cachedTagTree=").append(cachedTagTree);
         sb.append(", @ (" + super.toString() + ") }");
 

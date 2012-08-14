@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.place;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -36,8 +36,10 @@ import com.googlecode.fspotcloud.client.place.api.PlaceWhere;
 import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+
 public class NavigatorImplTest extends TestCase {
     DataManager dataManager = new DataManagerImpl(new DispatchAsyncTestImpl());
     PlaceCalculator placeCalculator = new PlaceCalculator();
@@ -75,13 +77,13 @@ public class NavigatorImplTest extends TestCase {
         final PlaceWhere where = context.mock(PlaceWhere.class);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(where).where();
-                    will(returnValue(daniel));
+            {
+                oneOf(where).where();
+                will(returnValue(daniel));
 
-                    oneOf(goTo).goTo(with(jan));
-                }
-            });
+                oneOf(goTo).goTo(with(jan));
+            }
+        });
         navigator = get(where, goTo);
         navigator.goAsync(Direction.FORWARD, Unit.BORDER);
         context.assertIsSatisfied();
@@ -92,12 +94,12 @@ public class NavigatorImplTest extends TestCase {
         final PlaceWhere where = context.mock(PlaceWhere.class);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(where).where();
-                    will(returnValue(daniel));
-                    oneOf(goTo).goTo(with(jan));
-                }
-            });
+            {
+                oneOf(where).where();
+                will(returnValue(daniel));
+                oneOf(goTo).goTo(with(jan));
+            }
+        });
         navigator = get(where, goTo);
         navigator.goAsync(Direction.FORWARD, Unit.BORDER);
         context.assertIsSatisfied();
@@ -108,12 +110,12 @@ public class NavigatorImplTest extends TestCase {
         final PlaceWhere where = context.mock(PlaceWhere.class);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(where).where();
-                    will(returnValue(jan));
-                    oneOf(goTo).goTo(with(daniel));
-                }
-            });
+            {
+                oneOf(where).where();
+                will(returnValue(jan));
+                oneOf(goTo).goTo(with(daniel));
+            }
+        });
         navigator = get(where, goTo);
         navigator.goAsync(Direction.BACKWARD, Unit.BORDER);
         context.assertIsSatisfied();
@@ -124,12 +126,12 @@ public class NavigatorImplTest extends TestCase {
         final PlaceWhere where = context.mock(PlaceWhere.class);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(where).where();
-                    will(returnValue(snowie));
-                    oneOf(goTo).goTo(with(siepie));
-                }
-            });
+            {
+                oneOf(where).where();
+                will(returnValue(snowie));
+                oneOf(goTo).goTo(with(siepie));
+            }
+        });
         navigator = get(where, goTo);
         navigator.goAsync(Direction.FORWARD, Unit.PAGE);
         context.assertIsSatisfied();
@@ -140,12 +142,12 @@ public class NavigatorImplTest extends TestCase {
         final PlaceWhere where = context.mock(PlaceWhere.class);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(where).where();
-                    will(returnValue(siepie));
-                    oneOf(goTo).goTo(with(snowie));
-                }
-            });
+            {
+                oneOf(where).where();
+                will(returnValue(siepie));
+                oneOf(goTo).goTo(with(snowie));
+            }
+        });
         navigator = get(where, goTo);
         navigator.goAsync(Direction.BACKWARD, Unit.SINGLE);
         context.assertIsSatisfied();
@@ -156,10 +158,10 @@ public class NavigatorImplTest extends TestCase {
 
         context.checking(new Expectations() {
 
-                {
-                    oneOf(result).onSuccess(with(2));
-                }
-            });
+            {
+                oneOf(result).onSuccess(with(2));
+            }
+        });
         navigator = get(null);
         navigator.getPageCountAsync("1", 2, result);
         context.assertIsSatisfied();
@@ -170,12 +172,12 @@ public class NavigatorImplTest extends TestCase {
         final PlaceWhere where = context.mock(PlaceWhere.class);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(where).where();
-                    will(returnValue(r1_3));
-                    oneOf(goTo).goTo(with(r1_3_zoomed_in));
-                }
-            });
+            {
+                oneOf(where).where();
+                will(returnValue(r1_3));
+                oneOf(goTo).goTo(with(r1_3_zoomed_in));
+            }
+        });
         navigator = get(where, goTo);
         navigator.toggleZoomViewAsync(r1_3.getTagId(), r1_3.getPhotoId());
         context.assertIsSatisfied();

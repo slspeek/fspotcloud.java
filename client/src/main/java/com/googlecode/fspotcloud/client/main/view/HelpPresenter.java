@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.inject.Inject;
@@ -40,7 +40,7 @@ public class HelpPresenter implements PopupView.PopupPresenter {
 
     @Inject
     public HelpPresenter(ActionFamily actions, HelpContentGenerator generator,
-        PopupView popupView) {
+                         PopupView popupView) {
         this.actions = actions;
         this.generator = generator;
         this.popupView = popupView;
@@ -74,7 +74,7 @@ public class HelpPresenter implements PopupView.PopupPresenter {
 
         for (UserAction shortcut : group.allActions()) {
             helptext += ("<tr><td>" + generator.getHelpText(shortcut) +
-            "</td></tr>");
+                    "</td></tr>");
         }
 
         helptext += "</table>";

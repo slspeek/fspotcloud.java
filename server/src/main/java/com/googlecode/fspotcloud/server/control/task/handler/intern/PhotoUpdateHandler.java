@@ -21,10 +21,9 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.callback.PhotoDataCallback;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
@@ -33,10 +32,14 @@ import com.googlecode.fspotcloud.shared.peer.GetPhotoDataAction;
 import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.Iterator;
-import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Iterator;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+
 public class PhotoUpdateHandler extends AbstractBatchActionHandler<PhotoUpdateAction, PhotoUpdate> {
     private final int MAX_PHOTO_TICKS;
     private final ControllerDispatchAsync controllerDispatch;
@@ -44,10 +47,10 @@ public class PhotoUpdateHandler extends AbstractBatchActionHandler<PhotoUpdateAc
 
     @Inject
     public PhotoUpdateHandler(@Named("maxTicks")
-    int maxTicks, @Named("maxPhotoTicks")
+                              int maxTicks, @Named("maxPhotoTicks")
     int maxPhotoTicks, @Named("defaultImageSpecs")
     ImageSpecs imageSpecs, ControllerDispatchAsync controllerDispatch,
-        TaskQueueDispatch dispatchAsync) {
+                              TaskQueueDispatch dispatchAsync) {
         super(dispatchAsync, maxTicks);
         this.controllerDispatch = controllerDispatch;
         MAX_PHOTO_TICKS = maxPhotoTicks;
@@ -56,7 +59,7 @@ public class PhotoUpdateHandler extends AbstractBatchActionHandler<PhotoUpdateAc
 
     @Override
     public void doWork(AbstractBatchAction<PhotoUpdate> action,
-        Iterator<PhotoUpdate> workLoad) {
+                       Iterator<PhotoUpdate> workLoad) {
         List<String> imageKeys = newArrayList();
 
         for (int j = 0; j < MAX_PHOTO_TICKS && workLoad.hasNext(); j++) {

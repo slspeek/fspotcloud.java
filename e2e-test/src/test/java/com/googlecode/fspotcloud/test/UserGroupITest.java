@@ -21,13 +21,14 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
-import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
+
+import javax.inject.Inject;
 
 
 public class UserGroupITest {
@@ -53,7 +54,7 @@ public class UserGroupITest {
         myUserGroupsPage.editUserGroup();
 
         editUserGroupPage.fill("GNU Friends",
-            "My friends from all over the world");
+                "My friends from all over the world");
         editUserGroupPage.save();
         myUserGroupsPage.open();
         myUserGroupsPage.verifyText("My friends from all over the world");
@@ -69,6 +70,6 @@ public class UserGroupITest {
 
         myUserGroupsPage.deleteUserGroup();
         myUserGroupsPage.verifyTextNotPresent(
-            "My friends from all over the world");
+                "My friends from all over the world");
     }
 }

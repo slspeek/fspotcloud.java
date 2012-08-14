@@ -21,18 +21,19 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.user;
 
 import com.googlecode.fspotcloud.model.jpa.user.UserEntity;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
-import java.util.Date;
-import javax.inject.Inject;
-import javax.inject.Provider;
 import org.jukito.JukitoRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+import javax.inject.Provider;
+import java.util.Date;
 
 
 @RunWith(JukitoRunner.class)

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.place.api;
 
 public interface PhotoInTag extends PhotoId, TagId {

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -40,6 +40,7 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.MyUserGroupsView;
 import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
+
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -73,19 +74,19 @@ public class MyUserGroupsViewImpl extends Composite implements MyUserGroupsView 
 
         // Create name column.
         TextColumn<UserGroupInfo> nameColumn = new TextColumn<UserGroupInfo>() {
-                @Override
-                public String getValue(UserGroupInfo info) {
-                    return info.getName();
-                }
-            };
+            @Override
+            public String getValue(UserGroupInfo info) {
+                return info.getName();
+            }
+        };
 
         // Create address column.
         TextColumn<UserGroupInfo> descColumn = new TextColumn<UserGroupInfo>() {
-                @Override
-                public String getValue(UserGroupInfo info) {
-                    return info.getDescription();
-                }
-            };
+            @Override
+            public String getValue(UserGroupInfo info) {
+                return info.getDescription();
+            }
+        };
 
         // Add the columns.
         table.addColumn(nameColumn, "Name");

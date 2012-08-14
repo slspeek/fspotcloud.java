@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -31,6 +31,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
 import com.googlecode.fspotcloud.client.main.view.api.TagView;
+
 import java.util.logging.Logger;
 
 
@@ -41,7 +42,7 @@ public class TagActivity extends AbstractActivity implements TagView.TagPresente
     private final ImageRasterView.ImageRasterPresenter imageRasterPresenter;
 
     public TagActivity(TagView tagView,
-        ImageRasterView.ImageRasterPresenter imageRasterPresenter) {
+                       ImageRasterView.ImageRasterPresenter imageRasterPresenter) {
         this.tagView = tagView;
         this.imageRasterPresenter = imageRasterPresenter;
     }
@@ -52,11 +53,11 @@ public class TagActivity extends AbstractActivity implements TagView.TagPresente
 
         Scheduler scheduler = Scheduler.get();
         scheduler.scheduleDeferred(new ScheduledCommand() {
-                @Override
-                public void execute() {
-                    imageRasterPresenter.init();
-                }
-            });
+            @Override
+            public void execute() {
+                imageRasterPresenter.init();
+            }
+        });
         tagView.hideLabelLater(10000);
     }
 }

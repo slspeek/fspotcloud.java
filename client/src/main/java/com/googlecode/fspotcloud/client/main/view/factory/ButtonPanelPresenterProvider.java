@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view.factory;
 
 import com.google.inject.Inject;
@@ -38,6 +38,7 @@ import com.googlecode.fspotcloud.client.main.view.api.ButtonPanelView.ButtonPane
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonPresenterFactory;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonView;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
+
 import java.util.logging.Logger;
 
 
@@ -50,10 +51,10 @@ public class ButtonPanelPresenterProvider implements Provider<ButtonPanelView.Bu
 
     @Inject
     public ButtonPanelPresenterProvider(
-        @Named("Main")
-    ButtonPanelView buttonPanelView,
-        ActionFamily allActions,
-        UserButtonPresenterFactory buttonPresenterFactory) {
+            @Named("Main")
+            ButtonPanelView buttonPanelView,
+            ActionFamily allActions,
+            UserButtonPresenterFactory buttonPresenterFactory) {
         super();
         this.buttonPanelView = buttonPanelView;
         this.allActions = allActions;

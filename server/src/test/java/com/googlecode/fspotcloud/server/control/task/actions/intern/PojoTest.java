@@ -21,10 +21,9 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.impl.PojoClassFactory;
 import com.openpojo.validation.PojoValidator;
@@ -34,9 +33,13 @@ import com.openpojo.validation.rule.impl.NoNestedClassRule;
 import com.openpojo.validation.rule.impl.NoPublicFieldsRule;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+
 public class PojoTest {
     // Configured for expectation, so we know when a class gets added or removed.
     private static final int EXPECTED_CLASS_COUNT = 7;
@@ -45,12 +48,12 @@ public class PojoTest {
     private static final String POJO_PACKAGE = "com.googlecode.fspotcloud.shared.peer.rpc.actions";
     private List<PojoClass> pojoClasses;
     private PojoValidator pojoValidator;
-    private Class<?>[] POJO_CLASSES = new Class<?>[] {
+    private Class<?>[] POJO_CLASSES = new Class<?>[]{
             DeleteAllPhotosAction.class, DeleteAllTagsAction.class,
             RemovePhotosFromTagAction.class, ImportManyTagsPhotosAction.class,
             PhotoUpdateAction.class, RemoveTagsDeletedFromPeerAction.class,
             TagUpdateAction.class
-        };
+    };
 
     @Before
     public void setup() {
@@ -81,7 +84,7 @@ public class PojoTest {
     @Test
     public void ensureExpectedPojoCount() {
         Affirm.affirmEquals("Classes added / removed?", EXPECTED_CLASS_COUNT,
-            pojoClasses.size());
+                pojoClasses.size());
     }
 
     @Test

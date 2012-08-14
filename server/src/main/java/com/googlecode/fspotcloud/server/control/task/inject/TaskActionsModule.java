@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.task.inject;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.*;
@@ -36,11 +36,11 @@ public class TaskActionsModule extends ActionHandlerModule {
         bindHandler(DeleteAllTagsAction.class, DeleteTagsHandler.class);
         bindHandler(DeleteAllPhotosAction.class, DeleteAllPhotosHandler.class);
         bindHandler(RemovePhotosFromTagAction.class,
-            RemovePhotosFromTagHandler.class);
+                RemovePhotosFromTagHandler.class);
         bindHandler(RemoveTagsDeletedFromPeerAction.class,
-            RemoveTagsFromPeerHandler.class);
+                RemoveTagsFromPeerHandler.class);
         bindHandler(TagUpdateAction.class, TagUpdateHandler.class);
         bindHandler(ImportManyTagsPhotosAction.class,
-            ImportManyTagsPhotosHandler.class);
+                ImportManyTagsPhotosHandler.class);
     }
 }

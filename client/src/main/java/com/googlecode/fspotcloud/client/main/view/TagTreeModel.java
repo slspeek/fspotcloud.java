@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.cell.client.Cell;
@@ -29,9 +29,10 @@ import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.SelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
 import com.googlecode.fspotcloud.shared.main.TagNode;
+
+import javax.inject.Provider;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.inject.Provider;
 
 
 public class TagTreeModel implements TreeViewModel {
@@ -41,8 +42,8 @@ public class TagTreeModel implements TreeViewModel {
     Provider<Cell<TagNode>> cellProvider;
 
     public TagTreeModel(List<TagNode> roots,
-        SelectionModel<TagNode> selectionModel,
-        Provider<Cell<TagNode>> cellProvider) {
+                        SelectionModel<TagNode> selectionModel,
+                        Provider<Cell<TagNode>> cellProvider) {
         super();
         this.roots = roots;
         this.selectionModel = selectionModel;
@@ -55,14 +56,14 @@ public class TagTreeModel implements TreeViewModel {
             ListDataProvider<TagNode> rootNodes = new ListDataProvider<TagNode>(roots);
 
             return new DefaultNodeInfo<TagNode>(rootNodes, cellProvider.get(),
-                selectionModel, null);
+                    selectionModel, null);
         } else if (value instanceof TagNode) {
             TagNode node = (TagNode) value;
             List<TagNode> children = node.getChildren();
             ListDataProvider<TagNode> childNodes = new ListDataProvider<TagNode>(children);
 
             return new DefaultNodeInfo<TagNode>(childNodes, cellProvider.get(),
-                selectionModel, null);
+                    selectionModel, null);
         } else {
             log.warning("getNodeInfo called with non-TagNode value: " + value);
         }

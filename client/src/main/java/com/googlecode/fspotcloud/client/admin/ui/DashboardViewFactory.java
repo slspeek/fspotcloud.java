@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.admin.ui;
 
 import com.google.gwt.event.shared.EventBus;
@@ -29,6 +29,7 @@ import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.admin.view.TagDetailsActivityMapper;
 import com.googlecode.fspotcloud.client.admin.view.api.DashboardView;
 import com.googlecode.fspotcloud.client.main.ui.ViewFactory;
+
 import java.util.logging.Logger;
 
 
@@ -38,7 +39,7 @@ public class DashboardViewFactory extends ViewFactory {
 
     @Inject
     public DashboardViewFactory(EventBus eventBus, DashboardView dashboardView,
-        TagDetailsActivityMapper detailsMapper) {
+                                TagDetailsActivityMapper detailsMapper) {
         super(eventBus);
         this.dashboardView = dashboardView;
         register(detailsMapper, dashboardView.getTagDetailsContainer());

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.test;
 
 import com.google.inject.name.Names;
@@ -33,6 +33,6 @@ public class J2eeWarGuiceBerryEnv extends SeleniumGuiceBerryEnv {
         super.configure();
         bind(ILogin.class).to(RegularLoginBot.class);
         bind(String.class).annotatedWith(Names.named("baseUrl"))
-            .toInstance("http://localhost:8050/j2ee-e2e");
+                .toInstance("http://localhost:8050/j2ee-e2e");
     }
 }

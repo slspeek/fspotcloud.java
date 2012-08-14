@@ -21,17 +21,19 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.test;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.thoughtworks.selenium.Selenium;
-import java.util.Date;
+
 import javax.inject.Inject;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -52,6 +54,6 @@ public class UserAccountPage {
 
     public Date getLastLogin() {
         return DateTimeFormat.getFormat(DateTimeFormat.PredefinedFormat.DATE_TIME_LONG)
-                             .parse(selenium.getText("gwt-debug-last-login"));
+                .parse(selenium.getText("gwt-debug-last-login"));
     }
 }

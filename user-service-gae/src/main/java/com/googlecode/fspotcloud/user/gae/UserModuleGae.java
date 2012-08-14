@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.user.gae;
 
 import com.google.appengine.api.users.UserServiceFactory;
@@ -40,7 +40,7 @@ public class UserModuleGae extends AbstractUserModule {
         super.configure();
 
         bind(com.googlecode.fspotcloud.user.UserService.class)
-            .to(com.googlecode.fspotcloud.user.gae.UserServiceGae.class);
+                .to(com.googlecode.fspotcloud.user.gae.UserServiceGae.class);
         bind(ISessionEmail.class).to(SessionEmail.class);
         bind(PostThirdPartyLoginWorker.class).to(PostGoogleLoginWorker.class);
         install(new UserServletModule());

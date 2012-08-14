@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view.factory;
 
 import com.google.gwt.user.client.ui.Widget;
@@ -36,6 +36,7 @@ import com.googlecode.fspotcloud.client.main.view.api.SlideshowView;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonPresenterFactory;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonView;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
+
 import java.util.logging.Logger;
 
 
@@ -49,13 +50,13 @@ public class SlideshowControlsPresenterProvider implements Provider<SlideshowCon
 
     @Inject
     public SlideshowControlsPresenterProvider(
-        @Named("Slideshow")
-    ButtonPanelView buttonPanelView,
-        @Named("slideshow")
-    AbstractActionMap actions,
-        UserButtonPresenterFactory buttonPresenterFactory,
-        SlideshowView slideshowView,
-        SlideshowView.SlideshowPresenter slideshowPresenter) {
+            @Named("Slideshow")
+            ButtonPanelView buttonPanelView,
+            @Named("slideshow")
+            AbstractActionMap actions,
+            UserButtonPresenterFactory buttonPresenterFactory,
+            SlideshowView slideshowView,
+            SlideshowView.SlideshowPresenter slideshowPresenter) {
         super();
         this.buttonPanelView = buttonPanelView;
         this.slideshowPresenter = slideshowPresenter;
@@ -89,6 +90,6 @@ public class SlideshowControlsPresenterProvider implements Provider<SlideshowCon
     @Override
     public SlideshowControlsPresenter get() {
         return new SlideshowControlsPresenter(slideshowPresenter,
-            buttonPanelView);
+                buttonPanelView);
     }
 }

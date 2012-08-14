@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.event;
 
 import com.google.gwt.resources.client.ImageResource;
@@ -29,6 +29,7 @@ import com.google.inject.Provider;
 import com.googlecode.fspotcloud.client.view.action.api.ActionDef;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
 import com.googlecode.fspotcloud.client.view.action.api.UserActionFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
@@ -41,7 +42,7 @@ public abstract class AbstractActionMap implements ActionMap {
     private final String description;
 
     public AbstractActionMap(UserActionFactory userActionFactory,
-        String description) {
+                             String description) {
         this.userActionFactory = userActionFactory;
         this.description = description;
     }
@@ -62,7 +63,7 @@ public abstract class AbstractActionMap implements ActionMap {
     }
 
     public void put(ActionDef actionDef, ImageResource icon,
-        Provider<UserEvent<?extends UserEventHandler>> eventProvider) {
+                    Provider<UserEvent<? extends UserEventHandler>> eventProvider) {
         UserAction action = userActionFactory.get(actionDef.getId(),
                 actionDef.getCaption(), actionDef.getDescription(),
                 actionDef.getKey(), actionDef.getAlternateKey(), icon,

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -38,6 +38,7 @@ import com.googlecode.fspotcloud.client.main.view.api.ImageView;
 import com.googlecode.fspotcloud.client.place.BasePlace;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -59,9 +60,9 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements ImageR
 
     @Inject
     public ImageRasterPresenterImpl(@Assisted
-    BasePlace place, @Assisted
+                                    BasePlace place, @Assisted
     ImageRasterView imageRasterView, Navigator navigator,
-        ImagePresenterFactory imagePresenterFactory) {
+                                    ImagePresenterFactory imagePresenterFactory) {
         tagId = place.getTagId();
         photoId = place.getPhotoId();
         columnCount = place.getColumnCount();
@@ -81,33 +82,33 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements ImageR
 
     public void setImages() {
         navigator.getPageAsync(tagId, photoId, pageSize,
-            new AsyncCallback<List<PhotoInfo>>() {
-                @Override
-                public void onSuccess(List<PhotoInfo> result) {
-                    imageViewList = imageRasterView.buildRaster(rowCount,
-                            columnCount);
-                    setImages(result);
-                    navigator.getPageRelativePositionAsync(tagId, photoId,
-                        pageSize,
-                        new AsyncCallback<Integer[]>() {
-                            @Override
-                            public void onFailure(Throwable caught) {
-                                imageRasterView.setPagingText(caught.getMessage());
-                            }
+                new AsyncCallback<List<PhotoInfo>>() {
+                    @Override
+                    public void onSuccess(List<PhotoInfo> result) {
+                        imageViewList = imageRasterView.buildRaster(rowCount,
+                                columnCount);
+                        setImages(result);
+                        navigator.getPageRelativePositionAsync(tagId, photoId,
+                                pageSize,
+                                new AsyncCallback<Integer[]>() {
+                                    @Override
+                                    public void onFailure(Throwable caught) {
+                                        imageRasterView.setPagingText(caught.getMessage());
+                                    }
 
-                            @Override
-                            public void onSuccess(Integer[] result) {
-                                String label = (result[0] + 1) + " of " +
-                                    result[1];
-                                imageRasterView.setPagingText(label);
-                            }
-                        });
-                }
+                                    @Override
+                                    public void onSuccess(Integer[] result) {
+                                        String label = (result[0] + 1) + " of " +
+                                                result[1];
+                                        imageRasterView.setPagingText(label);
+                                    }
+                                });
+                    }
 
-                @Override
-                public void onFailure(Throwable caught) {
-                }
-            });
+                    @Override
+                    public void onFailure(Throwable caught) {
+                    }
+                });
     }
 
     private void setImages(List<PhotoInfo> result) {
@@ -130,12 +131,12 @@ public class ImageRasterPresenterImpl extends AbstractActivity implements ImageR
 
             imagePresenterList.add(presenter);
             Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-                    @Override
-                    public void execute() {
-                        // TODO Auto-generated method stub
-                        presenter.init();
-                    }
-                });
+                @Override
+                public void execute() {
+                    // TODO Auto-generated method stub
+                    presenter.init();
+                }
+            });
         }
 
         for (; i < pageSize; i++) {

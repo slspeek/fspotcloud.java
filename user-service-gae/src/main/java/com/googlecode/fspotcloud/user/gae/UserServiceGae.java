@@ -21,10 +21,11 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.user.gae;
 
 import com.googlecode.fspotcloud.user.UserServiceBase;
+
 import javax.inject.Inject;
 
 

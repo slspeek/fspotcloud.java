@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.user.gae;
 
 import com.google.appengine.api.users.User;
@@ -30,8 +30,9 @@ import com.googlecode.fspotcloud.server.model.api.UserDao;
 import com.googlecode.fspotcloud.user.ILoginMetaDataUpdater;
 import com.googlecode.fspotcloud.user.LoginMetaData;
 import com.googlecode.fspotcloud.user.PostThirdPartyLoginWorker;
-import java.util.logging.Logger;
+
 import javax.inject.Inject;
+import java.util.logging.Logger;
 
 
 public class PostGoogleLoginWorker implements PostThirdPartyLoginWorker {

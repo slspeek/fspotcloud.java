@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.googlecode.botdispatch.SerializableAsyncCallback;
@@ -36,14 +36,17 @@ import com.googlecode.fspotcloud.shared.dashboard.UserUnImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
+import net.customware.gwt.dispatch.server.Dispatch;
+import net.customware.gwt.dispatch.shared.DispatchException;
+
+import javax.inject.Inject;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.inject.Inject;
-import net.customware.gwt.dispatch.server.Dispatch;
-import net.customware.gwt.dispatch.shared.DispatchException;
+
 import static org.testng.AssertJUnit.fail;
+
 public class PeerServerEnvironment {
     static final Logger log = Logger.getLogger(PeerServerIntegrationTest.class.getName());
     @Inject
@@ -99,12 +102,12 @@ public class PeerServerEnvironment {
 
     protected void assertPCLoaded() {
         photoInfo.assertPhotosLoaded("17", "18", "19", "20", "21", "22", "23",
-            "24", "25", "26", "27", "28", "9", "11");
+                "24", "25", "26", "27", "28", "9", "11");
     }
 
     protected void assertComputersIsLoaded() {
         photoInfo.assertPhotosLoaded("17", "18", "19", "20", "21", "22", "23",
-            "24", "25", "26", "27", "28");
+                "24", "25", "26", "27", "28");
     }
 
     protected void setPeerTestDatabase(String db) throws SQLException {
@@ -121,50 +124,50 @@ public class PeerServerEnvironment {
 
     protected void synchronizePeer() {
         controller.execute(new UserSynchronizesPeerAction(),
-            new SerializableAsyncCallback<VoidResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    log.log(Level.SEVERE, "On fail ", caught);
-                    fail();
-                }
+                new SerializableAsyncCallback<VoidResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        log.log(Level.SEVERE, "On fail ", caught);
+                        fail();
+                    }
 
-                @Override
-                public void onSuccess(VoidResult result) {
-                    log.info("On success");
-                }
-            });
+                    @Override
+                    public void onSuccess(VoidResult result) {
+                        log.info("On success");
+                    }
+                });
     }
 
     protected void importTag(String tagId) {
         controller.execute(new UserImportsTagAction(tagId),
-            new SerializableAsyncCallback<VoidResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    log.info("On fail " + caught);
-                    fail();
-                }
+                new SerializableAsyncCallback<VoidResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        log.info("On fail " + caught);
+                        fail();
+                    }
 
-                @Override
-                public void onSuccess(VoidResult result) {
-                    log.info("On success");
-                }
-            });
+                    @Override
+                    public void onSuccess(VoidResult result) {
+                        log.info("On success");
+                    }
+                });
     }
 
     protected void unImportTag(String tagId) {
         controller.execute(new UserUnImportsTagAction(tagId),
-            new SerializableAsyncCallback<VoidResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    log.info("On fail " + caught);
-                    fail();
-                }
+                new SerializableAsyncCallback<VoidResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        log.info("On fail " + caught);
+                        fail();
+                    }
 
-                @Override
-                public void onSuccess(VoidResult result) {
-                    log.info("On success");
-                }
-            });
+                    @Override
+                    public void onSuccess(VoidResult result) {
+                        log.info("On success");
+                    }
+                });
     }
 
     public void testImportAllTags() throws Exception {

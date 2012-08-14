@@ -21,11 +21,11 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
@@ -37,14 +37,17 @@ import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetTagUpdateInstructionsAction;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
 @RunWith(JukitoRunner.class)
 public class UserImportsTagHandlerTest {
     private final String TAG_ID = "1";
@@ -61,16 +64,16 @@ public class UserImportsTagHandlerTest {
 
     @Test
     public void testNormalExecute(TagDao tagManager,
-        ControllerDispatchAsync dispatchAsync,
-        ArgumentCaptor<GetTagUpdateInstructionsAction> actionCaptor,
-        ArgumentCaptor<TagUpdateInstructionsCallback> callbackCaptor)
-        throws Exception {
+                                  ControllerDispatchAsync dispatchAsync,
+                                  ArgumentCaptor<GetTagUpdateInstructionsAction> actionCaptor,
+                                  ArgumentCaptor<TagUpdateInstructionsCallback> callbackCaptor)
+            throws Exception {
         when(tagManager.find(TAG_ID)).thenReturn(tagOne);
 
         VoidResult result = handler.execute(action, null);
 
         verify(dispatchAsync)
-            .execute(actionCaptor.capture(), callbackCaptor.capture());
+                .execute(actionCaptor.capture(), callbackCaptor.capture());
 
         GetTagUpdateInstructionsAction action = actionCaptor.getValue();
         assertTrue(action.getPhotosOnServer().isEmpty());
@@ -82,9 +85,9 @@ public class UserImportsTagHandlerTest {
     //FIXME: Must be open as it is called from within
     //@Test(expected = SecurityException.class)
     public void testUnAuthorizedExecute(IAdminPermission adminPermission)
-        throws Exception {
+            throws Exception {
         doThrow(new SecurityException()).when(adminPermission)
-            .checkAdminPermission();
+                .checkAdminPermission();
 
         VoidResult result = handler.execute(action, null);
         fail();

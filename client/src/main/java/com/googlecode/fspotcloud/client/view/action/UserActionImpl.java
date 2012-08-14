@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.shared.EventBus;
@@ -33,6 +33,7 @@ import com.google.inject.assistedinject.Assisted;
 import com.googlecode.fspotcloud.client.main.event.UserEvent;
 import com.googlecode.fspotcloud.client.main.event.UserEventHandler;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
+
 import java.util.logging.Logger;
 
 
@@ -44,20 +45,20 @@ public class UserActionImpl implements UserAction {
     private final ImageResource imageResource;
     private final String caption;
     private final String id;
-    private final Provider<?extends UserEvent<?extends UserEventHandler>> eventProvider;
+    private final Provider<? extends UserEvent<? extends UserEventHandler>> eventProvider;
     private final EventBus eventBus;
 
     @Inject
     public UserActionImpl(@Assisted("id")
-    String id, @Assisted("caption")
+                          String id, @Assisted("caption")
     String caption, @Assisted("description")
     String description, @Assisted("key")
     KeyStroke key, @Assisted("altKey")
     KeyStroke alternateKey, @Assisted
     ImageResource imageResource,
-        @Assisted
-    Provider<?extends UserEvent<?extends UserEventHandler>> eventProvider,
-        EventBus eventBus) {
+                          @Assisted
+                          Provider<? extends UserEvent<? extends UserEventHandler>> eventProvider,
+                          EventBus eventBus) {
         super();
         this.id = id;
         this.caption = caption;
@@ -69,7 +70,7 @@ public class UserActionImpl implements UserAction {
         this.eventBus = eventBus;
     }
 
-    public Provider<?extends UserEvent<?extends UserEventHandler>> getEventProvider() {
+    public Provider<? extends UserEvent<? extends UserEventHandler>> getEventProvider() {
         return eventProvider;
     }
 

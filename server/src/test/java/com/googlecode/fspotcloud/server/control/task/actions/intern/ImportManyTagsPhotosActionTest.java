@@ -21,15 +21,16 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.control.task.actions.intern;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.test.EqualsTest;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * @author steven

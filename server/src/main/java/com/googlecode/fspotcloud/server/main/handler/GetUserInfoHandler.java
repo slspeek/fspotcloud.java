@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.google.inject.Inject;
@@ -29,10 +29,11 @@ import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
 import com.googlecode.fspotcloud.user.LoginMetaData;
 import com.googlecode.fspotcloud.user.UserService;
-import javax.inject.Provider;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import javax.inject.Provider;
 
 
 public class GetUserInfoHandler extends SimpleActionHandler<GetUserInfo, UserInfo> {
@@ -41,14 +42,14 @@ public class GetUserInfoHandler extends SimpleActionHandler<GetUserInfo, UserInf
 
     @Inject
     public GetUserInfoHandler(UserService userService,
-        Provider<LoginMetaData> loginMetaDataProvider) {
+                              Provider<LoginMetaData> loginMetaDataProvider) {
         this.userService = userService;
         this.loginMetaDataProvider = loginMetaDataProvider;
     }
 
     @Override
     public UserInfo execute(GetUserInfo action, ExecutionContext context)
-        throws DispatchException {
+            throws DispatchException {
         LoginMetaData metaData = loginMetaDataProvider.get();
         UserInfo info = new UserInfo(userService.getEmail(),
                 userService.isUserAdmin(), userService.isUserLoggedIn(),

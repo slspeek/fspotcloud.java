@@ -7,7 +7,7 @@
         <g:layer top="0%" height="10%" left="20%" width="50%">
             <g:HTMLPanel>
                 <div class="{res.style.editUsergroupHeader}">
-                   Usergroup Management
+                    Usergroup Management
                 </div>
             </g:HTMLPanel>
         </g:layer>

@@ -10,7 +10,7 @@ sourceSets {
     main { compileClasspath += configurations.provided }
 }
 if ("${analysis}" == "true") {
-findbugsTest.enabled = false
+    findbugsTest.enabled = false
 }
 
 dependencies {

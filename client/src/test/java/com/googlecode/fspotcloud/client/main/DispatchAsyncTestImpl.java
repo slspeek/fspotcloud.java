@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main;
 
 import com.google.common.collect.ImmutableList;
@@ -31,11 +31,12 @@ import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
-import java.util.Date;
-import java.util.List;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.Result;
+
+import java.util.Date;
+import java.util.List;
 
 
 public class DispatchAsyncTestImpl implements DispatchAsync {
@@ -121,7 +122,7 @@ public class DispatchAsyncTestImpl implements DispatchAsync {
 
     @Override
     public <A extends Action<R>, R extends Result> void execute(A action,
-        AsyncCallback<R> _callback) {
+                                                                AsyncCallback<R> _callback) {
         AsyncCallback<TagTreeResult> callback = (AsyncCallback<TagTreeResult>) _callback;
         callback.onSuccess(new TagTreeResult(tagTreeData));
     }

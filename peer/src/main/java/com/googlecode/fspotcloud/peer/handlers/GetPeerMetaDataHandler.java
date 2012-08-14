@@ -21,18 +21,19 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.peer.handlers;
 
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.peer.db.Data;
 import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
 import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
-import java.sql.SQLException;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import java.sql.SQLException;
 
 
 public class GetPeerMetaDataHandler extends SimpleActionHandler<GetPeerMetaDataAction, PeerMetaDataResult> {
@@ -46,7 +47,7 @@ public class GetPeerMetaDataHandler extends SimpleActionHandler<GetPeerMetaDataA
 
     @Override
     public PeerMetaDataResult execute(GetPeerMetaDataAction action,
-        ExecutionContext context) throws DispatchException {
+                                      ExecutionContext context) throws DispatchException {
         PeerMetaDataResult result;
 
         try {

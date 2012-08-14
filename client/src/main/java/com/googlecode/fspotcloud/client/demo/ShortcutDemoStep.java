@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.demo;
 
 import com.google.inject.Inject;
@@ -39,7 +39,7 @@ public class ShortcutDemoStep implements DemoStep {
 
     @Inject
     public ShortcutDemoStep(HelpContentGenerator generator,
-        ShortcutHandler shortcutHandler, @Assisted
+                            ShortcutHandler shortcutHandler, @Assisted
     UserAction shortcut, @Assisted
     int pause) {
         this.shortcutHandler = shortcutHandler;
@@ -51,11 +51,11 @@ public class ShortcutDemoStep implements DemoStep {
     @Override
     public Runnable getAction() {
         return new Runnable() {
-                @Override
-                public void run() {
-                    shortcutHandler.handle(shortcut.getKey().getKeyCode());
-                }
-            };
+            @Override
+            public void run() {
+                shortcutHandler.handle(shortcut.getKey().getKeyCode());
+            }
+        };
     }
 
     @Override

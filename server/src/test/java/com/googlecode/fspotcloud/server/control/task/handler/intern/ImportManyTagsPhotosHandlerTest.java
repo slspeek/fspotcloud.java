@@ -21,26 +21,28 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.name.Names;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.ImportManyTagsPhotosAction;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -52,18 +54,18 @@ public class ImportManyTagsPhotosHandlerTest {
     @Inject
     ImportManyTagsPhotosHandler instance;
     ImportManyTagsPhotosAction action = new ImportManyTagsPhotosAction(newArrayList(
-                "1",
-                "2",
-                "3"));
+            "1",
+            "2",
+            "3"));
     ImportManyTagsPhotosAction secondAction = new ImportManyTagsPhotosAction(newArrayList(
-                "3"));
+            "3"));
 
     /**
      * Test of execute method, of class ImportManyTagsPhotosHandler.
      */
     @Test
     public void testExecute(TaskQueueDispatch dispatchAsync)
-        throws Exception {
+            throws Exception {
         System.out.println("execute");
 
         ExecutionContext context = null;
@@ -80,7 +82,7 @@ public class ImportManyTagsPhotosHandlerTest {
     public static class Module extends JukitoModule {
         protected void configureTest() {
             bind(Integer.class).annotatedWith(Names.named("maxTicks"))
-                .toInstance(new Integer(2));
+                    .toInstance(new Integer(2));
         }
     }
 }

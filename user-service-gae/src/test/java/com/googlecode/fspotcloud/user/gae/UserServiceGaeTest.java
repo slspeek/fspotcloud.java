@@ -21,23 +21,25 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.user.gae;
 
 import com.googlecode.fspotcloud.user.ILoginMetaData;
 import com.googlecode.fspotcloud.user.inject.ServerAddress;
-import javax.inject.Inject;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
 import org.junit.Assert;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 /**
@@ -70,18 +72,18 @@ public class UserServiceGaeTest {
 
     @Test
     public void createLoginURL(
-        com.google.appengine.api.users.UserService delegate) {
+            com.google.appengine.api.users.UserService delegate) {
         when(delegate.createLoginURL("http://localhost:8080/context/post-login"))
-            .thenReturn("url");
+                .thenReturn("url");
         Assert.assertEquals("url", userService.getThirdPartyLoginURL());
     }
 
     @Test
     public void createLogoutURL(
-        com.google.appengine.api.users.UserService delegate) {
+            com.google.appengine.api.users.UserService delegate) {
         when(delegate.createLogoutURL(
                 "http://localhost:8080/context/FSpotCloud.html"))
-            .thenReturn("url");
+                .thenReturn("url");
         Assert.assertEquals("url", userService.getThirdPartyLogoutURL());
     }
 
@@ -94,7 +96,7 @@ public class UserServiceGaeTest {
 
     @Test
     public void emailReturnsNull(
-        com.google.appengine.api.users.UserService delegate) {
+            com.google.appengine.api.users.UserService delegate) {
         when(metaData.getEmail()).thenReturn(null);
         Assert.assertNull(userService.getEmail());
     }
@@ -102,7 +104,7 @@ public class UserServiceGaeTest {
     public static class Module extends JukitoModule {
         protected void configureTest() {
             bind(String.class).annotatedWith(ServerAddress.class)
-                .toInstance("http://localhost:8080/context");
+                    .toInstance("http://localhost:8080/context");
         }
     }
 }

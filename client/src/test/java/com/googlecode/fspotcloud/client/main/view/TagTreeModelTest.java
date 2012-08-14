@@ -21,16 +21,17 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.view.client.TreeViewModel.NodeInfo;
 import com.googlecode.fspotcloud.client.main.DispatchAsyncTestImpl;
 import com.googlecode.fspotcloud.shared.main.TagNode;
-import java.util.List;
-import javax.inject.Provider;
 import junit.framework.TestCase;
+
+import javax.inject.Provider;
+import java.util.List;
 
 
 public class TagTreeModelTest extends TestCase {

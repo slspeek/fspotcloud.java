@@ -21,17 +21,18 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
-import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Action;
+
+import java.io.Serializable;
 
 
 public class GetFullsizePhotoAction extends BusinessBase implements Action<FullsizePhotoResult>,
-    Serializable {
+        Serializable {
     private static final long serialVersionUID = 8674836943695700527L;
     @BusinessKey
     private final String imageKey;

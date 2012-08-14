@@ -21,11 +21,11 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.client.main;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -34,9 +34,10 @@ import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.LogoutAction;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
+import net.customware.gwt.dispatch.client.DispatchAsync;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 /**
@@ -55,21 +56,21 @@ public class ClientLoginManager {
 
     public void getAsync() {
         getUserInfoAsync(new GetUserInfo(""),
-            new AsyncCallback<UserInfo>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    log.log(Level.SEVERE, "User info failure ", caught);
-                }
+                new AsyncCallback<UserInfo>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        log.log(Level.SEVERE, "User info failure ", caught);
+                    }
 
-                @Override
-                public void onSuccess(UserInfo result) {
-                    log.info("User is " + result);
-                }
-            });
+                    @Override
+                    public void onSuccess(UserInfo result) {
+                        log.info("User is " + result);
+                    }
+                });
     }
 
     public void getUserInfoAsync(GetUserInfo info,
-        AsyncCallback<UserInfo> callback) {
+                                 AsyncCallback<UserInfo> callback) {
         dispatch.execute(info, callback);
     }
 

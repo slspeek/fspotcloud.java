@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -36,6 +36,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.TreeViewModel;
 import com.googlecode.fspotcloud.client.main.view.CustomCellTree;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView;
+
 import java.util.logging.Logger;
 
 

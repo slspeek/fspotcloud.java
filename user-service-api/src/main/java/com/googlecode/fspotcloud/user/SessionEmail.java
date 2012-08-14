@@ -21,13 +21,14 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.user;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import java.util.List;
+
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 public class SessionEmail implements ISessionEmail {

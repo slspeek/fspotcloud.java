@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.inject.AbstractModule;
@@ -40,7 +40,9 @@ import com.googlecode.fspotcloud.server.mail.FromAddress;
 import com.googlecode.fspotcloud.server.mail.IMail;
 import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.taskqueuedispatch.inject.TaskQueueDispatchDirectModule;
+
 import static org.mockito.Mockito.mock;
+
 public class CommonIntegrationModule extends AbstractModule {
     public static final String SLSPEEK_GMAIL_COM = "slspeek@gmail.com";
 
@@ -48,33 +50,33 @@ public class CommonIntegrationModule extends AbstractModule {
     public void configure() {
         System.setProperty("photo.dir.original", "//home/steven/PhotoDao");
         System.setProperty("photo.dir.override",
-            "" + System.getProperty("user.dir") +
-            "/../peer/src/test/resources/PhotoDao");
+                "" + System.getProperty("user.dir") +
+                        "/../peer/src/test/resources/PhotoDao");
         install(new AdminActionsModule());
         bind(Integer.class).annotatedWith(Names.named("maxTicks"))
-            .toInstance(new Integer(3));
+                .toInstance(new Integer(3));
         bind(String.class).annotatedWith(FromAddress.class)
-            .toInstance(SLSPEEK_GMAIL_COM);
+                .toInstance(SLSPEEK_GMAIL_COM);
         bind(IMail.class).toInstance(mock(IMail.class));
         bind(ImageHelper.class).to(ImageHelperImpl.class);
         install(new TaskActionsModule());
         install(Modules.override(new TaskModule()).with(new AbstractModule() {
-                @Override
-                protected void configure() {
-                    bind(ImageSpecs.class)
+            @Override
+            protected void configure() {
+                bind(ImageSpecs.class)
                         .annotatedWith(Names.named("defaultImageSpecs"))
                         .toInstance(new ImageSpecs(2, 1, 2, 1));
-                }
-            }));
+            }
+        }));
         install(new MainActionModule());
         install(new TaskQueueDispatchDirectModule());
         install(new LocalControllerModule());
         bind(Integer.class).annotatedWith(Names.named("maxCommandDelete"))
-            .toInstance(3);
+                .toInstance(3);
 
         final String db = System.getProperty("db",
                 System.getProperty("user.dir") +
-                "/../peer/src/test/resources/photos.db");
+                        "/../peer/src/test/resources/photos.db");
         install(new PeerModule(db, System.getProperty("user.dir"), 4444));
         install(new PeerActionsModule());
     }

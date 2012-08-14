@@ -21,15 +21,14 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.google.common.collect.ImmutableList;
-import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.name.Names;
 import com.googlecode.fspotcloud.model.jpa.photo.PhotoEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
@@ -42,16 +41,19 @@ import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.peer.TagRemovedFromPeer;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.Date;
-import java.util.List;
-import java.util.TreeSet;
-import javax.inject.Inject;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+import java.util.Date;
+import java.util.List;
+import java.util.TreeSet;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 /**
@@ -94,50 +96,50 @@ public class RemoveTagsFromPeerHandlerTest {
 
     @Test
     public void testExecute(TaskQueueDispatch dispatchAsync, TagDao tagManager)
-        throws Exception {
+            throws Exception {
         when(tagManager.find("1")).thenReturn(tag);
         when(tagManager.find("2")).thenReturn(tag2);
         System.out.println("execute");
 
         RemoveTagsDeletedFromPeerAction action = new RemoveTagsDeletedFromPeerAction(newArrayList(
-                    new TagRemovedFromPeer("2"),
-                    new TagRemovedFromPeer("1")));
+                new TagRemovedFromPeer("2"),
+                new TagRemovedFromPeer("1")));
         VoidResult expResult = new VoidResult();
         VoidResult result = instance.execute(action, null);
         assertEquals(expResult, result);
         verify(tagManager).find("2");
         verify(tagManager).deleteByKey("2");
         verify(dispatchAsync)
-            .execute(new RemoveTagsDeletedFromPeerAction(newArrayList(
-                    new TagRemovedFromPeer("1"))));
+                .execute(new RemoveTagsDeletedFromPeerAction(newArrayList(
+                        new TagRemovedFromPeer("1"))));
         verify(dispatchAsync)
-            .execute(new RemovePhotosFromTagAction("2", newArrayList(ID_A, ID_B)));
+                .execute(new RemovePhotosFromTagAction("2", newArrayList(ID_A, ID_B)));
         verifyNoMoreInteractions(tagManager, dispatchAsync);
     }
 
     @Test
     public void testExecuteNoRecursion(TaskQueueDispatch dispatchAsync,
-        TagDao tagManager) throws Exception {
+                                       TagDao tagManager) throws Exception {
         when(tagManager.find("1")).thenReturn(tag);
         when(tagManager.find("2")).thenReturn(tag2);
         System.out.println("execute");
 
         RemoveTagsDeletedFromPeerAction action = new RemoveTagsDeletedFromPeerAction(newArrayList(
-                    new TagRemovedFromPeer("2")));
+                new TagRemovedFromPeer("2")));
         VoidResult expResult = new VoidResult();
         VoidResult result = instance.execute(action, null);
         assertEquals(expResult, result);
         verify(tagManager).find("2");
         verify(tagManager).deleteByKey("2");
         verify(dispatchAsync)
-            .execute(new RemovePhotosFromTagAction("2", newArrayList(ID_A, ID_B)));
+                .execute(new RemovePhotosFromTagAction("2", newArrayList(ID_A, ID_B)));
         verifyNoMoreInteractions(tagManager, dispatchAsync);
     }
 
     public static class Module extends JukitoModule {
         protected void configureTest() {
             bind(Integer.class).annotatedWith(Names.named("maxDelete"))
-                .toInstance(new Integer(1));
+                    .toInstance(new Integer(1));
         }
     }
 }

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.inject;
 
 import com.google.inject.AbstractModule;
@@ -32,27 +32,28 @@ import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.admin.integration.FakeHttpRequest;
 import com.googlecode.fspotcloud.server.admin.integration.FakeHttpServletSession;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 public class GaeInjectorTest {
     @Test
     public void testInjector() {
         System.setProperty("appengine.orm.disable.duplicate.emf.exception",
-            "true");
+                "true");
 
         Injector injector = Guice.createInjector(Modules.override(
-                    new GaeTotalModule(10, "FOO_SECRET", "SLS")).with(new AbstractModule() {
-                    @Override
-                    protected void configure() {
-                        bind(HttpSession.class).to(FakeHttpServletSession.class);
+                new GaeTotalModule(10, "FOO_SECRET", "SLS")).with(new AbstractModule() {
+            @Override
+            protected void configure() {
+                bind(HttpSession.class).to(FakeHttpServletSession.class);
 
-                        bind(HttpServletRequest.class).to(FakeHttpRequest.class);
-                    }
-                }));
+                bind(HttpServletRequest.class).to(FakeHttpRequest.class);
+            }
+        }));
 
         AssertJUnit.assertNotNull(injector);
 

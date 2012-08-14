@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.image;
 
 import com.googlecode.fspotcloud.server.model.api.Photo;
@@ -38,6 +38,8 @@ public interface ImageHelper {
     byte[] getImage(Photo photo, Type type);
 
     void saveImage(Photo photo, Type type, byte[] imageData);
-    enum Type {THUMB, NORMAL, FULLSIZE;
+
+    enum Type {
+        THUMB, NORMAL, FULLSIZE;
     }
 }

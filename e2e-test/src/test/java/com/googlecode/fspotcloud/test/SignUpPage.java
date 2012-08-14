@@ -21,17 +21,19 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.test;
 
 import com.googlecode.fspotcloud.client.main.view.SignUpPresenterImpl;
-import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
+
 import javax.inject.Inject;
+
+import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -47,7 +49,7 @@ public class SignUpPage {
     }
 
     public void fillForm(String email, String credentials)
-        throws InterruptedException {
+            throws InterruptedException {
         selenium.type("id=gwt-debug-password", credentials);
         selenium.type("id=gwt-debug-password-again", credentials);
         selenium.type("id=gwt-debug-email", email);
@@ -73,6 +75,6 @@ public class SignUpPage {
 
     public void verifyError() {
         assertEquals(SignUpPresenterImpl.AN_ERROR_PROHIBITED_YOUR_SIGN_UP,
-            getStatusText());
+                getStatusText());
     }
 }

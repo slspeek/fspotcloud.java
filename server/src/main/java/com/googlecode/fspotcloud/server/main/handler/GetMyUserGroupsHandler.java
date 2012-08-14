@@ -21,10 +21,9 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.main.handler;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
@@ -32,25 +31,29 @@ import com.googlecode.fspotcloud.shared.main.GetMyUserGroupsAction;
 import com.googlecode.fspotcloud.shared.main.GetMyUserGroupsResult;
 import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
 import com.googlecode.fspotcloud.user.UserService;
-import java.util.ArrayList;
-import java.util.List;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+
 public class GetMyUserGroupsHandler extends SimpleActionHandler<GetMyUserGroupsAction, GetMyUserGroupsResult> {
     private final UserGroupDao userGroupDao;
     private final UserService userService;
 
     @Inject
     public GetMyUserGroupsHandler(UserGroupDao userGroupDao,
-        UserService userService) {
+                                  UserService userService) {
         this.userGroupDao = userGroupDao;
         this.userService = userService;
     }
 
     @Override
     public GetMyUserGroupsResult execute(GetMyUserGroupsAction action,
-        ExecutionContext context) throws DispatchException {
+                                         ExecutionContext context) throws DispatchException {
         if (userService.isUserLoggedIn()) {
             String userName = userService.getEmail();
             List<UserGroup> result = userGroupDao.findAllWhere(1000,

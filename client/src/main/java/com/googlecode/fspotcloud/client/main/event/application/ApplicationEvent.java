@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.event.application;
 
 import com.google.inject.Inject;
@@ -36,7 +36,7 @@ public class ApplicationEvent extends UserEvent<ApplicationEvent.Handler> {
 
     @Inject
     public ApplicationEvent(@Assisted
-    ActionDef actionType) {
+                            ActionDef actionType) {
         super(actionType);
     }
 

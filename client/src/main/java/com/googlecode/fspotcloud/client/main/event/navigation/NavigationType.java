@@ -21,29 +21,30 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.event.navigation;
 
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;
 import com.googlecode.fspotcloud.client.view.action.api.ActionDef;
+
 public enum NavigationType implements ActionDef {
     HOME("home", "Home", "Go to the first image of the category",
-        new KeyStroke(KeyCodes.KEY_HOME), null), 
+            new KeyStroke(KeyCodes.KEY_HOME), null),
     PAGE_UP("page-up", "Page up", "Go one page back",
-        new KeyStroke(KeyCodes.KEY_PAGEUP), null), 
+            new KeyStroke(KeyCodes.KEY_PAGEUP), null),
     ROW_UP("row-up", "Row up", "Go one row back",
-        new KeyStroke(KeyCodes.KEY_UP), null), 
+            new KeyStroke(KeyCodes.KEY_UP), null),
     BACK("back", "Back", "Previous image in this category",
-        new KeyStroke(KeyCodes.KEY_LEFT), null), 
+            new KeyStroke(KeyCodes.KEY_LEFT), null),
     NEXT("next", "Next", "Next image in this category",
-        new KeyStroke(KeyCodes.KEY_RIGHT), null), 
+            new KeyStroke(KeyCodes.KEY_RIGHT), null),
     ROW_DOWN("row-down", "Row down", "Go one row down",
-        new KeyStroke(KeyCodes.KEY_DOWN), null), 
+            new KeyStroke(KeyCodes.KEY_DOWN), null),
     PAGE_DOWN("page-down", "Page down", "Go one page forward",
-        new KeyStroke(KeyCodes.KEY_PAGEDOWN), null), 
+            new KeyStroke(KeyCodes.KEY_PAGEDOWN), null),
     END("end", "End", "Go to the last image of the category",
-        new KeyStroke(KeyCodes.KEY_END), null);
+            new KeyStroke(KeyCodes.KEY_END), null);
     private final KeyStroke key;
     private final KeyStroke alternateKey;
     private final String caption;
@@ -51,7 +52,7 @@ public enum NavigationType implements ActionDef {
     private final String description;
 
     private NavigationType(String id, String caption, String description,
-        KeyStroke key, KeyStroke alternateKey) {
+                           KeyStroke key, KeyStroke alternateKey) {
         this.key = key;
         this.alternateKey = alternateKey;
         this.caption = caption;

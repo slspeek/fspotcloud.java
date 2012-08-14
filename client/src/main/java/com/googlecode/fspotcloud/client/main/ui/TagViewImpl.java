@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -41,17 +41,18 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.googlecode.fspotcloud.client.main.view.api.*;
+
 import java.util.logging.Logger;
 
 
 public class TagViewImpl extends Composite implements TagView,
-    MouseOverHandler,
-    MouseOutHandler {
+        MouseOverHandler,
+        MouseOutHandler {
     private static final int TREE_VIEW_WIDTH_PCT = 22;
     private static final int IMAGE_PANEL_WIDTH_PCT = 100 - TREE_VIEW_WIDTH_PCT;
     private static final int BUTTON_PANEL_HEIGHT_PCT = 6;
     private static final int IMAGEPANEL_HEIGHT_PCT = 100 -
-        BUTTON_PANEL_HEIGHT_PCT;
+            BUTTON_PANEL_HEIGHT_PCT;
     private static final Logger log = Logger.getLogger(TagViewImpl.class.getName());
     private static TagViewImplUiBinder uiBinder = GWT.create(TagViewImplUiBinder.class);
     static int ID;
@@ -71,9 +72,9 @@ public class TagViewImpl extends Composite implements TagView,
 
     @Inject
     public TagViewImpl(TreeView treeView,
-        @Named("Main")
-    ButtonPanelView buttonPanelView, ImageRasterView imageRasterView,
-        TimerInterface timer) {
+                       @Named("Main")
+                       ButtonPanelView buttonPanelView, ImageRasterView imageRasterView,
+                       TimerInterface timer) {
         this.timer = timer;
         this.treeView = treeView;
         this.buttonPanelView = buttonPanelView;
@@ -101,20 +102,20 @@ public class TagViewImpl extends Composite implements TagView,
     public void animateControlsIn(int duration) {
         cancelHiding();
         mainPanel.setWidgetBottomHeight(buttonPanelView, 0, Unit.CM,
-            BUTTON_PANEL_HEIGHT_PCT, Unit.PCT);
+                BUTTON_PANEL_HEIGHT_PCT, Unit.PCT);
         mainPanel.setWidgetTopHeight(imageRasterView, 0, Unit.CM,
-            IMAGEPANEL_HEIGHT_PCT, Unit.PCT);
+                IMAGEPANEL_HEIGHT_PCT, Unit.PCT);
         mainPanel.setWidgetRightWidth(imageRasterView, 0, Unit.CM,
-            IMAGE_PANEL_WIDTH_PCT, Unit.PCT);
+                IMAGE_PANEL_WIDTH_PCT, Unit.PCT);
         mainPanel.setWidgetLeftWidth(treeView, 0, Unit.PCT,
-            TREE_VIEW_WIDTH_PCT, Unit.PCT);
+                TREE_VIEW_WIDTH_PCT, Unit.PCT);
         mainPanel.setWidgetTopHeight(treeView, 0, Unit.PCT,
-            IMAGEPANEL_HEIGHT_PCT, Unit.PCT);
+                IMAGEPANEL_HEIGHT_PCT, Unit.PCT);
 
         mainPanel.setWidgetBottomHeight(horizontalFocusPanel, 0, Unit.PCT, 0,
-            Unit.PCT);
+                Unit.PCT);
         mainPanel.setWidgetLeftWidth(verticalFocusPanel, 0, Unit.PCT, 0,
-            Unit.PCT);
+                Unit.PCT);
 
         mainPanel.animate(duration);
     }
@@ -128,9 +129,9 @@ public class TagViewImpl extends Composite implements TagView,
         mainPanel.setWidgetTopHeight(treeView, 0, Unit.PCT, 100, Unit.PCT);
 
         mainPanel.setWidgetBottomHeight(horizontalFocusPanel, 0, Unit.PCT, 10,
-            Unit.PCT);
+                Unit.PCT);
         mainPanel.setWidgetLeftWidth(verticalFocusPanel, 0, Unit.PCT, 10,
-            Unit.PCT);
+                Unit.PCT);
 
         mainPanel.animate(duration);
     }
@@ -138,11 +139,11 @@ public class TagViewImpl extends Composite implements TagView,
     @Override
     public void hideLabelLater(final int duration) {
         timer.setRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    animateControlsOut(1000);
-                }
-            });
+            @Override
+            public void run() {
+                animateControlsOut(1000);
+            }
+        });
         timer.schedule(duration);
     }
 

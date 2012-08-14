@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main;
 
 import com.google.gwt.activity.shared.ActivityManager;
@@ -42,6 +42,7 @@ import com.googlecode.fspotcloud.client.main.ui.UserPagesResources;
 import com.googlecode.fspotcloud.client.main.view.MainWindowActivityMapper;
 import com.googlecode.fspotcloud.client.place.BasePlace;
 import com.googlecode.fspotcloud.client.place.MainPlaceHistoryMapper;
+
 import java.util.logging.Logger;
 
 
@@ -58,11 +59,11 @@ public class MVPSetup {
 
     @Inject
     public MVPSetup(MainWindowActivityMapper activityMapper, EventBus eventBus,
-        PlaceController placeController,
-        IGlobalShortcutController keyboardHandler,
-        EventHandlersSetup eventSetup, Resources resources,
-        AdminResources adminResources, ClientLoginManager clientLoginManager,
-        UserPagesResources userPagesResources) {
+                    PlaceController placeController,
+                    IGlobalShortcutController keyboardHandler,
+                    EventHandlersSetup eventSetup, Resources resources,
+                    AdminResources adminResources, ClientLoginManager clientLoginManager,
+                    UserPagesResources userPagesResources) {
         this.activityMapper = activityMapper;
         this.eventBus = eventBus;
         this.placeController = placeController;

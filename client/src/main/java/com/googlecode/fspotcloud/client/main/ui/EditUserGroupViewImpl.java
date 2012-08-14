@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -32,11 +32,12 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.EditUserGroupView;
+
 import java.util.logging.Logger;
 
 
 public class EditUserGroupViewImpl extends Composite
-    implements EditUserGroupView {
+        implements EditUserGroupView {
     private static final Logger log = Logger.getLogger(EditUserGroupViewImpl.class.getName());
     private static EditUserGroupBinder uiBinder = GWT.create(EditUserGroupBinder.class);
     private EditUserGroupPresenter presenter;

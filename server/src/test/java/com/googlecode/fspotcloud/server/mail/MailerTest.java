@@ -21,15 +21,16 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.mail;
 
-import java.util.logging.Logger;
-import javax.inject.Inject;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+import java.util.logging.Logger;
 
 
 @RunWith(JukitoRunner.class)
@@ -46,9 +47,9 @@ public class MailerTest {
     public static class Module extends JukitoModule {
         protected void configureTest() {
             bind(String.class).annotatedWith(FromAddress.class)
-                .toInstance("slspeek@gmail.com");
+                    .toInstance("slspeek@gmail.com");
             bind(String.class).annotatedWith(SMTPServer.class)
-                .toInstance("smtp.xs4all.nl");
+                    .toInstance("smtp.xs4all.nl");
         }
     }
 }

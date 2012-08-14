@@ -21,23 +21,26 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
 import com.googlecode.fspotcloud.user.UserService;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.shared.DispatchException;
 import org.jukito.JukitoRunner;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
 import static org.mockito.Mockito.when;
+
 @RunWith(JukitoRunner.class)
 public class GetUserInfoHandlerTest {
     @Inject
@@ -45,7 +48,7 @@ public class GetUserInfoHandlerTest {
 
     @Test
     public void executeUserLoggedOn(UserService service)
-        throws DispatchException {
+            throws DispatchException {
         when(service.isUserLoggedIn()).thenReturn(Boolean.TRUE);
         when(service.isUserAdmin()).thenReturn(Boolean.FALSE);
         when(service.getThirdPartyLoginURL()).thenReturn("login_url");
@@ -59,7 +62,7 @@ public class GetUserInfoHandlerTest {
 
     @Test
     public void executeNoUserLoggedOn(UserService service)
-        throws DispatchException {
+            throws DispatchException {
         when(service.isUserLoggedIn()).thenReturn(Boolean.FALSE);
         when(service.isUserAdmin()).thenReturn(Boolean.FALSE);
         when(service.getThirdPartyLoginURL()).thenReturn("login_url");

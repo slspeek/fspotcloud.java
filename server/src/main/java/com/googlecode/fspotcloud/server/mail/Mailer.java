@@ -21,17 +21,17 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.mail;
 
-import java.util.Properties;
-import java.util.logging.Logger;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.inject.Inject;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.mail.util.ByteArrayDataSource;
+import java.util.Properties;
+import java.util.logging.Logger;
 
 
 public class Mailer implements IMail {
@@ -40,7 +40,7 @@ public class Mailer implements IMail {
 
     @Inject
     public Mailer(@FromAddress
-    String fromAddress, @SMTPServer
+                  String fromAddress, @SMTPServer
     String smtpServer) {
         this.fromAddress = fromAddress;
         this.smtpServer = smtpServer;
@@ -57,7 +57,7 @@ public class Mailer implements IMail {
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(fromAddress));
             msg.addRecipient(Message.RecipientType.TO,
-                new InternetAddress(recipient));
+                    new InternetAddress(recipient));
             msg.setSubject(subject);
             msg.setText(body);
             Transport.send(msg);
@@ -72,7 +72,7 @@ public class Mailer implements IMail {
 
     @Override
     public void send(String recipient, String subject, String body,
-        byte[] attachment) {
+                     byte[] attachment) {
         Properties props = new Properties();
         props.setProperty("mail.smtp.host", smtpServer);
 
@@ -82,7 +82,7 @@ public class Mailer implements IMail {
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(fromAddress));
             msg.addRecipient(Message.RecipientType.TO,
-                new InternetAddress(recipient));
+                    new InternetAddress(recipient));
             msg.setSubject(subject);
 
             // create the message part

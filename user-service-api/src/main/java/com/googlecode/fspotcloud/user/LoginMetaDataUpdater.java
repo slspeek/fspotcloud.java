@@ -21,16 +21,19 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.user;
 
-import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
-import java.util.HashSet;
-import java.util.logging.Logger;
+
 import javax.inject.Inject;
 import javax.inject.Provider;
+import java.util.HashSet;
+import java.util.logging.Logger;
+
+import static com.google.common.collect.Sets.newHashSet;
+
 public class LoginMetaDataUpdater implements ILoginMetaDataUpdater {
     @Inject
     Logger log;

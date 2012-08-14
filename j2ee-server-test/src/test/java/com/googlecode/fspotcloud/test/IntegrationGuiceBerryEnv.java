@@ -21,11 +21,12 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.GuiceBerryEnvMain;
 import com.google.inject.name.Names;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -38,7 +39,7 @@ public class IntegrationGuiceBerryEnv extends SeleniumGuiceBerryEnv {
         super.configure();
         bind(GuiceBerryEnvMain.class).to(ServerStarter.class);
         bind(String.class).annotatedWith(Names.named("baseUrl"))
-            .toInstance("http://localhost:8000");
+                .toInstance("http://localhost:8000");
         bind(ILogin.class).to(RegularLoginBot.class);
     }
 

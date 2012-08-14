@@ -21,11 +21,12 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.collect.ComparisonChain;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -89,13 +90,13 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
         }
 
         if ((this.description == null) ? (other.description != null)
-                                           : !this.description.equals(
-                    other.description)) {
+                : !this.description.equals(
+                other.description)) {
             return false;
         }
 
         if ((this.exifData == null) ? (other.exifData != null)
-                                        : !this.exifData.equals(other.exifData)) {
+                : !this.exifData.equals(other.exifData)) {
             return false;
         }
 
@@ -116,9 +117,9 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
         int hash = 3;
         hash = 47 * hash + (this.id != null ? this.id.hashCode() : 0);
         hash = 47 * hash +
-            (this.description != null ? this.description.hashCode() : 0);
+                (this.description != null ? this.description.hashCode() : 0);
         hash = 47 * hash +
-            (this.exifData != null ? this.exifData.hashCode() : 0);
+                (this.exifData != null ? this.exifData.hashCode() : 0);
         hash = 47 * hash + (this.date != null ? this.date.hashCode() : 0);
         hash = 47 * hash + this.version;
 
@@ -127,7 +128,7 @@ public class PhotoInfo implements Serializable, Comparable<PhotoInfo> {
 
     public int compareTo(PhotoInfo o) {
         return ComparisonChain.start().compare(date, o.date).compare(id, o.id)
-                              .result();
+                .result();
     }
 
     public String toString() {

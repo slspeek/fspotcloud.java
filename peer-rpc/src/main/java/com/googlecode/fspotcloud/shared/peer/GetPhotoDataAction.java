@@ -21,18 +21,19 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
+import net.customware.gwt.dispatch.shared.Action;
+
 import java.io.Serializable;
 import java.util.List;
-import net.customware.gwt.dispatch.shared.Action;
 
 
 public class GetPhotoDataAction extends BusinessBase implements Action<PhotoDataResult>,
-    Serializable {
+        Serializable {
     private static final long serialVersionUID = 3730836943695700527L;
     @BusinessKey
     private final ImageSpecs imageSpecs;
@@ -55,6 +56,6 @@ public class GetPhotoDataAction extends BusinessBase implements Action<PhotoData
 
     public String toString() {
         return Objects.toStringHelper(this).add("imageKeys", imageKeys)
-                      .toString();
+                .toString();
     }
 }

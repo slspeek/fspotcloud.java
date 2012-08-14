@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa.gae.user;
 
 import com.googlecode.fspotcloud.model.jpa.user.UserManagerBase;

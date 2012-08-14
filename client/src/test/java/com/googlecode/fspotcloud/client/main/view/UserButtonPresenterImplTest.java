@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.resources.client.ImageResource;
@@ -61,25 +61,25 @@ public class UserButtonPresenterImplTest extends TestCase {
         testConstructor();
         context.checking(new Expectations() {
 
-                {
-                    oneOf(viewFactory).get(action);
-                    will(returnValue(view));
-                    oneOf(action).getIcon();
-                    will(returnValue(null));
-                    exactly(2).of(action).getCaption();
-                    will(returnValue("Ape"));
-                    oneOf(view).setCaption("Ape");
-                    oneOf(view).setTooltip("Ape ( A )");
-                    oneOf(view).setPresenter(presenter);
-                    oneOf(action).getId();
-                    will(returnValue("ID"));
-                    oneOf(action).getKey();
-                    will(returnValue(new KeyStroke('A')));
-                    oneOf(action).getAlternateKey();
-                    will(returnValue(null));
-                    oneOf(view).setDebugId("ID");
-                }
-            });
+            {
+                oneOf(viewFactory).get(action);
+                will(returnValue(view));
+                oneOf(action).getIcon();
+                will(returnValue(null));
+                exactly(2).of(action).getCaption();
+                will(returnValue("Ape"));
+                oneOf(view).setCaption("Ape");
+                oneOf(view).setTooltip("Ape ( A )");
+                oneOf(view).setPresenter(presenter);
+                oneOf(action).getId();
+                will(returnValue("ID"));
+                oneOf(action).getKey();
+                will(returnValue(new KeyStroke('A')));
+                oneOf(action).getAlternateKey();
+                will(returnValue(null));
+                oneOf(view).setDebugId("ID");
+            }
+        });
         presenter.init();
         context.assertIsSatisfied();
     }
@@ -88,24 +88,24 @@ public class UserButtonPresenterImplTest extends TestCase {
         testConstructor();
         context.checking(new Expectations() {
 
-                {
-                    oneOf(viewFactory).get(action);
-                    will(returnValue(view));
-                    oneOf(action).getIcon();
-                    will(returnValue(fakeImage));
-                    oneOf(view).setTooltip("Ape ( A )");
-                    exactly(2).of(action).getCaption();
-                    will(returnValue("Ape"));
-                    oneOf(view).setPresenter(presenter);
-                    oneOf(action).getId();
-                    will(returnValue("ID"));
-                    oneOf(action).getKey();
-                    will(returnValue(new KeyStroke('A')));
-                    oneOf(action).getAlternateKey();
-                    will(returnValue(null));
-                    oneOf(view).setDebugId("ID");
-                }
-            });
+            {
+                oneOf(viewFactory).get(action);
+                will(returnValue(view));
+                oneOf(action).getIcon();
+                will(returnValue(fakeImage));
+                oneOf(view).setTooltip("Ape ( A )");
+                exactly(2).of(action).getCaption();
+                will(returnValue("Ape"));
+                oneOf(view).setPresenter(presenter);
+                oneOf(action).getId();
+                will(returnValue("ID"));
+                oneOf(action).getKey();
+                will(returnValue(new KeyStroke('A')));
+                oneOf(action).getAlternateKey();
+                will(returnValue(null));
+                oneOf(view).setDebugId("ID");
+            }
+        });
         presenter.init();
         context.assertIsSatisfied();
     }
@@ -114,10 +114,10 @@ public class UserButtonPresenterImplTest extends TestCase {
         testConstructor();
         context.checking(new Expectations() {
 
-                {
-                    oneOf(action).run();
-                }
-            });
+            {
+                oneOf(action).run();
+            }
+        });
         presenter.buttonClicked();
         context.assertIsSatisfied();
     }

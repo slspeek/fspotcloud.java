@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.peer.inject;
 
 import com.googlecode.fspotcloud.peer.handlers.*;
@@ -36,9 +36,9 @@ public class PeerActionsModule extends ActionHandlerModule {
         bindHandler(GetTagDataAction.class, GetTagDataHandler.class);
         bindHandler(GetPhotoDataAction.class, GetPhotoDataHandler.class);
         bindHandler(GetTagUpdateInstructionsAction.class,
-            GetTagUpdateInstructionsHandler.class);
+                GetTagUpdateInstructionsHandler.class);
         bindHandler(GetPeerUpdateInstructionsAction.class,
-            GetPeerUpdateInstructionsHandler.class);
+                GetPeerUpdateInstructionsHandler.class);
         bindHandler(GetFullsizePhotoAction.class, GetFullsizePhotoHandler.class);
     }
 }

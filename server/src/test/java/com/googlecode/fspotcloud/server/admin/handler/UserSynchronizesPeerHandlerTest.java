@@ -21,14 +21,13 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.admin.handler;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.control.callback.PeerMetaDataCallback;
@@ -40,14 +39,18 @@ import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetPeerMetaDataAction;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.List;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+
+import javax.inject.Inject;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
+
 @RunWith(JukitoRunner.class)
 public class UserSynchronizesPeerHandlerTest {
     @Inject
@@ -57,11 +60,11 @@ public class UserSynchronizesPeerHandlerTest {
 
     @Test
     public void testNormalExecute(ControllerDispatchAsync dispatch,
-        IAdminPermission adminPermission, TaskQueueDispatch taskQueueDispatch,
-        TagDao tagManager, ArgumentCaptor<GetPeerMetaDataAction> actionCaptor,
-        ArgumentCaptor<PeerMetaDataCallback> callbackCaptor,
-        ArgumentCaptor<ImportManyTagsPhotosAction> taskActionCaptor)
-        throws Exception {
+                                  IAdminPermission adminPermission, TaskQueueDispatch taskQueueDispatch,
+                                  TagDao tagManager, ArgumentCaptor<GetPeerMetaDataAction> actionCaptor,
+                                  ArgumentCaptor<PeerMetaDataCallback> callbackCaptor,
+                                  ArgumentCaptor<ImportManyTagsPhotosAction> taskActionCaptor)
+            throws Exception {
         List<Tag> importedTags = newArrayList();
         TagEntity tag = new TagEntity();
         tag.setId(TAG_ID);
@@ -71,7 +74,7 @@ public class UserSynchronizesPeerHandlerTest {
         VoidResult result = handler.execute(action, null);
 
         verify(dispatch)
-            .execute(actionCaptor.capture(), callbackCaptor.capture());
+                .execute(actionCaptor.capture(), callbackCaptor.capture());
 
         verify(taskQueueDispatch).execute(taskActionCaptor.capture());
 
@@ -81,10 +84,10 @@ public class UserSynchronizesPeerHandlerTest {
 
     @Test(expected = SecurityException.class)
     public void testUnAuthorizedExecute(ControllerDispatchAsync dispatch,
-        IAdminPermission adminPermission, TaskQueueDispatch taskQueueDispatch,
-        TagDao tagManager) throws Exception {
+                                        IAdminPermission adminPermission, TaskQueueDispatch taskQueueDispatch,
+                                        TagDao tagManager) throws Exception {
         doThrow(new SecurityException()).when(adminPermission)
-            .checkAdminPermission();
+                .checkAdminPermission();
 
         VoidResult result = handler.execute(action, null);
     }

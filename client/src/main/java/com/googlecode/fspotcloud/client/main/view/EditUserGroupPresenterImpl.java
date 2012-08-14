@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -37,8 +37,9 @@ import com.googlecode.fspotcloud.shared.main.GetUserGroupAction;
 import com.googlecode.fspotcloud.shared.main.GetUserGroupResult;
 import com.googlecode.fspotcloud.shared.main.SaveUserGroupAction;
 import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
-import java.util.logging.Logger;
 import net.customware.gwt.dispatch.client.DispatchAsync;
+
+import java.util.logging.Logger;
 
 
 public class EditUserGroupPresenterImpl extends AbstractActivity implements EditUserGroupView.EditUserGroupPresenter {
@@ -50,7 +51,7 @@ public class EditUserGroupPresenterImpl extends AbstractActivity implements Edit
 
     @Inject
     public EditUserGroupPresenterImpl(EditUserGroupView view,
-        DispatchAsync dispatch, PlaceGoTo placeGoTo) {
+                                      DispatchAsync dispatch, PlaceGoTo placeGoTo) {
         this.view = view;
         this.dispatch = dispatch;
         this.placeGoTo = placeGoTo;
@@ -69,39 +70,39 @@ public class EditUserGroupPresenterImpl extends AbstractActivity implements Edit
         userGroupInfo.setDescription(view.getDescription());
         userGroupInfo.setPublic(view.getIsPublic());
         dispatch.execute(new SaveUserGroupAction(userGroupInfo),
-            new AsyncCallback<VoidResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    //To change body of implemented methods use File | Settings | File Templates.
-                }
+                new AsyncCallback<VoidResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        //To change body of implemented methods use File | Settings | File Templates.
+                    }
 
-                @Override
-                public void onSuccess(VoidResult result) {
-                    log.info(
-                        "Successfull return from save user group server call");
-                    placeGoTo.goTo(new MyUserGroupsPlace());
-                }
-            });
+                    @Override
+                    public void onSuccess(VoidResult result) {
+                        log.info(
+                                "Successfull return from save user group server call");
+                        placeGoTo.goTo(new MyUserGroupsPlace());
+                    }
+                });
     }
 
     @Override
     public void setId(Long id) {
         log.info("Set id: " + id);
         dispatch.execute(new GetUserGroupAction(id),
-            new AsyncCallback<GetUserGroupResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    //To change body of implemented methods use File | Settings | File Templates.
-                }
+                new AsyncCallback<GetUserGroupResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        //To change body of implemented methods use File | Settings | File Templates.
+                    }
 
-                @Override
-                public void onSuccess(GetUserGroupResult result) {
-                    userGroupInfo = result.getInfo();
-                    view.setName(result.getInfo().getName());
-                    view.setDescription(result.getInfo().getDescription());
-                    view.setIsPublic(result.getInfo().isPublic());
-                }
-            });
+                    @Override
+                    public void onSuccess(GetUserGroupResult result) {
+                        userGroupInfo = result.getInfo();
+                        view.setName(result.getInfo().getName());
+                        view.setDescription(result.getInfo().getDescription());
+                        view.setIsPublic(result.getInfo().isPublic());
+                    }
+                });
     }
 
     @Override

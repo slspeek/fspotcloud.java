@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.event;
 
 import com.google.gwt.inject.client.AbstractGinModule;
@@ -41,15 +41,15 @@ public class EventModule extends AbstractGinModule {
     @Override
     protected void configure() {
         bind(AbstractActionMap.class).annotatedWith(Names.named("application"))
-            .to(ApplicationMapBuilder.class);
+                .to(ApplicationMapBuilder.class);
         bind(AbstractActionMap.class).annotatedWith(Names.named("about"))
-            .to(AboutMapBuilder.class);
+                .to(AboutMapBuilder.class);
         bind(AbstractActionMap.class).annotatedWith(Names.named("raster"))
-            .to(RasterMapBuilder.class);
+                .to(RasterMapBuilder.class);
         bind(AbstractActionMap.class).annotatedWith(Names.named("navigation"))
-            .to(NavigationMapBuilder.class);
+                .to(NavigationMapBuilder.class);
         bind(AbstractActionMap.class).annotatedWith(Names.named("slideshow"))
-            .to(SlideshowMapBuilder.class);
+                .to(SlideshowMapBuilder.class);
         bind(ActionFamily.class).to(DefaultActionFamily.class);
 
         install(new GinFactoryModuleBuilder().implement(UserAction.class,

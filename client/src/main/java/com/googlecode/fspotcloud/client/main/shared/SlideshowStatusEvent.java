@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.shared;
 
 import com.google.gwt.event.shared.EventHandler;
@@ -29,7 +29,7 @@ import com.google.gwt.event.shared.GwtEvent;
 
 
 public class SlideshowStatusEvent extends GwtEvent<SlideshowStatusEvent.Handler>
-    implements SlideshowStatus {
+        implements SlideshowStatus {
     public static final Type<SlideshowStatusEvent.Handler> TYPE = new Type<SlideshowStatusEvent.Handler>();
     private final float delay;
     private final boolean running;

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.user.inject;
 
 import javax.inject.Inject;
@@ -36,7 +36,7 @@ public class ServerAddressProvider implements Provider<String> {
     public String get() {
         HttpServletRequest request = requestProvider.get();
         String result = request.getScheme() + "://" + request.getServerName() +
-            ":" + request.getServerPort() + request.getContextPath();
+                ":" + request.getServerPort() + request.getContextPath();
 
         return result;
     }

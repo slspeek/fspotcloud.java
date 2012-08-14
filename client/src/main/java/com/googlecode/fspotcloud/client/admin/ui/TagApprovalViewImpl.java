@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.admin.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -40,6 +40,7 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.admin.view.api.TagApprovalView;
 import com.googlecode.fspotcloud.shared.main.UserGroupInfo;
+
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -76,19 +77,19 @@ public class TagApprovalViewImpl extends Composite implements TagApprovalView {
         // Create name column.
         TextColumn<UserGroupInfo> column;
         column = new TextColumn<UserGroupInfo>() {
-                    @Override
-                    public String getValue(UserGroupInfo info) {
-                        return info.getName();
-                    }
-                };
+            @Override
+            public String getValue(UserGroupInfo info) {
+                return info.getName();
+            }
+        };
         approved.addColumn(column, "Name");
         // Create address column.
         column = new TextColumn<UserGroupInfo>() {
-                    @Override
-                    public String getValue(UserGroupInfo info) {
-                        return info.getDescription();
-                    }
-                };
+            @Override
+            public String getValue(UserGroupInfo info) {
+                return info.getDescription();
+            }
+        };
         // Add the columns.
         approved.addColumn(column, "Description");
         // Create a data provider.
@@ -98,19 +99,19 @@ public class TagApprovalViewImpl extends Composite implements TagApprovalView {
         approvedDataProvider.addDataDisplay(approved);
         approved.setSelectionModel(approvedSelectionModel);
         column = new TextColumn<UserGroupInfo>() {
-                    @Override
-                    public String getValue(UserGroupInfo info) {
-                        return info.getName();
-                    }
-                };
+            @Override
+            public String getValue(UserGroupInfo info) {
+                return info.getName();
+            }
+        };
         other.addColumn(column, "Name");
         // Create address column.
         column = new TextColumn<UserGroupInfo>() {
-                    @Override
-                    public String getValue(UserGroupInfo info) {
-                        return info.getDescription();
-                    }
-                };
+            @Override
+            public String getValue(UserGroupInfo info) {
+                return info.getDescription();
+            }
+        };
         // Add the columns.
         other.addColumn(column, "Description");
         // Create a data provider.
@@ -164,7 +165,7 @@ public class TagApprovalViewImpl extends Composite implements TagApprovalView {
     }
 
     private void setGroups(Set<UserGroupInfo> approvedGroups,
-        ListDataProvider<UserGroupInfo> provider) {
+                           ListDataProvider<UserGroupInfo> provider) {
         List<UserGroupInfo> list = provider.getList();
         list.clear();
 

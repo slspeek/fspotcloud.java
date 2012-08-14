@@ -53,7 +53,7 @@ test {
     //include 'com/googlecode/fspotcloud/server/admin/integration/AuthenticationIntegrationTest.class'
     testLogging.showStandardStreams = true
     //ignoreFailures = true
-     //exclude 'com/googlecode/fspotcloud/server/admin/integration/PeerServerIntegrationHardCasesTest.class'
+    //exclude 'com/googlecode/fspotcloud/server/admin/integration/PeerServerIntegrationHardCasesTest.class'
 }
 
 

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -31,17 +31,20 @@ import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.Result;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
+
 @RunWith(JukitoRunner.class)
 public class LoginPresenterImplTest {
     public static final String SECRET = "Secret";
@@ -57,8 +60,8 @@ public class LoginPresenterImplTest {
 
     @Test
     public void testStart(LoginView loginView, DispatchAsync dispatch,
-        AcceptsOneWidget panel, ArgumentCaptor<AsyncCallback<UserInfo>> captor,
-        ArgumentCaptor<Action> actionCaptor) throws Exception {
+                          AcceptsOneWidget panel, ArgumentCaptor<AsyncCallback<UserInfo>> captor,
+                          ArgumentCaptor<Action> actionCaptor) throws Exception {
         presenter.start(panel, null);
         verify(dispatch).execute(actionCaptor.capture(), captor.capture());
 
@@ -72,8 +75,8 @@ public class LoginPresenterImplTest {
 
     @Test
     public void testOnUserFieldKeyUp(LoginView loginView,
-        DispatchAsync dispatch, ArgumentCaptor<AsyncCallback<UserInfo>> captor,
-        ArgumentCaptor<Action> actionCaptor) throws Exception {
+                                     DispatchAsync dispatch, ArgumentCaptor<AsyncCallback<UserInfo>> captor,
+                                     ArgumentCaptor<Action> actionCaptor) throws Exception {
         presenter.onUserFieldKeyUp(11);
 
         verifyNoMoreInteractions(loginView, dispatch);
@@ -84,16 +87,16 @@ public class LoginPresenterImplTest {
 
     @Test
     public void testOnPasswordFieldKeyUp(LoginView loginView,
-        DispatchAsync dispatch, ArgumentCaptor<AsyncCallback<?>> captor,
-        ArgumentCaptor<Action> actionCaptor) throws Exception {
+                                         DispatchAsync dispatch, ArgumentCaptor<AsyncCallback<?>> captor,
+                                         ArgumentCaptor<Action> actionCaptor) throws Exception {
         presenter.onPasswordFieldKeyUp(11);
         verifyNoMoreInteractions(loginView, dispatch);
     }
 
     @Test
     public void testSubmitError(LoginView loginView, DispatchAsync dispatch,
-        ArgumentCaptor<AsyncCallback<?extends Result>> captor,
-        ArgumentCaptor<Action> actionCaptor) throws Exception {
+                                ArgumentCaptor<AsyncCallback<? extends Result>> captor,
+                                ArgumentCaptor<Action> actionCaptor) throws Exception {
         presenter.onPasswordFieldKeyUp(13);
 
         verify(dispatch).execute(actionCaptor.capture(), captor.capture());
@@ -107,7 +110,7 @@ public class LoginPresenterImplTest {
         AsyncCallback<AuthenticationResult> callback = (AsyncCallback<AuthenticationResult>) captor.getValue();
         callback.onFailure(new RuntimeException("Boom"));
         verify(loginView)
-            .setStatusText(LoginPresenterImpl.AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST);
+                .setStatusText(LoginPresenterImpl.AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST);
 
         verifyNoMoreInteractions(loginView, dispatch);
     }
@@ -120,8 +123,8 @@ public class LoginPresenterImplTest {
 
     @Test
     public void testSubmitFailure(LoginView loginView, DispatchAsync dispatch,
-        ArgumentCaptor<AsyncCallback<?extends Result>> captor,
-        ArgumentCaptor<Action> actionCaptor) throws Exception {
+                                  ArgumentCaptor<AsyncCallback<? extends Result>> captor,
+                                  ArgumentCaptor<Action> actionCaptor) throws Exception {
         presenter.onPasswordFieldKeyUp(13);
         verify(dispatch).execute(actionCaptor.capture(), captor.capture());
 
@@ -134,15 +137,15 @@ public class LoginPresenterImplTest {
         AsyncCallback<AuthenticationResult> callback = (AsyncCallback<AuthenticationResult>) captor.getValue();
         callback.onSuccess(new AuthenticationResult(false));
         verify(loginView)
-            .setStatusText(LoginPresenterImpl.NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION);
+                .setStatusText(LoginPresenterImpl.NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION);
 
         verifyNoMoreInteractions(loginView, dispatch);
     }
 
     @Test
     public void testSubmitSuccess(LoginView loginView, DispatchAsync dispatch,
-        ArgumentCaptor<AsyncCallback<?extends Result>> captor,
-        ArgumentCaptor<Action> actionCaptor) throws Exception {
+                                  ArgumentCaptor<AsyncCallback<? extends Result>> captor,
+                                  ArgumentCaptor<Action> actionCaptor) throws Exception {
         presenter.onPasswordFieldKeyUp(13);
         verify(dispatch).execute(actionCaptor.capture(), captor.capture());
 

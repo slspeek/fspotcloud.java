@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
@@ -33,13 +33,14 @@ import com.googlecode.fspotcloud.shared.main.GetTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
 import com.googlecode.fspotcloud.user.UserService;
-import java.util.List;
-import java.util.Set;
-import java.util.logging.Logger;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import javax.inject.Inject;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Logger;
 
 
 public class GetTagTreeHandler extends SimpleActionHandler<GetTagTreeAction, TagTreeResult> {
@@ -51,8 +52,8 @@ public class GetTagTreeHandler extends SimpleActionHandler<GetTagTreeAction, Tag
 
     @Inject
     public GetTagTreeHandler(PeerDatabaseDao peerDatabaseDao,
-        TagDao tagManager, IUserGroupHelper userGroupHelper,
-        UserService userService) {
+                             TagDao tagManager, IUserGroupHelper userGroupHelper,
+                             UserService userService) {
         this.peerDatabaseDao = peerDatabaseDao;
         this.tagManager = tagManager;
         this.userGroupHelper = userGroupHelper;
@@ -61,7 +62,7 @@ public class GetTagTreeHandler extends SimpleActionHandler<GetTagTreeAction, Tag
 
     @Override
     public TagTreeResult execute(GetTagTreeAction action,
-        ExecutionContext context) throws DispatchException {
+                                 ExecutionContext context) throws DispatchException {
         List<TagNode> subTree;
         List<TagNode> fullTree = getImportIssuedTree();
 

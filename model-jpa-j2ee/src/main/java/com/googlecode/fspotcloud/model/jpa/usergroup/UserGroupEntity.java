@@ -21,22 +21,24 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /**
  *
  */
 package com.googlecode.fspotcloud.model.jpa.usergroup;
 
-import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.UserGroup;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import org.hibernate.annotations.GenericGenerator;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import static com.google.common.collect.Sets.newHashSet;
 
 /**
  * DOCUMENT ME!
