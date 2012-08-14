@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -39,11 +39,12 @@ import com.googlecode.fspotcloud.client.main.view.api.ButtonPanelView;
 import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
 import com.googlecode.fspotcloud.client.main.view.api.SingleImageView;
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
+
 import java.util.logging.Logger;
 
 
 public class SingleImageViewImpl extends Composite implements SingleImageView,
-    MouseMoveHandler {
+        MouseMoveHandler {
     private static final Logger log = Logger.getLogger(SingleImageViewImpl.class.getName());
     private static SingleImageViewImplUiBinder uiBinder = GWT.create(SingleImageViewImplUiBinder.class);
     private final ButtonPanelView buttonPanelView;
@@ -55,8 +56,8 @@ public class SingleImageViewImpl extends Composite implements SingleImageView,
 
     @Inject
     public SingleImageViewImpl(ImageRasterView imageRasterView,
-        @Named("Slideshow")
-    ButtonPanelView buttonPanelView, TimerInterface timer) {
+                               @Named("Slideshow")
+                               ButtonPanelView buttonPanelView, TimerInterface timer) {
         this.timer = timer;
         this.buttonPanelView = buttonPanelView;
         this.imageRasterView = imageRasterView;
@@ -88,11 +89,11 @@ public class SingleImageViewImpl extends Composite implements SingleImageView,
     @Override
     public void hideControlsLater(int visibleDuration) {
         timer.setRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    hideControls(1000);
-                }
-            });
+            @Override
+            public void run() {
+                hideControls(1000);
+            }
+        });
         timer.schedule(visibleDuration);
     }
 

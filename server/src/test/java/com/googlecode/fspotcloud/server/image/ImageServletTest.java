@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.image;
 
 import com.meterware.servletunit.ServletRunner;
@@ -30,7 +30,7 @@ import org.junit.Before;
 
 
 public class ImageServletTest extends ServletTestCase {
-    private byte[] THUMB = new byte[] { 1, 2, 3 };
+    private byte[] THUMB = new byte[]{1, 2, 3};
     ServletRunner sr;
 
     public ImageServletTest(String name) {

@@ -21,17 +21,18 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.ImportManyTagsPhotosAction;
 import com.googlecode.fspotcloud.shared.dashboard.UserImportsTagAction;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.Iterator;
-import java.util.logging.Logger;
+
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Iterator;
+import java.util.logging.Logger;
 
 
 public class ImportManyTagsPhotosHandler extends AbstractBatchActionHandler<ImportManyTagsPhotosAction, String> {
@@ -40,15 +41,15 @@ public class ImportManyTagsPhotosHandler extends AbstractBatchActionHandler<Impo
 
     @Inject
     public ImportManyTagsPhotosHandler(TaskQueueDispatch dispatchAsync,
-        @Named("maxTicks")
-    int MAX_DATA_TICKS) {
+                                       @Named("maxTicks")
+                                       int MAX_DATA_TICKS) {
         super(dispatchAsync, MAX_DATA_TICKS);
         this.dispatchAsync = dispatchAsync;
     }
 
     @Override
     public void doWork(AbstractBatchAction<String> action,
-        Iterator<String> workLoad) {
+                       Iterator<String> workLoad) {
         dispatchAsync.execute(new UserImportsTagAction(workLoad.next()));
     }
 }

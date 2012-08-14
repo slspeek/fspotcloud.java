@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.shared.EventBus;
@@ -34,7 +34,7 @@ import com.googlecode.fspotcloud.client.place.api.Slideshow;
 
 
 public class SlideshowEventHandler implements SlideshowEvent.Handler,
-    Initializable {
+        Initializable {
     private final Slideshow slideshow;
     private final EventBus eventBus;
 
@@ -47,33 +47,33 @@ public class SlideshowEventHandler implements SlideshowEvent.Handler,
     @Override
     public void onEvent(UserEvent<?> e) {
         switch ((SlideshowType) e.getActionDef()) {
-        case SLIDESHOW_START:
-            slideshow.start();
+            case SLIDESHOW_START:
+                slideshow.start();
 
-            break;
+                break;
 
-        case SLIDESHOW__END:
-            slideshow.stop();
+            case SLIDESHOW__END:
+                slideshow.stop();
 
-            break;
+                break;
 
-        case SLIDESHOW_PAUSE:
-            slideshow.pause();
+            case SLIDESHOW_PAUSE:
+                slideshow.pause();
 
-            break;
+                break;
 
-        case SLIDESHOW_FASTER:
-            slideshow.faster();
+            case SLIDESHOW_FASTER:
+                slideshow.faster();
 
-            break;
+                break;
 
-        case SLIDESHOW_SLOWER:
-            slideshow.slower();
+            case SLIDESHOW_SLOWER:
+                slideshow.slower();
 
-            break;
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
     }
 

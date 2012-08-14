@@ -21,18 +21,19 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
+import net.customware.gwt.dispatch.shared.Result;
+
 import java.io.Serializable;
 import java.util.List;
-import net.customware.gwt.dispatch.shared.Result;
 
 
 public class PeerUpdateInstructionsResult extends BusinessBase implements Result,
-    Serializable {
+        Serializable {
     private static final long serialVersionUID = -4987610701630937829L;
     @BusinessKey
     private final List<TagUpdate> toBoUpdated;
@@ -40,7 +41,7 @@ public class PeerUpdateInstructionsResult extends BusinessBase implements Result
     private final List<TagRemovedFromPeer> toBoRemovedFromPeer;
 
     public PeerUpdateInstructionsResult(List<TagUpdate> toBoUpdated,
-        List<TagRemovedFromPeer> toBoRemovedFromPeer) {
+                                        List<TagRemovedFromPeer> toBoRemovedFromPeer) {
         super();
         this.toBoUpdated = toBoUpdated;
         this.toBoRemovedFromPeer = toBoRemovedFromPeer;
@@ -56,7 +57,7 @@ public class PeerUpdateInstructionsResult extends BusinessBase implements Result
 
     public String toString() {
         return Objects.toStringHelper(this)
-                      .add("removedFromPeer", toBoRemovedFromPeer)
-                      .add("updates", toBoUpdated).toString();
+                .add("removedFromPeer", toBoRemovedFromPeer)
+                .add("updates", toBoUpdated).toString();
     }
 }

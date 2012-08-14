@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -34,6 +34,7 @@ import com.googlecode.fspotcloud.client.main.ClientLoginManager;
 import com.googlecode.fspotcloud.client.main.view.api.UserAccountView;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
+
 import java.util.logging.Logger;
 
 
@@ -44,7 +45,7 @@ public class UserAccountPresenterImpl extends AbstractActivity implements UserAc
 
     @Inject
     public UserAccountPresenterImpl(UserAccountView view,
-        ClientLoginManager clientLoginManager) {
+                                    ClientLoginManager clientLoginManager) {
         this.view = view;
         this.clientLoginManager = clientLoginManager;
     }
@@ -54,20 +55,20 @@ public class UserAccountPresenterImpl extends AbstractActivity implements UserAc
         this.view.setPresenter(this);
         panel.setWidget(view);
         clientLoginManager.getUserInfoAsync(new GetUserInfo(""),
-            new AsyncCallback<UserInfo>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    //To change body of implemented methods use File | Settings | File Templates.
-                }
+                new AsyncCallback<UserInfo>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        //To change body of implemented methods use File | Settings | File Templates.
+                    }
 
-                @Override
-                public void onSuccess(UserInfo result) {
-                    view.setEmail(result.getEmail());
+                    @Override
+                    public void onSuccess(UserInfo result) {
+                        view.setEmail(result.getEmail());
 
-                    String date = DateTimeFormat.getFormat(DateTimeFormat.PredefinedFormat.DATE_TIME_LONG)
-                                                .format(result.getLastLoginTime());
-                    view.setLastLoginTime(date);
-                }
-            });
+                        String date = DateTimeFormat.getFormat(DateTimeFormat.PredefinedFormat.DATE_TIME_LONG)
+                                .format(result.getLastLoginTime());
+                        view.setLastLoginTime(date);
+                    }
+                });
     }
 }

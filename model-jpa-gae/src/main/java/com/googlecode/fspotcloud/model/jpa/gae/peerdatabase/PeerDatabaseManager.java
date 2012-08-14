@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa.gae.peerdatabase;
 
 import com.google.inject.Inject;
@@ -31,7 +31,7 @@ import com.googlecode.fspotcloud.server.model.api.PeerDatabaseDao;
 
 
 public class PeerDatabaseManager extends PeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity>
-    implements PeerDatabaseDao {
+        implements PeerDatabaseDao {
     @Inject
     PeerDatabaseManagerBase<PeerDatabase, PeerDatabaseEntity> delegate;
 

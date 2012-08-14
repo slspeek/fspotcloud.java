@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.user.client.ui.Widget;
@@ -31,6 +31,7 @@ import com.googlecode.fspotcloud.client.main.view.api.UserButtonView;
 import com.googlecode.fspotcloud.client.main.view.api.UserButtonViewFactory;
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
+
 import java.util.logging.Logger;
 
 
@@ -42,7 +43,7 @@ public class UserButtonPresenterImpl implements UserButtonView.UserButtonPresent
 
     @Inject
     public UserButtonPresenterImpl(@Assisted
-    UserAction action, UserButtonViewFactory viewFactory) {
+                                   UserAction action, UserButtonViewFactory viewFactory) {
         super();
         this.action = action;
         this.viewFactory = viewFactory;
@@ -75,7 +76,7 @@ public class UserButtonPresenterImpl implements UserButtonView.UserButtonPresent
 
         if (altKey != null) {
             tip = caption + "( " + key.getKeyString() + " or " +
-                altKey.getKeyString() + " )";
+                    altKey.getKeyString() + " )";
         }
 
         return tip;

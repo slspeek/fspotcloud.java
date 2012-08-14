@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -37,15 +37,16 @@ import com.googlecode.fspotcloud.shared.main.AuthenticationAction;
 import com.googlecode.fspotcloud.shared.main.AuthenticationResult;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
+import net.customware.gwt.dispatch.client.DispatchAsync;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class LoginPresenterImpl extends AbstractActivity implements LoginView.LoginPresenter {
     private static final Logger log = Logger.getLogger(LoginPresenterImpl.class.getName());
     public static final String AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST =
-        "An error occurred making the authentication request";
+            "An error occurred making the authentication request";
     public static final String LOGGED_IN = "Logged in";
     public static final String NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION = "Not a valid username and password combination";
     private final LoginView view;
@@ -54,7 +55,7 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
 
     @Inject
     public LoginPresenterImpl(LoginView loginView, DispatchAsync dispatch,
-        PlaceGoTo placeGoTo) {
+                              PlaceGoTo placeGoTo) {
         this.view = loginView;
         this.dispatch = dispatch;
         this.placeGoTo = placeGoTo;
@@ -66,19 +67,19 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
         panel.setWidget(view);
         view.focusUserNameField();
         dispatch.execute(new GetUserInfo("post-login"),
-            new AsyncCallback<UserInfo>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    //To change body of implemented methods use File | Settings | File Templates.
-                }
+                new AsyncCallback<UserInfo>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        //To change body of implemented methods use File | Settings | File Templates.
+                    }
 
-                @Override
-                public void onSuccess(UserInfo result) {
-                    String loginUrl = result.getLoginUrl();
-                    log.info("LoginURL: " + loginUrl);
-                    view.setGoogleLoginHref(loginUrl);
-                }
-            });
+                    @Override
+                    public void onSuccess(UserInfo result) {
+                        String loginUrl = result.getLoginUrl();
+                        log.info("LoginURL: " + loginUrl);
+                        view.setGoogleLoginHref(loginUrl);
+                    }
+                });
     }
 
     @Override
@@ -117,25 +118,25 @@ public class LoginPresenterImpl extends AbstractActivity implements LoginView.Lo
         String password = view.getPasswordField();
         AuthenticationAction auth = new AuthenticationAction(userName, password);
         dispatch.execute(auth,
-            new AsyncCallback<AuthenticationResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    log.log(Level.WARNING, "Auth request could not be made",
-                        caught);
-                    view.setStatusText(AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST);
-                }
-
-                @Override
-                public void onSuccess(AuthenticationResult result) {
-                    log.info("Server said: " + result.getSuccess());
-
-                    if (result.getSuccess()) {
-                        view.setStatusText(LOGGED_IN);
-                        cancel();
-                    } else {
-                        view.setStatusText(NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION);
+                new AsyncCallback<AuthenticationResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        log.log(Level.WARNING, "Auth request could not be made",
+                                caught);
+                        view.setStatusText(AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST);
                     }
-                }
-            });
+
+                    @Override
+                    public void onSuccess(AuthenticationResult result) {
+                        log.info("Server said: " + result.getSuccess());
+
+                        if (result.getSuccess()) {
+                            view.setStatusText(LOGGED_IN);
+                            cancel();
+                        } else {
+                            view.setStatusText(NOT_A_VALID_USERNAME_AND_PASSWORD_COMBINATION);
+                        }
+                    }
+                });
     }
 }

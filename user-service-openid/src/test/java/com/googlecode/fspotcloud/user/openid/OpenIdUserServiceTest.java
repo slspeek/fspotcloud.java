@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.user.openid;
 
 import com.google.inject.Inject;
@@ -31,10 +31,12 @@ import com.googlecode.fspotcloud.user.inject.ServerAddress;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
 import org.junit.After;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
+
 @RunWith(JukitoRunner.class)
 public class OpenIdUserServiceTest {
     public static final String FOO_BAR_COM = "foo@bar.com";
@@ -134,9 +136,9 @@ public class OpenIdUserServiceTest {
     public static class Module extends JukitoModule {
         protected void configureTest() {
             bind(String.class).annotatedWith(AdminEmail.class)
-                .toInstance(SLSPEEK_GMAIL_COM);
+                    .toInstance(SLSPEEK_GMAIL_COM);
             bind(String.class).annotatedWith(ServerAddress.class)
-                .toInstance("http://localhost:8080/context");
+                    .toInstance("http://localhost:8080/context");
         }
     }
 }

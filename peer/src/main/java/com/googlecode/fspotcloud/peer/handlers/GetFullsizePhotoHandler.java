@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.peer.handlers;
 
 import com.google.inject.Inject;
@@ -45,7 +45,7 @@ public class GetFullsizePhotoHandler extends SimpleActionHandler<GetFullsizePhot
 
     @Override
     public FullsizePhotoResult execute(GetFullsizePhotoAction action,
-        ExecutionContext context) throws DispatchException {
+                                       ExecutionContext context) throws DispatchException {
         FullsizePhotoResult result;
 
         try {

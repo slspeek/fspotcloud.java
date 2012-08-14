@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.shared.EventBus;
@@ -56,10 +56,10 @@ public class RasterEventHandlerTest extends TestCase {
         event = new RasterEvent(RasterType.TOGGLE_TABULAR_VIEW);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(navigator).toggleRasterView();
-                }
-            });
+            {
+                oneOf(navigator).toggleRasterView();
+            }
+        });
         eventBus.fireEvent(event);
         context.assertIsSatisfied();
     }
@@ -68,10 +68,10 @@ public class RasterEventHandlerTest extends TestCase {
         event = new RasterEvent(RasterType.REMOVE_ROW);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(navigator).increaseRasterHeight(with(-1));
-                }
-            });
+            {
+                oneOf(navigator).increaseRasterHeight(with(-1));
+            }
+        });
         eventBus.fireEvent(event);
         context.assertIsSatisfied();
     }
@@ -80,10 +80,10 @@ public class RasterEventHandlerTest extends TestCase {
         event = new RasterEvent(RasterType.ADD_ROW);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(navigator).increaseRasterHeight(with(1));
-                }
-            });
+            {
+                oneOf(navigator).increaseRasterHeight(with(1));
+            }
+        });
         eventBus.fireEvent(event);
         context.assertIsSatisfied();
     }
@@ -92,10 +92,10 @@ public class RasterEventHandlerTest extends TestCase {
         event = new RasterEvent(RasterType.REMOVE_COLUMN);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(navigator).increaseRasterWidth(with(-1));
-                }
-            });
+            {
+                oneOf(navigator).increaseRasterWidth(with(-1));
+            }
+        });
         eventBus.fireEvent(event);
         context.assertIsSatisfied();
     }
@@ -104,23 +104,23 @@ public class RasterEventHandlerTest extends TestCase {
         event = new RasterEvent(RasterType.ADD_COLUMN);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(navigator).increaseRasterWidth(with(1));
-                }
-            });
+            {
+                oneOf(navigator).increaseRasterWidth(with(1));
+            }
+        });
         eventBus.fireEvent(event);
         context.assertIsSatisfied();
     }
 
     public void testSetRasterXxY(final int x, final int y,
-        final RasterType eventType) {
+                                 final RasterType eventType) {
         event = new RasterEvent(eventType);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(navigator).setRasterDimension(with(x), with(x));
-                }
-            });
+            {
+                oneOf(navigator).setRasterDimension(with(x), with(x));
+            }
+        });
         eventBus.fireEvent(event);
         context.assertIsSatisfied();
     }
@@ -145,10 +145,10 @@ public class RasterEventHandlerTest extends TestCase {
         event = new RasterEvent(RasterType.SET_DEFAULT_RASTER);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(navigator).resetRasterSize();
-                }
-            });
+            {
+                oneOf(navigator).resetRasterSize();
+            }
+        });
         eventBus.fireEvent(event);
         context.assertIsSatisfied();
     }

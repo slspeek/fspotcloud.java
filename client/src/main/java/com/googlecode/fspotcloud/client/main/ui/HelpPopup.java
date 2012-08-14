@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -34,6 +34,7 @@ import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.PopupView;
+
 import java.util.logging.Logger;
 
 
@@ -54,12 +55,12 @@ public class HelpPopup extends PopupPanel implements PopupView {
         setWidget(uiBinder.createAndBindUi(this));
         setStyleName(resources.style().helpPopup());
         focusPanel.addKeyDownHandler(new KeyDownHandler() {
-                @Override
-                public void onKeyDown(KeyDownEvent event) {
-                    log.info("Keydown in help-popup " + event);
-                    presenter.hide();
-                }
-            });
+            @Override
+            public void onKeyDown(KeyDownEvent event) {
+                log.info("Keydown in help-popup " + event);
+                presenter.hide();
+            }
+        });
     }
 
     public void setText(String text) {

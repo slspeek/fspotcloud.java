@@ -21,11 +21,12 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -49,7 +50,7 @@ public class PhotoData extends BusinessBase implements Serializable {
     private int version;
 
     public PhotoData(String photoId, String description, Date date,
-        byte[] imageData, byte[] thumbData, List<String> tagList, int version) {
+                     byte[] imageData, byte[] thumbData, List<String> tagList, int version) {
         super();
         this.photoId = photoId;
         this.description = description.trim();
@@ -90,9 +91,9 @@ public class PhotoData extends BusinessBase implements Serializable {
 
     public String toString() {
         return Objects.toStringHelper(this).add("v", version).add("id", photoId)
-                      .add("desc", description).add("date", date)
-                      .add("image len", imageData.length)
-                      .add("thumb len", thumbData.length).add("tags", tagList)
-                      .toString();
+                .add("desc", description).add("date", date)
+                .add("image len", imageData.length)
+                .add("thumb len", thumbData.length).add("tags", tagList)
+                .toString();
     }
 }

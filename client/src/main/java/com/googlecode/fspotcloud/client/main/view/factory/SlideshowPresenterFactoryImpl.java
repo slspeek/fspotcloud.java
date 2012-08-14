@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view.factory;
 
 import com.google.gwt.event.shared.EventBus;
@@ -41,7 +41,7 @@ public class SlideshowPresenterFactoryImpl implements Provider<SlideshowPresente
 
     @Inject
     public SlideshowPresenterFactoryImpl(SlideshowView view,
-        Slideshow slideshow, EventBus eventBus) {
+                                         Slideshow slideshow, EventBus eventBus) {
         super();
         this.view = view;
         this.slideshow = slideshow;

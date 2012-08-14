@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.google.inject.Inject;
@@ -43,7 +43,7 @@ public class LogoutHandler extends SimpleActionHandler<LogoutAction, VoidResult>
 
     @Override
     public VoidResult execute(LogoutAction action, ExecutionContext context)
-        throws DispatchException {
+            throws DispatchException {
         loginMetaDataUpdater.clear();
 
         return new VoidResult();

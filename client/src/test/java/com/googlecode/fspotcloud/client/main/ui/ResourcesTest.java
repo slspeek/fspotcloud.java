@@ -21,14 +21,15 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.googlecode.fspotcloud.client.view.action.KeyDispatcher;
-import java.util.logging.Logger;
 import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
+
+import java.util.logging.Logger;
 
 
 public class ResourcesTest extends TestCase {
@@ -39,10 +40,10 @@ public class ResourcesTest extends TestCase {
         final Resources res = context.mock(Resources.class);
         context.checking(new Expectations() {
 
-                {
-                    oneOf(res).playIcon();
-                }
-            });
+            {
+                oneOf(res).playIcon();
+            }
+        });
         log.info("" + res.playIcon());
     }
 }

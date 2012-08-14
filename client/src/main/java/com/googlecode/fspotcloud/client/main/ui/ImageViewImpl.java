@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -39,6 +39,7 @@ import com.google.inject.assistedinject.Assisted;
 import com.googlecode.fspotcloud.client.main.view.api.ImageView;
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
 import com.reveregroup.gwt.imagepreloader.FitImage;
+
 import java.util.logging.Logger;
 
 
@@ -57,7 +58,7 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 
     @Inject
     public ImageViewImpl(@Assisted
-    String location, TimerInterface timer, Resources resources) {
+                         String location, TimerInterface timer, Resources resources) {
         this.timer = timer;
         this.resources = resources;
         initWidget(uiBinder.createAndBindUi(this));
@@ -88,12 +89,12 @@ public class ImageViewImpl extends ResizeComposite implements ImageView {
 
     public void hideLabelLater(final int duration) {
         timer.setRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    layout.setWidgetBottomHeight(info, 0, Unit.CM, 0, Unit.PX);
-                    layout.animate(500);
-                }
-            });
+            @Override
+            public void run() {
+                layout.setWidgetBottomHeight(info, 0, Unit.CM, 0, Unit.PX);
+                layout.animate(500);
+            }
+        });
         timer.schedule(duration);
     }
 

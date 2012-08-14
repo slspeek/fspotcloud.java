@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -39,13 +39,14 @@ import com.googlecode.fspotcloud.client.main.view.api.ImageRasterView;
 import com.googlecode.fspotcloud.client.main.view.api.ImageView;
 import com.googlecode.fspotcloud.client.main.view.api.ImageViewFactory;
 import com.googlecode.fspotcloud.client.main.view.factory.ImageViewFactoryImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 
 public class ImageRasterViewImpl extends ResizeComposite
-    implements ImageRasterView,
+        implements ImageRasterView,
         MouseWheelHandler {
     @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(ImageRasterViewImpl.class.getName());
@@ -62,7 +63,7 @@ public class ImageRasterViewImpl extends ResizeComposite
 
     @Inject
     public ImageRasterViewImpl(ImageViewFactoryImpl imageViewFactory,
-        Resources resources) {
+                               Resources resources) {
         this.imageViewFactory = imageViewFactory;
         this.resources = resources;
         initWidget(uiBinder.createAndBindUi(this));
@@ -87,20 +88,20 @@ public class ImageRasterViewImpl extends ResizeComposite
                     Widget asWidget = view.asWidget();
                     layoutPanel.add(asWidget);
                     layoutPanel.setWidgetTopHeight(asWidget,
-                        row * (100 / (float) rowCount), Unit.PCT,
-                        100 / rowCount, Unit.PCT);
+                            row * (100 / (float) rowCount), Unit.PCT,
+                            100 / rowCount, Unit.PCT);
                     layoutPanel.setWidgetLeftWidth(asWidget,
-                        column * (100 / (float) columnCount), Unit.PCT,
-                        100 / rowCount, Unit.PCT);
+                            column * (100 / (float) columnCount), Unit.PCT,
+                            100 / rowCount, Unit.PCT);
                     result.add(view);
                 }
             }
 
             layoutPanel.add(pagingLabel);
             layoutPanel.setWidgetBottomHeight(pagingLabel, 0, Unit.PT, 16,
-                Unit.PT);
+                    Unit.PT);
             layoutPanel.setWidgetRightWidth(pagingLabel, 0, Unit.PT, 10,
-                Unit.PCT);
+                    Unit.PCT);
 
             storedRowCount = rowCount;
             storedColumnCount = columnCount;

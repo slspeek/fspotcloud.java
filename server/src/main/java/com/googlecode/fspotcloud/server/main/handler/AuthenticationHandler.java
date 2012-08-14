@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.google.inject.Inject;
@@ -44,7 +44,7 @@ public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAct
 
     @Inject
     public AuthenticationHandler(UserService userService, UserDao userDao,
-        ILoginMetaDataUpdater loginMetaDataUpdater) {
+                                 ILoginMetaDataUpdater loginMetaDataUpdater) {
         this.userService = userService;
         this.userDao = userDao;
         this.loginMetaDataUpdater = loginMetaDataUpdater;
@@ -52,7 +52,7 @@ public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAct
 
     @Override
     public AuthenticationResult execute(AuthenticationAction action,
-        ExecutionContext context) throws DispatchException {
+                                        ExecutionContext context) throws DispatchException {
         if (!"".equals(action.getUserName())) {
             User user = userDao.find(action.getUserName());
 
@@ -60,7 +60,7 @@ public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAct
                 if (user.getEnabled() &&
                         action.getPassword().equals(user.getCredentials())) {
                     loginMetaDataUpdater.doUpdate(user,
-                        LoginMetaData.Type.REGULAR_LOGIN);
+                            LoginMetaData.Type.REGULAR_LOGIN);
 
                     return new AuthenticationResult(true);
                 }

@@ -21,11 +21,11 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
@@ -35,13 +35,16 @@ import com.googlecode.fspotcloud.shared.dashboard.UserDeletesAllAction;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
+
 @RunWith(JukitoRunner.class)
 public class UserDeletesAllHandlerTest {
     @Inject
@@ -49,8 +52,8 @@ public class UserDeletesAllHandlerTest {
 
     @Test
     public void testNormalExecute(TaskQueueDispatch dispatchAsync,
-        IAdminPermission IAdminPermission, PeerDatabaseDao peerDatabaseManager)
-        throws Exception {
+                                  IAdminPermission IAdminPermission, PeerDatabaseDao peerDatabaseManager)
+            throws Exception {
         UserDeletesAllAction action = new UserDeletesAllAction();
         VoidResult result = handler.execute(action, null);
 
@@ -61,10 +64,10 @@ public class UserDeletesAllHandlerTest {
 
     @Test(expected = SecurityException.class)
     public void testUnAuthorizedExecute(TaskQueueDispatch dispatchAsync,
-        IAdminPermission iAdminPermission, PeerDatabaseDao peerDatabaseManager)
-        throws Exception {
+                                        IAdminPermission iAdminPermission, PeerDatabaseDao peerDatabaseManager)
+            throws Exception {
         doThrow(new SecurityException()).when(iAdminPermission)
-            .checkAdminPermission();
+                .checkAdminPermission();
 
         UserDeletesAllAction action = new UserDeletesAllAction();
         VoidResult result = handler.execute(action, null);

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa.tag;
 
 import com.googlecode.fspotcloud.server.model.api.Tag;
@@ -30,18 +30,19 @@ import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.PhotoInfoStore;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.simplejpadao.cacheddao.CachedSimpleDAONamedIdImpl;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.logging.Logger;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedSet;
+import java.util.logging.Logger;
 
 
 public abstract class CachedTagManagerBase<T extends Tag, U extends T>
-    extends CachedSimpleDAONamedIdImpl<Tag, U, String> implements TagDao {
+        extends CachedSimpleDAONamedIdImpl<Tag, U, String> implements TagDao {
     private static final Logger log = Logger.getLogger(CachedTagManagerBase.class.getName());
     @Inject
     @Named("maxDelete")
@@ -65,7 +66,7 @@ public abstract class CachedTagManagerBase<T extends Tag, U extends T>
                 node.setCachedPhotoList(new PhotoInfoStore(photoList));
             } else {
                 throw new IllegalStateException(
-                    "photoList field of Tag should not be null");
+                        "photoList field of Tag should not be null");
             }
 
             result.add(node);

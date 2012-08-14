@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.admin.view;
 
 import com.google.gwt.cell.client.AbstractCell;
@@ -32,6 +32,7 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.view.TagCell;
 import com.googlecode.fspotcloud.shared.main.TagNode;
+
 import java.util.logging.Logger;
 
 
@@ -46,7 +47,7 @@ public class AdminTagCell extends AbstractCell<TagNode> {
 
     @Override
     public void render(com.google.gwt.cell.client.Cell.Context arg0,
-        TagNode value, SafeHtmlBuilder sb) {
+                       TagNode value, SafeHtmlBuilder sb) {
         log.info("" + value.isImportIssued());
 
         if (value.isImportIssued()) {

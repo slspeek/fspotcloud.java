@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.peer.inject;
 
 import com.google.inject.AbstractModule;
@@ -29,6 +29,7 @@ import com.google.inject.name.Names;
 import com.googlecode.fspotcloud.peer.CopyDatabase;
 import com.googlecode.fspotcloud.peer.ImageData;
 import com.googlecode.fspotcloud.peer.db.Data;
+
 import javax.inject.Singleton;
 
 
@@ -48,12 +49,12 @@ public class PeerModule extends AbstractModule {
         bind(Data.class).in(Singleton.class);
         bind(ImageData.class);
         bind(String.class).annotatedWith(Names.named("JDBC URL"))
-            .toProvider(CopyDatabase.class).in(Singleton.class);
+                .toProvider(CopyDatabase.class).in(Singleton.class);
         bind(String.class).annotatedWith(Names.named("DatabasePath"))
-            .toInstance(db);
+                .toInstance(db);
         bind(String.class).annotatedWith(Names.named("WorkDir"))
-            .toInstance(workDir);
+                .toInstance(workDir);
         bind(Integer.class).annotatedWith(Names.named("stop port"))
-            .toInstance(Integer.valueOf(stopPort));
+                .toInstance(Integer.valueOf(stopPort));
     }
 }

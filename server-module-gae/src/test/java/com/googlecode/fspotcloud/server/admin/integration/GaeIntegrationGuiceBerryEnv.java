@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.guiceberry.GuiceBerryModule;
@@ -35,23 +35,26 @@ import com.googlecode.fspotcloud.server.inject.GaeTotalModule;
 import com.googlecode.fspotcloud.server.mail.IMail;
 import com.googlecode.fspotcloud.user.inject.ServerAddress;
 import com.googlecode.fspotcloud.user.openid.OpenIdUserModule;
+
 import javax.servlet.http.HttpSession;
+
 import static org.mockito.Mockito.mock;
+
 public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
     @Override
     protected void configure() {
         super.configure();
         System.setProperty("photo.dir.original", "//home/steven/PhotoDao");
         System.setProperty("photo.dir.override",
-            "" + System.getProperty("user.dir") +
-            "/../peer/src/test/resources/PhotoDao");
+                "" + System.getProperty("user.dir") +
+                        "/../peer/src/test/resources/PhotoDao");
 
         Module firstOverride = Modules.override(new GaeTotalModule(3, "",
-                    "rms@example.com"))
-                                      .with(new OpenIdUserModule(
-                    "rms@example.com"), new LocalControllerModule());
+                "rms@example.com"))
+                .with(new OpenIdUserModule(
+                        "rms@example.com"), new LocalControllerModule());
         Module secondOverride = Modules.override(firstOverride)
-                                       .with(new ModuleOverrides());
+                .with(new ModuleOverrides());
         install(secondOverride);
         bind(TestWrapper.class).to(GaeLocalDatastoreTestWrapper.class);
     }
@@ -61,9 +64,9 @@ public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
         public void configure() {
             bind(IMail.class).toInstance(mock(IMail.class));
             bind(HttpSession.class).to(FakeHttpServletSession.class)
-                .in(TestScoped.class);
+                    .in(TestScoped.class);
             bind(String.class).annotatedWith(ServerAddress.class)
-                .toInstance("http://localhost");
+                    .toInstance("http://localhost");
         }
     }
 }

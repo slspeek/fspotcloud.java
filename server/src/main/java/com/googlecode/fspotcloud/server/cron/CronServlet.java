@@ -21,19 +21,20 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.cron;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
-import java.io.IOException;
+import net.customware.gwt.dispatch.server.Dispatch;
+import net.customware.gwt.dispatch.shared.DispatchException;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.customware.gwt.dispatch.server.Dispatch;
-import net.customware.gwt.dispatch.shared.DispatchException;
+import java.io.IOException;
 
 
 @SuppressWarnings("serial")
@@ -44,7 +45,7 @@ public class CronServlet extends HttpServlet {
     Dispatch dispatch;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws IOException {
+            throws IOException {
         try {
             String action = request.getParameter("action");
 

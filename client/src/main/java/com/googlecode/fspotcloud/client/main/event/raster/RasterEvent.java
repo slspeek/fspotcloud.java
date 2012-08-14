@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.event.raster;
 
 import com.google.inject.Inject;
@@ -36,7 +36,7 @@ public class RasterEvent extends UserEvent<RasterEvent.Handler> {
 
     @Inject
     public RasterEvent(@Assisted
-    ActionDef actionType) {
+                       ActionDef actionType) {
         super(actionType);
     }
 

@@ -21,22 +21,23 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.event.about;
 
 import com.googlecode.fspotcloud.client.view.action.KeyStroke;
 import com.googlecode.fspotcloud.client.view.action.api.ActionDef;
+
 public enum AboutType implements ActionDef {
-    LICENSE("license", "License", "View the license", new KeyStroke('L'), null), 
+    LICENSE("license", "License", "View the license", new KeyStroke('L'), null),
     PROJECT_HOSTING("project-hosting", "Project site",
-        "Go to the site on Google Project Hosting", new KeyStroke('J'), null), 
-    F_SPOT("f-spot", "F-Spot", "Go to the F-Spot site", new KeyStroke('N'), null), 
+            "Go to the site on Google Project Hosting", new KeyStroke('J'), null),
+    F_SPOT("f-spot", "F-Spot", "Go to the F-Spot site", new KeyStroke('N'), null),
     MAVEN("maven", "Maven site", "Go to the Maven generated site",
-        new KeyStroke('M'), null), 
+            new KeyStroke('M'), null),
     PROTON("proton", "Proton radio", "Go to the Proton site",
-        new KeyStroke('P'), null), 
+            new KeyStroke('P'), null),
     STEVEN("steven", "Authors website", "Go to the authors website",
-        new KeyStroke('Z'), null);
+            new KeyStroke('Z'), null);
     private final KeyStroke key;
     private final KeyStroke alternateKey;
     private final String caption;
@@ -44,7 +45,7 @@ public enum AboutType implements ActionDef {
     private final String description;
 
     private AboutType(String id, String caption, String description,
-        KeyStroke key, KeyStroke alternateKey) {
+                      KeyStroke key, KeyStroke alternateKey) {
         this.key = key;
         this.alternateKey = alternateKey;
         this.caption = caption;

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.event.navigation;
 
 import com.google.inject.Provider;
@@ -30,7 +30,7 @@ import com.googlecode.fspotcloud.client.main.event.UserEventHandler;
 import com.googlecode.fspotcloud.client.view.action.api.ActionDef;
 
 
-public class NavigationEventProvider implements Provider<UserEvent<?extends UserEventHandler>> {
+public class NavigationEventProvider implements Provider<UserEvent<? extends UserEventHandler>> {
     private final ActionDef action;
 
     public NavigationEventProvider(ActionDef action) {
@@ -38,7 +38,7 @@ public class NavigationEventProvider implements Provider<UserEvent<?extends User
     }
 
     @Override
-    public UserEvent<?extends UserEventHandler> get() {
+    public UserEvent<? extends UserEventHandler> get() {
         return new NavigationEvent(action);
     }
 }

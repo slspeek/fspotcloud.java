@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -60,12 +60,12 @@ public class UserButtonViewImpl extends PushButton implements UserButtonView {
         // Maybe unregister old one first?
         // For now setPresenter must be called only once.
         addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    if (presenter != null) {
-                        presenter.buttonClicked();
-                    }
+            public void onClick(ClickEvent event) {
+                if (presenter != null) {
+                    presenter.buttonClicked();
                 }
-            });
+            }
+        });
     }
 
     @Override

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.shared.EventBus;
@@ -32,6 +32,7 @@ import com.googlecode.fspotcloud.client.main.event.UserEventHandler;
 import com.googlecode.fspotcloud.client.main.event.about.AboutEvent;
 import com.googlecode.fspotcloud.client.main.event.about.AboutType;
 import com.googlecode.fspotcloud.client.view.action.api.LoadNewLocationActionFactory;
+
 import java.util.logging.Logger;
 
 
@@ -49,49 +50,49 @@ public class AboutEventHandler implements AboutEvent.Handler, Initializable {
 
     @Inject
     public AboutEventHandler(LoadNewLocationActionFactory locationFactory,
-        EventBus eventBus) {
+                             EventBus eventBus) {
         super();
         this.locationFactory = locationFactory;
         this.eventBus = eventBus;
     }
 
     @Override
-    public void onEvent(UserEvent<?extends UserEventHandler> e) {
+    public void onEvent(UserEvent<? extends UserEventHandler> e) {
         log.info("On application event of type " + e.getActionDef());
 
         switch ((AboutType) e.getActionDef()) {
-        case PROJECT_HOSTING:
-            projectHostingAction.run();
+            case PROJECT_HOSTING:
+                projectHostingAction.run();
 
-            break;
+                break;
 
-        case F_SPOT:
-            fspotAction.run();
+            case F_SPOT:
+                fspotAction.run();
 
-            break;
+                break;
 
-        case MAVEN:
-            mavenAction.run();
+            case MAVEN:
+                mavenAction.run();
 
-            break;
+                break;
 
-        case PROTON:
-            protonAction.run();
+            case PROTON:
+                protonAction.run();
 
-            break;
+                break;
 
-        case LICENSE:
-            licenseAction.run();
+            case LICENSE:
+                licenseAction.run();
 
-            break;
+                break;
 
-        case STEVEN:
-            stevenAction.run();
+            case STEVEN:
+                stevenAction.run();
 
-            break;
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
     }
 

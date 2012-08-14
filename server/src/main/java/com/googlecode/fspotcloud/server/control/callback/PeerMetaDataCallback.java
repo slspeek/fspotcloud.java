@@ -21,10 +21,9 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.callback;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.Inject;
 import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
@@ -35,9 +34,13 @@ import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.peer.GetPeerUpdateInstructionsAction;
 import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
 import com.googlecode.fspotcloud.shared.peer.TagData;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static com.google.common.collect.Lists.newArrayList;
+
 public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaDataResult> {
     private static final long serialVersionUID = 1851403859917750767L;
     @Inject
@@ -64,7 +67,7 @@ public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaD
         p.setTagCount(tagCount);
         defaultPeer.save(p);
         dispatchAsync.execute(new GetPeerUpdateInstructionsAction(getTagData()),
-            new PeerUpdateInstructionsCallback());
+                new PeerUpdateInstructionsCallback());
     }
 
     @Override

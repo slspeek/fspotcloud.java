@@ -21,20 +21,23 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.shared.peer;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Date;
+import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static com.googlecode.fspotcloud.test.Serialization.testSerialization;
-import java.util.Date;
-import java.util.List;
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Test;
+
 public class PhotoDataTest {
     private static final int VERSION = 17;
-    private static final byte[] IMAGE_DATA = new byte[] { 0, 1 };
-    private static final byte[] THUMB_DATA = new byte[] { 0 };
+    private static final byte[] IMAGE_DATA = new byte[]{0, 1};
+    private static final byte[] THUMB_DATA = new byte[]{0};
     private static final String TAG = "TAG";
     private static final Date LONG_TIME_AGO = new Date(10);
     private static final String DESCR = "Story";

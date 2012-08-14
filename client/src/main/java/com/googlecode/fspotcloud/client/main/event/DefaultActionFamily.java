@@ -21,13 +21,14 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.event;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.googlecode.fspotcloud.client.view.action.api.ActionGroup;
 import com.googlecode.fspotcloud.client.view.action.api.UserAction;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -41,16 +42,16 @@ public class DefaultActionFamily extends AbstractActionFamily {
 
     @Inject
     public DefaultActionFamily(
-        @Named("application")
-    AbstractActionMap application,
-        @Named("navigation")
-    AbstractActionMap navigation,
-        @Named("slideshow")
-    AbstractActionMap slideshow,
-        @Named("raster")
-    AbstractActionMap raster,
-        @Named("about")
-    AbstractActionMap about) {
+            @Named("application")
+            AbstractActionMap application,
+            @Named("navigation")
+            AbstractActionMap navigation,
+            @Named("slideshow")
+            AbstractActionMap slideshow,
+            @Named("raster")
+            AbstractActionMap raster,
+            @Named("about")
+            AbstractActionMap about) {
         super("All action groups");
         addMap(application);
         addMap(about);

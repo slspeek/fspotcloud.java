@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.cell.client.Cell;
@@ -37,10 +37,11 @@ import com.googlecode.fspotcloud.client.place.BasePlace;
 import com.googlecode.fspotcloud.shared.main.GetUserInfo;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.UserInfo;
+
+import javax.inject.Provider;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.inject.Provider;
 
 
 public class TreePresenterImpl implements TreeView.TreePresenter {
@@ -54,9 +55,9 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
 
     @Inject
     public TreePresenterImpl(TreeView treeView, DataManager dataManager,
-        SingleSelectionModel<TagNode> singleSelectionModel,
-        TreeSelectionHandlerInterface treeSelectionHandler,
-        ClientLoginManager clientLoginManager) {
+                             SingleSelectionModel<TagNode> singleSelectionModel,
+                             TreeSelectionHandlerInterface treeSelectionHandler,
+                             ClientLoginManager clientLoginManager) {
         this.treeView = treeView;
         this.dataManager = dataManager;
         this.selectionModel = singleSelectionModel;
@@ -72,25 +73,25 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
 
     private void loadUserInfo() {
         clientLoginManager.getUserInfoAsync(new GetUserInfo(""),
-            new AsyncCallback<UserInfo>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                }
-
-                @Override
-                public void onSuccess(UserInfo result) {
-                    String userName = result.getEmail();
-                    String info;
-
-                    if (userName != null) {
-                        info = "Logged in as: " + userName;
-                    } else {
-                        info = "Not logged in";
+                new AsyncCallback<UserInfo>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
                     }
 
-                    treeView.setUserInfo(info);
-                }
-            });
+                    @Override
+                    public void onSuccess(UserInfo result) {
+                        String userName = result.getEmail();
+                        String info;
+
+                        if (userName != null) {
+                            info = "Logged in as: " + userName;
+                        } else {
+                            info = "Not logged in";
+                        }
+
+                        treeView.setUserInfo(info);
+                    }
+                });
     }
 
     private void setModel(List<TagNode> roots) {
@@ -108,16 +109,16 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
 
     private void requestTagTreeData() {
         dataManager.getTagTree(new AsyncCallback<List<TagNode>>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    log.warning("Loading of the tree data failed: " + caught);
-                }
+            @Override
+            public void onFailure(Throwable caught) {
+                log.warning("Loading of the tree data failed: " + caught);
+            }
 
-                @Override
-                public void onSuccess(List<TagNode> result) {
-                    setModel(result);
-                }
-            });
+            @Override
+            public void onSuccess(List<TagNode> result) {
+                setModel(result);
+            }
+        });
     }
 
     public void reloadTree() {

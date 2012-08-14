@@ -21,14 +21,15 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.test;
 
 import com.thoughtworks.selenium.Selenium;
+
 import javax.inject.Inject;
 
 

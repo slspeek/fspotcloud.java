@@ -21,14 +21,15 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa.gae.tag;
 
 import com.googlecode.fspotcloud.model.jpa.tag.TagManagerBase;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
-import java.util.logging.Logger;
+
 import javax.inject.Inject;
+import java.util.logging.Logger;
 
 
 public class TagManager extends TagManagerBase<Tag, TagEntity> implements TagDao {

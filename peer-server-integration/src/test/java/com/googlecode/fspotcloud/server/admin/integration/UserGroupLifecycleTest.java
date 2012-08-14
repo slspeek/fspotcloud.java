@@ -21,20 +21,23 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.common.testing.TearDown;
 import com.google.guiceberry.testng.TestNgGuiceBerry;
 import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.main.*;
-import java.lang.reflect.Method;
-import java.sql.SQLException;
-import javax.inject.Inject;
-import static org.testng.AssertJUnit.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import javax.inject.Inject;
+import java.lang.reflect.Method;
+import java.sql.SQLException;
+
+import static org.testng.AssertJUnit.*;
+
 public class UserGroupLifecycleTest extends PeerServerEnvironment {
     public static final String TAG_ID_3 = "3";
     public static final String RMS_EXAMPLE_COM = "rms@example.com";

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 
@@ -29,6 +29,7 @@ package com.googlecode.fspotcloud.server.admin.integration;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import org.testng.Assert;

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.api.test;
 
 import com.google.guiceberry.GuiceBerryModule;

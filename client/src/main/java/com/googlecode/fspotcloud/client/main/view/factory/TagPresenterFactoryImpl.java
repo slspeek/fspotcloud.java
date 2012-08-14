@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view.factory;
 
 import com.google.inject.Inject;
@@ -31,6 +31,7 @@ import com.googlecode.fspotcloud.client.main.view.api.*;
 import com.googlecode.fspotcloud.client.main.view.api.TagView.TagPresenter;
 import com.googlecode.fspotcloud.client.main.view.api.TreeView.TreePresenter;
 import com.googlecode.fspotcloud.client.place.BasePlace;
+
 import java.util.logging.Logger;
 
 
@@ -44,9 +45,9 @@ public class TagPresenterFactoryImpl implements TagPresenterFactory {
 
     @Inject
     public TagPresenterFactoryImpl(TagView tagView,
-        TreePresenter treePresenter,
-        ButtonPanelView.ButtonPanelPresenter buttonPanelPresenter,
-        ImageRasterPresenterFactory rasterFactory) {
+                                   TreePresenter treePresenter,
+                                   ButtonPanelView.ButtonPanelPresenter buttonPanelPresenter,
+                                   ImageRasterPresenterFactory rasterFactory) {
         super();
         this.tagView = (TagViewImpl) tagView;
         this.buttonPanelPresenter = buttonPanelPresenter;

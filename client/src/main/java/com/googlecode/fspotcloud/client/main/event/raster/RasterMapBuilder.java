@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.event.raster;
 
 import com.google.gwt.resources.client.ImageResource;
@@ -37,7 +37,7 @@ public class RasterMapBuilder extends AbstractActionMap {
 
     @Inject
     public RasterMapBuilder(UserActionFactory userActionFactory,
-        Resources resources) {
+                            Resources resources) {
         super(userActionFactory, "Raster");
         this.resources = resources;
     }

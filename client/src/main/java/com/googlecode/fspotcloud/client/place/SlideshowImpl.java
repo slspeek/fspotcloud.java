@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.place;
 
 import com.google.gwt.event.shared.EventBus;
@@ -33,6 +33,7 @@ import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Direction;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Unit;
 import com.googlecode.fspotcloud.client.place.api.Slideshow;
+
 import java.util.logging.Logger;
 
 
@@ -47,7 +48,7 @@ public class SlideshowImpl implements Slideshow {
 
     @Inject
     public SlideshowImpl(Navigator navigator, TimerInterface timer,
-        EventBus eventBus) {
+                         EventBus eventBus) {
         this.eventBus = eventBus;
         this.navigator = navigator;
         this.timer = timer;
@@ -57,9 +58,9 @@ public class SlideshowImpl implements Slideshow {
 
     private void initTimer() {
         timer.setRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    navigator.canGoAsync(Direction.FORWARD, Unit.SINGLE,
+            @Override
+            public void run() {
+                navigator.canGoAsync(Direction.FORWARD, Unit.SINGLE,
                         new AsyncCallback<Boolean>() {
                             @Override
                             public void onFailure(Throwable caught) {
@@ -71,8 +72,8 @@ public class SlideshowImpl implements Slideshow {
                                 go(result);
                             }
                         });
-                }
-            });
+            }
+        });
     }
 
     private void go(boolean canGo) {

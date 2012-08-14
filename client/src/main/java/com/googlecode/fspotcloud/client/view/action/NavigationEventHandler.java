@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.shared.EventBus;
@@ -33,11 +33,12 @@ import com.googlecode.fspotcloud.client.main.event.navigation.NavigationType;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Direction;
 import com.googlecode.fspotcloud.client.place.api.Navigator.Unit;
+
 import java.util.logging.Logger;
 
 
 public class NavigationEventHandler implements NavigationEvent.Handler,
-    Initializable {
+        Initializable {
     private static final Logger log = Logger.getLogger(NavigationEventHandler.class.getName());
     private final Navigator navigator;
     private final EventBus eventBus;
@@ -53,48 +54,48 @@ public class NavigationEventHandler implements NavigationEvent.Handler,
         log.info("On Naviagtion Event: " + e.getActionDef());
 
         switch ((NavigationType) e.getActionDef()) {
-        case BACK:
-            navigator.goAsync(Direction.BACKWARD, Unit.SINGLE);
+            case BACK:
+                navigator.goAsync(Direction.BACKWARD, Unit.SINGLE);
 
-            break;
+                break;
 
-        case NEXT:
-            navigator.goAsync(Direction.FORWARD, Unit.SINGLE);
+            case NEXT:
+                navigator.goAsync(Direction.FORWARD, Unit.SINGLE);
 
-            break;
+                break;
 
-        case HOME:
-            navigator.goAsync(Direction.BACKWARD, Unit.BORDER);
+            case HOME:
+                navigator.goAsync(Direction.BACKWARD, Unit.BORDER);
 
-            break;
+                break;
 
-        case END:
-            navigator.goAsync(Direction.FORWARD, Unit.BORDER);
+            case END:
+                navigator.goAsync(Direction.FORWARD, Unit.BORDER);
 
-            break;
+                break;
 
-        case PAGE_DOWN:
-            navigator.goAsync(Direction.FORWARD, Unit.PAGE);
+            case PAGE_DOWN:
+                navigator.goAsync(Direction.FORWARD, Unit.PAGE);
 
-            break;
+                break;
 
-        case PAGE_UP:
-            navigator.goAsync(Direction.BACKWARD, Unit.PAGE);
+            case PAGE_UP:
+                navigator.goAsync(Direction.BACKWARD, Unit.PAGE);
 
-            break;
+                break;
 
-        case ROW_DOWN:
-            navigator.goAsync(Direction.FORWARD, Unit.ROW);
+            case ROW_DOWN:
+                navigator.goAsync(Direction.FORWARD, Unit.ROW);
 
-            break;
+                break;
 
-        case ROW_UP:
-            navigator.goAsync(Direction.BACKWARD, Unit.ROW);
+            case ROW_UP:
+                navigator.goAsync(Direction.BACKWARD, Unit.ROW);
 
-            break;
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
     }
 

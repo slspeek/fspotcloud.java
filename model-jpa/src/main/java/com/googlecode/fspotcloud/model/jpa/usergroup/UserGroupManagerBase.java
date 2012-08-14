@@ -21,17 +21,18 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa.usergroup;
 
 import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
 import com.googlecode.simplejpadao.SimpleDAOGenIdImpl;
+
 import java.util.logging.Logger;
 
 
 public abstract class UserGroupManagerBase<T extends UserGroup, U extends T>
-    extends SimpleDAOGenIdImpl<UserGroup, U, Long> implements UserGroupDao {
+        extends SimpleDAOGenIdImpl<UserGroup, U, Long> implements UserGroupDao {
     private static final Logger log = Logger.getLogger(UserGroupManagerBase.class.getName());
 
     @Override

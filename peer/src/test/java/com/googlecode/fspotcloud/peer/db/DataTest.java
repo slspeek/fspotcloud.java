@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /**
  *
  */
@@ -29,12 +29,13 @@ package com.googlecode.fspotcloud.peer.db;
 
 import com.google.common.collect.ImmutableList;
 import com.googlecode.fspotcloud.shared.peer.TagData;
+import junit.framework.TestCase;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
-import junit.framework.TestCase;
 
 
 public class DataTest extends TestCase {
@@ -78,10 +79,10 @@ public class DataTest extends TestCase {
     }
 
     public final void testGetImageURL()
-        throws MalformedURLException, SQLException {
+            throws MalformedURLException, SQLException {
         String url = data.getImageURL("20");
         assertEquals("file:///home/steven/Photos/2010/06/22/img_0859-1.jpg",
-            String.valueOf(url));
+                String.valueOf(url));
     }
 
     public void testIsPhotoInTag() throws Exception {

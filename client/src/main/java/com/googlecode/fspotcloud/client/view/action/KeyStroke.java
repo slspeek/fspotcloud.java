@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.dom.client.KeyCodes;
@@ -46,90 +46,90 @@ public class KeyStroke {
         String result;
 
         switch (keyCode) {
-        case KeyCodes.KEY_LEFT:
-            result = "Left arrow";
+            case KeyCodes.KEY_LEFT:
+                result = "Left arrow";
 
-            break;
+                break;
 
-        case KeyCodes.KEY_RIGHT:
-            result = "Right arrow";
+            case KeyCodes.KEY_RIGHT:
+                result = "Right arrow";
 
-            break;
+                break;
 
-        case KeyCodes.KEY_UP:
-            result = "Up arrow";
+            case KeyCodes.KEY_UP:
+                result = "Up arrow";
 
-            break;
+                break;
 
-        case KeyCodes.KEY_DOWN:
-            result = "Down arrow";
+            case KeyCodes.KEY_DOWN:
+                result = "Down arrow";
 
-            break;
+                break;
 
-        case KeyCodes.KEY_ENTER:
-            result = "Enter";
+            case KeyCodes.KEY_ENTER:
+                result = "Enter";
 
-            break;
+                break;
 
-        case KeyCodes.KEY_END:
-            result = "End";
+            case KeyCodes.KEY_END:
+                result = "End";
 
-            break;
+                break;
 
-        case KeyCodes.KEY_HOME:
-            result = "Home";
+            case KeyCodes.KEY_HOME:
+                result = "Home";
 
-            break;
+                break;
 
-        case KeyCodes.KEY_PAGEDOWN:
-            result = "Page Down";
+            case KeyCodes.KEY_PAGEDOWN:
+                result = "Page Down";
 
-            break;
+                break;
 
-        case KeyCodes.KEY_PAGEUP:
-            result = "Page Up";
+            case KeyCodes.KEY_PAGEUP:
+                result = "Page Up";
 
-            break;
+                break;
 
-        case KeyCodes.KEY_ESCAPE:
-            result = "Esc";
+            case KeyCodes.KEY_ESCAPE:
+                result = "Esc";
 
-            break;
+                break;
 
-        case KeyCodes.KEY_SHIFT:
-            result = "Shift";
+            case KeyCodes.KEY_SHIFT:
+                result = "Shift";
 
-            break;
+                break;
 
-        case 32:
-            result = "Space";
+            case 32:
+                result = "Space";
 
-            break;
+                break;
 
-        case 19:
-            result = "Pause";
+            case 19:
+                result = "Pause";
 
-            break;
+                break;
 
-        case 108:
-            result = "Numpad -";
+            case 108:
+                result = "Numpad -";
 
-            break;
+                break;
 
-        case 107:
-            result = "Numpad +";
+            case 107:
+                result = "Numpad +";
 
-            break;
+                break;
 
-        case KeyCodes.KEY_CTRL:
-            result = "Control";
+            case KeyCodes.KEY_CTRL:
+                result = "Control";
 
-            break;
+                break;
 
-        default:
-            result = String.valueOf((char) keyCode);
+            default:
+                result = String.valueOf((char) keyCode);
 
-            break;
+                break;
         }
 
         return result;

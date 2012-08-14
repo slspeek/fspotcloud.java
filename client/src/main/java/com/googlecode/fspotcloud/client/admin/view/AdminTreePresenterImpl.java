@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.admin.view;
 
 import com.google.gwt.cell.client.Cell;
@@ -39,13 +39,14 @@ import com.googlecode.fspotcloud.client.place.BasePlace;
 import com.googlecode.fspotcloud.client.place.TagPlace;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.main.TagNode;
+
+import javax.inject.Provider;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.inject.Provider;
 
 
 public class AdminTreePresenterImpl implements TreeView.TreePresenter,
-    Handler {
+        Handler {
     private static final Logger log = Logger.getLogger(AdminTreePresenterImpl.class.getName());
     private final TreeView treeView;
     private final DataManager dataManager;
@@ -55,8 +56,8 @@ public class AdminTreePresenterImpl implements TreeView.TreePresenter,
 
     @Inject
     public AdminTreePresenterImpl(TreeView treeView, DataManager dataManager,
-        SingleSelectionModel<TagNode> selectionModel, PlaceGoTo placeGoTo,
-        Resources resources) {
+                                  SingleSelectionModel<TagNode> selectionModel, PlaceGoTo placeGoTo,
+                                  Resources resources) {
         super();
         this.treeView = treeView;
         this.dataManager = dataManager;
@@ -84,16 +85,16 @@ public class AdminTreePresenterImpl implements TreeView.TreePresenter,
 
     private void requestTagTreeData() {
         dataManager.getAdminTagTree(new AsyncCallback<List<TagNode>>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    Window.alert("Exception: " + caught);
-                }
+            @Override
+            public void onFailure(Throwable caught) {
+                Window.alert("Exception: " + caught);
+            }
 
-                @Override
-                public void onSuccess(List<TagNode> result) {
-                    setModel(result);
-                }
-            });
+            @Override
+            public void onSuccess(List<TagNode> result) {
+                setModel(result);
+            }
+        });
     }
 
     public void reloadTree() {

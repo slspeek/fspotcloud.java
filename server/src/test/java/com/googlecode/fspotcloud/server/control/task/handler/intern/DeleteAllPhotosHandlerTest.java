@@ -21,23 +21,25 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 /**
@@ -50,7 +52,7 @@ public class DeleteAllPhotosHandlerTest {
 
     @Test
     public void testExecuteWithRecursion(PhotoDao photoDao,
-        TaskQueueDispatch dispatch) throws Exception {
+                                         TaskQueueDispatch dispatch) throws Exception {
         DeleteAllPhotosAction action = new DeleteAllPhotosAction();
         ExecutionContext context = null;
         VoidResult expResult = new VoidResult();
@@ -64,7 +66,7 @@ public class DeleteAllPhotosHandlerTest {
 
     @Test
     public void testExecuteWithoutRecursion(PhotoDao photoDao,
-        TaskQueueDispatch dispatch) throws Exception {
+                                            TaskQueueDispatch dispatch) throws Exception {
         when(photoDao.isEmpty()).thenReturn(Boolean.TRUE);
 
         DeleteAllPhotosAction action = new DeleteAllPhotosAction();

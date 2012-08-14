@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main;
 
 import com.google.gwt.dom.client.NativeEvent;
@@ -30,12 +30,13 @@ import com.google.gwt.user.client.Event.NativePreviewEvent;
 import com.google.gwt.user.client.Event.NativePreviewHandler;
 import com.googlecode.fspotcloud.client.main.api.Initializable;
 import com.googlecode.fspotcloud.client.view.action.api.ShortcutHandler;
+
 import java.util.Map;
 import java.util.logging.Logger;
 
 
 public class GlobalShortcutController implements Initializable,
-    IGlobalShortcutController {
+        IGlobalShortcutController {
     @SuppressWarnings("unused")
     private static final Logger log = Logger.getLogger(GlobalShortcutController.class.getName());
     private final Map<Mode, ShortcutHandler> handler;

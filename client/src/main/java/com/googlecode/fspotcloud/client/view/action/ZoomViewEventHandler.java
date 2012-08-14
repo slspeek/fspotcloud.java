@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.view.action;
 
 import com.google.gwt.event.shared.EventBus;
@@ -32,7 +32,7 @@ import com.googlecode.fspotcloud.client.place.api.Navigator;
 
 
 public class ZoomViewEventHandler implements ZoomViewEvent.Handler,
-    Initializable {
+        Initializable {
     private final Navigator navigator;
     private final EventBus eventBus;
 

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.common.testing.TearDown;
@@ -29,14 +29,17 @@ import com.google.guiceberry.testng.TestNgGuiceBerry;
 import com.googlecode.fspotcloud.server.model.api.PeerDatabase;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
-import java.lang.reflect.Method;
-import java.sql.SQLException;
-import java.util.logging.Logger;
 import net.customware.gwt.dispatch.shared.DispatchException;
-import static org.testng.AssertJUnit.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.lang.reflect.Method;
+import java.sql.SQLException;
+import java.util.logging.Logger;
+
+import static org.testng.AssertJUnit.*;
+
 public class PeerServerIntegrationHardCasesTest extends PeerServerEnvironment {
     private TearDown toTearDown;
 

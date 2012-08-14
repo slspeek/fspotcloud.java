@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.common.collect.ImmutableList;
@@ -34,20 +34,23 @@ import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.peer.PhotoData;
 import com.googlecode.fspotcloud.shared.peer.PhotoDataResult;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 import static org.mockito.Mockito.*;
+
 public class PhotoDataCallbackTest {
     private static final int VERSION = 15;
-    private static final byte[] IMAGE_DATA = new byte[] { 0, 1 };
-    private static final byte[] THUMB_DATA = new byte[] { 0 };
+    private static final byte[] IMAGE_DATA = new byte[]{0, 1};
+    private static final byte[] THUMB_DATA = new byte[]{0};
     private static final String DESCRIPTION = "description";
     private static final String PHOTO_ID = "1";
     private static final String TAG_ID = "fooMock";

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.inject;
 
 import com.googlecode.fspotcloud.server.admin.handler.*;
@@ -35,11 +35,11 @@ public class AdminActionsModule extends ActionHandlerModule {
         bindHandler(GetMetaDataAction.class, GetMetaDataHandler.class);
         bindHandler(UserDeletesAllAction.class, UserDeletesAllHandler.class);
         bindHandler(UserDeletesAllCommandsAction.class,
-            UserDeletesAllCommandsHandler.class);
+                UserDeletesAllCommandsHandler.class);
         bindHandler(UserImportsTagAction.class, UserImportsTagHandler.class);
         bindHandler(UserUnImportsTagAction.class, UserUnImportsTagHandler.class);
         bindHandler(UserSynchronizesPeerAction.class,
-            UserSynchronizesPeerHandler.class);
+                UserSynchronizesPeerHandler.class);
         bindHandler(GetAdminTagTreeAction.class, GetAdminTagTreeHandler.class);
     }
 }

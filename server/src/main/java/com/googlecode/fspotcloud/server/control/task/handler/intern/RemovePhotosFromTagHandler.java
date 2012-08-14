@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.AbstractBatchAction;
@@ -29,11 +29,12 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotos
 import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import javax.inject.Inject;
-import javax.inject.Named;
 
 
 public class RemovePhotosFromTagHandler extends AbstractBatchActionHandler<RemovePhotosFromTagAction, String> {
@@ -45,8 +46,8 @@ public class RemovePhotosFromTagHandler extends AbstractBatchActionHandler<Remov
 
     @Inject
     public RemovePhotosFromTagHandler(@Named("maxDelete")
-    int maxDeleteTicks, TaskQueueDispatch dispatchAsync, PhotoDao photoDao,
-        TagDao tagManager, PeerDatabaseDao peerDatabaseManager) {
+                                      int maxDeleteTicks, TaskQueueDispatch dispatchAsync, PhotoDao photoDao,
+                                      TagDao tagManager, PeerDatabaseDao peerDatabaseManager) {
         super(dispatchAsync, maxDeleteTicks);
         MAX_DELETE_TICKS = maxDeleteTicks;
         this.dispatchAsync = dispatchAsync;
@@ -97,7 +98,7 @@ public class RemovePhotosFromTagHandler extends AbstractBatchActionHandler<Remov
 
     @Override
     public void doWork(AbstractBatchAction<String> action,
-        Iterator<String> workLoad) {
+                       Iterator<String> workLoad) {
         Tag tag = tagManager.find(((RemovePhotosFromTagAction) action).getTagId());
 
         for (int i = 0; (i < MAX_DELETE_TICKS) && workLoad.hasNext(); i++) {

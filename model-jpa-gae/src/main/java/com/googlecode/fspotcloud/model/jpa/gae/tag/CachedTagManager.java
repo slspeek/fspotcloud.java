@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa.gae.tag;
 
 import com.googlecode.fspotcloud.model.jpa.tag.CachedTagManagerBase;
@@ -29,12 +29,13 @@ import com.googlecode.fspotcloud.model.jpa.tag.TagManagerBase;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.simplejpadao.AbstractDAO;
-import java.util.logging.Logger;
+
 import javax.inject.Inject;
+import java.util.logging.Logger;
 
 
 public class CachedTagManager extends CachedTagManagerBase<Tag, TagEntity>
-    implements TagDao {
+        implements TagDao {
     private static final Logger log = Logger.getLogger(CachedTagManager.class.getName());
     @Inject
     TagManagerBase<Tag, TagEntity> delegate;

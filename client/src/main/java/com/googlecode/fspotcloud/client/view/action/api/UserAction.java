@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.view.action.api;
 
 import com.google.gwt.resources.client.ImageResource;
@@ -33,5 +33,5 @@ import com.googlecode.fspotcloud.client.main.event.UserEventHandler;
 public interface UserAction extends Runnable, ActionDef {
     ImageResource getIcon();
 
-    Provider<?extends UserEvent<?extends UserEventHandler>> getEventProvider();
+    Provider<? extends UserEvent<? extends UserEventHandler>> getEventProvider();
 }

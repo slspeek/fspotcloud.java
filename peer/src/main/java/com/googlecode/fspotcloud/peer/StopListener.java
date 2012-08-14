@@ -21,11 +21,12 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.peer;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.logging.Logger;
@@ -38,7 +39,7 @@ public class StopListener extends Thread {
 
     @Inject
     public StopListener(@Named("stop port")
-    int port) {
+                        int port) {
         this.stopPort = port;
     }
 

@@ -21,10 +21,11 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.test;
 
 import com.google.inject.Inject;
+
 import java.io.IOException;
 
 
@@ -50,20 +51,20 @@ public class PeerRunner {
 
     public void stopPeer() throws IOException {
         Process peer = Runtime.getRuntime()
-                              .exec(new String[] { "telnet", "localhost", "4444" });
+                .exec(new String[]{"telnet", "localhost", "4444"});
     }
 
     private String[] getCommand(String db) {
-        String[] cmd = new String[] {
+        String[] cmd = new String[]{
                 "screen", "-d", "-m", "java", "-cp", peerJar, "-Ddb=" + db,
                 "-Dendpoint=" + endpoint, "-Dbot.secret=" + secret, "-Dpause=2",
                 "-Dphoto.dir.original=file:///home/steven/Photos",
-                
+
                 "-Dphoto.dir.override=file://" +
-                System.getProperty("user.dir") +
-                "/../peer/src/test/resources/Photos",
+                        System.getProperty("user.dir") +
+                        "/../peer/src/test/resources/Photos",
                 "com.googlecode.fspotcloud.peer.Main"
-            };
+        };
 
         return cmd;
     }

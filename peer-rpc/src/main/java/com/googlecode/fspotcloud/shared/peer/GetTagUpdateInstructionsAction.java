@@ -21,19 +21,20 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.base.Objects;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.openpojo.business.annotation.BusinessKey;
+import net.customware.gwt.dispatch.shared.Action;
+
 import java.io.Serializable;
 import java.util.SortedSet;
-import net.customware.gwt.dispatch.shared.Action;
 
 
 public class GetTagUpdateInstructionsAction extends BusinessBase
-    implements Action<TagUpdateInstructionsResult>,
+        implements Action<TagUpdateInstructionsResult>,
         Serializable {
     private static final long serialVersionUID = -2428269504170714946L;
     @BusinessKey
@@ -42,7 +43,7 @@ public class GetTagUpdateInstructionsAction extends BusinessBase
     private final SortedSet<PhotoInfo> photosOnServer;
 
     public GetTagUpdateInstructionsAction(String tagId,
-        SortedSet<PhotoInfo> photosOnServer) {
+                                          SortedSet<PhotoInfo> photosOnServer) {
         super();
         this.tagId = tagId;
         this.photosOnServer = photosOnServer;
@@ -58,6 +59,6 @@ public class GetTagUpdateInstructionsAction extends BusinessBase
 
     public String toString() {
         return Objects.toStringHelper(this).add("tag", tagId)
-                      .add("photosOnServer", photosOnServer).toString();
+                .add("photosOnServer", photosOnServer).toString();
     }
 }

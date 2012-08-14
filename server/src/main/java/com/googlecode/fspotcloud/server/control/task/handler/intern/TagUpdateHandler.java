@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
@@ -31,11 +31,12 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.TagUpdateAct
 import com.googlecode.fspotcloud.shared.peer.GetTagDataAction;
 import com.googlecode.fspotcloud.shared.peer.TagUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Named;
 
 
 public class TagUpdateHandler extends AbstractBatchActionHandler<TagUpdateAction, TagUpdate> {
@@ -44,8 +45,8 @@ public class TagUpdateHandler extends AbstractBatchActionHandler<TagUpdateAction
 
     @Inject
     public TagUpdateHandler(@Named("maxTicks")
-    int maxTicks, ControllerDispatchAsync controllerDispatch,
-        TaskQueueDispatch dispatchAsync) {
+                            int maxTicks, ControllerDispatchAsync controllerDispatch,
+                            TaskQueueDispatch dispatchAsync) {
         super(dispatchAsync, maxTicks);
         this.controllerDispatch = controllerDispatch;
         MAX_DATA_TICKS = maxTicks;
@@ -53,7 +54,7 @@ public class TagUpdateHandler extends AbstractBatchActionHandler<TagUpdateAction
 
     @Override
     public void doWork(AbstractBatchAction<TagUpdate> action,
-        Iterator<TagUpdate> workLoad) {
+                       Iterator<TagUpdate> workLoad) {
         List<String> tagKeys = new ArrayList<String>();
 
         for (int j = 0; workLoad.hasNext() && j < MAX_DATA_TICKS; j++) {

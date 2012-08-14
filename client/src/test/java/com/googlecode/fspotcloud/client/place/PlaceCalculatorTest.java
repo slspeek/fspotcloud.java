@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.place;
 
 import com.googlecode.fspotcloud.client.place.api.Navigator.Zoom;
@@ -58,9 +58,9 @@ public class PlaceCalculatorTest extends TestCase {
         assertEquals("1", ((BasePlace) newPlace).getTagId());
         assertEquals("10", ((BasePlace) newPlace).getPhotoId());
         assertEquals(PlaceCalculator.DEFAULT_RASTER_WIDTH,
-            newPlace.getColumnCount());
+                newPlace.getColumnCount());
         assertEquals(PlaceCalculator.DEFAULT_RASTER_HEIGHT,
-            newPlace.getRowCount());
+                newPlace.getRowCount());
     }
 
     public void testGetFullscreen() {

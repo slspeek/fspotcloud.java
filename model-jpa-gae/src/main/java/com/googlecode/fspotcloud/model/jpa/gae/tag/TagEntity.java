@@ -21,24 +21,26 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /**
  *
  */
 package com.googlecode.fspotcloud.model.jpa.gae.tag;
 
 import com.google.appengine.api.datastore.Blob;
-import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+import org.apache.commons.lang.SerializationUtils;
+
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import org.apache.commons.lang.SerializationUtils;
+
+import static com.google.common.collect.Sets.newHashSet;
 
 /**
  * Represents a Label in F-Spot
@@ -61,7 +63,7 @@ public class TagEntity implements Serializable, Tag {
     private HashSet<Long> approvedUserGroups = newHashSet();
     @Basic
     private Blob cachedPhotoList = new Blob(SerializationUtils.serialize(
-                new TreeSet<PhotoInfo>()));
+            new TreeSet<PhotoInfo>()));
 
     public TagEntity() {
     }
@@ -140,7 +142,7 @@ public class TagEntity implements Serializable, Tag {
     @Override
     public void setCachedPhotoList(TreeSet<PhotoInfo> cachedPhotoList) {
         this.cachedPhotoList = new Blob(SerializationUtils.serialize(
-                    cachedPhotoList));
+                cachedPhotoList));
     }
 
     @Override

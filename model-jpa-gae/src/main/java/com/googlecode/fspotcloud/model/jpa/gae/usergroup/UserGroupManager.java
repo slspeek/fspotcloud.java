@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.jpa.gae.usergroup;
 
 import com.googlecode.fspotcloud.model.jpa.usergroup.UserGroupManagerBase;
@@ -30,13 +30,13 @@ import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
 
 
 public class UserGroupManager extends UserGroupManagerBase<UserGroup, UserGroupEntity>
-    implements UserGroupDao {
+        implements UserGroupDao {
     @Override
     protected UserGroup newUserGroup() {
         return new UserGroupEntity();
     }
 
-    protected Class<?extends UserGroup> getEntityClass() {
+    protected Class<? extends UserGroup> getEntityClass() {
         return UserGroupEntity.class;
     }
 

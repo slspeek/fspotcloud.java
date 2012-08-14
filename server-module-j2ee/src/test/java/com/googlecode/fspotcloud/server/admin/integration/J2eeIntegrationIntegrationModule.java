@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
 import com.google.inject.Singleton;
@@ -31,7 +31,7 @@ import com.googlecode.fspotcloud.model.jpa.ModelModule;
 
 
 public class J2eeIntegrationIntegrationModule
-    extends PlaceHolderIntegrationModule {
+        extends PlaceHolderIntegrationModule {
     @Override
     public void configure() {
         super.configure();

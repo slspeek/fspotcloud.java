@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.inject;
 
 import com.googlecode.fspotcloud.server.main.handler.*;
@@ -50,7 +50,7 @@ public class MainActionModule extends ActionHandlerModule {
         bindHandler(RevokeTagAction.class, RevokeTagHandler.class);
         bindHandler(GetTagNodeAction.class, GetTagNodeHandler.class);
         bindHandler(RequestFullsizeImageAction.class,
-            RequestFullsizeImageHandler.class);
+                RequestFullsizeImageHandler.class);
 
         bind(IUserGroupHelper.class).to(UserGroupHelper.class);
     }

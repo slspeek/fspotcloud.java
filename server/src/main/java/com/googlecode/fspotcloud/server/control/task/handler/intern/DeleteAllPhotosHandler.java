@@ -21,18 +21,19 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
 import com.googlecode.fspotcloud.server.control.task.actions.intern.DeleteAllPhotosAction;
 import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.logging.Logger;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import javax.inject.Inject;
+import java.util.logging.Logger;
 
 
 public class DeleteAllPhotosHandler extends SimpleActionHandler<DeleteAllPhotosAction, VoidResult> {
@@ -42,7 +43,7 @@ public class DeleteAllPhotosHandler extends SimpleActionHandler<DeleteAllPhotosA
 
     @Inject
     public DeleteAllPhotosHandler(TaskQueueDispatch dispatchAsync,
-        PhotoDao photoManager) {
+                                  PhotoDao photoManager) {
         super();
         this.dispatchAsync = dispatchAsync;
         this.photoManager = photoManager;
@@ -50,7 +51,7 @@ public class DeleteAllPhotosHandler extends SimpleActionHandler<DeleteAllPhotosA
 
     @Override
     public VoidResult execute(DeleteAllPhotosAction action,
-        ExecutionContext context) throws DispatchException {
+                              ExecutionContext context) throws DispatchException {
         photoManager.deleteBulk(30);
 
         if (!photoManager.isEmpty()) {

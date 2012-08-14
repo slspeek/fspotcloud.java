@@ -21,21 +21,22 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /**
  *
  */
 package com.googlecode.fspotcloud.model.jpa.gae.photo;
 
 import com.googlecode.fspotcloud.server.model.api.Photo;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 /**

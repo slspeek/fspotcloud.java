@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.handler;
 
 import com.googlecode.botdispatch.model.api.Commands;
@@ -32,13 +32,15 @@ import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataAction;
 import com.googlecode.fspotcloud.shared.dashboard.GetMetaDataResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 import net.customware.gwt.dispatch.shared.DispatchException;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
-import org.mockito.MockitoAnnotations;
+
 public class GetMetaDataHandlerTest {
     GetMetaDataHandler handler;
     GetMetaDataAction action = new GetMetaDataAction();
@@ -72,7 +74,7 @@ public class GetMetaDataHandlerTest {
     @Test
     public void testException() {
         when(commandManager.getCountUnderAThousend())
-            .thenThrow(RuntimeException.class);
+                .thenThrow(RuntimeException.class);
         when(defaultPeer.get()).thenReturn(pd);
 
         try {
@@ -85,7 +87,7 @@ public class GetMetaDataHandlerTest {
     @Test(expected = SecurityException.class)
     public void forbidden() throws DispatchException {
         doThrow(new SecurityException()).when(adminPermission)
-            .checkAdminPermission();
+                .checkAdminPermission();
 
         GetMetaDataResult result = handler.execute(action, null);
     }

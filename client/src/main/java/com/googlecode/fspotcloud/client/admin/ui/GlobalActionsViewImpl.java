@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.admin.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -35,7 +35,7 @@ import com.googlecode.fspotcloud.client.admin.view.api.GlobalActionsView;
 
 
 public class GlobalActionsViewImpl extends Composite
-    implements GlobalActionsView {
+        implements GlobalActionsView {
     private static GlobalActionsViewImplUiBinder uiBinder = GWT.create(GlobalActionsViewImplUiBinder.class);
     private GlobalActionsPresenter presenter;
     @UiField
@@ -61,7 +61,7 @@ public class GlobalActionsViewImpl extends Composite
         updateButton.ensureDebugId("update-button");
         deleteAllCommandsButton.ensureDebugId("delete-all-photos-button");
         pendingCommandCountValueLabel.ensureDebugId(
-            "pending-command-count-label");
+                "pending-command-count-label");
     }
 
     @UiHandler("deleteAllCommandsButton")

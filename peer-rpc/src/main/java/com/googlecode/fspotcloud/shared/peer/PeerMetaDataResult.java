@@ -21,17 +21,18 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
-import java.io.Serializable;
 import net.customware.gwt.dispatch.shared.Result;
+
+import java.io.Serializable;
 
 
 public class PeerMetaDataResult extends BusinessBase implements Result,
-    Serializable {
+        Serializable {
     private static final long serialVersionUID = 5786908411967248429L;
     @BusinessKey
     private int tagCount;
@@ -54,6 +55,6 @@ public class PeerMetaDataResult extends BusinessBase implements Result,
 
     public String toString() {
         return Objects.toStringHelper(this).add("#tag", tagCount)
-                      .add("#photo", photoCount).toString();
+                .add("#photo", photoCount).toString();
     }
 }

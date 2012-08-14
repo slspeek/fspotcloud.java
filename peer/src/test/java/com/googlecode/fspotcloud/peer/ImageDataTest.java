@@ -21,16 +21,17 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.peer;
 
+import junit.framework.TestCase;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import junit.framework.TestCase;
 
 
 public class ImageDataTest extends TestCase {
@@ -65,9 +66,9 @@ public class ImageDataTest extends TestCase {
     }
 
     public final void testGetScaledImageDataPortrait()
-        throws Exception {
+            throws Exception {
         String urlString = cwd +
-            "/src/test/resources/Photos/2010/06/04/Mac-classic.jpg";
+                "/src/test/resources/Photos/2010/06/04/Mac-classic.jpg";
         Dimension size = new Dimension(200, 100);
         byte[] data = target.getScaledImageData(urlString, size);
         InputStream dataStream = new ByteArrayInputStream(data);

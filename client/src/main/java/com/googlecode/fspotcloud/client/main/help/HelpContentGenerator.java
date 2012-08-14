@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.help;
 
 import com.google.gwt.resources.client.ImageResource;
@@ -41,24 +41,24 @@ public class HelpContentGenerator {
     }
 
     private String getHelpRow(String key, String altKey1, String altKey2,
-        String description, ImageResource icon) {
+                              String description, ImageResource icon) {
         String row = "";
         row += ("<span class='" + style.helpKey() + "'>" + key + "</span>");
 
         if (altKey1 != null) {
             row += (" or <span class='" + style.helpKey() + "'>" + altKey1 +
-            "</span>");
+                    "</span>");
 
             if (altKey2 != null) {
                 row += (" or <span class='" + style.helpKey() + "'>" + altKey2 +
-                "</span>");
+                        "</span>");
             }
         }
 
         row += "</td>";
 
         row += ("<td><span class='" + style.helpSeparator() +
-        "'>:</span></td>");
+                "'>:</span></td>");
         row += "<td>";
 
         if (icon != null) {
@@ -67,7 +67,7 @@ public class HelpContentGenerator {
 
         row += "</td>";
         row += ("<td><span class='" + style.helpDescription() + "'>" +
-        description + "</span>");
+                description + "</span>");
 
         return row;
     }
@@ -85,10 +85,10 @@ public class HelpContentGenerator {
             altKey = altStroke.getKeyString();
 
             return getHelpRow(key, altKey, null, shortcut.getDescription(),
-                shortcut.getIcon());
+                    shortcut.getIcon());
         } else {
             return getHelpRow(key, null, null, shortcut.getDescription(),
-                shortcut.getIcon());
+                    shortcut.getIcon());
         }
     }
 }

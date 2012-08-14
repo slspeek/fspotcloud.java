@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.model.api.test.user;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
@@ -29,12 +29,15 @@ import com.google.inject.Inject;
 import com.googlecode.fspotcloud.model.api.test.EmptyGuiceBerryEnv;
 import com.googlecode.fspotcloud.server.model.api.User;
 import com.googlecode.fspotcloud.server.model.api.UserDao;
-import java.util.logging.Logger;
 import org.junit.After;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.util.logging.Logger;
+
+import static org.junit.Assert.*;
+
 public class UserManagerTest {
     private static final Logger log = Logger.getLogger(UserManagerTest.class.getName());
     public static final String EMAIL = "douglas@yahoo.com";

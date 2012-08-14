@@ -21,13 +21,14 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main;
 
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.IGlobalShortcutController.Mode;
 import com.googlecode.fspotcloud.client.main.ui.TagViewImpl;
 import com.googlecode.fspotcloud.client.main.view.api.TagView;
+
 import java.util.logging.Logger;
 
 
@@ -39,7 +40,7 @@ public class HideControlsAction implements Runnable {
 
     @Inject
     public HideControlsAction(TagView tagView,
-        IGlobalShortcutController keyboard) {
+                              IGlobalShortcutController keyboard) {
         super();
         this.tagView = (TagViewImpl) tagView;
         this.keyboard = keyboard;

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view.api;
 
 import com.google.inject.assistedinject.Assisted;
@@ -30,7 +30,7 @@ import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 
 public interface ImagePresenterFactory {
     ImageView.ImagePresenter get(@Assisted
-    String tagId, @Assisted
+                                 String tagId, @Assisted
     PhotoInfo info, @Assisted
     ImageView imageView, @Assisted
     boolean thumb);

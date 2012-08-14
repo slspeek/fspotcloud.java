@@ -21,14 +21,13 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.control.task.handler.intern;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.name.Names;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.server.control.callback.TagDataCallback;
@@ -37,12 +36,15 @@ import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.peer.GetTagDataAction;
 import com.googlecode.fspotcloud.shared.peer.TagUpdate;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import javax.inject.Inject;
 import org.jukito.JukitoModule;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -56,40 +58,40 @@ public class TagUpdateHandlerTest {
 
     @Test
     public void testExecute(ControllerDispatchAsync controllerDispatch,
-        TaskQueueDispatch dispatchAsync) throws Exception {
+                            TaskQueueDispatch dispatchAsync) throws Exception {
         TagUpdateAction action = new TagUpdateAction(newArrayList(
-                    new TagUpdate("2"),
-                    new TagUpdate("3")));
+                new TagUpdate("2"),
+                new TagUpdate("3")));
         VoidResult expResult = new VoidResult();
         VoidResult result = instance.execute(action, null);
         assertEquals(expResult, result);
         verify(controllerDispatch)
-            .execute(new GetTagDataAction(newArrayList("2")),
-            new TagDataCallback(null, null));
+                .execute(new GetTagDataAction(newArrayList("2")),
+                        new TagDataCallback(null, null));
         verify(dispatchAsync)
-            .execute(new TagUpdateAction(newArrayList(new TagUpdate("3"))));
+                .execute(new TagUpdateAction(newArrayList(new TagUpdate("3"))));
         verifyNoMoreInteractions(controllerDispatch, dispatchAsync);
     }
 
     @Test
     public void testExecuteNoRecursion(
-        ControllerDispatchAsync controllerDispatch,
-        TaskQueueDispatch dispatchAsync) throws Exception {
+            ControllerDispatchAsync controllerDispatch,
+            TaskQueueDispatch dispatchAsync) throws Exception {
         TagUpdateAction action = new TagUpdateAction(newArrayList(
-                    new TagUpdate("2")));
+                new TagUpdate("2")));
         VoidResult expResult = new VoidResult();
         VoidResult result = instance.execute(action, null);
         assertEquals(expResult, result);
         verify(controllerDispatch)
-            .execute(new GetTagDataAction(newArrayList("2")),
-            new TagDataCallback(null, null));
+                .execute(new GetTagDataAction(newArrayList("2")),
+                        new TagDataCallback(null, null));
         verifyNoMoreInteractions(controllerDispatch, dispatchAsync);
     }
 
     public static class Module extends JukitoModule {
         protected void configureTest() {
             bind(Integer.class).annotatedWith(Names.named("maxTicks"))
-                .toInstance(new Integer(1));
+                    .toInstance(new Integer(1));
         }
     }
 }

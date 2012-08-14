@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.peer.handlers;
 
 import com.google.inject.Inject;
@@ -45,13 +45,13 @@ public class GetPhotoDataHandler extends SimpleActionHandler<GetPhotoDataAction,
 
     @Override
     public PhotoDataResult execute(GetPhotoDataAction action,
-        ExecutionContext context) throws DispatchException {
+                                   ExecutionContext context) throws DispatchException {
         PhotoDataResult result;
 
         try {
             result = new PhotoDataResult(data.getPhotoData(
-                        action.getImageSpecs(),
-                        action.getImageKeys()));
+                    action.getImageSpecs(),
+                    action.getImageKeys()));
         } catch (Exception e) {
             throw new ActionException(e);
         }

@@ -21,10 +21,9 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.admin.view;
 
-import static com.google.common.collect.Sets.newHashSet;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -35,9 +34,13 @@ import com.googlecode.fspotcloud.client.place.TagPlace;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.*;
+import net.customware.gwt.dispatch.client.DispatchAsync;
+
 import java.util.Set;
 import java.util.logging.Logger;
-import net.customware.gwt.dispatch.client.DispatchAsync;
+
+import static com.google.common.collect.Sets.newHashSet;
+
 public class TagApprovalPresenterImpl extends AbstractActivity implements TagApprovalView.TagApprovalPresenter {
     private static final Logger log = Logger.getLogger(TagApprovalPresenterImpl.class.getName());
     private final TagApprovalView view;
@@ -49,14 +52,14 @@ public class TagApprovalPresenterImpl extends AbstractActivity implements TagApp
 
     @Inject
     public TagApprovalPresenterImpl(TagApprovalView view,
-        DispatchAsync dispatch, PlaceGoTo placeGoTo) {
+                                    DispatchAsync dispatch, PlaceGoTo placeGoTo) {
         this.view = view;
         this.dispatch = dispatch;
         this.placeGoTo = placeGoTo;
     }
 
     private Set<UserGroupInfo> getOthers(Set<UserGroupInfo> all,
-        Set<Long> approved) {
+                                         Set<Long> approved) {
         Set<UserGroupInfo> result = newHashSet();
 
         for (UserGroupInfo info : all) {
@@ -79,20 +82,20 @@ public class TagApprovalPresenterImpl extends AbstractActivity implements TagApp
 
     private void refreshData() {
         dispatch.execute(new GetMyUserGroupsAction(),
-            new AsyncCallback<GetMyUserGroupsResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    //To change body of implemented methods use File | Settings | File Templates.
-                }
-
-                @Override
-                public void onSuccess(GetMyUserGroupsResult result) {
-                    if (result.getData() != null) {
-                        allGroups = newHashSet(result.getData());
-                        refreshTagNode(tagId);
+                new AsyncCallback<GetMyUserGroupsResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        //To change body of implemented methods use File | Settings | File Templates.
                     }
-                }
-            });
+
+                    @Override
+                    public void onSuccess(GetMyUserGroupsResult result) {
+                        if (result.getData() != null) {
+                            allGroups = newHashSet(result.getData());
+                            refreshTagNode(tagId);
+                        }
+                    }
+                });
     }
 
     @Override
@@ -101,17 +104,17 @@ public class TagApprovalPresenterImpl extends AbstractActivity implements TagApp
 
         if (info != null) {
             dispatch.execute(new RevokeTagAction(tagId, info.getId()),
-                new AsyncCallback<VoidResult>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        //To change body of implemented methods use File | Settings | File Templates.
-                    }
+                    new AsyncCallback<VoidResult>() {
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            //To change body of implemented methods use File | Settings | File Templates.
+                        }
 
-                    @Override
-                    public void onSuccess(VoidResult result) {
-                        refreshData();
-                    }
-                });
+                        @Override
+                        public void onSuccess(VoidResult result) {
+                            refreshData();
+                        }
+                    });
         }
     }
 
@@ -121,17 +124,17 @@ public class TagApprovalPresenterImpl extends AbstractActivity implements TagApp
 
         if (info != null) {
             dispatch.execute(new ApproveTagAction(tagId, info.getId()),
-                new AsyncCallback<VoidResult>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        //To change body of implemented methods use File | Settings | File Templates.
-                    }
+                    new AsyncCallback<VoidResult>() {
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            //To change body of implemented methods use File | Settings | File Templates.
+                        }
 
-                    @Override
-                    public void onSuccess(VoidResult result) {
-                        refreshData();
-                    }
-                });
+                        @Override
+                        public void onSuccess(VoidResult result) {
+                            refreshData();
+                        }
+                    });
         }
     }
 
@@ -148,27 +151,27 @@ public class TagApprovalPresenterImpl extends AbstractActivity implements TagApp
 
     private void refreshTagNode(String tagId) {
         dispatch.execute(new GetTagNodeAction(tagId),
-            new AsyncCallback<TagNodeResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    //To change body of implemented methods use File | Settings | File Templates.
-                }
+                new AsyncCallback<TagNodeResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        //To change body of implemented methods use File | Settings | File Templates.
+                    }
 
-                @Override
-                public void onSuccess(TagNodeResult result) {
-                    tagNode = result.getInfo();
-                    view.setTagName(tagNode.getTagName());
+                    @Override
+                    public void onSuccess(TagNodeResult result) {
+                        tagNode = result.getInfo();
+                        view.setTagName(tagNode.getTagName());
 
-                    final Set<UserGroupInfo> others = getOthers(allGroups,
-                            tagNode.getApprovedUserGroups());
-                    view.setOtherGroups(others);
+                        final Set<UserGroupInfo> others = getOthers(allGroups,
+                                tagNode.getApprovedUserGroups());
+                        view.setOtherGroups(others);
 
-                    Set<UserGroupInfo> copyOfAll = newHashSet(allGroups);
-                    copyOfAll.removeAll(others);
+                        Set<UserGroupInfo> copyOfAll = newHashSet(allGroups);
+                        copyOfAll.removeAll(others);
 
-                    Set<UserGroupInfo> approved = copyOfAll;
-                    view.setApprovedGroups(approved);
-                }
-            });
+                        Set<UserGroupInfo> approved = copyOfAll;
+                        view.setApprovedGroups(approved);
+                    }
+                });
     }
 }

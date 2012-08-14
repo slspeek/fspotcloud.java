@@ -21,14 +21,13 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.admin.handler;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
@@ -41,14 +40,18 @@ import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.user.IAdminPermission;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.List;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+
+import javax.inject.Inject;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
+
 @RunWith(JukitoRunner.class)
 public class UserUnImportsTagHandlerTest {
     @Inject
@@ -58,9 +61,9 @@ public class UserUnImportsTagHandlerTest {
 
     @Test
     public void testNormalExecute(TagDao tagManager,
-        TaskQueueDispatch dispatchAsync, PeerDatabaseDao peerDatabaseDao,
-        ArgumentCaptor<RemovePhotosFromTagAction> actionCaptor)
-        throws Exception {
+                                  TaskQueueDispatch dispatchAsync, PeerDatabaseDao peerDatabaseDao,
+                                  ArgumentCaptor<RemovePhotosFromTagAction> actionCaptor)
+            throws Exception {
         Tag tagOne = new TagEntity();
         tagOne.setId(TAG_ID);
         when(tagManager.find(TAG_ID)).thenReturn(tagOne);
@@ -76,9 +79,9 @@ public class UserUnImportsTagHandlerTest {
 
     @Test
     public void testNormalExecuteUnImportNeeded(TagDao tagManager,
-        TaskQueueDispatch dispatchAsync, PeerDatabaseDao peerDatabaseDao,
-        ArgumentCaptor<RemovePhotosFromTagAction> actionCaptor)
-        throws Exception {
+                                                TaskQueueDispatch dispatchAsync, PeerDatabaseDao peerDatabaseDao,
+                                                ArgumentCaptor<RemovePhotosFromTagAction> actionCaptor)
+            throws Exception {
         Tag tagOne = new TagEntity();
         tagOne.setId(TAG_ID);
         tagOne.setImportIssued(true);
@@ -97,9 +100,9 @@ public class UserUnImportsTagHandlerTest {
 
     @Test
     public void testNormalExecuteTreeCacheNeedsClearing(TagDao tagManager,
-        TaskQueueDispatch dispatchAsync, PeerDatabaseDao peerDatabaseDao,
-        ArgumentCaptor<RemovePhotosFromTagAction> actionCaptor)
-        throws Exception {
+                                                        TaskQueueDispatch dispatchAsync, PeerDatabaseDao peerDatabaseDao,
+                                                        ArgumentCaptor<RemovePhotosFromTagAction> actionCaptor)
+            throws Exception {
         PeerDatabase peer = new PeerDatabaseEntity();
         List<TagNode> emptyList = newArrayList();
         peer.setCachedTagTree(emptyList);
@@ -122,9 +125,9 @@ public class UserUnImportsTagHandlerTest {
 
     @Test(expected = SecurityException.class)
     public void testUnAuthorizedExecute(IAdminPermission adminPermission)
-        throws Exception {
+            throws Exception {
         doThrow(new SecurityException()).when(adminPermission)
-            .checkAdminPermission();
+                .checkAdminPermission();
 
         VoidResult result = handler.execute(action, null);
     }

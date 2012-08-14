@@ -21,11 +21,11 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.inject;
 
 import com.google.inject.AbstractModule;
@@ -66,6 +66,6 @@ public class GaeTotalModule extends AbstractModule {
         install(new UserModuleGae());
         bind(Commands.class).to(CommandManager.class).in(Singleton.class);
         bind(Integer.class).annotatedWith(Names.named("maxCommandDelete"))
-            .toInstance(MAX_COMMAND_DELETE);
+                .toInstance(MAX_COMMAND_DELETE);
     }
 }

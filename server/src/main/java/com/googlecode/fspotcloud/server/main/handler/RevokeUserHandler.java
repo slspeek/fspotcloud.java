@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.main.handler;
 
 import com.google.inject.Inject;
@@ -32,10 +32,11 @@ import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.RevokeUserAction;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-import java.util.Set;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import java.util.Set;
 
 
 public class RevokeUserHandler extends SimpleActionHandler<RevokeUserAction, VoidResult> {
@@ -45,7 +46,7 @@ public class RevokeUserHandler extends SimpleActionHandler<RevokeUserAction, Voi
 
     @Inject
     public RevokeUserHandler(UserGroupDao userGroupDao, UserDao userDao,
-        IAdminPermission adminPermission) {
+                             IAdminPermission adminPermission) {
         this.userGroupDao = userGroupDao;
         this.userDao = userDao;
         this.adminPermission = adminPermission;
@@ -53,7 +54,7 @@ public class RevokeUserHandler extends SimpleActionHandler<RevokeUserAction, Voi
 
     @Override
     public VoidResult execute(RevokeUserAction action, ExecutionContext context)
-        throws DispatchException {
+            throws DispatchException {
         adminPermission.checkAdminPermission();
 
         User user = userDao.findOrNew(action.getEmail());

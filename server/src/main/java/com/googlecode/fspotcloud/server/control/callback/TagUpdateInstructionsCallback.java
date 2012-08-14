@@ -21,11 +21,10 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.common.annotations.VisibleForTesting;
-import static com.google.common.collect.Lists.newArrayList;
 import com.google.inject.Inject;
 import com.googlecode.botdispatch.SerializableAsyncCallback;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
@@ -33,9 +32,13 @@ import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotos
 import com.googlecode.fspotcloud.shared.peer.PhotoRemovedFromTag;
 import com.googlecode.fspotcloud.shared.peer.TagUpdateInstructionsResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static com.google.common.collect.Lists.newArrayList;
+
 public class TagUpdateInstructionsCallback implements SerializableAsyncCallback<TagUpdateInstructionsResult> {
     private static final long serialVersionUID = -6213572441944313878L;
     @Inject
@@ -46,7 +49,7 @@ public class TagUpdateInstructionsCallback implements SerializableAsyncCallback<
     private String tagId;
 
     public TagUpdateInstructionsCallback(String tagId,
-        TaskQueueDispatch dispatchAsync) {
+                                         TaskQueueDispatch dispatchAsync) {
         super();
         this.tagId = tagId;
         this.dispatchAsync = dispatchAsync;

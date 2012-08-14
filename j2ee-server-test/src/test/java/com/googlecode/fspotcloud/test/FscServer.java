@@ -21,21 +21,22 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.test;
 
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.servlet.GuiceFilter;
 import com.googlecode.fspotcloud.server.inject.J2eeTotalModule;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import org.mortbay.jetty.Server;
 import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.DefaultServlet;
 import org.mortbay.jetty.webapp.WebAppContext;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 
 public class FscServer {
@@ -45,7 +46,7 @@ public class FscServer {
         server = new Server(port);
 
         final URL url = new File("build/exploded").getAbsoluteFile().toURI()
-                                                  .toURL();
+                .toURL();
 
         //        final Resource resource = new FileResource(url);
         //        final ResourceHandler handler = new ResourceHandler();
@@ -66,7 +67,7 @@ public class FscServer {
 
     protected Module getFscModule() {
         return new J2eeTotalModule(10, "VERY_GRADLE", "slspeek@gmail.com",
-            "smtp.xs4all.nl");
+                "smtp.xs4all.nl");
     }
 
     public Injector start() {

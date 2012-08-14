@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.inject.Inject;
@@ -31,6 +31,7 @@ import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.peer.TagData;
 import com.googlecode.fspotcloud.shared.peer.TagDataResult;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,7 +45,7 @@ public class TagDataCallback implements SerializableAsyncCallback<TagDataResult>
     private transient PeerDatabaseDao peerDatabaseDao;
 
     public TagDataCallback(TagDao tagManager,
-        PeerDatabaseDao peerDatabaseManager) {
+                           PeerDatabaseDao peerDatabaseManager) {
         super();
         this.tagManager = tagManager;
         this.peerDatabaseDao = peerDatabaseManager;

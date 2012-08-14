@@ -21,14 +21,13 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.control.callback;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.PhotoUpdateAction;
 import com.googlecode.fspotcloud.server.control.task.actions.intern.RemovePhotosFromTagAction;
 import com.googlecode.fspotcloud.shared.peer.GetPeerUpdateInstructionsAction;
@@ -36,15 +35,18 @@ import com.googlecode.fspotcloud.shared.peer.PhotoRemovedFromTag;
 import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
 import com.googlecode.fspotcloud.shared.peer.TagUpdateInstructionsResult;
 import com.googlecode.taskqueuedispatch.TaskQueueDispatch;
-import java.util.List;
-import java.util.logging.Logger;
 import net.customware.gwt.dispatch.shared.Action;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+
+import java.util.List;
+import java.util.logging.Logger;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -68,13 +70,13 @@ public class TagUpdateInstructionsCallbackTest {
 
     @Test
     public void testNormalExecute(TaskQueueDispatch dispatchAsync,
-        ArgumentCaptor<GetPeerUpdateInstructionsAction> actionCaptor,
-        ArgumentCaptor<PeerUpdateInstructionsCallback> callbackCaptor,
-        ArgumentCaptor<Action> updateCaptor) throws Exception {
+                                  ArgumentCaptor<GetPeerUpdateInstructionsAction> actionCaptor,
+                                  ArgumentCaptor<PeerUpdateInstructionsCallback> callbackCaptor,
+                                  ArgumentCaptor<Action> updateCaptor) throws Exception {
         List<PhotoUpdate> toBoUpdated = newArrayList(new PhotoUpdate(
-                    PHOTO_UPDATE_ID));
+                PHOTO_UPDATE_ID));
         List<PhotoRemovedFromTag> toBoRemovedFromTag = newArrayList(new PhotoRemovedFromTag(
-                    PHOTO_DELETE_ID));
+                PHOTO_DELETE_ID));
         TagUpdateInstructionsResult result = new TagUpdateInstructionsResult(toBoUpdated,
                 toBoRemovedFromTag);
         System.out.println("Caal" + callback);

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.place;
 
 import com.google.gwt.place.shared.Place;
@@ -91,8 +91,8 @@ public class BasePlace extends Place implements PhotoInTag, Raster {
             int rowCount = basePlace.getRowCount();
 
             return equal(this.tagId, tagId) && equal(this.photoId, photoId) &&
-            equal(this.rowCount, rowCount) &&
-            equal(this.columnCount, columnCount);
+                    equal(this.rowCount, rowCount) &&
+                    equal(this.columnCount, columnCount);
         } else {
             return false;
         }
@@ -100,7 +100,7 @@ public class BasePlace extends Place implements PhotoInTag, Raster {
 
     public String toString() {
         String result = "<<Place tagId: " + tagId + " photoId: " + photoId +
-            "(" + columnCount + "x" + rowCount + ")>>";
+                "(" + columnCount + "x" + rowCount + ")>>";
 
         return result;
     }
@@ -123,13 +123,13 @@ public class BasePlace extends Place implements PhotoInTag, Raster {
             TokenizerUtil util = new TokenizerUtil(token);
 
             return new BasePlace(util.getTagId(), util.getPhotoId(),
-                util.getColumnCount(), util.getRowCount());
+                    util.getColumnCount(), util.getRowCount());
         }
 
         @Override
         public String getToken(BasePlace place) {
             return place.getTagId() + ":" + place.getPhotoId() + ":" +
-            place.getColumnCount() + ":" + place.getRowCount();
+                    place.getColumnCount() + ":" + place.getRowCount();
         }
     }
 }

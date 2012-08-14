@@ -21,24 +21,26 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /**
  *
  */
 package com.googlecode.fspotcloud.model.jpa.tag;
 
-import static com.google.common.collect.Sets.newHashSet;
 import com.googlecode.fspotcloud.server.model.api.Tag;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import org.apache.commons.lang.SerializationUtils;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import org.apache.commons.lang.SerializationUtils;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
+import static com.google.common.collect.Sets.newHashSet;
 
 /**
  * Represents a Label in F-Spot

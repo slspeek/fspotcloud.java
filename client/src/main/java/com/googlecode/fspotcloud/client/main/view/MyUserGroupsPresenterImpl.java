@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -35,8 +35,9 @@ import com.googlecode.fspotcloud.client.place.ManageUsersPlace;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import com.googlecode.fspotcloud.shared.main.*;
-import java.util.logging.Logger;
 import net.customware.gwt.dispatch.client.DispatchAsync;
+
+import java.util.logging.Logger;
 
 
 public class MyUserGroupsPresenterImpl extends AbstractActivity implements MyUserGroupsView.MyUserGroupsPresenter {
@@ -47,7 +48,7 @@ public class MyUserGroupsPresenterImpl extends AbstractActivity implements MyUse
 
     @Inject
     public MyUserGroupsPresenterImpl(MyUserGroupsView view,
-        DispatchAsync dispatch, PlaceGoTo placeGoTo) {
+                                     DispatchAsync dispatch, PlaceGoTo placeGoTo) {
         this.view = view;
         this.dispatch = dispatch;
         this.placeGoTo = placeGoTo;
@@ -64,36 +65,36 @@ public class MyUserGroupsPresenterImpl extends AbstractActivity implements MyUse
 
     private void refreshData() {
         dispatch.execute(new GetMyUserGroupsAction(),
-            new AsyncCallback<GetMyUserGroupsResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    //To change body of implemented methods use File | Settings | File Templates.
-                }
-
-                @Override
-                public void onSuccess(GetMyUserGroupsResult result) {
-                    if (result.getData() != null) {
-                        view.setData(result.getData());
+                new AsyncCallback<GetMyUserGroupsResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        //To change body of implemented methods use File | Settings | File Templates.
                     }
-                }
-            });
+
+                    @Override
+                    public void onSuccess(GetMyUserGroupsResult result) {
+                        if (result.getData() != null) {
+                            view.setData(result.getData());
+                        }
+                    }
+                });
     }
 
     @Override
     public void newUserGroup() {
         dispatch.execute(new NewUserGroupAction(),
-            new AsyncCallback<GetUserGroupResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    //To change body of implemented methods use File | Settings | File Templates.
-                }
+                new AsyncCallback<GetUserGroupResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        //To change body of implemented methods use File | Settings | File Templates.
+                    }
 
-                @Override
-                public void onSuccess(GetUserGroupResult result) {
-                    log.info("New User group added");
-                    refreshData();
-                }
-            });
+                    @Override
+                    public void onSuccess(GetUserGroupResult result) {
+                        log.info("New User group added");
+                        refreshData();
+                    }
+                });
         log.info("New User group requested");
     }
 
@@ -104,18 +105,18 @@ public class MyUserGroupsPresenterImpl extends AbstractActivity implements MyUse
         if (info != null) {
             log.info("Got selected for delete: " + info);
             dispatch.execute(new DeleteUserGroupAction(info.getId()),
-                new AsyncCallback<VoidResult>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        //To change body of implemented methods use File | Settings | File Templates.
-                    }
+                    new AsyncCallback<VoidResult>() {
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            //To change body of implemented methods use File | Settings | File Templates.
+                        }
 
-                    @Override
-                    public void onSuccess(VoidResult result) {
-                        log.info("Delete call returned from server");
-                        refreshData();
-                    }
-                });
+                        @Override
+                        public void onSuccess(VoidResult result) {
+                            log.info("Delete call returned from server");
+                            refreshData();
+                        }
+                    });
         } else {
             log.info("Nothing selected");
         }

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.cron;
 
 import com.googlecode.fspotcloud.shared.dashboard.UserSynchronizesPeerAction;
@@ -36,8 +36,10 @@ import net.customware.gwt.dispatch.server.Dispatch;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+
 public class CronServletTest extends ServletTestCase {
     ServletRunner sr;
 

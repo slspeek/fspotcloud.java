@@ -21,15 +21,15 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.admin.integration;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 
 
 /*
@@ -105,7 +105,7 @@ public class FakeHttpServletSession implements HttpSession {
     public String getId() {
         if (id == null) {
             System.out.println(
-                "Inventing data in FakeHttpSession.getId() to remain plausible.");
+                    "Inventing data in FakeHttpSession.getId() to remain plausible.");
             id = "fake";
         }
 
@@ -178,7 +178,7 @@ public class FakeHttpServletSession implements HttpSession {
     @Deprecated
     public String[] getValueNames() {
         return attributes.keySet()
-                         .toArray(new String[attributes.keySet().size()]);
+                .toArray(new String[attributes.keySet().size()]);
     }
 
     /* (non-Javadoc)

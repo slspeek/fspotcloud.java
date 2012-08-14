@@ -21,14 +21,15 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.shared.peer;
 
 import com.google.common.base.Objects;
 import com.openpojo.business.annotation.BusinessKey;
+import net.customware.gwt.dispatch.shared.Action;
+
 import java.io.Serializable;
 import java.util.List;
-import net.customware.gwt.dispatch.shared.Action;
 
 
 /**
@@ -37,7 +38,7 @@ import net.customware.gwt.dispatch.shared.Action;
  * @author steven
  */
 public class GetPeerUpdateInstructionsAction extends BusinessBase
-    implements Action<PeerUpdateInstructionsResult>,
+        implements Action<PeerUpdateInstructionsResult>,
         Serializable {
     @BusinessKey
     private List<TagData> tagsOnServer;
@@ -52,6 +53,6 @@ public class GetPeerUpdateInstructionsAction extends BusinessBase
 
     public String toString() {
         return Objects.toStringHelper(this).add("tagsOnServer", tagsOnServer)
-                      .toString();
+                .toString();
     }
 }

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.peer.handlers;
 
 import com.googlecode.fspotcloud.peer.db.Data;
@@ -30,13 +30,14 @@ import com.googlecode.fspotcloud.shared.peer.GetTagUpdateInstructionsAction;
 import com.googlecode.fspotcloud.shared.peer.PhotoRemovedFromTag;
 import com.googlecode.fspotcloud.shared.peer.PhotoUpdate;
 import com.googlecode.fspotcloud.shared.peer.TagUpdateInstructionsResult;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.server.ExecutionContext;
 import net.customware.gwt.dispatch.server.SimpleActionHandler;
 import net.customware.gwt.dispatch.shared.DispatchException;
+
+import javax.inject.Inject;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class GetTagUpdateInstructionsHandler extends SimpleActionHandler<GetTagUpdateInstructionsAction, TagUpdateInstructionsResult> {
@@ -50,8 +51,8 @@ public class GetTagUpdateInstructionsHandler extends SimpleActionHandler<GetTagU
 
     @Override
     public TagUpdateInstructionsResult execute(
-        GetTagUpdateInstructionsAction action,
-        ExecutionContext context) throws DispatchException {
+            GetTagUpdateInstructionsAction action,
+            ExecutionContext context) throws DispatchException {
         TagUpdateInstructionsResult result = new TagUpdateInstructionsResult(new ArrayList<PhotoUpdate>(),
                 new ArrayList<PhotoRemovedFromTag>());
 
@@ -82,7 +83,7 @@ public class GetTagUpdateInstructionsHandler extends SimpleActionHandler<GetTagU
     }
 
     private void checkForUpdates(String tagId, PhotoInfo photoInfo,
-        TagUpdateInstructionsResult result) throws SQLException {
+                                 TagUpdateInstructionsResult result) throws SQLException {
         String id = photoInfo.getId();
 
         if (data.isPhotoInTag(tagId, id)) {

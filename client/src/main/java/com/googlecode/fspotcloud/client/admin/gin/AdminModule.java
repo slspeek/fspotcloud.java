@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.admin.gin;
 
 import com.google.gwt.event.shared.EventBus;
@@ -55,14 +55,14 @@ public class AdminModule extends AbstractGinModule {
     protected void configure() {
         bind(TagDetailsActivityMapper.class).in(Singleton.class);
         bind(TagDetailsActivityFactory.class)
-            .to(TagDetailsActivityFactoryImpl.class);
+                .to(TagDetailsActivityFactoryImpl.class);
         bind(TagDetailsView.class).to(TagDetailsViewImpl.class)
-            .in(Singleton.class);
+                .in(Singleton.class);
         bind(DashboardView.class).to(DashboardViewImpl.class).in(Singleton.class);
         bind(DashboardView.DashboardPresenter.class)
-            .to(DashboardPresenterImpl.class);
+                .to(DashboardPresenterImpl.class);
         bind(GlobalActionsView.class).to(GlobalActionsViewImpl.class)
-            .in(Singleton.class);
+                .in(Singleton.class);
         bind(DataManager.class).to(DataManagerImpl.class).in(Singleton.class);
         bind(TagCell.class);
         bind(PlaceGoTo.class).to(PlaceGoToImpl.class);
@@ -70,12 +70,12 @@ public class AdminModule extends AbstractGinModule {
         bind(PlaceControllerProvider.class).in(Singleton.class);
         bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
         bind(TreeView.TreePresenter.class).to(AdminTreePresenterImpl.class)
-            .in(Singleton.class);
+                .in(Singleton.class);
         bind(TreeView.class).to(TreeViewImpl.class).in(Singleton.class);
         bind(TimerInterface.class).to(TimerImpl.class);
 
         bind(TagApprovalView.class).to(TagApprovalViewImpl.class);
         bind(TagApprovalView.TagApprovalPresenter.class)
-            .to(TagApprovalPresenterImpl.class);
+                .to(TagApprovalPresenterImpl.class);
     }
 }

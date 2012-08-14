@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.peer.db;
 
 import com.google.common.annotations.VisibleForTesting;
@@ -32,6 +32,7 @@ import com.googlecode.fspotcloud.peer.ImageData;
 import com.googlecode.fspotcloud.shared.peer.ImageSpecs;
 import com.googlecode.fspotcloud.shared.peer.PhotoData;
 import com.googlecode.fspotcloud.shared.peer.TagData;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -65,7 +66,7 @@ public class Data {
 
     @Inject
     public Data(@Named("JDBC URL")
-    String jdbcURL) {
+                String jdbcURL) {
         this.jdbcURL = jdbcURL;
         this.photoDirectoryOverride = System.getProperty("photo.dir.override");
         this.photoDirectoryOriginalPath = System.getProperty(
@@ -115,11 +116,11 @@ public class Data {
     }
 
     public Object[] getMetaData() throws SQLException {
-        return new Object[] { getCount("photos"), getCount("tags") };
+        return new Object[]{getCount("photos"), getCount("tags")};
     }
 
     public List<TagData> getTagData(List<String> tagIdList)
-        throws SQLException {
+            throws SQLException {
         Connection conn = null;
         ResultSet rs = null;
         List<TagData> tagList;
@@ -132,7 +133,7 @@ public class Data {
                 Statement stmt = conn.createStatement();
                 rs = stmt.executeQuery(
                         "SELECT id, name, category_id FROM tags WHERE id=" +
-                        id);
+                                id);
 
                 while (rs.next()) {
                     String tagId = rs.getString(1);
@@ -176,7 +177,7 @@ public class Data {
     }
 
     public List<String> getPhotoKeysInTag(String tagId)
-        throws Exception {
+            throws Exception {
         List<String> result = new ArrayList<String>();
         Connection conn = null;
         ResultSet rs = null;
@@ -188,7 +189,7 @@ public class Data {
 
             rs = stmt.executeQuery(
                     "SELECT id FROM photos, photo_tags WHERE photos.id=photo_tags.photo_id AND photo_tags.tag_id=\"" +
-                    tagId + "\"");
+                            tagId + "\"");
 
             while (rs.next()) {
                 String id = rs.getString(1);
@@ -202,7 +203,7 @@ public class Data {
     }
 
     public String getImageURL(String photoId)
-        throws SQLException, MalformedURLException {
+            throws SQLException, MalformedURLException {
         String url = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -212,7 +213,7 @@ public class Data {
 
             Statement stmt = conn.createStatement();
             String query = "SELECT default_version_id, base_uri, filename " +
-                "FROM photos WHERE id = " + photoId;
+                    "FROM photos WHERE id = " + photoId;
             rs = stmt.executeQuery(query);
 
             if (rs.next()) {
@@ -223,8 +224,8 @@ public class Data {
                 } else {
                     stmt = conn.createStatement();
                     query = "SELECT base_uri, filename " +
-                        "FROM photo_versions WHERE photo_id =" + photoId +
-                        " AND version_id=" + version;
+                            "FROM photo_versions WHERE photo_id =" + photoId +
+                            " AND version_id=" + version;
                     rs = stmt.executeQuery(query);
 
                     if (rs.next()) {
@@ -288,7 +289,7 @@ public class Data {
     }
 
     public List<PhotoData> getPhotoData(ImageSpecs imageSpecs,
-        List<String> imageKeys) throws SQLException {
+                                        List<String> imageKeys) throws SQLException {
         List<PhotoData> result = new ArrayList<PhotoData>();
 
         for (String imageKey : imageKeys) {
@@ -301,7 +302,7 @@ public class Data {
                 Statement stmt = conn.createStatement();
                 rs = stmt.executeQuery(
                         "SELECT id, description, time, default_version_id " +
-                        "FROM photos WHERE id=\"" + imageKey + "\"");
+                                "FROM photos WHERE id=\"" + imageKey + "\"");
 
                 while (rs.next()) {
                     String id = rs.getString(1);
@@ -315,10 +316,10 @@ public class Data {
                     String url = getImageURL(id);
                     byte[] image = imageData.getScaledImageData(url,
                             new Dimension(imageSpecs.getWidth(),
-                                imageSpecs.getHeight()));
+                                    imageSpecs.getHeight()));
                     byte[] thumb = imageData.getScaledImageData(url,
                             new Dimension(imageSpecs.getThumbWidth(),
-                                imageSpecs.getThumbHeight()));
+                                    imageSpecs.getThumbHeight()));
                     result.add(new PhotoData(id, desc, date, image, thumb,
                             tagList, version));
                 }
@@ -342,7 +343,7 @@ public class Data {
             Statement stmt = conn.createStatement();
             rs = stmt.executeQuery(
                     "SELECT id, description, time, default_version_id " +
-                    "FROM photos WHERE id=\"" + photoId + "\"");
+                            "FROM photos WHERE id=\"" + photoId + "\"");
 
             if (rs.next()) {
                 int version = rs.getInt(4);
@@ -359,7 +360,7 @@ public class Data {
     }
 
     public boolean isPhotoInTag(String tagId, String photoId)
-        throws SQLException {
+            throws SQLException {
         boolean result = false;
         Connection conn = null;
         ResultSet rs = null;
@@ -385,7 +386,7 @@ public class Data {
     }
 
     public byte[] getFullsizePhotoData(String imageKey)
-        throws IOException, SQLException, URISyntaxException {
+            throws IOException, SQLException, URISyntaxException {
         String url = getImageURL(imageKey);
         URI fileURI = new URI(url);
         File imageFile = new File(fileURI);

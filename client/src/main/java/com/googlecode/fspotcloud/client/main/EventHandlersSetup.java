@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main;
 
 import com.google.inject.Inject;
@@ -39,9 +39,9 @@ public class EventHandlersSetup {
 
     @Inject
     public EventHandlersSetup(SlideshowEventHandler slideshow,
-        NavigationEventHandler navigation, ApplicationEventHandler application,
-        AboutEventHandler about, RasterEventHandler raster,
-        ZoomViewEventHandler zoomViewEventHandler) {
+                              NavigationEventHandler navigation, ApplicationEventHandler application,
+                              AboutEventHandler about, RasterEventHandler raster,
+                              ZoomViewEventHandler zoomViewEventHandler) {
         super();
         this.about = about;
         this.slideshow = slideshow;

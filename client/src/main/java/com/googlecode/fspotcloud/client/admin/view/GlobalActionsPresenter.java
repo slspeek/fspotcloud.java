@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.admin.view;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -29,9 +29,10 @@ import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.admin.view.api.GlobalActionsView;
 import com.googlecode.fspotcloud.client.main.view.api.TimerInterface;
 import com.googlecode.fspotcloud.shared.dashboard.*;
+import net.customware.gwt.dispatch.client.DispatchAsync;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPresenter {
@@ -42,7 +43,7 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
 
     @Inject
     public GlobalActionsPresenter(GlobalActionsView globalActionsView,
-        DispatchAsync dispatcher, TimerInterface timer) {
+                                  DispatchAsync dispatcher, TimerInterface timer) {
         super();
         this.timer = timer;
         this.globalActionsView = globalActionsView;
@@ -54,20 +55,20 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
     public void deleteAllCommands() {
         globalActionsView.getDeleteAllCommandsButton().setEnabled(false);
         dispatcher.execute(new UserDeletesAllCommandsAction(),
-            new AsyncCallback<VoidResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    log.log(Level.SEVERE, "Action Exception ", caught);
-                    globalActionsView.getDeleteAllCommandsButton()
-                                     .setEnabled(true);
-                }
+                new AsyncCallback<VoidResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        log.log(Level.SEVERE, "Action Exception ", caught);
+                        globalActionsView.getDeleteAllCommandsButton()
+                                .setEnabled(true);
+                    }
 
-                @Override
-                public void onSuccess(VoidResult result) {
-                    globalActionsView.getDeleteAllCommandsButton()
-                                     .setEnabled(true);
-                }
-            });
+                    @Override
+                    public void onSuccess(VoidResult result) {
+                        globalActionsView.getDeleteAllCommandsButton()
+                                .setEnabled(true);
+                    }
+                });
     }
 
     @Override
@@ -76,20 +77,20 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
 
         if (globalActionsView.confirm("Really delete all tags and photos?")) {
             dispatcher.execute(new UserDeletesAllAction(),
-                new AsyncCallback<VoidResult>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        log.log(Level.SEVERE, "Action Exception ", caught);
-                        globalActionsView.getDeleteAllTagsButton()
-                                         .setEnabled(true);
-                    }
+                    new AsyncCallback<VoidResult>() {
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            log.log(Level.SEVERE, "Action Exception ", caught);
+                            globalActionsView.getDeleteAllTagsButton()
+                                    .setEnabled(true);
+                        }
 
-                    @Override
-                    public void onSuccess(VoidResult result) {
-                        globalActionsView.getDeleteAllTagsButton()
-                                         .setEnabled(true);
-                    }
-                });
+                        @Override
+                        public void onSuccess(VoidResult result) {
+                            globalActionsView.getDeleteAllTagsButton()
+                                    .setEnabled(true);
+                        }
+                    });
         } else {
             globalActionsView.getDeleteAllTagsButton().setEnabled(true);
         }
@@ -100,18 +101,18 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
         log.info("update");
         globalActionsView.getUpdateButton().setEnabled(false);
         dispatcher.execute(new UserSynchronizesPeerAction(),
-            new AsyncCallback<VoidResult>() {
-                public void onFailure(Throwable caught) {
-                    log.log(Level.SEVERE, "Action Exception ", caught);
-                    globalActionsView.getUpdateButton().setEnabled(true);
-                }
+                new AsyncCallback<VoidResult>() {
+                    public void onFailure(Throwable caught) {
+                        log.log(Level.SEVERE, "Action Exception ", caught);
+                        globalActionsView.getUpdateButton().setEnabled(true);
+                    }
 
-                @Override
-                public void onSuccess(VoidResult result) {
-                    log.info("succes update");
-                    globalActionsView.getUpdateButton().setEnabled(true);
-                }
-            });
+                    @Override
+                    public void onSuccess(VoidResult result) {
+                        log.info("succes update");
+                        globalActionsView.getUpdateButton().setEnabled(true);
+                    }
+                });
     }
 
     @Override
@@ -123,44 +124,44 @@ public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPr
 
     private void getMetaData() {
         dispatcher.execute(new GetMetaDataAction(),
-            new AsyncCallback<GetMetaDataResult>() {
-                @Override
-                public void onSuccess(GetMetaDataResult meta) {
-                    populateView(meta);
-                }
+                new AsyncCallback<GetMetaDataResult>() {
+                    @Override
+                    public void onSuccess(GetMetaDataResult meta) {
+                        populateView(meta);
+                    }
 
-                @Override
-                public void onFailure(Throwable caught) {
-                    log.log(Level.SEVERE, "Action Exception from remote: ",
-                        caught);
-                    timer.setRunnable(new Runnable() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        log.log(Level.SEVERE, "Action Exception from remote: ",
+                                caught);
+                        timer.setRunnable(new Runnable() {
                             @Override
                             public void run() {
                                 getMetaData();
                             }
                         });
-                    timer.schedule(6000);
-                }
-            });
+                        timer.schedule(6000);
+                    }
+                });
     }
 
     private void populateView(GetMetaDataResult info) {
         log.info("populate");
         globalActionsView.getLastSeenPeerValue()
-                         .setText(String.valueOf(info.getPeerLastSeen()));
+                .setText(String.valueOf(info.getPeerLastSeen()));
         globalActionsView.getPhotoCountOnPeerValue()
-                         .setText(String.valueOf(info.getPeerPhotoCount()));
+                .setText(String.valueOf(info.getPeerPhotoCount()));
         globalActionsView.getTagCountValue()
-                         .setText(String.valueOf(info.getTagCount()));
+                .setText(String.valueOf(info.getTagCount()));
         globalActionsView.getPendingCommandCountValue()
-                         .setText(String.valueOf(info.getPendingCommandCount()));
+                .setText(String.valueOf(info.getPendingCommandCount()));
 
         timer.setRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    getMetaData();
-                }
-            });
+            @Override
+            public void run() {
+                getMetaData();
+            }
+        });
         timer.schedule(7000);
     }
 }

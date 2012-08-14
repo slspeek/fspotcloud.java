@@ -21,20 +21,22 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
-import static com.google.common.collect.Sets.newHashSet;
 import com.google.gwt.user.client.rpc.IsSerializable;
+import net.customware.gwt.dispatch.shared.Result;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import net.customware.gwt.dispatch.shared.Result;
+
+import static com.google.common.collect.Sets.newHashSet;
 
 /**
  * DOCUMENT ME!
@@ -50,7 +52,7 @@ public class UserGroupInfo implements Result, IsSerializable, Serializable {
     private boolean isPublic;
 
     public UserGroupInfo(Long id, String name, String description,
-        boolean aPublic) {
+                         boolean aPublic) {
         this.name = name;
         this.description = description;
         this.id = id;

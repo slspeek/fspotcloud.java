@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.inject.Inject;
@@ -35,8 +35,8 @@ public class LoadNewLocationAction implements Runnable {
 
     @Inject
     public LoadNewLocationAction(LoadNewLocation loader,
-        @Assisted
-    String newLocation) {
+                                 @Assisted
+                                 String newLocation) {
         super();
         this.loader = loader;
         this.newLocation = newLocation;

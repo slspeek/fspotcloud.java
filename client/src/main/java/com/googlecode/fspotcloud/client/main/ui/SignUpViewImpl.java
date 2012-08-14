@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -33,6 +33,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.SignUpView;
+
 import java.util.logging.Logger;
 
 
@@ -102,10 +103,10 @@ public class SignUpViewImpl extends Composite implements SignUpView {
     @Override
     public void focusEmailField() {
         Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-                public void execute() {
-                    emailTextBox.setFocus(true);
-                }
-            });
+            public void execute() {
+                emailTextBox.setFocus(true);
+            }
+        });
     }
 
     interface SignUpViewImplUiBinder extends UiBinder<Widget, SignUpViewImpl> {

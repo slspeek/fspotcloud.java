@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -34,6 +34,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.LoginView;
+
 import java.util.logging.Logger;
 
 
@@ -96,19 +97,19 @@ public class LoginViewImpl extends Composite implements LoginView {
     @Override
     public void focusUserNameField() {
         Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-                public void execute() {
-                    userNameTextBox.setFocus(true);
-                }
-            });
+            public void execute() {
+                userNameTextBox.setFocus(true);
+            }
+        });
     }
 
     @Override
     public void focusPasswordField() {
         Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-                public void execute() {
-                    passwordTextBox.setFocus(true);
-                }
-            });
+            public void execute() {
+                passwordTextBox.setFocus(true);
+            }
+        });
     }
 
     @UiHandler("login")

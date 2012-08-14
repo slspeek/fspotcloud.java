@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.inject.Inject;
@@ -44,7 +44,7 @@ public class FullsizePhotoCallback implements SerializableAsyncCallback<Fullsize
     private String caller;
 
     public FullsizePhotoCallback(String caller, PhotoDao photoManager,
-        ImageHelper imageHelper) {
+                                 ImageHelper imageHelper) {
         this.caller = caller;
         this.photoManager = photoManager;
         this.imageHelper = imageHelper;
@@ -62,7 +62,7 @@ public class FullsizePhotoCallback implements SerializableAsyncCallback<Fullsize
         imageHelper.saveImage(photo, ImageHelper.Type.FULLSIZE, image);
         photoManager.save(photo);
         mailer.send(caller, "Your requested image: " + imageId,
-            "Dear " + caller + ",\nYour requested image: " + imageId +
-            " is in the attachment", image);
+                "Dear " + caller + ",\nYour requested image: " + imageId +
+                        " is in the attachment", image);
     }
 }

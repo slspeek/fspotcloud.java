@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -37,8 +37,9 @@ import com.googlecode.fspotcloud.shared.main.GetUserGroupAction;
 import com.googlecode.fspotcloud.shared.main.GetUserGroupResult;
 import com.googlecode.fspotcloud.shared.main.GrantUserAction;
 import com.googlecode.fspotcloud.shared.main.RevokeUserAction;
-import java.util.logging.Logger;
 import net.customware.gwt.dispatch.client.DispatchAsync;
+
+import java.util.logging.Logger;
 
 
 public class ManageUsersPresenterImpl extends AbstractActivity implements ManageUsersView.ManageUsersPresenter {
@@ -50,7 +51,7 @@ public class ManageUsersPresenterImpl extends AbstractActivity implements Manage
 
     @Inject
     public ManageUsersPresenterImpl(ManageUsersView view,
-        DispatchAsync dispatch, PlaceGoTo placeGoTo) {
+                                    DispatchAsync dispatch, PlaceGoTo placeGoTo) {
         this.view = view;
         this.dispatch = dispatch;
         this.placeGoTo = placeGoTo;
@@ -66,25 +67,6 @@ public class ManageUsersPresenterImpl extends AbstractActivity implements Manage
     public void newUser() {
         String newEmail = view.getNewEmail();
         dispatch.execute(new GrantUserAction(newEmail, userGroupId),
-            new AsyncCallback<VoidResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    //To change body of implemented methods use File | Settings | File Templates.
-                }
-
-                @Override
-                public void onSuccess(VoidResult result) {
-                    refreshData();
-                }
-            });
-    }
-
-    @Override
-    public void delete() {
-        String selectedRow = view.getSelected();
-
-        if (selectedRow != null) {
-            dispatch.execute(new RevokeUserAction(selectedRow, userGroupId),
                 new AsyncCallback<VoidResult>() {
                     @Override
                     public void onFailure(Throwable caught) {
@@ -96,6 +78,25 @@ public class ManageUsersPresenterImpl extends AbstractActivity implements Manage
                         refreshData();
                     }
                 });
+    }
+
+    @Override
+    public void delete() {
+        String selectedRow = view.getSelected();
+
+        if (selectedRow != null) {
+            dispatch.execute(new RevokeUserAction(selectedRow, userGroupId),
+                    new AsyncCallback<VoidResult>() {
+                        @Override
+                        public void onFailure(Throwable caught) {
+                            //To change body of implemented methods use File | Settings | File Templates.
+                        }
+
+                        @Override
+                        public void onSuccess(VoidResult result) {
+                            refreshData();
+                        }
+                    });
         }
     }
 
@@ -113,17 +114,17 @@ public class ManageUsersPresenterImpl extends AbstractActivity implements Manage
 
     private void refreshData() {
         dispatch.execute(new GetUserGroupAction(userGroupId),
-            new AsyncCallback<GetUserGroupResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    //To change body of implemented methods use File | Settings | File Templates.
-                }
+                new AsyncCallback<GetUserGroupResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        //To change body of implemented methods use File | Settings | File Templates.
+                    }
 
-                @Override
-                public void onSuccess(GetUserGroupResult result) {
-                    view.setData(result.getInfo().getGrantedUsers());
-                    view.setUserGroupName(result.getInfo().getName());
-                }
-            });
+                    @Override
+                    public void onSuccess(GetUserGroupResult result) {
+                        view.setData(result.getInfo().getGrantedUsers());
+                        view.setUserGroupName(result.getInfo().getName());
+                    }
+                });
     }
 }

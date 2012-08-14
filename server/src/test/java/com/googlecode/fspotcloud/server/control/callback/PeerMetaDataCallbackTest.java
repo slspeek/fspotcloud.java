@@ -21,14 +21,13 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.control.callback;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.botdispatch.controller.dispatch.ControllerDispatchAsync;
 import com.googlecode.fspotcloud.model.jpa.peerdatabase.PeerDatabaseEntity;
 import com.googlecode.fspotcloud.model.jpa.tag.TagEntity;
@@ -39,13 +38,16 @@ import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.peer.GetPeerUpdateInstructionsAction;
 import com.googlecode.fspotcloud.shared.peer.PeerMetaDataResult;
 import com.googlecode.fspotcloud.shared.peer.TagData;
-import java.util.List;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+
+import javax.inject.Inject;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -62,10 +64,10 @@ public class PeerMetaDataCallbackTest {
 
     @Test
     public void testNormalExecute(PeerDatabaseDao defaultPeer,
-        ControllerDispatchAsync dispatchAsync, TagDao tagManager,
-        ArgumentCaptor<GetPeerUpdateInstructionsAction> actionCaptor,
-        ArgumentCaptor<PeerUpdateInstructionsCallback> callbackCaptor)
-        throws Exception {
+                                  ControllerDispatchAsync dispatchAsync, TagDao tagManager,
+                                  ArgumentCaptor<GetPeerUpdateInstructionsAction> actionCaptor,
+                                  ArgumentCaptor<PeerUpdateInstructionsCallback> callbackCaptor)
+            throws Exception {
         PeerDatabase peer = new PeerDatabaseEntity();
         List<Tag> tagList = newArrayList();
         Tag tag = new TagEntity();
@@ -78,7 +80,7 @@ public class PeerMetaDataCallbackTest {
         callback.onSuccess(result);
 
         verify(dispatchAsync)
-            .execute(actionCaptor.capture(), callbackCaptor.capture());
+                .execute(actionCaptor.capture(), callbackCaptor.capture());
 
         GetPeerUpdateInstructionsAction action = actionCaptor.getValue();
         TagData data = action.getTagsOnServer().get(0);

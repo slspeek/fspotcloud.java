@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.control.callback;
 
 import com.google.inject.Inject;
@@ -31,6 +31,7 @@ import com.googlecode.fspotcloud.server.model.api.*;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
 import com.googlecode.fspotcloud.shared.peer.PhotoData;
 import com.googlecode.fspotcloud.shared.peer.PhotoDataResult;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,7 +50,7 @@ public class PhotoDataCallback implements SerializableAsyncCallback<PhotoDataRes
     private transient PeerDatabaseDao peerDatabaseDao;
 
     public PhotoDataCallback(PhotoDao photoManager, ImageHelper imageHelper,
-        TagDao tagManager, PeerDatabaseDao peerDatabaseDao) {
+                             TagDao tagManager, PeerDatabaseDao peerDatabaseDao) {
         super();
         this.photoManager = photoManager;
         this.imageHelper = imageHelper;

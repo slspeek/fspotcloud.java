@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.common.base.Objects;
@@ -35,9 +35,10 @@ import com.googlecode.fspotcloud.client.place.BasePlace;
 import com.googlecode.fspotcloud.client.place.api.PlaceGoTo;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
+import net.customware.gwt.dispatch.client.DispatchAsync;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.customware.gwt.dispatch.client.DispatchAsync;
 
 
 public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.SignUpPresenter {
@@ -51,7 +52,7 @@ public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.
 
     @Inject
     public SignUpPresenterImpl(SignUpView view, DispatchAsync dispatch,
-        PlaceGoTo placeGoTo) {
+                               PlaceGoTo placeGoTo) {
         this.view = view;
         this.dispatch = dispatch;
         this.placeGoTo = placeGoTo;
@@ -87,22 +88,22 @@ public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.
 
     private void send(SignUpAction action) {
         dispatch.execute(action,
-            new AsyncCallback<SignUpResult>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    view.setStatusText(AN_ERROR_PROHIBITED_YOUR_SIGN_UP);
-                    log.log(Level.WARNING, "SignUp failed ", caught);
-                }
-
-                @Override
-                public void onSuccess(SignUpResult result) {
-                    if (result.getSuccess()) {
-                        view.setStatusText(SIGNED_UP_SUCCESSFULLY);
-                    } else {
-                        view.setStatusText(SIGN_UP_FAILED);
+                new AsyncCallback<SignUpResult>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        view.setStatusText(AN_ERROR_PROHIBITED_YOUR_SIGN_UP);
+                        log.log(Level.WARNING, "SignUp failed ", caught);
                     }
-                }
-            });
+
+                    @Override
+                    public void onSuccess(SignUpResult result) {
+                        if (result.getSuccess()) {
+                            view.setStatusText(SIGNED_UP_SUCCESSFULLY);
+                        } else {
+                            view.setStatusText(SIGN_UP_FAILED);
+                        }
+                    }
+                });
     }
 
     private String verifyPasswords() {

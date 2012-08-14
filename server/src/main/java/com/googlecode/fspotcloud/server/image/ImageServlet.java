@@ -21,11 +21,10 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.image;
 
 import com.google.common.annotations.VisibleForTesting;
-import static com.google.common.collect.Sets.newHashSet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlecode.fspotcloud.server.model.api.Photo;
@@ -33,6 +32,11 @@ import com.googlecode.fspotcloud.server.model.api.PhotoDao;
 import com.googlecode.fspotcloud.server.model.tag.IUserGroupHelper;
 import com.googlecode.fspotcloud.user.UserService;
 import com.googlecode.simpleblobstore.BlobService;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DateFormat;
@@ -41,10 +45,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import static com.google.common.collect.Sets.newHashSet;
 
 /*
  * Courtesy to Felipe Gaucho
@@ -66,7 +68,7 @@ public class ImageServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
         String id = request.getParameter("id");
         boolean thumb = (request.getParameter("thumb") != null);
         boolean fullSize = (request.getParameter("fs") != null);
@@ -95,14 +97,14 @@ public class ImageServlet extends HttpServlet {
     }
 
     public static void setCacheExpireDate(HttpServletResponse response,
-        int seconds) {
+                                          int seconds) {
         if (response != null) {
             Calendar cal = new GregorianCalendar();
             cal.roll(Calendar.SECOND, seconds);
             response.setHeader("Cache-Control",
-                "PUBLIC, max-age=" + seconds + ", must-revalidate");
+                    "PUBLIC, max-age=" + seconds + ", must-revalidate");
             response.setHeader("Expires",
-                htmlExpiresDateFormat().format(cal.getTime()));
+                    htmlExpiresDateFormat().format(cal.getTime()));
         }
     }
 

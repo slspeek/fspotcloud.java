@@ -21,25 +21,27 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.server.admin.handler;
 
-import static com.google.common.collect.Lists.newArrayList;
 import com.googlecode.fspotcloud.server.model.api.TagDao;
 import com.googlecode.fspotcloud.shared.dashboard.GetAdminTagTreeAction;
 import com.googlecode.fspotcloud.shared.main.TagNode;
 import com.googlecode.fspotcloud.shared.main.TagTreeResult;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-import java.util.List;
-import javax.inject.Inject;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
@@ -55,7 +57,7 @@ public class GetAdminTagTreeHandlerTest {
 
     @Test
     public void testNormalExecuteNoTags(TagDao tagManager,
-        IAdminPermission adminPermission) throws Exception {
+                                        IAdminPermission adminPermission) throws Exception {
         TagTreeResult result = handler.execute(action, null);
         verify(tagManager).getTags();
         assertTrue(result.getTree().isEmpty());
@@ -63,7 +65,7 @@ public class GetAdminTagTreeHandlerTest {
 
     @Test
     public void testNormalExecuteOneTags(TagDao tagManager,
-        IAdminPermission adminPermission) throws Exception {
+                                         IAdminPermission adminPermission) throws Exception {
         List<TagNode> list = newArrayList();
         list.add(new TagNode("1"));
         when(tagManager.getTags()).thenReturn(list);
@@ -75,9 +77,9 @@ public class GetAdminTagTreeHandlerTest {
 
     @Test(expected = SecurityException.class)
     public void testUnAuthorizedExecute(TagDao tagManager,
-        IAdminPermission adminPermission) throws Exception {
+                                        IAdminPermission adminPermission) throws Exception {
         doThrow(new SecurityException()).when(adminPermission)
-            .checkAdminPermission();
+                .checkAdminPermission();
 
         TagTreeResult result = handler.execute(action, null);
         fail();

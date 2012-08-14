@@ -21,16 +21,18 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.googlecode.fspotcloud.test;
 
 import com.thoughtworks.selenium.Selenium;
-import javax.inject.Inject;
 import org.junit.Assert;
+
+import javax.inject.Inject;
+
 import static org.junit.Assert.fail;
 
 /**
@@ -74,8 +76,8 @@ public class PhotoPage {
 
     public void assertImageHasId(int x, int y, String id) {
         Assert.assertEquals("image?id=" + id + "&thumb=true",
-            selenium.getAttribute("//*[@id=\"gwt-debug-image-view-" + x + "x" +
-                y + "\"]@src"));
+                selenium.getAttribute("//*[@id=\"gwt-debug-image-view-" + x + "x" +
+                        y + "\"]@src"));
     }
 
     public void assertPagingLabelSays(int pos, int total) {

@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -29,15 +29,18 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.fspotcloud.client.main.view.api.SignUpView;
 import com.googlecode.fspotcloud.shared.main.SignUpAction;
 import com.googlecode.fspotcloud.shared.main.SignUpResult;
-import javax.inject.Inject;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import org.jukito.JukitoRunner;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
+
 @RunWith(JukitoRunner.class)
 public class SignUpPresenterImplTest {
     public static final String SECRET = "Secret";
@@ -55,7 +58,7 @@ public class SignUpPresenterImplTest {
 
     @Test
     public void testStart(SignUpView signUpView, DispatchAsync dispatch,
-        AcceptsOneWidget panel) throws Exception {
+                          AcceptsOneWidget panel) throws Exception {
         presenter.start(panel, null);
         verify(signUpView).setPresenter(presenter);
         verify(signUpView).focusEmailField();
@@ -65,17 +68,17 @@ public class SignUpPresenterImplTest {
 
     @Test
     public void testSignUp(SignUpView signUpView, DispatchAsync dispatch,
-        ArgumentCaptor<AsyncCallback<SignUpResult>> callbackArgumentCaptor,
-        ArgumentCaptor<SignUpAction> actionArgumentCaptor)
-        throws Exception {
+                           ArgumentCaptor<AsyncCallback<SignUpResult>> callbackArgumentCaptor,
+                           ArgumentCaptor<SignUpAction> actionArgumentCaptor)
+            throws Exception {
         presenter.signUp();
         verify(signUpView).getEmailField();
         verify(signUpView).getPasswordField();
         verify(signUpView).getPasswordAgainField();
 
         verify(dispatch)
-            .execute(actionArgumentCaptor.capture(),
-            callbackArgumentCaptor.capture());
+                .execute(actionArgumentCaptor.capture(),
+                        callbackArgumentCaptor.capture());
 
         SignUpAction action = actionArgumentCaptor.getValue();
         assertEquals(SECRET, action.getPassword());

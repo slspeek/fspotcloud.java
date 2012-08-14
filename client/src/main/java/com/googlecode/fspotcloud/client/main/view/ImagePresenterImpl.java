@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.event.shared.EventBus;
@@ -33,6 +33,7 @@ import com.googlecode.fspotcloud.client.main.shared.ZoomViewEvent;
 import com.googlecode.fspotcloud.client.main.ui.Resources;
 import com.googlecode.fspotcloud.client.main.view.api.ImageView;
 import com.googlecode.fspotcloud.shared.main.PhotoInfo;
+
 import java.util.logging.Logger;
 
 
@@ -49,7 +50,7 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 
     @Inject
     public ImagePresenterImpl(@Assisted
-    String tagId, @Assisted
+                              String tagId, @Assisted
     ImageView imageView, @Assisted
     boolean thumb, @Assisted
     PhotoInfo info, EventBus eventBus, Resources resources) {
@@ -74,13 +75,13 @@ public class ImagePresenterImpl implements ImageView.ImagePresenter {
 
             if (thumb) {
                 date = DateTimeFormat.getFormat(PredefinedFormat.DATE_MEDIUM)
-                                     .format(info.getDate());
+                        .format(info.getDate());
             } else {
                 date = DateTimeFormat.getFormat(PredefinedFormat.DATE_FULL)
-                                     .format(info.getDate()) + " " +
-                    DateTimeFormat.getFormat(PredefinedFormat.TIME_MEDIUM)
-                                  .format(info.getDate()) + "(v" +
-                    info.getVersion() + ")";
+                        .format(info.getDate()) + " " +
+                        DateTimeFormat.getFormat(PredefinedFormat.TIME_MEDIUM)
+                                .format(info.getDate()) + "(v" +
+                        info.getVersion() + ")";
             }
 
             imageView.setDescription(date);

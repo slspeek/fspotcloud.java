@@ -21,15 +21,18 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.test;
 
 import com.google.guiceberry.junit4.GuiceBerryRule;
-import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
 import com.thoughtworks.selenium.Selenium;
-import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
+
+import javax.inject.Inject;
+
+import static com.googlecode.fspotcloud.test.Sleep.sleepShort;
+
 public class PrivateAccessITest {
     public static final String SLSPEEK_GMAIL_COM = "slspeek@gmail.com";
     @Rule
@@ -69,7 +72,7 @@ public class PrivateAccessITest {
         myUserGroupsPage.editUserGroup();
 
         editUserGroupPage.fill("GNU Friends",
-            "My friends from all over the world");
+                "My friends from all over the world");
         editUserGroupPage.save();
         myUserGroupsPage.open();
         myUserGroupsPage.selectFirstRow();

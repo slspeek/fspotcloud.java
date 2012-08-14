@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.admin.view;
 
 import com.google.gwt.activity.shared.Activity;
@@ -31,6 +31,7 @@ import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsActivityFactory;
 import com.googlecode.fspotcloud.client.admin.view.api.TagDetailsView;
 import com.googlecode.fspotcloud.client.place.TagPlace;
+
 import java.util.logging.Logger;
 
 
@@ -40,7 +41,7 @@ public class TagDetailsActivityMapper implements ActivityMapper {
 
     @Inject
     public TagDetailsActivityMapper(
-        TagDetailsActivityFactory tagDetailsActivityFactory) {
+            TagDetailsActivityFactory tagDetailsActivityFactory) {
         super();
         this.tagDetailsActivityFactory = tagDetailsActivityFactory;
     }

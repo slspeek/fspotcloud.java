@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.server.inject;
 
 import com.google.inject.servlet.ServletModule;
@@ -35,7 +35,7 @@ public class ServerServletModule extends ServletModule {
     protected void configureServlets() {
         serve("/fspotcloud/dispatch").with(GuiceStandardDispatchServlet.class);
         serve("/com.googlecode.fspotcloud.dashboard/dispatch")
-            .with(GuiceStandardDispatchServlet.class);
+                .with(GuiceStandardDispatchServlet.class);
         serve("/image").with(ImageServlet.class);
         serve("/cron").with(CronServlet.class);
     }

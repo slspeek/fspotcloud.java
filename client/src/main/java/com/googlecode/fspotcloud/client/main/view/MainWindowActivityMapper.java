@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.gwt.activity.shared.Activity;
@@ -33,6 +33,7 @@ import com.googlecode.fspotcloud.client.main.IGlobalShortcutController.Mode;
 import com.googlecode.fspotcloud.client.main.view.api.*;
 import com.googlecode.fspotcloud.client.place.*;
 import com.googlecode.fspotcloud.client.place.api.Navigator;
+
 import java.util.logging.Logger;
 
 
@@ -51,14 +52,14 @@ public class MainWindowActivityMapper implements ActivityMapper {
 
     @Inject
     public MainWindowActivityMapper(TagPresenterFactory tagPresenterFactory,
-        SingleViewActivityFactory singleViewActivityFactory,
-        Navigator navigator, IGlobalShortcutController keyboard,
-        LoginView.LoginPresenter loginPresenter,
-        SignUpView.SignUpPresenter signUpPresenter,
-        UserAccountView.UserAccountPresenter userAccountActivity,
-        MyUserGroupsView.MyUserGroupsPresenter myUserGroupsPresenter,
-        EditUserGroupView.EditUserGroupPresenter editUserGroupPresenter,
-        ManageUsersView.ManageUsersPresenter manageUsersPresenter) {
+                                    SingleViewActivityFactory singleViewActivityFactory,
+                                    Navigator navigator, IGlobalShortcutController keyboard,
+                                    LoginView.LoginPresenter loginPresenter,
+                                    SignUpView.SignUpPresenter signUpPresenter,
+                                    UserAccountView.UserAccountPresenter userAccountActivity,
+                                    MyUserGroupsView.MyUserGroupsPresenter myUserGroupsPresenter,
+                                    EditUserGroupView.EditUserGroupPresenter editUserGroupPresenter,
+                                    ManageUsersView.ManageUsersPresenter manageUsersPresenter) {
         super();
         this.singleViewActivityFactory = singleViewActivityFactory;
         this.tagPresenterFactory = tagPresenterFactory;

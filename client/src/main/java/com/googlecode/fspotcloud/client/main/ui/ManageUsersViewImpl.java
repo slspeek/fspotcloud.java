@@ -21,7 +21,7 @@
                 Boston, MA 02111-1307, USA.
  *
  */
-            
+
 package com.googlecode.fspotcloud.client.main.ui;
 
 import com.google.gwt.core.client.GWT;
@@ -36,6 +36,7 @@ import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 import com.googlecode.fspotcloud.client.main.view.api.ManageUsersView;
+
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -69,11 +70,11 @@ public class ManageUsersViewImpl extends Composite implements ManageUsersView {
 
         // Create name column.
         TextColumn<String> nameColumn = new TextColumn<String>() {
-                @Override
-                public String getValue(String info) {
-                    return info;
-                }
-            };
+            @Override
+            public String getValue(String info) {
+                return info;
+            }
+        };
 
         table.addColumn(nameColumn, "Email");
         // Create a data provider.
