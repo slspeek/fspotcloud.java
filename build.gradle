@@ -36,7 +36,7 @@ allprojects {
                 guice: "com.google.inject:guice:${guice_version}",
                 guice_assisted_inject: "com.google.inject.extensions:guice-assistedinject:${guice_version}",
                 guice_servlet: "com.google.inject.extensions:guice-servlet:${guice_version}",
-                guiceberry: "com.google.guiceberry:guiceberry:3.1.0",
+                guiceberry: "com.google.guiceberry:guiceberry:${guiceberry_version}",
                 javamail: "javax.mail:mail:1.4",
                 jdo_api: "javax.jdo:jdo-api:3.0",
                 jta: "javax.transaction:jta:1.1",
@@ -127,6 +127,7 @@ subprojects {
         }
     }
     if ("${analysis}" == "true") {
+        apply plugin: 'pmd'
         apply plugin: 'jdepend'
         apply plugin: 'findbugs'
         apply plugin: 'checkstyle'
@@ -142,9 +143,11 @@ subprojects {
         findbugsTest {
             ignoreFailures = true
         }
-        //checkstyleTest.enabled = false
+        buildscript {
+            apply from: 'https://github.com/valkolovos/gradle_cobertura/raw/master/repo/gradle_cobertura/gradle_cobertura/1.0/coberturainit.gradle'
+        }
 
-
+        [pmdMain, pmdTest]*.ignoreFailures = true
     }
 
 
