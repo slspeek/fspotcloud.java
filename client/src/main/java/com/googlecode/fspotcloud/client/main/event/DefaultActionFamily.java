@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 
 public class DefaultActionFamily extends AbstractActionFamily {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(DefaultActionFamily.class.getName());
+    private final Logger log = Logger.getLogger(DefaultActionFamily.class.getName());
     List<ActionGroup> allGroups;
     List<UserAction> allActions = new ArrayList<UserAction>();
 

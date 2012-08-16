@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 
 public class AboutEventHandler implements AboutEvent.Handler, Initializable {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(AboutEventHandler.class.getName());
+    private final Logger log = Logger.getLogger(AboutEventHandler.class.getName());
     private final LoadNewLocationActionFactory locationFactory;
     private Runnable projectHostingAction;
     private Runnable fspotAction;

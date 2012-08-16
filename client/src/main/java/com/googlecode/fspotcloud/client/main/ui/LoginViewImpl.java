@@ -39,7 +39,7 @@ import java.util.logging.Logger;
 
 
 public class LoginViewImpl extends Composite implements LoginView {
-    private static final Logger log = Logger.getLogger(LoginViewImpl.class.getName());
+    private final Logger log = Logger.getLogger(LoginViewImpl.class.getName());
     private static LoginViewImplUiBinder uiBinder = GWT.create(LoginViewImplUiBinder.class);
     private LoginPresenter presenter;
     @UiField

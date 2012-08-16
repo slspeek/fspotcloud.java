@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 
 
 public class ImportManyTagsPhotosHandler extends AbstractBatchActionHandler<ImportManyTagsPhotosAction, String> {
-    private static final Logger log = Logger.getLogger(ImportManyTagsPhotosHandler.class.getName());
+    private final Logger log = Logger.getLogger(ImportManyTagsPhotosHandler.class.getName());
     private final TaskQueueDispatch dispatchAsync;
 
     @Inject

@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 public abstract class CachedPhotoManagerBase<T extends Photo, U extends T>
         extends CachedSimpleDAONamedIdImpl<Photo, U, String> implements PhotoDao {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(CachedPhotoManagerBase.class.getName());
+    private final Logger log = Logger.getLogger(CachedPhotoManagerBase.class.getName());
 
     private void detach(Photo photo) {
         List<String> tagList = photo.getTagList();

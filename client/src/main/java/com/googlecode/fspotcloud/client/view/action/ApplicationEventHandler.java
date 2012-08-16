@@ -54,7 +54,7 @@ import java.util.logging.Logger;
 
 public class ApplicationEventHandler implements ApplicationEvent.Handler,
         Initializable {
-    private static final Logger log = Logger.getLogger(ApplicationEventHandler.class.getName());
+    private final Logger log = Logger.getLogger(ApplicationEventHandler.class.getName());
     private final DemoAction demoAction;
     private final AboutAction aboutAction;
     private final HelpAction helpAction;

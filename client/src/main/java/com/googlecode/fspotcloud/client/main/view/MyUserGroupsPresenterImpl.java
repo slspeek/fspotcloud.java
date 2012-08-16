@@ -41,7 +41,7 @@ import java.util.logging.Logger;
 
 
 public class MyUserGroupsPresenterImpl extends AbstractActivity implements MyUserGroupsView.MyUserGroupsPresenter {
-    private static final Logger log = Logger.getLogger(MyUserGroupsPresenterImpl.class.getName());
+    private final Logger log = Logger.getLogger(MyUserGroupsPresenterImpl.class.getName());
     private final MyUserGroupsView view;
     private final DispatchAsync dispatch;
     private final PlaceGoTo placeGoTo;

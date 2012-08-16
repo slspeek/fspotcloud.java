@@ -40,7 +40,7 @@ import java.util.logging.Logger;
 import static org.mockito.Mockito.*;
 
 public class DataManagerImplTest extends TestCase {
-    private static final Logger log = Logger.getLogger(DataManagerImplTest.class.getName());
+    private final Logger log = Logger.getLogger(DataManagerImplTest.class.getName());
     private static final String ID = "1";
     private static final String WRONG_ID = "2";
     private DataManagerImpl dataManager;

@@ -45,7 +45,7 @@ import java.util.logging.Logger;
 
 
 public class TreePresenterImpl implements TreeView.TreePresenter {
-    private static final Logger log = Logger.getLogger(TreePresenterImpl.class.getName());
+    private final Logger log = Logger.getLogger(TreePresenterImpl.class.getName());
     private final TreeView treeView;
     private final DataManager dataManager;
     private final SingleSelectionModel<TagNode> selectionModel;

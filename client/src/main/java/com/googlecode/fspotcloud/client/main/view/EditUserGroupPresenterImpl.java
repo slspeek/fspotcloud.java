@@ -43,7 +43,7 @@ import java.util.logging.Logger;
 
 
 public class EditUserGroupPresenterImpl extends AbstractActivity implements EditUserGroupView.EditUserGroupPresenter {
-    private static final Logger log = Logger.getLogger(EditUserGroupPresenterImpl.class.getName());
+    private final Logger log = Logger.getLogger(EditUserGroupPresenterImpl.class.getName());
     private final EditUserGroupView view;
     private final DispatchAsync dispatch;
     private UserGroupInfo userGroupInfo;

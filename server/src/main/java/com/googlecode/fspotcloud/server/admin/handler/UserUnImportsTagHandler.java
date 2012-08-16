@@ -44,7 +44,7 @@ import java.util.logging.Logger;
 
 
 public class UserUnImportsTagHandler extends SimpleActionHandler<UserUnImportsTagAction, VoidResult> {
-    private static final Logger log = Logger.getLogger(UserUnImportsTagHandler.class.getName());
+    private final Logger log = Logger.getLogger(UserUnImportsTagHandler.class.getName());
     private final TagDao tagManager;
     private final TaskQueueDispatch dispatchAsync;
     private final IAdminPermission adminPermission;

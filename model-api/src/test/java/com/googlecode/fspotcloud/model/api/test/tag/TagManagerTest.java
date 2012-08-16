@@ -43,7 +43,7 @@ import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
 
 public class TagManagerTest {
-    private static final Logger log = Logger.getLogger(TagManagerTest.class.getName());
+    private final Logger log = Logger.getLogger(TagManagerTest.class.getName());
     @Rule
     public GuiceBerryRule guiceBerry = new GuiceBerryRule(EmptyGuiceBerryEnv.class);
     @Inject

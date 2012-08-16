@@ -46,7 +46,7 @@ import java.util.logging.Logger;
 
 
 public class MyUserGroupsViewImpl extends Composite implements MyUserGroupsView {
-    private static final Logger log = Logger.getLogger(MyUserGroupsViewImpl.class.getName());
+    private final Logger log = Logger.getLogger(MyUserGroupsViewImpl.class.getName());
     private static MyUserGroupsViewImplUiBinder uiBinder = GWT.create(MyUserGroupsViewImplUiBinder.class);
     private MyUserGroupsPresenter presenter;
     private ListDataProvider<UserGroupInfo> dataProvider;

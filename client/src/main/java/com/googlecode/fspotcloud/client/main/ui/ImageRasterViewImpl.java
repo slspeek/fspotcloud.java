@@ -49,7 +49,7 @@ public class ImageRasterViewImpl extends ResizeComposite
         implements ImageRasterView,
         MouseWheelHandler {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(ImageRasterViewImpl.class.getName());
+    private final Logger log = Logger.getLogger(ImageRasterViewImpl.class.getName());
     private static ImageRasterViewImplUiBinder uiBinder = GWT.create(ImageRasterViewImplUiBinder.class);
     int storedColumnCount = 0;
     int storedRowCount = 0;

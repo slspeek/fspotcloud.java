@@ -37,7 +37,7 @@ import java.util.logging.Logger;
 
 public class TagActivity extends AbstractActivity implements TagView.TagPresenter {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(TagActivity.class.getName());
+    private final Logger log = Logger.getLogger(TagActivity.class.getName());
     private final TagView tagView;
     private final ImageRasterView.ImageRasterPresenter imageRasterPresenter;
 

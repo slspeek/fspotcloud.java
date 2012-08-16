@@ -45,7 +45,7 @@ import java.util.logging.Logger;
 
 
 public class ImageRasterPresenterImpl extends AbstractActivity implements ImageRasterView.ImageRasterPresenter {
-    private static final Logger log = Logger.getLogger(ImageRasterPresenterImpl.class.getName());
+    private final Logger log = Logger.getLogger(ImageRasterPresenterImpl.class.getName());
     private final String tagId;
     private final String photoId;
     private final int columnCount;

@@ -42,7 +42,7 @@ import java.util.logging.Logger;
 import static com.google.common.collect.Sets.newHashSet;
 
 public class TagApprovalPresenterImpl extends AbstractActivity implements TagApprovalView.TagApprovalPresenter {
-    private static final Logger log = Logger.getLogger(TagApprovalPresenterImpl.class.getName());
+    private final Logger log = Logger.getLogger(TagApprovalPresenterImpl.class.getName());
     private final TagApprovalView view;
     private final DispatchAsync dispatch;
     private final PlaceGoTo placeGoTo;

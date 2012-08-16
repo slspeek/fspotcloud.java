@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 
 public class ImageDataTest extends TestCase {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(ImageDataTest.class.getName());
+    private final Logger log = Logger.getLogger(ImageDataTest.class.getName());
     private ImageData target;
     String cwd;
 

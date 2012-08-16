@@ -43,7 +43,7 @@ import java.util.logging.Logger;
 
 
 public class DemoAction implements Runnable {
-    private static final Logger log = Logger.getLogger(KeyDispatcher.class.getName());
+    private final Logger log = Logger.getLogger(KeyDispatcher.class.getName());
     List<DemoStep> demo;
     int stepPointer = -1;
     private final DemoStepFactory factory;

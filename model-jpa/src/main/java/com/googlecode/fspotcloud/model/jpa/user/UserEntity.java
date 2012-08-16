@@ -38,6 +38,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.google.common.collect.Sets.newHashSet;
+import static com.googlecode.fspotcloud.server.model.api.DateUtil.cloneDate;
 
 /**
  * DOCUMENT ME!
@@ -117,12 +118,12 @@ public class UserEntity implements User, Serializable {
 
     @Override
     public Date getLastLoginTime() {
-        return new Date(lastLoginTime.getTime());
+        return cloneDate(lastLoginTime);
     }
 
     @Override
-    public void setLastLoginTime(Date lastLoginTime) {
-        this.lastLoginTime = new Date(lastLoginTime.getTime());
+    public void setLastLoginTime(Date loginTime) {
+        this.lastLoginTime = cloneDate(loginTime);
     }
 
     @Override

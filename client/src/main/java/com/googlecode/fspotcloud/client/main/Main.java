@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 
 
 public class Main implements EntryPoint {
-    private static final Logger log = Logger.getLogger(Main.class.getName());
+    private final Logger log = Logger.getLogger(Main.class.getName());
     private final AppGinjector injector = GWT.create(AppGinjector.class);
 
     @Override

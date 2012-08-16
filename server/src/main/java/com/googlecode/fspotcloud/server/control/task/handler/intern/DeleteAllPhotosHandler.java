@@ -37,7 +37,7 @@ import java.util.logging.Logger;
 
 
 public class DeleteAllPhotosHandler extends SimpleActionHandler<DeleteAllPhotosAction, VoidResult> {
-    private static final Logger log = Logger.getLogger(DeleteAllPhotosHandler.class.getName());
+    private final Logger log = Logger.getLogger(DeleteAllPhotosHandler.class.getName());
     private final TaskQueueDispatch dispatchAsync;
     private final PhotoDao photoManager;
 

@@ -44,7 +44,7 @@ import java.util.logging.Logger;
 
 public class RasterEventHandler implements RasterEvent.Handler,
         Initializable {
-    private static final Logger log = Logger.getLogger(RasterEventHandler.class.getName());
+    private final Logger log = Logger.getLogger(RasterEventHandler.class.getName());
     private final Navigator navigator;
     private final EventBus eventBus;
     private final DispatchAsync dispatch;

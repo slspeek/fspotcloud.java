@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 public class GlobalShortcutController implements Initializable,
         IGlobalShortcutController {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(GlobalShortcutController.class.getName());
+    private final Logger log = Logger.getLogger(GlobalShortcutController.class.getName());
     private final Map<Mode, ShortcutHandler> handler;
     private Mode mode;
 

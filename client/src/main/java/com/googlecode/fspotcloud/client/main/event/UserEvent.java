@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 
 
 public class UserEvent<H extends UserEventHandler> extends GwtEvent<H> {
-    private static final Logger log = Logger.getLogger(UserEvent.class.getName());
+    private final Logger log = Logger.getLogger(UserEvent.class.getName());
     public final Type<H> TYPE = new Type<H>();
     private ActionDef actionDef;
 

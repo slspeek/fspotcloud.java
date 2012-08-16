@@ -47,7 +47,7 @@ import java.util.logging.Logger;
 
 
 public class MVPSetup {
-    private static final Logger log = Logger.getLogger(MVPSetup.class.getName());
+    private final Logger log = Logger.getLogger(MVPSetup.class.getName());
     private final Place defaultPlace = new BasePlace("latest", "latest", 1, 1);
     private final DockLayoutPanel appWidget = new DockLayoutPanel(Unit.PX);
     private final EventBus eventBus;

@@ -44,7 +44,7 @@ import java.util.logging.Logger;
 
 public class ButtonPanelPresenterProvider implements Provider<ButtonPanelView.ButtonPanelPresenter> {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(ButtonPanelPresenterProvider.class.getName());
+    private final Logger log = Logger.getLogger(ButtonPanelPresenterProvider.class.getName());
     private final ButtonPanelView buttonPanelView;
     private final ActionFamily allActions;
     private final UserButtonPresenterFactory buttonPresenterFactory;

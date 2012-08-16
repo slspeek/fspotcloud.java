@@ -39,7 +39,7 @@ import java.util.logging.Logger;
 
 
 public class UserAccountPresenterImpl extends AbstractActivity implements UserAccountView.UserAccountPresenter {
-    private static final Logger log = Logger.getLogger(UserAccountPresenterImpl.class.getName());
+    private final Logger log = Logger.getLogger(UserAccountPresenterImpl.class.getName());
     private final UserAccountView view;
     private final ClientLoginManager clientLoginManager;
 

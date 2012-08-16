@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 
 
 public class UserButtonPresenterImpl implements UserButtonView.UserButtonPresenter {
-    private static final Logger log = Logger.getLogger(UserButtonPresenterImpl.class.getName());
+    private final Logger log = Logger.getLogger(UserButtonPresenterImpl.class.getName());
     private final UserAction action;
     private final UserButtonViewFactory viewFactory;
     private UserButtonView view;

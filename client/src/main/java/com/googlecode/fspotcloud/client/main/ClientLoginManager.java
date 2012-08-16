@@ -46,7 +46,7 @@ import java.util.logging.Logger;
  * @author steven
  */
 public class ClientLoginManager {
-    private static final Logger log = Logger.getLogger(ClientLoginManager.class.getName());
+    private final Logger log = Logger.getLogger(ClientLoginManager.class.getName());
     private final DispatchAsync dispatch;
 
     @Inject

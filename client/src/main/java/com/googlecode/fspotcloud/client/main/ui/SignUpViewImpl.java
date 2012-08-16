@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 
 
 public class SignUpViewImpl extends Composite implements SignUpView {
-    private static final Logger log = Logger.getLogger(SignUpViewImpl.class.getName());
+    private final Logger log = Logger.getLogger(SignUpViewImpl.class.getName());
     private static SignUpViewImplUiBinder uiBinder = GWT.create(SignUpViewImplUiBinder.class);
     private SignUpPresenter presenter;
     @UiField

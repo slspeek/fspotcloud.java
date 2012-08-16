@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 
 
 public class ResourcesTest extends TestCase {
-    private static final Logger log = Logger.getLogger(KeyDispatcher.class.getName());
+    private final Logger log = Logger.getLogger(KeyDispatcher.class.getName());
 
     public void testOne() {
         Mockery context = new Mockery();

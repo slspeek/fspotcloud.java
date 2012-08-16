@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 
 
 public class TreeSelectionHandler implements TreeSelectionHandlerInterface {
-    private static final Logger log = Logger.getLogger(TreeSelectionHandler.class.getName());
+    private final Logger log = Logger.getLogger(TreeSelectionHandler.class.getName());
     private SingleSelectionModel<TagNode> selectionModel;
     private final Navigator navigator;
 

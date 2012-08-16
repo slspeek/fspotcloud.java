@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 
 
 public class SlideshowImpl implements Slideshow {
-    private static final Logger log = Logger.getLogger(SlideshowImpl.class.getName());
+    private final Logger log = Logger.getLogger(SlideshowImpl.class.getName());
     private final Navigator navigator;
     private final TimerInterface timer;
     private boolean isRunning = false;

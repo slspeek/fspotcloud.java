@@ -39,7 +39,7 @@ import java.util.logging.Logger;
 
 public class NavigationEventHandler implements NavigationEvent.Handler,
         Initializable {
-    private static final Logger log = Logger.getLogger(NavigationEventHandler.class.getName());
+    private final Logger log = Logger.getLogger(NavigationEventHandler.class.getName());
     private final Navigator navigator;
     private final EventBus eventBus;
 

@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 
 public class TreeFocusAction implements Runnable {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(TreeFocusAction.class.getName());
+    private final Logger log = Logger.getLogger(TreeFocusAction.class.getName());
     private final TreeView treeView;
     private final TagViewImpl tagView;
     private final Slideshow slideshow;

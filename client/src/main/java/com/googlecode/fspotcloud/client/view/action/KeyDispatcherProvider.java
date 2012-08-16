@@ -34,7 +34,7 @@ import java.util.logging.Logger;
 
 
 public class KeyDispatcherProvider implements Provider<KeyDispatcher> {
-    private static final Logger log = Logger.getLogger(KeyDispatcherProvider.class.getName());
+    private final Logger log = Logger.getLogger(KeyDispatcherProvider.class.getName());
     private final KeyDispatcher keyDispatcher = new KeyDispatcher();
     private final ActionFamily actions;
 

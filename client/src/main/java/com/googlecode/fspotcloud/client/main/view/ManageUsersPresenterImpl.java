@@ -43,7 +43,7 @@ import java.util.logging.Logger;
 
 
 public class ManageUsersPresenterImpl extends AbstractActivity implements ManageUsersView.ManageUsersPresenter {
-    private static final Logger log = Logger.getLogger(ManageUsersPresenterImpl.class.getName());
+    private final Logger log = Logger.getLogger(ManageUsersPresenterImpl.class.getName());
     private final ManageUsersView view;
     private final DispatchAsync dispatch;
     private Long userGroupId;

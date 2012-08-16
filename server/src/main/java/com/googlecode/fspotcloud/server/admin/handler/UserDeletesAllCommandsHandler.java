@@ -40,7 +40,7 @@ import java.util.logging.Logger;
 
 public class UserDeletesAllCommandsHandler extends SimpleActionHandler<UserDeletesAllCommandsAction, VoidResult> {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(UserDeletesAllCommandsHandler.class.getName());
+    private final Logger log = Logger.getLogger(UserDeletesAllCommandsHandler.class.getName());
     private final Commands commandManager;
     private final Provider<UserService> userServiceProvider;
 

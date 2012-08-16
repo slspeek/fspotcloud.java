@@ -39,7 +39,7 @@ import java.util.logging.Logger;
 import static org.junit.Assert.*;
 
 public class UserManagerTest {
-    private static final Logger log = Logger.getLogger(UserManagerTest.class.getName());
+    private final Logger log = Logger.getLogger(UserManagerTest.class.getName());
     public static final String EMAIL = "douglas@yahoo.com";
     public static final String JSLINT = "jslint";
     public static final String IHATEPASSOWRDS = "ihatepassowrds";

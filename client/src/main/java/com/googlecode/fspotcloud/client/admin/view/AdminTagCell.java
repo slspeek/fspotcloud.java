@@ -37,7 +37,7 @@ import java.util.logging.Logger;
 
 
 public class AdminTagCell extends AbstractCell<TagNode> {
-    private static final Logger log = Logger.getLogger(TagCell.class.getName());
+    private final Logger log = Logger.getLogger(TagCell.class.getName());
     private static final MyTemplates TEMPLATES = GWT.create(MyTemplates.class);
     private final Resources resources;
 

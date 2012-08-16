@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 
 
 public class KeyDispatcher implements ShortcutHandler {
-    private static final Logger log = Logger.getLogger(KeyDispatcher.class.getName());
+    private final Logger log = Logger.getLogger(KeyDispatcher.class.getName());
     Map<Integer, Runnable> registeredActions = new HashMap<Integer, Runnable>();
 
     public void register(UserAction shortcut) {

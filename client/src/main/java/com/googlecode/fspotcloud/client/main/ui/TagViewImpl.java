@@ -53,7 +53,7 @@ public class TagViewImpl extends Composite implements TagView,
     private static final int BUTTON_PANEL_HEIGHT_PCT = 6;
     private static final int IMAGEPANEL_HEIGHT_PCT = 100 -
             BUTTON_PANEL_HEIGHT_PCT;
-    private static final Logger log = Logger.getLogger(TagViewImpl.class.getName());
+    private final Logger log = Logger.getLogger(TagViewImpl.class.getName());
     private static TagViewImplUiBinder uiBinder = GWT.create(TagViewImplUiBinder.class);
     static int ID;
     @UiField

@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 
 public class PhotoManager extends PhotoManagerBase<Photo, PhotoEntity> {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(PhotoManagerBase.class.getName());
+    private final Logger log = Logger.getLogger(PhotoManagerBase.class.getName());
 
     @Override
     protected Photo newPhoto() {

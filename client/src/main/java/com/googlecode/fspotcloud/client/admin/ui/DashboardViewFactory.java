@@ -34,7 +34,7 @@ import java.util.logging.Logger;
 
 
 public class DashboardViewFactory extends ViewFactory {
-    private static final Logger log = Logger.getLogger(DashboardViewFactory.class.getName());
+    private final Logger log = Logger.getLogger(DashboardViewFactory.class.getName());
     private final DashboardView dashboardView;
 
     @Inject
