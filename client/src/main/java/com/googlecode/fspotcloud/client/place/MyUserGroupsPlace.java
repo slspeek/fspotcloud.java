@@ -29,6 +29,12 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 
 public class MyUserGroupsPlace extends Place {
+
+    @Override
+    public int hashCode() {
+        return 1;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other instanceof MyUserGroupsPlace) {

@@ -96,20 +96,16 @@ public class Data {
     public int getCount(String kind) throws SQLException {
         Connection conn = null;
         int result;
+        conn = getConnection();
 
-        try {
-            conn = getConnection();
+        Statement stmt = conn.createStatement();
 
-            Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT count(id) FROM " + kind);
 
-            ResultSet rs = stmt.executeQuery("SELECT count(id) FROM " + kind);
-
-            if (rs.next()) {
-                result = rs.getInt(1);
-            } else {
-                throw new SQLException("Result for count query was empty");
-            }
-        } finally {
+        if (rs.next()) {
+            result = rs.getInt(1);
+        } else {
+            throw new SQLException("Result for count query was empty");
         }
 
         return result;

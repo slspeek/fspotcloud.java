@@ -44,15 +44,8 @@ public abstract class PeerDatabaseManagerBase<T extends PeerDatabase, U extends 
     public T get() {
         T peer;
         peer = getInstance();
-
         //log.info("get returns: " + peer);
         return peer;
-    }
-
-    @Override
-    public void save(PeerDatabase entity) {
-        //log.info("saving " + entity);
-        super.save(entity);
     }
 
     private T getInstance() {

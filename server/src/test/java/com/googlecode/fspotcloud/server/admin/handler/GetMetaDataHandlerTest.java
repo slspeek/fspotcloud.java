@@ -71,17 +71,15 @@ public class GetMetaDataHandlerTest {
         assertEquals(100, result.getPendingCommandCount());
     }
 
-    @Test
-    public void testException() {
+    @Test(expected = DispatchException.class)
+
+    public void testException() throws DispatchException {
         when(commandManager.getCountUnderAThousend())
                 .thenThrow(RuntimeException.class);
         when(defaultPeer.get()).thenReturn(pd);
 
-        try {
-            GetMetaDataResult result = handler.execute(action, null);
-            fail();
-        } catch (DispatchException e) {
-        }
+        GetMetaDataResult result = handler.execute(action, null);
+
     }
 
     @Test(expected = SecurityException.class)

@@ -107,18 +107,14 @@ public class NavigatorImpl implements Navigator {
         switch (unit) {
             case SINGLE:
                 stepSize = 1;
-
                 break;
 
             case ROW:
                 stepSize = place.getColumnCount();
-
                 break;
 
             case PAGE:
                 stepSize = place.getColumnCount() * place.getRowCount();
-                ;
-
                 break;
         }
 

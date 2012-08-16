@@ -56,14 +56,12 @@ public class AuthenticationHandler extends SimpleActionHandler<AuthenticationAct
         if (!"".equals(action.getUserName())) {
             User user = userDao.find(action.getUserName());
 
-            if (user != null) {
-                if (user.getEnabled() &&
-                        action.getPassword().equals(user.getCredentials())) {
-                    loginMetaDataUpdater.doUpdate(user,
-                            LoginMetaData.Type.REGULAR_LOGIN);
+            if (user != null && user.getEnabled() &&
+                    action.getPassword().equals(user.getCredentials())) {
+                loginMetaDataUpdater.doUpdate(user,
+                        LoginMetaData.Type.REGULAR_LOGIN);
 
-                    return new AuthenticationResult(true);
-                }
+                return new AuthenticationResult(true);
             }
         }
 
