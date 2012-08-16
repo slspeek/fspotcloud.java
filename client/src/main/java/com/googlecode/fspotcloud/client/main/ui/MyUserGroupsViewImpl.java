@@ -118,7 +118,6 @@ public class MyUserGroupsViewImpl extends Composite implements MyUserGroupsView 
     @UiHandler("manageButton")
     public void onManageButton(ClickEvent event) {
         presenter.manageUsers();
-        ;
     }
 
     @UiHandler("dashboardButton")

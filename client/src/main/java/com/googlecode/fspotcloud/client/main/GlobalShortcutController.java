@@ -70,10 +70,8 @@ public class GlobalShortcutController implements Initializable,
             }
 
             // log.info("Event preview in keypress code: " + keycode);
-            if (mode != null) {
-                if (handler.get(mode).handle(keycode)) {
+            if (mode != null && handler.get(mode).handle(keycode)) {
                     preview.consume();
-                }
             }
         }
     }
