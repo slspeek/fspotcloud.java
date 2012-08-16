@@ -131,6 +131,8 @@ subprojects {
         apply plugin: 'jdepend'
         apply plugin: 'findbugs'
         apply plugin: 'checkstyle'
+        apply plugin: 'project-report'
+
         checkstyle {
             configFile = file("../config/checkstyle/checkstyle.xml")
         }
@@ -143,14 +145,16 @@ subprojects {
         findbugsTest {
             ignoreFailures = true
         }
-        buildscript {
-            apply from: 'https://github.com/valkolovos/gradle_cobertura/raw/master/repo/gradle_cobertura/gradle_cobertura/1.0/coberturainit.gradle'
-        }
 
         [pmdMain, pmdTest]*.ignoreFailures = true
     }
 
+    if ("${cobertura}" == "true") {
+        buildscript {
+            apply from: 'https://github.com/valkolovos/gradle_cobertura/raw/master/repo/gradle_cobertura/gradle_cobertura/1.0/coberturainit.gradle'
+        }
 
+    }
     if ("${run_jalopy}" == "true") {
         check.dependsOn jalopy
     }
