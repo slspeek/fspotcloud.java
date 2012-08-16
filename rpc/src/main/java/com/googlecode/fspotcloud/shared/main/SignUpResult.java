@@ -51,6 +51,11 @@ public class SignUpResult implements Result {
         }
     }
 
+    @Override
+    public int hashCode() {
+        return 1;
+    }
+
     public boolean getSuccess() {
         return success;
     }

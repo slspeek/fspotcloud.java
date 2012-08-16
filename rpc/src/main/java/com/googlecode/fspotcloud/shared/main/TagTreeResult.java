@@ -57,4 +57,9 @@ public class TagTreeResult implements Result {
             return false;
         }
     }
+
+    @Override
+    public int hashCode() {
+        return 1;
+    }
 }

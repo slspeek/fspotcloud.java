@@ -80,7 +80,6 @@ public class PhotoInfoStoreTest {
 
         PhotoInfoStore store = new PhotoInfoStore(set);
         assertEquals(-1, store.indexOf("Not found"));
-        ;
         assertEquals(0, store.indexOf("5"));
         assertEquals(1, store.indexOf("4"));
         assertEquals(2, store.indexOf("3"));
