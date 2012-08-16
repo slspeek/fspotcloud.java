@@ -54,4 +54,9 @@ public class AuthenticationResult implements Result {
     public boolean getSuccess() {
         return success;
     }
+
+    @Override
+    public int hashCode() {
+        return 1;
+    }
 }
