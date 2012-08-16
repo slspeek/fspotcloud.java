@@ -102,7 +102,6 @@ public class TreePresenterImpl implements TreeView.TreePresenter {
                         return new TagCell();
                     }
                 });
-        ;
         treeView.setTreeModel(treeModel);
         updatePlace();
     }

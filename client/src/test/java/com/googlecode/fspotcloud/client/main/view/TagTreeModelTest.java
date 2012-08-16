@@ -54,10 +54,6 @@ public class TagTreeModelTest extends TestCase {
                 });
     }
 
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     public void testGetNodeInfo() {
         NodeInfo<TagNode> roots = (NodeInfo<TagNode>) model.getNodeInfo(null);
     }
