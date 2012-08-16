@@ -38,6 +38,11 @@ public class LoginPlace extends Place {
         }
     }
 
+    @Override
+    public int hashCode() {
+        return 1;
+    }
+
     public static class Tokenizer implements PlaceTokenizer<LoginPlace> {
         @Override
         public LoginPlace getPlace(String token) {
