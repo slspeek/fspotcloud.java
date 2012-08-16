@@ -41,7 +41,7 @@ import java.util.logging.Logger;
 
 
 public class NavigatorImpl implements Navigator {
-    private static final Logger log = Logger.getLogger(NavigatorImpl.class.getName());
+    private final Logger log = Logger.getLogger(NavigatorImpl.class.getName());
     private final PlaceGoTo placeGoTo;
     private final PlaceWhere placeWhere;
     private final DataManager dataManager;

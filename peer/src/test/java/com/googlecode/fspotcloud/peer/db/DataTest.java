@@ -39,7 +39,7 @@ import java.util.logging.Logger;
 
 
 public class DataTest extends TestCase {
-    private static final Logger log = Logger.getLogger(DataTest.class.getName());
+    private final Logger log = Logger.getLogger(DataTest.class.getName());
     private Data data;
 
     protected void setUp() throws Exception {

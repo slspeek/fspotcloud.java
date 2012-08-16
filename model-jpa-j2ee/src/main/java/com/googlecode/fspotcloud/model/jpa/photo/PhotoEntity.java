@@ -37,6 +37,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.googlecode.fspotcloud.server.model.api.DateUtil.cloneDate;
+
 
 /**
  * DOCUMENT ME!
@@ -109,13 +111,14 @@ public class PhotoEntity implements Photo, Serializable {
         return tagList;
     }
 
+
     @Override
     public void setDate(Date date) {
-        this.date = new Date(date.getTime());
+        this.date = cloneDate(date);
     }
 
     @Override
     public Date getDate() {
-        return new Date(date.getTime());
+        return cloneDate(date);
     }
 }

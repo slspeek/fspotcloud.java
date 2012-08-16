@@ -44,7 +44,7 @@ import java.util.logging.Logger;
 
 
 public class ImageViewImpl extends ResizeComposite implements ImageView {
-    private static final Logger log = Logger.getLogger(ImageViewImpl.class.getName());
+    private final Logger log = Logger.getLogger(ImageViewImpl.class.getName());
     private static ImageViewImplUiBinder uiBinder = GWT.create(ImageViewImplUiBinder.class);
     private final TimerInterface timer;
     @UiField

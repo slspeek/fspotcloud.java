@@ -37,7 +37,7 @@ import java.util.logging.Logger;
 
 
 public class DeleteTagsHandler extends SimpleActionHandler<DeleteAllTagsAction, VoidResult> {
-    private static final Logger log = Logger.getLogger(DeleteTagsHandler.class.getName());
+    private final Logger log = Logger.getLogger(DeleteTagsHandler.class.getName());
     private final TaskQueueDispatch dispatchAsync;
     private final TagDao tagManager;
 

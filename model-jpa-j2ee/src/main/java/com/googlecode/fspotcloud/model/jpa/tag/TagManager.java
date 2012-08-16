@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 
 
 public class TagManager extends TagManagerBase<Tag, TagEntity> {
-    private static final Logger log = Logger.getLogger(TagManager.class.getName());
+    private final Logger log = Logger.getLogger(TagManager.class.getName());
 
     @Override
     protected Tag newTag() {

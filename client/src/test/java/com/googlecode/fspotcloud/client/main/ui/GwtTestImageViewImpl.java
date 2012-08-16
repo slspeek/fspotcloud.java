@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 
 
 public class GwtTestImageViewImpl extends GWTTestCase {
-    private static final Logger log = Logger.getLogger(GwtTestImageViewImpl.class.getName());
+    private final Logger log = Logger.getLogger(GwtTestImageViewImpl.class.getName());
     ImageViewImpl imageView;
 
     public void testConstructor() {

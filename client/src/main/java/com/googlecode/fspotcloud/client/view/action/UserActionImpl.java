@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 
 
 public class UserActionImpl implements UserAction {
-    private static final Logger log = Logger.getLogger(UserActionImpl.class.getName());
+    private final Logger log = Logger.getLogger(UserActionImpl.class.getName());
     private final String description;
     private final KeyStroke key;
     private final KeyStroke alternateKey;

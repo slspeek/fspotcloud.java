@@ -45,7 +45,7 @@ import java.util.logging.Logger;
 
 public class SingleImageViewImpl extends Composite implements SingleImageView,
         MouseMoveHandler {
-    private static final Logger log = Logger.getLogger(SingleImageViewImpl.class.getName());
+    private final Logger log = Logger.getLogger(SingleImageViewImpl.class.getName());
     private static SingleImageViewImplUiBinder uiBinder = GWT.create(SingleImageViewImplUiBinder.class);
     private final ButtonPanelView buttonPanelView;
     private final ImageRasterView imageRasterView;

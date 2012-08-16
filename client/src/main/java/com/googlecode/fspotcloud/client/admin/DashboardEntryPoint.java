@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 
 
 public class DashboardEntryPoint implements EntryPoint {
-    private static final Logger log = Logger.getLogger(DashboardEntryPoint.class.getName());
+    private final Logger log = Logger.getLogger(DashboardEntryPoint.class.getName());
     private final AdminGinjector injector = GWT.create(AdminGinjector.class);
 
     @Override

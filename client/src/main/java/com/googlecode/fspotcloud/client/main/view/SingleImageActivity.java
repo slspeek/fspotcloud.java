@@ -37,7 +37,7 @@ import java.util.logging.Logger;
 
 public class SingleImageActivity extends AbstractActivity implements SingleImageView.SingleImagePresenter {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(SingleImageActivity.class.getName());
+    private final Logger log = Logger.getLogger(SingleImageActivity.class.getName());
     private final SingleImageView singleImageView;
     private final ImageRasterView.ImageRasterPresenter imageRasterPresenter;
     private EventBus eventBus;

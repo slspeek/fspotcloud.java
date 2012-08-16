@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 
 
 public class MainWindowActivityMapper implements ActivityMapper {
-    private static final Logger log = Logger.getLogger(MainWindowActivityMapper.class.getName());
+    private final Logger log = Logger.getLogger(MainWindowActivityMapper.class.getName());
     private final TagPresenterFactory tagPresenterFactory;
     private final SingleViewActivityFactory singleViewActivityFactory;
     private final Navigator navigator;

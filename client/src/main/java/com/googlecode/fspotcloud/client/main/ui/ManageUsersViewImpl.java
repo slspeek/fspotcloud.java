@@ -43,7 +43,7 @@ import java.util.logging.Logger;
 
 
 public class ManageUsersViewImpl extends Composite implements ManageUsersView {
-    private static final Logger log = Logger.getLogger(ManageUsersViewImpl.class.getName());
+    private final Logger log = Logger.getLogger(ManageUsersViewImpl.class.getName());
     private static ManageUsersViewImplUiBinder uiBinder = GWT.create(ManageUsersViewImplUiBinder.class);
     private ManageUsersView.ManageUsersPresenter presenter;
     private ListDataProvider<String> dataProvider;

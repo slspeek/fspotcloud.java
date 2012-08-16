@@ -44,7 +44,7 @@ import java.util.logging.Logger;
 
 
 public class LoginPresenterImpl extends AbstractActivity implements LoginView.LoginPresenter {
-    private static final Logger log = Logger.getLogger(LoginPresenterImpl.class.getName());
+    private final Logger log = Logger.getLogger(LoginPresenterImpl.class.getName());
     public static final String AN_ERROR_OCCURRED_MAKING_THE_AUTHENTICATION_REQUEST =
             "An error occurred making the authentication request";
     public static final String LOGGED_IN = "Logged in";

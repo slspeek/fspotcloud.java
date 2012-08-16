@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 
 
 public class ImageData {
-    private static final Logger log = Logger.getLogger(ImageData.class.getName());
+    private final Logger log = Logger.getLogger(ImageData.class.getName());
 
     public byte[] getScaledImageData(String url, Dimension size)
             throws Exception {

@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 
 
 public class ImagePresenterImpl implements ImageView.ImagePresenter {
-    private static final Logger log = Logger.getLogger(ImagePresenterImpl.class.getName());
+    private final Logger log = Logger.getLogger(ImagePresenterImpl.class.getName());
     private final ImageView imageView;
     private final String tagId;
     private final String photoId;

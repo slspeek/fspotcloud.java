@@ -36,7 +36,7 @@ import static com.google.common.collect.Sets.newHashSet;
 
 public abstract class UserManagerBase<T extends User, U extends T>
         extends SimpleDAONamedIdImpl<User, U, String> implements UserDao {
-    private static final Logger log = Logger.getLogger(UserManagerBase.class.getName());
+    private final Logger log = Logger.getLogger(UserManagerBase.class.getName());
 
     protected void detach(User user) {
         Set<Long> uG = user.getGrantedUserGroups();

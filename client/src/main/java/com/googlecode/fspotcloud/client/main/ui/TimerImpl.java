@@ -32,7 +32,7 @@ import java.util.logging.Logger;
 
 public class TimerImpl extends Timer implements TimerInterface {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(TimerImpl.class.getName());
+    private final Logger log = Logger.getLogger(TimerImpl.class.getName());
     private Runnable runnable;
 
     public TimerImpl() {

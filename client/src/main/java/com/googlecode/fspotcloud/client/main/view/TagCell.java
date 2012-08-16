@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 
 public class TagCell extends AbstractCell<TagNode> {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(TagCell.class.getName());
+    private final Logger log = Logger.getLogger(TagCell.class.getName());
 
     @Override
     public void render(com.google.gwt.cell.client.Cell.Context arg0,

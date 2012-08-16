@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 
 public abstract class UserGroupManagerBase<T extends UserGroup, U extends T>
         extends SimpleDAOGenIdImpl<UserGroup, U, Long> implements UserGroupDao {
-    private static final Logger log = Logger.getLogger(UserGroupManagerBase.class.getName());
+    private final Logger log = Logger.getLogger(UserGroupManagerBase.class.getName());
 
     @Override
     public UserGroup newEntity() {

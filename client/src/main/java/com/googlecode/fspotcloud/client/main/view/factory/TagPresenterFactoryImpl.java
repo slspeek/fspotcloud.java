@@ -37,7 +37,7 @@ import java.util.logging.Logger;
 
 public class TagPresenterFactoryImpl implements TagPresenterFactory {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(TagPresenterFactoryImpl.class.getName());
+    private final Logger log = Logger.getLogger(TagPresenterFactoryImpl.class.getName());
     private final TagViewImpl tagView;
     private final TreePresenter treePresenter;
     private final ButtonPanelView.ButtonPanelPresenter buttonPanelPresenter;

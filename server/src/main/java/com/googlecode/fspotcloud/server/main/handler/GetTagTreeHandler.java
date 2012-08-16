@@ -44,7 +44,7 @@ import java.util.logging.Logger;
 
 
 public class GetTagTreeHandler extends SimpleActionHandler<GetTagTreeAction, TagTreeResult> {
-    private static final Logger log = Logger.getLogger(GetTagTreeHandler.class.getName());
+    private final Logger log = Logger.getLogger(GetTagTreeHandler.class.getName());
     private final PeerDatabaseDao peerDatabaseDao;
     private final TagDao tagManager;
     private final IUserGroupHelper userGroupHelper;

@@ -39,7 +39,7 @@ public abstract class PeerDatabaseManagerBase<T extends PeerDatabase, U extends 
         extends SimpleDAONamedIdImpl<PeerDatabase, U, String>
         implements PeerDatabaseDao {
     private static final String DEFAULT_PEER_ID = "1";
-    private static final Logger log = Logger.getLogger(PeerDatabaseManagerBase.class.getName());
+    private final Logger log = Logger.getLogger(PeerDatabaseManagerBase.class.getName());
 
     public T get() {
         T peer;

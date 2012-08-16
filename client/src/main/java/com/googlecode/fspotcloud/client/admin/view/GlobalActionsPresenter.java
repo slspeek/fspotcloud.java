@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 
 
 public class GlobalActionsPresenter implements GlobalActionsView.GlobalActionsPresenter {
-    private static final Logger log = Logger.getLogger(GlobalActionsPresenter.class.getName());
+    private final Logger log = Logger.getLogger(GlobalActionsPresenter.class.getName());
     private final GlobalActionsView globalActionsView;
     private final DispatchAsync dispatcher;
     private final TimerInterface timer;

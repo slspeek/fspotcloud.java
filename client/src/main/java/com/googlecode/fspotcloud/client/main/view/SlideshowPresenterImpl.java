@@ -34,7 +34,7 @@ import java.util.logging.Logger;
 
 public class SlideshowPresenterImpl implements SlideshowView.SlideshowPresenter,
         SlideshowStatusEvent.Handler {
-    private static final Logger log = Logger.getLogger(SlideshowPresenterImpl.class.getName());
+    private final Logger log = Logger.getLogger(SlideshowPresenterImpl.class.getName());
     private final SlideshowView slideshowView;
     private final NumberFormat formatter = NumberFormat.getDecimalFormat();
 

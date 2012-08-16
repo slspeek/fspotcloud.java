@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 
 
 public class TagDetailsActivityMapper implements ActivityMapper {
-    private static final Logger log = Logger.getLogger(TagDetailsActivityMapper.class.getName());
+    private final Logger log = Logger.getLogger(TagDetailsActivityMapper.class.getName());
     private final TagDetailsActivityFactory tagDetailsActivityFactory;
 
     @Inject

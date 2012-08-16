@@ -48,13 +48,13 @@ import java.util.logging.Logger;
 
 
 public class Data {
-    private static final Logger log = Logger.getLogger(Data.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Data.class.getName());
 
     static {
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (ClassNotFoundException e) {
-            log.log(Level.SEVERE, "Driver not found", e);
+            LOGGER.log(Level.SEVERE, "Driver not found", e);
         }
     }
 
@@ -75,7 +75,7 @@ public class Data {
 
     @VisibleForTesting
     public void setJDBCUrl(String jdbcURL) throws SQLException {
-        //log.info("setting: " + jdbcURL);
+        //LOGGER.info("setting: " + jdbcURL);
         this.jdbcURL = jdbcURL;
 
         if (connection != null) {
@@ -86,7 +86,7 @@ public class Data {
 
     private Connection getConnection() throws SQLException {
         if (connection == null) {
-            log.info("Opening new connection: " + jdbcURL);
+            LOGGER.info("Opening new connection: " + jdbcURL);
             connection = DriverManager.getConnection(jdbcURL);
         }
 
@@ -242,7 +242,7 @@ public class Data {
                     photoDirectoryOverride);
         }
 
-        //log.info("URL-String: " + url + " override: " + photoDirectoryOverride);
+        //LOGGER.info("URL-String: " + url + " override: " + photoDirectoryOverride);
         return url;
     }
 
@@ -324,7 +324,7 @@ public class Data {
                             tagList, version));
                 }
             } catch (Exception e) {
-                log.log(Level.SEVERE, "getPhotoData: ", e);
+                LOGGER.log(Level.SEVERE, "getPhotoData: ", e);
             } finally {
                 rs.close();
             }
@@ -351,7 +351,7 @@ public class Data {
                 return version;
             }
         } catch (Exception e) {
-            log.log(Level.SEVERE, "getPhotoDefaultVersion: ", e);
+            LOGGER.log(Level.SEVERE, "getPhotoDefaultVersion: ", e);
         } finally {
             rs.close();
         }
@@ -377,7 +377,7 @@ public class Data {
                 result = true;
             }
         } catch (Exception e) {
-            log.log(Level.SEVERE, "isPhotoInTag: ", e);
+            LOGGER.log(Level.SEVERE, "isPhotoInTag: ", e);
         } finally {
             rs.close();
         }

@@ -40,7 +40,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 
 public class DataManagerImpl implements DataManager {
-    private static final Logger log = Logger.getLogger(DataManagerImpl.class.getName());
+    private final Logger log = Logger.getLogger(DataManagerImpl.class.getName());
     private final IndexingUtil indexingUtil;
     private boolean isCalled = false;
     private List<Runnable> queue = newArrayList();

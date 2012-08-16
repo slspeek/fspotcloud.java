@@ -34,7 +34,7 @@ import java.util.logging.Logger;
 
 public class HideControlsAction implements Runnable {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(HideControlsAction.class.getName());
+    private final Logger log = Logger.getLogger(HideControlsAction.class.getName());
     private final TagViewImpl tagView;
     private final IGlobalShortcutController keyboard;
 

@@ -43,7 +43,7 @@ import java.util.logging.Logger;
 
 public abstract class CachedTagManagerBase<T extends Tag, U extends T>
         extends CachedSimpleDAONamedIdImpl<Tag, U, String> implements TagDao {
-    private static final Logger log = Logger.getLogger(CachedTagManagerBase.class.getName());
+    private final Logger log = Logger.getLogger(CachedTagManagerBase.class.getName());
     @Inject
     @Named("maxDelete")
     private Integer maxDelete;

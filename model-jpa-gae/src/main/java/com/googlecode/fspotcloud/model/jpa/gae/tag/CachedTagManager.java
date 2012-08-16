@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 
 public class CachedTagManager extends CachedTagManagerBase<Tag, TagEntity>
         implements TagDao {
-    private static final Logger log = Logger.getLogger(CachedTagManager.class.getName());
+    private final Logger log = Logger.getLogger(CachedTagManager.class.getName());
     @Inject
     TagManagerBase<Tag, TagEntity> delegate;
 

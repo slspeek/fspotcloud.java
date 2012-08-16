@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 
 public class IndexingUtil {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(IndexingUtil.class.getName());
+    private final Logger log = Logger.getLogger(IndexingUtil.class.getName());
 
     public void rebuildTagNodeIndex(Map<String, TagNode> tagNodeIndex,
                                     List<TagNode> tagTreeData) {

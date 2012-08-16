@@ -42,7 +42,7 @@ import java.util.logging.Logger;
 
 
 public class SignUpPresenterImpl extends AbstractActivity implements SignUpView.SignUpPresenter {
-    private static final Logger log = Logger.getLogger(SignUpPresenterImpl.class.getName());
+    private final Logger log = Logger.getLogger(SignUpPresenterImpl.class.getName());
     public static final String AN_ERROR_PROHIBITED_YOUR_SIGN_UP = "An error prohibited your sign-up.";
     public static final String SIGNED_UP_SUCCESSFULLY = "Signed up successfully, please check your email for the account-confirmation mail.";
     public static final String SIGN_UP_FAILED = "Sign up failed.";

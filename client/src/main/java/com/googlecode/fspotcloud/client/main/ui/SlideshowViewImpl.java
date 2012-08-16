@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 
 public class SlideshowViewImpl extends Composite implements SlideshowView {
     @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(SlideshowViewImpl.class.getName());
+    private final Logger log = Logger.getLogger(SlideshowViewImpl.class.getName());
     private static SlideshowViewImplUiBinder uiBinder = GWT.create(SlideshowViewImplUiBinder.class);
     @UiField
     HorizontalPanel mainPanel;

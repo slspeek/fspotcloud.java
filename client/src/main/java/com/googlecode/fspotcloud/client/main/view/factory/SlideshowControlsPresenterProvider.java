@@ -41,7 +41,7 @@ import java.util.logging.Logger;
 
 
 public class SlideshowControlsPresenterProvider implements Provider<SlideshowControlsPresenter> {
-    private static final Logger log = Logger.getLogger(SlideshowControlsPresenterProvider.class.getName());
+    private final Logger log = Logger.getLogger(SlideshowControlsPresenterProvider.class.getName());
     private final AbstractActionMap actions;
     private final UserButtonPresenterFactory buttonPresenterFactory;
     private final SlideshowView slideshowView;

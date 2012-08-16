@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 
 
 public class StopListener extends Thread {
-    private static final Logger log = Logger.getLogger(StopListener.class.getName());
+    private final Logger log = Logger.getLogger(StopListener.class.getName());
     final int stopPort;
     private ServerSocket server;
 

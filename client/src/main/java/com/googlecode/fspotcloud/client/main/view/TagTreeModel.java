@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 
 
 public class TagTreeModel implements TreeViewModel {
-    private static final Logger log = Logger.getLogger(TagTreeModel.class.getName());
+    private final Logger log = Logger.getLogger(TagTreeModel.class.getName());
     List<TagNode> roots;
     SelectionModel<TagNode> selectionModel;
     Provider<Cell<TagNode>> cellProvider;

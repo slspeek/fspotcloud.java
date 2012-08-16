@@ -47,7 +47,7 @@ import java.util.logging.Logger;
 
 
 public class TagApprovalViewImpl extends Composite implements TagApprovalView {
-    private static final Logger log = Logger.getLogger(TagApprovalViewImpl.class.getName());
+    private final Logger log = Logger.getLogger(TagApprovalViewImpl.class.getName());
     private static TagApprovalViewImplUiBinder uiBinder = GWT.create(TagApprovalViewImplUiBinder.class);
     private TagApprovalPresenter presenter;
     private ListDataProvider<UserGroupInfo> approvedDataProvider;
