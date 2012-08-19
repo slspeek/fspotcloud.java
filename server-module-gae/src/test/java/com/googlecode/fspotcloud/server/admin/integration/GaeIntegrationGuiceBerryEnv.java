@@ -44,10 +44,10 @@ public class GaeIntegrationGuiceBerryEnv extends GuiceBerryModule {
     @Override
     protected void configure() {
         super.configure();
-        System.setProperty("photo.dir.original", "//home/steven/PhotoDao");
+        System.setProperty("photo.dir.original", "//home/steven/Photos");
         System.setProperty("photo.dir.override",
                 "" + System.getProperty("user.dir") +
-                        "/../peer/src/test/resources/PhotoDao");
+                        "/../peer/src/test/resources/Photos");
 
         Module firstOverride = Modules.override(new GaeTotalModule(3, "",
                 "rms@example.com"))
