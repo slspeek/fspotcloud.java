@@ -57,11 +57,16 @@ public class ApproveTagHandler extends SimpleActionHandler<ApproveTagAction, Voi
             throws DispatchException {
         adminPermission.checkAdminPermission();
 
-        Tag tag = tagDao.findOrNew(action.getTagId());
-        Set<Long> approvedGroups = tag.getApprovedUserGroups();
-        approvedGroups.add(action.getUsergroupId());
-        tag.setApprovedUserGroups(approvedGroups);
-        tagDao.save(tag);
+        Tag tag = tagDao.find(action.getTagId());
+        if (tag != null) {
+            Set<Long> approvedGroups = tag.getApprovedUserGroups();
+            approvedGroups.add(action.getUsergroupId());
+            tag.setApprovedUserGroups(approvedGroups);
+            tagDao.save(tag);
+
+        } else {
+            throw new DispatchException("Tag for id: " + action.getTagId() + " does not exist."){};
+        }
 
         UserGroup userGroup = userGroupDao.find(action.getUsergroupId());
 
@@ -70,6 +75,8 @@ public class ApproveTagHandler extends SimpleActionHandler<ApproveTagAction, Voi
             approvedTags.add(action.getTagId());
             userGroup.setApprovedTagIds(approvedTags);
             userGroupDao.save(userGroup);
+        } else {
+            throw new DispatchException("Usergroup for id: " + action.getUsergroupId() + " does not exist."){};
         }
 
         return new VoidResult();
