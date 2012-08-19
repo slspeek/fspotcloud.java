@@ -59,11 +59,11 @@ public class ApproveTagHandler extends SimpleActionHandler<ApproveTagAction, Voi
 
         Tag tag = tagDao.findOrNew(action.getTagId());
         Set<Long> approvedGroups = tag.getApprovedUserGroups();
-        approvedGroups.add(action.getUserGroupId());
+        approvedGroups.add(action.getUsergroupId());
         tag.setApprovedUserGroups(approvedGroups);
         tagDao.save(tag);
 
-        UserGroup userGroup = userGroupDao.find(action.getUserGroupId());
+        UserGroup userGroup = userGroupDao.find(action.getUsergroupId());
 
         if (userGroup != null) {
             Set<String> approvedTags = userGroup.getApprovedTagIds();

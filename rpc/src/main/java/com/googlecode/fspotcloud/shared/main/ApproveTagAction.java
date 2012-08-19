@@ -25,6 +25,7 @@
 package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
+import com.google.common.base.Objects;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import net.customware.gwt.dispatch.shared.Action;
 
@@ -46,7 +47,36 @@ public class ApproveTagAction implements Action<VoidResult> {
         return tagId;
     }
 
-    public Long getUserGroupId() {
+    public Long getUsergroupId() {
         return userGroupId;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("tagId", tagId)
+                .add("usergroupId", userGroupId)
+                .toString();
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ApproveTagAction that = (ApproveTagAction) o;
+
+        if (tagId != null ? !tagId.equals(that.tagId) : that.tagId != null) return false;
+        if (userGroupId != null ? !userGroupId.equals(that.userGroupId) : that.userGroupId != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = tagId != null ? tagId.hashCode() : 0;
+        result = 31 * result + (userGroupId != null ? userGroupId.hashCode() : 0);
+        return result;
     }
 }
