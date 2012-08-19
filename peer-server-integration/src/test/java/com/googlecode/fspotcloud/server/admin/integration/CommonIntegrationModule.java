@@ -48,10 +48,10 @@ public class CommonIntegrationModule extends AbstractModule {
 
     @Override
     public void configure() {
-        System.setProperty("photo.dir.original", "//home/steven/PhotoDao");
+        System.setProperty("photo.dir.original", "//home/steven/Photos");
         System.setProperty("photo.dir.override",
                 "" + System.getProperty("user.dir") +
-                        "/../peer/src/test/resources/PhotoDao");
+                        "/../peer/src/test/resources/Photos");
         install(new AdminActionsModule());
         bind(Integer.class).annotatedWith(Names.named("maxTicks"))
                 .toInstance(new Integer(3));
