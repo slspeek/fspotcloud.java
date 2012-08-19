@@ -24,10 +24,13 @@
 
 package com.googlecode.fspotcloud.peer;
 
+import com.google.common.base.Joiner;
+
 import java.awt.*;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -71,8 +74,9 @@ public class ImageData {
         int returnValue = convert.waitFor();
 
         if (returnValue != 0) {
-            throw new RuntimeException("convert returned an error code: " +
-                    returnValue);
+            String cmdString = Joiner.on(" ").join(Arrays.asList(command));
+            throw new RuntimeException("**error code: " +
+                    returnValue+" ** on: " +cmdString);
         }
 
         byte[] data = bas.toByteArray();
