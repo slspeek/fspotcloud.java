@@ -36,12 +36,14 @@ public class PeerRunner {
     private final String endpoint;
     private final String secret;
     private final String peerJar;
+    private final String stopPort;
 
     @Inject
     public PeerRunner() {
         this.endpoint = System.getProperty("endpoint");
         this.secret = System.getProperty("bot.secret");
         this.peerJar = System.getProperty("peer.jar");
+        stopPort = System.getProperty("stop.port");
     }
 
     public void startPeer(String db) throws IOException {
@@ -51,7 +53,7 @@ public class PeerRunner {
 
     public void stopPeer() throws IOException {
         Process peer = Runtime.getRuntime()
-                .exec(new String[]{"telnet", "localhost", "4444"});
+                .exec(new String[]{"telnet", "localhost", stopPort});
     }
 
     private String[] getCommand(String db) {
@@ -59,7 +61,7 @@ public class PeerRunner {
                 "screen", "-d", "-m", "java", "-cp", peerJar, "-Ddb=" + db,
                 "-Dendpoint=" + endpoint, "-Dbot.secret=" + secret, "-Dpause=2",
                 "-Dphoto.dir.original=file:///home/steven/Photos",
-                "-Dstop.port=" + System.getProperty("stop.port"),
+                "-Dstop.port=" + stopPort,
                 "-Dphoto.dir.override=file://" +
                         System.getProperty("user.dir") +
                         "/../peer/src/test/resources/Photos",
