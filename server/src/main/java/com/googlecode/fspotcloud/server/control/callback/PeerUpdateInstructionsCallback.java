@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 public class PeerUpdateInstructionsCallback implements SerializableAsyncCallback<PeerUpdateInstructionsResult> {
     private static final long serialVersionUID = -6213572441944313878L;
     @Inject
-    private Logger log;
+    private transient Logger log;
     @Inject
     private transient TaskQueueDispatch dispatchAsync;
 
