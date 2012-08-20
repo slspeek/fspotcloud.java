@@ -44,7 +44,7 @@ import static com.google.common.collect.Lists.newArrayList;
 public class PeerMetaDataCallback implements SerializableAsyncCallback<PeerMetaDataResult> {
     private static final long serialVersionUID = 1851403859917750767L;
     @Inject
-    Logger log;
+    private transient Logger log;
     @Inject
     private transient PeerDatabaseDao defaultPeer;
     @Inject

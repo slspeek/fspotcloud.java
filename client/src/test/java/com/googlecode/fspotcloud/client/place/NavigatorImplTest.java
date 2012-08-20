@@ -188,7 +188,6 @@ public class NavigatorImplTest extends TestCase {
         navigator = get(goTo);
         navigator.goToLatestTag();
         verify(goTo).goTo(woefje);
-        ;
     }
 
     public void testGetPagingInfo() {
@@ -196,6 +195,5 @@ public class NavigatorImplTest extends TestCase {
         navigator = get(goTo);
         navigator.goToLatestTag();
         verify(goTo).goTo(woefje);
-        ;
     }
 }

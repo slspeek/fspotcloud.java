@@ -48,6 +48,7 @@ public class PhotoManagerBlobsTest {
     private PhotoDao photoManager;
     @Inject
     private BlobService blobService;
+    private final Random random = new Random();
 
     @After
     public void cleanUp() {
@@ -56,7 +57,7 @@ public class PhotoManagerBlobsTest {
 
     private String saveBlob(int size) {
         byte[] data = new byte[size];
-        (new Random()).nextBytes(data);
+        random.nextBytes(data);
 
         return blobService.save("application", data).getKeyString();
     }
