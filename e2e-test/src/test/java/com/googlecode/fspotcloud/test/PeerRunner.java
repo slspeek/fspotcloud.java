@@ -59,7 +59,7 @@ public class PeerRunner {
                 "screen", "-d", "-m", "java", "-cp", peerJar, "-Ddb=" + db,
                 "-Dendpoint=" + endpoint, "-Dbot.secret=" + secret, "-Dpause=2",
                 "-Dphoto.dir.original=file:///home/steven/Photos",
-
+                "-Dstop.port=" + System.getProperty("stop.port"),
                 "-Dphoto.dir.override=file://" +
                         System.getProperty("user.dir") +
                         "/../peer/src/test/resources/Photos",
