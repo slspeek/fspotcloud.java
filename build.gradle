@@ -24,7 +24,7 @@ allprojects {
     apply plugin: 'eclipse'
 
     group = 'com.googlecode.fspotcloud'
-    version = '0.8-alpha-06'
+    version = '0.8-alpha-07'
     project.ext {
         libs = [
                 bot_dispatch_bot: "com.googlecode.bot-dispatch:bot:${bot_dispatch_version}",
@@ -101,31 +101,31 @@ subprojects {
     targetCompatibility = 1.6
     //ext.ext.libs = ext.libs
 
-    dependencies {
-        jalopy 'jalopy:jalopy-ant:0.1-1.5b5', 'jalopy:jalopy:1.5rc3'
-    }
+//    dependencies {
+//        jalopy 'jalopy:jalopy-ant:0.1-1.5b5', 'jalopy:jalopy:1.5rc3'
+//    }
 
-    task jalopy(dependsOn: classes) << {
-
-        ant.taskdef(name: 'jalopy',
-                classname: 'de.hunsicker.jalopy.plugin.ant.AntPlugin',
-                classpath: configurations.jalopy.asPath)
-        if (file("src/main/java").isDirectory()) {
-            ant.jalopy(convention: "${rootDir}/config/jalopy/jalopy-convention.xml") {
-                fileset(dir: "src/main/java") {
-                    include(name: '**/*.java')
-                }
-            }
-        }
-        if (file("src/test/java").isDirectory()) {
-            ant.jalopy(convention: "${rootDir}/config/jalopy/jalopy-convention.xml") {
-                fileset(dir: "src/test/java") {
-                    include(name: '**/*.java')
-                }
-
-            }
-        }
-    }
+//    task jalopy(dependsOn: classes) << {
+//
+//        ant.taskdef(name: 'jalopy',
+//                classname: 'de.hunsicker.jalopy.plugin.ant.AntPlugin',
+//                classpath: configurations.jalopy.asPath)
+//        if (file("src/main/java").isDirectory()) {
+//            ant.jalopy(convention: "${rootDir}/config/jalopy/jalopy-convention.xml") {
+//                fileset(dir: "src/main/java") {
+//                    include(name: '**/*.java')
+//                }
+//            }
+//        }
+//        if (file("src/test/java").isDirectory()) {
+//            ant.jalopy(convention: "${rootDir}/config/jalopy/jalopy-convention.xml") {
+//                fileset(dir: "src/test/java") {
+//                    include(name: '**/*.java')
+//                }
+//
+//            }
+//        }
+//    }
     if ("${analysis}" == "true") {
         apply plugin: 'pmd'
         apply plugin: 'jdepend'
@@ -155,9 +155,9 @@ subprojects {
         }
 
     }
-    if ("${run_jalopy}" == "true") {
-        check.dependsOn jalopy
-    }
+//    if ("${run_jalopy}" == "true") {
+//        check.dependsOn jalopy
+//    }
 
     test {
         jvmArgs "-XX:MaxPermSize=256m"

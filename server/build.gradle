@@ -1,8 +1,11 @@
 description = 'F-SpotCloud Server Component'
 
+def cobSerFile="${project.buildDir}/cobertura.ser"
 
 configurations {
     provided
+    instrumented
+    cobTuRA
 }
 
 sourceSets {
@@ -31,11 +34,38 @@ dependencies {
     testCompile ext.libs.guava
     testCompile ext.libs.jukito
     testCompile ext.libs.http_unit
+    cobTuRA group: 'net.sourceforge.cobertura', name: 'cobertura', version: '1.9.4.1'
+    testRuntime group: 'net.sourceforge.cobertura', name: 'cobertura', version: '1.9.4.1'
 
 }
 
+
+
+task cobertura_instrument(dependsOn: compileJava) << {
+    ant.taskdef(resource: 'tasks.properties', classpath: configurations.cobTuRA.asPath)
+    mkdir "build/instrumented"
+    // instrument the classes in-place
+    ant.'cobertura-instrument'(toDir: "build/instrumented", datafile: cobSerFile) {
+        // only instrument the relevant classes
+        fileset(dir: "${project.buildDir}/classes",
+                includes: "**/*.class")
+
+    }
+
+}
+
+task instrumentedJar(type: Jar, dependsOn: cobertura_instrument) {
+    from "build/instrumented"
+    classifier = 'instrumented'
+}
+
+
 test {
     exclude 'com/googlecode/fspotcloud/server/mail/MailerTest.class'
+}
+
+artifacts {
+    instrumented instrumentedJar
 }
 
 
