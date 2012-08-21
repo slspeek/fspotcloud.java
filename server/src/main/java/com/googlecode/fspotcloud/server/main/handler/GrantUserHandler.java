@@ -63,11 +63,19 @@ public class GrantUserHandler extends SimpleActionHandler<GrantUserAction, VoidR
         user.setGrantedUserGroups(grantedToUser);
         userDao.save(user);
 
+
         UserGroup group = userGroupDao.find(action.getUserGroupId());
-        Set<String> userInGroup = group.getGrantedUsers();
-        userInGroup.add(action.getEmail());
-        group.setGrantedUsers(userInGroup);
-        userGroupDao.save(group);
+        if (group != null) {
+
+            Set<String> usergroup = group.getGrantedUsers();
+            usergroup.add(action.getEmail());
+            group.setGrantedUsers(usergroup);
+            userGroupDao.save(group);
+        } else {
+            throw new DispatchException("Usergroup for id: " + action.getUserGroupId() + " does not exist.") {
+            };
+        }
+
 
         return new VoidResult();
     }

@@ -28,23 +28,43 @@
 */
 package com.googlecode.fspotcloud.server.main;
 
-import junit.framework.Assert;
+import com.googlecode.fspotcloud.server.inject.PropertiesFile;
+import org.jukito.JukitoModule;
+import org.jukito.JukitoRunner;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.assertNull;
 
 
 /**
- * DOCUMENT ME!
+ * PropertiesLoader failure unit test
  *
  * @author steven
  */
-public class PropertiesLoaderTest {
+@RunWith(JukitoRunner.class)
+public class PropertiesLoaderFailureTest {
+
+
+    public static class Module extends JukitoModule {
+        protected void configureTest() {
+
+            bind(String.class).annotatedWith(PropertiesFile.class).toInstance("nonexistent");
+
+        }
+    }
+
+    @Inject
+    private PropertiesLoader loader;
+
     /**
-     * Verifies that pl preserves system properties
+     * Verifies that errors are caught and null is returned
      */
     @Test
     public void testLoadProperties() {
-        PropertiesLoader l = new PropertiesLoader();
-        l.loadProperties();
-        Assert.assertNotNull(System.getProperty("user.home"));
+        assertNull(loader.loadProperties());
     }
+
 }

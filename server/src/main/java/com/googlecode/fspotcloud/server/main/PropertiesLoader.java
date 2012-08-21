@@ -28,6 +28,9 @@
 */
 package com.googlecode.fspotcloud.server.main;
 
+import com.googlecode.fspotcloud.server.inject.PropertiesFile;
+
+import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -41,6 +44,14 @@ import java.util.logging.Logger;
  * @author steven
  */
 public class PropertiesLoader {
+
+    private final String propertiesFileName;
+
+    @Inject
+    public PropertiesLoader(@PropertiesFile String propertiesFileName) {
+        this.propertiesFileName = propertiesFileName;
+    }
+
     public Properties loadProperties() {
         try {
             Properties p = new Properties();
@@ -49,16 +60,15 @@ public class PropertiesLoader {
             //ClassLoader l = Thread.currentThread().getContextClassLoader();
             //ClassLoader l = ClassLoader.getSystemClassLoader();
             final InputStream resourceAsStream = l.getResourceAsStream(
-                    "properties.properties");
+                    propertiesFileName);
 
             if (resourceAsStream == null) {
-                throw new IOException("properties.properties not found");
+                throw new IOException(propertiesFileName + " not found");
             }
 
             p.load(resourceAsStream);
             Logger.getLogger(PropertiesLoader.class.getName())
                     .info("Properties successfully loaded.");
-
             return p;
         } catch (IOException ex) {
             Logger.getLogger(PropertiesLoader.class.getName())
