@@ -65,7 +65,7 @@ public class ApproveTagHandler extends SimpleActionHandler<ApproveTagAction, Voi
             tagDao.save(tag);
 
         } else {
-            throw new DispatchException("Tag for id: " + action.getTagId() + " does not exist."){};
+            throw new TagNotFoundException();
         }
 
         UserGroup userGroup = userGroupDao.find(action.getUsergroupId());
@@ -76,7 +76,7 @@ public class ApproveTagHandler extends SimpleActionHandler<ApproveTagAction, Voi
             userGroup.setApprovedTagIds(approvedTags);
             userGroupDao.save(userGroup);
         } else {
-            throw new DispatchException("Usergroup for id: " + action.getUsergroupId() + " does not exist."){};
+            throw new UsergroupNotFoundException();
         }
 
         return new VoidResult();

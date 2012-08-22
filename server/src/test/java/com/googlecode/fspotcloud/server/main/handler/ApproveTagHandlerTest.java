@@ -9,7 +9,6 @@ import com.googlecode.fspotcloud.server.model.api.UserGroup;
 import com.googlecode.fspotcloud.server.model.api.UserGroupDao;
 import com.googlecode.fspotcloud.shared.main.ApproveTagAction;
 import com.googlecode.fspotcloud.user.IAdminPermission;
-import net.customware.gwt.dispatch.shared.DispatchException;
 import org.jukito.JukitoRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -59,14 +58,14 @@ public class ApproveTagHandlerTest {
 
     }
 
-    @Test(expected = DispatchException.class)
+    @Test(expected = UsergroupNotFoundException.class)
     public void testUsergroupNull() throws Exception {
         when(tagDao.find(TAG_ID)).thenReturn(tag);
         handler.execute(action, null);
         assertFalse(tag.getApprovedUserGroups().contains(USER_GROUP_ID));
         assertFalse(userGroup.getApprovedTagIds().contains(TAG_ID));
     }
-    @Test(expected = DispatchException.class)
+    @Test(expected = TagNotFoundException.class)
     public void testTagNull() throws Exception {
         when(userGroupDao.find(USER_GROUP_ID)).thenReturn(userGroup);
         handler.execute(action, null);
