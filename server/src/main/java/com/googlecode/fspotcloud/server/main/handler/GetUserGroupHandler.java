@@ -53,20 +53,26 @@ public class GetUserGroupHandler extends SimpleActionHandler<GetUserGroupAction,
         if (userService.isUserLoggedIn()) {
             String userName = userService.getEmail();
             UserGroup userGroup = userGroupDao.find(action.getId());
-
-            if (userName.equals(userGroup.getOwner())) {
-                return new GetUserGroupResult(get(userGroup));
+            if (userGroup != null) {
+                if (userName.equals(userGroup.getOwner())) {
+                    return new GetUserGroupResult(get(userGroup));
+                } else {
+                    throw new UserIsNotOwnerException();
+                }
+            } else {
+                throw new UsergroupNotFoundException();
             }
+
+        } else {
+            throw new UserIsNotLoggedException();
         }
 
-        return new GetUserGroupResult(null);
     }
 
     public static UserGroupInfo get(UserGroup group) {
         UserGroupInfo info = new UserGroupInfo(group.getId(), group.getName(),
                 group.getDescription(), group.isPublic());
         info.setGrantedUsers(group.getGrantedUsers());
-
         return info;
     }
 }
