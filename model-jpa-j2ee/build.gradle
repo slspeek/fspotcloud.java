@@ -102,6 +102,6 @@ task modelTest(type: Test, dependsOn: [classes, unpackTest]) {
     testResultsDir file("${project.testResultsDir}/model")
 }
 
-check.dependsOn photoDaoTest, tagDaoTest, peerDatabaseDaoTest, modelTest, userDaoTest, userGroupDaoTest
+test.dependsOn photoDaoTest, tagDaoTest, peerDatabaseDaoTest, modelTest, userDaoTest, userGroupDaoTest
 clean.dependsOn deleteDB
 
