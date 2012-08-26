@@ -30,7 +30,6 @@ import com.openpojo.validation.PojoValidator;
 import com.openpojo.validation.affirm.Affirm;
 import com.openpojo.validation.rule.impl.GetterMustExistRule;
 import com.openpojo.validation.rule.impl.NoNestedClassRule;
-import com.openpojo.validation.rule.impl.NoPublicFieldsRule;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
 import org.junit.Before;
@@ -65,7 +64,7 @@ public class PojoTest {
 
         pojoValidator = new PojoValidator();
         // Create Rules to validate structure for POJO_PACKAGE
-        pojoValidator.addRule(new NoPublicFieldsRule());
+        //pojoValidator.addRule(new NoPublicFieldsRule());
         //pojoValidator.addRule(new NoPrimitivesRule());
         //pojoValidator.addRule(new NoStaticExceptFinalRule());
         pojoValidator.addRule(new GetterMustExistRule());

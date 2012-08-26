@@ -50,7 +50,6 @@ public class DeleteAllPhotosAction implements Action<VoidResult>,
 
 
     public int hashCode() {
-        assert false : "hashCode not designed";
         return ANSWER_TO_EVERTHING; // any arbitrary constant will do
     }
 }
