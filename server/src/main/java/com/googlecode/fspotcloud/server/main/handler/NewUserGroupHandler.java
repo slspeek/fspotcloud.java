@@ -37,6 +37,8 @@ import net.customware.gwt.dispatch.shared.DispatchException;
 
 
 public class NewUserGroupHandler extends SimpleActionHandler<NewUserGroupAction, GetUserGroupResult> {
+    public static final String NO_DESCRIPTION = "No description";
+    public static final String NEW_GROUP = "New group";
     private final UserGroupDao userGroupDao;
     private final UserService userService;
 
@@ -56,12 +58,13 @@ public class NewUserGroupHandler extends SimpleActionHandler<NewUserGroupAction,
             String userName = userService.getEmail();
             UserGroup newGroup = userGroupDao.newEntity();
             newGroup.setOwner(userName);
-            newGroup.setDescription("No description");
-            newGroup.setName("New group");
+            newGroup.setDescription(NO_DESCRIPTION);
+            newGroup.setName(NEW_GROUP);
             userGroupDao.save(newGroup);
             info = GetUserGroupHandler.get(newGroup);
+        } else {
+            throw new UserIsNotLoggedException();
         }
-
         return new GetUserGroupResult(info);
     }
 }
