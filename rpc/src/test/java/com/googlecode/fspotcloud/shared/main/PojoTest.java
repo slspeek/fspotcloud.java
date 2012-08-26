@@ -41,16 +41,19 @@ import static com.google.common.collect.Lists.newArrayList;
 
 public class PojoTest {
     // Configured for expectation, so we know when a class gets added or removed.
-    private static final int EXPECTED_CLASS_COUNT = 9;
+    private static final int EXPECTED_CLASS_COUNT = 17;
 
     // The package to test
     private static final String POJO_PACKAGE = "com.googlecode.fspotcloud.shared.peer.rpc.actions";
     private List<PojoClass> pojoClasses;
     private PojoValidator pojoValidator;
     private Class<?>[] POJO_CLASSES = new Class<?>[]{
-            AuthenticationAction.class, AuthenticationResult.class,
+            AuthenticationAction.class, AuthenticationResult.class, DeleteUserGroupAction.class,
+            GetMyUserGroupsAction.class,GetMyUserGroupsResult.class,
+            GrantUserAction.class, LogoutAction.class,
             GetTagTreeAction.class, GetUserInfo.class, PhotoInfo.class,
             PhotoInfoStore.class, TagNode.class, TagTreeResult.class,
+            RequestFullsizeImageAction.class, RevokeTagAction.class, RevokeUserAction.class,
             UserInfo.class
     };
 

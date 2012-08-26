@@ -31,10 +31,14 @@ import com.googlecode.simplejpadao.SimpleDAONamedId;
 
 
 public class UserGuiceBerryEnv extends GuiceBerryModule {
+
+    public static final int MAX_DELETE = 1000;
+    public static final String PERSISTENCE_UNIT = "derby-test";
+
     @Override
     protected void configure() {
         super.configure();
-        install(new ModelModule(1000, "derby-test"));
+        install(new ModelModule(MAX_DELETE, PERSISTENCE_UNIT));
         bind(SimpleDAONamedId.class).to(UserManager.class);
     }
 }
