@@ -32,6 +32,7 @@ import javax.inject.Inject;
 
 
 public class ImageHelperImpl implements ImageHelper {
+    public static final String IMAGE_JPEG = "image/jpeg";
     @Inject
     BlobService blobService;
 
@@ -40,40 +41,33 @@ public class ImageHelperImpl implements ImageHelper {
         if (photo == null) {
             return null;
         }
-
         String key = keyForType(type, photo);
         byte[] image = null;
-
         if (key != null) {
             image = blobService.fetchData(new BlobKey(key));
         }
-
-        return image; //To change body of implemented methods use File | Settings | File Templates.
+        return image;
     }
 
     @Override
     public void saveImage(Photo photo, Type type, byte[] imageData) {
-        BlobKey blobKey = blobService.save("image/jpeg", imageData);
+        BlobKey blobKey = blobService.save(IMAGE_JPEG, imageData);
         setKeyForType(type, photo, blobKey);
     }
 
     private void setKeyForType(Type type, Photo photo, BlobKey key) {
         final String keyString = key.getKeyString();
-
         switch (type) {
             case FULLSIZE:
                 photo.setFullsizeImageBlobKey(keyString);
-
                 break;
 
             case NORMAL:
                 photo.setImageBlobKey(keyString);
-
                 break;
 
             case THUMB:
                 photo.setThumbBlobKey(keyString);
-
                 break;
 
             default:
@@ -87,17 +81,14 @@ public class ImageHelperImpl implements ImageHelper {
         switch (type) {
             case FULLSIZE:
                 result = photo.getFullsizeImageBlobKey();
-
                 break;
 
             case NORMAL:
                 result = photo.getImageBlobKey();
-
                 break;
 
             case THUMB:
                 result = photo.getThumbBlobKey();
-
                 break;
 
             default:
