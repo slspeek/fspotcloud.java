@@ -33,6 +33,7 @@ import java.io.Serializable;
 public class DeleteAllPhotosAction implements Action<VoidResult>,
         Serializable {
     private static final long serialVersionUID = 84293907017230375L;
+    public static final int ANSWER_TO_EVERTHING = 42;
 
     public DeleteAllPhotosAction() {
         super();
@@ -45,5 +46,11 @@ public class DeleteAllPhotosAction implements Action<VoidResult>,
         } else {
             return false;
         }
+    }
+
+
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return ANSWER_TO_EVERTHING; // any arbitrary constant will do
     }
 }

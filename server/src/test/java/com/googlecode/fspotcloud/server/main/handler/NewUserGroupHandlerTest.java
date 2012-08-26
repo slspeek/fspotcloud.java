@@ -24,10 +24,13 @@ public class NewUserGroupHandlerTest {
     @Inject
     private NewUserGroupHandler handler;
 
-    @Inject private UserGroupDao userGroupDao;
-    @Inject private UserService userService;
+    @Inject
+    private UserGroupDao userGroupDao;
+    @Inject
+    private UserService userService;
 
     private UserGroupEntity userGroupEntity = new UserGroupEntity();
+
     @Test
     public void testExecute() throws Exception {
         when(userService.isUserLoggedIn()).thenReturn(true);

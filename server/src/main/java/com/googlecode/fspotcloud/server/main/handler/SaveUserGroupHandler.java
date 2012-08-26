@@ -63,7 +63,7 @@ public class SaveUserGroupHandler extends SimpleActionHandler<SaveUserGroupActio
                     throw new UserIsNotOwnerException();
                 }
             } else {
-                   throw new UsergroupNotFoundException();
+                throw new UsergroupNotFoundException();
             }
         } else {
             throw new UserIsNotLoggedException();

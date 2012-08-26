@@ -1,6 +1,6 @@
 description = 'F-SpotCloud Server Component'
 
-def cobSerFile="${project.buildDir}/cobertura.ser"
+def cobSerFile = "${project.buildDir}/cobertura.ser"
 
 configurations {
     provided

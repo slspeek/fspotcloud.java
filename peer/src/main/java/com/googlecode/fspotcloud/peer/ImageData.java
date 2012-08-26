@@ -76,7 +76,7 @@ public class ImageData {
         if (returnValue != 0) {
             String cmdString = Joiner.on(" ").join(Arrays.asList(command));
             throw new RuntimeException("**error code: " +
-                    returnValue+" ** on: " +cmdString);
+                    returnValue + " ** on: " + cmdString);
         }
 
         byte[] data = bas.toByteArray();

@@ -72,7 +72,7 @@ public class TagTreeHelper {
                 roots.add(unconnected);
             } else {
                 TagNode parentInSelected = find(parent, selected);
-             parentInSelected.addChild(unconnected);
+                parentInSelected.addChild(unconnected);
             }
         }
 
@@ -81,8 +81,8 @@ public class TagTreeHelper {
 
     private TagNode find(TagNode parent, Set<TagNode> selected) {
         String id = parent.getId();
-        for (TagNode node: selected) {
-            if (node.getId().equals(id))  {
+        for (TagNode node : selected) {
+            if (node.getId().equals(id)) {
                 return node;
             }
         }
