@@ -13,7 +13,7 @@ public class DateUtil {
     public static Date cloneDate(Date date) {
         Date result = null;
         if (date != null) {
-             result = new Date(date.getTime());
+            result = new Date(date.getTime());
         }
         return result;
     }

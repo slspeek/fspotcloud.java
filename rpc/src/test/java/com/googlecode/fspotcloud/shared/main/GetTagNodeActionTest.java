@@ -9,10 +9,11 @@ public class GetTagNodeActionTest {
 
     public static final String ID = "ID";
 
-         private GetTagNodeAction action = new GetTagNodeAction(ID);
+    private GetTagNodeAction action = new GetTagNodeAction(ID);
+
     @Test
     public void testGetTagId() throws Exception {
-        assertEquals(ID,action.getTagId());
+        assertEquals(ID, action.getTagId());
     }
 
     @Test

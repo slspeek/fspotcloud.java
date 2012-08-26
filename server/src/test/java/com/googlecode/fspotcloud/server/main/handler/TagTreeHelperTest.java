@@ -22,7 +22,7 @@ public class TagTreeHelperTest {
         root.addChild(child);
         child.setParent(root);
 
-        TagTreeHelper helper = new TagTreeHelper(newArrayList(root), newHashSet(ROOT) );
+        TagTreeHelper helper = new TagTreeHelper(newArrayList(root), newHashSet(ROOT));
         List<TagNode> result = helper.getSubTree();
         assertEquals(1, result.size());
         TagNode root1 = result.get(0);
@@ -67,7 +67,7 @@ public class TagTreeHelperTest {
         TagNode root = new TagNode(ROOT, "0");
         TagNode child = new TagNode(CHILD, "0");
 
-        TagTreeHelper helper = new TagTreeHelper(newArrayList(root,child), newHashSet(CHILD, ROOT));
+        TagTreeHelper helper = new TagTreeHelper(newArrayList(root, child), newHashSet(CHILD, ROOT));
         List<TagNode> result = helper.getSubTree();
         assertEquals(2, result.size());
         TagNode root1 = result.get(0);

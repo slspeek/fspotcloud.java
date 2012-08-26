@@ -65,6 +65,7 @@ public class ApproveTagHandlerTest {
         assertFalse(tag.getApprovedUserGroups().contains(USER_GROUP_ID));
         assertFalse(userGroup.getApprovedTagIds().contains(TAG_ID));
     }
+
     @Test(expected = TagNotFoundException.class)
     public void testTagNull() throws Exception {
         when(userGroupDao.find(USER_GROUP_ID)).thenReturn(userGroup);
@@ -72,6 +73,7 @@ public class ApproveTagHandlerTest {
         assertFalse(tag.getApprovedUserGroups().contains(USER_GROUP_ID));
         assertFalse(userGroup.getApprovedTagIds().contains(TAG_ID));
     }
+
     @Test(expected = SecurityException.class)
     public void testExecuteNXS() throws Exception {
         doThrow(new SecurityException()).when(adminPermission).checkAdminPermission();

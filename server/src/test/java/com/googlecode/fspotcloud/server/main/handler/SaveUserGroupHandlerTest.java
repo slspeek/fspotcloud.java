@@ -23,9 +23,12 @@ public class SaveUserGroupHandlerTest {
     public static final String BAR = "Bar";
     public static final String CLOSE_FAMILY = "Close family";
     public static final String FAMILY = "Family";
-    @Inject private SaveUserGroupHandler handler;
-    @Inject private UserService userService;
-    @Inject private UserGroupDao userGroupDao;
+    @Inject
+    private SaveUserGroupHandler handler;
+    @Inject
+    private UserService userService;
+    @Inject
+    private UserGroupDao userGroupDao;
 
     @Test(expected = UserIsNotLoggedException.class)
     public void testUnauthorized() throws Exception {
