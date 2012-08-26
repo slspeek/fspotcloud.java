@@ -68,26 +68,40 @@ public class TagTreeHelper {
             TagNode parent = getParentInSelection(unconnected);
 
             if (parent == null) {
+
                 roots.add(unconnected);
             } else {
-                parent.addChild(unconnected);
+                TagNode parentInSelected = find(parent, selected);
+             parentInSelected.addChild(unconnected);
             }
         }
 
         return roots;
     }
 
+    private TagNode find(TagNode parent, Set<TagNode> selected) {
+        String id = parent.getId();
+        for (TagNode node: selected) {
+            if (node.getId().equals(id))  {
+                return node;
+            }
+        }
+        return null;
+    }
+
     private TagNode getParentInSelection(TagNode node) {
         String id = node.getId();
         node = index.get(id);
 
-        if ("0".equals(node.getParentId())) {
+        if (/*node.getParentId() == null || */"0".equals(node.getParentId())) {
             return null;
         } else {
             TagNode parent;
 
             while ((parent = index.get(node.getParentId())) != null) {
                 if (subSet.contains(parent.getId())) {
+
+
                     return parent;
                 } else {
                     node = parent;
