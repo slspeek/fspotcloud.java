@@ -25,6 +25,7 @@
 package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
+import com.google.common.base.Objects;
 import net.customware.gwt.dispatch.shared.Action;
 
 
@@ -41,5 +42,10 @@ public class GetTagNodeAction implements Action<TagNodeResult> {
 
     public String getTagId() {
         return tagId;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this).add("tagId", tagId).toString();
     }
 }
