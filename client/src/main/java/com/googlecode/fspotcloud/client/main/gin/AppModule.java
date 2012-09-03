@@ -38,7 +38,7 @@ import com.googlecode.fspotcloud.client.demo.DemoStep;
 import com.googlecode.fspotcloud.client.demo.DemoStepFactory;
 import com.googlecode.fspotcloud.client.demo.ShortcutDemoStep;
 import com.googlecode.fspotcloud.client.main.GlobalShortcutControllerFactory;
-import com.googlecode.fspotcloud.client.main.IGlobalShortcutController;
+import com.googlecode.fspotcloud.client.view.action.api.IGlobalShortcutController;
 import com.googlecode.fspotcloud.client.main.MVPSetup;
 import com.googlecode.fspotcloud.client.main.ui.*;
 import com.googlecode.fspotcloud.client.main.view.*;
