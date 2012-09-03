@@ -177,3 +177,18 @@ subprojects {
 
 }
 
+task unittests(dependsOn: [
+        ':server:test',
+        ':peer:test',
+        ':rpc:test',
+        ':peer-rpc:test',
+        ':model-api:test',
+        ':model-jpa:test',
+        ':model-jpa-gae:test',
+        ':user-service-api:test',
+        ':user-service-gae:test',
+        ':user-service-openid:test'
+]) << {
+    println "Done unittesting."
+}
+
