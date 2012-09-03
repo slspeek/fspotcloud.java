@@ -25,8 +25,8 @@
 package com.googlecode.fspotcloud.client.main.view;
 
 import com.google.inject.Inject;
-import com.googlecode.fspotcloud.client.main.IGlobalShortcutController;
-import com.googlecode.fspotcloud.client.main.IGlobalShortcutController.Mode;
+import com.googlecode.fspotcloud.client.view.action.api.IGlobalShortcutController;
+import com.googlecode.fspotcloud.client.view.action.api.IGlobalShortcutController.Mode;
 import com.googlecode.fspotcloud.client.main.event.AbstractActionMap;
 import com.googlecode.fspotcloud.client.main.event.ActionMap;
 import com.googlecode.fspotcloud.client.main.help.HelpContentGenerator;

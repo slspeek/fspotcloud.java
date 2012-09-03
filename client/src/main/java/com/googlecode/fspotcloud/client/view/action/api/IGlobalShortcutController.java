@@ -22,7 +22,7 @@
  *
  */
 
-package com.googlecode.fspotcloud.client.main;
+package com.googlecode.fspotcloud.client.view.action.api;
 
 import com.googlecode.fspotcloud.client.main.api.Initializable;
 

@@ -25,6 +25,7 @@
 package com.googlecode.fspotcloud.shared.main;
 
 import com.google.common.annotations.GwtCompatible;
+import com.google.common.base.Objects;
 import com.googlecode.fspotcloud.shared.dashboard.VoidResult;
 import net.customware.gwt.dispatch.shared.Action;
 
@@ -43,4 +44,27 @@ public class DeleteUserGroupAction implements Action<VoidResult> {
     public Long getId() {
         return id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DeleteUserGroupAction that = (DeleteUserGroupAction) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this).add("userGroupId", id).toString();
+    }
 }
+

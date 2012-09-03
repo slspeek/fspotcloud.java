@@ -38,7 +38,7 @@ public class Main implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        log.info("Buttons for all actions");
+        log.info("F-SpotCloud loading");
 
         try {
             MVPSetup setup = injector.getMVPSetup();
