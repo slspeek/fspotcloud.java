@@ -181,6 +181,7 @@ task unittests(dependsOn: [
         ':server:test',
         ':peer:test',
         ':rpc:test',
+        ':client:test',
         ':peer-rpc:test',
         ':model-api:test',
         ':model-jpa:test',
@@ -189,6 +190,22 @@ task unittests(dependsOn: [
         ':user-service-gae:test',
         ':user-service-openid:test'
 ]) << {
-    println "Done unittesting."
+    println "Done unit testing."
 }
-
+if ("${cobertura}" == "true") {
+    task unittestcoverage(dependsOn: [
+            ':server:cobertura',
+            ':peer:cobertura',
+            ':rpc:cobertura',
+            ':client:cobertura',
+            ':peer-rpc:cobertura',
+            ':model-api:cobertura',
+            ':model-jpa:cobertura',
+            ':model-jpa-gae:cobertura',
+            ':user-service-api:cobertura',
+            ':user-service-gae:cobertura',
+            ':user-service-openid:cobertura'
+    ]) << {
+        println "Done unit test coverage."
+    }
+}
