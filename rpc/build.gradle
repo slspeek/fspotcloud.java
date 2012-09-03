@@ -9,6 +9,7 @@ dependencies {
     compile ext.libs.guava
     compile ext.libs.guava_gwt
 
+    testCompile project(':test-util')
     testCompile ext.libs.junit
     testCompile ext.libs.commons_lang
     testCompile ext.libs.openpojo
